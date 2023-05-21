@@ -7,6 +7,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Custom Variables
+    |--------------------------------------------------------------------------
+    |*/
+    'company' => [
+        'name' => env('COMPANY_NAME'),
+        'website' => env('APP_URL'),
+        'COMPANY_PASS' => 'adm1n#2023',
+        'COMPANY_USER' => 'Moboeats',
+        'COMPANY_EMAIL' => 'info@moboeats.com',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
@@ -56,6 +69,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+
+    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
 
     'asset_url' => env('ASSET_URL'),
 
