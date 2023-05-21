@@ -26,6 +26,7 @@ class StoreMenuRequest extends FormRequest
             'description' => ['required'],
             'status' => ['nullable', 'integer'],
             'createdBy' => ['required'],
+            'restaurantId' => ['required'],
             'categoryIds' => 'required|array',
             'subcategoryIds' => 'required|array',
         ];
@@ -34,6 +35,7 @@ class StoreMenuRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
+            'restaurant_id' => $this->restaurantId,
             'created_by' => $this->createdBy,
             'category_ids' => $this->categoryIds,
             'sub_category_ids' => $this->subcategoryIds,

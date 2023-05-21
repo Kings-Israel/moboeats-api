@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -19,6 +20,7 @@ class Menu extends Model implements UrlRoutable
     protected $fillable = [
         'title',
         'description',
+        'restaurant_id',
         'status',
         'created_by',
         'updated_by',
@@ -75,5 +77,15 @@ class Menu extends Model implements UrlRoutable
     public function images(): HasMany
     {
         return $this->hasMany(MenuImage::class, 'menu_id', 'id');
+    }
+
+    /**
+     * Get the restaurant that owns the Menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function restaurant(): BelongsTo
+    {
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 }

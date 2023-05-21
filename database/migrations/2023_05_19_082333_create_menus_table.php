@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('title');
             $table->string('description')->nullable();
+            $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade');
             $table->integer("status")->default(1);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

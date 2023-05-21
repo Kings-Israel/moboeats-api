@@ -27,19 +27,21 @@ class MenuController extends Controller
         $includesubCategories = $request->query('subCategories');
 
         $menu = Menu::where($filterItems);
-
         if ($includesubCategories &&  $includeCategories) {
-            $menu = $menu->with(['categories', 'subCategories']);
+            // $menu = $menu->with(['restaurant','categories','subCategories']);
+            $menu = $menu->with(['categories','subCategories']);
         } else {
             if ($includeCategories) {
+                // $menu = $menu->with(['restaurant','categories']);
                 $menu = $menu->with('categories');
             }
             if ($includesubCategories) {
+                // $menu = $menu->with(['restaurant','subCategories']);
                 $menu = $menu->with('subCategories');
             }
         }
        
-        return new MenuCollection($menu->paginate()->appends($request->query()));
+        return new MenuCollection($menu->with('restaurant')->paginate()->appends($request->query()));
     }
 
     /**

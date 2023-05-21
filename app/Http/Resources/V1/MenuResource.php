@@ -22,6 +22,7 @@ class MenuResource extends JsonResource
             'status' => $this->status,
             'createdBy' => $this->created_by,
             'updatedBy' => $this->updated_by,
+            'restaurant' => $this->restaurant,
             // 'categories' => $this->categories,
             // 'subCategories' => $this->subCategories,
             'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),

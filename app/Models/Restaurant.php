@@ -11,6 +11,7 @@ use App\Traits\Admin\ColumnsTrait;
 use App\Traits\Admin\UuidTrait;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Restaurant extends Model implements UrlRoutable
 {
@@ -98,4 +99,13 @@ class Restaurant extends Model implements UrlRoutable
         return $this->hasOne(Questionnaire::class, 'restaurant_id', 'id');
     }
     
+    /**
+     * Get all of the menus for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menus(): HasMany
+    {
+        return $this->hasMany(Menu::class, 'restaurant_id', 'id');
+    }
 }
