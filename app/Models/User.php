@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -22,6 +25,31 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    protected $keyType = 'int';
+    public $incrementing = true;
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
+    public function getRouteKey()
+    {
+        return $this->uuid;
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where('uuid', $value)->firstOrFail();
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +69,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all of the restaurants for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function restaurants(): HasMany
+    {
+        return $this->hasMany(Restaurant::class, 'user_id', 'id');
+    }
 }

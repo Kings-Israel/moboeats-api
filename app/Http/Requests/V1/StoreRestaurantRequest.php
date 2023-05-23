@@ -11,7 +11,9 @@ class StoreRestaurantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        // return true;
+        $user = $this->user();
+        return $user != null && $user->tokenCan('create');
     }
 
     /**
@@ -26,6 +28,7 @@ class StoreRestaurantRequest extends FormRequest
             'name' => ['required'],
             'nameShort' => ['required'],
             'email' => ['required', 'email'],
+            // 'userId' => ['required'],
             'about' => ['required'],
             'aboutShort' => ['required'],
             'phoneNo' => ['required'],
@@ -48,6 +51,7 @@ class StoreRestaurantRequest extends FormRequest
             'name_short' => $this->nameShort,
             'about_short' => $this->aboutShort,
             'phone_no' => $this->phoneNo,
+            // 'user_id' => $this->userId,
         ]);
     }
 }

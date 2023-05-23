@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Restaurant;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Restaurant>
@@ -23,6 +24,7 @@ class RestaurantFactory extends Factory
             'name' => $this->faker->company,
             'name_short' => $this->faker->word,
             'email' => $this->faker->unique()->safeEmail,
+            'user_id' => User::all()->random()->id,
             'about' => $this->faker->paragraphs(3, true),
             'about_short' => $this->faker->sentence,
             'phone_no' => $this->faker->phoneNumber,

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\FCategorySubCategoryController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
@@ -23,11 +24,23 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/**
+ *Auth
+*/
 Route::group(['prefix' => 'v1'], function() {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+});
+
+
+Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::apiResource('restaurants', RestaurantController::class);
     Route::apiResource('food-categories', FoodCommonCategoryController::class);
     Route::apiResource('food-sub-categories', FooSubCategoryController::class);
     Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
 
     Route::apiResource('menu', MenuController::class);
+
+    
+    Route::post('logout', [AuthController::class, 'logout']);
 });

@@ -11,7 +11,9 @@ use App\Traits\Admin\ColumnsTrait;
 use App\Traits\Admin\UuidTrait;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Restaurant extends Model implements UrlRoutable
 {
@@ -26,6 +28,7 @@ class Restaurant extends Model implements UrlRoutable
         parent::boot();
         static::creating(function ($model) {
             $model->uuid = (string) Str::uuid();
+            $model->user_id = Auth::user()->id;
         });
     }
 
@@ -34,6 +37,7 @@ class Restaurant extends Model implements UrlRoutable
         'name',
         'name_short',
         'email',
+        // 'user_id',
         'about',
         'about_short',
         'phone_no',
@@ -107,5 +111,15 @@ class Restaurant extends Model implements UrlRoutable
     public function menus(): HasMany
     {
         return $this->hasMany(Menu::class, 'restaurant_id', 'id');
+    }
+
+    /**
+     * Get the user that owns the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
