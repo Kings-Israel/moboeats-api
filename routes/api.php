@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\V1\FCategorySubCategoryController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
 use App\Http\Controllers\Api\V1\MenuController;
+use App\Http\Controllers\Api\V1\OrdererController;
+use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,17 +32,41 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function() {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
+    
 });
 
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::get('user', [AuthController::class, 'authUser']);
+});
+/**Basically a customer who will be ordering food/drinks */
+Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], function() {
+    Route::apiResource('orderers', OrdererController::class);
+
+    Route::apiResource('orderer-restaurants', RestaurantController::class);
+    Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
+    Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
+   
+    Route::apiResource('orderer-menu', MenuController::class);
+});
+/**Restaurant owners management */
+Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
     Route::apiResource('restaurants', RestaurantController::class);
     Route::apiResource('food-categories', FoodCommonCategoryController::class);
     Route::apiResource('food-sub-categories', FooSubCategoryController::class);
     Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
+    Route::apiResource('more-info', QuestionnaireController::class);
 
     Route::apiResource('menu', MenuController::class);
-
-    
-    Route::post('logout', [AuthController::class, 'logout']);
 });
+
+// Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
+//     // Define customer-specific routes here
+// });
+// Route::group(['prefix' => 'v1/driver', 'middleware' => 'auth:sanctum'], function() {
+//     // Define driver-specific routes here
+// });
+// Route::group(['prefix' => 'v1/admin', 'middleware' => 'auth:sanctum'], function() {
+//     // Define admin-specific routes here
+// });

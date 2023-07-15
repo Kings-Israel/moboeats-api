@@ -53,8 +53,8 @@ class UpdateRestaurantRequest extends FormRequest
                 'state' => ['sometimes', 'required'],
                 'postalCode' => ['sometimes', 'required'],
                 'mapLocation' => ['sometimes', 'required'],
-                'url' => ['nullable'],
-                'logo' => ['nullable'],
+                'url' => ['sometimes', 'required'],
+                'logo' => ['sometimes', 'required'],
             ];
         }
     }

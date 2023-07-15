@@ -16,10 +16,18 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+/**
+ * @group Food Sub Categories
+ * 
+ * Food Sub Categories API resource
+ */
+
 class FooSubCategoryController extends Controller
 {
+     
     /**
      * Display a listing of the resource.
+     * 
      */
     public function index(Request $request)
     {
@@ -49,7 +57,7 @@ class FooSubCategoryController extends Controller
                 $foodSubCategory->foodCategories()->attach($foodCategoryId, [
                      // Add more pivot table attributes here
                     'uuid' => Str::uuid(),
-                    'created_by' => 'info@moboeats.com',
+                    'created_by' => $request->createdBy,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
             }
@@ -58,6 +66,7 @@ class FooSubCategoryController extends Controller
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
         }
         
     }
@@ -81,7 +90,7 @@ class FooSubCategoryController extends Controller
     
                 $subCategory->foodCategories()->attach($foodCategoryIds, [
                     'uuid' => Str::uuid(),
-                    'created_by' => 'info@moboeats.com',
+                    'created_by' => $request->createdBy,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
     
@@ -95,6 +104,7 @@ class FooSubCategoryController extends Controller
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
         }
        
     }
@@ -123,7 +133,7 @@ class FooSubCategoryController extends Controller
             foreach ($foodCategoryIds as $foodCategoryId) {
                 $syncData[$foodCategoryId] = [
                     'uuid' => Str::uuid(),
-                    'created_by' => 'info@moboeats.com',
+                    'created_by' => $request->updatedBy,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ];
             }

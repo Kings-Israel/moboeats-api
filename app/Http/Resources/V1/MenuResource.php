@@ -16,17 +16,24 @@ class MenuResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'id' =>$this->id,
             'uuid' => $this->uuid,
-            'title' => $this->title,
-            'description' => $this->description,
-            'status' => $this->status,
-            'createdBy' => $this->created_by,
-            'updatedBy' => $this->updated_by,
-            'restaurant' => $this->restaurant,
-            // 'categories' => $this->categories,
-            // 'subCategories' => $this->subCategories,
-            'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),
-            'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('subCategories')),
+            'attributes' => [
+                'title' => $this->title,
+                'description' => $this->description,
+                'status' => $this->status,
+                'createdBy' => $this->created_by,
+                'updatedBy' => $this->updated_by,
+                'restaurant' => $this->restaurant,
+                'status' => (string) $this->status,
+            ],
+            'relationships' => [
+                'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),
+                'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('subCategories')),
+                'images' => MenuImageResource::collection($this->whenLoaded('images')),
+                // 'images' => $this->images,
+            ]
+                        
         ];
     }
 }

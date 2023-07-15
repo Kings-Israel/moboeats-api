@@ -1,0 +1,57 @@
+name: 'Authentication Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/login
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'User API resource'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: becker.christine@example.org
+        type: string
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: '7*,?t6mw*F_Ct|#EofA'
+        type: string
+        custom: []
+      userType:
+        name: userType
+        description: ''
+        required: true
+        example: recusandae
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: becker.christine@example.org
+      password: '7*,?t6mw*F_Ct|#EofA'
+      userType: recusandae
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

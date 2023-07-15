@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
-
+//create a symlink to storage folder
+Route::get('/storage-link', function() {
+    Artisan::call('storage:link');
+    return redirect('/');
+});
 require __DIR__.'/auth.php';
+

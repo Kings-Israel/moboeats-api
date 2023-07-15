@@ -20,15 +20,18 @@ class StoreMenuRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
-    {
+    {   
         return [
             'title' => ['required'],
             'description' => ['required'],
             'status' => ['nullable', 'integer'],
             'createdBy' => ['required'],
             'restaurantId' => ['required'],
+            'image' => 'required|file|mimes:jpeg,png|max:2048', // Adjust the validation rules as per your requirements.
             'categoryIds' => 'required|array',
+            'categoryIds.*' => 'integer',
             'subcategoryIds' => 'required|array',
+            'subcategoryIds.*' => 'integer',
         ];
     }
 

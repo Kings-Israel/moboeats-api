@@ -14,7 +14,7 @@ class QuestionnaireCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
+        return parent::toArray($request);
         return [
             'uuid' =>$this->uuid,
             'restaurantId' =>$this->restaurant_id,

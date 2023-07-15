@@ -10,9 +10,15 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laratrust\Contracts\LaratrustUser;
+use Laratrust\Traits\HasRolesAndPermissions;
 
-class User extends Authenticatable 
+
+class User extends Authenticatable implements LaratrustUser
 {
+    use HasRolesAndPermissions;
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -24,6 +30,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_type',
+        'role_id',
+        'status',
     ];
 
     protected $keyType = 'int';
@@ -78,5 +87,31 @@ class User extends Authenticatable
     public function restaurants(): HasMany
     {
         return $this->hasMany(Restaurant::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the orderer associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function orderer(): HasOne
+    {
+        return $this->hasOne(Orderer::class, 'user_id', 'id');
+    }
+
+    public static function options($column)
+    {
+        if($column == 'status'){
+            $options = [
+                ['id' => 1,'caption' => 'Inactive', 'color' => 'bg-yellow-500'],
+                ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
+            ];
+        }
+        
+        if(isset($options)){
+            return $options;
+        }else{
+            return null;
+        }
     }
 }

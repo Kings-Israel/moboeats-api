@@ -27,6 +27,18 @@ class StoreUserRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'userType' => ['required'],
+            'otp' => ['nullable'],
+            'image' => ['nullable'],
+            'phoneNo' => ['nullable'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_type' => $this->userType,
+            'phone_no' => $this->phoneNo,
+        ]);
     }
 }

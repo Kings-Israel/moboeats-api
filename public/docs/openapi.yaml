@@ -1,0 +1,1814 @@
+openapi: 3.0.3
+info:
+  title: MoboEats
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/v1/login:
+    post:
+      summary: 'User API resource'
+      operationId: userAPIResource
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Authentication Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: becker.christine@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: '7*,?t6mw*F_Ct|#EofA'
+                userType:
+                  type: string
+                  description: ''
+                  example: recusandae
+              required:
+                - email
+                - password
+                - userType
+      security: []
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/register:
+    post:
+      summary: ''
+      operationId: postApiV1Register
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: tsfymhdigobxinnot
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: juana.pacocha@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: ut
+                userType:
+                  type: string
+                  description: ''
+                  example: nesciunt
+                otp:
+                  type: string
+                  description: ''
+                  example: null
+                image:
+                  type: string
+                  description: ''
+                  example: null
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+                - email
+                - password
+                - userType
+      security: []
+  /api/v1/logout:
+    post:
+      summary: ''
+      operationId: postApiV1Logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/user:
+    get:
+      summary: ''
+      operationId: getApiV1User
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/orderer/orderer-food-categories:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Categories Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: id
+                description:
+                  type: string
+                  description: ''
+                  example: eum
+                status:
+                  type: string
+                  description: ''
+                  example: null
+                createdBy:
+                  type: string
+                  description: ''
+                  example: provident
+              required:
+                - title
+                - description
+                - createdBy
+      security: []
+  '/api/v1/orderer/orderer-food-categories/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Categories Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: dolorem
+                description:
+                  type: string
+                  description: ''
+                  example: qui
+                status:
+                  type: string
+                  description: ''
+                  example: eos
+                updatedBy:
+                  type: string
+                  description: ''
+                  example: ducimus
+              required:
+                - title
+                - description
+                - status
+                - updatedBy
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the orderer food category.'
+        example: labore
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/food-categories:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Categories Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: atque
+                description:
+                  type: string
+                  description: ''
+                  example: nam
+                status:
+                  type: string
+                  description: ''
+                  example: null
+                createdBy:
+                  type: string
+                  description: ''
+                  example: quaerat
+              required:
+                - title
+                - description
+                - createdBy
+      security: []
+  '/api/v1/restaurant/food-categories/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Categories Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: ex
+                description:
+                  type: string
+                  description: ''
+                  example: itaque
+                status:
+                  type: string
+                  description: ''
+                  example: fugit
+                updatedBy:
+                  type: string
+                  description: ''
+                  example: consequatur
+              required:
+                - title
+                - description
+                - status
+                - updatedBy
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the food category.'
+        example: tempore
+        required: true
+        schema:
+          type: string
+  /api/v1/orderer/orderer-food-sub-categories:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Sub Categories'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: ipsam
+                description:
+                  type: string
+                  description: ''
+                  example: doloribus
+                status:
+                  type: integer
+                  description: ''
+                  example: 5
+                createdBy:
+                  type: string
+                  description: ''
+                  example: vero
+                categoryIds:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: []
+              required:
+                - title
+                - description
+                - createdBy
+                - categoryIds
+      security: []
+  '/api/v1/orderer/orderer-food-sub-categories/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Sub Categories'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: vero
+                description:
+                  type: string
+                  description: ''
+                  example: qui
+                status:
+                  type: string
+                  description: ''
+                  example: null
+                updatedBy:
+                  type: string
+                  description: ''
+                  example: et
+                categoryIds:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: []
+              required:
+                - title
+                - description
+                - updatedBy
+                - categoryIds
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the orderer food sub category.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/food-sub-categories:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Sub Categories'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: nostrum
+                description:
+                  type: string
+                  description: ''
+                  example: deleniti
+                status:
+                  type: integer
+                  description: ''
+                  example: 12
+                createdBy:
+                  type: string
+                  description: ''
+                  example: impedit
+                categoryIds:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: []
+              required:
+                - title
+                - description
+                - createdBy
+                - categoryIds
+      security: []
+  '/api/v1/restaurant/food-sub-categories/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Food Sub Categories'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: aut
+                description:
+                  type: string
+                  description: ''
+                  example: nihil
+                status:
+                  type: string
+                  description: ''
+                  example: null
+                updatedBy:
+                  type: string
+                  description: ''
+                  example: soluta
+                categoryIds:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: []
+              required:
+                - title
+                - description
+                - updatedBy
+                - categoryIds
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the food sub category.'
+        example: quia
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/food-sub-categories/bulk:
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantFoodSubCategoriesBulk
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Sub Categories'
+      security: []
+  /api/v1/orderer/orderer-menu:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: query
+          name: categories
+          description: 'to fetch categories associated with Menu'
+          example: neque
+          required: false
+          schema:
+            type: string
+            description: 'to fetch categories associated with Menu'
+            example: neque
+        -
+          in: query
+          name: subCategories
+          description: 'to fetch categories associated with Menu'
+          example: reiciendis
+          required: false
+          schema:
+            type: string
+            description: 'to fetch categories associated with Menu'
+            example: reiciendis
+        -
+          in: query
+          name: restaurant
+          description: 'to fetch restaurant that owns with Menu'
+          example: et
+          required: false
+          schema:
+            type: string
+            description: 'to fetch restaurant that owns with Menu'
+            example: et
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: culpa
+                description:
+                  type: string
+                  description: ''
+                  example: ea
+                status:
+                  type: integer
+                  description: ''
+                  example: 1
+                createdBy:
+                  type: string
+                  description: ''
+                  example: nemo
+                restaurantId:
+                  type: string
+                  description: ''
+                  example: occaecati
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                categoryIds:
+                  type: array
+                  description: ''
+                  example:
+                    - 12
+                  items:
+                    type: integer
+                subcategoryIds:
+                  type: array
+                  description: ''
+                  example:
+                    - 18
+                  items:
+                    type: integer
+              required:
+                - title
+                - description
+                - createdBy
+                - restaurantId
+                - image
+      security: []
+  '/api/v1/orderer/orderer-menu/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the orderer menu.'
+        example: deleniti
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/menu:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: query
+          name: categories
+          description: 'to fetch categories associated with Menu'
+          example: dolores
+          required: false
+          schema:
+            type: string
+            description: 'to fetch categories associated with Menu'
+            example: dolores
+        -
+          in: query
+          name: subCategories
+          description: 'to fetch categories associated with Menu'
+          example: molestias
+          required: false
+          schema:
+            type: string
+            description: 'to fetch categories associated with Menu'
+            example: molestias
+        -
+          in: query
+          name: restaurant
+          description: 'to fetch restaurant that owns with Menu'
+          example: facilis
+          required: false
+          schema:
+            type: string
+            description: 'to fetch restaurant that owns with Menu'
+            example: facilis
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: eveniet
+                description:
+                  type: string
+                  description: ''
+                  example: delectus
+                status:
+                  type: integer
+                  description: ''
+                  example: 7
+                createdBy:
+                  type: string
+                  description: ''
+                  example: quia
+                restaurantId:
+                  type: string
+                  description: ''
+                  example: sed
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                categoryIds:
+                  type: array
+                  description: ''
+                  example:
+                    - 15
+                  items:
+                    type: integer
+                subcategoryIds:
+                  type: array
+                  description: ''
+                  example:
+                    - 5
+                  items:
+                    type: integer
+              required:
+                - title
+                - description
+                - createdBy
+                - restaurantId
+                - image
+      security: []
+  '/api/v1/restaurant/menu/{uuid}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+        required: true
+        schema:
+          type: string
+  /api/v1/orderer/orderers:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Orderer/Customer Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Orderer/Customer Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: soluta
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: kovacek.jasper@example.org
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: null
+                address:
+                  type: string
+                  description: ''
+                  example: null
+                city:
+                  type: string
+                  description: ''
+                  example: null
+                state:
+                  type: string
+                  description: ''
+                  example: null
+                mapLocation:
+                  type: string
+                  description: ''
+                  example: null
+                image:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+                - email
+      security: []
+  '/api/v1/orderer/orderers/{uuid}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Orderer/Customer Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Orderer/Customer Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  description: 'Must be a valid UUID.'
+                  example: 4c788e96-b156-3141-8988-b0f03da1aaed
+                name:
+                  type: string
+                  description: ''
+                  example: asperiores
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: micheal.jacobson@example.com
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: unde
+                address:
+                  type: string
+                  description: ''
+                  example: repudiandae
+                city:
+                  type: string
+                  description: ''
+                  example: et
+                state:
+                  type: string
+                  description: ''
+                  example: ea
+                mapLocation:
+                  type: string
+                  description: ''
+                  example: qui
+                image:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - uuid
+                - name
+                - email
+                - phoneNo
+                - address
+                - city
+                - state
+                - mapLocation
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Orderer/Customer Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: 5726ffff-3ef4-4237-b61b-5ac351a1b9b1
+        required: true
+        schema:
+          type: string
+  /api/v1/orderer/orderer-restaurants:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: query
+          name: questionnaire
+          description: 'to fetch associated restaurant questionnaire answers'
+          example: reprehenderit
+          required: false
+          schema:
+            type: string
+            description: 'to fetch associated restaurant questionnaire answers'
+            example: reprehenderit
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: illo
+                nameShort:
+                  type: string
+                  description: ''
+                  example: null
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: wolf.lauryn@example.net
+                about:
+                  type: string
+                  description: ''
+                  example: null
+                aboutShort:
+                  type: string
+                  description: ''
+                  example: null
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: null
+                address:
+                  type: string
+                  description: ''
+                  example: null
+                city:
+                  type: string
+                  description: ''
+                  example: null
+                state:
+                  type: string
+                  description: ''
+                  example: null
+                postalCode:
+                  type: string
+                  description: ''
+                  example: null
+                mapLocation:
+                  type: string
+                  description: ''
+                  example: null
+                latitude:
+                  type: string
+                  description: ''
+                  example: null
+                longitude:
+                  type: string
+                  description: ''
+                  example: null
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+                - email
+      security: []
+  '/api/v1/orderer/orderer-restaurants/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  description: 'Must be a valid UUID.'
+                  example: 0e9d0f26-61b7-318f-b88a-ef052fa32302
+                name:
+                  type: string
+                  description: ''
+                  example: reprehenderit
+                nameShort:
+                  type: string
+                  description: ''
+                  example: reiciendis
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: margarita65@example.org
+                about:
+                  type: string
+                  description: ''
+                  example: a
+                aboutShort:
+                  type: string
+                  description: ''
+                  example: expedita
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: cum
+                address:
+                  type: string
+                  description: ''
+                  example: necessitatibus
+                city:
+                  type: string
+                  description: ''
+                  example: ut
+                state:
+                  type: string
+                  description: ''
+                  example: eos
+                postalCode:
+                  type: string
+                  description: ''
+                  example: consequatur
+                mapLocation:
+                  type: string
+                  description: ''
+                  example: commodi
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - uuid
+                - name
+                - nameShort
+                - email
+                - about
+                - aboutShort
+                - phoneNo
+                - address
+                - city
+                - state
+                - postalCode
+                - mapLocation
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the orderer restaurant.'
+        example: earum
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/restaurants:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters:
+        -
+          in: query
+          name: questionnaire
+          description: 'to fetch associated restaurant questionnaire answers'
+          example: qui
+          required: false
+          schema:
+            type: string
+            description: 'to fetch associated restaurant questionnaire answers'
+            example: qui
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: officiis
+                nameShort:
+                  type: string
+                  description: ''
+                  example: null
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: quigley.aliyah@example.com
+                about:
+                  type: string
+                  description: ''
+                  example: null
+                aboutShort:
+                  type: string
+                  description: ''
+                  example: null
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: null
+                address:
+                  type: string
+                  description: ''
+                  example: null
+                city:
+                  type: string
+                  description: ''
+                  example: null
+                state:
+                  type: string
+                  description: ''
+                  example: null
+                postalCode:
+                  type: string
+                  description: ''
+                  example: null
+                mapLocation:
+                  type: string
+                  description: ''
+                  example: null
+                latitude:
+                  type: string
+                  description: ''
+                  example: null
+                longitude:
+                  type: string
+                  description: ''
+                  example: null
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - name
+                - email
+      security: []
+  '/api/v1/restaurant/restaurants/{uuid}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  description: 'Must be a valid UUID.'
+                  example: ada2564b-c690-3f63-8fc3-c9ea13cff595
+                name:
+                  type: string
+                  description: ''
+                  example: itaque
+                nameShort:
+                  type: string
+                  description: ''
+                  example: eum
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: snader@example.org
+                about:
+                  type: string
+                  description: ''
+                  example: occaecati
+                aboutShort:
+                  type: string
+                  description: ''
+                  example: et
+                phoneNo:
+                  type: string
+                  description: ''
+                  example: aut
+                address:
+                  type: string
+                  description: ''
+                  example: saepe
+                city:
+                  type: string
+                  description: ''
+                  example: debitis
+                state:
+                  type: string
+                  description: ''
+                  example: nostrum
+                postalCode:
+                  type: string
+                  description: ''
+                  example: excepturi
+                mapLocation:
+                  type: string
+                  description: ''
+                  example: cumque
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - uuid
+                - name
+                - nameShort
+                - email
+                - about
+                - aboutShort
+                - phoneNo
+                - address
+                - city
+                - state
+                - postalCode
+                - mapLocation
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: 21cba068-7884-4f94-88a0-e65edfeebe1f
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/more-info:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Questionnaire'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Questionnaire'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                restaurantUuid:
+                  type: string
+                  description: ''
+                  example: molestiae
+                delivery:
+                  type: string
+                  description: ''
+                  example: unde
+                booking:
+                  type: string
+                  description: ''
+                  example: aut
+              required:
+                - restaurantUuid
+                - delivery
+                - booking
+      security: []
+  '/api/v1/restaurant/more-info/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Questionnaire'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Questionnaire'
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Questionnaire'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the more info.'
+        example: assumenda
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: 'Authentication Management'
+    description: ''
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: 'Food Categories Management'
+    description: "\nFood Category API resource"
+  -
+    name: 'Food Sub Categories'
+    description: "\nFood Sub Categories API resource"
+  -
+    name: 'Menu Management'
+    description: "\nMenu API resource"
+  -
+    name: 'Orderer/Customer Management'
+    description: "\nOrderer/Customer API resource"
+  -
+    name: 'Restaurant Management'
+    description: "\nRestaurant API resource"
+  -
+    name: 'Restaurant Questionnaire'
+    description: "\nQuestionnaire API resource"

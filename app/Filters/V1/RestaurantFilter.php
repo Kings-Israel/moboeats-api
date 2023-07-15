@@ -19,6 +19,8 @@ class RestaurantFilter extends ApiFilter {
         'city' => ['eq'],
         'state' => ['eq'],
         'mapLocation' =>['eq', 'gt', 'lt'],
+        'latitude' =>['eq', 'gt', 'lt'],
+        'longitude' =>['eq', 'gt', 'lt'],
         'url' => ['eq'],
         'logo' => ['eq'],
         'status' => ['eq'],

@@ -11,7 +11,8 @@ class StoreQuestionnaireRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $user = $this->user();
+        return $user != null && $user->tokenCan('create');
     }
 
     /**
@@ -22,7 +23,16 @@ class StoreQuestionnaireRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'restaurantUuid' => ['required'],
+            'delivery' => ['required'],
+            'booking' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'restaurant_id' => $this->restaurantId,
+        ]);
     }
 }

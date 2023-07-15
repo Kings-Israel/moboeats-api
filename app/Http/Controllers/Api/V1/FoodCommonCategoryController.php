@@ -11,9 +11,16 @@ use App\Http\Requests\V1\StoreFoodCommonCategoryRequest;
 use App\Http\Requests\V1\UpdateFoodCommonCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Traits\HttpResponses;
+/**
+ * @group Food Categories Management
+ * 
+ * Food Category API resource
+ */
 
 class FoodCommonCategoryController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
@@ -46,6 +53,7 @@ class FoodCommonCategoryController extends Controller
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
         }
     }
 
@@ -71,6 +79,7 @@ class FoodCommonCategoryController extends Controller
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
         }
         
     }

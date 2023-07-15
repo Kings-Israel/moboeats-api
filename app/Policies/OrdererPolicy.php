@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\FCategorySubCategory;
+use App\Models\Orderer;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class FCategorySubCategoryPolicy
+class OrdererPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class FCategorySubCategoryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, FCategorySubCategory $fCategorySubCategory): bool
+    public function view(User $user, Orderer $orderer): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class FCategorySubCategoryPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, FCategorySubCategory $fCategorySubCategory): bool
+    public function update(User $user, Orderer $orderer): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class FCategorySubCategoryPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, FCategorySubCategory $fCategorySubCategory): bool
+    public function delete(User $user, Orderer $orderer): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class FCategorySubCategoryPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, FCategorySubCategory $fCategorySubCategory): bool
+    public function restore(User $user, Orderer $orderer): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class FCategorySubCategoryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, FCategorySubCategory $fCategorySubCategory): bool
+    public function forceDelete(User $user, Orderer $orderer): bool
     {
         //
     }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Traits\Admin\SearchTrait;
 use App\Traits\Admin\ColumnsTrait;
 use App\Traits\Admin\UuidTrait;
+use Illuminate\Support\Str;
 
 class Questionnaire extends Model
 {
@@ -16,7 +17,33 @@ class Questionnaire extends Model
     use ColumnsTrait;
     use UuidTrait;
     
+    protected $keyType = 'int';
+    public $incrementing = true;
+
     protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
+    public function getRouteKey()
+    {
+        return $this->uuid;
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where('uuid', $value)->firstOrFail();
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     public static function getTableName()
     {

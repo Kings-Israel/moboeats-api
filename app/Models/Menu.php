@@ -88,4 +88,19 @@ class Menu extends Model implements UrlRoutable
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
+
+    public static function options($column)
+    {
+        if($column == 'status'){
+            $options = [
+                ['id' => 1,'caption' => 'Inactive', 'color' => 'bg-yellow-500'],
+                ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
+            ];
+        }
+        if(isset($options)){
+            return $options;
+        }else{
+            return null;
+        }
+    }
 }

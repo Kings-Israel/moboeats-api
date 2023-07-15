@@ -16,6 +16,7 @@ class FooSubCategoryResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'id' =>$this->id,
             'uuid' => $this->uuid,
             'title' => $this->title,
             'description' => $this->description,

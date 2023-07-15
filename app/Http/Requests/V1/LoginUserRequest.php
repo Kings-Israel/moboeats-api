@@ -24,6 +24,13 @@ class LoginUserRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'userType' => ['required', 'string'],
         ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_type' => $this->userType,
+        ]);
     }
 }

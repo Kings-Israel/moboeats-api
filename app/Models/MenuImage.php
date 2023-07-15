@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MenuImage extends Model implements UrlRoutable
 {
@@ -37,5 +38,29 @@ class MenuImage extends Model implements UrlRoutable
         static::creating(function ($model) {
             $model->uuid = (string) Str::uuid();
         });
+    }
+    public static function options($column)
+    {
+        if($column == 'status'){
+            $options = [
+                ['id' => 1,'caption' => 'Inactive', 'color' => 'bg-yellow-500'],
+                ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
+            ];
+        }
+        if(isset($options)){
+            return $options;
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * Get the menu that owns the MenuImage
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function menu(): BelongsTo
+    {
+        return $this->belongsTo(Menu::class, 'menu_id', 'id');
     }
 }
