@@ -99,6 +99,15 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasOne(Orderer::class, 'user_id', 'id');
     }
 
+    /**
+     * Get all of the bookmarks for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(MenuBookmark::class, 'user_id', 'id');
+    }
     public static function options($column)
     {
         if($column == 'status'){

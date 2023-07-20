@@ -89,6 +89,26 @@ class Menu extends Model implements UrlRoutable
         return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
     }
 
+    /**
+     * Get all of the bookmarks for the Menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(MenuBookmark::class, 'menu_id', 'id');
+    }
+
+    /**
+     * Get all of the menuPrices for the Menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menuPrices(): HasMany
+    {
+        return $this->hasMany(MenuPrice::class, 'menu_id', 'id');
+    }
+    
     public static function options($column)
     {
         if($column == 'status'){

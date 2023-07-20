@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\FCategorySubCategoryController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
+use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
@@ -49,6 +50,9 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
     Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
    
     Route::apiResource('orderer-menu', MenuController::class);
+
+    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+
 });
 /**Restaurant owners management */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {

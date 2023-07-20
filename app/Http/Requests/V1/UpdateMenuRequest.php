@@ -33,6 +33,7 @@ class UpdateMenuRequest extends FormRequest
                 'status' => ['nullable', 'integer'],
                 'updatedBy' => ['required'],
                 'restaurantId' => ['required'],
+                'standardPrice' => ['required'],
                 'image' => 'required|file|mimes:jpeg,png|max:2048', // Adjust the validation rules as per your requirements.
                 'categoryIds' => 'required|array',
                 'categoryIds.*' => 'integer',
@@ -47,6 +48,7 @@ class UpdateMenuRequest extends FormRequest
                 'description' => ['sometimes', 'required'],
                 'status' => ['sometimes', 'integer'],
                 'restaurantId' => ['sometimes','required'],
+                'standardPrice' => ['sometimes','required'],
                 'image' => 'sometimes|required|file|mimes:jpeg,png|max:2048', // Adjust the validation rules as per your requirements.
                 'categoryIds' => 'sometimes|required|array',
                 'categoryIds.*' => 'integer',

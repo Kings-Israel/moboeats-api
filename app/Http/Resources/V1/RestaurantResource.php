@@ -36,12 +36,8 @@ class RestaurantResource extends JsonResource
                 'status' => (string) $this->status, 
             ],
             'relationships' => [
-                'questionnaire' => QuestionnaireResource::collection($this->whenLoaded('questionnaire')),
-                'user' => [
-                    'uuid' => $this->user->uuid,
-                    'name' => $this->user->name,
-                    'email' => $this->user->email,
-                ],
+                'questionnaire' => new QuestionnaireResource($this->whenLoaded('questionnaire')),
+                'user' => new UserResource($this->whenLoaded('user')),
             ]
             // 'questionnaire' => QuestionnaireResource::collection($this->whenLoaded('questionnaire')),
            

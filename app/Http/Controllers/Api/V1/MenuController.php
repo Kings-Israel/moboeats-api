@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\MenuCollection;
 use App\Http\Resources\V1\MenuResource;
 use App\Models\MenuImage;
+use App\Models\MenuPrice;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -67,7 +68,7 @@ class MenuController extends Controller
             }
         }
        
-        return new MenuCollection($menu->with('restaurant')->paginate()->appends($request->query()));
+        return new MenuCollection($menu->with(['restaurant', 'menuPrices'])->paginate()->appends($request->query()));
     }
     
     /**
@@ -78,7 +79,7 @@ class MenuController extends Controller
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
-            if ($role === 'restaurant') {
+            if ($role != 'restaurant') {
                 return $this->error('', 'Unauthorized', 401);
             }
             try {
@@ -86,30 +87,29 @@ class MenuController extends Controller
                 if($request->hasFile('image')){
                     $fileName = $this->generateFileName2($request->file('image'));
                 }
-                // $record = [
-                //     'title' => $request->title,
-                //     'description' => $request->description,
-                //     'restaurant_id' => $request->restaurantId,
-                //     'status' => $request->status,
-                //     'createdBy' => $request->createdBy,
-                // ];
                 
-                // $menu = Menu::create($record);
                 $menu = Menu::create($request->all());
                 if (!$menu) {
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
                 }
+                MenuPrice::create([
+                    // 'uuid' => Str::uuid(),
+                    'menu_id' => $menu->id,
+                    'description' => 'standard',
+                    'price' => $request->standardPrice,
+                    'status' => 2,
+                    'created_by' => $request->createdBy,
+                ]);
                 if($request->hasFile('image')){
                     $image = MenuImage::create([
-                        'uuid' => Str::uuid(),
+                        // 'uuid' => Str::uuid(),
                         'menu_id' => $menu->id,
                         'image_url' => $fileName,
                         'sequence' => 1,
                         'status' => 2,
                         'created_by' => $request->createdBy,
                     ]);
-                    // $record['image'] = $fileName;
                 }
 
                 if($request->hasFile('image')){
@@ -119,7 +119,6 @@ class MenuController extends Controller
                     }
                 }
             
-                
                 foreach ($request->input('categoryIds') as $foodCategoryId) {
                     $menu->categories()->attach($foodCategoryId, [
                         // Add more pivot table attributes here
@@ -171,7 +170,7 @@ class MenuController extends Controller
                 return new MenuResource($menu->loadMissing('images'));
             }
         }
-        return new MenuResource($menu);
+        return new MenuResource($menu->loadMissing('menuPrices'));
     }
 
 
@@ -191,12 +190,18 @@ class MenuController extends Controller
                 DB::beginTransaction();
         
                 if($request->hasFile('image')){
-                
                     $fileName = $this->generateFileName2($request->file('image'));
                 }
-                
                 $menu->update($request->all());
-            
+                if ($request->standardPrice) {
+                    $standardPrice = MenuPrice::where('menu_id', $menu->id)
+                    ->where('status', 2)
+                    ->where('description', 'standard')
+                    ->first();
+                    $standardPrice->update(['price' => $request->standardPrice]);
+                }
+               
+                
                 if($request->hasFile('image')){
                     $image = MenuImage::where('menu_id', $menu->id)->where('sequence', 1)->first();
                     if($image) {

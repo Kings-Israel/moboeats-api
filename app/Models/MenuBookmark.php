@@ -4,26 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
-class MenuPrice extends Model implements UrlRoutable
+class MenuBookmark extends Model
 {
     use HasFactory;
 
-    protected $keyType = 'int';
-    public $incrementing = true;
-    
     // protected $guarded = [];
     protected $fillable = [
         'menu_id',
-        'description',
-        'price',
+        'user_id',
         'status',
-        'created_by',
-        'updated_by',
     ];
+
+
+    protected $keyType = 'int';
+    public $incrementing = true;
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     public function getRouteKeyName()
     {
@@ -40,12 +45,9 @@ class MenuPrice extends Model implements UrlRoutable
         return $this->where('uuid', $value)->firstOrFail();
     }
 
-    protected static function boot()
+    public static function getTableName()
     {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->uuid = (string) Str::uuid();
-        });
+        return with(new static)->getTable();
     }
 
     public static function options($column)
@@ -56,6 +58,7 @@ class MenuPrice extends Model implements UrlRoutable
                 ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
             ];
         }
+        
         if(isset($options)){
             return $options;
         }else{
@@ -64,7 +67,17 @@ class MenuPrice extends Model implements UrlRoutable
     }
 
     /**
-     * Get the menu that owns the MenuPrice
+     * Get the user that owns the Bookmark
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the menu that owns the Bookmark
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -72,4 +85,6 @@ class MenuPrice extends Model implements UrlRoutable
     {
         return $this->belongsTo(Menu::class, 'menu_id', 'id');
     }
+
+
 }

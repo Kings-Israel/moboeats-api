@@ -27,6 +27,7 @@ class StoreMenuRequest extends FormRequest
             'status' => ['nullable', 'integer'],
             'createdBy' => ['required'],
             'restaurantId' => ['required'],
+            'standardPrice' => ['required'],
             'image' => 'required|file|mimes:jpeg,png|max:2048', // Adjust the validation rules as per your requirements.
             'categoryIds' => 'required|array',
             'categoryIds.*' => 'integer',

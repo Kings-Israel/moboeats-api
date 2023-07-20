@@ -51,25 +51,24 @@ class RestaurantController extends Controller
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
                 $includeQuestionnaire = $request->query('questionnaire');
-                // $restaurants = Restaurant::where('map_location', $user->orderer->map_location)
-                // ->where($filterItems);
+                $restaurants = Restaurant::where($filterItems);
 
-                $restaurants = Restaurant::select(DB::raw("*,
-                            (6371 * acos(cos(radians($request->latitude)) 
-                            * cos(radians(latitude)) 
-                            * cos(radians(longitude) 
-                            - radians($request->longitude)) 
-                            + sin(radians($request->latitude)) 
-                            * sin(radians(latitude))))
-                            AS distance"))
-                    ->having('distance', '<=', $radius)
-                    ->orderBy('distance');
+                // $restaurants = Restaurant::select(DB::raw("*,
+                //             (6371 * acos(cos(radians($request->latitude)) 
+                //             * cos(radians(latitude)) 
+                //             * cos(radians(longitude) 
+                //             - radians($request->longitude)) 
+                //             + sin(radians($request->latitude)) 
+                //             * sin(radians(latitude))))
+                //             AS distance"))
+                //     ->having('distance', '<=', $radius)
+                //     ->orderBy('distance');
 
                 
                 // if ($includeQuestionnaire) {
                 //     $restaurants = $restaurants->with('questionnaire');
                 // } 
-                return new RestaurantCollection($restaurants->paginate());
+                return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
             }
             if ($role === 'restaurant') {
                 $filter =  new RestaurantFilter();
@@ -108,10 +107,11 @@ class RestaurantController extends Controller
                 if($request->hasFile('logo')){
                     $fileName = $this->generateFileName2($request->file('logo'));
                 }
-                $restaurant = Restaurant::create($request->all(), [
+                $request->merge([
                     'user_id' => Auth::user()->id,
                     'logo' => $fileName
                 ]);
+                $restaurant = Restaurant::create($request->all());
                 if($request->hasFile('logo')){
                     $fileData = ['file' => $request->file('logo'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\logos','prevFile' => null];
                     if(!$this->uploadFile($fileData)){

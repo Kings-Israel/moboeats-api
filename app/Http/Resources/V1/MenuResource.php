@@ -24,14 +24,14 @@ class MenuResource extends JsonResource
                 'status' => $this->status,
                 'createdBy' => $this->created_by,
                 'updatedBy' => $this->updated_by,
-                'restaurant' => $this->restaurant,
                 'status' => (string) $this->status,
             ],
             'relationships' => [
+                'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),
                 'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('subCategories')),
                 'images' => MenuImageResource::collection($this->whenLoaded('images')),
-                // 'images' => $this->images,
+                'menuPrices' => MenuPriceResource::collection($this->whenLoaded('menuPrices')),
             ]
                         
         ];
