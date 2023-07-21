@@ -1,17 +1,17 @@
-name: 'Customer menu Bookmark Management'
+name: 'Restaurant Questionnaire'
 description: |-
 
-  MenuBookmark API resource
+  Questionnaire API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/menu-bookmark
+    uri: api/v1/restaurant/more-info
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -48,12 +48,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/menu-bookmark
+    uri: api/v1/restaurant/more-info
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -68,15 +68,31 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      menuId:
-        name: menuId
+      restaurantUuid:
+        name: restaurantUuid
         description: ''
         required: true
-        example: sit
+        example: unde
+        type: string
+        custom: []
+      delivery:
+        name: delivery
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      booking:
+        name: booking
+        description: ''
+        required: true
+        example: est
         type: string
         custom: []
     cleanBodyParameters:
-      menuId: sit
+      restaurantUuid: unde
+      delivery: ut
+      booking: est
     fileParameters: []
     responses: []
     responseFields: []
@@ -88,12 +104,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/menu-bookmark/{id}'
+    uri: 'api/v1/restaurant/more-info/{id}'
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -106,13 +122,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the menu bookmark.'
+        description: 'The ID of the more info.'
         required: true
-        example: 8b561955-3316-4033-9ff1-32194378830a
+        example: facilis
         type: string
         custom: []
     cleanUrlParameters:
-      id: 8b561955-3316-4033-9ff1-32194378830a
+      id: facilis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -137,13 +153,54 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/menu-bookmark/{id}'
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/more-info/{id}'
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Questionnaire API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the more info.'
+        required: true
+        example: aut
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: aut
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/more-info/{id}'
+    metadata:
+      groupName: 'Restaurant Questionnaire'
+      groupDescription: |-
+
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -156,13 +213,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the menu bookmark.'
+        description: 'The ID of the more info.'
         required: true
-        example: 8b561955-3316-4033-9ff1-32194378830a
+        example: sint
         type: string
         custom: []
     cleanUrlParameters:
-      id: 8b561955-3316-4033-9ff1-32194378830a
+      id: sint
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

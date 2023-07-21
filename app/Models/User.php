@@ -108,6 +108,18 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(MenuBookmark::class, 'user_id', 'id');
     }
+
+    /**
+     * Get all of the carts for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
+
+
     public static function options($column)
     {
         if($column == 'status'){

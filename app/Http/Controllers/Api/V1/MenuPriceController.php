@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Models\MenuPrice;
-use App\Http\Requests\StoreMenuPriceRequest;
-use App\Http\Requests\UpdateMenuPriceRequest;
+use App\Http\Requests\V1\StoreMenuPriceRequest;
+use App\Http\Requests\V1\UpdateMenuPriceRequest;
 
 class MenuPriceController extends Controller
 {

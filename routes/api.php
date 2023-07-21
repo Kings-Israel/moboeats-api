@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\CartItemController;
 use App\Http\Controllers\Api\V1\FCategorySubCategoryController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
@@ -53,6 +55,8 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
 
     Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
 
+    Route::apiResource('cart', CartController::class)->except(['update']);
+    Route::apiResource('cart-items', CartItemController::class);
 });
 /**Restaurant owners management */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {

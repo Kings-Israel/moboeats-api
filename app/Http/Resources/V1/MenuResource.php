@@ -21,7 +21,6 @@ class MenuResource extends JsonResource
             'attributes' => [
                 'title' => $this->title,
                 'description' => $this->description,
-                'status' => $this->status,
                 'createdBy' => $this->created_by,
                 'updatedBy' => $this->updated_by,
                 'status' => (string) $this->status,

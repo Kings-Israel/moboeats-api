@@ -145,6 +145,8 @@ class MenuController extends Controller
                 return $this->error('', $th->getMessage(), 403);
 
             }
+        } else {
+            return $this->error('', 'Unauthorized', 401);
         }
     }
 

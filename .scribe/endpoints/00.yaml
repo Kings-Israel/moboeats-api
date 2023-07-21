@@ -66,28 +66,28 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: tsfymhdigobxinnot
+        example: jlbtvkipxplgqbaeuuciyxg
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: true
-        example: juana.pacocha@example.org
+        example: aisha85@example.com
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: ut
+        example: ex
         type: string
         custom: []
       userType:
         name: userType
         description: ''
         required: true
-        example: nesciunt
+        example: voluptatibus
         type: string
         custom: []
       otp:
@@ -112,10 +112,10 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: tsfymhdigobxinnot
-      email: juana.pacocha@example.org
-      password: ut
-      userType: nesciunt
+      name: jlbtvkipxplgqbaeuuciyxg
+      email: aisha85@example.com
+      password: ex
+      userType: voluptatibus
     fileParameters: []
     responses: []
     responseFields: []

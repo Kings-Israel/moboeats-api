@@ -72,14 +72,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: id
+        example: est
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eum
+        example: facere
         type: string
         custom: []
       status:
@@ -93,13 +93,13 @@ endpoints:
         name: createdBy
         description: ''
         required: true
-        example: provident
+        example: voluptatem
         type: string
         custom: []
     cleanBodyParameters:
-      title: id
-      description: eum
-      createdBy: provident
+      title: est
+      description: facere
+      createdBy: voluptatem
     fileParameters: []
     responses: []
     responseFields: []
@@ -131,11 +131,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: labore
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
-      id: labore
+      id: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -182,11 +182,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: quos
+        example: nulla
         type: string
         custom: []
     cleanUrlParameters:
-      id: quos
+      id: nulla
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -194,35 +194,35 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: dolorem
+        example: sequi
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: qui
+        example: voluptate
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: eos
+        example: beatae
         type: string
         custom: []
       updatedBy:
         name: updatedBy
         description: ''
         required: true
-        example: ducimus
+        example: expedita
         type: string
         custom: []
     cleanBodyParameters:
-      title: dolorem
-      description: qui
-      status: eos
-      updatedBy: ducimus
+      title: sequi
+      description: voluptate
+      status: beatae
+      updatedBy: expedita
     fileParameters: []
     responses: []
     responseFields: []
@@ -254,11 +254,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: reprehenderit
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: reprehenderit
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -340,14 +340,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: atque
+        example: repellendus
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: nam
+        example: saepe
         type: string
         custom: []
       status:
@@ -361,13 +361,13 @@ endpoints:
         name: createdBy
         description: ''
         required: true
-        example: quaerat
+        example: saepe
         type: string
         custom: []
     cleanBodyParameters:
-      title: atque
-      description: nam
-      createdBy: quaerat
+      title: repellendus
+      description: saepe
+      createdBy: saepe
     fileParameters: []
     responses: []
     responseFields: []
@@ -399,11 +399,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: tempore
+        example: id
         type: string
         custom: []
     cleanUrlParameters:
-      id: tempore
+      id: id
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -450,11 +450,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: fugiat
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: fugiat
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -462,35 +462,35 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ex
+        example: quaerat
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: itaque
+        example: id
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: fugit
+        example: quis
         type: string
         custom: []
       updatedBy:
         name: updatedBy
         description: ''
         required: true
-        example: consequatur
+        example: esse
         type: string
         custom: []
     cleanBodyParameters:
-      title: ex
-      description: itaque
-      status: fugit
-      updatedBy: consequatur
+      title: quaerat
+      description: id
+      status: quis
+      updatedBy: esse
     fileParameters: []
     responses: []
     responseFields: []
@@ -522,11 +522,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: enim
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: enim
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

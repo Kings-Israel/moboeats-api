@@ -4,7 +4,7 @@ namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOrdererRequest extends FormRequest
+class StoreCartItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,22 +22,17 @@ class StoreOrdererRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'email' => ['required', 'email'],
-            'phoneNo' => ['nullable'],
-            'address' => ['nullable'],
-            'city' => ['nullable'],
-            'state' => ['nullable'],
-            'mapLocation' => ['nullable'],
-            'image' => ['nullable'],
+            'cartId' => ['required'],
+            'menuId' => ['required'],
+            'quantity' => ['required','integer'],
+            'status' => ['nullable', 'integer'],
         ];
     }
-
     protected function prepareForValidation()
     {
         $this->merge([
-            'map_location' => $this->mapLocation,
-            'phone_no' => $this->phoneNo,
+            'cart_id' => $this->cartId,
+            'menu_id' => $this->menuId,
         ]);
     }
 }

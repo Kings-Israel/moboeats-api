@@ -30,27 +30,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: neque
+        example: non
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: reiciendis
+        example: esse
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: et
+        example: libero
         type: string
         custom: []
     cleanQueryParameters:
-      categories: neque
-      subCategories: reiciendis
-      restaurant: et
+      categories: non
+      subCategories: esse
+      restaurant: libero
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -98,36 +98,43 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: culpa
+        example: nihil
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: ea
+        example: magni
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 1
+        example: 3
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: nemo
+        example: quo
         type: string
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: occaecati
+        example: quos
         type: string
+        custom: []
+      standardPrice:
+        name: standardPrice
+        description: ''
+        required: true
+        example: 16129.458236
+        type: number
         custom: []
       image:
         name: image
@@ -141,7 +148,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - 12
+          - 13
         type: 'integer[]'
         custom: []
       subcategoryIds:
@@ -149,19 +156,20 @@ endpoints:
         description: ''
         required: false
         example:
-          - 18
+          - 11
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: culpa
-      description: ea
-      status: 1
-      createdBy: nemo
-      restaurantId: occaecati
+      title: nihil
+      description: magni
+      status: 3
+      createdBy: quo
+      restaurantId: quos
+      standardPrice: 16129.458236
       categoryIds:
-        - 12
+        - 13
       subcategoryIds:
-        - 18
+        - 11
     fileParameters:
       image: null
     responses: []
@@ -194,11 +202,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: deleniti
+        example: officia
         type: string
         custom: []
     cleanUrlParameters:
-      id: deleniti
+      id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -238,23 +246,107 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       id:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: nulla
+        example: nihil
         type: string
         custom: []
     cleanUrlParameters:
-      id: nulla
+      id: nihil
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
+    bodyParameters:
+      uuid:
+        name: uuid
+        description: 'Must be a valid UUID.'
+        required: true
+        example: 89717d67-5aa7-3c0b-a8e8-91b512034ac9
+        type: string
+        custom: []
+      title:
+        name: title
+        description: ''
+        required: true
+        example: porro
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: id
+        type: string
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: false
+        example: 3
+        type: integer
+        custom: []
+      updatedBy:
+        name: updatedBy
+        description: ''
+        required: true
+        example: fugit
+        type: string
+        custom: []
+      restaurantId:
+        name: restaurantId
+        description: ''
+        required: true
+        example: qui
+        type: string
+        custom: []
+      standardPrice:
+        name: standardPrice
+        description: ''
+        required: true
+        example: qui
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+        required: true
+        example: null
+        type: file
+        custom: []
+      categoryIds:
+        name: categoryIds
+        description: ''
+        required: false
+        example:
+          - 1
+        type: 'integer[]'
+        custom: []
+      subcategoryIds:
+        name: subcategoryIds
+        description: ''
+        required: false
+        example:
+          - 3
+        type: 'integer[]'
+        custom: []
+    cleanBodyParameters:
+      uuid: 89717d67-5aa7-3c0b-a8e8-91b512034ac9
+      title: porro
+      description: id
+      status: 3
+      updatedBy: fugit
+      restaurantId: qui
+      standardPrice: qui
+      categoryIds:
+        - 1
+      subcategoryIds:
+        - 3
+    fileParameters:
+      image: null
     responses: []
     responseFields: []
     auth: []
@@ -285,11 +377,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: molestiae
+        example: doloribus
         type: string
         custom: []
     cleanUrlParameters:
-      id: molestiae
+      id: doloribus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -327,27 +419,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: dolores
+        example: dolore
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: molestias
+        example: eum
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: facilis
+        example: ut
         type: string
         custom: []
     cleanQueryParameters:
-      categories: dolores
-      subCategories: molestias
-      restaurant: facilis
+      categories: dolore
+      subCategories: eum
+      restaurant: ut
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -395,36 +487,43 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: eveniet
+        example: consequatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: delectus
+        example: est
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 7
+        example: 19
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: quia
+        example: et
         type: string
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: sed
+        example: consequatur
         type: string
+        custom: []
+      standardPrice:
+        name: standardPrice
+        description: ''
+        required: true
+        example: 28143772.938
+        type: number
         custom: []
       image:
         name: image
@@ -438,7 +537,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - 15
+          - 11
         type: 'integer[]'
         custom: []
       subcategoryIds:
@@ -446,19 +545,20 @@ endpoints:
         description: ''
         required: false
         example:
-          - 5
+          - 10
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: eveniet
-      description: delectus
-      status: 7
-      createdBy: quia
-      restaurantId: sed
+      title: consequatur
+      description: est
+      status: 19
+      createdBy: et
+      restaurantId: consequatur
+      standardPrice: 28143772.938
       categoryIds:
-        - 15
+        - 11
       subcategoryIds:
-        - 5
+        - 10
     fileParameters:
       image: null
     responses: []
@@ -535,7 +635,7 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       uuid:
@@ -549,9 +649,93 @@ endpoints:
       uuid: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
+    bodyParameters:
+      uuid:
+        name: uuid
+        description: 'Must be a valid UUID.'
+        required: true
+        example: 775e23ed-3a4d-3f74-ac58-b555ae2c2e3d
+        type: string
+        custom: []
+      title:
+        name: title
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: dolores
+        type: string
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: false
+        example: 17
+        type: integer
+        custom: []
+      updatedBy:
+        name: updatedBy
+        description: ''
+        required: true
+        example: rem
+        type: string
+        custom: []
+      restaurantId:
+        name: restaurantId
+        description: ''
+        required: true
+        example: odio
+        type: string
+        custom: []
+      standardPrice:
+        name: standardPrice
+        description: ''
+        required: true
+        example: similique
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+        required: true
+        example: null
+        type: file
+        custom: []
+      categoryIds:
+        name: categoryIds
+        description: ''
+        required: false
+        example:
+          - 6
+        type: 'integer[]'
+        custom: []
+      subcategoryIds:
+        name: subcategoryIds
+        description: ''
+        required: false
+        example:
+          - 2
+        type: 'integer[]'
+        custom: []
+    cleanBodyParameters:
+      uuid: 775e23ed-3a4d-3f74-ac58-b555ae2c2e3d
+      title: est
+      description: dolores
+      status: 17
+      updatedBy: rem
+      restaurantId: odio
+      standardPrice: similique
+      categoryIds:
+        - 6
+      subcategoryIds:
+        - 2
+    fileParameters:
+      image: null
     responses: []
     responseFields: []
     auth: []

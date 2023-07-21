@@ -108,7 +108,18 @@ class Menu extends Model implements UrlRoutable
     {
         return $this->hasMany(MenuPrice::class, 'menu_id', 'id');
     }
+
+    /**
+     * Get all of the cartItems for the Menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cartItems(): HasMany
+    {
+        return $this->hasMany(CartItem::class, 'menu_id', 'id');
+    }
     
+
     public static function options($column)
     {
         if($column == 'status'){
