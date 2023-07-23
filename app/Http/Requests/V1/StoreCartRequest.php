@@ -22,7 +22,7 @@ class StoreCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'userId' => ['required'],
+            'userId' => ['required', 'integer'],
         ];
     }
     protected function prepareForValidation()

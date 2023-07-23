@@ -60,6 +60,9 @@ class MenuBookmarkController extends Controller
             }
             try {
                 DB::beginTransaction();
+                if (MenuBookmark::where('menu_id', $request->menu_id)->where('user_id', Auth::user()->id)->exists()) {
+                    return $this->error('Bookmark', 'Item already exists in the bookmark', 402);
+                }
                 $request->merge([
                     'user_id' => Auth::user()->id,
                     'status' => 2,
@@ -67,7 +70,7 @@ class MenuBookmarkController extends Controller
                 $menuBookmark = MenuBookmark::create($request->all());
                 DB::commit();
                 // $menuBookmark = $menuBookmark->with(['menu', 'user']);
-                return new MenuBookMarkResource($menuBookmark);
+                return new MenuBookMarkResource($menuBookmark->loadMissing(['menu', 'user']));
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();
@@ -83,7 +86,11 @@ class MenuBookmarkController extends Controller
      */
     public function show(MenuBookmark $menuBookmark)
     {
-        return $this->isNotAuthorized($menuBookmark) ?  $this->isNotAuthorized($menuBookmark) : new MenuBookMarkResource($menuBookmark->with(['menu', 'user']));
+        if ($this->isNotAuthorized($menuBookmark)) {
+            return new MenuBookMarkResource($menuBookmark->loadMissing(['menu', 'user']));
+        } else {
+            return $this->isNotAuthorized($menuBookmark);
+        }
 
     }
 
@@ -101,9 +108,13 @@ class MenuBookmarkController extends Controller
             }
             try {
                 DB::beginTransaction();
-                return $this->isNotAuthorized($menuBookmark) ?  $this->isNotAuthorized($menuBookmark) :  $menuBookmark->delete();
+                if ($this->isNotAuthorized($menuBookmark)) {
+                    $menuBookmark->delete();
+                } else {
+                    return $this->isNotAuthorized($menuBookmark);
+                }
                 DB::commit();
-                // return response(null, 204);
+                return response(null, 204);
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();
@@ -118,9 +129,14 @@ class MenuBookmarkController extends Controller
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
             if ($role === 'orderer') {
-                return '';
+                if (Auth::user()->id == $menuBookmark->user_id) {
+                    return true;
+                } else {
+                    return $this->error('', 'You are not authorized to make this request', 403);
+                }
             } else {
-                if (Auth::user()->id !== $menuBookmark->user_id) {
+                return false;
+                if (Auth::user()->id != $menuBookmark->user_id) {
                     return $this->error('', 'You are not authorized to make this request', 403);
                 }
             }

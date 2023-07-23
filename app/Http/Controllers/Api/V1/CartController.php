@@ -67,13 +67,15 @@ class CartController extends Controller
             }
             try {
                 DB::beginTransaction();
+                if (Cart::where('user_id', $user->id)->exists()) {
+                    return $this->error('Cart', 'You have active cart', 402);
+                }
                 $request->merge([
-                    // 'user_id' => Auth::user()->id,
                     'status' => 2,
                 ]);
                 $cart = Cart::create($request->all());
                 DB::commit();
-                return new CartResource($cart->with(['user', 'cartItems']));
+                return new CartResource($cart->loadMissing(['user', 'cartItems']));
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();
@@ -89,7 +91,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        return new CartResource($cart->with(['user', 'cartItems']));
+        return new CartResource($cart->loadMissing(['user', 'cartItems']));
     }
 
     

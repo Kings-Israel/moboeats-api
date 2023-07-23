@@ -24,27 +24,27 @@ class UpdateCartItemRequest extends FormRequest
         $method = $this->method();
         if ($method == 'PUT') {
             return [
-                'cartId' => ['required'],
-                'menuId' => ['required'],
-                'quantity' => ['required'],
+                // 'cartId' => ['required', 'integer'],
+                'menuId' => ['required', 'integer'],
+                'quantity' => ['required', 'integer'],
                 'status' => ['nullable', 'integer'],
             ];
         } else {
             return [
-                'cartId' => ['sometimes','required'],
-                'menuId' => ['sometimes','required'],
-                'quantity' => ['sometimes','required'],
+                // 'cartId' => ['sometimes','required', 'integer'],
+                'menuId' => ['sometimes','required', 'integer'],
+                'quantity' => ['sometimes','required', 'integer'],
                 'status' => ['sometimes','required'],
             ];
         }
     }
     protected function prepareForValidation()
     { 
-        if ($this->cartId) {
-            $this->merge([
-                'cart_id' => $this->cartId,
-            ]);
-        }
+        // if ($this->cartId) {
+        //     $this->merge([
+        //         'cart_id' => $this->cartId,
+        //     ]);
+        // }
         if ($this->menuId) {
             $this->merge([
                 'menu_id' => $this->menuId,

@@ -9,6 +9,7 @@ use App\Http\Requests\V1\StoreCartItemRequest;
 use App\Http\Requests\V1\UpdateCartItemRequest;
 use App\Http\Resources\V1\CartItemCollection;
 use App\Http\Resources\V1\CartItemResource;
+use App\Models\Cart;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -32,13 +33,17 @@ class CartItemController extends Controller
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
             if ($role === 'orderer') {
-                if (empty($request->all())) {
-                    return $this->error('', 'You must pass cartId as query', 401);
-                } 
+                // if (empty($request->all())) {
+                //     return $this->error('', 'You must pass cartId as query', 401);
+                // } 
+                $cart = Cart::where('user_id', $user->id)->first();
+                // $request->merge([
+                //     'cartId' => $cart->id
+                // ]);
                 $filter =  new CartItemFilter();
                 $filterItems = $filter->transform($request);
 
-                $cartsItems = CartItem::where($filterItems)
+                $cartsItems = CartItem::where('cart_id', $cart->id)
                 ->with(['menu', 'cart'])
                 ->paginate();
                 return new CartItemCollection($cartsItems);
@@ -70,9 +75,21 @@ class CartItemController extends Controller
             }
             try {
                 DB::beginTransaction();
+                $cart = Cart::where('user_id', $user->id)->first();
+                if (!$cart) {
+                    $cart = Cart::create(['user_id' => $user->id]);
+                }
+               
+                if (CartItem::where('menu_id', $request->menu_id)->where('cart_id', $cart->id)->exists()) {
+                    return $this->error('Cart', 'Item already exists in the cart', 402);
+                }
+
+                $request->merge([
+                    'cart_id' => $cart->id,
+                ]);
                 $cartItem = CartItem::create($request->all());
                 DB::commit();
-                return new CartItemResource($cartItem->with(['menu', 'cart']));
+                return new CartItemResource($cartItem->loadMissing(['menu', 'cart']));
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();
@@ -88,7 +105,7 @@ class CartItemController extends Controller
      */
     public function show(CartItem $cartItem)
     {
-        return new CartItemResource($cartItem->with(['menu', 'cart']));
+        return new CartItemResource($cartItem->loadMissing(['menu', 'cart']));
     }
 
     
@@ -107,7 +124,7 @@ class CartItemController extends Controller
                 DB::beginTransaction();
                 $cartItem->update($request->all());
                 DB::commit();
-                return new CartItemResource($cartItem->with(['menu', 'cart']));
+                return new CartItemResource($cartItem->loadMissing(['menu', 'cart']));
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();

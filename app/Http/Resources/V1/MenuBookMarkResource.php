@@ -16,7 +16,7 @@ class MenuBookMarkResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            // 'uuid' => $this->uuid,
+            'uuid' => $this->uuid,
             // 'attributes' => [
             //     'menuId' => $this->menu_id,
             //     'userId' => $this->user_id,

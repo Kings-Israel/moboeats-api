@@ -22,8 +22,8 @@ class StoreCartItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cartId' => ['required'],
-            'menuId' => ['required'],
+            // 'cartId' => ['required', 'integer'],
+            'menuId' => ['required', 'integer'],
             'quantity' => ['required','integer'],
             'status' => ['nullable', 'integer'],
         ];
@@ -31,7 +31,7 @@ class StoreCartItemRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'cart_id' => $this->cartId,
+            // 'cart_id' => $this->cartId,
             'menu_id' => $this->menuId,
         ]);
     }

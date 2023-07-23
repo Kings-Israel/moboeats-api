@@ -51,7 +51,8 @@ class MenuController extends Controller
         $includesubCategories = $request->query('subCategories');
         $includesubImages = $request->query('images');
 
-        $menu = Menu::where($filterItems);
+        $menu = Menu::whereHas('menuPrices')
+        ->where($filterItems);
         if ($includesubCategories &&  $includeCategories && $includesubImages) {
             // $menu = $menu->with(['restaurant','categories','subCategories']);
             $menu = $menu->with(['categories','subCategories', 'images']);
@@ -68,7 +69,7 @@ class MenuController extends Controller
             }
         }
        
-        return new MenuCollection($menu->with(['restaurant', 'menuPrices'])->paginate()->appends($request->query()));
+        return new MenuCollection($menu->with('restaurant')->paginate()->appends($request->query()));
     }
     
     /**
