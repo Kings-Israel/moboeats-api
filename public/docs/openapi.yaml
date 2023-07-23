@@ -26,15 +26,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ali.jerde@example.com
+                  example: ajacobson@example.org
                 password:
                   type: string
                   description: ''
-                  example: 'm!/H|I-:f\ZMQ'
+                  example: '"JS9X]XMl'
                 userType:
                   type: string
                   description: ''
-                  example: et
+                  example: qui
               required:
                 - email
                 - password
@@ -78,9 +78,9 @@ paths:
               type: object
               properties:
                 userId:
-                  type: string
+                  type: integer
                   description: ''
-                  example: voluptate
+                  example: 20
               required:
                 - userId
       security: []
@@ -120,7 +120,7 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 6685ea80-68ee-301e-b395-30e26feafdbf
+        example: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
         required: true
         schema:
           type: string
@@ -161,24 +161,19 @@ paths:
             schema:
               type: object
               properties:
-                cartId:
-                  type: string
-                  description: ''
-                  example: numquam
                 menuId:
-                  type: string
+                  type: integer
                   description: ''
-                  example: quam
+                  example: 11
                 quantity:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 18
                 status:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 19
               required:
-                - cartId
                 - menuId
                 - quantity
       security: []
@@ -219,24 +214,19 @@ paths:
             schema:
               type: object
               properties:
-                cartId:
-                  type: string
-                  description: ''
-                  example: qui
                 menuId:
-                  type: string
+                  type: integer
                   description: ''
-                  example: qui
+                  example: 2
                 quantity:
-                  type: string
+                  type: integer
                   description: ''
-                  example: aperiam
+                  example: 8
                 status:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 17
               required:
-                - cartId
                 - menuId
                 - quantity
       security: []
@@ -254,7 +244,91 @@ paths:
         in: path
         name: id
         description: 'The ID of the cart item.'
-        example: vel
+        example: 085b995b-e9f2-4e64-887b-37b422b7ba66
+        required: true
+        schema:
+          type: string
+  /api/v1/orderer/restaurant-bookmark:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Restaurants Bookmark Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Customer Restaurants Bookmark Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                restaurantId:
+                  type: integer
+                  description: ''
+                  example: 12
+              required:
+                - restaurantId
+      security: []
+  '/api/v1/orderer/restaurant-bookmark/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Restaurants Bookmark Management'
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Customer Restaurants Bookmark Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the restaurant bookmark.'
+        example: dignissimos
         required: true
         schema:
           type: string
@@ -296,9 +370,9 @@ paths:
               type: object
               properties:
                 menuId:
-                  type: string
+                  type: integer
                   description: ''
-                  example: sit
+                  example: 7
               required:
                 - menuId
       security: []
@@ -338,7 +412,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the menu bookmark.'
-        example: 8b561955-3316-4033-9ff1-32194378830a
+        example: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
         required: true
         schema:
           type: string
@@ -383,19 +457,19 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: jlbtvkipxplgqbaeuuciyxg
+                  example: ekjfpawrgmiv
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: aisha85@example.com
+                  example: njerde@example.com
                 password:
                   type: string
                   description: ''
-                  example: ex
+                  example: expedita
                 userType:
                   type: string
                   description: ''
-                  example: voluptatibus
+                  example: qui
                 otp:
                   type: string
                   description: ''
@@ -486,11 +560,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: est
+                  example: impedit
                 description:
                   type: string
                   description: ''
-                  example: facere
+                  example: consequuntur
                 status:
                   type: string
                   description: ''
@@ -498,7 +572,7 @@ paths:
                 createdBy:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: nam
               required:
                 - title
                 - description
@@ -544,19 +618,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sequi
+                  example: ad
                 description:
                   type: string
                   description: ''
-                  example: voluptate
+                  example: laboriosam
                 status:
                   type: string
                   description: ''
-                  example: beatae
+                  example: similique
                 updatedBy:
                   type: string
                   description: ''
-                  example: expedita
+                  example: veritatis
               required:
                 - title
                 - description
@@ -577,7 +651,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food category.'
-        example: quam
+        example: doloribus
         required: true
         schema:
           type: string
@@ -621,11 +695,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: est
                 description:
                   type: string
                   description: ''
-                  example: saepe
+                  example: est
                 status:
                   type: string
                   description: ''
@@ -633,7 +707,7 @@ paths:
                 createdBy:
                   type: string
                   description: ''
-                  example: saepe
+                  example: numquam
               required:
                 - title
                 - description
@@ -679,19 +753,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quaerat
+                  example: eligendi
                 description:
                   type: string
                   description: ''
-                  example: id
+                  example: dolor
                 status:
                   type: string
                   description: ''
-                  example: quis
+                  example: sit
                 updatedBy:
                   type: string
                   description: ''
-                  example: esse
+                  example: aut
               required:
                 - title
                 - description
@@ -712,7 +786,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food category.'
-        example: id
+        example: nemo
         required: true
         schema:
           type: string
@@ -756,19 +830,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: saepe
+                  example: architecto
                 description:
                   type: string
                   description: ''
-                  example: quidem
+                  example: ad
                 status:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 14
                 createdBy:
                   type: string
                   description: ''
-                  example: neque
+                  example: perspiciatis
                 categoryIds:
                   type: object
                   description: ''
@@ -820,11 +894,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: tenetur
                 description:
                   type: string
                   description: ''
-                  example: aut
+                  example: error
                 status:
                   type: string
                   description: ''
@@ -832,7 +906,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: non
+                  example: aliquid
                 categoryIds:
                   type: object
                   description: ''
@@ -858,7 +932,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food sub category.'
-        example: enim
+        example: non
         required: true
         schema:
           type: string
@@ -902,19 +976,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: velit
+                  example: eveniet
                 description:
                   type: string
                   description: ''
-                  example: tempore
+                  example: quod
                 status:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 17
                 createdBy:
                   type: string
                   description: ''
-                  example: qui
+                  example: quas
                 categoryIds:
                   type: object
                   description: ''
@@ -966,11 +1040,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quia
+                  example: et
                 description:
                   type: string
                   description: ''
-                  example: accusamus
+                  example: deserunt
                 status:
                   type: string
                   description: ''
@@ -978,7 +1052,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: laudantium
                 categoryIds:
                   type: object
                   description: ''
@@ -1004,7 +1078,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food sub category.'
-        example: repellendus
+        example: odio
         required: true
         schema:
           type: string
@@ -1028,32 +1102,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: non
+          example: qui
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: non
+            example: qui
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: esse
+          example: rem
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: esse
+            example: rem
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: libero
+          example: assumenda
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: libero
+            example: assumenda
       responses:
         401:
           description: ''
@@ -1088,27 +1162,27 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: nihil
+                  example: vero
                 description:
                   type: string
                   description: ''
-                  example: magni
+                  example: vel
                 status:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 15
                 createdBy:
                   type: string
                   description: ''
-                  example: quo
+                  example: sequi
                 restaurantId:
                   type: string
                   description: ''
-                  example: quos
+                  example: dolor
                 standardPrice:
                   type: number
                   description: ''
-                  example: 16129.458236
+                  example: 1.897861
                 image:
                   type: string
                   format: binary
@@ -1124,7 +1198,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 15
                   items:
                     type: integer
               required:
@@ -1175,31 +1249,31 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 89717d67-5aa7-3c0b-a8e8-91b512034ac9
+                  example: 99c7d130-e670-3b09-a88c-c015b694a3df
                 title:
                   type: string
                   description: ''
-                  example: porro
+                  example: aspernatur
                 description:
                   type: string
                   description: ''
-                  example: id
+                  example: molestiae
                 status:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 12
                 updatedBy:
                   type: string
                   description: ''
-                  example: fugit
+                  example: veniam
                 restaurantId:
                   type: string
                   description: ''
-                  example: qui
+                  example: pariatur
                 standardPrice:
                   type: string
                   description: ''
-                  example: qui
+                  example: perspiciatis
                 image:
                   type: string
                   format: binary
@@ -1208,14 +1282,14 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 1
+                    - 16
                   items:
                     type: integer
                 subcategoryIds:
                   type: array
                   description: ''
                   example:
-                    - 3
+                    - 8
                   items:
                     type: integer
               required:
@@ -1241,7 +1315,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer menu.'
-        example: officia
+        example: ipsum
         required: true
         schema:
           type: string
@@ -1255,32 +1329,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: dolore
+          example: qui
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: dolore
+            example: qui
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: eum
+          example: officia
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: eum
+            example: officia
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: ut
+          example: facere
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: ut
+            example: facere
       responses:
         401:
           description: ''
@@ -1315,27 +1389,27 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: laudantium
                 description:
                   type: string
                   description: ''
-                  example: est
+                  example: error
                 status:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 2
                 createdBy:
                   type: string
                   description: ''
-                  example: et
+                  example: sunt
                 restaurantId:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: eos
                 standardPrice:
                   type: number
                   description: ''
-                  example: 28143772.938
+                  example: 1323.0
                 image:
                   type: string
                   format: binary
@@ -1344,14 +1418,14 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 13
                   items:
                     type: integer
                 subcategoryIds:
                   type: array
                   description: ''
                   example:
-                    - 10
+                    - 17
                   items:
                     type: integer
               required:
@@ -1402,31 +1476,31 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 775e23ed-3a4d-3f74-ac58-b555ae2c2e3d
+                  example: b44417b4-5096-3913-96fb-539759365bd9
                 title:
                   type: string
                   description: ''
-                  example: est
+                  example: adipisci
                 description:
                   type: string
                   description: ''
-                  example: dolores
+                  example: eum
                 status:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 15
                 updatedBy:
                   type: string
                   description: ''
-                  example: rem
+                  example: ut
                 restaurantId:
                   type: string
                   description: ''
-                  example: odio
+                  example: nam
                 standardPrice:
                   type: string
                   description: ''
-                  example: similique
+                  example: enim
                 image:
                   type: string
                   format: binary
@@ -1435,14 +1509,14 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 6
+                    - 14
                   items:
                     type: integer
                 subcategoryIds:
                   type: array
                   description: ''
                   example:
-                    - 2
+                    - 4
                   items:
                     type: integer
               required:
@@ -1512,11 +1586,11 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: adipisci
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: vita53@example.org
+                  example: graham.hartmann@example.net
                 phoneNo:
                   type: string
                   description: ''
@@ -1585,35 +1659,35 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 0ef4494a-313f-39a8-a0fe-ece2bcd27d68
+                  example: 5e73cae1-6e68-3814-9b70-a6b3efcc881c
                 name:
                   type: string
                   description: ''
-                  example: numquam
+                  example: eos
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: dayton.beatty@example.org
+                  example: iwalter@example.org
                 phoneNo:
                   type: string
                   description: ''
-                  example: aut
+                  example: ut
                 address:
                   type: string
                   description: ''
-                  example: omnis
+                  example: ipsum
                 city:
                   type: string
                   description: ''
-                  example: sit
+                  example: enim
                 state:
                   type: string
                   description: ''
-                  example: aperiam
+                  example: modi
                 mapLocation:
                   type: string
                   description: ''
-                  example: officia
+                  example: ab
                 image:
                   type: string
                   description: ''
@@ -1656,12 +1730,12 @@ paths:
           in: query
           name: questionnaire
           description: 'to fetch associated restaurant questionnaire answers'
-          example: aliquam
+          example: quo
           required: false
           schema:
             type: string
             description: 'to fetch associated restaurant questionnaire answers'
-            example: aliquam
+            example: quo
       responses:
         401:
           description: ''
@@ -1696,7 +1770,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: quia
+                  example: dolorem
                 nameShort:
                   type: string
                   description: ''
@@ -1704,7 +1778,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: noelia.koelpin@example.com
+                  example: jordy.damore@example.net
                 about:
                   type: string
                   description: ''
@@ -1797,51 +1871,51 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 46f57d20-da80-352f-b626-d1c0a14c252a
+                  example: 1c4dfa3c-d445-32eb-9970-11d4f09738fa
                 name:
                   type: string
                   description: ''
-                  example: iste
+                  example: quibusdam
                 nameShort:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: reiciendis
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: orland57@example.net
+                  example: jimmie.ziemann@example.net
                 about:
                   type: string
                   description: ''
-                  example: incidunt
+                  example: quasi
                 aboutShort:
                   type: string
                   description: ''
-                  example: minima
+                  example: sint
                 phoneNo:
                   type: string
                   description: ''
-                  example: sequi
+                  example: repellat
                 address:
                   type: string
                   description: ''
-                  example: velit
+                  example: dolor
                 city:
                   type: string
                   description: ''
-                  example: quasi
+                  example: eligendi
                 state:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: voluptas
                 postalCode:
                   type: string
                   description: ''
-                  example: in
+                  example: cumque
                 mapLocation:
                   type: string
                   description: ''
-                  example: voluptatibus
+                  example: qui
                 url:
                   type: string
                   description: ''
@@ -1878,7 +1952,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer restaurant.'
-        example: excepturi
+        example: est
         required: true
         schema:
           type: string
@@ -1892,12 +1966,12 @@ paths:
           in: query
           name: questionnaire
           description: 'to fetch associated restaurant questionnaire answers'
-          example: dolorem
+          example: aut
           required: false
           schema:
             type: string
             description: 'to fetch associated restaurant questionnaire answers'
-            example: dolorem
+            example: aut
       responses:
         401:
           description: ''
@@ -1932,7 +2006,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: consequatur
                 nameShort:
                   type: string
                   description: ''
@@ -1940,7 +2014,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: mreichel@example.com
+                  example: kemmer.noel@example.org
                 about:
                   type: string
                   description: ''
@@ -2033,51 +2107,51 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: d4413ac8-080a-356a-a21d-a328678d30d0
+                  example: bbe8f1a6-418c-39b5-be72-d45c6093e817
                 name:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: rerum
                 nameShort:
                   type: string
                   description: ''
-                  example: illum
+                  example: laborum
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: sasha33@example.com
+                  example: dino98@example.net
                 about:
                   type: string
                   description: ''
-                  example: quo
+                  example: iste
                 aboutShort:
                   type: string
                   description: ''
-                  example: quidem
+                  example: iusto
                 phoneNo:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: eos
                 address:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: explicabo
                 city:
                   type: string
                   description: ''
-                  example: natus
+                  example: ducimus
                 state:
                   type: string
                   description: ''
-                  example: totam
+                  example: et
                 postalCode:
                   type: string
                   description: ''
-                  example: dolor
+                  example: incidunt
                 mapLocation:
                   type: string
                   description: ''
-                  example: dolor
+                  example: omnis
                 url:
                   type: string
                   description: ''
@@ -2158,15 +2232,15 @@ paths:
                 restaurantUuid:
                   type: string
                   description: ''
-                  example: unde
+                  example: fuga
                 delivery:
                   type: string
                   description: ''
-                  example: ut
+                  example: provident
                 booking:
                   type: string
                   description: ''
-                  example: est
+                  example: ut
               required:
                 - restaurantUuid
                 - delivery
@@ -2217,7 +2291,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the more info.'
-        example: facilis
+        example: quaerat
         required: true
         schema:
           type: string
@@ -2231,6 +2305,9 @@ tags:
   -
     name: 'Customer Cart Items Management'
     description: "\nCart Items API resource"
+  -
+    name: 'Customer Restaurants Bookmark Management'
+    description: "\nRestaurantBookmark API resource"
   -
     name: 'Customer menu Bookmark Management'
     description: "\nMenuBookmark API resource"

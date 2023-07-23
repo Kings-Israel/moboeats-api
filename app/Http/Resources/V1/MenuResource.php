@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MenuResource extends JsonResource
 {
+    
     /**
      * Transform the resource into an array.
      *
@@ -24,15 +25,22 @@ class MenuResource extends JsonResource
                 'createdBy' => $this->created_by,
                 'updatedBy' => $this->updated_by,
                 'status' => (string) $this->status,
+
             ],
             'relationships' => [
                 'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),
                 'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('subCategories')),
                 'images' => MenuImageResource::collection($this->whenLoaded('images')),
-                'menuPrices' => MenuPriceResource::collection($this->whenLoaded('menuPrices')),
+                'menuPrices' => $this->whenLoaded('menuPrices', function(){
+                    return MenuPriceResource::collection($this->whenLoaded('menuPrices'));
+                }, function(){
+                    return  MenuPriceResource::collection($this->menuPrices); 
+                }),
             ]
                         
         ];
     }
+    
+
 }

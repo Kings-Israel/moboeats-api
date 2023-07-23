@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "MoboEats",
-        "_postman_id": "6baf893a-b3cc-4e93-9f73-ee52e819f8d0",
+        "_postman_id": "2a700d18-e419-4254-ab11-0c705fcc7a74",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ali.jerde@example.com\",\"password\":\"m!\\\/H|I-:f\\\\ZMQ\",\"userType\":\"et\"}"
+                            "raw": "{\"email\":\"ajacobson@example.org\",\"password\":\"\\\"JS9X]XMl\",\"userType\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -130,7 +130,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"userId\":\"voluptate\"}"
+                            "raw": "{\"userId\":20}"
                         },
                         "description": "",
                         "auth": {
@@ -151,7 +151,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "6685ea80-68ee-301e-b395-30e26feafdbf",
+                                    "value": "424a527c-15f6-4b85-b2d1-c1e1a21c162w",
                                     "description": ""
                                 }
                             ]
@@ -211,7 +211,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "f6570540-5701-38bb-96e0-d5d3288a2c49",
+                                    "value": "424a527c-15f6-4b85-b2d1-c1e1a21c162w",
                                     "description": ""
                                 }
                             ]
@@ -315,7 +315,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cartId\":\"numquam\",\"menuId\":\"quam\",\"quantity\":15,\"status\":9}"
+                            "raw": "{\"menuId\":11,\"quantity\":18,\"status\":19}"
                         },
                         "description": "",
                         "auth": {
@@ -336,7 +336,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vel",
+                                    "value": "085b995b-e9f2-4e64-887b-37b422b7ba66",
                                     "description": "The ID of the cart item."
                                 }
                             ]
@@ -396,7 +396,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "facere",
+                                    "value": "085b995b-e9f2-4e64-887b-37b422b7ba66",
                                     "description": "The ID of the cart item."
                                 }
                             ]
@@ -414,7 +414,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cartId\":\"qui\",\"menuId\":\"qui\",\"quantity\":\"aperiam\",\"status\":16}"
+                            "raw": "{\"menuId\":2,\"quantity\":8,\"status\":17}"
                         },
                         "description": "",
                         "auth": {
@@ -435,8 +435,193 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "fugit",
+                                    "value": "085b995b-e9f2-4e64-887b-37b422b7ba66",
                                     "description": "The ID of the cart item."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Customer Restaurants Bookmark Management",
+            "description": "\nRestaurantBookmark API resource",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/restaurant-bookmark",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/restaurant-bookmark"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/restaurant-bookmark",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/restaurant-bookmark"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"restaurantId\":12}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/restaurant-bookmark\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/restaurant-bookmark\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "dignissimos",
+                                    "description": "The ID of the restaurant bookmark."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/restaurant-bookmark\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/restaurant-bookmark\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "asperiores",
+                                    "description": "The ID of the restaurant bookmark."
                                 }
                             ]
                         },
@@ -539,7 +724,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":\"sit\"}"
+                            "raw": "{\"menuId\":7}"
                         },
                         "description": "",
                         "auth": {
@@ -560,7 +745,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "8b561955-3316-4033-9ff1-32194378830a",
+                                    "value": "96d91d74-fc7d-468d-a00d-9c244b6f0a7d",
                                     "description": "The ID of the menu bookmark."
                                 }
                             ]
@@ -620,7 +805,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "8b561955-3316-4033-9ff1-32194378830a",
+                                    "value": "96d91d74-fc7d-468d-a00d-9c244b6f0a7d",
                                     "description": "The ID of the menu bookmark."
                                 }
                             ]
@@ -724,7 +909,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"jlbtvkipxplgqbaeuuciyxg\",\"email\":\"aisha85@example.com\",\"password\":\"ex\",\"userType\":\"voluptatibus\"}"
+                            "raw": "{\"name\":\"ekjfpawrgmiv\",\"email\":\"njerde@example.com\",\"password\":\"expedita\",\"userType\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -893,7 +1078,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"est\",\"description\":\"facere\",\"createdBy\":\"voluptatem\"}"
+                            "raw": "{\"title\":\"impedit\",\"description\":\"consequuntur\",\"createdBy\":\"nam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -914,7 +1099,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quam",
+                                    "value": "doloribus",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -974,7 +1159,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nulla",
+                                    "value": "iste",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -992,7 +1177,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"sequi\",\"description\":\"voluptate\",\"status\":\"beatae\",\"updatedBy\":\"expedita\"}"
+                            "raw": "{\"title\":\"ad\",\"description\":\"laboriosam\",\"status\":\"similique\",\"updatedBy\":\"veritatis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1013,7 +1198,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "qui",
+                                    "value": "veniam",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -1111,7 +1296,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"repellendus\",\"description\":\"saepe\",\"createdBy\":\"saepe\"}"
+                            "raw": "{\"title\":\"est\",\"description\":\"est\",\"createdBy\":\"numquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1132,7 +1317,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "id",
+                                    "value": "nemo",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -1192,7 +1377,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptatem",
+                                    "value": "porro",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -1210,7 +1395,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"quaerat\",\"description\":\"id\",\"status\":\"quis\",\"updatedBy\":\"esse\"}"
+                            "raw": "{\"title\":\"eligendi\",\"description\":\"dolor\",\"status\":\"sit\",\"updatedBy\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1231,7 +1416,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptatem",
+                                    "value": "perferendis",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -1335,7 +1520,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"saepe\",\"description\":\"quidem\",\"status\":9,\"createdBy\":\"neque\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"architecto\",\"description\":\"ad\",\"status\":14,\"createdBy\":\"perspiciatis\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1356,7 +1541,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "enim",
+                                    "value": "non",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -1416,7 +1601,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "cupiditate",
+                                    "value": "sequi",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -1434,7 +1619,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"voluptas\",\"description\":\"aut\",\"updatedBy\":\"non\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"tenetur\",\"description\":\"error\",\"updatedBy\":\"aliquid\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1455,7 +1640,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "repellendus",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -1553,7 +1738,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"velit\",\"description\":\"tempore\",\"status\":5,\"createdBy\":\"qui\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"eveniet\",\"description\":\"quod\",\"status\":17,\"createdBy\":\"quas\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1574,7 +1759,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repellendus",
+                                    "value": "odio",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -1634,7 +1819,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quia",
+                                    "value": "soluta",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -1652,7 +1837,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"quia\",\"description\":\"accusamus\",\"updatedBy\":\"tenetur\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"et\",\"description\":\"deserunt\",\"updatedBy\":\"laudantium\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1673,7 +1858,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eligendi",
+                                    "value": "alias",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -1740,24 +1925,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "non",
+                                    "value": "qui",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "esse",
+                                    "value": "rem",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "libero",
+                                    "value": "assumenda",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=non&subCategories=esse&restaurant=libero"
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=qui&subCategories=rem&restaurant=assumenda"
                         },
                         "method": "GET",
                         "header": [
@@ -1827,37 +2012,37 @@
                             "formdata": [
                                 {
                                     "key": "title",
-                                    "value": "nihil",
+                                    "value": "vero",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "magni",
+                                    "value": "vel",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 3,
+                                    "value": 15,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "createdBy",
-                                    "value": "quo",
+                                    "value": "sequi",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "quos",
+                                    "value": "dolor",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": 16129.458236,
+                                    "value": 1.897861,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1869,7 +2054,7 @@
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 11,
+                                    "value": 15,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1899,7 +2084,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "officia",
+                                    "value": "ipsum",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -1959,7 +2144,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nihil",
+                                    "value": "culpa",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -1980,55 +2165,55 @@
                             "formdata": [
                                 {
                                     "key": "uuid",
-                                    "value": "89717d67-5aa7-3c0b-a8e8-91b512034ac9",
+                                    "value": "99c7d130-e670-3b09-a88c-c015b694a3df",
                                     "type": "text",
                                     "description": "Must be a valid UUID."
                                 },
                                 {
                                     "key": "title",
-                                    "value": "porro",
+                                    "value": "aspernatur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "id",
+                                    "value": "molestiae",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 3,
+                                    "value": 12,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "updatedBy",
-                                    "value": "fugit",
+                                    "value": "veniam",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "qui",
+                                    "value": "pariatur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": "qui",
+                                    "value": "perspiciatis",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 1,
+                                    "value": 16,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 3,
+                                    "value": 8,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2063,7 +2248,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "doloribus",
+                                    "value": "adipisci",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -2096,24 +2281,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "dolore",
+                                    "value": "qui",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "eum",
+                                    "value": "officia",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "ut",
+                                    "value": "facere",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=dolore&subCategories=eum&restaurant=ut"
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=qui&subCategories=officia&restaurant=facere"
                         },
                         "method": "GET",
                         "header": [
@@ -2183,49 +2368,49 @@
                             "formdata": [
                                 {
                                     "key": "title",
-                                    "value": "consequatur",
+                                    "value": "laudantium",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "est",
+                                    "value": "error",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 19,
+                                    "value": 2,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "createdBy",
-                                    "value": "et",
+                                    "value": "sunt",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "consequatur",
+                                    "value": "eos",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": 28143772.938,
+                                    "value": 1323,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 11,
+                                    "value": 13,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 10,
+                                    "value": 17,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2336,55 +2521,55 @@
                             "formdata": [
                                 {
                                     "key": "uuid",
-                                    "value": "775e23ed-3a4d-3f74-ac58-b555ae2c2e3d",
+                                    "value": "b44417b4-5096-3913-96fb-539759365bd9",
                                     "type": "text",
                                     "description": "Must be a valid UUID."
                                 },
                                 {
                                     "key": "title",
-                                    "value": "est",
+                                    "value": "adipisci",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "dolores",
+                                    "value": "eum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 17,
+                                    "value": 15,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "updatedBy",
-                                    "value": "rem",
+                                    "value": "ut",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "odio",
+                                    "value": "nam",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": "similique",
+                                    "value": "enim",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 6,
+                                    "value": 14,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 2,
+                                    "value": 4,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2523,7 +2708,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"dolorem\",\"email\":\"vita53@example.org\"}"
+                            "raw": "{\"name\":\"adipisci\",\"email\":\"graham.hartmann@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2622,7 +2807,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"0ef4494a-313f-39a8-a0fe-ece2bcd27d68\",\"name\":\"numquam\",\"email\":\"dayton.beatty@example.org\",\"phoneNo\":\"aut\",\"address\":\"omnis\",\"city\":\"sit\",\"state\":\"aperiam\",\"mapLocation\":\"officia\"}"
+                            "raw": "{\"uuid\":\"5e73cae1-6e68-3814-9b70-a6b3efcc881c\",\"name\":\"eos\",\"email\":\"iwalter@example.org\",\"phoneNo\":\"ut\",\"address\":\"ipsum\",\"city\":\"enim\",\"state\":\"modi\",\"mapLocation\":\"ab\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2682,12 +2867,12 @@
                             "query": [
                                 {
                                     "key": "questionnaire",
-                                    "value": "aliquam",
+                                    "value": "quo",
                                     "description": "to fetch associated restaurant questionnaire answers",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-restaurants?questionnaire=aliquam"
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-restaurants?questionnaire=quo"
                         },
                         "method": "GET",
                         "header": [
@@ -2754,7 +2939,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"quia\",\"email\":\"noelia.koelpin@example.com\"}"
+                            "raw": "{\"name\":\"dolorem\",\"email\":\"jordy.damore@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2775,7 +2960,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "excepturi",
+                                    "value": "est",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -2835,7 +3020,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "dolorem",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -2853,7 +3038,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"46f57d20-da80-352f-b626-d1c0a14c252a\",\"name\":\"iste\",\"nameShort\":\"ipsum\",\"email\":\"orland57@example.net\",\"about\":\"incidunt\",\"aboutShort\":\"minima\",\"phoneNo\":\"sequi\",\"address\":\"velit\",\"city\":\"quasi\",\"state\":\"voluptatem\",\"postalCode\":\"in\",\"mapLocation\":\"voluptatibus\"}"
+                            "raw": "{\"uuid\":\"1c4dfa3c-d445-32eb-9970-11d4f09738fa\",\"name\":\"quibusdam\",\"nameShort\":\"reiciendis\",\"email\":\"jimmie.ziemann@example.net\",\"about\":\"quasi\",\"aboutShort\":\"sint\",\"phoneNo\":\"repellat\",\"address\":\"dolor\",\"city\":\"eligendi\",\"state\":\"voluptas\",\"postalCode\":\"cumque\",\"mapLocation\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2874,7 +3059,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quia",
+                                    "value": "vero",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -2907,12 +3092,12 @@
                             "query": [
                                 {
                                     "key": "questionnaire",
-                                    "value": "dolorem",
+                                    "value": "aut",
                                     "description": "to fetch associated restaurant questionnaire answers",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/restaurants?questionnaire=dolorem"
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/restaurants?questionnaire=aut"
                         },
                         "method": "GET",
                         "header": [
@@ -2979,7 +3164,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"eligendi\",\"email\":\"mreichel@example.com\"}"
+                            "raw": "{\"name\":\"consequatur\",\"email\":\"kemmer.noel@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3078,7 +3263,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"d4413ac8-080a-356a-a21d-a328678d30d0\",\"name\":\"eligendi\",\"nameShort\":\"illum\",\"email\":\"sasha33@example.com\",\"about\":\"quo\",\"aboutShort\":\"quidem\",\"phoneNo\":\"necessitatibus\",\"address\":\"doloribus\",\"city\":\"natus\",\"state\":\"totam\",\"postalCode\":\"dolor\",\"mapLocation\":\"dolor\"}"
+                            "raw": "{\"uuid\":\"bbe8f1a6-418c-39b5-be72-d45c6093e817\",\"name\":\"rerum\",\"nameShort\":\"laborum\",\"email\":\"dino98@example.net\",\"about\":\"iste\",\"aboutShort\":\"iusto\",\"phoneNo\":\"eos\",\"address\":\"explicabo\",\"city\":\"ducimus\",\"state\":\"et\",\"postalCode\":\"incidunt\",\"mapLocation\":\"omnis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3203,7 +3388,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurantUuid\":\"unde\",\"delivery\":\"ut\",\"booking\":\"est\"}"
+                            "raw": "{\"restaurantUuid\":\"fuga\",\"delivery\":\"provident\",\"booking\":\"ut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3224,7 +3409,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "facilis",
+                                    "value": "quaerat",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -3284,7 +3469,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "nisi",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -3320,7 +3505,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sint",
+                                    "value": "ullam",
                                     "description": "The ID of the more info."
                                 }
                             ]

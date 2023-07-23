@@ -74,11 +74,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: sit
-        type: string
+        example: 7
+        type: integer
         custom: []
     cleanBodyParameters:
-      menuId: sit
+      menuId: 7
     fileParameters: []
     responses: []
     responseFields: []
@@ -110,11 +110,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: 8b561955-3316-4033-9ff1-32194378830a
+        example: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
         type: string
         custom: []
     cleanUrlParameters:
-      id: 8b561955-3316-4033-9ff1-32194378830a
+      id: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -160,11 +160,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: 8b561955-3316-4033-9ff1-32194378830a
+        example: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
         type: string
         custom: []
     cleanUrlParameters:
-      id: 8b561955-3316-4033-9ff1-32194378830a
+      id: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

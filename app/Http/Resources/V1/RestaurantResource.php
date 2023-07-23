@@ -30,6 +30,8 @@ class RestaurantResource extends JsonResource
                 'city' =>$this->city,
                 'state' =>$this->state,
                 'postalCode' =>$this->postal_code,
+                'latitude' =>$this->latitude,
+                'longitude' =>$this->longitude,
                 'mapLocation' =>$this->map_location,
                 'url' =>$this->url,
                 'logo' =>$this->logo,

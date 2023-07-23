@@ -22,7 +22,7 @@ class StoreMenuBookmarkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'menuId' => ['required'],
+            'menuId' => ['required', 'integer'],
         ];
     }
 

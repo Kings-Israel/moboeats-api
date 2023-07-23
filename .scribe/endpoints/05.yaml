@@ -72,28 +72,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: saepe
+        example: architecto
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quidem
+        example: ad
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 9
+        example: 14
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: neque
+        example: perspiciatis
         type: string
         custom: []
       categoryIds:
@@ -104,10 +104,10 @@ endpoints:
         type: object
         custom: []
     cleanBodyParameters:
-      title: saepe
-      description: quidem
-      status: 9
-      createdBy: neque
+      title: architecto
+      description: ad
+      status: 14
+      createdBy: perspiciatis
       categoryIds: []
     fileParameters: []
     responses: []
@@ -140,11 +140,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: enim
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: enim
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -191,11 +191,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: cupiditate
+        example: sequi
         type: string
         custom: []
     cleanUrlParameters:
-      id: cupiditate
+      id: sequi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -203,14 +203,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: voluptas
+        example: tenetur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: aut
+        example: error
         type: string
         custom: []
       status:
@@ -224,7 +224,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: non
+        example: aliquid
         type: string
         custom: []
       categoryIds:
@@ -235,9 +235,9 @@ endpoints:
         type: object
         custom: []
     cleanBodyParameters:
-      title: voluptas
-      description: aut
-      updatedBy: non
+      title: tenetur
+      description: error
+      updatedBy: aliquid
       categoryIds: []
     fileParameters: []
     responses: []
@@ -270,11 +270,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: et
+        example: repellendus
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: repellendus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -356,28 +356,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: velit
+        example: eveniet
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: tempore
+        example: quod
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 5
+        example: 17
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: qui
+        example: quas
         type: string
         custom: []
       categoryIds:
@@ -388,10 +388,10 @@ endpoints:
         type: object
         custom: []
     cleanBodyParameters:
-      title: velit
-      description: tempore
-      status: 5
-      createdBy: qui
+      title: eveniet
+      description: quod
+      status: 17
+      createdBy: quas
       categoryIds: []
     fileParameters: []
     responses: []
@@ -424,11 +424,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: repellendus
+        example: odio
         type: string
         custom: []
     cleanUrlParameters:
-      id: repellendus
+      id: odio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -475,11 +475,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: quia
+        example: soluta
         type: string
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: soluta
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -487,14 +487,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: et
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: accusamus
+        example: deserunt
         type: string
         custom: []
       status:
@@ -508,7 +508,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: tenetur
+        example: laudantium
         type: string
         custom: []
       categoryIds:
@@ -519,9 +519,9 @@ endpoints:
         type: object
         custom: []
     cleanBodyParameters:
-      title: quia
-      description: accusamus
-      updatedBy: tenetur
+      title: et
+      description: deserunt
+      updatedBy: laudantium
       categoryIds: []
     fileParameters: []
     responses: []
@@ -554,11 +554,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: eligendi
+        example: alias
         type: string
         custom: []
     cleanUrlParameters:
-      id: eligendi
+      id: alias
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
+use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,7 +54,8 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
    
     Route::apiResource('orderer-menu', MenuController::class);
 
-    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']); 
+    Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']); 
 
     Route::apiResource('cart', CartController::class)->except(['update']);
     Route::apiResource('cart-items', CartItemController::class);

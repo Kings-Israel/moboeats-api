@@ -109,6 +109,16 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(MenuBookmark::class, 'user_id', 'id');
     }
 
+    /**
+     * Get all of the bookmarks for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function restaurantBookmarks(): HasMany
+    {
+        return $this->hasMany(RestaurantBookmark::class, 'user_id', 'id');
+    }
+
     // /**
     //  * Get all of the carts for the User
     //  *

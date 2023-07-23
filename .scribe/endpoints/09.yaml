@@ -1,17 +1,17 @@
-name: 'Customer Cart Items Management'
+name: 'Customer Cart'
 description: |-
 
-  Cart Items API resource
+  Cart API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/cart-items
+    uri: api/v1/orderer/cart
     metadata:
-      groupName: 'Customer Cart Items Management'
+      groupName: 'Customer Cart'
       groupDescription: |-
 
-        Cart Items API resource
+        Cart API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -48,12 +48,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/cart-items
+    uri: api/v1/orderer/cart
     metadata:
-      groupName: 'Customer Cart Items Management'
+      groupName: 'Customer Cart'
       groupDescription: |-
 
-        Cart Items API resource
+        Cart API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -68,39 +68,15 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      cartId:
-        name: cartId
+      userId:
+        name: userId
         description: ''
         required: true
-        example: numquam
-        type: string
-        custom: []
-      menuId:
-        name: menuId
-        description: ''
-        required: true
-        example: quam
-        type: string
-        custom: []
-      quantity:
-        name: quantity
-        description: ''
-        required: true
-        example: 15
-        type: integer
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: 9
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      cartId: numquam
-      menuId: quam
-      quantity: 15
-      status: 9
+      userId: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -112,12 +88,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/cart-items/{id}'
+    uri: 'api/v1/orderer/cart/{uuid}'
     metadata:
-      groupName: 'Customer Cart Items Management'
+      groupName: 'Customer Cart'
       groupDescription: |-
 
-        Cart Items API resource
+        Cart API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -128,15 +104,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the cart item.'
+      uuid:
+        name: uuid
+        description: ''
         required: true
-        example: vel
+        example: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
         type: string
         custom: []
     cleanUrlParameters:
-      id: vel
+      uuid: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -161,86 +137,13 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/cart-items/{id}'
-    metadata:
-      groupName: 'Customer Cart Items Management'
-      groupDescription: |-
-
-        Cart Items API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the cart item.'
-        required: true
-        example: facere
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: facere
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      cartId:
-        name: cartId
-        description: ''
-        required: true
-        example: qui
-        type: string
-        custom: []
-      menuId:
-        name: menuId
-        description: ''
-        required: true
-        example: qui
-        type: string
-        custom: []
-      quantity:
-        name: quantity
-        description: ''
-        required: true
-        example: aperiam
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: 16
-        type: integer
-        custom: []
-    cleanBodyParameters:
-      cartId: qui
-      menuId: qui
-      quantity: aperiam
-      status: 16
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/cart-items/{id}'
+    uri: 'api/v1/orderer/cart/{uuid}'
     metadata:
-      groupName: 'Customer Cart Items Management'
+      groupName: 'Customer Cart'
       groupDescription: |-
 
-        Cart Items API resource
+        Cart API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -251,15 +154,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the cart item.'
+      uuid:
+        name: uuid
+        description: ''
         required: true
-        example: fugit
+        example: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
         type: string
         custom: []
     cleanUrlParameters:
-      id: fugit
+      uuid: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

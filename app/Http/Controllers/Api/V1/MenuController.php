@@ -69,7 +69,7 @@ class MenuController extends Controller
             }
         }
        
-        return new MenuCollection($menu->with('restaurant')->paginate()->appends($request->query()));
+        return new MenuCollection($menu->with(['restaurant','menuPrices'])->paginate()->appends($request->query()));
     }
     
     /**

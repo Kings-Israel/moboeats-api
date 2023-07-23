@@ -1,17 +1,17 @@
-name: 'Restaurant Questionnaire'
+name: 'Customer Cart Items Management'
 description: |-
 
-  Questionnaire API resource
+  Cart Items API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/restaurant/more-info
+    uri: api/v1/orderer/cart-items
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Customer Cart Items Management'
       groupDescription: |-
 
-        Questionnaire API resource
+        Cart Items API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -48,12 +48,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/restaurant/more-info
+    uri: api/v1/orderer/cart-items
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Customer Cart Items Management'
       groupDescription: |-
 
-        Questionnaire API resource
+        Cart Items API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -68,31 +68,31 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      restaurantUuid:
-        name: restaurantUuid
+      menuId:
+        name: menuId
         description: ''
         required: true
-        example: unde
-        type: string
+        example: 11
+        type: integer
         custom: []
-      delivery:
-        name: delivery
+      quantity:
+        name: quantity
         description: ''
         required: true
-        example: ut
-        type: string
+        example: 18
+        type: integer
         custom: []
-      booking:
-        name: booking
+      status:
+        name: status
         description: ''
-        required: true
-        example: est
-        type: string
+        required: false
+        example: 19
+        type: integer
         custom: []
     cleanBodyParameters:
-      restaurantUuid: unde
-      delivery: ut
-      booking: est
+      menuId: 11
+      quantity: 18
+      status: 19
     fileParameters: []
     responses: []
     responseFields: []
@@ -104,12 +104,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/restaurant/more-info/{id}'
+    uri: 'api/v1/orderer/cart-items/{id}'
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Customer Cart Items Management'
       groupDescription: |-
 
-        Questionnaire API resource
+        Cart Items API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -122,13 +122,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the more info.'
+        description: 'The ID of the cart item.'
         required: true
-        example: facilis
+        example: 085b995b-e9f2-4e64-887b-37b422b7ba66
         type: string
         custom: []
     cleanUrlParameters:
-      id: facilis
+      id: 085b995b-e9f2-4e64-887b-37b422b7ba66
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -155,12 +155,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/restaurant/more-info/{id}'
+    uri: 'api/v1/orderer/cart-items/{id}'
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Customer Cart Items Management'
       groupDescription: |-
 
-        Questionnaire API resource
+        Cart Items API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -173,17 +173,41 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the more info.'
+        description: 'The ID of the cart item.'
         required: true
-        example: aut
+        example: 085b995b-e9f2-4e64-887b-37b422b7ba66
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: 085b995b-e9f2-4e64-887b-37b422b7ba66
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      menuId:
+        name: menuId
+        description: ''
+        required: true
+        example: 2
+        type: integer
+        custom: []
+      quantity:
+        name: quantity
+        description: ''
+        required: true
+        example: 8
+        type: integer
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: false
+        example: 17
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      menuId: 2
+      quantity: 8
+      status: 17
     fileParameters: []
     responses: []
     responseFields: []
@@ -195,12 +219,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/restaurant/more-info/{id}'
+    uri: 'api/v1/orderer/cart-items/{id}'
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Customer Cart Items Management'
       groupDescription: |-
 
-        Questionnaire API resource
+        Cart Items API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -213,13 +237,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the more info.'
+        description: 'The ID of the cart item.'
         required: true
-        example: sint
+        example: 085b995b-e9f2-4e64-887b-37b422b7ba66
         type: string
         custom: []
     cleanUrlParameters:
-      id: sint
+      id: 085b995b-e9f2-4e64-887b-37b422b7ba66
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
