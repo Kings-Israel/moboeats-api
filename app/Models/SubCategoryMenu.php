@@ -46,4 +46,25 @@ class SubCategoryMenu extends Model implements UrlRoutable
             $model->uuid = (string) Str::uuid();
         });
     }
+
+     public static function options($column)
+    {
+        if($column == 'status'){
+            $options = [
+                ['id' => 1,'caption' => 'Inactive', 'color' => 'bg-yellow-500'],
+                ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
+            ];
+        }
+        if($column == 'user_category'){
+            $options = [
+                ['id' => 2,'caption' => 'Regular', 'color' => 'bg-yellow-500'],
+                ['id' => 100,'caption' => 'Admin', 'color' => 'bg-green-500'],
+            ];
+        }
+        if(isset($options)){
+            return $options;
+        }else{
+            return null;
+        }
+    }
 }

@@ -12,6 +12,7 @@ use App\Traits\Admin\UuidTrait;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +47,8 @@ class Restaurant extends Model implements UrlRoutable
         'state',
         'postal_code',
         'map_location',
+        'latitude',
+        'longitude',
         'url',
         'logo',
         'status',
@@ -121,5 +124,24 @@ class Restaurant extends Model implements UrlRoutable
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    /**
+     * Get all of the orders for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'restaurant_id', 'id');
+    }
+
+    /**
+     * The users that belong to the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_restaurants', 'restaurant_id', 'user_id');
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laratrust\Contracts\LaratrustUser;
@@ -139,6 +140,16 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasOne(Cart::class, 'user_id', 'id');
     }
 
+    /**
+     * Get all of the orders for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
     public static function options($column)
     {
         if($column == 'status'){
@@ -153,5 +164,15 @@ class User extends Authenticatable implements LaratrustUser
         }else{
             return null;
         }
+    }
+
+    /**
+     * Get the restaurant that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function restaurant(): BelongsTo
+    {
+        return $this->belongsTo(Restaurant::class, 'user_restaurants', 'user_id', 'restaurant_id');
     }
 }

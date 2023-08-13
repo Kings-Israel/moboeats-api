@@ -8,10 +8,12 @@ use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
 use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +61,10 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
 
     Route::apiResource('cart', CartController::class)->except(['update']);
     Route::apiResource('cart-items', CartItemController::class);
+
+    Route::apiResource('orders', OrderController::class)->except(['update']);
+
+    Route::apiResource('payment', PaymentController::class)->except(['update']);
 });
 /**Restaurant owners management */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
@@ -69,6 +75,8 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('more-info', QuestionnaireController::class);
 
     Route::apiResource('menu', MenuController::class);
+
+    Route::apiResource('orders', OrderController::class)->except(['store']);
 });
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
