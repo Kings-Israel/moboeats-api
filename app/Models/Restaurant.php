@@ -105,7 +105,7 @@ class Restaurant extends Model implements UrlRoutable
     {
         return $this->hasOne(Questionnaire::class, 'restaurant_id', 'id');
     }
-    
+
     /**
      * Get all of the menus for the Restaurant
      *

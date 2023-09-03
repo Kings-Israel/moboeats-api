@@ -24,7 +24,7 @@ return [
         'orderers' => ["storePath" => "orderers/images", "readPath" => "storage/app/public/orderers/images", 'disk' => "public"],
     //     'public' => storage_path('app/public'),
     //    's3' => storage_path('app/s3'),
-        
+
     ],
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Nairobi',
 
     /*
     |--------------------------------------------------------------------------

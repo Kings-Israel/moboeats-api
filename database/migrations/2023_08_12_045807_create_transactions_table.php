@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid')->unique();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->string('transaction_id')->nullable();
+            $table->string('transaction_id')->unique()->nullable();
             $table->string('status');
             $table->text('raw_response')->nullable();
             $table->timestamps();

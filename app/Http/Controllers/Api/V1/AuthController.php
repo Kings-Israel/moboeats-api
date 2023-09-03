@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     /**
      * @group Authentication Management
-     * 
+     *
      * User API resource
      */
 
@@ -52,13 +52,13 @@ class AuthController extends Controller
                 //     'update' => $updateToken->plainTextToken,
                 //     'basic' => $basic->plainTextToken
                 // ],
-                
+
             ]);
         } catch (\Throwable $th) {
             info($th->getMessage());
             return $this->error('', $th->getMessage(), 403);
         }
-        
+
 
     }
 
@@ -75,7 +75,7 @@ class AuthController extends Controller
                 'user_type' => $request->user_type,
                 'status' => 2,
             ]);
-            
+
             if ($request->user_type === 'orderer') {
                 $orderer = Orderer::create([
                     'user_id' => $user->id,
@@ -120,7 +120,7 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
-            return $this->error('', $th->getMessage(), 403);           
+            return $this->error('', $th->getMessage(), 403);
         }
     }
 
@@ -139,7 +139,7 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             return $this->error('', $th->getMessage(), 403);
         }
-        
+
     }
 
     public function authUser()
