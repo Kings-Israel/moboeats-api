@@ -23,10 +23,10 @@ class StorePaymentRequest extends FormRequest
     {
         return [
             'orderId' => ['required','integer'],
-            'transactionId' => ['required'],
-            'paymentMethod' => ['required'],
-            'amount' => ['required','integer'],
-            'createdBy' => ['required'],
+            // 'transactionId' => ['required'],
+            // 'paymentMethod' => ['required'],
+            // 'amount' => ['required','integer'],
+            // 'createdBy' => ['required'],
         ];
     }
 
@@ -34,9 +34,9 @@ class StorePaymentRequest extends FormRequest
     {
         $this->merge([
             'order_id' => $this->orderId,
-            'transaction_id' => $this->transactionId,
-            'payment_method' => $this->paymentMethod,
-            'created_by' => $this->createdBy,
+            // 'transaction_id' => $this->transactionId,
+            // 'payment_method' => $this->paymentMethod,
+            // 'created_by' => $this->createdBy,
         ]);
     }
 }

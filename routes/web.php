@@ -22,5 +22,11 @@ Route::get('/storage-link', function() {
     Artisan::call('storage:link');
     return redirect('/');
 });
+Route::get('/paypal/checkout/success', function() {
+    return view('paypal.success');
+})->name('paypal.checkout.success');
+Route::get('/paypal/checkout/failed', function() {
+    return view('paypal.error');
+})->name('paypal.checkout.failed');
 require __DIR__.'/auth.php';
 

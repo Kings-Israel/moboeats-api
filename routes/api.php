@@ -10,10 +10,10 @@ use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
-use App\Http\Controllers\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function() {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
-    
+
 });
 
 
@@ -53,11 +53,11 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
     Route::apiResource('orderer-restaurants', RestaurantController::class);
     Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
     Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
-   
+
     Route::apiResource('orderer-menu', MenuController::class);
 
-    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']); 
-    Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']); 
+    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+    Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
 
     Route::apiResource('cart', CartController::class)->except(['update']);
     Route::apiResource('cart-items', CartItemController::class);
@@ -78,6 +78,9 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
 });
+
+Route::post('/api/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
+Route::post('/api/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
 //     // Define customer-specific routes here
