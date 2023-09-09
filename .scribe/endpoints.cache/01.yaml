@@ -28,27 +28,27 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ajacobson@example.org
+        example: annamae.hagenes@example.com
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: '"JS9X]XMl'
+        example: ';.\cP~c}&'
         type: string
         custom: []
       userType:
         name: userType
         description: ''
         required: true
-        example: qui
+        example: id
         type: string
         custom: []
     cleanBodyParameters:
-      email: ajacobson@example.org
-      password: '"JS9X]XMl'
-      userType: qui
+      email: annamae.hagenes@example.com
+      password: ';.\cP~c}&'
+      userType: id
     fileParameters: []
     responses: []
     responseFields: []

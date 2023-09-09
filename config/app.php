@@ -22,6 +22,7 @@ return [
         'companyLogos' => ["storePath" => "companyLogos/logos", "readPath" => "storage/companyLogos/logos", 'disk' => "public"],
         'menus' => ["storePath" => "menus/images", "readPath" => "storage/app/public/menus/images", 'disk' => "public"],
         'orderers' => ["storePath" => "orderers/images", "readPath" => "storage/app/public/orderers/images", 'disk' => "public"],
+        'riders' => ["storePath" => "riders/images", "readPath" => "storage/app/public/riders/images", 'disk' => "public"],
     //     'public' => storage_path('app/public'),
     //    's3' => storage_path('app/s3'),
         

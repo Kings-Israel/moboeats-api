@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Payment;
 use App\Http\Requests\V1\StorePaymentRequest;
@@ -9,7 +9,13 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
+/**
+ * @group Payment Post Controller
+ * 
+ * Payment API resource
+ */
 class PaymentController extends Controller
 {
     /**

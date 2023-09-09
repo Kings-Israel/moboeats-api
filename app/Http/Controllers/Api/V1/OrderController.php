@@ -82,7 +82,7 @@ class OrderController extends Controller
                 DB::beginTransaction();
                 $cart = Cart::where('user_id', $user->id)
                 ->where('id', $request->cartId)
-                ->where('status', 2)
+                // ->where('status', 2)
                 ->first();
 
                 if (!$cart) {

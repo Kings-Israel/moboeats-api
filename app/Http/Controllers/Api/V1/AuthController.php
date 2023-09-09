@@ -7,6 +7,7 @@ use App\Http\Requests\V1\LoginUserRequest;
 use App\Http\Requests\V1\StoreUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\Orderer;
+use App\Models\Rider;
 use App\Models\Role;
 use App\Models\User;
 use App\Traits\HttpResponses;
@@ -101,6 +102,13 @@ class AuthController extends Controller
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
             }
             if ($request->user_type === 'rider') {
+                $rider = Rider::create([
+                    'user_id' => $user->id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone_no' => $request->phone_no??'',
+                    'status' => 2,
+                ]);
                 $role = Role::where('name', $request->user_type)->first();
                 if (!$role) {
                     return $this->error('', 'Unknown user type: '.$request->user_type, 401);

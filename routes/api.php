@@ -13,7 +13,8 @@ use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Api\V1\RiderController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,14 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('menu', MenuController::class);
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
+    Route::apiResource('riders', RiderController::class)->except(['store']);
+    Route::apiResource('order-riders', RiderController::class);
+});
+
+/**Riders management */
+Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
+    Route::apiResource('riders', RiderController::class)->except(['store']);
+   
 });
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {

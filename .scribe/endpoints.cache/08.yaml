@@ -74,11 +74,11 @@ endpoints:
         name: restaurantId
         description: ''
         required: true
-        example: 12
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      restaurantId: 12
+      restaurantId: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -110,11 +110,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: dignissimos
+        example: 476e078f-3ad2-45b6-8bd6-051145768faa
         type: string
         custom: []
     cleanUrlParameters:
-      id: dignissimos
+      id: 476e078f-3ad2-45b6-8bd6-051145768faa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -160,11 +160,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: asperiores
+        example: 476e078f-3ad2-45b6-8bd6-051145768faa
         type: string
         custom: []
     cleanUrlParameters:
-      id: asperiores
+      id: 476e078f-3ad2-45b6-8bd6-051145768faa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

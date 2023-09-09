@@ -28,7 +28,7 @@ class MenuResource extends JsonResource
 
             ],
             'relationships' => [
-                'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
+                // 'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),
                 'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('subCategories')),
                 'images' => MenuImageResource::collection($this->whenLoaded('images')),
@@ -36,6 +36,11 @@ class MenuResource extends JsonResource
                     return MenuPriceResource::collection($this->whenLoaded('menuPrices'));
                 }, function(){
                     return  MenuPriceResource::collection($this->menuPrices); 
+                }),
+                'restaurant' => $this->whenLoaded('restaurant', function(){
+                    return new RestaurantResource($this->whenLoaded('restaurant'));
+                }, function(){
+                    return  new RestaurantResource($this->restaurant); 
                 }),
             ]
                         
