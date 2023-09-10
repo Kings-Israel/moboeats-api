@@ -82,8 +82,8 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('orders', OrderController::class)->except(['store']);
 });
 
-Route::post('/api/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
-Route::post('/api/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
+Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
+Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
 //     // Define customer-specific routes here
