@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\CartItemController;
@@ -77,6 +78,13 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('menu', MenuController::class);
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/users', [AdminController::class, 'users']);
+    Route::get('/orders', [AdminController::class, 'orders']);
+    Route::get('/payments', [AdminController::class, 'payments']);
 });
 
 Route::post('/api/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
