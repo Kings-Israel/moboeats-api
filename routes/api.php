@@ -64,8 +64,11 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
 
     Route::apiResource('orders', OrderController::class)->except(['update']);
 
-    Route::apiResource('payment', PaymentController::class)->except(['update']);
+    // Route::apiResource('payment', PaymentController::class)->except(['update']);
 });
+
+Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
+
 /**Restaurant owners management */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
     Route::apiResource('restaurants', RestaurantController::class);
