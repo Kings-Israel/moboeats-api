@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\Api\V1\RiderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,13 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
     // Route::apiResource('payment', PaymentController::class)->except(['update']);
 });
 
+Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
+    Route::get('/orders', [RiderController::class, 'orders']);
+    Route::post('/orders/update', [RiderController::class, 'updateOrder']);
+    Route::post('/orders/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
+    Route::post('/location/update', [RiderController::class, 'updateLocation']);
+});
+
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 
 /**Restaurant owners management */
@@ -81,6 +89,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('menu', MenuController::class);
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
+    Route::post('/orders/assign', [OrderController::class, 'assignorder']);
 });
 
 Route::group(['prefix' => 'admin'], function() {
@@ -90,8 +99,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/payments', [AdminController::class, 'payments']);
 });
 
-Route::post('/api/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
-Route::post('/api/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
+Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
+Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
 //     // Define customer-specific routes here
