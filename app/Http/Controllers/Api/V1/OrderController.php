@@ -188,8 +188,7 @@ class OrderController extends Controller
                                     $restaurant_coordinates = explode(',', $restaurant->map_location);
                                     $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant_coordinates[0].','.$restaurant_coordinates[1].'&key='.config('services.map.key'));
                                     info($business_location);
-                                    // if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
-                                    if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND") {
+                                    if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
                                         $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
                                         $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
                                         $rider['distance'] = $distance;

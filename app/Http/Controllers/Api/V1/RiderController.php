@@ -104,9 +104,11 @@ class RiderController extends Controller
             return response()->json($validator->messages(), 422);
         }
 
-        $location = Http::get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->latitude.','.$request->longitude.'&key='.config('services.maps.partial_key'));
+        $location = Http::get('https://maps.googleapis.com/maps/api/geocode/json?', [
+                                'latlng' => $request->latitude.','.$request->longitude,
+                                'key' => config('services.map.key')
+                            ]);
         $location = json_decode($location);
-
         auth()->user()->update([
             'location' => $location->results[0]->formatted_address,
             'latitude' => $request->latitude,
@@ -116,10 +118,9 @@ class RiderController extends Controller
         return $this->success('Location update', 'Location updated successfully', 200);
     }
 
-    public function updateDeliveryLocation(Request $request)
+    public function updateDeliveryLocation(Request $request, $order_id)
     {
         $validator = Validator::make($request->all(), [
-            'order_id' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
         ]);
@@ -128,13 +129,12 @@ class RiderController extends Controller
             return response()->json($validator->messages(), 422);
         }
 
-        $order = Order::with('user')->find($request->order_id);
-
+        $order = Order::with('user')->where('id', $order_id)->orWhere('uuid', $order_id)->first();
+        
         if ($order->user->device_token) {
             // Send Location to User
             Http::withHeaders([
-                // TODO: Add Firebase Key
-                'Authorization' => 'key=',
+                'Authorization' => 'key='.config('services.firebase.key'),
                 'Content-Type' => 'application/json'
             ])->post('https://fcm.googleapis.com/fcm/send', [
                 'registration_id' => $order->user->device_token,

@@ -72,7 +72,7 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
 Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/orders', [RiderController::class, 'orders']);
     Route::post('/orders/update', [RiderController::class, 'updateOrder']);
-    Route::post('/orders/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
+    Route::post('/orders/{order_id}/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
     Route::post('/location/update', [RiderController::class, 'updateLocation']);
 });
 

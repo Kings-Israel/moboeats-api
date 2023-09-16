@@ -70,7 +70,7 @@ class AssignOrder
                             if ($rider->latitude != NULL && $rider->lognitude != NULL) {
                                 $business_location = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$order->restaurant->latitude.','.$order->restaurant->longitude.'&key='.config('services.map.key'));
 
-                                if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND") {
+                                if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
                                     $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
                                     $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
                                     $rider['distance'] = $distance;
