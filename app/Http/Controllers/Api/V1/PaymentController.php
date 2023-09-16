@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Helpers\Paypal;
+use App\Helpers\AssignOrder;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\StorePaymentRequest;
 use App\Http\Requests\V1\UpdatePaymentRequest;
 use App\Models\Order;
 use App\Models\Payment;
@@ -12,9 +11,6 @@ use App\Models\User;
 use App\Traits\Admin\UploadFileTrait;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
@@ -29,7 +25,6 @@ class PaymentController extends Controller
     {
         //
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -108,12 +103,18 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'User not found', 403);
         }
 
-        $order = Order::where('id', $order_id)
-                        ->where('status', 1) //pending
+        $order = Order::with('restaurant')
+                        ->where(function ($query) use ($order_id) {
+                            $query->where('id', $order_id)->orWhere('uuid', $order_id);
+                        })
                         ->first();
 
         if (!$order) {
             return $this->error('Order Payment', 'Order not found', 404);
+        }
+
+        if ($order->status !== 1) {
+            return $this->error('Order Payment', 'Order already paid', 422);
         }
 
         if ($order->user_id != $user->id) {
@@ -123,6 +124,7 @@ class PaymentController extends Controller
         return view('paypal.checkout', [
             'client_id' => config('paypal.sandbox.client_id'),
             'currency' => config('paypal.currency'),
+            'order' => $order,
             'total_amount' => $order->total_amount,
             'checkout_id' => $order->uuid,
         ]);
@@ -182,7 +184,7 @@ class PaymentController extends Controller
 
     public function capturePaypalPayment(Request $request)
     {
-        $order = Order::where('uuid', $request->order_id)->first();
+        $order = Order::where('uuid', $request->checkout_id)->first();
 
         $order->update([
             'status' => 2
@@ -196,6 +198,9 @@ class PaymentController extends Controller
             'status' => 2,
             'created_by' => $order->user->name,
         ]);
+
+        // Assign Order to Rider
+        AssignOrder::assignOrder($order->id);
 
         return response()->json([
             'message' => 'Successful Payment',
