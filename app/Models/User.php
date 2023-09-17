@@ -37,6 +37,7 @@ class User extends Authenticatable implements LaratrustUser
         'location',
         'latitude',
         'longitude',
+        'device_token'
     ];
 
     protected $keyType = 'int';
