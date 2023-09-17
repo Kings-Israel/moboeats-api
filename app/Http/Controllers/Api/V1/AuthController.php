@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -25,10 +26,17 @@ class AuthController extends Controller
      * User API resource
      */
 
-    public function login(LoginUserRequest $request)
+    public function login(Request $request)
     {
         try {
-            $request->validated($request->all());
+            $request->validate([
+                'email' => ['required', 'string', 'email'],
+                'password' => ['required', 'string'],
+                'userType' => ['required', 'string', Rule::in(['orderer', 'restaurant', 'rider'])],
+            ], [
+                'userType.in' => 'Please select a orderer, restaurant or rider for the user type'
+            ]);
+            // $request->validated($request->all());
 
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return $this->error('', 'Unauthorized', 401);
