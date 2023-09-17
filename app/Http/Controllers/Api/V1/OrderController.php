@@ -128,6 +128,10 @@ class OrderController extends Controller
                     $order->update(['total_amount' => $totalSubtotal]);
                 }
 
+                $cart->update([
+                    'status' => 1
+                ]);
+
                 DB::commit();
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems']));
             } catch (\Throwable $th) {

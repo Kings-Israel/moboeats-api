@@ -113,7 +113,7 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Order not found', 404);
         }
 
-        if ($order->status !== 1) {
+        if ($order->status !== 'Pending') {
             return $this->error('Order Payment', 'Order already paid', 422);
         }
 
