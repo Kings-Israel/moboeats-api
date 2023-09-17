@@ -44,7 +44,7 @@ class AuthController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            if (!$user->hasRole($request->user_type)) {
+            if (!$user->hasRole($request->userType)) {
                 return $this->error('', 'Unknown user type', 401);
             }
             if($user->status == 1) {
@@ -58,9 +58,9 @@ class AuthController extends Controller
                 ]);
             }
 
-            $token = $user->createToken($request->user_type, ['create', 'read', 'update', 'delete']);
+            $token = $user->createToken($request->userType, ['create', 'read', 'update', 'delete']);
 
-            $user->update(['role_id' => $request->user_type]);
+            $user->update(['role_id' => $request->userType]);
 
             $user = new UserResource($user);
 
