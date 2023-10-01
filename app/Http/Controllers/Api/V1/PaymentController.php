@@ -13,6 +13,11 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
+/**
+ * @group Payment Post Controller
+ * 
+ * Payment API resource
+ */
 class PaymentController extends Controller
 {
     use HttpResponses;

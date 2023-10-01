@@ -30,27 +30,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: qui
+        example: delectus
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: rem
+        example: itaque
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: assumenda
+        example: doloremque
         type: string
         custom: []
     cleanQueryParameters:
-      categories: qui
-      subCategories: rem
-      restaurant: assumenda
+      categories: delectus
+      subCategories: itaque
+      restaurant: doloremque
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -98,42 +98,42 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: vero
+        example: nulla
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: vel
+        example: quis
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 15
+        example: 20
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: sequi
+        example: vitae
         type: string
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: dolor
+        example: culpa
         type: string
         custom: []
       standardPrice:
         name: standardPrice
         description: ''
         required: true
-        example: 1.897861
+        example: 7.269577
         type: number
         custom: []
       image:
@@ -148,7 +148,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - 13
+          - 7
         type: 'integer[]'
         custom: []
       subcategoryIds:
@@ -156,20 +156,20 @@ endpoints:
         description: ''
         required: false
         example:
-          - 15
+          - 14
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: vero
-      description: vel
-      status: 15
-      createdBy: sequi
-      restaurantId: dolor
-      standardPrice: 1.897861
+      title: nulla
+      description: quis
+      status: 20
+      createdBy: vitae
+      restaurantId: culpa
+      standardPrice: 7.269577
       categoryIds:
-        - 13
+        - 7
       subcategoryIds:
-        - 15
+        - 14
     fileParameters:
       image: null
     responses: []
@@ -202,11 +202,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: ipsum
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      id: ipsum
+      id: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -253,11 +253,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: culpa
+        example: unde
         type: string
         custom: []
     cleanUrlParameters:
-      id: culpa
+      id: unde
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -265,49 +265,49 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 99c7d130-e670-3b09-a88c-c015b694a3df
+        example: 4ed672f1-a950-37d5-8a74-cea52f8ed4d3
         type: string
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: aspernatur
+        example: ullam
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: molestiae
+        example: praesentium
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 12
+        example: 17
         type: integer
         custom: []
       updatedBy:
         name: updatedBy
         description: ''
         required: true
-        example: veniam
+        example: quos
         type: string
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: pariatur
+        example: molestias
         type: string
         custom: []
       standardPrice:
         name: standardPrice
         description: ''
         required: true
-        example: perspiciatis
+        example: unde
         type: string
         custom: []
       image:
@@ -322,7 +322,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - 16
+          - 18
         type: 'integer[]'
         custom: []
       subcategoryIds:
@@ -330,21 +330,21 @@ endpoints:
         description: ''
         required: false
         example:
-          - 8
+          - 5
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      uuid: 99c7d130-e670-3b09-a88c-c015b694a3df
-      title: aspernatur
-      description: molestiae
-      status: 12
-      updatedBy: veniam
-      restaurantId: pariatur
-      standardPrice: perspiciatis
+      uuid: 4ed672f1-a950-37d5-8a74-cea52f8ed4d3
+      title: ullam
+      description: praesentium
+      status: 17
+      updatedBy: quos
+      restaurantId: molestias
+      standardPrice: unde
       categoryIds:
-        - 16
+        - 18
       subcategoryIds:
-        - 8
+        - 5
     fileParameters:
       image: null
     responses: []
@@ -377,11 +377,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: adipisci
+        example: laboriosam
         type: string
         custom: []
     cleanUrlParameters:
-      id: adipisci
+      id: laboriosam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -419,27 +419,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: qui
+        example: id
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: officia
+        example: architecto
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: facere
+        example: porro
         type: string
         custom: []
     cleanQueryParameters:
-      categories: qui
-      subCategories: officia
-      restaurant: facere
+      categories: id
+      subCategories: architecto
+      restaurant: porro
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -487,42 +487,42 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: laudantium
+        example: tenetur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: error
+        example: dolores
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 2
+        example: 7
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: sunt
+        example: aut
         type: string
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: eos
+        example: commodi
         type: string
         custom: []
       standardPrice:
         name: standardPrice
         description: ''
         required: true
-        example: 1323.0
+        example: 15.8297746
         type: number
         custom: []
       image:
@@ -537,7 +537,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - 13
+          - 10
         type: 'integer[]'
         custom: []
       subcategoryIds:
@@ -545,20 +545,20 @@ endpoints:
         description: ''
         required: false
         example:
-          - 17
+          - 18
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: laudantium
-      description: error
-      status: 2
-      createdBy: sunt
-      restaurantId: eos
-      standardPrice: 1323.0
+      title: tenetur
+      description: dolores
+      status: 7
+      createdBy: aut
+      restaurantId: commodi
+      standardPrice: 15.8297746
       categoryIds:
-        - 13
+        - 10
       subcategoryIds:
-        - 17
+        - 18
     fileParameters:
       image: null
     responses: []
@@ -654,49 +654,49 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: b44417b4-5096-3913-96fb-539759365bd9
+        example: 95c94345-d62d-346c-8887-04770695b27e
         type: string
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: adipisci
+        example: consequatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eum
+        example: eligendi
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 15
+        example: 3
         type: integer
         custom: []
       updatedBy:
         name: updatedBy
         description: ''
         required: true
-        example: ut
+        example: nostrum
         type: string
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: nam
+        example: illum
         type: string
         custom: []
       standardPrice:
         name: standardPrice
         description: ''
         required: true
-        example: enim
+        example: nihil
         type: string
         custom: []
       image:
@@ -711,7 +711,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - 14
+          - 20
         type: 'integer[]'
         custom: []
       subcategoryIds:
@@ -719,21 +719,21 @@ endpoints:
         description: ''
         required: false
         example:
-          - 4
+          - 3
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      uuid: b44417b4-5096-3913-96fb-539759365bd9
-      title: adipisci
-      description: eum
-      status: 15
-      updatedBy: ut
-      restaurantId: nam
-      standardPrice: enim
+      uuid: 95c94345-d62d-346c-8887-04770695b27e
+      title: consequatur
+      description: eligendi
+      status: 3
+      updatedBy: nostrum
+      restaurantId: illum
+      standardPrice: nihil
       categoryIds:
-        - 14
+        - 20
       subcategoryIds:
-        - 4
+        - 3
     fileParameters:
       image: null
     responses: []

@@ -35,7 +35,7 @@ class UpdateRestaurantRequest extends FormRequest
                 'city' => ['required'],
                 'state' => ['required'],
                 'postalCode' => ['required'],
-                'mapLocation' => ['required'],
+                'mapLocation' => ['nullable'],
                 'url' => ['nullable'],
                 'logo' => ['nullable'],
             ];
@@ -52,9 +52,9 @@ class UpdateRestaurantRequest extends FormRequest
                 'city' => ['sometimes', 'required'],
                 'state' => ['sometimes', 'required'],
                 'postalCode' => ['sometimes', 'required'],
-                'mapLocation' => ['sometimes', 'required'],
-                'url' => ['sometimes', 'required'],
-                'logo' => ['sometimes', 'required'],
+                'mapLocation' => ['sometimes', 'nullable'],
+                'url' => ['sometimes', 'nullable'],
+                'logo' => ['sometimes', 'nullable'],
             ];
         }
     }

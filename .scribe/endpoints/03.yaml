@@ -28,11 +28,11 @@ endpoints:
         name: questionnaire
         description: 'to fetch associated restaurant questionnaire answers'
         required: false
-        example: quo
+        example: quos
         type: string
         custom: []
     cleanQueryParameters:
-      questionnaire: quo
+      questionnaire: quos
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -80,7 +80,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: dolorem
+        example: excepturi
         type: string
         custom: []
       nameShort:
@@ -94,7 +94,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: jordy.damore@example.net
+        example: keshaun.brakus@example.net
         type: string
         custom: []
       about:
@@ -182,8 +182,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: dolorem
-      email: jordy.damore@example.net
+      name: excepturi
+      email: keshaun.brakus@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -215,11 +215,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: est
+        example: doloribus
         type: string
         custom: []
     cleanUrlParameters:
-      id: est
+      id: doloribus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -266,11 +266,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: dolorem
+        example: sapiente
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: sapiente
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -278,84 +278,84 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 1c4dfa3c-d445-32eb-9970-11d4f09738fa
+        example: fdfeb00a-1ad4-35fc-978e-0646f8b1e164
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: quibusdam
+        example: unde
         type: string
         custom: []
       nameShort:
         name: nameShort
         description: ''
         required: true
-        example: reiciendis
+        example: laudantium
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: jimmie.ziemann@example.net
+        example: alfredo.schiller@example.net
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: quasi
+        example: rerum
         type: string
         custom: []
       aboutShort:
         name: aboutShort
         description: ''
         required: true
-        example: sint
+        example: est
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: repellat
+        example: et
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: dolor
+        example: vel
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: eligendi
+        example: dolore
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: voluptas
+        example: dicta
         type: string
         custom: []
       postalCode:
         name: postalCode
         description: ''
         required: true
-        example: cumque
+        example: voluptate
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: qui
+        example: aliquam
         type: string
         custom: []
       url:
@@ -373,18 +373,18 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 1c4dfa3c-d445-32eb-9970-11d4f09738fa
-      name: quibusdam
-      nameShort: reiciendis
-      email: jimmie.ziemann@example.net
-      about: quasi
-      aboutShort: sint
-      phoneNo: repellat
-      address: dolor
-      city: eligendi
-      state: voluptas
-      postalCode: cumque
-      mapLocation: qui
+      uuid: fdfeb00a-1ad4-35fc-978e-0646f8b1e164
+      name: unde
+      nameShort: laudantium
+      email: alfredo.schiller@example.net
+      about: rerum
+      aboutShort: est
+      phoneNo: et
+      address: vel
+      city: dolore
+      state: dicta
+      postalCode: voluptate
+      mapLocation: aliquam
     fileParameters: []
     responses: []
     responseFields: []
@@ -416,11 +416,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: vero
+        example: quidem
         type: string
         custom: []
     cleanUrlParameters:
-      id: vero
+      id: quidem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -458,11 +458,11 @@ endpoints:
         name: questionnaire
         description: 'to fetch associated restaurant questionnaire answers'
         required: false
-        example: aut
+        example: exercitationem
         type: string
         custom: []
     cleanQueryParameters:
-      questionnaire: aut
+      questionnaire: exercitationem
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -510,7 +510,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: consequatur
+        example: voluptas
         type: string
         custom: []
       nameShort:
@@ -524,7 +524,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: kemmer.noel@example.org
+        example: electa.larson@example.net
         type: string
         custom: []
       about:
@@ -612,8 +612,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: consequatur
-      email: kemmer.noel@example.org
+      name: voluptas
+      email: electa.larson@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -625,7 +625,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    uri: 'api/v1/restaurant/restaurants/{id}'
     metadata:
       groupName: 'Restaurant Management'
       groupDescription: |-
@@ -641,15 +641,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the restaurant.'
         required: true
         example: 21cba068-7884-4f94-88a0-e65edfeebe1f
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 21cba068-7884-4f94-88a0-e65edfeebe1f
+      id: 21cba068-7884-4f94-88a0-e65edfeebe1f
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -708,84 +708,84 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: bbe8f1a6-418c-39b5-be72-d45c6093e817
+        example: 8452dda1-9743-393a-878c-0f52e46cfbc5
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: rerum
+        example: nemo
         type: string
         custom: []
       nameShort:
         name: nameShort
         description: ''
         required: true
-        example: laborum
+        example: ratione
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: dino98@example.net
+        example: margaretta57@example.com
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: iste
+        example: officia
         type: string
         custom: []
       aboutShort:
         name: aboutShort
         description: ''
         required: true
-        example: iusto
+        example: debitis
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: eos
+        example: sint
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: explicabo
+        example: nobis
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: ducimus
+        example: sapiente
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: et
+        example: ipsum
         type: string
         custom: []
       postalCode:
         name: postalCode
         description: ''
         required: true
-        example: incidunt
+        example: eaque
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: omnis
+        example: quisquam
         type: string
         custom: []
       url:
@@ -803,18 +803,18 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: bbe8f1a6-418c-39b5-be72-d45c6093e817
-      name: rerum
-      nameShort: laborum
-      email: dino98@example.net
-      about: iste
-      aboutShort: iusto
-      phoneNo: eos
-      address: explicabo
-      city: ducimus
-      state: et
-      postalCode: incidunt
-      mapLocation: omnis
+      uuid: 8452dda1-9743-393a-878c-0f52e46cfbc5
+      name: nemo
+      nameShort: ratione
+      email: margaretta57@example.com
+      about: officia
+      aboutShort: debitis
+      phoneNo: sint
+      address: nobis
+      city: sapiente
+      state: ipsum
+      postalCode: eaque
+      mapLocation: quisquam
     fileParameters: []
     responses: []
     responseFields: []

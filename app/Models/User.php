@@ -103,6 +103,15 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasOne(Orderer::class, 'user_id', 'id');
     }
+    /**
+     * Get the rider associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function rider(): HasOne
+    {
+        return $this->hasOne(Rider::class, 'user_id', 'id');
+    }
 
     /**
      * Get all of the bookmarks for the User
@@ -179,4 +188,5 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->belongsTo(Restaurant::class, 'user_restaurants', 'user_id', 'restaurant_id');
     }
+    
 }
