@@ -74,43 +74,11 @@ endpoints:
         name: orderId
         description: ''
         required: true
-        example: 18
-        type: integer
-        custom: []
-      transactionId:
-        name: transactionId
-        description: ''
-        required: true
-        example: quis
-        type: string
-        custom: []
-      paymentMethod:
-        name: paymentMethod
-        description: ''
-        required: true
-        example: rerum
-        type: string
-        custom: []
-      amount:
-        name: amount
-        description: ''
-        required: true
-        example: 7
-        type: integer
-        custom: []
-      createdBy:
-        name: createdBy
-        description: ''
-        required: true
-        example: pariatur
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      orderId: 18
-      transactionId: quis
-      paymentMethod: rerum
-      amount: 7
-      createdBy: pariatur
+      orderId: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -142,11 +110,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 54b2cc4d-0037-3e31-896e-7805a9a32ae5
+        example: 101383a5-7be7-3afe-9e40-e5f7a0b855ef
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 54b2cc4d-0037-3e31-896e-7805a9a32ae5
+      uuid: 101383a5-7be7-3afe-9e40-e5f7a0b855ef
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -192,11 +160,75 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 605ce658-2864-3696-890f-58b82ecb6bd7
+        example: 818a3193-fb49-3535-9a4a-686d8b20e9ef
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 605ce658-2864-3696-890f-58b82ecb6bd7
+      uuid: 818a3193-fb49-3535-9a4a-686d8b20e9ef
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/api/create-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/api/capture-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

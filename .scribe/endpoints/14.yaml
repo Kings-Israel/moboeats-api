@@ -68,11 +68,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 00ad98be-d1c5-3ca4-a466-1ca796791b2e
+        example: 2a4cb41f-94f2-341b-8ce0-8290cb15629c
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 00ad98be-d1c5-3ca4-a466-1ca796791b2e
+      uuid: 2a4cb41f-94f2-341b-8ce0-8290cb15629c
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -119,11 +119,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 23c2864f-a73e-3394-9264-657947a8a5d0
+        example: 81c856e8-ba1d-3565-a524-b5897acfb980
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 23c2864f-a73e-3394-9264-657947a8a5d0
+      uuid: 81c856e8-ba1d-3565-a524-b5897acfb980
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -131,28 +131,28 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: b570dcef-e57d-374c-8149-ad9bd05217aa
+        example: 0aeaf0b0-5239-364a-9298-1b81370d5011
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: et
+        example: quidem
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ihauck@example.net
+        example: bcasper@example.net
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: fugiat
+        example: itaque
         type: string
         custom: []
       address:
@@ -194,31 +194,31 @@ endpoints:
         name: vehicleType
         description: ''
         required: true
-        example: totam
+        example: magni
         type: string
         custom: []
       vehicleLicensePlate:
         name: vehicleLicensePlate
         description: ''
         required: true
-        example: architecto
+        example: aut
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: reiciendis
+        example: inventore
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: b570dcef-e57d-374c-8149-ad9bd05217aa
-      name: et
-      email: ihauck@example.net
-      phoneNo: fugiat
-      vehicleType: totam
-      vehicleLicensePlate: architecto
-      status: reiciendis
+      uuid: 0aeaf0b0-5239-364a-9298-1b81370d5011
+      name: quidem
+      email: bcasper@example.net
+      phoneNo: itaque
+      vehicleType: magni
+      vehicleLicensePlate: aut
+      status: inventore
     fileParameters: []
     responses: []
     responseFields: []
@@ -250,11 +250,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 5b2aa380-cc6a-34d1-9bfc-5d6f06981492
+        example: 7cefae7a-7751-35d5-8514-698513fcef92
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 5b2aa380-cc6a-34d1-9bfc-5d6f06981492
+      uuid: 7cefae7a-7751-35d5-8514-698513fcef92
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -364,11 +364,11 @@ endpoints:
         name: id
         description: 'The ID of the order rider.'
         required: true
-        example: provident
+        example: fugit
         type: string
         custom: []
     cleanUrlParameters:
-      id: provident
+      id: fugit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -415,11 +415,11 @@ endpoints:
         name: id
         description: 'The ID of the order rider.'
         required: true
-        example: corrupti
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: corrupti
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -427,28 +427,28 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 45e91bbc-c3e1-338e-abca-2d51df9e9670
+        example: 68e2f2d2-e40a-326c-9b69-24d809e27dfc
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: doloremque
+        example: omnis
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: halle08@example.org
+        example: uriel.harber@example.com
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: rem
+        example: necessitatibus
         type: string
         custom: []
       address:
@@ -490,31 +490,31 @@ endpoints:
         name: vehicleType
         description: ''
         required: true
-        example: ullam
+        example: nam
         type: string
         custom: []
       vehicleLicensePlate:
         name: vehicleLicensePlate
         description: ''
         required: true
-        example: saepe
+        example: quia
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: dolore
+        example: earum
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 45e91bbc-c3e1-338e-abca-2d51df9e9670
-      name: doloremque
-      email: halle08@example.org
-      phoneNo: rem
-      vehicleType: ullam
-      vehicleLicensePlate: saepe
-      status: dolore
+      uuid: 68e2f2d2-e40a-326c-9b69-24d809e27dfc
+      name: omnis
+      email: uriel.harber@example.com
+      phoneNo: necessitatibus
+      vehicleType: nam
+      vehicleLicensePlate: quia
+      status: earum
     fileParameters: []
     responses: []
     responseFields: []
@@ -546,11 +546,11 @@ endpoints:
         name: id
         description: 'The ID of the order rider.'
         required: true
-        example: qui
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -628,11 +628,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: f4ccec45-2013-3328-b796-9f4269a494f5
+        example: ca832b09-636f-375f-9e60-47f54880d586
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: f4ccec45-2013-3328-b796-9f4269a494f5
+      uuid: ca832b09-636f-375f-9e60-47f54880d586
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -679,11 +679,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 3d7276ac-9cd1-36c1-b49a-63b5476c32bc
+        example: 6563cc94-7fe5-30fc-8c69-3a637bf1256a
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 3d7276ac-9cd1-36c1-b49a-63b5476c32bc
+      uuid: 6563cc94-7fe5-30fc-8c69-3a637bf1256a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -691,28 +691,28 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: e1d3aa9a-88d1-3a5d-9526-f07bcb5bc1b9
+        example: b9f082b6-4081-3872-a87b-bc59f14cdb00
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: eveniet
+        example: rerum
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: crystel.ritchie@example.com
+        example: nitzsche.alek@example.org
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: quaerat
+        example: et
         type: string
         custom: []
       address:
@@ -754,31 +754,31 @@ endpoints:
         name: vehicleType
         description: ''
         required: true
-        example: totam
+        example: beatae
         type: string
         custom: []
       vehicleLicensePlate:
         name: vehicleLicensePlate
         description: ''
         required: true
-        example: sapiente
+        example: quo
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: quisquam
+        example: dignissimos
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: e1d3aa9a-88d1-3a5d-9526-f07bcb5bc1b9
-      name: eveniet
-      email: crystel.ritchie@example.com
-      phoneNo: quaerat
-      vehicleType: totam
-      vehicleLicensePlate: sapiente
-      status: quisquam
+      uuid: b9f082b6-4081-3872-a87b-bc59f14cdb00
+      name: rerum
+      email: nitzsche.alek@example.org
+      phoneNo: et
+      vehicleType: beatae
+      vehicleLicensePlate: quo
+      status: dignissimos
     fileParameters: []
     responses: []
     responseFields: []
@@ -810,11 +810,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: c650189d-6f5f-33f9-8039-ae98a97a2c2e
+        example: 7485277e-7a96-39b0-8ab7-216c3c4868f1
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: c650189d-6f5f-33f9-8039-ae98a97a2c2e
+      uuid: 7485277e-7a96-39b0-8ab7-216c3c4868f1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

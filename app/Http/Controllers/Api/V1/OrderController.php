@@ -47,9 +47,11 @@ class OrderController extends Controller
                 return new OrderCollection($orders);
             } 
             if ($role === 'restaurant') {
-                $orders = Order::where('restaurant_id', $user->restaurant->restaurant_id)
+                // info($user->restaurants->pluck('id'));
+                //get user restaurants and then load orders for all restaurants
+                $orders = Order::whereIn('restaurant_id', $user->restaurants->pluck('id'))
                 ->where($filterItems)
-                ->with(['orderItems', 'restaurant'])
+                ->with(['orderItems', 'restaurant', 'user'])
                 ->paginate();
 
                 return new OrderCollection($orders);
@@ -143,7 +145,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+       return new OrderResource($order->loadMissing(['orderItems', 'restaurant', 'user']));
     }
 
     

@@ -19,7 +19,7 @@ use App\Traits\Admin\UploadFileTrait;
 
 /**
  * @group Restaurant Management
- * 
+ *
  * Restaurant API resource
  */
 
@@ -27,7 +27,7 @@ class RestaurantController extends Controller
 {
     use HttpResponses;
     use UploadFileTrait;
-    
+
     public $settings = [
         'model' =>  '\\App\\Models\\Restaurant',
         'caption' =>  "Restaurant",
@@ -35,7 +35,7 @@ class RestaurantController extends Controller
     ];
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @queryParam questionnaire to fetch associated restaurant questionnaire answers
      */
     public function index(Request $request)
@@ -43,7 +43,7 @@ class RestaurantController extends Controller
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
-            
+
             if ($role === 'orderer') {
                 $radius = 10;
                 $latitude = $request->latitude;
@@ -54,20 +54,20 @@ class RestaurantController extends Controller
                 $restaurants = Restaurant::where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
-                //             (6371 * acos(cos(radians($request->latitude)) 
-                //             * cos(radians(latitude)) 
-                //             * cos(radians(longitude) 
-                //             - radians($request->longitude)) 
-                //             + sin(radians($request->latitude)) 
+                //             (6371 * acos(cos(radians($request->latitude))
+                //             * cos(radians(latitude))
+                //             * cos(radians(longitude)
+                //             - radians($request->longitude))
+                //             + sin(radians($request->latitude))
                 //             * sin(radians(latitude))))
                 //             AS distance"))
                 //     ->having('distance', '<=', $radius)
                 //     ->orderBy('distance');
 
-                
+
                 // if ($includeQuestionnaire) {
                 //     $restaurants = $restaurants->with('questionnaire');
-                // } 
+                // }
                 return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
             }
             if ($role === 'restaurant') {
@@ -79,7 +79,7 @@ class RestaurantController extends Controller
                 ->where($filterItems);
                 if ($includeQuestionnaire) {
                     $restaurants = $restaurants->with('questionnaire');
-                } 
+                }
                 return new RestaurantCollection($restaurants->paginate()->appends($request->query()));
             }
 
@@ -87,7 +87,7 @@ class RestaurantController extends Controller
             return $this->error('', 'Unauthorized', 401);
         }
 
-        
+
     }
     /**
      * Store a newly created resource in storage.
@@ -100,7 +100,7 @@ class RestaurantController extends Controller
             if ($role === 'orderer') {
                 return $this->error('', 'Unauthorized', 401);
             }
-        
+
             try {
                 DB::beginTransaction();
                 $fileName= '';
@@ -126,7 +126,7 @@ class RestaurantController extends Controller
                 return $this->error('', $th->getMessage(), 403);
             }
         }
-       
+
     }
 
     /**
@@ -134,10 +134,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        // $restaurant = Restaurant::where('id', $restaurant)->orWhere('uuid', $restaurant)->first();
         return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant);
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -155,6 +156,7 @@ class RestaurantController extends Controller
                 if ($this->isNotAuthorized($restaurant)) {
                     return $this->isNotAuthorized($restaurant);
                 }
+                info('Authorized');
                 if($request->hasFile('logo')){
                     $fileName = $this->generateFileName2($request->file('logo'));
                     $restaurant->update($request->all(),['logo' => $fileName]);
@@ -167,7 +169,7 @@ class RestaurantController extends Controller
                 } else {
                     $restaurant->update($request->all());
                 }
-                
+
                 DB::commit();
                 return new RestaurantResource($restaurant);
             } catch (\Throwable $th) {
@@ -176,7 +178,7 @@ class RestaurantController extends Controller
                 return $this->error('', $th->getMessage(), 403);
             }
         }
-        
+
     }
 
     /**
@@ -212,9 +214,12 @@ class RestaurantController extends Controller
                 return '';
             } else {
                 if (Auth::user()->id !== $restaurant->user_id) {
-                    return $this->error('', 'You are not authorized to make this request', 403);
+                    return $this->error('', 'You are not authorized to make this request', 401);
+                } else {
+                    return '';
                 }
             }
         }
+        return '';
     }
 }

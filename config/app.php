@@ -25,7 +25,7 @@ return [
         'riders' => ["storePath" => "riders/images", "readPath" => "storage/app/public/riders/images", 'disk' => "public"],
     //     'public' => storage_path('app/public'),
     //    's3' => storage_path('app/s3'),
-        
+
     ],
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Nairobi',
 
     /*
     |--------------------------------------------------------------------------
@@ -207,6 +207,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Paypal' => App\Helpers\Paypal::class
     ])->toArray(),
 
 ];
