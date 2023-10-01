@@ -24,6 +24,7 @@ class OrderResource extends JsonResource
                 'deliveryFee' => $this->delivery_fee,
                 'deliveryAddress' => $this->delivery_address,
                 'deliveryStatus' => $this->delivery_status,
+                'createdAt' => $this->created_at->format('D, M j, Y g:i A'),
                 'status' => (string) $this->status,
             ],
             'relationships' => [

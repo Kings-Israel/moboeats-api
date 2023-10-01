@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "MoboEats",
-        "_postman_id": "2a700d18-e419-4254-ab11-0c705fcc7a74",
+        "_postman_id": "7aa734a5-5f1e-4474-b7cf-3670f5a7e6a7",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ajacobson@example.org\",\"password\":\"\\\"JS9X]XMl\",\"userType\":\"qui\"}"
+                            "raw": "{\"email\":\"nschulist@example.org\",\"password\":\"D1FPFh\",\"userType\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -130,7 +130,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"userId\":20}"
+                            "raw": "{\"userId\":8}"
                         },
                         "description": "",
                         "auth": {
@@ -315,7 +315,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":11,\"quantity\":18,\"status\":19}"
+                            "raw": "{\"menuId\":1,\"quantity\":2,\"status\":7}"
                         },
                         "description": "",
                         "auth": {
@@ -414,7 +414,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":2,\"quantity\":8,\"status\":17}"
+                            "raw": "{\"menuId\":2,\"quantity\":7,\"status\":2}"
                         },
                         "description": "",
                         "auth": {
@@ -437,6 +437,375 @@
                                     "key": "id",
                                     "value": "085b995b-e9f2-4e64-887b-37b422b7ba66",
                                     "description": "The ID of the cart item."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Customer Order Management",
+            "description": "\nCustomer Order API resource",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orders"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"cartId\":15,\"restaurantId\":12,\"delivery\":false}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/orders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "6a2011e6-6be5-4763-9c64-ab94b59cd7ff",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/orders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "6a2011e6-6be5-4763-9c64-ab94b59cd7ff",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/orders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/orders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "6a2011e6-6be5-4763-9c64-ab94b59cd7ff",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/orders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/orders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "6a2011e6-6be5-4763-9c64-ab94b59cd7ff",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/orders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/orders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "6a2011e6-6be5-4763-9c64-ab94b59cd7ff",
+                                    "description": ""
                                 }
                             ]
                         },
@@ -560,7 +929,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dignissimos",
+                                    "value": "476e078f-3ad2-45b6-8bd6-051145768faa",
                                     "description": "The ID of the restaurant bookmark."
                                 }
                             ]
@@ -620,7 +989,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "asperiores",
+                                    "value": "476e078f-3ad2-45b6-8bd6-051145768faa",
                                     "description": "The ID of the restaurant bookmark."
                                 }
                             ]
@@ -724,7 +1093,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":7}"
+                            "raw": "{\"menuId\":2}"
                         },
                         "description": "",
                         "auth": {
@@ -909,7 +1278,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ekjfpawrgmiv\",\"email\":\"njerde@example.com\",\"password\":\"expedita\",\"userType\":\"qui\"}"
+                            "raw": "{\"name\":\"j\",\"email\":\"connor18@example.com\",\"password\":\"officia\",\"userType\":\"sit\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1078,7 +1447,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"impedit\",\"description\":\"consequuntur\",\"createdBy\":\"nam\"}"
+                            "raw": "{\"title\":\"provident\",\"description\":\"in\",\"createdBy\":\"corporis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1099,7 +1468,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "doloribus",
+                                    "value": "ut",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -1159,7 +1528,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "iste",
+                                    "value": "rem",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -1177,7 +1546,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ad\",\"description\":\"laboriosam\",\"status\":\"similique\",\"updatedBy\":\"veritatis\"}"
+                            "raw": "{\"title\":\"ipsum\",\"description\":\"consequatur\",\"status\":\"aut\",\"updatedBy\":\"aliquid\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1198,7 +1567,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "veniam",
+                                    "value": "velit",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -1296,7 +1665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"est\",\"description\":\"est\",\"createdBy\":\"numquam\"}"
+                            "raw": "{\"title\":\"consequatur\",\"description\":\"iusto\",\"createdBy\":\"eos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1317,7 +1686,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nemo",
+                                    "value": "omnis",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -1377,7 +1746,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "porro",
+                                    "value": "laudantium",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -1395,7 +1764,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"eligendi\",\"description\":\"dolor\",\"status\":\"sit\",\"updatedBy\":\"aut\"}"
+                            "raw": "{\"title\":\"tempore\",\"description\":\"praesentium\",\"status\":\"consequatur\",\"updatedBy\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1416,7 +1785,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "perferendis",
+                                    "value": "quo",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -1520,7 +1889,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"architecto\",\"description\":\"ad\",\"status\":14,\"createdBy\":\"perspiciatis\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"est\",\"description\":\"beatae\",\"status\":6,\"createdBy\":\"aliquam\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1541,7 +1910,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "non",
+                                    "value": "corrupti",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -1601,7 +1970,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sequi",
+                                    "value": "maxime",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -1619,7 +1988,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"tenetur\",\"description\":\"error\",\"updatedBy\":\"aliquid\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"ducimus\",\"description\":\"sed\",\"updatedBy\":\"distinctio\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1640,7 +2009,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repellendus",
+                                    "value": "et",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -1738,7 +2107,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"eveniet\",\"description\":\"quod\",\"status\":17,\"createdBy\":\"quas\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"magni\",\"description\":\"dignissimos\",\"status\":9,\"createdBy\":\"et\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1759,7 +2128,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "odio",
+                                    "value": "commodi",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -1819,7 +2188,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "soluta",
+                                    "value": "hic",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -1837,7 +2206,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"et\",\"description\":\"deserunt\",\"updatedBy\":\"laudantium\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"aut\",\"description\":\"temporibus\",\"updatedBy\":\"omnis\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -1858,7 +2227,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "alias",
+                                    "value": "aspernatur",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -1925,24 +2294,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "qui",
+                                    "value": "delectus",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "rem",
+                                    "value": "itaque",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "assumenda",
+                                    "value": "doloremque",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=qui&subCategories=rem&restaurant=assumenda"
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=delectus&subCategories=itaque&restaurant=doloremque"
                         },
                         "method": "GET",
                         "header": [
@@ -2012,49 +2381,49 @@
                             "formdata": [
                                 {
                                     "key": "title",
-                                    "value": "vero",
+                                    "value": "nulla",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "vel",
+                                    "value": "quis",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 15,
+                                    "value": 20,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "createdBy",
-                                    "value": "sequi",
+                                    "value": "vitae",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "dolor",
+                                    "value": "culpa",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": 1.897861,
+                                    "value": 7.269577,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 13,
+                                    "value": 7,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 15,
+                                    "value": 14,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2084,7 +2453,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ipsum",
+                                    "value": "ea",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -2144,7 +2513,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "culpa",
+                                    "value": "unde",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -2165,55 +2534,55 @@
                             "formdata": [
                                 {
                                     "key": "uuid",
-                                    "value": "99c7d130-e670-3b09-a88c-c015b694a3df",
+                                    "value": "4ed672f1-a950-37d5-8a74-cea52f8ed4d3",
                                     "type": "text",
                                     "description": "Must be a valid UUID."
                                 },
                                 {
                                     "key": "title",
-                                    "value": "aspernatur",
+                                    "value": "ullam",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "molestiae",
+                                    "value": "praesentium",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 12,
+                                    "value": 17,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "updatedBy",
-                                    "value": "veniam",
+                                    "value": "quos",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "pariatur",
+                                    "value": "molestias",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": "perspiciatis",
+                                    "value": "unde",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 16,
+                                    "value": 18,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 8,
+                                    "value": 5,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2248,7 +2617,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "adipisci",
+                                    "value": "laboriosam",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -2281,24 +2650,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "qui",
+                                    "value": "id",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "officia",
+                                    "value": "architecto",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "facere",
+                                    "value": "porro",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=qui&subCategories=officia&restaurant=facere"
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=id&subCategories=architecto&restaurant=porro"
                         },
                         "method": "GET",
                         "header": [
@@ -2368,49 +2737,49 @@
                             "formdata": [
                                 {
                                     "key": "title",
-                                    "value": "laudantium",
+                                    "value": "tenetur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "error",
+                                    "value": "dolores",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 2,
+                                    "value": 7,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "createdBy",
-                                    "value": "sunt",
+                                    "value": "aut",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "eos",
+                                    "value": "commodi",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": 1323,
+                                    "value": 15.8297746,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 13,
+                                    "value": 10,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 17,
+                                    "value": 18,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2521,55 +2890,55 @@
                             "formdata": [
                                 {
                                     "key": "uuid",
-                                    "value": "b44417b4-5096-3913-96fb-539759365bd9",
+                                    "value": "95c94345-d62d-346c-8887-04770695b27e",
                                     "type": "text",
                                     "description": "Must be a valid UUID."
                                 },
                                 {
                                     "key": "title",
-                                    "value": "adipisci",
+                                    "value": "consequatur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "description",
-                                    "value": "eum",
+                                    "value": "eligendi",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "status",
-                                    "value": 15,
+                                    "value": 3,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "updatedBy",
-                                    "value": "ut",
+                                    "value": "nostrum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "restaurantId",
-                                    "value": "nam",
+                                    "value": "illum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "standardPrice",
-                                    "value": "enim",
+                                    "value": "nihil",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "categoryIds[0]",
-                                    "value": 14,
+                                    "value": 20,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "subcategoryIds[0]",
-                                    "value": 4,
+                                    "value": 3,
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2708,7 +3077,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"adipisci\",\"email\":\"graham.hartmann@example.net\"}"
+                            "raw": "{\"name\":\"eos\",\"email\":\"gorczany.elvera@example.com\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2807,7 +3176,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"5e73cae1-6e68-3814-9b70-a6b3efcc881c\",\"name\":\"eos\",\"email\":\"iwalter@example.org\",\"phoneNo\":\"ut\",\"address\":\"ipsum\",\"city\":\"enim\",\"state\":\"modi\",\"mapLocation\":\"ab\"}"
+                            "raw": "{\"uuid\":\"5b1e44d5-abef-3e33-8eeb-3d4c01147780\",\"name\":\"dolores\",\"email\":\"ypredovic@example.org\",\"phoneNo\":\"occaecati\",\"address\":\"sint\",\"city\":\"dignissimos\",\"state\":\"rem\",\"mapLocation\":\"nisi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2855,6 +3224,247 @@
             ]
         },
         {
+            "name": "Payment Post Controller",
+            "description": "\nPayment API resource",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/payment"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/payment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderId\":\"et\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/payment\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/payment\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "101383a5-7be7-3afe-9e40-e5f7a0b855ef",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/payment\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/payment\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "818a3193-fb49-3535-9a4a-686d8b20e9ef",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/api\/create-paypal-order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/api\/create-paypal-order",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/api\/create-paypal-order"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/api\/capture-paypal-order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/api\/capture-paypal-order",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/api\/capture-paypal-order"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
             "name": "Restaurant Management",
             "description": "\nRestaurant API resource",
             "item": [
@@ -2867,12 +3477,12 @@
                             "query": [
                                 {
                                     "key": "questionnaire",
-                                    "value": "quo",
+                                    "value": "quos",
                                     "description": "to fetch associated restaurant questionnaire answers",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-restaurants?questionnaire=quo"
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-restaurants?questionnaire=quos"
                         },
                         "method": "GET",
                         "header": [
@@ -2939,7 +3549,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"dolorem\",\"email\":\"jordy.damore@example.net\"}"
+                            "raw": "{\"name\":\"excepturi\",\"email\":\"keshaun.brakus@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2960,7 +3570,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "est",
+                                    "value": "doloribus",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -3020,7 +3630,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolorem",
+                                    "value": "sapiente",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -3038,7 +3648,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"1c4dfa3c-d445-32eb-9970-11d4f09738fa\",\"name\":\"quibusdam\",\"nameShort\":\"reiciendis\",\"email\":\"jimmie.ziemann@example.net\",\"about\":\"quasi\",\"aboutShort\":\"sint\",\"phoneNo\":\"repellat\",\"address\":\"dolor\",\"city\":\"eligendi\",\"state\":\"voluptas\",\"postalCode\":\"cumque\",\"mapLocation\":\"qui\"}"
+                            "raw": "{\"uuid\":\"fdfeb00a-1ad4-35fc-978e-0646f8b1e164\",\"name\":\"unde\",\"nameShort\":\"laudantium\",\"email\":\"alfredo.schiller@example.net\",\"about\":\"rerum\",\"aboutShort\":\"est\",\"phoneNo\":\"et\",\"address\":\"vel\",\"city\":\"dolore\",\"state\":\"dicta\",\"postalCode\":\"voluptate\",\"mapLocation\":\"aliquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3059,7 +3669,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vero",
+                                    "value": "quidem",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -3092,12 +3702,12 @@
                             "query": [
                                 {
                                     "key": "questionnaire",
-                                    "value": "aut",
+                                    "value": "exercitationem",
                                     "description": "to fetch associated restaurant questionnaire answers",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/restaurants?questionnaire=aut"
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/restaurants?questionnaire=exercitationem"
                         },
                         "method": "GET",
                         "header": [
@@ -3164,7 +3774,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"consequatur\",\"email\":\"kemmer.noel@example.org\"}"
+                            "raw": "{\"name\":\"voluptas\",\"email\":\"electa.larson@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3178,15 +3788,15 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/restaurant\/restaurants\/:uuid",
+                            "path": "api\/v1\/restaurant\/restaurants\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/restaurants\/:uuid",
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/restaurants\/:id",
                             "variable": [
                                 {
-                                    "id": "uuid",
-                                    "key": "uuid",
+                                    "id": "id",
+                                    "key": "id",
                                     "value": "21cba068-7884-4f94-88a0-e65edfeebe1f",
-                                    "description": ""
+                                    "description": "The ID of the restaurant."
                                 }
                             ]
                         },
@@ -3263,7 +3873,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"bbe8f1a6-418c-39b5-be72-d45c6093e817\",\"name\":\"rerum\",\"nameShort\":\"laborum\",\"email\":\"dino98@example.net\",\"about\":\"iste\",\"aboutShort\":\"iusto\",\"phoneNo\":\"eos\",\"address\":\"explicabo\",\"city\":\"ducimus\",\"state\":\"et\",\"postalCode\":\"incidunt\",\"mapLocation\":\"omnis\"}"
+                            "raw": "{\"uuid\":\"8452dda1-9743-393a-878c-0f52e46cfbc5\",\"name\":\"nemo\",\"nameShort\":\"ratione\",\"email\":\"margaretta57@example.com\",\"about\":\"officia\",\"aboutShort\":\"debitis\",\"phoneNo\":\"sint\",\"address\":\"nobis\",\"city\":\"sapiente\",\"state\":\"ipsum\",\"postalCode\":\"eaque\",\"mapLocation\":\"quisquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3388,7 +3998,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurantUuid\":\"fuga\",\"delivery\":\"provident\",\"booking\":\"ut\"}"
+                            "raw": "{\"restaurantUuid\":\"magnam\",\"delivery\":\"odio\",\"booking\":\"quae\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3409,7 +4019,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quaerat",
+                                    "value": "totam",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -3469,7 +4079,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nisi",
+                                    "value": "nihil",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -3505,7 +4115,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ullam",
+                                    "value": "placeat",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -3523,6 +4133,601 @@
                         ],
                         "body": null,
                         "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Rider Management",
+            "description": "\nRider API resource",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/riders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/riders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/riders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/riders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "2a4cb41f-94f2-341b-8ce0-8290cb15629c",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use uuid to get the specified resource.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/riders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/riders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "81c856e8-ba1d-3565-a524-b5897acfb980",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"uuid\":\"0aeaf0b0-5239-364a-9298-1b81370d5011\",\"name\":\"quidem\",\"email\":\"bcasper@example.net\",\"phoneNo\":\"itaque\",\"vehicleType\":\"magni\",\"vehicleLicensePlate\":\"aut\",\"status\":\"inventore\"}"
+                        },
+                        "description": "Use uuid as identifier.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/riders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/riders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "7cefae7a-7751-35d5-8514-698513fcef92",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use uuid as identifier..",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/order-riders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/order-riders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/order-riders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/order-riders"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/order-riders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/order-riders\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "fugit",
+                                    "description": "The ID of the order rider."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use uuid to get the specified resource.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/order-riders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/order-riders\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "ut",
+                                    "description": "The ID of the order rider."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"uuid\":\"68e2f2d2-e40a-326c-9b69-24d809e27dfc\",\"name\":\"omnis\",\"email\":\"uriel.harber@example.com\",\"phoneNo\":\"necessitatibus\",\"vehicleType\":\"nam\",\"vehicleLicensePlate\":\"quia\",\"status\":\"earum\"}"
+                        },
+                        "description": "Use uuid as identifier.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/order-riders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/order-riders\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "et",
+                                    "description": "The ID of the order rider."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use uuid as identifier..",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rider\/riders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rider\/riders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rider\/riders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rider\/riders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "ca832b09-636f-375f-9e60-47f54880d586",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use uuid to get the specified resource.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rider\/riders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rider\/riders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "6563cc94-7fe5-30fc-8c69-3a637bf1256a",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"uuid\":\"b9f082b6-4081-3872-a87b-bc59f14cdb00\",\"name\":\"rerum\",\"email\":\"nitzsche.alek@example.org\",\"phoneNo\":\"et\",\"vehicleType\":\"beatae\",\"vehicleLicensePlate\":\"quo\",\"status\":\"dignissimos\"}"
+                        },
+                        "description": "Use uuid as identifier.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rider\/riders\/:uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/rider\/riders\/:uuid",
+                            "variable": [
+                                {
+                                    "id": "uuid",
+                                    "key": "uuid",
+                                    "value": "7485277e-7a96-39b0-8ab7-216c3c4868f1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use uuid as identifier..",
                         "auth": {
                             "type": "noauth"
                         }

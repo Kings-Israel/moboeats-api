@@ -11,7 +11,7 @@ class UpdateMenuPriceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,42 @@ class UpdateMenuPriceRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if ($method == 'PUT') {
+            return [
+                // 'uuid' => ['required'],
+                'menuId' => ['required'],
+                'price' => ['required','numeric','between:0,9999999999.99'],
+                'description' => ['required'],
+                'status' => ['required'],
+                // 'updatedBy' => ['required'],
+            ];
+        } else {
+            return [
+                // 'uuid' => ['required'],
+                'menuId' => ['sometimes','required'],
+                'description' => ['sometimes','required'],
+                'status' => ['sometimes','required'],
+                'price' => ['sometimes','numeric','between:0,9999999999.99'],
+                // 'updatedBy' => ['sometimes','required'],
+            ];
+        }
+    }
+
+    protected function prepareForValidation()
+    { 
+        // if ($this->updatedBy) {
+        //     info('yes updatedBy');
+        //     $this->merge([
+        //         'updated_by' => $this->updatedBy,
+        //     ]);
+        // }
+        if ($this->menuId) {
+            info('yes menuId');
+            $this->merge([
+                'menu_id' => $this->menuId,
+            ]);
+        }
+        
     }
 }

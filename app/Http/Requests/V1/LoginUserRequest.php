@@ -3,6 +3,7 @@
 namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginUserRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class LoginUserRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'userType' => ['required', 'string'],
+            'userType' => ['required', 'string', Rule::in(['orderer', 'restaurant', 'rider'])],
         ];
     }
     protected function prepareForValidation()

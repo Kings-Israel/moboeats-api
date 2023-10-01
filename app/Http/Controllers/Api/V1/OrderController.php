@@ -84,9 +84,9 @@ class OrderController extends Controller
             try {
                 DB::beginTransaction();
                 $cart = Cart::where('user_id', $user->id)
-                            ->where('id', $request->cartId)
-                            ->where('status', 2)
-                            ->first();
+                ->where('id', $request->cartId)
+                // ->where('status', 2)
+                ->first();
 
                 if (!$cart) {
                     return $this->error('Order Creation', 'User does not have active cart', 402);
@@ -128,6 +128,10 @@ class OrderController extends Controller
                     $order->update(['total_amount' => $totalSubtotal]);
                 }
 
+                $cart->update([
+                    'status' => 1
+                ]);
+
                 DB::commit();
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems']));
             } catch (\Throwable $th) {
@@ -146,6 +150,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+       return new OrderResource($order->loadMissing(['orderItems', 'restaurant', 'user']));
         $order = $order->load('restaurant', 'rider', 'orderItems');
         $user = $order->user;
         $restaurant = $order->restaurant;

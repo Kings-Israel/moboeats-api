@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * @group Customer Cart Items Management
- * 
+ *
  * Cart Items API resource
  */
 class CartItemController extends Controller
@@ -35,7 +35,7 @@ class CartItemController extends Controller
             if ($role === 'orderer') {
                 // if (empty($request->all())) {
                 //     return $this->error('', 'You must pass cartId as query', 401);
-                // } 
+                // }
                 $cart = Cart::where('user_id', $user->id)->first();
                 // $request->merge([
                 //     'cartId' => $cart->id
@@ -61,7 +61,7 @@ class CartItemController extends Controller
         }
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -75,11 +75,11 @@ class CartItemController extends Controller
             }
             try {
                 DB::beginTransaction();
-                $cart = Cart::where('user_id', $user->id)->first();
+                $cart = Cart::where('user_id', $user->id)->where("status", 2)->first();
                 if (!$cart) {
-                    $cart = Cart::create(['user_id' => $user->id]);
+                    $cart = Cart::create(['user_id' => $user->id, 'status' => 2]);
                 }
-               
+
                 if (CartItem::where('menu_id', $request->menu_id)->where('cart_id', $cart->id)->exists()) {
                     return $this->error('Cart', 'Item already exists in the cart', 402);
                 }
@@ -108,7 +108,7 @@ class CartItemController extends Controller
         return new CartItemResource($cartItem->loadMissing(['menu', 'cart']));
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -159,5 +159,5 @@ class CartItemController extends Controller
         }
     }
 
-   
+
 }

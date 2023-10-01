@@ -22,7 +22,7 @@ class StorePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'orderId' => ['required','integer'],
+            'orderId' => ['required'],
             // 'transactionId' => ['required'],
             // 'paymentMethod' => ['required'],
             // 'amount' => ['required','integer'],

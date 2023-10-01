@@ -37,6 +37,7 @@ class User extends Authenticatable implements LaratrustUser
         'location',
         'latitude',
         'longitude',
+        'device_token'
     ];
 
     protected $keyType = 'int';
@@ -101,6 +102,15 @@ class User extends Authenticatable implements LaratrustUser
     public function orderer(): HasOne
     {
         return $this->hasOne(Orderer::class, 'user_id', 'id');
+    }
+    /**
+     * Get the rider associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function rider(): HasOne
+    {
+        return $this->hasOne(Rider::class, 'user_id', 'id');
     }
 
     /**
@@ -178,4 +188,5 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->belongsTo(Restaurant::class, 'user_restaurants', 'user_id', 'restaurant_id');
     }
+    
 }

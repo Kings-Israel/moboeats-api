@@ -13,6 +13,11 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
+/**
+ * @group Payment Post Controller
+ * 
+ * Payment API resource
+ */
 class PaymentController extends Controller
 {
     use HttpResponses;
@@ -113,7 +118,7 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Order not found', 404);
         }
 
-        if ($order->status !== 1) {
+        if ($order->status !== 'Pending') {
             return $this->error('Order Payment', 'Order already paid', 422);
         }
 

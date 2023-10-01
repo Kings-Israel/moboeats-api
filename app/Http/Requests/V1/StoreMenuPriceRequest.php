@@ -11,7 +11,7 @@ class StoreMenuPriceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class StoreMenuPriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'price' => ['required','numeric','between:0,9999999999.99'],
+            'description' => ['required'],
+            'status' => ['nullable', 'integer'],
+            'createdBy' => ['required'],
+            'menuId' => ['required'],
         ];
+        //'required|numeric|between:-9999999999.99,9999999999.99'
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'menu_id' => $this->menuId,
+            'created_by' => $this->createdBy,
+        ]);
     }
 }

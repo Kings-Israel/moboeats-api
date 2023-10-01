@@ -132,9 +132,9 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($restaurant)
+    public function show(Restaurant $restaurant)
     {
-        $restaurant = Restaurant::where('id', $restaurant)->orWhere('uuid', $restaurant)->first();
+        // $restaurant = Restaurant::where('id', $restaurant)->orWhere('uuid', $restaurant)->first();
         return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant);
     }
 
@@ -156,6 +156,7 @@ class RestaurantController extends Controller
                 if ($this->isNotAuthorized($restaurant)) {
                     return $this->isNotAuthorized($restaurant);
                 }
+                info('Authorized');
                 if($request->hasFile('logo')){
                     $fileName = $this->generateFileName2($request->file('logo'));
                     $restaurant->update($request->all(),['logo' => $fileName]);
@@ -213,9 +214,12 @@ class RestaurantController extends Controller
                 return '';
             } else {
                 if (Auth::user()->id !== $restaurant->user_id) {
-                    return $this->error('', 'You are not authorized to make this request', 403);
+                    return $this->error('', 'You are not authorized to make this request', 401);
+                } else {
+                    return '';
                 }
             }
         }
+        return '';
     }
 }

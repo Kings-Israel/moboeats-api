@@ -7,6 +7,7 @@ use App\Http\Requests\V1\LoginUserRequest;
 use App\Http\Requests\V1\StoreUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\Orderer;
+use App\Models\Rider;
 use App\Models\Role;
 use App\Models\User;
 use App\Traits\HttpResponses;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -25,10 +27,17 @@ class AuthController extends Controller
      * User API resource
      */
 
-    public function login(LoginUserRequest $request)
+    public function login(Request $request)
     {
         try {
-            $request->validated($request->all());
+            $request->validate([
+                'email' => ['required', 'string', 'email'],
+                'password' => ['required', 'string'],
+                'userType' => ['required', 'string', Rule::in(['orderer', 'restaurant', 'rider'])],
+            ], [
+                'userType.in' => 'Please select a orderer, restaurant or rider for the user type'
+            ]);
+            // $request->validated($request->all());
 
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return $this->error('', 'Unauthorized', 401);
@@ -36,7 +45,7 @@ class AuthController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            if (!$user->hasRole($request->user_type)) {
+            if (!$user->hasRole($request->userType)) {
                 return $this->error('', 'Unknown user type', 401);
             }
             if($user->status == 1) {
@@ -50,9 +59,9 @@ class AuthController extends Controller
                 ]);
             }
 
-            $token = $user->createToken($request->user_type, ['create', 'read', 'update', 'delete']);
+            $token = $user->createToken($request->userType, ['create', 'read', 'update', 'delete']);
 
-            $user->update(['role_id' => $request->user_type]);
+            $user->update(['role_id' => $request->userType]);
 
             $user = new UserResource($user);
 
@@ -112,6 +121,13 @@ class AuthController extends Controller
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
             }
             if ($request->user_type === 'rider') {
+                $rider = Rider::create([
+                    'user_id' => $user->id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone_no' => $request->phone_no??'',
+                    'status' => 2,
+                ]);
                 $role = Role::where('name', $request->user_type)->first();
                 if (!$role) {
                     return $this->error('', 'Unknown user type: '.$request->user_type, 401);

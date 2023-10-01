@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
 use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
+use App\Http\Controllers\Api\V1\MenuPriceController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\PaymentController;
@@ -87,6 +88,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('more-info', QuestionnaireController::class);
 
     Route::apiResource('menu', MenuController::class);
+    Route::apiResource('menu-prices', MenuPriceController::class);
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
     Route::post('/orders/assign', [OrderController::class, 'assignorder']);
