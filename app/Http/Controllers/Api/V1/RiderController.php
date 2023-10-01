@@ -2,168 +2,162 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Filters\V1\RiderFilter;
-use App\Models\Rider;
-use App\Http\Requests\V1\StoreRiderRequest;
-use App\Http\Requests\V1\UpdateRiderRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\RiderCollection;
-use App\Http\Resources\V1\RiderResource;
+use App\Models\AssignedOrder;
+use App\Models\Order;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Traits\Admin\UploadFileTrait;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-/**
- * @group Rider Management
- * 
- * Rider API resource
- */
 class RiderController extends Controller
 {
     use HttpResponses;
-    use UploadFileTrait;
-    
-    public $settings = [
-        'model' =>  '\\App\\Models\\Rider',
-        'caption' =>  "Rider",
-        'storageName' =>  "riders",
-    ];
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+    // Delivered Ordes
+    public function orders()
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role === 'restaurant') {
-                $filter =  new RiderFilter();
-                $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
-                $riders = Rider::where('status', 2)
-                ->where($filterItems)
-                ->with(['user'])
-                ->paginate();
-                return new RiderCollection($riders);
-            }
-            
-
-        } else {return $this->error('', 'Unauthorized', 401); }
+        $orders = Order::with('restaurant', 'user')->where('rider_id', '=', auth()->id())->get();
+        $assigned_orders = AssignedOrder::where('user_id', '=', auth()->id())->get();
+        return $this->success(['orders' => $orders, 'assigned_orders' => $assigned_orders], '', 200);
     }
 
-    
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreRiderRequest $request)
+    public function updateOrder(Request $request)
     {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'status' => ['required', Rule::in(['accept', 'reject', 'delivered'])]
+        ]);
 
-    /**
-     * Display the specified resource.
-     * Use uuid to get the specified resource.
-     */
-    public function show(Rider $rider)
-    {
-        // if ($this->isNotAuthorized($rider)) {
-        //     return new RiderResource($rider->loadMissing(['user']));
-        // } else {
-        //     return $this->isNotAuthorized($rider);
-        // }
-        return new RiderResource($rider->loadMissing(['user']));
-    }
-
-    
-    /**
-     * Update the specified resource in storage.
-     * Use uuid as identifier.
-     */
-    public function update(UpdateRiderRequest $request, Rider $rider)
-    {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role === 'rider') {
-                return $this->error('', 'Unauthorized', 401);
-            }
-            try {
-                DB::beginTransaction();
-                if (!$this->isNotAuthorized($rider)) {
-                    return $this->isNotAuthorized($rider);
-                }
-                if($request->hasFile('profile_picture')){
-                    $fileName = $this->generateFileName2($request->file('profile_picture'));
-                    $rider->update($request->all(),['profile_picture' => $fileName]);
-                    if($request->hasFile('profile_picture')){
-                        $fileData = ['file' => $request->file('profile_picture'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => null];
-                        if(!$this->uploadFile($fileData)){
-                            DB::rollBack();
-                        }
-                    }
-                } else {
-                    $rider->update($request->all());
-                }
-                
-                DB::commit();
-                return new RiderResource($rider);
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-        } else {
-            return $this->error('', 'Unauthorized', 401);
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Please select an order', 422);
         }
+
+        $order = Order::with('user', 'restaurant')->where('id', $request->order_id)->orWhere('uuid', $request->order_id)->first();
+
+        if (!$order) {
+            return $this->error('Order not found', 'The selected order was not found', 422);
+        }
+
+        if ($order->rider_id != NULL) {
+            return $this->success('Order assigned', 'The order was already assigned', 200);
+        }
+
+        $assignment = AssignedOrder::where('user_id', auth()->id())
+                        ->where('order_id', $order->id)
+                        ->first();
+
+        if (!$assignment) {
+            $assignment = AssignedOrder::create([
+                'order_id' => $order->id,
+                'user_id' => auth()->id(),
+            ]);
+        }
+
+        if ($request->status == 'accept') {
+            $order->update([
+                'rider_id' => auth()->id()
+            ]);
+
+            $assignment->update([
+                'status' => 'accepted'
+            ]);
+
+            Http::withHeaders([
+                'Authorization' => 'key='.config('services.firebase.key'),
+                'Content-Type' => 'application/json'
+            ])->post('https://fcm.googleapis.com/fcm/send', [
+                'registration_id' => $order->user->device_token,
+                'notification' => 'Your order will be delivered by '. auth()->user()->name,
+                'data' => [
+                    'rider_id' => auth()->id(),
+                ]
+            ]);
+
+            return $this->success($order, 'Order updated successfully', 200);
+        }
+
+        if ($request->status == 'delivered') {
+            $order->update([
+                'status' => 3, // Delivered
+            ]);
+
+            return $this->success($order, 'Order updated successfully', 200);
+        }
+
+        $assignment->update([
+            'status' => 'rejected'
+        ]);
+
+        return $this->success('', 'Order updated successfully', 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * Use uuid as identifier..
-     */
-    public function destroy(Rider $rider)
+    public function updateLocation(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role != 'rider') {
-                return $this->error('', 'Unauthorized', 401);
-            }
-            try {
-                DB::beginTransaction();
-                if ($this->isNotAuthorized($rider)) {
-                    $rider->delete();
-                } else {
-                    return $this->isNotAuthorized($rider);
-                }
-                DB::commit();
-                return response(null, 204);
-            } catch (\Throwable $th) {
-                info($th);
-                DB::rollBack();
-                return $this->error('', $th->getMessage(), 403);
-            }
+        $validator = Validator::make($request->all(), [
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 422);
         }
+
+        $location = Http::get('https://maps.googleapis.com/maps/api/geocode/json?', [
+                                'latlng' => $request->latitude.','.$request->longitude,
+                                'key' => config('services.map.key')
+                            ]);
+        $location = json_decode($location);
+        auth()->user()->update([
+            'location' => $location->results[0]->formatted_address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ]);
+
+        return $this->success('Location update', 'Location updated successfully', 200);
     }
 
-    public function isNotAuthorized($rider)
+    public function updateDeliveryLocation(Request $request, $order_id)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role === 'rider') {
-                if (Auth::user()->id == $rider->user_id) {
-                    return true;
-                } else {
-                    return $this->error('', 'You are not authorized to make this request', 403);
-                }
-            } else {
-                return false;
-                if (Auth::user()->id != $rider->user_id) {
-                    return $this->error('', 'You are not authorized to make this request', 403);
-                }
-            }
+        $validator = Validator::make($request->all(), [
+            'longitude' => 'required',
+            'latitude' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 422);
         }
+
+        $order = Order::with('user')->where('id', $order_id)->orWhere('uuid', $order_id)->first();
+        
+        if ($order->user->device_token) {
+            // Send Location to User
+            Http::withHeaders([
+                'Authorization' => 'key='.config('services.firebase.key'),
+                'Content-Type' => 'application/json'
+            ])->post('https://fcm.googleapis.com/fcm/send', [
+                'registration_id' => $order->user->device_token,
+                'notification' => [
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude
+                ],
+                'data' => [
+                    'order_id' => $order->id,
+                ]
+            ]);
+        }
+
+        return $this->success('Location update', 'Location updated successfully', 200);
+    }
+
+    public function earnings()
+    {
+
+    }
+
+    public function withdraw(Request $request)
+    {
+
     }
 }

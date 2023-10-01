@@ -36,15 +36,27 @@ class AuthController extends Controller
             }
 
             $user = User::where('email', $request->email)->first();
+
             if (!$user->hasRole($request->user_type)) {
                 return $this->error('', 'Unknown user type', 401);
             }
             if($user->status == 1) {
                 return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
             }
+
+            // Update device token
+            if ($request->has('device_token') && $request->device_token != '') {
+                $user->update([
+                    'device_token' => $request->device_token
+                ]);
+            }
+
             $token = $user->createToken($request->user_type, ['create', 'read', 'update', 'delete']);
+
             $user->update(['role_id' => $request->user_type]);
+
             $user = new UserResource($user);
+
             return $this->success([
                 'user' => $user,
                 'token' => $token->plainTextToken,
@@ -59,8 +71,6 @@ class AuthController extends Controller
             info($th->getMessage());
             return $this->error('', $th->getMessage(), 403);
         }
-
-
     }
 
     public function register(StoreUserRequest $request)
@@ -75,6 +85,7 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'user_type' => $request->user_type,
                 'status' => 2,
+                'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
             ]);
 
             if ($request->user_type === 'orderer') {

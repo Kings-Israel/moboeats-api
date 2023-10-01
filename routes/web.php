@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\PaymentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::get('/storage-link', function() {
     Artisan::call('storage:link');
     return redirect('/');
 });
+Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 Route::get('/paypal/checkout/success', function() {
     return view('paypal.success');
 })->name('paypal.checkout.success');

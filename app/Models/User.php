@@ -34,6 +34,9 @@ class User extends Authenticatable implements LaratrustUser
         'user_type',
         'role_id',
         'status',
+        'location',
+        'latitude',
+        'longitude',
     ];
 
     protected $keyType = 'int';
@@ -167,7 +170,7 @@ class User extends Authenticatable implements LaratrustUser
                 ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
             ];
         }
-        
+
         if(isset($options)){
             return $options;
         }else{

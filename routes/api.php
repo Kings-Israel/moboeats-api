@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\CartItemController;
@@ -67,8 +68,18 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
 
     Route::apiResource('orders', OrderController::class)->except(['update']);
 
-    Route::apiResource('payment', PaymentController::class)->except(['update']);
+    // Route::apiResource('payment', PaymentController::class)->except(['update']);
 });
+
+Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
+    Route::get('/orders', [RiderController::class, 'orders']);
+    Route::post('/orders/update', [RiderController::class, 'updateOrder']);
+    Route::post('/orders/{order_id}/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
+    Route::post('/location/update', [RiderController::class, 'updateLocation']);
+});
+
+Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
+
 /**Restaurant owners management */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
     Route::apiResource('restaurants', RestaurantController::class);
@@ -81,18 +92,18 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::apiResource('menu-prices', MenuPriceController::class);
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
-    Route::apiResource('riders', RiderController::class)->except(['store']);
-    Route::apiResource('order-riders', RiderController::class);
+    Route::post('/orders/assign', [OrderController::class, 'assignorder']);
 });
 
-/**Riders management */
-Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
-    Route::apiResource('riders', RiderController::class)->except(['store']);
-   
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/users', [AdminController::class, 'users']);
+    Route::get('/orders', [AdminController::class, 'orders']);
+    Route::get('/payments', [AdminController::class, 'payments']);
 });
 
-Route::post('/api/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
-Route::post('/api/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
+Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
+Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
 //     // Define customer-specific routes here
