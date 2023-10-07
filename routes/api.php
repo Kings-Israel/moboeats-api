@@ -96,8 +96,9 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
-    Route::get('/users', [AdminController::class, 'users']);
+    Route::get('/users/{role}', [AdminController::class, 'users']);
     Route::get('/orders', [AdminController::class, 'orders']);
+    Route::get('/restaurants', [AdminController::class, 'restaurants']);
     Route::get('/payments', [AdminController::class, 'payments']);
 });
 

@@ -43,10 +43,16 @@ class CartItemController extends Controller
                 $filter =  new CartItemFilter();
                 $filterItems = $filter->transform($request);
 
-                $cartsItems = CartItem::where('cart_id', $cart->id)
-                ->with(['menu', 'cart'])
-                ->paginate();
-                return new CartItemCollection($cartsItems);
+                if ($cart) {
+                    $cartsItems = CartItem::where('cart_id', $cart->id)
+                    ->with(['menu', 'cart'])
+                    ->paginate();
+
+                    return new CartItemCollection($cartsItems);
+                } else {
+                    return $this->success('', 'No cart items were found');
+                }
+
             } else {
                 $filter =  new CartItemFilter();
                 $filterItems = $filter->transform($request);

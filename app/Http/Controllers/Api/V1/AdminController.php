@@ -133,18 +133,19 @@ class AdminController extends Controller
         ]);
     }
 
-    public function users(Request $request)
+    public function users(Request $request, $role)
     {
         $search = $request->query('search');
-        $per_page = $request->query('per_page');
 
-        $orders = User::with('role')
+        $orders = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users')
+                        ->whereHas('roles', function ($query) use ($role) { $query->where('name', $role); })
                         ->when($search && $search != '', function($query) use ($search) {
-                            $query->where('name', 'LIKE', '%'.$search.'%')
-                                    ->orWhere('email', 'LIKE', '%'.$search.'%')
-                                    ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
+                            $query->where(function ($query) use ($search) {
+                                $query->where('name', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('email', 'LIKE', '%'.$search.'%');
+                            });
                         })
-                        ->paginate($per_page);
+                        ->paginate(10);
 
         return $this->success($orders);
     }
@@ -152,15 +153,15 @@ class AdminController extends Controller
     public function restaurants(Request $request)
     {
         $search = $request->query('search');
-        $per_page = $request->query('per_page');
 
-        $orders = Restaurant::with('user')
+        $orders = Restaurant::with('user', 'orders', 'menus')
                                 ->when($search && $search != '', function($query) use ($search) {
-                                    $query->whereHas('user', function ($query) use ($search) {
-                                        $query->where('name', 'LIKE', '%'.$search.'%');
-                                    });
+                                    $query->where('name', 'LIKE', '%'.$search.'%')
+                                        ->orWhereHas('user', function ($query) use ($search) {
+                                            $query->where('name', 'LIKE', '%'.$search.'%');
+                                        });
                                 })
-                                ->paginate($per_page);
+                                ->paginate(10);
 
         return $this->success($orders);
     }
@@ -180,23 +181,14 @@ class AdminController extends Controller
                                         ->orWhere('about', 'LIKE', '%'.$search.'%');
                             });
                         })
-                        ->paginate($per_page);
+                        ->paginate(10);
 
         return $this->success($orders);
     }
 
     public function payments(Request $request)
     {
-        $search = $request->query('search');
-        $per_page = $request->query('per_page');
-
-        $payments = Payment::with('user', 'order.restaurant')
-                        ->when($search && $search != '', function($query) use ($search) {
-                            $query->whereHas('user', function ($query) use ($search) {
-                                $query->where('name', 'LIKE', '%'.$search.'%');
-                            });
-                        })
-                        ->paginate($per_page);
+        $payments = Payment::with('user', 'order.restaurant')->paginate(10);
 
         return $this->success($payments);
     }
