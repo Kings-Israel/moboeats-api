@@ -33,26 +33,19 @@ class CartItemController extends Controller
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
             if ($role === 'orderer') {
-                // if (empty($request->all())) {
-                //     return $this->error('', 'You must pass cartId as query', 401);
-                // }
                 $cart = Cart::where('user_id', $user->id)->first();
-                // $request->merge([
-                //     'cartId' => $cart->id
-                // ]);
                 $filter =  new CartItemFilter();
                 $filterItems = $filter->transform($request);
 
                 if ($cart) {
                     $cartsItems = CartItem::where('cart_id', $cart->id)
-                    ->with(['menu', 'cart'])
-                    ->paginate();
+                                            ->with(['menu', 'cart'])
+                                            ->paginate();
 
                     return new CartItemCollection($cartsItems);
                 } else {
                     return $this->success('', 'No cart items were found');
                 }
-
             } else {
                 $filter =  new CartItemFilter();
                 $filterItems = $filter->transform($request);
@@ -93,7 +86,9 @@ class CartItemController extends Controller
                 $request->merge([
                     'cart_id' => $cart->id,
                 ]);
+
                 $cartItem = CartItem::create($request->all());
+
                 DB::commit();
                 return new CartItemResource($cartItem->loadMissing(['menu', 'cart']));
             } catch (\Throwable $th) {

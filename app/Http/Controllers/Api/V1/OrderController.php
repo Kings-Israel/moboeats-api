@@ -46,6 +46,7 @@ class OrderController extends Controller
                 $orders = Order::where('user_id', Auth::user()->id)
                 ->where($filterItems)
                 ->with(['orderItems', 'restaurant', 'rider'])
+                ->orderBy('created_at', 'DESC')
                 ->paginate();
 
                 return new OrderCollection($orders);
@@ -71,10 +72,6 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        // if (!$request->delivery) {
-        //     return $this->error('Order Creation', 'Important Field Missing', 402);
-        // }
-
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
@@ -131,6 +128,8 @@ class OrderController extends Controller
                 $cart->update([
                     'status' => 1
                 ]);
+
+                $cart->delete();
 
                 DB::commit();
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems']));
