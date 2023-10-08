@@ -45,7 +45,7 @@ class OrderController extends Controller
             if ($role === 'orderer') {
                 $orders = Order::where('user_id', Auth::user()->id)
                 ->where($filterItems)
-                ->with(['orderItems', 'restaurant', 'rider'])
+                ->with(['orderItems.menu.images', 'restaurant', 'rider'])
                 ->orderBy('created_at', 'DESC')
                 ->paginate();
 
@@ -54,13 +54,13 @@ class OrderController extends Controller
             if ($role === 'restaurant') {
                 $orders = Order::whereIn('restaurant_id', $user->restaurants->pluck('id'))
                                 ->where($filterItems)
-                                ->with(['orderItems', 'restaurant', 'rider'])
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider'])
                                 ->paginate();
 
                 return new OrderCollection($orders);
             } else {
                 $orders = Order::where($filterItems);
-                return new OrderCollection($orders->with(['orderItems', 'restaurant', 'rider']));
+                return new OrderCollection($orders->with(['orderItems.menu.images', 'restaurant', 'rider']));
             }
         } else {
             return $this->error('', 'Unauthorized', 401);
@@ -132,7 +132,7 @@ class OrderController extends Controller
                 $cart->delete();
 
                 DB::commit();
-                return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems']));
+                return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images']));
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();
@@ -149,7 +149,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-       return new OrderResource($order->loadMissing(['orderItems', 'restaurant', 'user']));
+       return new OrderResource($order->loadMissing(['orderItems.menu.images', 'restaurant', 'user']));
         $order = $order->load('restaurant', 'rider', 'orderItems');
         $user = $order->user;
         $restaurant = $order->restaurant;

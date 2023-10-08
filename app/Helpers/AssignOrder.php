@@ -60,6 +60,7 @@ class AssignOrder
                         // ->where('status', 'Active')
                         ->where(function($query) use ($order) {
                             $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                            // Check if rider rejected the delivery request
                             $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->pluck('user_id');
                             $query->whereNotIn('id', $assigned_riders)
                                     ->whereNotIn('id', $rejected_orders);
