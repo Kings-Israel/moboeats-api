@@ -222,4 +222,9 @@ class RestaurantController extends Controller
         }
         return '';
     }
+
+    public function riders()
+    {
+        
+    }
 }

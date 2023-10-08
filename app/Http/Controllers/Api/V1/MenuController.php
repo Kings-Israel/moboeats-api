@@ -22,14 +22,14 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * @group Menu Management
- * 
+ *
  * Menu API resource
  */
 class MenuController extends Controller
 {
     use UploadFileTrait;
     use HttpResponses;
-    
+
     public $settings = [
         'model' =>  '\\App\\Models\\Menu',
         'caption' =>  "Menu",
@@ -38,7 +38,7 @@ class MenuController extends Controller
 
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @queryParam categories to fetch categories associated with Menu
      * @queryParam subCategories to fetch categories associated with Menu
      * @queryParam restaurant to fetch restaurant that owns with Menu
@@ -51,8 +51,8 @@ class MenuController extends Controller
         $includesubCategories = $request->query('subCategories');
         $includesubImages = $request->query('images');
 
-        $menu = Menu::whereHas('menuPrices')
-        ->where($filterItems);
+        $menu = Menu::whereHas('menuPrices')->whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
+
         if ($includesubCategories &&  $includeCategories && $includesubImages) {
             // $menu = $menu->with(['restaurant','categories','subCategories']);
             $menu = $menu->with(['categories','subCategories', 'images']);
@@ -68,10 +68,10 @@ class MenuController extends Controller
                 $menu = $menu->with('images');
             }
         }
-       
+
         return new MenuCollection($menu->with(['restaurant','menuPrices'])->paginate()->appends($request->query()));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -88,7 +88,7 @@ class MenuController extends Controller
                 if($request->hasFile('image')){
                     $fileName = $this->generateFileName2($request->file('image'));
                 }
-                
+
                 $menu = Menu::create($request->all());
                 if (!$menu) {
                     DB::rollBack();
@@ -119,7 +119,7 @@ class MenuController extends Controller
                         DB::rollBack();
                     }
                 }
-            
+
                 foreach ($request->input('categoryIds') as $foodCategoryId) {
                     $menu->categories()->attach($foodCategoryId, [
                         // Add more pivot table attributes here
@@ -188,10 +188,10 @@ class MenuController extends Controller
             if ($role != 'restaurant') {
                 return $this->error('', 'Unauthorized', 401);
             }
-        
+
             try {
                 DB::beginTransaction();
-        
+
                 if($request->hasFile('image')){
                     $fileName = $this->generateFileName2($request->file('image'));
                 }
@@ -203,8 +203,8 @@ class MenuController extends Controller
                     ->first();
                     $standardPrice->update(['price' => $request->standardPrice]);
                 }
-               
-                
+
+
                 if($request->hasFile('image')){
                     $image = MenuImage::where('menu_id', $menu->id)->where('sequence', 1)->first();
                     if($image) {
@@ -263,6 +263,6 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        
+
     }
 }

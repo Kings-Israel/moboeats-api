@@ -92,6 +92,8 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
     Route::apiResource('orders', OrderController::class)->except(['store']);
     Route::post('/orders/assign', [OrderController::class, 'assignorder']);
+
+    Route::get('/riders', [RestaurantController::class, 'riders']);
 });
 
 Route::group(['prefix' => 'admin'], function() {
