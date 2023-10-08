@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * @group Customer Cart
- * 
+ *
  * Cart API resource
  */
 class CartController extends Controller
@@ -37,9 +37,9 @@ class CartController extends Controller
             $role = $user->role_id;
             if ($role === 'orderer') {
                 $carts = Cart::where('user_id', Auth::user()->id)
-                ->where($filterItems)
-                ->with(['cartItems', 'user'])
-                ->paginate();
+                                ->where($filterItems)
+                                ->with(['cartItems', 'user'])
+                                ->paginate();
 
                 return new CartCollection($carts);
             } else {
@@ -49,11 +49,9 @@ class CartController extends Controller
         } else {
             return $this->error('', 'Unauthorized', 401);
         }
-
-
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -94,7 +92,7 @@ class CartController extends Controller
         return new CartResource($cart->loadMissing(['user', 'cartItems']));
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      */
