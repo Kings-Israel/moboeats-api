@@ -41,9 +41,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function() {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
-
 });
-
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::post('logout', [AuthController::class, 'logout']);
@@ -96,14 +94,6 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
 });
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('/dashboard', [AdminController::class, 'dashboard']);
-    Route::get('/users/{role}', [AdminController::class, 'users']);
-    Route::get('/orders', [AdminController::class, 'orders']);
-    Route::get('/restaurants', [AdminController::class, 'restaurants']);
-    Route::get('/payments', [AdminController::class, 'payments']);
-});
-
 Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
 Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
 
@@ -116,3 +106,5 @@ Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class,
 // Route::group(['prefix' => 'v1/admin', 'middleware' => 'auth:sanctum'], function() {
 //     // Define admin-specific routes here
 // });
+
+require __DIR__.'/admin.php';

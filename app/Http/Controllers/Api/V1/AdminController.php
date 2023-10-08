@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\UserResource;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Restaurant;
@@ -10,10 +11,44 @@ use App\Models\User;
 use App\Traits\HttpResponses;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     use HttpResponses;
+
+    public function login(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => ['required', 'string', 'email'],
+                'password' => ['required', 'string'],
+            ]);
+
+            if(!Auth::attempt($request->only(['email', 'password']))){
+                return $this->error(['email' => 'Invalid Credentials'], 'Invalid Credentials', 422);
+            }
+
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user->hasRole('admin')) {
+                return $this->error(['email' => 'You do not have permission to login.'], 'You do not have permission to login.', 401);
+            }
+
+            $token = $user->createToken($request->email);
+
+            $user = new UserResource($user);
+
+            return $this->success([
+                'user' => $user,
+                'token' => $token->plainTextToken,
+
+            ]);
+        } catch (\Throwable $th) {
+            info($th->getMessage());
+            return $this->error('', $th->getMessage(), 403);
+        }
+    }
 
     public function dashboard()
     {
