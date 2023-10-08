@@ -9,6 +9,10 @@ use App\Http\Resources\V1\RestaurantCollection;
 use App\Http\Resources\V1\RestaurantResource;
 use App\Filters\V1\RestaurantFilter;
 use App\Http\Requests\V1\StoreRestaurantRequest;
+use App\Http\Resources\V1\RiderCollection;
+use App\Http\Resources\V1\UserCollection;
+use App\Http\Resources\V1\UserResource;
+use App\Models\Order;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -16,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Traits\Admin\UploadFileTrait;
+use Illuminate\Support\Facades\Http;
 
 /**
  * @group Restaurant Management
@@ -221,5 +226,44 @@ class RestaurantController extends Controller
             }
         }
         return '';
+    }
+
+    public function riders($restaurant_id)
+    {
+        $restaurant = Restaurant::find($restaurant_id);
+
+        // Get Unassigned Couriers and order by closest
+        $riders = User::where('device_token', '!=', NULL)
+                        ->whereHas('roles', function($query) {
+                            $query->where('name', 'rider');
+                        })
+                        // ->where('status', 'Active')
+                        ->where(function($query) {
+                            $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                            $query->whereNotIn('id', $assigned_riders);
+                        })
+                        ->get()
+                        // Filter by distance to restaurant
+                        ->each(function($rider, $key) use ($restaurant) {
+                            if ($rider->latitude != NULL && $rider->lognitude != NULL) {
+                                $business_location = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+
+                                if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
+                                    $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
+                                    $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
+                                    $rider['distance'] = $distance;
+                                    $rider['time_away'] = $time;
+                                }
+                            } else {
+                                $rider['distance'] = NULL;
+                                $rider['time_away'] = NULL;
+                            }
+                        })
+                        // Order by distance and time
+                        ->sortBy([
+                            fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
+                        ]);
+
+        return $this->success(UserResource::collection($riders));
     }
 }
