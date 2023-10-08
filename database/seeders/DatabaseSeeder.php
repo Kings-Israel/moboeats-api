@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(RolesSeeder::class);
-
+        $this->call(AdminSeeder::class);
         $user = User::factory()->create([
             'uuid' => (string) Str::uuid(),
             'name' => 'Test User',
