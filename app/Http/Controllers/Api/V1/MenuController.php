@@ -51,7 +51,11 @@ class MenuController extends Controller
         $includesubCategories = $request->query('subCategories');
         $includesubImages = $request->query('images');
 
-        $menu = Menu::whereHas('menuPrices')->whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
+        if (auth()->user()->hasRole('restaurant')) {
+            $menu = Menu::whereHas('menuPrices')->whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
+        } else {
+            $menu = Menu::whereHas('menuPrices')->where($filterItems);
+        }
 
         if ($includesubCategories &&  $includeCategories && $includesubImages) {
             // $menu = $menu->with(['restaurant','categories','subCategories']);

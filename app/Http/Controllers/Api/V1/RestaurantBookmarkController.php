@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * @group Customer Restaurants Bookmark Management
- * 
+ *
  * RestaurantBookmark API resource
  */
 class RestaurantBookmarkController extends Controller
@@ -35,7 +35,7 @@ class RestaurantBookmarkController extends Controller
                     $query->where('status', 2);
                 }, 'user'])
                 ->paginate();
-                return new RestaurantBookmarkCollection($favorites);
+                return RestaurantBookMarkResource::collection($favorites);
             } else {
                 return $this->error('', 'Unauthorized. This is a customer feature only.', 401);
             }
@@ -44,7 +44,7 @@ class RestaurantBookmarkController extends Controller
         }
     }
 
-   
+
     /**
      * Store a newly created resource in storage.
      */
@@ -89,8 +89,8 @@ class RestaurantBookmarkController extends Controller
             return $this->isNotAuthorized($restaurantBookmark);
         }
     }
-    
-    
+
+
     /**
      * Remove the specified resource from storage.
      */

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\UserResource;
+use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Restaurant;
@@ -158,6 +159,24 @@ class AdminController extends Controller
             'total_payments' => $total_payments,
         );
 
+        // Top Restaurants
+        $top_restaurants = Restaurant::withCount('orders')->with('user', 'orders')->orderBy('orders_count', 'DESC')->get()->take(5);
+
+        // // Top Menu Items
+        // $top_menu_items = Menu::withCount('orderItems')->with('restaurant')->orders->orderBy('order_items_count', 'DESC')->get()->take(5);
+
+        // $top_menu_items_series = [];
+        // $top_menu_items_names = [];
+        // $total_orders_count = 0;
+        // foreach($top_menu_items as $item) {
+        //     $total_orders_count += $item->order_items_count;
+        // }
+
+        // foreach ($top_menu_items as $key => $item) {
+        //     array_push($top_menu_items_names, $item->title);
+        //     array_push($top_menu_items_series, ceil(($item->order_items_count / $total_orders_count) * 100));
+        // }
+
         return $this->success([
             'users' => $users,
             'restaurants' => $restaurants,
@@ -165,6 +184,7 @@ class AdminController extends Controller
             'orders' => $orders,
             'orders_series' => $orders_made_monthly,
             'payments_series' => $payments_made_monthly,
+            'top_restaurants' => $top_restaurants,
         ]);
     }
 
