@@ -160,7 +160,7 @@ class AdminController extends Controller
         );
 
         // Top Restaurants
-        $top_restaurants = Restaurant::withCount('orders')->with('user', 'orders')->orderBy('orders_count', 'DESC')->get()->take(5);
+        $top_restaurants = Restaurant::withCount('orders')->with('user', 'orders')->whereHas('orders')->orderBy('orders_count', 'DESC')->get()->take(5);
 
         // // Top Menu Items
         // $top_menu_items = Menu::withCount('orderItems')->with('restaurant')->orders->orderBy('order_items_count', 'DESC')->get()->take(5);
@@ -200,6 +200,7 @@ class AdminController extends Controller
                                         ->orWhere('email', 'LIKE', '%'.$search.'%');
                             });
                         })
+                        ->orderBy('created_at', 'DESC')
                         ->paginate(10);
 
         return $this->success($orders);
@@ -216,6 +217,7 @@ class AdminController extends Controller
                                             $query->where('name', 'LIKE', '%'.$search.'%');
                                         });
                                 })
+                                ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
 
         return $this->success($orders);
@@ -236,6 +238,7 @@ class AdminController extends Controller
                                         ->orWhere('about', 'LIKE', '%'.$search.'%');
                             });
                         })
+                        ->orderBy('created_at', 'DESC')
                         ->paginate(10);
 
         return $this->success($orders);
@@ -243,7 +246,24 @@ class AdminController extends Controller
 
     public function payments(Request $request)
     {
-        $payments = Payment::with('user', 'order.restaurant')->paginate(10);
+        $search = $request->query('search');
+
+        $payments = Payment::with('order.user', 'order.restaurant')
+                            ->where('transaction_id', '!=', NULL)
+                            ->when($search && $search != null, function ($query) use ($search) {
+                                $query->whereHas('order', function ($query) use ($search) {
+                                    $query->whereHas('user', function ($query) use ($search) {
+                                        $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('email', 'LIKE', '%'.$search.'%');
+                                    });
+                                })
+                                ->orWhereHas('order', function ($query) use ($search) {
+                                    $query->whereHas('restaurant', function ($query) use ($search) {
+                                        $query->where('amount', 'LIKE', '%'.$search.'%')->orWhere('about', 'LIKE', '%'.$search.'%');
+                                    });
+                                });
+                            })
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
 
         return $this->success($payments);
     }
