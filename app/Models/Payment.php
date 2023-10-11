@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Payment extends Model
@@ -46,12 +47,20 @@ class Payment extends Model
                 ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
             ];
         }
-        
+
         if(isset($options)){
             return $options;
         }else{
             return null;
         }
+    }
+
+    /**
+     * Get the user that owns the Payment
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function order()
