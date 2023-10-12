@@ -192,7 +192,7 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
 
-        $orders = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users')
+        $users = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users')
                         ->whereHas('roles', function ($query) use ($role) { $query->where('name', $role); })
                         ->when($search && $search != '', function($query) use ($search) {
                             $query->where(function ($query) use ($search) {
@@ -203,14 +203,25 @@ class AdminController extends Controller
                         ->orderBy('created_at', 'DESC')
                         ->paginate(10);
 
-        return $this->success($orders);
+        return $this->success($users);
+    }
+
+    public function user(Request $request, $id)
+    {
+        $user = User::withCount('orders', 'restaurants')->with(['roles'])->find($id);
+
+        $restaurants = Restaurant::where('user_id', $user->id)->with('orders')->paginate(5);
+
+        $orders = Order::where('user_id', $user->id)->with('restaurant')->paginate(5);
+
+        return $this->success(['user' => $user, 'orders' => $orders, 'restaurants' => $restaurants]);
     }
 
     public function restaurants(Request $request)
     {
         $search = $request->query('search');
 
-        $orders = Restaurant::with('user', 'orders', 'menus')
+        $restaurants = Restaurant::with('user', 'orders', 'menus')
                                 ->when($search && $search != '', function($query) use ($search) {
                                     $query->where('name', 'LIKE', '%'.$search.'%')
                                         ->orWhereHas('user', function ($query) use ($search) {
@@ -220,7 +231,14 @@ class AdminController extends Controller
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
 
-        return $this->success($orders);
+        return $this->success($restaurants);
+    }
+
+    public function restaurant($id)
+    {
+        $restaurant = Restaurant::with('users', 'orders.payments', 'orders.users', 'menus')->where('id', $id);
+
+        return $this->success($restaurant);
     }
 
     public function orders(Request $request)

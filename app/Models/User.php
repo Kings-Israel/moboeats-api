@@ -188,5 +188,5 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->belongsTo(Restaurant::class, 'user_restaurants', 'user_id', 'restaurant_id');
     }
-    
+
 }
