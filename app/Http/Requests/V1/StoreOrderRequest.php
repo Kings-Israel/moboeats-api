@@ -27,7 +27,7 @@ class StoreOrderRequest extends FormRequest
             'delivery' => ['required','boolean'],
             'deliveryFee' => ['required_if:delivery,=,true'],
             'deliveryAddress' => ['required_if:delivery,=,true'],
-            // 'deliveryStatus' => ['required_if:delivery,true'],
+            'booking_time' => ['required_if:delivery,false', 'after:'.now(), 'date_format:Y-m-d H:i'],
         ];
     }
 
@@ -38,7 +38,13 @@ class StoreOrderRequest extends FormRequest
             'restaurant_id' => $this->restaurantId,
             'delivery_fee' => $this->deliveryFee,
             'delivery_address' => $this->deliveryAddress,
-            // 'delivery_status' => $this->deliveryStatus,
         ]);
+    }
+
+    public function messages(): array
+    {
+        return [
+            'booking_time.required_if' => 'Select dining time for non-delivered orders'
+        ];
     }
 }

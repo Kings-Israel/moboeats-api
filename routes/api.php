@@ -49,6 +49,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
 });
 /**Basically a customer who will be ordering food/drinks */
 Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], function() {
+    Route::get('/groceries', [MenuController::class, 'groceries']);
     Route::apiResource('orderers', OrdererController::class);
 
     Route::apiResource('orderer-restaurants', RestaurantController::class);

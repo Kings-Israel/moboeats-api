@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\V1;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,13 +27,14 @@ class OrderResource extends JsonResource
                 'deliveryStatus' => $this->delivery_status,
                 'createdAt' => $this->created_at->format('D, M j, Y g:i A'),
                 'status' => (string) $this->status,
+                'booking_time' => Carbon::parse($this->booking_time)->format('D, M j, Y g:i A'),
             ],
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
                 'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'orderItems' => OrderItemResource::collection($this->whenLoaded('orderItems')),
             ]
-                        
+
         ];
     }
 }
