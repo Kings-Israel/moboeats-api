@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RiderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,9 +25,24 @@ class Rider extends Model
         'vehicle_license_plate',
         'profile_picture',
         'status',
-        'created_by', 
+        'created_by',
         'updated_by'
     ];
+
+    /**
+     * Get the profilePicture
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getProfilePictureAttribute($value)
+    {
+        if ($value) {
+            return config('app.url').'/storage/rider/avatar/'.$value;
+        }
+
+        return null;
+    }
 
     protected $keyType = 'int';
     public $incrementing = true;

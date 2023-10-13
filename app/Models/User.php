@@ -189,4 +189,11 @@ class User extends Authenticatable implements LaratrustUser
         return $this->belongsTo(Restaurant::class, 'user_restaurants', 'user_id', 'restaurant_id');
     }
 
+    /**
+     * Get all of the deliveries for the User
+     */
+    public function deliveries(): HasMany
+    {
+        return $this->hasMany(Order::class, 'rider_id', 'id');
+    }
 }

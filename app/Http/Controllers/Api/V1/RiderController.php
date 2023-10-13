@@ -3,24 +3,150 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\RiderResource;
 use App\Models\AssignedOrder;
 use App\Models\Order;
+use App\Models\Rider;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+/**
+ * @group Rider Profile APIs
+ *
+ * @authenticated
+ */
 class RiderController extends Controller
 {
     use HttpResponses;
 
-    // Delivered Ordes
+    /**
+     * Get Orders and Assigned Orders
+     *
+     * @response 200
+     *
+     * @responseParam orders List of orders
+     * @responseParam assigned_orders List of assigned orders
+     */
     public function orders()
     {
         $orders = Order::with('restaurant', 'user')->where('rider_id', '=', auth()->id())->get();
         $assigned_orders = AssignedOrder::where('user_id', '=', auth()->id())->get();
         return $this->success(['orders' => $orders, 'assigned_orders' => $assigned_orders], '', 200);
+    }
+
+    /**
+     * Get Rider Profile
+     *
+     * @response 200
+     *
+     * @repsonseParam data Rider's Profile
+     */
+    public function profile()
+    {
+        if (!auth()->user()->rider) {
+            return $this->error('', 'Rider Profile not created', 404);
+        }
+
+        return $this->success(new RiderResource(auth()->user()->rider));
+    }
+
+    /**
+     * Create Rider Profile
+     *
+     * @bodyParam vehicle_type string required The vehicle type of the rider
+     * @bodyParam vehicle_licesne_plate sring required The license plate of the rider's vehicle
+     * @bodyParam profile_picture file required The profile picture of the rider
+     * @bodyParam city string The city where the rider is located
+     * @bodyParam state string The state of where the rider is located
+     * @bodyParam postal_code string The postal code of the rider
+     *
+     * @response 200
+     *
+     * @responseParam data The Rider's created profile
+     * @responseParam message Profile created successfully
+     */
+    public function create(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'vehicle_type' => ['required'],
+            'vehicle_license_plate' => ['required'],
+            'profile_picture' => ['required', 'mimes:png,jpg,jpeg', 'max:10000']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Invalid data', 422);
+        }
+
+        if (!auth()->user()->rider) {
+            $rider = Rider::create([
+                'user_id' => auth()->id(),
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+                'phone_no' => auth()->user()->phone_number,
+                'address' => $request->has('address') ? $request->address : NULL,
+                'city' => $request->has('city') ? $request->city : NULL,
+                'state' => $request->has('state') ? $request->state : NULL,
+                'postal_code' => $request->has('postal_code') ? $request->postal_code : NULL,
+                'vehicle_type' => $request->vehicle_type,
+                'vehicle_license_plate' => $request->vehicle_license_plate,
+                'profile_picture' => pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME),
+            ]);
+        } else {
+            $rider = auth()->user()->rider;
+        }
+
+        return $this->success(new RiderResource($rider), 'Profile created successfully');
+    }
+
+    /**
+     * Update Rider Prodile
+     *
+     * @bodyParam vehicle_type string The vehicle type of the rider
+     * @bodyParam vehicle_licesne_plate sring The license plate of the rider's vehicle
+     * @bodyParam profile_picture file The profile picture of the rider
+     * @bodyParam city string The city where the rider is located
+     * @bodyParam state string The state of where the rider is located
+     * @bodyParam postal_code string The postal code of the rider
+     *
+     * @response 200
+     *
+     * @responseParam data The Rider's updated profile
+     * @responseParam message Profile updated successfully
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'email' => ['nullable', 'unique:riders,email,except,id'],
+        ]);
+
+        $rider = Rider::where('user_id', auth()->id())->first();
+
+        if (!$rider) {
+            return $this->error('', 'Profile not found', 404);
+        }
+
+        $rider->update([
+            'email' => $request->has('email') ? $request->get('email') : $rider->email,
+            'phone_no' => $request->has('phone_no') ? $request->get('phone_no') : $rider->phone_no,
+            'address' => $request->has('address') ? $request->get('address') : $rider->address,
+            'city' => $request->has('city') ? $request->get('city') : $rider->city,
+            'state' => $request->has('state') ? $request->get('state') : $rider->state,
+            'postal_code' => $request->has('postal_code') ? $request->get('postal_code') : $rider->postal_code,
+            'vehicle_type' => $request->has('vehicle_type') ? $request->vehicle_type : $rider->vehicle_type,
+            'vehicle_license_plate' => $request->has('vehicle_license_plate') ? $request->vehicle_license_plate : $rider->vehicle_license_plate,
+            'status' => 1
+        ]);
+
+        if ($request->hasFile('profile_picture')) {
+            $rider->update([
+                'profile_picture' => pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME)
+            ]);
+        }
+
+        return $this->success(new RiderResource($rider), 'Profile updated successfully');
     }
 
     public function updateOrder(Request $request)
@@ -130,7 +256,7 @@ class RiderController extends Controller
         }
 
         $order = Order::with('user')->where('id', $order_id)->orWhere('uuid', $order_id)->first();
-        
+
         if ($order->user->device_token) {
             // Send Location to User
             Http::withHeaders([

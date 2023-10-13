@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 class FoodCommonCategory extends Model implements UrlRoutable
 {
     use HasFactory;
-    
+
     // protected $primaryKey = 'uuid';
     protected $keyType = 'int';
     public $incrementing = true;
@@ -27,7 +27,7 @@ class FoodCommonCategory extends Model implements UrlRoutable
             $model->uuid = (string) Str::uuid();
         });
     }
-    
+
     protected $fillable = [
         // 'uuid',
         'title',
@@ -35,7 +35,22 @@ class FoodCommonCategory extends Model implements UrlRoutable
         'status',
         'created_by',
         'updated_by',
+        'image',
     ];
+
+    /**
+     * Get the image
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getImageAttribute($value)
+    {
+        if ($value) {
+            return config('app.url').'/storage/category/images/' . $value;
+        }
+        return config('app.url').'/assets/category/default.png';
+    }
 
     public function getRouteKeyName()
     {
@@ -77,7 +92,7 @@ class FoodCommonCategory extends Model implements UrlRoutable
             return null;
         }
     }
-    
+
     /**
      * The food_sub_categories that belong to the CommonCategory
      *

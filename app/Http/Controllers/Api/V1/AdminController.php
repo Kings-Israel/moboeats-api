@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\FoodCommonCategoryCollection;
+use App\Http\Resources\V1\RiderResource;
 use App\Http\Resources\V1\UserResource;
+use App\Models\FoodCommonCategory;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Restaurant;
+use App\Models\Rider;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Carbon\Carbon;
@@ -188,6 +192,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function categories()
+    {
+        $categories = FoodCommonCategory::paginate(7);
+
+        return $this->success($categories);
+    }
+
     public function users(Request $request, $role)
     {
         $search = $request->query('search');
@@ -206,7 +217,7 @@ class AdminController extends Controller
         return $this->success($users);
     }
 
-    public function user(Request $request, $id)
+    public function user($id)
     {
         $user = User::withCount('orders', 'restaurants')->with(['roles'])->find($id);
 
@@ -215,6 +226,29 @@ class AdminController extends Controller
         $orders = Order::where('user_id', $user->id)->with('restaurant')->paginate(5);
 
         return $this->success(['user' => $user, 'orders' => $orders, 'restaurants' => $restaurants]);
+    }
+
+    public function restaurantAdmin($id)
+    {
+        $user = User::withCount('orders', 'restaurants')->with(['roles'])->find($id);
+
+        $restaurants = Restaurant::where('user_id', $user->id)->with('orders')->paginate(5);
+
+        return $this->success(['restaurants' => $restaurants, 'user' => $user]);
+    }
+
+    public function rider($id)
+    {
+        $user = User::with('deliveries.restaurant', 'deliveries.user', 'roles')->find($id);
+
+        $rider_profile = null;
+        if ($user->rider) {
+            $rider_profile = new RiderResource(Rider::where('user_id', $user->id)->first());
+        }
+
+        $deliveries = Order::where('rider_id', $id)->orderBy('created_at', 'DESC')->paginate(5);
+
+        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile]);
     }
 
     public function restaurants(Request $request)
