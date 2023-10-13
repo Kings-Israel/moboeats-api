@@ -22,18 +22,9 @@ class StoreFoodCommonCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'uuid' => ['required'],
             'title' => ['required'],
             'description' => ['required'],
             'status' => ['nullable'],
-            'createdBy' => ['required'],
         ];
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'created_by' => $this->createdBy,
-        ]);
     }
 }

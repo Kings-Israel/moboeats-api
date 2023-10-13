@@ -14,27 +14,41 @@ class RiderResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
+        $status = '';
+        switch ($this->status) {
+            case 1:
+                $status = 'Pending';
+                break;
+            case 2:
+                $status = 'Approved';
+                break;
+            case 3:
+                $status = 'Denied';
+                break;
+            default:
+                $status = 'Pending';
+                break;
+        }
         return [
             'id' =>$this->id,
             'uuid' =>$this->uuid,
-            'attributes' => [
-                'name' =>$this->name,
-                'email' =>$this->email,
-                'phoneNo' =>$this->phone_no,
-                'address' =>$this->address,
-                'city' =>$this->city,
-                'state' =>$this->state,
-                'postalCode' =>$this->postal_code,
-                'profilePicture' =>$this->profile_picture,
-                'vehicleType' =>$this->vehicle_type,
-                'vehicleLicensePlate' =>$this->vehicle_license_plate,
-                'status' => (string) $this->status, 
-            ],
+            'name' =>$this->name,
+            'email' =>$this->email,
+            'phone_no' =>$this->phone_no,
+            'address' =>$this->address,
+            'city' =>$this->city,
+            'state' =>$this->state,
+            'postal_code' =>$this->postal_code,
+            'profile_picture' =>$this->profile_picture,
+            'vehicle_type' =>$this->vehicle_type,
+            'vehicle_license_plate' =>$this->vehicle_license_plate,
+            'status' => $status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
             ]
-           
+
         ];
     }
 }

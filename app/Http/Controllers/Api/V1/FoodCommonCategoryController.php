@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\Traits\HttpResponses;
 /**
  * @group Food Categories Management
- * 
+ *
  * Food Category API resource
  */
 
@@ -35,7 +35,7 @@ class FoodCommonCategoryController extends Controller
         if ($includeSubcategories) {
             $categories = $categories->with('food_sub_categories');
         }
-       
+
         return new FoodCommonCategoryCollection($categories->paginate()->appends($request->query()));
     }
 
@@ -46,10 +46,21 @@ class FoodCommonCategoryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $food_category = FoodCommonCategory::create($request->all());
+            $request->merge([
+                'created_by' => auth()->user()->email,
+                'status' => 2
+            ]);
+            $food_category = FoodCommonCategory::create(collect($request->all())->except('image'));
+            if ($request->hasFile('image')) {
+                $food_category->update([
+                    'image' => pathinfo($request->image->store('images', 'category'), PATHINFO_BASENAME)
+                ]);
+            }
             DB::commit();
 
-            return new FoodCommonCategoryResource($food_category);
+            // return new FoodCommonCategoryResource($food_category);
+            $categories = FoodCommonCategory::paginate(7);
+            return $this->success($categories);
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
@@ -64,24 +75,36 @@ class FoodCommonCategoryController extends Controller
     {
         return new FoodCommonCategoryResource($food_category);
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFoodCommonCategoryRequest $request, FoodCommonCategory $food_category)
+    public function update(UpdateFoodCommonCategoryRequest $request, $id)
     {
         try {
             DB::beginTransaction();
-            $food_category->update($request->all());
+            $food_category = FoodCommonCategory::find($id);
+            
+            $food_category->update([
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+
+            if ($request->hasFile('image')) {
+                $food_category->update([
+                    'image' => pathinfo($request->image->store('images', 'category'), PATHINFO_BASENAME)
+                ]);
+            }
             DB::commit();
 
-            return new FoodCommonCategoryResource($food_category);
+            // return new FoodCommonCategoryResource($food_category);
+            $categories = FoodCommonCategory::paginate(7);
+            return $this->success($categories);
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
             return $this->error('', $th->getMessage(), 403);
         }
-        
     }
 
     /**

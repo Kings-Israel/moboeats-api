@@ -56,6 +56,22 @@ return [
             'throw' => false,
         ],
 
+        'rider' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/rider'),
+            'url' => env('APP_URL').'/storage/rider',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'category' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/category'),
+            'url' => env('APP_URL').'/storage/category',
+            'visibility' => 'public',
+            'throw' => false,
+        ]
+
     ],
 
     /*
