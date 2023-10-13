@@ -97,6 +97,7 @@ class OrderController extends Controller
                     'delivery' => ($request->delivery) ? 1 : 0,
                     'total_amount' => 0,
                     'created_by' => $user->name,
+                    'booking_time' => $request->has('booking_time') && $request->booking_time != null && $request->booking_time != '' ? $request->booking_time : NULL
                 ]);
 
                 // cart items will translate to order items
@@ -124,10 +125,6 @@ class OrderController extends Controller
                 } else {
                     $order->update(['total_amount' => $totalSubtotal]);
                 }
-
-                $cart->update([
-                    'status' => 1
-                ]);
 
                 $cart->delete();
 

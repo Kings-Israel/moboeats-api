@@ -84,7 +84,7 @@ class FoodCommonCategoryController extends Controller
         try {
             DB::beginTransaction();
             $food_category = FoodCommonCategory::find($id);
-            
+
             $food_category->update([
                 'title' => $request->title,
                 'description' => $request->description
@@ -112,6 +112,6 @@ class FoodCommonCategoryController extends Controller
      */
     public function destroy(FoodCommonCategory $food_category)
     {
-        //
+
     }
 }

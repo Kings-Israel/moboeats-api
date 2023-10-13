@@ -9,6 +9,8 @@ use App\Http\Requests\V1\UpdateMenuRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\MenuCollection;
 use App\Http\Resources\V1\MenuResource;
+use App\Models\CategoryMenu;
+use App\Models\FoodCommonCategory;
 use App\Models\MenuImage;
 use App\Models\MenuPrice;
 use App\Models\User;
@@ -99,26 +101,24 @@ class MenuController extends Controller
                     return $this->error('', 'unable to create menu item', 403);
                 }
                 MenuPrice::create([
-                    // 'uuid' => Str::uuid(),
                     'menu_id' => $menu->id,
                     'description' => 'standard',
                     'price' => $request->standardPrice,
                     'status' => 2,
-                    'created_by' => $request->createdBy,
+                    'created_by' => auth()->user()->email,
                 ]);
                 if($request->hasFile('image')){
                     $image = MenuImage::create([
-                        // 'uuid' => Str::uuid(),
                         'menu_id' => $menu->id,
                         'image_url' => $fileName,
                         'sequence' => 1,
                         'status' => 2,
-                        'created_by' => $request->createdBy,
+                        'created_by' => auth()->user()->email,
                     ]);
                 }
 
                 if($request->hasFile('image')){
-                    $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'],'prevFile' => null];
+                    $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'], 'prevFile' => null];
                     if(!$this->uploadFile($fileData)){
                         DB::rollBack();
                     }
@@ -128,19 +128,19 @@ class MenuController extends Controller
                     $menu->categories()->attach($foodCategoryId, [
                         // Add more pivot table attributes here
                         'uuid' => Str::uuid(),
-                        'created_by' => $request->createdBy,
+                        'created_by' => auth()->user()->email,
                         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
                 }
 
-                foreach ($request->input('subcategoryIds') as $subCategoryId) {
-                    $menu->subCategories()->attach($subCategoryId, [
-                        // Add more pivot table attributes here
-                        'uuid' => Str::uuid(),
-                        'created_by' => $request->createdBy,
-                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                    ]);
-                }
+                // foreach ($request->input('subcategoryIds') as $subCategoryId) {
+                //     $menu->subCategories()->attach($subCategoryId, [
+                //         // Add more pivot table attributes here
+                //         'uuid' => Str::uuid(),
+                //         'created_by' => auth()->user()->email,
+                //         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                //     ]);
+                // }
 
                 DB::commit();
                 return new MenuResource($menu);
@@ -263,10 +263,17 @@ class MenuController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Get Groceries
+     *
      */
-    public function destroy(Menu $menu)
+    public function groceries()
     {
+        $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
 
+        $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+        $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(1);
+
+        return MenuResource::collection($menu);
     }
 }

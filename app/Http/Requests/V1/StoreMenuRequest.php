@@ -20,19 +20,19 @@ class StoreMenuRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
-    {   
+    {
         return [
             'title' => ['required'],
             'description' => ['required'],
             'status' => ['nullable', 'integer'],
-            'createdBy' => ['required'],
+            // 'createdBy' => ['required'],
             'restaurantId' => ['required'],
             'standardPrice' => ['required', 'numeric'],
             'image' => 'required|file|mimes:jpeg,png|max:2048', // Adjust the validation rules as per your requirements.
             'categoryIds' => 'required|array',
             'categoryIds.*' => 'integer',
-            'subcategoryIds' => 'required|array',
-            'subcategoryIds.*' => 'integer',
+            // 'subcategoryIds' => 'required|array',
+            // 'subcategoryIds.*' => 'integer',
         ];
     }
 
@@ -42,7 +42,7 @@ class StoreMenuRequest extends FormRequest
             'restaurant_id' => $this->restaurantId,
             'created_by' => $this->createdBy,
             'category_ids' => $this->categoryIds,
-            'sub_category_ids' => $this->subcategoryIds,
+            // 'sub_category_ids' => $this->subcategoryIds,
         ]);
     }
 }
