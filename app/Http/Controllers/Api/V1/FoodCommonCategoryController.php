@@ -50,7 +50,7 @@ class FoodCommonCategoryController extends Controller
                 'created_by' => auth()->user()->email,
                 'status' => 2
             ]);
-            $food_category = FoodCommonCategory::create(collect($request->all())->except('image'));
+            $food_category = FoodCommonCategory::create(collect($request->all())->except('image')->toArray());
             if ($request->hasFile('image')) {
                 $food_category->update([
                     'image' => pathinfo($request->image->store('images', 'category'), PATHINFO_BASENAME)
