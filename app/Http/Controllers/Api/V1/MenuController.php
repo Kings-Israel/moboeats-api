@@ -95,7 +95,15 @@ class MenuController extends Controller
                     $fileName = $this->generateFileName2($request->file('image'));
                 }
 
-                $menu = Menu::create($request->all());
+                $menu = Menu::create([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'restaurant_id' => $request->restaurantId,
+                    'status' => 2,
+                    'created_by' => auth()->user()->email,
+                    'updated_by' => auth()->user()->email,
+                ]);
+
                 if (!$menu) {
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
