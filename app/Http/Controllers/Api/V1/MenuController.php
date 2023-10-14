@@ -117,15 +117,17 @@ class MenuController extends Controller
                 ]);
 
                 if($request->hasFile('image')){
-                    $filename = $request->file('image')->store('menus/images', 'public');
+                    $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
                     info($filename);
-                    $image = MenuImage::create([
-                        'menu_id' => $menu->id,
-                        'image_url' => $filename,
-                        'sequence' => 1,
-                        'status' => 2,
-                        'created_by' => auth()->user()->email,
-                    ]);
+                    if ($filename) {
+                        MenuImage::create([
+                            'menu_id' => $menu->id,
+                            'image_url' => $fileName,
+                            'sequence' => 1,
+                            'status' => 2,
+                            'created_by' => auth()->user()->email,
+                        ]);
+                    }
                 }
 
                 // if($request->hasFile('image')){
