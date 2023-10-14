@@ -104,6 +104,8 @@ class MenuController extends Controller
                     'updated_by' => auth()->user()->email,
                 ]);
 
+                info($menu);
+
                 if (!$menu) {
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
@@ -115,6 +117,7 @@ class MenuController extends Controller
                     'status' => 2,
                     'created_by' => auth()->user()->email,
                 ]);
+
                 if($request->hasFile('image')){
                     $image = MenuImage::create([
                         'menu_id' => $menu->id,
