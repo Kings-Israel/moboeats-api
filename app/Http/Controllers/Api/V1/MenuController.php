@@ -104,8 +104,6 @@ class MenuController extends Controller
                     'updated_by' => auth()->user()->email,
                 ]);
 
-                info($menu);
-
                 if (!$menu) {
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
@@ -119,21 +117,23 @@ class MenuController extends Controller
                 ]);
 
                 if($request->hasFile('image')){
+                    $filename = pathinfo($request->image->store('menus/images', 'public'), PATHINFO_BASENAME);
                     $image = MenuImage::create([
                         'menu_id' => $menu->id,
-                        'image_url' => $fileName,
+                        'image_url' => $filename,
                         'sequence' => 1,
                         'status' => 2,
                         'created_by' => auth()->user()->email,
                     ]);
                 }
 
-                if($request->hasFile('image')){
-                    $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'], 'prevFile' => null];
-                    if(!$this->uploadFile($fileData)){
-                        DB::rollBack();
-                    }
-                }
+                // if($request->hasFile('image')){
+                //     // $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'], 'prevFile' => null];
+                //     if(!$this->uploadFile($fileData)){
+                //         DB::rollBack();
+                //         return $this->error('', 'An error occurred while adding to menu', 403);
+                //     }
+                // }
 
                 foreach ($request->input('categoryIds') as $foodCategoryId) {
                     $menu->categories()->attach($foodCategoryId, [
