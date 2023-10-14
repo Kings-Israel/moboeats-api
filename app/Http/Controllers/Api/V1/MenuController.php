@@ -117,7 +117,8 @@ class MenuController extends Controller
                 ]);
 
                 if($request->hasFile('image')){
-                    $filename = pathinfo($request->image->store('menus/images', 'public'), PATHINFO_BASENAME);
+                    $filename = pathinfo($request->file('image')->store('menus/images', 'public'), PATHINFO_BASENAME);
+                    info($filename);
                     $image = MenuImage::create([
                         'menu_id' => $menu->id,
                         'image_url' => $filename,
