@@ -94,6 +94,7 @@ class AuthController extends Controller
                 'user_type' => $request->user_type,
                 'status' => 2,
                 'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
+                'image' => $request->hasFile('image') ? pathinfo($request->image->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
             ]);
 
             if ($request->user_type === 'orderer') {

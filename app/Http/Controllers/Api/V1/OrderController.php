@@ -54,8 +54,9 @@ class OrderController extends Controller
             if ($role === 'restaurant') {
                 $orders = Order::whereIn('restaurant_id', $user->restaurants->pluck('id'))
                                 ->where($filterItems)
-                                ->with(['orderItems.menu.images', 'restaurant', 'rider'])
-                                ->paginate();
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'user'])
+                                ->orderBy('created_at', 'DESC')
+                                ->paginate(10);
 
                 return new OrderCollection($orders);
             } else {
@@ -146,69 +147,69 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-       return new OrderResource($order->loadMissing(['orderItems.menu.images', 'restaurant', 'user']));
-        $order = $order->load('restaurant', 'rider', 'orderItems');
+    //    return new OrderResource($order->loadMissing(['orderItems.menu.images', 'restaurant', 'user']));
+        $order = $order->load('restaurant', 'rider', 'orderItems.menu');
         $user = $order->user;
         $restaurant = $order->restaurant;
 
         if (auth()->user()->hasRole('restaurant')) {
-            $riders = User::whereHas('roles', function($query) {
-                                $query->where('name', 'rider');
-                            })
-                            ->where(function($query) use ($restaurant, $order, $user) {
-                                $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+            // $riders = User::whereHas('roles', function($query) {
+            //                     $query->where('name', 'rider');
+            //                 })
+            //                 ->where(function($query) use ($restaurant, $order, $user) {
+            //                     $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
 
-                                // Get riders who have been assigned delivery to the restaurant
-                                // and are going close to another order from the same restaurant
-                                $deliveries = DB::table("orders")
-                                                ->where('rider_id', '!=', NULL)
-                                                ->where('restaurant_id', $order->restaurant_id)
-                                                ->whereIn('status', [1, 2, 3])
-                                                ->select("*",
-                                                    DB::raw("6371 * acos(cos(radians(" . $user->latitude . "))
-                                                    * cos(radians(".$order->user->latitude."))
-                                                    * cos(radians(".$order->user->longitude.") - radians(" . $user->longitude . "))
-                                                    + sin(radians(" .$user->latitude. "))
-                                                    * sin(radians(".$order->user->latitude."))) AS distance"))
-                                                ->get();
+            //                     // Get riders who have been assigned delivery to the restaurant
+            //                     // and are going close to another order from the same restaurant
+            //                     $deliveries = DB::table("orders")
+            //                                     ->where('rider_id', '!=', NULL)
+            //                                     ->where('restaurant_id', $order->restaurant_id)
+            //                                     ->whereIn('status', [1, 2, 3])
+            //                                     ->select("*",
+            //                                         DB::raw("6371 * acos(cos(radians(" . $user->latitude . "))
+            //                                         * cos(radians(".$order->user->latitude."))
+            //                                         * cos(radians(".$order->user->longitude.") - radians(" . $user->longitude . "))
+            //                                         + sin(radians(" .$user->latitude. "))
+            //                                         * sin(radians(".$order->user->latitude."))) AS distance"))
+            //                                     ->get();
 
-                                // Filter to riders distances less than 5 Kms
-                                $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                    return (int) $delivery->distance <= 5;
-                                })->pluck('rider_id')->values()->all();
+            //                     // Filter to riders distances less than 5 Kms
+            //                     $nearby_deliveries = $deliveries->filter(function($delivery) {
+            //                         return (int) $delivery->distance <= 5;
+            //                     })->pluck('rider_id')->values()->all();
 
-                                $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('courier_id');
+            //                     $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('courier_id');
 
-                                $query->whereNotIn('id', $rejected_orders)
-                                        ->where(function($query) use ($nearby_deliveries, $orders) {
-                                            $query->whereIn('id', $nearby_deliveries)
-                                                ->orWhereNotIn('id', $orders);
-                                        });
-                            })->get()->each(function($rider, $key) use ($restaurant) {
-                                if ($rider->latitude != NULL && $rider->longitude != NULL) {
-                                    $restaurant_coordinates = explode(',', $restaurant->map_location);
-                                    $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant_coordinates[0].','.$restaurant_coordinates[1].'&key='.config('services.map.key'));
-                                    info($business_location);
-                                    if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
-                                        $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
-                                        $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
-                                        $rider['distance'] = $distance;
-                                        $rider['time_away'] = $time;
-                                    } else {
-                                        $rider['distance'] = NULL;
-                                        $rider['time_away'] = NULL;
-                                    }
-                                } else {
-                                   $rider['distance'] = NULL;
-                                   $rider['time_away'] = NULL;
-                                }
-                                })->sortBy([
-                                    fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
-                                ]);
+            //                     $query->whereNotIn('id', $rejected_orders)
+            //                             ->where(function($query) use ($nearby_deliveries, $orders) {
+            //                                 $query->whereIn('id', $nearby_deliveries)
+            //                                     ->orWhereNotIn('id', $orders);
+            //                             });
+            //                 })->get()->each(function($rider, $key) use ($restaurant) {
+            //                     if ($rider->latitude != NULL && $rider->longitude != NULL) {
+            //                         $restaurant_coordinates = explode(',', $restaurant->map_location);
+            //                         $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant_coordinates[0].','.$restaurant_coordinates[1].'&key='.config('services.map.key'));
+            //                         info($business_location);
+            //                         if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
+            //                             $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
+            //                             $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
+            //                             $rider['distance'] = $distance;
+            //                             $rider['time_away'] = $time;
+            //                         } else {
+            //                             $rider['distance'] = NULL;
+            //                             $rider['time_away'] = NULL;
+            //                         }
+            //                     } else {
+            //                        $rider['distance'] = NULL;
+            //                        $rider['time_away'] = NULL;
+            //                     }
+            //                     })->sortBy([
+            //                         fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
+            //                     ]);
             return request()->wantsJson() ?
                 $this->success([
                     'order' => $order,
-                    'riders' => $riders,
+                    // 'riders' => $riders,
                 ], '', 200) : '';
         } else {
             return request()->wantsJson() ?

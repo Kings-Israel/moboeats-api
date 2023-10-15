@@ -54,6 +54,7 @@ class Restaurant extends Model implements UrlRoutable
         'status',
         'created_by',
         'updated_by',
+        'sitting_capacity',
     ];
 
     public function getRouteKeyName()
@@ -95,6 +96,19 @@ class Restaurant extends Model implements UrlRoutable
         }else{
             return null;
         }
+    }
+    /**
+     * Get the logo
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getLogoAttribute($value)
+    {
+        if ($value) {
+            return config('app.url').'/storage/'.$value;
+        }
+        return config('app.url').'/assets/user/default.png';
     }
     /**
      * Get the questionnaire associated with the Restaurant
@@ -143,5 +157,21 @@ class Restaurant extends Model implements UrlRoutable
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_restaurants', 'restaurant_id', 'user_id');
+    }
+
+    /**
+     * Get all of the operatingHours for the Restaurant
+     */
+    public function operatingHours(): HasMany
+    {
+        return $this->hasMany(RestaurantOperatingHour::class);
+    }
+
+    /**
+     * Get all of the documents for the Restaurant
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(RestaurantDocument::class);
     }
 }
