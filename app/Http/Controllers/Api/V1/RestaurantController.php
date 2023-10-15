@@ -12,7 +12,10 @@ use App\Http\Requests\V1\StoreRestaurantRequest;
 use App\Http\Resources\V1\RiderCollection;
 use App\Http\Resources\V1\UserCollection;
 use App\Http\Resources\V1\UserResource;
+use App\Models\Menu;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Payment;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -20,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Traits\Admin\UploadFileTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -80,12 +84,13 @@ class RestaurantController extends Controller
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
                 $includeQuestionnaire = $request->query('questionnaire');
 
-                $restaurants = Restaurant::where('user_id', Auth::user()->id)
-                ->where($filterItems);
+                $restaurants = Restaurant::withCount('orders', 'menus')->with('orders.payment', 'menus')->where('user_id', Auth::user()->id)->where($filterItems)->orderBy('created_at', 'DESC');
+
                 if ($includeQuestionnaire) {
                     $restaurants = $restaurants->with('questionnaire');
                 }
-                return new RestaurantCollection($restaurants->paginate()->appends($request->query()));
+
+                return new RestaurantCollection($restaurants->paginate(10)->appends($request->query()));
             }
 
         } else {
@@ -108,20 +113,14 @@ class RestaurantController extends Controller
 
             try {
                 DB::beginTransaction();
-                $fileName= '';
-                if($request->hasFile('logo')){
-                    $fileName = $this->generateFileName2($request->file('logo'));
-                }
                 $request->merge([
                     'user_id' => Auth::user()->id,
-                    'logo' => $fileName
                 ]);
                 $restaurant = Restaurant::create($request->all());
                 if($request->hasFile('logo')){
-                    $fileData = ['file' => $request->file('logo'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\logos','prevFile' => null];
-                    if(!$this->uploadFile($fileData)){
-                        DB::rollBack();
-                    }
+                    $restaurant->update([
+                        'logo' => $request->logo->store('companyLogos/logos', 'public')
+                    ]);
                 }
                 DB::commit();
                 return new RestaurantResource($restaurant);
@@ -265,5 +264,84 @@ class RestaurantController extends Controller
                         ]);
 
         return $this->success(UserResource::collection($riders));
+    }
+
+    public function dashboard()
+    {
+        // Get past 9 months
+        $months = [];
+        // $days = [0, 29, 59, 89, 119, 149, 179, 209, 239];
+        // $days = [239, 209, 179, 149, 119, 89, 59, 29, 0];
+        $days = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+        foreach($days as $day) {
+            array_push($months, now()->subMonths($day));
+        }
+
+        // Format months
+        $months_formatted = [];
+        foreach ($months as $key => $month) {
+            array_push($months_formatted, Carbon::parse($month)->format('m-Y'));
+        }
+
+        $restaurants_count = Restaurant::where('user_id', auth()->id())->count();
+        $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        $orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->count();
+        $delivered_orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->where('status', 'Delivered')->count();
+
+        $orders_ids = Order::whereIn('restaurant_id', $restaurant_ids)
+                        ->get()
+                        ->pluck('id');
+
+        $revenue = Payment::whereIn('order_id', $orders_ids)->where('status', '2')->sum('amount');
+
+        // Top Restaurants
+        $top_restaurants = Restaurant::where('user_id', auth()->id())
+                                        // ->whereHas('orders')
+                                        ->withCount('orders')
+                                        ->with('orders.payment')
+                                        ->orderBy('orders_count', 'DESC')
+                                        ->get()
+                                        ->take(3);
+
+        $top_restaurants_formatted = [];
+        foreach ($top_restaurants as $restaurant) {
+            $payment['payments']['labels'] = $months_formatted;
+            $payment['payments']['amounts'] = [];
+
+            $order_ids = $restaurant->orders->pluck('id');
+
+            foreach ($months as $month) {
+                $sum = Payment::whereIn('order_id', $order_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                array_push($payment['payments']['amounts'], $sum);
+            }
+
+            $restaurant = array_merge($restaurant->toArray(), $payment);
+            array_push($top_restaurants_formatted, $restaurant);
+        }
+
+        // Most Popular Menu Items
+        // $popular_menus = OrderItem::with('menu')
+        //                         ->whereIn('order_id', $orders_ids)
+        //                         ->get()
+        //                         ->take(10)
+        //                         ->groupBy(function ($item, $key) {
+        //                             return Menu::where('id', $item->menu_id)->first()->title;
+        //                         });
+        $popular_menus = Menu::whereHas('orderItems')
+                            ->withCount('orderItems')
+                            ->with('restaurant', 'images', 'menuPrices')
+                            ->whereIn('restaurant_id', $restaurant_ids)
+                            ->orderBy('order_items_count', 'DESC')
+                            ->get()
+                            ->take(10);
+
+        return $this->success([
+            'restaurants_count' => $restaurants_count,
+            'orders_count' => $orders_count,
+            'delivered_orders_count' => $delivered_orders_count,
+            'revenue' => $revenue,
+            'popular_menus' => $popular_menus,
+            'top_restaurants' => $top_restaurants_formatted,
+        ]);
     }
 }

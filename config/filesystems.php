@@ -56,6 +56,14 @@ return [
             'throw' => false,
         ],
 
+        'user' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/user'),
+            'url' => env('APP_URL').'/storage/user',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'rider' => [
             'driver' => 'local',
             'root' => storage_path('app/public/rider'),
@@ -68,6 +76,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public/category'),
             'url' => env('APP_URL').'/storage/category',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'restaurant' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/restaurant'),
+            'url' => env('APP_URL').'/storage/restaurant',
             'visibility' => 'public',
             'throw' => false,
         ]

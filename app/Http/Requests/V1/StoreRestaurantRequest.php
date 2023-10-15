@@ -24,36 +24,22 @@ class StoreRestaurantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'uuid' => ['required'],
             'name' => ['required'],
-            'nameShort' => ['nullable'],
+            'name_short' => ['required'],
             'email' => ['required', 'email'],
-            // 'userId' => ['required'],
-            'about' => ['nullable'],
-            'aboutShort' => ['nullable'],
-            'phoneNo' => ['nullable'],
+            'about' => ['required'],
+            'about_short' => ['required'],
+            'phone_no' => ['nullable'],
             'address' => ['nullable'],
-            'city' => ['nullable'],
             'state' => ['nullable'],
-            'postalCode' => ['nullable'],
-            'mapLocation' => ['nullable'],
-            'latitude' => ['nullable'],
-            'longitude' => ['nullable'],
+            'postal_code' => ['nullable'],
+            'place_id' => ['required'],
+            'latitude' => ['required'],
+            'longitude' => ['required'],
             'url' => ['nullable'],
-            'logo' => ['nullable'],
+            'logo' => ['required'],
+            'map_location' => ['nullable'],
+            'sitting_capacity' => ['required', 'integer'],
         ];
-        
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'postal_code' => $this->postalCode,
-            'map_location' => $this->mapLocation,
-            'name_short' => $this->nameShort,
-            'about_short' => $this->aboutShort,
-            'phone_no' => $this->phoneNo,
-            // 'user_id' => $this->userId,
-        ]);
     }
 }

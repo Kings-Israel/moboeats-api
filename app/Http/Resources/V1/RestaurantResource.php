@@ -35,14 +35,18 @@ class RestaurantResource extends JsonResource
                 'mapLocation' =>$this->map_location,
                 'url' =>$this->url,
                 'logo' =>$this->logo,
-                'status' => (string) $this->status, 
+                'status' => (string) $this->status,
             ],
             'relationships' => [
                 'questionnaire' => new QuestionnaireResource($this->whenLoaded('questionnaire')),
                 'user' => new UserResource($this->whenLoaded('user')),
+                'orders' => $this->whenLoaded('orders'),
+                'menus' => $this->whenLoaded('menus'),
+                'orders_count' => $this->loadCount('orders'),
+                'menus_count' => $this->loadCount('menus'),
             ]
             // 'questionnaire' => QuestionnaireResource::collection($this->whenLoaded('questionnaire')),
-           
+
         ];
     }
 }

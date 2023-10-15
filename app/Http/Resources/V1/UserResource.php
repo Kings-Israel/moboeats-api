@@ -21,11 +21,12 @@ class UserResource extends JsonResource
             'name' =>$this->name,
             'email' =>$this->email,
             'role' =>$this->role_id,
+            'avatar' => $this->image,
             'relationships' => [
                 'orderer' => $this->whenLoaded('orderer', function(){
                     return new OrdererResource($this->whenLoaded('orderer'));
                 }, function(){
-                    return  new OrdererResource($this->orderer); 
+                    return  new OrdererResource($this->orderer);
                 }),
             ]
             // 'status' =>$this->status,

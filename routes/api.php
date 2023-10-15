@@ -16,7 +16,10 @@ use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\Api\V1\RestaurantDocumentsController;
+use App\Http\Controllers\Api\V1\RestaurantOperatingHoursController;
 use App\Http\Controllers\Api\V1\RiderController;
+use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -83,19 +86,34 @@ Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class
 
 /**Restaurant owners management */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
-    Route::apiResource('restaurants', RestaurantController::class);
-    Route::apiResource('food-categories', FoodCommonCategoryController::class);
-    Route::apiResource('food-sub-categories', FooSubCategoryController::class);
-    Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
-    Route::apiResource('more-info', QuestionnaireController::class);
+    Route::post('/restaurant', [RestaurantController::class, 'store']);
+    Route::middleware(['has_restaurant'])->group(function () {
+        Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
+        Route::apiResource('restaurants', RestaurantController::class);
+        Route::apiResource('food-categories', FoodCommonCategoryController::class);
+        Route::apiResource('food-sub-categories', FooSubCategoryController::class);
+        Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
+        Route::apiResource('more-info', QuestionnaireController::class);
 
-    Route::apiResource('menu', MenuController::class);
-    Route::apiResource('menu-prices', MenuPriceController::class);
+        Route::apiResource('menu', MenuController::class);
+        Route::apiResource('menu-prices', MenuPriceController::class);
 
-    Route::apiResource('orders', OrderController::class)->except(['store']);
-    Route::post('/orders/assign', [OrderController::class, 'assignorder']);
+        Route::get('/orders/{order}', [OrderController::class, 'show']);
+        Route::apiResource('orders', OrderController::class)->except(['store']);
+        Route::post('/orders/assign', [OrderController::class, 'assignorder']);
 
-    Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
+        Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
+
+        // Operating Hours
+        Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
+        Route::post('/{uuid}/operating-hours', [RestaurantOperatingHoursController::class, 'store']);
+        Route::post('/{id}/operating-hours/update', [RestaurantOperatingHoursController::class, 'update']);
+
+        // Documents
+        Route::get('/{id}/documents', [RestaurantDocumentsController::class, 'index']);
+        Route::post('/{id}/documents/store', [RestaurantDocumentsController::class, 'store']);
+        Route::post('/{id}/documents/update', [RestaurantDocumentsController::class, 'update']);
+    });
 });
 
 Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);

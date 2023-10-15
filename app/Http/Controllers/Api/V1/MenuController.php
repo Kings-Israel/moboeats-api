@@ -118,7 +118,6 @@ class MenuController extends Controller
 
                 if($request->hasFile('image')){
                     $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
-                    info($filename);
                     if ($filename) {
                         MenuImage::create([
                             'menu_id' => $menu->id,
@@ -130,14 +129,6 @@ class MenuController extends Controller
                     }
                 }
 
-                // if($request->hasFile('image')){
-                //     // $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'], 'prevFile' => null];
-                //     if(!$this->uploadFile($fileData)){
-                //         DB::rollBack();
-                //         return $this->error('', 'An error occurred while adding to menu', 403);
-                //     }
-                // }
-
                 foreach ($request->input('categoryIds') as $foodCategoryId) {
                     $menu->categories()->attach($foodCategoryId, [
                         // Add more pivot table attributes here
@@ -146,15 +137,6 @@ class MenuController extends Controller
                         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
                 }
-
-                // foreach ($request->input('subcategoryIds') as $subCategoryId) {
-                //     $menu->subCategories()->attach($subCategoryId, [
-                //         // Add more pivot table attributes here
-                //         'uuid' => Str::uuid(),
-                //         'created_by' => auth()->user()->email,
-                //         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                //     ]);
-                // }
 
                 DB::commit();
                 return new MenuResource($menu);

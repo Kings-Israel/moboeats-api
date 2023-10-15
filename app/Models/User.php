@@ -37,7 +37,8 @@ class User extends Authenticatable implements LaratrustUser
         'location',
         'latitude',
         'longitude',
-        'device_token'
+        'device_token',
+        'image'
     ];
 
     protected $keyType = 'int';
@@ -83,6 +84,20 @@ class User extends Authenticatable implements LaratrustUser
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the avatar
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getImageAttribute($value)
+    {
+        if ($value) {
+            return config('app.url').'/storage/user/avatar/'.$value;
+        }
+        return config('app.url').'/assets/user/default.png';
+    }
 
     /**
      * Get all of the restaurants for the User
