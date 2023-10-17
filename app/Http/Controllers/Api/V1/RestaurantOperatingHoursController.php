@@ -37,23 +37,31 @@ class RestaurantOperatingHoursController extends Controller
         return $this->success($restaurant->load('operatingHours'), 'Operating Hours saved successfully');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
         $request->validate([
-            'day' => ['required'],
-            'opening_times' => ['required', 'date_format:H:i'],
+            'days' => ['required'],
+            'opening_times' => ['required'],
+            'opening_times.*' => ['required', 'date_format:H:i'],
+            'closing_times' => ['required'],
             'closing_times.*' => ['required', 'date_format:H:i'],
         ]);
 
-        $operating_hour = RestaurantOperatingHour::find($id);
+        $restaurant = Restaurant::where('uuid', $uuid)->first();
+        RestaurantOperatingHour::where('restaurant_id', $restaurant->id)->delete();
 
-        $operating_hour->update([
-            'day' => $request->day,
-            'opening_time' => $request->opening_time,
-            'closing_time' => $request->closing_time
-        ]);
+        foreach (json_decode($request->days) as $key => $day) {
+            if (array_key_exists($key, json_decode($request->opening_times)) && array_key_exists($key, json_decode($request->closing_times))) {
+                RestaurantOperatingHour::create([
+                    'restaurant_id' => $restaurant->id,
+                    'day' => $day,
+                    'opening_time' => json_decode($request->opening_times)[$key],
+                    'closing_time' => json_decode($request->closing_times)[$key]
+                ]);
+            }
+        }
 
-        $operating_hours = RestaurantOperatingHour::where('restaurant_id', $operating_hour->restaurant_id)->get();
+        $operating_hours = RestaurantOperatingHour::where('restaurant_id', $restaurant->id)->get();
 
         return $this->success($operating_hours, 'Operating Hour updated successfully');
     }

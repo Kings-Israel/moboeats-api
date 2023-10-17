@@ -25,6 +25,7 @@ use Illuminate\Support\Str;
 use App\Traits\Admin\UploadFileTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @group Restaurant Management
@@ -139,14 +140,14 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         // $restaurant = Restaurant::where('id', $restaurant)->orWhere('uuid', $restaurant)->first();
-        return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant);
+        return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant->load('operatingHours', 'documents'));
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
+    public function update(UpdateRestaurantRequest $request, $uuid)
     {
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
@@ -155,25 +156,21 @@ class RestaurantController extends Controller
                 return $this->error('', 'Unauthorized', 401);
             }
 
+            $restaurant = Restaurant::where('uuid', $uuid)->first();
+
             try {
                 DB::beginTransaction();
                 if ($this->isNotAuthorized($restaurant)) {
                     return $this->isNotAuthorized($restaurant);
                 }
-                info('Authorized');
-                if($request->hasFile('logo')){
-                    $fileName = $this->generateFileName2($request->file('logo'));
-                    $restaurant->update($request->all(),['logo' => $fileName]);
-                    if($request->hasFile('logo')){
-                        $fileData = ['file' => $request->file('logo'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\logos','prevFile' => null];
-                        if(!$this->uploadFile($fileData)){
-                            DB::rollBack();
-                        }
-                    }
-                } else {
-                    $restaurant->update($request->all());
+                $restaurant_logo = explode('/', $restaurant->logo);
+                $restaurant->update($request->all());
+                if($request->hasFile('logo')) {
+                    Storage::disk('public')->delete('/companyLogos/logos/'.end($restaurant_logo));
+                    $restaurant->update([
+                        'logo' => $request->logo->store('companyLogos/logos', 'public')
+                    ]);
                 }
-
                 DB::commit();
                 return new RestaurantResource($restaurant);
             } catch (\Throwable $th) {
@@ -343,5 +340,98 @@ class RestaurantController extends Controller
             'popular_menus' => $popular_menus,
             'top_restaurants' => $top_restaurants_formatted,
         ]);
+    }
+
+    public function payments(Request $request)
+    {
+        $restaurant_ids = auth()->user()->restaurants->pluck('id');
+
+        $orders_ids = Order::whereIn('restaurant_id', $restaurant_ids)
+                        ->get()
+                        ->pluck('id');
+
+        $search = $request->query('search');
+
+        $payments = Payment::with('order.user', 'order.restaurant')
+                            ->whereIn('order_id', $orders_ids)
+                            ->where('status', '2')
+                            ->when($search && $search != '', function ($query) use ($search) {
+                                $query->where(function($query) use ($search) {
+                                    $query->where('transaction_id', 'LIKE', '%' . $search . '%')
+                                        ->orWhereHas('order', function ($query) use ($search) {
+                                            $query->where('uuid', 'LIKE', '%' . $search . '%')
+                                                ->whereHas('restaurant', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%')->orWhere('name_short', 'LIKE', '%' . $search . '%');
+                                                })
+                                                ->orWhereHas('user', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%');
+                                                });
+                                    });
+                                });
+                            })
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate();
+
+        return $this->success($payments);
+    }
+
+    public function restaurantMenu(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $menu = Menu::where('restaurant_id', $restaurant->id)
+                    ->when($search && $search != '', function ($query) use ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%');
+                    })
+                    ->paginate(10);
+
+        return $this->success($menu);
+    }
+
+    public function restaurantOrders(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $orders = Order::with('user')
+                        ->where('restaurant_id', $restaurant->id)
+                        ->when($search && $search != '', function ($query) use ($search) {
+                            $query->where('uuid', 'LIKE', '%' . $search . '%')
+                                ->where(function ($query) use ($search) {
+                                    $query->orWhereHas('user', function ($query) use ($search) {
+                                        $query->where('name', 'LIKE', '%' . $query . '%');
+                                    });
+                                });
+                        })
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(5);
+
+        return $this->success($orders);
+    }
+
+    public function restaurantPayments(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $payments = Payment::with('order.restaurant', 'order.user')
+                            ->where('transaction_id', '!=', NULL)
+                            ->whereHas('order', function ($query) use ($restaurant) {
+                                $query->whereHas('restaurant', function ($query) use ($restaurant) {
+                                    $query->where('id', '=', $restaurant->id);
+                                });
+                            })
+                            ->when($search && $search != '', function ($query) use ($search) {
+                                $query->whereHas('order', function ($query) use ($search) {
+                                    $query->where(function ($query) use ($search) {
+                                        $query->where('uuid', 'LIKE', '%'.$search.'%')
+                                            ->orWhereHas('user', function ($query) use ($search) {
+                                                $query->where('name', 'LIKE', '%'.$search.'%');
+                                            });
+                                    });
+                                });
+                            })
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(5);
+
+        return $this->success($payments);
     }
 }

@@ -19,7 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://admin.moboeats.test:*', 'http://restaurant.moboeats.test:*', 'https://admin.moboeats.com', 'https://restaurant.moboeats.com', 'http://localhost:3000')],
+    // 'allowed_origins' => [env('FRONTEND_URL', 'http://admin.moboeats.test:*', 'http://restaurant.moboeats.test:*', 'https://admin.moboeats.com', 'https://restaurant.moboeats.com', 'http://localhost:3000')],
+
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 

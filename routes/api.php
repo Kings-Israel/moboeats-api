@@ -90,6 +90,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::middleware(['has_restaurant'])->group(function () {
         Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
         Route::apiResource('restaurants', RestaurantController::class);
+        Route::post('{uuid}/update', [RestaurantController::class, 'update']);
         Route::apiResource('food-categories', FoodCommonCategoryController::class);
         Route::apiResource('food-sub-categories', FooSubCategoryController::class);
         Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
@@ -104,15 +105,22 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
 
+        Route::get('/payments', [RestaurantController::class, 'payments']);
+
+        Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
+        Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
+
         // Operating Hours
         Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
         Route::post('/{uuid}/operating-hours', [RestaurantOperatingHoursController::class, 'store']);
-        Route::post('/{id}/operating-hours/update', [RestaurantOperatingHoursController::class, 'update']);
+        Route::post('/{uuid}/operating-hours/update', [RestaurantOperatingHoursController::class, 'update']);
 
         // Documents
         Route::get('/{id}/documents', [RestaurantDocumentsController::class, 'index']);
-        Route::post('/{id}/documents/store', [RestaurantDocumentsController::class, 'store']);
-        Route::post('/{id}/documents/update', [RestaurantDocumentsController::class, 'update']);
+        Route::post('/{uuid}/documents/store', [RestaurantDocumentsController::class, 'store']);
+        Route::post('/{uuid}/documents/update', [RestaurantDocumentsController::class, 'update']);
+
+        Route::get('/documents/{id}/download', [RestaurantDocumentsController::class, 'download']);
     });
 });
 

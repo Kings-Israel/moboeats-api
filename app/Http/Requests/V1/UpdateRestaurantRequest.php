@@ -21,69 +21,31 @@ class UpdateRestaurantRequest extends FormRequest
      */
     public function rules(): array
     {
-        $method = $this->method();
-        if ($method == 'PUT') {
-            return [
-                'uuid' => ['required', 'uuid'],
-                'name' => ['required'],
-                'nameShort' => ['required'],
-                'email' => ['required', 'email'],
-                'about' => ['required'],
-                'aboutShort' => ['required'],
-                'phoneNo' => ['required'],
-                'address' => ['required'],
-                'city' => ['required'],
-                'state' => ['required'],
-                'postalCode' => ['required'],
-                'mapLocation' => ['nullable'],
-                'url' => ['nullable'],
-                'logo' => ['nullable'],
-            ];
-        } else {
-            return [
-                'uuid' => ['required', 'uuid'],
-                'name' => ['sometimes', 'required'],
-                'nameShort' => ['sometimes', 'required'],
-                'email' => ['sometimes', 'required', 'email'],
-                'about' => ['sometimes', 'required'],
-                'aboutShort' => ['sometimes', 'required'],
-                'phoneNo' => ['sometimes', 'required'],
-                'address' => ['sometimes', 'required'],
-                'city' => ['sometimes', 'required'],
-                'state' => ['sometimes', 'required'],
-                'postalCode' => ['sometimes', 'required'],
-                'mapLocation' => ['sometimes', 'nullable'],
-                'url' => ['sometimes', 'nullable'],
-                'logo' => ['sometimes', 'nullable'],
-            ];
-        }
+        return [
+            'name' => ['required'],
+            'name_short' => ['required'],
+            'email' => ['required', 'email'],
+            'about' => ['required'],
+            'about_short' => ['required'],
+            'phone_no' => ['required'],
+            'address' => ['required'],
+            'state' => ['required'],
+            'postal_code' => ['required'],
+            'map_location' => ['nullable'],
+            'url' => ['nullable'],
+            'logo' => ['nullable'],
+            'sitting_capacity' => ['required', 'integer'],
+            'latitude' => ['required', 'string', 'not_in:null'],
+            'longitude' => ['required', 'string', 'not_in:null'],
+        ];
     }
-    protected function prepareForValidation()
-    { 
-        if ($this->postalCode) {
-            $this->merge([
-                'postal_code' => $this->postalCode,
-            ]);
-        }
-        if ($this->mapLocation) {
-            $this->merge([
-                'map_location' => $this->mapLocation,
-            ]);
-        }
-        if ($this->nameShort) {
-            $this->merge([
-                'name_short' => $this->nameShort,
-            ]);
-        }
-        if ($this->aboutShort) {
-            $this->merge([
-                'about_short' => $this->aboutShort,
-            ]);
-        }
-        if ($this->phoneNo) {
-            $this->merge([
-                'phone_no' => $this->phoneNo,
-            ]);
-        }
+
+    public function messages(): array
+    {
+        return [
+            'latitude.required' => 'Please select restaurant location',
+            'longitude.required' => 'Please select restaurant location',
+            'sitting_capacity.required' => 'Enter Sitting Capacity. (0 if doesn\'t apply)'
+        ];
     }
 }
