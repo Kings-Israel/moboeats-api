@@ -344,4 +344,37 @@ class RestaurantController extends Controller
             'top_restaurants' => $top_restaurants_formatted,
         ]);
     }
+
+    public function payments(Request $request)
+    {
+        $restaurant_ids = auth()->user()->restaurants->pluck('id');
+
+        $orders_ids = Order::whereIn('restaurant_id', $restaurant_ids)
+                        ->get()
+                        ->pluck('id');
+
+        $search = $request->query('search');
+
+        $payments = Payment::with('order.user', 'order.restaurant')
+                            ->whereIn('order_id', $orders_ids)
+                            ->where('status', '2')
+                            ->when($search && $search != '', function ($query) use ($search) {
+                                $query->where(function($query) use ($search) {
+                                    $query->where('transaction_id', 'LIKE', '%' . $search . '%')
+                                        ->orWhereHas('order', function ($query) use ($search) {
+                                            $query->where('uuid', 'LIKE', '%' . $search . '%')
+                                                ->whereHas('restaurant', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%')->orWhere('name_short', 'LIKE', '%' . $search . '%');
+                                                })
+                                                ->orWhereHas('user', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%');
+                                                });
+                                    });
+                                });
+                            })
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate();
+
+        return $this->success($payments);
+    }
 }

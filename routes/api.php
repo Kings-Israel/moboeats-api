@@ -104,6 +104,8 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
 
+        Route::get('/payments', [RestaurantController::class, 'payments']);
+
         // Operating Hours
         Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
         Route::post('/{uuid}/operating-hours', [RestaurantOperatingHoursController::class, 'store']);
