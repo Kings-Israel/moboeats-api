@@ -7,6 +7,7 @@ use App\Models\Restaurant;
 use App\Models\RestaurantDocument;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantDocumentsController extends Controller
 {
@@ -19,7 +20,7 @@ class RestaurantDocumentsController extends Controller
         return $this->success($restaurant->documents);
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request, $uuid)
     {
         $request->validate([
             'names' => ['nullable', 'array'],
@@ -28,39 +29,68 @@ class RestaurantDocumentsController extends Controller
             'files.*' => ['mimes:pdf']
         ]);
 
-        $restaurant = Restaurant::find($id);
+        $restaurant = Restaurant::where('uuid', $uuid)->first();
 
-        foreach($request->files as $key => $file) {
-            RestaurantDocument::create([
-                'restaurant_id' => $restaurant->id,
-                'file_url' => pathinfo($file->store('documents', 'restaurant'), PATHINFO_BASENAME),
-                'document_name' => $request->names[$key] ? $request->names[$key] : NULL,
-            ]);
+        foreach($request->files as $file) {
+            if (is_array($file)) {
+                foreach($file as $key => $data) {
+                    $originalFilename = pathinfo($data->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $newFilename = $originalFilename.'-'.uniqid().'.'.$data->guessExtension();
+                    $data->move('storage/restaurant/documents', $newFilename);
+                    RestaurantDocument::create([
+                        'restaurant_id' => $restaurant->id,
+                        'file_url' => $newFilename,
+                        'document_name' => $request->names[$key] ? $request->names[$key] : NULL,
+                    ]);
+                }
+            }
         }
 
         return $this->success($restaurant->load('documents'), 'Documents saved successfully');
     }
 
-    public function edit(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
         $request->validate([
-            'file' => ['mimes:pdf'],
-            'name' => ['nullable', 'string']
+            'names' => ['nullable', 'array'],
+            'names.*' => ['nullable', 'string'],
+            'files' => ['required', 'array'],
+            'files.*' => ['mimes:pdf']
         ]);
 
-        $document = RestaurantDocument::find($id);
+        $restaurant = Restaurant::where('uuid', $uuid)->first();
 
-        if (!$document) {
-            return $this->error('', 'Document not found', 404);
+        $docs = RestaurantDocument::where('restaurant_id', $restaurant->id)->get();
+
+        foreach ($docs as $doc) {
+            Storage::disk('restaurant')->delete('/documents/'.$doc->file_url);
+            $doc->delete();
         }
 
-        $document->update([
-            'document_name' => $request->has('name') && $request->name != '' ? $request->name : $document->document_name,
-            'file_url' => pathinfo($request->file->store('documents', 'restaurant'), PATHINFO_BASENAME)
-        ]);
+        foreach($request->files as $file) {
+            if (is_array($file)) {
+                foreach($file as $key => $data) {
+                    $originalFilename = pathinfo($data->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $newFilename = $originalFilename.'-'.uniqid().'.'.$data->guessExtension();
+                    $data->move('storage/restaurant/documents', $newFilename);
+                    RestaurantDocument::create([
+                        'restaurant_id' => $restaurant->id,
+                        'file_url' => $newFilename,
+                        'document_name' => $request->names[$key] ? $request->names[$key] : NULL,
+                    ]);
+                }
+            }
+        }
 
-        $documents = RestaurantDocument::where('restaurant_id', $document->restaurant_id)->get();
+        return $this->success($restaurant->load('documents'), 'Documents saved successfully');
+    }
 
-        return $this->success($documents, 'Document updated successfully');
+    public function download($file)
+    {
+        $document = RestaurantDocument::find($file);
+
+        return Storage::disk('restaurant')->download('/documents/'.$document->file_url, $document->document_name);
     }
 }

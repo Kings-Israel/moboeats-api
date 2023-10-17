@@ -18,6 +18,17 @@ class RestaurantDocument extends Model
     protected $guarded = [];
 
     /**
+     * Get the File Url
+     *
+     * @param  string  $value
+     * @return string
+     */
+    // public function getFileUrlAttribute($value)
+    // {
+    //     return config('app.url').'/api/v1/restaurant/documents/'.$this->id.'/download';
+    // }
+
+    /**
      * Get the restaurant that owns the RestaurantDocument
      */
     public function restaurant(): BelongsTo

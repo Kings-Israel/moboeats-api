@@ -35,13 +35,18 @@ class RestaurantResource extends JsonResource
                 'mapLocation' =>$this->map_location,
                 'url' =>$this->url,
                 'logo' =>$this->logo,
+                'sitting_capacity' => $this->sitting_capacity,
                 'status' => (string) $this->status,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
             ],
             'relationships' => [
                 'questionnaire' => new QuestionnaireResource($this->whenLoaded('questionnaire')),
                 'user' => new UserResource($this->whenLoaded('user')),
                 'orders' => $this->whenLoaded('orders'),
                 'menus' => $this->whenLoaded('menus'),
+                'operating_hours' => $this->when(auth()->user()->hasRole('restaurant'), $this->whenLoaded('operatingHours')),
+                'documents' => $this->when(auth()->user()->hasRole('restaurant'), $this->whenLoaded('documents')) ,
                 'orders_count' => $this->loadCount('orders'),
                 'menus_count' => $this->loadCount('menus'),
             ]
