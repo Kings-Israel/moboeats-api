@@ -147,7 +147,7 @@ class RestaurantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRestaurantRequest $request, $uuid)
+    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
@@ -156,7 +156,7 @@ class RestaurantController extends Controller
                 return $this->error('', 'Unauthorized', 401);
             }
 
-            $restaurant = Restaurant::where('uuid', $uuid)->first();
+            // $restaurant = Restaurant::where('uuid', $uuid)->first();
 
             try {
                 DB::beginTransaction();
@@ -379,11 +379,17 @@ class RestaurantController extends Controller
     {
         $search = $request->query('search');
 
-        $menu = Menu::where('restaurant_id', $restaurant->id)
+        $menu = Menu::with('images', 'menuPrices')
+                    ->withCount('orderItems')
+                    ->where('restaurant_id', $restaurant->id)
                     ->when($search && $search != '', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', '%' . $search . '%');
+                        $query->where(function ($query) use ($search) {
+                            $query->where('title', 'LIKE', '%' . $search . '%')
+                                    ->orWhere('description', 'LIKE', '%' . $search . '%');
+                        });
                     })
-                    ->paginate(10);
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(6);
 
         return $this->success($menu);
     }

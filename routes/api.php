@@ -90,7 +90,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::middleware(['has_restaurant'])->group(function () {
         Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
         Route::apiResource('restaurants', RestaurantController::class);
-        Route::post('{uuid}/update', [RestaurantController::class, 'update']);
+        Route::post('/restaurants/{restaurant}/update', [RestaurantController::class, 'update']);
         Route::apiResource('food-categories', FoodCommonCategoryController::class);
         Route::apiResource('food-sub-categories', FooSubCategoryController::class);
         Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
@@ -109,6 +109,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
         Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
+        Route::get('restaurant/{restaurant}/menu', [RestaurantController::class, 'restaurantMenu']);
 
         // Operating Hours
         Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
