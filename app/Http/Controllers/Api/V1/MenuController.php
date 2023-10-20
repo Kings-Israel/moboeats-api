@@ -13,6 +13,7 @@ use App\Models\CategoryMenu;
 use App\Models\FoodCommonCategory;
 use App\Models\MenuImage;
 use App\Models\MenuPrice;
+use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ use Illuminate\Http\Request;
 use App\Traits\Admin\UploadFileTrait;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @group Menu Management
@@ -81,8 +83,9 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMenuRequest $request)
+    public function store(StoreMenuRequest $request, $id)
     {
+        $restaurant = Restaurant::where('id', $id)->orWhere('uuid', $id)->first();
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
@@ -98,7 +101,7 @@ class MenuController extends Controller
                 $menu = Menu::create([
                     'title' => $request->title,
                     'description' => $request->description,
-                    'restaurant_id' => $request->restaurantId,
+                    'restaurant_id' => $restaurant->id,
                     'status' => 2,
                     'created_by' => auth()->user()->email,
                     'updated_by' => auth()->user()->email,
@@ -151,6 +154,47 @@ class MenuController extends Controller
         }
     }
 
+    public function updateImages(Request $request, $id)
+    {
+        $menu = Menu::find($id);
+
+        if (!$menu) {
+            return $this->error('', 'Menu not found', 404);
+        }
+
+        $current_images = MenuImage::where('menu_id', $id)->get();
+
+        foreach ($current_images as $image) {
+            Storage::disk('public')->delete('/menus/images/'.$image->image_url);
+            $image->delete();
+        }
+
+        foreach ($request->images as $image) {
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $newFilename = $originalFilename.'-'.uniqid().'.'.$image->guessExtension();
+            $image->move('storage/menus/images', $newFilename);
+
+            MenuImage::create([
+                'menu_id' => $menu->id,
+                'image_url' => $newFilename,
+                'sequence' => 1,
+                'status' => 2,
+                'created_by' => auth()->user()->email,
+            ]);
+            // if (is_array($image)) {
+            //     foreach($image as $key => $data) {
+            //     }
+            // }
+            // $fileName = $this->generateFileName2($request->file('image'));
+            // $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
+            // if ($filename) {
+            // }
+        }
+
+        return $this->success('', 'Menu images updated successfully');
+    }
+
     /**
      * Display the specified resource.
      */
@@ -176,12 +220,15 @@ class MenuController extends Controller
         return new MenuResource($menu->loadMissing('menuPrices'));
     }
 
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMenuRequest $request, Menu $menu)
+    public function update(UpdateMenuRequest $request, Menu $menu = NULL, $id = NULL)
     {
+        if ($menu == NULL) {
+            $menu = Menu::find($id);
+        }
+
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
@@ -197,13 +244,9 @@ class MenuController extends Controller
                 }
                 $menu->update($request->all());
                 if ($request->standardPrice) {
-                    $standardPrice = MenuPrice::where('menu_id', $menu->id)
-                    ->where('status', 2)
-                    ->where('description', 'standard')
-                    ->first();
+                    $standardPrice = MenuPrice::where('menu_id', $menu->id)->first();
                     $standardPrice->update(['price' => $request->standardPrice]);
                 }
-
 
                 if($request->hasFile('image')){
                     $image = MenuImage::where('menu_id', $menu->id)->where('sequence', 1)->first();
@@ -218,7 +261,7 @@ class MenuController extends Controller
                         'image_url' => $fileName,
                         'sequence' => 1,
                         'status' => 2,
-                        'created_by' => $request->updatedBy,
+                        'created_by' => auth()->user()->email,
                     ]);
 
                     $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => $prevFile];
@@ -226,6 +269,7 @@ class MenuController extends Controller
                         DB::rollBack();
                     }
                 }
+
                 $foodCategoryIds = $request->input('categoryIds');
                 $subcategoryIds = $request->input('subcategoryIds');
 
@@ -233,20 +277,26 @@ class MenuController extends Controller
                 $syncData2 = [];
                 foreach ($foodCategoryIds as $foodCategoryId) {
                     $syncData[$foodCategoryId] = [
+                        'menu_id' => $menu->id,
                         'uuid' => Str::uuid(),
-                        'created_by' => $request->updatedBy,
-                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                        'created_by' => auth()->user()->email,
+                        'created_at' => now()->format('Y-m-d H:i:s'),
                     ];
                 }
-                foreach ($subcategoryIds as $categoryId) {
-                    $syncData2[$categoryId] = [
-                        'uuid' => Str::uuid(),
-                        'created_by' => $request->updatedBy,
-                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                    ];
-                }
+
                 $menu->categories()->sync($syncData);
-                $menu->subCategories()->sync($syncData2);
+
+                if ($request->subCategoryIds) {
+                    foreach ($subcategoryIds as $categoryId) {
+                        $syncData2[$categoryId] = [
+                            'uuid' => Str::uuid(),
+                            'menu_id' => $menu->id,
+                            'created_by' => auth()->user()->email,
+                            'created_at' => now()->format('Y-m-d H:i:s'),
+                        ];
+                    }
+                    $menu->subCategories()->sync($syncData2);
+                }
                 DB::commit();
                 return new MenuResource($menu);
             } catch (\Throwable $th) {
