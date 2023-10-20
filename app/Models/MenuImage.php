@@ -14,7 +14,7 @@ class MenuImage extends Model implements UrlRoutable
 
     protected $keyType = 'int';
     public $incrementing = true;
-    
+
     protected $guarded = [];
 
     public function getRouteKeyName()

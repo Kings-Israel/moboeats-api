@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 
 /**
  * @group Menu Prices Management
- * 
+ *
  * Food Menu Prices API resource
  */
 class MenuPriceController extends Controller
@@ -36,7 +36,7 @@ class MenuPriceController extends Controller
         if ($menu) {
             $menuPrices = $menuPrices->with('menu');
         }
-       
+
         return new MenuPriceCollection($menuPrices->paginate()->appends($request->query()));
     }
 
@@ -54,7 +54,26 @@ class MenuPriceController extends Controller
             try {
                 DB::beginTransaction();
 
+                if ($request->status == 2) {
+                    $active_price = MenuPrice::where('menu_id', $request->menu_id)->get();
+
+                    if ($active_price->count() > 0) {
+                        // Make other prices inactive
+                        foreach($active_price as $price) {
+                            info($active_price);
+                            $price->update([
+                                'status' => 1
+                            ]);
+                        }
+                    }
+                }
+
+                $request->merge([
+                    'created_by' => auth()->user()->email
+                ]);
+
                 $menuPrice = MenuPrice::create($request->all());
+
                 DB::commit();
 
                 return new MenuPriceResource($menuPrice);
@@ -78,19 +97,35 @@ class MenuPriceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMenuPriceRequest $request, MenuPrice $menuPrice)
+    public function update(UpdateMenuPriceRequest $request, MenuPrice $menuPrice = NULL, $id = NULL)
     {
+        if ($menuPrice == NULL) {
+            $menuPrice = MenuPrice::find($id);
+        }
+
         try {
             DB::beginTransaction();
-            // info($request->all());
+
             if ($request->status == 2) {
-                $active = MenuPrice::where('menu_id', $request->menu_id)
-                ->where('status', $request->status)
-                ->first();
-                if ($active) {
-                    return $this->error('', 'Only one price type can be active at a time.', 403);
+                $active = MenuPrice::where('menu_id', $menuPrice->menu->id)
+                                    ->where('status', $request->status)
+                                    ->where('id', '!=', $menuPrice->id)
+                                    ->get();
+
+                if ($active->count() > 0) {
+                    // Make other prices inactive
+                    foreach($active as $price) {
+                        $price->update([
+                            'status' => 1
+                        ]);
+                    }
                 }
             }
+
+            $request->merge([
+                'updated_by' => auth()->user()->email
+            ]);
+
             $menuPrice->update($request->all());
             DB::commit();
 
@@ -105,8 +140,24 @@ class MenuPriceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuPrice $menuPrice)
+    public function destroy(MenuPrice $menuPrice = NULL, $id = NULL)
     {
-        //
+        if (!$menuPrice) {
+            $menuPrice = MenuPrice::find($id);
+        }
+
+        $menuPrices = MenuPrice::where('menu_id', $menuPrice->menu->id)->count();
+
+        if ($menuPrices > 1) {
+            $menuPrice->delete();
+        }
+
+        $menuPrices = MenuPrice::where('menu_id', $menuPrice->menu->id)->count();
+
+        if ($menuPrices == 1) {
+            $menuPrices = MenuPrice::where('menu_id', $menuPrice->menu->id)->first()->update(['status', 2]);
+        }
+
+        return $this->success($menuPrice);
     }
 }

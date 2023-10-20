@@ -9,9 +9,11 @@ use App\Http\Resources\V1\RestaurantCollection;
 use App\Http\Resources\V1\RestaurantResource;
 use App\Filters\V1\RestaurantFilter;
 use App\Http\Requests\V1\StoreRestaurantRequest;
+use App\Http\Resources\V1\FoodCommonCategoryCollection;
 use App\Http\Resources\V1\RiderCollection;
 use App\Http\Resources\V1\UserCollection;
 use App\Http\Resources\V1\UserResource;
+use App\Models\FoodCommonCategory;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -147,7 +149,7 @@ class RestaurantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRestaurantRequest $request, $uuid)
+    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
@@ -155,8 +157,6 @@ class RestaurantController extends Controller
             if ($role === 'orderer') {
                 return $this->error('', 'Unauthorized', 401);
             }
-
-            $restaurant = Restaurant::where('uuid', $uuid)->first();
 
             try {
                 DB::beginTransaction();
@@ -379,13 +379,21 @@ class RestaurantController extends Controller
     {
         $search = $request->query('search');
 
-        $menu = Menu::where('restaurant_id', $restaurant->id)
+        $menu = Menu::with('images', 'menuPrices', 'categories.food_sub_categories', 'subCategories')
+                    ->withCount('orderItems')
+                    ->where('restaurant_id', $restaurant->id)
                     ->when($search && $search != '', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', '%' . $search . '%');
+                        $query->where(function ($query) use ($search) {
+                            $query->where('title', 'LIKE', '%' . $search . '%')
+                                    ->orWhere('description', 'LIKE', '%' . $search . '%');
+                        });
                     })
-                    ->paginate(10);
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(9);
 
-        return $this->success($menu);
+        $categories = FoodCommonCategory::all();
+
+        return $this->success(['menu' => $menu, 'categories' => new FoodCommonCategoryCollection($categories)]);
     }
 
     public function restaurantOrders(Request $request, Restaurant $restaurant)
