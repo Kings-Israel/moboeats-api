@@ -111,13 +111,15 @@ class MenuController extends Controller
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
                 }
-                MenuPrice::create([
-                    'menu_id' => $menu->id,
-                    'description' => 'standard',
-                    'price' => $request->standardPrice,
-                    'status' => 2,
-                    'created_by' => auth()->user()->email,
-                ]);
+                if ($request->has('standarPrice')) {
+                    MenuPrice::create([
+                        'menu_id' => $menu->id,
+                        'description' => 'standard',
+                        'price' => $request->standardPrice,
+                        'status' => 2,
+                        'created_by' => auth()->user()->email,
+                    ]);
+                }
 
                 if($request->hasFile('image')){
                     $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
