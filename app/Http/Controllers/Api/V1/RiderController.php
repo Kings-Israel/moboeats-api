@@ -153,7 +153,7 @@ class RiderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'order_id' => 'required',
-            'status' => ['required', Rule::in(['accept', 'reject', 'delivered'])]
+            'status' => ['required', Rule::in(['accept', 'reject', 'on_delivery', 'delivered'])]
         ]);
 
         if ($validator->fails()) {
@@ -166,8 +166,10 @@ class RiderController extends Controller
             return $this->error('Order not found', 'The selected order was not found', 422);
         }
 
-        if ($order->rider_id != NULL) {
-            return $this->success('Order assigned', 'The order was already assigned', 200);
+        if ($request->status == 'accept') {
+            if ($order->rider_id != NULL) {
+                return $this->success('Order assigned', 'The order was already assigned', 200);
+            }
         }
 
         $assignment = AssignedOrder::where('user_id', auth()->id())
@@ -204,9 +206,29 @@ class RiderController extends Controller
             return $this->success($order, 'Order updated successfully', 200);
         }
 
+        if ($request->status == 'on_delivery') {
+            $order->update([
+                'status' => 4,
+                'delivery_status' => 'On Delivery'
+            ]);
+
+            Http::withHeaders([
+                'Authorization' => 'key='.config('services.firebase.key'),
+                'Content-Type' => 'application/json'
+            ])->post('https://fcm.googleapis.com/fcm/send', [
+                'registration_id' => $order->user->device_token,
+                'notification' => 'Your order has been picked by the rider',
+                'data' => [
+                    'rider_id' => auth()->id(),
+                ]
+            ]);
+
+            return $this->success($order, 'Order updated successfully', 200);
+        }
+
         if ($request->status == 'delivered') {
             $order->update([
-                'status' => 3, // Delivered
+                'status' => 5, // Delivered
             ]);
 
             return $this->success($order, 'Order updated successfully', 200);
