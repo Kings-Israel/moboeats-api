@@ -37,8 +37,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -74,21 +73,21 @@ endpoints:
         name: cartId
         description: ''
         required: true
-        example: 15
+        example: 3
         type: integer
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: 12
+        example: 1
         type: integer
         custom: []
       delivery:
         name: delivery
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         custom: []
       deliveryFee:
@@ -105,10 +104,18 @@ endpoints:
         example: null
         type: string
         custom: []
+      booking_time:
+        name: booking_time
+        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2023-10-22 13:00:53</code>.'
+        required: false
+        example: '2051-01-08'
+        type: string
+        custom: []
     cleanBodyParameters:
-      cartId: 15
-      restaurantId: 12
-      delivery: false
+      cartId: 3
+      restaurantId: 1
+      delivery: true
+      booking_time: '2051-01-08'
     fileParameters: []
     responses: []
     responseFields: []
@@ -140,11 +147,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -157,8 +164,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -190,17 +196,66 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/orders/{uuid}'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -239,58 +294,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/orders/{uuid}'
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -323,11 +327,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -363,15 +367,63 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/orders/assign
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: true
+        example: exercitationem
+        type: string
+        custom: []
+      rider_id:
+        name: rider_id
+        description: ''
+        required: true
+        example: aut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      order_id: exercitationem
+      rider_id: aut
     fileParameters: []
     responses: []
     responseFields: []

@@ -379,7 +379,7 @@ class RestaurantController extends Controller
     {
         $search = $request->query('search');
 
-        $menu = Menu::with('images', 'menuPrices', 'categories.food_sub_categories', 'subCategories')
+        $menu = Menu::with('images', 'menuPrices', 'subCategories', 'categories.food_sub_categories')
                     ->withCount('orderItems')
                     ->where('restaurant_id', $restaurant->id)
                     ->when($search && $search != '', function ($query) use ($search) {
@@ -391,9 +391,96 @@ class RestaurantController extends Controller
                     ->orderBy('created_at', 'DESC')
                     ->paginate(9);
 
-        $categories = FoodCommonCategory::all();
+        $categories = FoodCommonCategory::where('restaurant_id', NULL)->orWhere('restaurant_id', $restaurant->id)->get();
 
         return $this->success(['menu' => $menu, 'categories' => new FoodCommonCategoryCollection($categories)]);
+    }
+
+    /**
+     * Get Categories added by the restaurant
+     *
+     * @urlParam id The ID or the UUID of the restaurant
+     *
+     */
+    public function categories($id)
+    {
+        $restaurant = Restaurant::where('uuid', $id)->orWhere('uuid', $id)->first();
+
+        $categories = FoodCommonCategory::where('restaurant_id', $restaurant->id)->paginate(8);
+
+        return $this->success(['categories' => $categories]);
+    }
+
+    /**
+     * Add a new category for the specified restaurant
+     */
+    public function addCategory(Request $request, Restaurant $restaurant)
+    {
+        $request->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $request->merge([
+                'restaurant_id' => $restaurant->id,
+                'created_by' => auth()->user()->email,
+                'status' => 2
+            ]);
+            $food_category = FoodCommonCategory::create(collect($request->all())->except('image')->toArray());
+            if ($request->hasFile('image')) {
+                $food_category->update([
+                    'image' => pathinfo($request->image->store('images', 'category'), PATHINFO_BASENAME)
+                ]);
+            }
+            DB::commit();
+
+            $categories = FoodCommonCategory::paginate(7);
+            return $this->success($categories);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
+    }
+
+    /**
+     * Update a category
+     * @urlParam uuid The uuid of the restaurant
+     * @urlParam id The id of the category
+     */
+    public function updateCategory(Request $request, $uuid, $id)
+    {
+        $request->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $food_category = FoodCommonCategory::find($id);
+
+            $food_category->update([
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+
+            if ($request->hasFile('image')) {
+                $food_category->update([
+                    'image' => pathinfo($request->image->store('images', 'category'), PATHINFO_BASENAME)
+                ]);
+            }
+            DB::commit();
+
+            // return new FoodCommonCategoryResource($food_category);
+            $categories = FoodCommonCategory::paginate(7);
+            return $this->success($categories);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
     }
 
     public function restaurantOrders(Request $request, Restaurant $restaurant)

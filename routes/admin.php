@@ -11,6 +11,9 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/categories', [AdminController::class, 'categories']);
         Route::post('/categories/add', [FoodCommonCategoryController::class, 'store']);
         Route::post('/categories/update/{id}', [FoodCommonCategoryController::class, 'update']);
+        Route::get('/sub-categories', [AdminController::class, 'subCategories']);
+        Route::post('/sub-categories/add', [AdminController::class, 'addSubcategory']);
+        Route::post('/sub-categories/update/{id}', [AdminController::class, 'updateSubcategory']);
         Route::get('/users/{role}', [AdminController::class, 'users']);
         Route::get('/users/customer/{id}/details', [AdminController::class, 'user']);
         Route::get('/users/restaurant-admin/{id}/details', [AdminController::class, 'restaurantAdmin']);
