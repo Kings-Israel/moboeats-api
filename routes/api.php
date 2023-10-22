@@ -106,6 +106,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::apiResource('orders', OrderController::class)->except(['store']);
+        Route::post('/orders/{order}/update', [OrderController::class, 'update']);
         Route::post('/orders/assign', [OrderController::class, 'assignorder']);
 
         Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
