@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\FoodCommonCategoryCollection;
 use App\Http\Resources\V1\RiderResource;
 use App\Http\Resources\V1\UserResource;
+use App\Models\FCategorySubCategory;
 use App\Models\FoodCommonCategory;
+use App\Models\FooSubCategory;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Payment;
@@ -194,9 +196,66 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $categories = FoodCommonCategory::paginate(7);
+        $categories = FoodCommonCategory::with('food_sub_categories')->orderBy('created_at', 'DESC')->paginate(7);
 
         return $this->success($categories);
+    }
+
+    public function subCategories(Request $request)
+    {
+        $search = $request->query('search');
+
+        $category = FoodCommonCategory::where('title', $search)->first();
+
+        $sub_category_ids = FCategorySubCategory::where('category_id', $category->id)->get()->pluck('sub_category_id');
+
+        $sub_categories = FooSubCategory::whereIn('id', $sub_category_ids)
+                                        ->orderBy('created_at', 'DESC')
+                                        ->paginate(7);
+
+        return $this->success($sub_categories);
+    }
+
+    public function addSubCategory(Request $request)
+    {
+        $request->validate([
+            'category_id' => ['required'],
+            'title' => ['required'],
+            'status' => ['required', 'integer'],
+        ]);
+
+        $subcategory = FooSubCategory::create([
+            'title' => $request->title,
+            'description' => $request->has('description') && $request->description != '' ? $request->description : NULL,
+            'status' => $request->status,
+            'created_by' => auth()->user()->email,
+        ]);
+
+        FCategorySubCategory::create([
+            'sub_category_id' => $subcategory->id,
+            'category_id' => $request->category_id,
+            'created_by' => auth()->user()->email,
+        ]);
+
+        return $this->success($subcategory, 'Subcategory successfully created');
+    }
+
+    public function updateSubcategory(Request $request, $id)
+    {
+        $request->validate([
+            'title' => ['required'],
+        ]);
+
+        $subcategory = FooSubCategory::find($id);
+
+        $subcategory->update([
+            'title' => $request->title,
+            'description' => $request->has('description') && $request->description != '' ? $request->description : $subcategory->description,
+            'status' => $request->status,
+            'updated_by' => auth()->user()->email,
+        ]);
+
+        return $this->success($subcategory, 'Subcategory successfully created');
     }
 
     public function users(Request $request, $role)

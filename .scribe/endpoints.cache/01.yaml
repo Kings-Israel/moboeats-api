@@ -23,32 +23,8 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: nschulist@example.org
-        type: string
-        custom: []
-      password:
-        name: password
-        description: ''
-        required: true
-        example: D1FPFh
-        type: string
-        custom: []
-      userType:
-        name: userType
-        description: ''
-        required: true
-        example: qui
-        type: string
-        custom: []
-    cleanBodyParameters:
-      email: nschulist@example.org
-      password: D1FPFh
-      userType: qui
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []

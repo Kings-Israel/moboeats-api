@@ -35,8 +35,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -72,11 +71,11 @@ endpoints:
         name: restaurantId
         description: ''
         required: true
-        example: 12
+        example: 6
         type: integer
         custom: []
     cleanBodyParameters:
-      restaurantId: 12
+      restaurantId: 6
     fileParameters: []
     responses: []
     responseFields: []
@@ -108,11 +107,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: 476e078f-3ad2-45b6-8bd6-051145768faa
+        example: sed
         type: string
         custom: []
     cleanUrlParameters:
-      id: 476e078f-3ad2-45b6-8bd6-051145768faa
+      id: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -125,8 +124,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -158,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: 476e078f-3ad2-45b6-8bd6-051145768faa
+        example: amet
         type: string
         custom: []
     cleanUrlParameters:
-      id: 476e078f-3ad2-45b6-8bd6-051145768faa
+      id: amet
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

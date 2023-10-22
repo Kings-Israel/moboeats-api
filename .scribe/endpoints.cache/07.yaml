@@ -37,8 +37,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -74,11 +73,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 2
+        example: 8
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 2
+      menuId: 8
     fileParameters: []
     responses: []
     responseFields: []
@@ -110,11 +109,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
+        example: quaerat
         type: string
         custom: []
     cleanUrlParameters:
-      id: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
+      id: quaerat
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -127,8 +126,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -160,11 +158,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
+        example: recusandae
         type: string
         custom: []
     cleanUrlParameters:
-      id: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
+      id: recusandae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

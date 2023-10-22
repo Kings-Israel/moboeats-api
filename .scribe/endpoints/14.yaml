@@ -1,17 +1,17 @@
-name: 'Rider Management'
+name: 'Restaurant Questionnaire'
 description: |-
 
-  Rider API resource
+  Questionnaire API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/restaurant/riders
+    uri: api/v1/restaurant/more-info
     metadata:
-      groupName: 'Rider Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        Rider API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -35,272 +35,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/riders/{uuid}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: 'Use uuid to get the specified resource.'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 2a4cb41f-94f2-341b-8ce0-8290cb15629c
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 2a4cb41f-94f2-341b-8ce0-8290cb15629c
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/restaurant/riders/{uuid}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: 'Use uuid as identifier.'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 81c856e8-ba1d-3565-a524-b5897acfb980
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 81c856e8-ba1d-3565-a524-b5897acfb980
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 0aeaf0b0-5239-364a-9298-1b81370d5011
-        type: string
-        custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: quidem
-        type: string
-        custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: bcasper@example.net
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
-        required: true
-        example: itaque
-        type: string
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      postalCode:
-        name: postalCode
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      profilePicture:
-        name: profilePicture
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      vehicleType:
-        name: vehicleType
-        description: ''
-        required: true
-        example: magni
-        type: string
-        custom: []
-      vehicleLicensePlate:
-        name: vehicleLicensePlate
-        description: ''
-        required: true
-        example: aut
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: true
-        example: inventore
-        type: string
-        custom: []
-    cleanBodyParameters:
-      uuid: 0aeaf0b0-5239-364a-9298-1b81370d5011
-      name: quidem
-      email: bcasper@example.net
-      phoneNo: itaque
-      vehicleType: magni
-      vehicleLicensePlate: aut
-      status: inventore
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/restaurant/riders/{uuid}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: 'Use uuid as identifier..'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 7cefae7a-7751-35d5-8514-698513fcef92
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 7cefae7a-7751-35d5-8514-698513fcef92
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/restaurant/order-riders
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -312,12 +47,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/restaurant/order-riders
+    uri: api/v1/restaurant/more-info
     metadata:
-      groupName: 'Rider Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        Rider API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -331,230 +66,32 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/order-riders/{id}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: 'Use uuid to get the specified resource.'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the order rider.'
-        required: true
-        example: fugit
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: fugit
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/restaurant/order-riders/{id}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: 'Use uuid as identifier.'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the order rider.'
-        required: true
-        example: ut
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: ut
-    queryParameters: []
-    cleanQueryParameters: []
     bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 68e2f2d2-e40a-326c-9b69-24d809e27dfc
-        type: string
-        custom: []
-      name:
-        name: name
+      restaurantUuid:
+        name: restaurantUuid
         description: ''
         required: true
-        example: omnis
+        example: dicta
         type: string
         custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: uriel.harber@example.com
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
+      delivery:
+        name: delivery
         description: ''
         required: true
-        example: necessitatibus
+        example: officia
         type: string
         custom: []
-      address:
-        name: address
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      postalCode:
-        name: postalCode
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      profilePicture:
-        name: profilePicture
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      vehicleType:
-        name: vehicleType
+      booking:
+        name: booking
         description: ''
         required: true
-        example: nam
-        type: string
-        custom: []
-      vehicleLicensePlate:
-        name: vehicleLicensePlate
-        description: ''
-        required: true
-        example: quia
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: true
-        example: earum
+        example: eius
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 68e2f2d2-e40a-326c-9b69-24d809e27dfc
-      name: omnis
-      email: uriel.harber@example.com
-      phoneNo: necessitatibus
-      vehicleType: nam
-      vehicleLicensePlate: quia
-      status: earum
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/restaurant/order-riders/{id}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: 'Use uuid as identifier..'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the order rider.'
-        required: true
-        example: et
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: et
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+      restaurantUuid: dicta
+      delivery: officia
+      booking: eius
     fileParameters: []
     responses: []
     responseFields: []
@@ -566,73 +103,31 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/rider/riders
+    uri: 'api/v1/restaurant/more-info/{id}'
     metadata:
-      groupName: 'Rider Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        Rider API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Display the specified resource.'
       description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/rider/riders/{uuid}'
-    metadata:
-      groupName: 'Rider Management'
-      groupDescription: |-
-
-        Rider API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: 'Use uuid to get the specified resource.'
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the more info.'
         required: true
-        example: ca832b09-636f-375f-9e60-47f54880d586
+        example: consectetur
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: ca832b09-636f-375f-9e60-47f54880d586
+      id: consectetur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -645,8 +140,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -659,126 +153,35 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/rider/riders/{uuid}'
+    uri: 'api/v1/restaurant/more-info/{id}'
     metadata:
-      groupName: 'Rider Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        Rider API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
-      description: 'Use uuid as identifier.'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the more info.'
         required: true
-        example: 6563cc94-7fe5-30fc-8c69-3a637bf1256a
+        example: molestiae
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6563cc94-7fe5-30fc-8c69-3a637bf1256a
+      id: molestiae
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: b9f082b6-4081-3872-a87b-bc59f14cdb00
-        type: string
-        custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: rerum
-        type: string
-        custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: nitzsche.alek@example.org
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
-        required: true
-        example: et
-        type: string
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      postalCode:
-        name: postalCode
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      profilePicture:
-        name: profilePicture
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      vehicleType:
-        name: vehicleType
-        description: ''
-        required: true
-        example: beatae
-        type: string
-        custom: []
-      vehicleLicensePlate:
-        name: vehicleLicensePlate
-        description: ''
-        required: true
-        example: quo
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: true
-        example: dignissimos
-        type: string
-        custom: []
-    cleanBodyParameters:
-      uuid: b9f082b6-4081-3872-a87b-bc59f14cdb00
-      name: rerum
-      email: nitzsche.alek@example.org
-      phoneNo: et
-      vehicleType: beatae
-      vehicleLicensePlate: quo
-      status: dignissimos
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
@@ -790,31 +193,31 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/rider/riders/{uuid}'
+    uri: 'api/v1/restaurant/more-info/{id}'
     metadata:
-      groupName: 'Rider Management'
+      groupName: 'Restaurant Questionnaire'
       groupDescription: |-
 
-        Rider API resource
+        Questionnaire API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
-      description: 'Use uuid as identifier..'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the more info.'
         required: true
-        example: 7485277e-7a96-39b0-8ab7-216c3c4868f1
+        example: sapiente
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 7485277e-7a96-39b0-8ab7-216c3c4868f1
+      id: sapiente
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

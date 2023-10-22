@@ -1,17 +1,17 @@
-name: 'Food Sub Categories'
+name: 'Food Categories Management'
 description: |-
 
-  Food Sub Categories API resource
+  Food Category API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/orderer-food-sub-categories
+    uri: api/v1/orderer/orderer-food-categories
     metadata:
-      groupName: 'Food Sub Categories'
+      groupName: 'Food Categories Management'
       groupDescription: |-
 
-        Food Sub Categories API resource
+        Food Category API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -35,8 +35,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -48,12 +47,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderer-food-sub-categories
+    uri: api/v1/orderer/orderer-food-categories
     metadata:
-      groupName: 'Food Sub Categories'
+      groupName: 'Food Categories Management'
       groupDescription: |-
 
-        Food Sub Categories API resource
+        Food Category API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -72,43 +71,26 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: est
+        example: quos
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: beatae
+        example: minus
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 6
-        type: integer
-        custom: []
-      createdBy:
-        name: createdBy
-        description: ''
-        required: true
-        example: aliquam
+        example: null
         type: string
         custom: []
-      categoryIds:
-        name: categoryIds
-        description: ''
-        required: true
-        example: []
-        type: object
-        custom: []
     cleanBodyParameters:
-      title: est
-      description: beatae
-      status: 6
-      createdBy: aliquam
-      categoryIds: []
+      title: quos
+      description: minus
     fileParameters: []
     responses: []
     responseFields: []
@@ -120,12 +102,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orderer-food-sub-categories/{id}'
+    uri: 'api/v1/orderer/orderer-food-categories/{id}'
     metadata:
-      groupName: 'Food Sub Categories'
+      groupName: 'Food Categories Management'
       groupDescription: |-
 
-        Food Sub Categories API resource
+        Food Category API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -138,13 +120,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the orderer food sub category.'
+        description: 'The ID of the orderer food category.'
         required: true
-        example: corrupti
+        example: unde
         type: string
         custom: []
     cleanUrlParameters:
-      id: corrupti
+      id: unde
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -157,8 +139,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -171,12 +152,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/orderer/orderer-food-sub-categories/{id}'
+    uri: 'api/v1/orderer/orderer-food-categories/{id}'
     metadata:
-      groupName: 'Food Sub Categories'
+      groupName: 'Food Categories Management'
       groupDescription: |-
 
-        Food Sub Categories API resource
+        Food Category API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -189,13 +170,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the orderer food sub category.'
+        description: 'The ID of the orderer food category.'
         required: true
-        example: maxime
+        example: adipisci
         type: string
         custom: []
     cleanUrlParameters:
-      id: maxime
+      id: adipisci
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -203,7 +184,337 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ducimus
+        example: molestiae
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: hic
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: molestiae
+      description: hic
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orderer-food-categories/{id}'
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orderer food category.'
+        required: true
+        example: nostrum
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: nostrum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/food-categories
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/food-categories
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: amet
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: possimus
+        type: string
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: amet
+      description: possimus
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/food-categories/{id}'
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the food category.'
+        required: true
+        example: in
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: in
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/food-categories/{id}'
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the food category.'
+        required: true
+        example: est
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: est
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: velit
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: accusantium
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: velit
+      description: accusantium
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/food-categories/{id}'
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the food category.'
+        required: true
+        example: praesentium
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: praesentium
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/admin/categories/add
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: quia
         type: string
         custom: []
       description:
@@ -220,109 +531,11 @@ endpoints:
         example: null
         type: string
         custom: []
-      updatedBy:
-        name: updatedBy
-        description: ''
-        required: true
-        example: distinctio
-        type: string
-        custom: []
-      categoryIds:
-        name: categoryIds
-        description: ''
-        required: true
-        example: []
-        type: object
-        custom: []
     cleanBodyParameters:
-      title: ducimus
+      title: quia
       description: sed
-      updatedBy: distinctio
-      categoryIds: []
     fileParameters: []
     responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/orderer-food-sub-categories/{id}'
-    metadata:
-      groupName: 'Food Sub Categories'
-      groupDescription: |-
-
-        Food Sub Categories API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer food sub category.'
-        required: true
-        example: et
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: et
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/restaurant/food-sub-categories
-    metadata:
-      groupName: 'Food Sub Categories'
-      groupDescription: |-
-
-        Food Sub Categories API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -332,135 +545,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/restaurant/food-sub-categories
+    uri: 'api/v1/admin/categories/update/{id}'
     metadata:
-      groupName: 'Food Sub Categories'
+      groupName: 'Food Categories Management'
       groupDescription: |-
 
-        Food Sub Categories API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: magni
-        type: string
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: dignissimos
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: 9
-        type: integer
-        custom: []
-      createdBy:
-        name: createdBy
-        description: ''
-        required: true
-        example: et
-        type: string
-        custom: []
-      categoryIds:
-        name: categoryIds
-        description: ''
-        required: true
-        example: []
-        type: object
-        custom: []
-    cleanBodyParameters:
-      title: magni
-      description: dignissimos
-      status: 9
-      createdBy: et
-      categoryIds: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/food-sub-categories/{id}'
-    metadata:
-      groupName: 'Food Sub Categories'
-      groupDescription: |-
-
-        Food Sub Categories API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the food sub category.'
-        required: true
-        example: commodi
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: commodi
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/restaurant/food-sub-categories/{id}'
-    metadata:
-      groupName: 'Food Sub Categories'
-      groupDescription: |-
-
-        Food Sub Categories API resource
+        Food Category API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -473,13 +563,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the food sub category.'
+        description: 'The ID of the update.'
         required: true
-        example: hic
+        example: voluptates
         type: string
         custom: []
     cleanUrlParameters:
-      id: hic
+      id: voluptates
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -487,114 +577,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: aut
+        example: laudantium
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: temporibus
+        example: molestias
         type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      updatedBy:
-        name: updatedBy
-        description: ''
-        required: true
-        example: omnis
-        type: string
-        custom: []
-      categoryIds:
-        name: categoryIds
-        description: ''
-        required: true
-        example: []
-        type: object
         custom: []
     cleanBodyParameters:
-      title: aut
-      description: temporibus
-      updatedBy: omnis
-      categoryIds: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/restaurant/food-sub-categories/{id}'
-    metadata:
-      groupName: 'Food Sub Categories'
-      groupDescription: |-
-
-        Food Sub Categories API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the food sub category.'
-        required: true
-        example: aspernatur
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: aspernatur
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/restaurant/food-sub-categories/bulk
-    metadata:
-      groupName: 'Food Sub Categories'
-      groupDescription: |-
-
-        Food Sub Categories API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+      title: laudantium
+      description: molestias
     fileParameters: []
     responses: []
     responseFields: []

@@ -1,17 +1,17 @@
-name: 'Menu Management'
+name: 'Food Sub Categories'
 description: |-
 
-  Menu API resource
+  Food Sub Categories API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/orderer-menu
+    uri: api/v1/orderer/orderer-food-sub-categories
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -23,32 +23,8 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters:
-      categories:
-        name: categories
-        description: 'to fetch categories associated with Menu'
-        required: false
-        example: delectus
-        type: string
-        custom: []
-      subCategories:
-        name: subCategories
-        description: 'to fetch categories associated with Menu'
-        required: false
-        example: itaque
-        type: string
-        custom: []
-      restaurant:
-        name: restaurant
-        description: 'to fetch restaurant that owns with Menu'
-        required: false
-        example: doloremque
-        type: string
-        custom: []
-    cleanQueryParameters:
-      categories: delectus
-      subCategories: itaque
-      restaurant: doloremque
+    queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -59,8 +35,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -72,12 +47,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderer-menu
+    uri: api/v1/orderer/orderer-food-sub-categories
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -85,7 +60,7 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: multipart/form-data
+      Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
@@ -96,80 +71,44 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: nulla
+        example: sed
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quis
+        example: recusandae
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 20
+        example: 8
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: vitae
+        example: cumque
         type: string
-        custom: []
-      restaurantId:
-        name: restaurantId
-        description: ''
-        required: true
-        example: culpa
-        type: string
-        custom: []
-      standardPrice:
-        name: standardPrice
-        description: ''
-        required: true
-        example: 7.269577
-        type: number
-        custom: []
-      image:
-        name: image
-        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
-        required: true
-        example: null
-        type: file
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
-        required: false
-        example:
-          - 7
-        type: 'integer[]'
-        custom: []
-      subcategoryIds:
-        name: subcategoryIds
-        description: ''
-        required: false
-        example:
-          - 14
-        type: 'integer[]'
+        required: true
+        example: []
+        type: object
         custom: []
     cleanBodyParameters:
-      title: nulla
-      description: quis
-      status: 20
-      createdBy: vitae
-      restaurantId: culpa
-      standardPrice: 7.269577
-      categoryIds:
-        - 7
-      subcategoryIds:
-        - 14
-    fileParameters:
-      image: null
+      title: sed
+      description: recusandae
+      status: 8
+      createdBy: cumque
+      categoryIds: []
+    fileParameters: []
     responses: []
     responseFields: []
     auth: []
@@ -180,12 +119,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orderer-menu/{id}'
+    uri: 'api/v1/orderer/orderer-food-sub-categories/{id}'
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -198,13 +137,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the orderer menu.'
+        description: 'The ID of the orderer food sub category.'
         required: true
-        example: ea
+        example: illum
         type: string
         custom: []
     cleanUrlParameters:
-      id: ea
+      id: illum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -217,8 +156,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -231,12 +169,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/orderer/orderer-menu/{id}'
+    uri: 'api/v1/orderer/orderer-food-sub-categories/{id}'
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -244,107 +182,62 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: multipart/form-data
+      Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the orderer menu.'
+        description: 'The ID of the orderer food sub category.'
         required: true
-        example: unde
+        example: sint
         type: string
         custom: []
     cleanUrlParameters:
-      id: unde
+      id: sint
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 4ed672f1-a950-37d5-8a74-cea52f8ed4d3
-        type: string
-        custom: []
       title:
         name: title
         description: ''
         required: true
-        example: ullam
+        example: magni
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: praesentium
+        example: voluptas
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 17
-        type: integer
+        example: null
+        type: string
         custom: []
       updatedBy:
         name: updatedBy
         description: ''
         required: true
-        example: quos
+        example: ab
         type: string
-        custom: []
-      restaurantId:
-        name: restaurantId
-        description: ''
-        required: true
-        example: molestias
-        type: string
-        custom: []
-      standardPrice:
-        name: standardPrice
-        description: ''
-        required: true
-        example: unde
-        type: string
-        custom: []
-      image:
-        name: image
-        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
-        required: true
-        example: null
-        type: file
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
-        required: false
-        example:
-          - 18
-        type: 'integer[]'
-        custom: []
-      subcategoryIds:
-        name: subcategoryIds
-        description: ''
-        required: false
-        example:
-          - 5
-        type: 'integer[]'
+        required: true
+        example: []
+        type: object
         custom: []
     cleanBodyParameters:
-      uuid: 4ed672f1-a950-37d5-8a74-cea52f8ed4d3
-      title: ullam
-      description: praesentium
-      status: 17
-      updatedBy: quos
-      restaurantId: molestias
-      standardPrice: unde
-      categoryIds:
-        - 18
-      subcategoryIds:
-        - 5
-    fileParameters:
-      image: null
+      title: magni
+      description: voluptas
+      updatedBy: ab
+      categoryIds: []
+    fileParameters: []
     responses: []
     responseFields: []
     auth: []
@@ -355,12 +248,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/orderer-menu/{id}'
+    uri: 'api/v1/orderer/orderer-food-sub-categories/{id}'
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -373,13 +266,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the orderer menu.'
+        description: 'The ID of the orderer food sub category.'
         required: true
-        example: laboriosam
+        example: architecto
         type: string
         custom: []
     cleanUrlParameters:
-      id: laboriosam
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -395,12 +288,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/restaurant/menu
+    uri: api/v1/restaurant/food-sub-categories
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -412,32 +305,8 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters:
-      categories:
-        name: categories
-        description: 'to fetch categories associated with Menu'
-        required: false
-        example: id
-        type: string
-        custom: []
-      subCategories:
-        name: subCategories
-        description: 'to fetch categories associated with Menu'
-        required: false
-        example: architecto
-        type: string
-        custom: []
-      restaurant:
-        name: restaurant
-        description: 'to fetch restaurant that owns with Menu'
-        required: false
-        example: porro
-        type: string
-        custom: []
-    cleanQueryParameters:
-      categories: id
-      subCategories: architecto
-      restaurant: porro
+    queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -448,8 +317,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -461,12 +329,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/restaurant/menu
+    uri: api/v1/restaurant/food-sub-categories
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -474,7 +342,7 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: multipart/form-data
+      Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
@@ -483,82 +351,46 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: ''
-        required: true
-        example: tenetur
-        type: string
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: dolores
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: 7
-        type: integer
-        custom: []
-      createdBy:
-        name: createdBy
         description: ''
         required: true
         example: aut
         type: string
         custom: []
-      restaurantId:
-        name: restaurantId
+      description:
+        name: description
         description: ''
         required: true
-        example: commodi
+        example: assumenda
         type: string
         custom: []
-      standardPrice:
-        name: standardPrice
+      status:
+        name: status
+        description: ''
+        required: false
+        example: 9
+        type: integer
+        custom: []
+      createdBy:
+        name: createdBy
         description: ''
         required: true
-        example: 15.8297746
-        type: number
-        custom: []
-      image:
-        name: image
-        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
-        required: true
-        example: null
-        type: file
+        example: et
+        type: string
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
-        required: false
-        example:
-          - 10
-        type: 'integer[]'
-        custom: []
-      subcategoryIds:
-        name: subcategoryIds
-        description: ''
-        required: false
-        example:
-          - 18
-        type: 'integer[]'
+        required: true
+        example: []
+        type: object
         custom: []
     cleanBodyParameters:
-      title: tenetur
-      description: dolores
-      status: 7
-      createdBy: aut
-      restaurantId: commodi
-      standardPrice: 15.8297746
-      categoryIds:
-        - 10
-      subcategoryIds:
-        - 18
-    fileParameters:
-      image: null
+      title: aut
+      description: assumenda
+      status: 9
+      createdBy: et
+      categoryIds: []
+    fileParameters: []
     responses: []
     responseFields: []
     auth: []
@@ -569,12 +401,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/restaurant/menu/{uuid}'
+    uri: 'api/v1/restaurant/food-sub-categories/{id}'
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -585,15 +417,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the food sub category.'
         required: true
-        example: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -606,8 +438,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -620,12 +451,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/restaurant/menu/{uuid}'
+    uri: 'api/v1/restaurant/food-sub-categories/{id}'
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -633,107 +464,62 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: multipart/form-data
+      Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the food sub category.'
         required: true
-        example: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+        example: numquam
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+      id: numquam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 95c94345-d62d-346c-8887-04770695b27e
-        type: string
-        custom: []
       title:
         name: title
         description: ''
         required: true
-        example: consequatur
+        example: est
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eligendi
+        example: quod
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 3
-        type: integer
+        example: null
+        type: string
         custom: []
       updatedBy:
         name: updatedBy
         description: ''
         required: true
-        example: nostrum
+        example: deserunt
         type: string
-        custom: []
-      restaurantId:
-        name: restaurantId
-        description: ''
-        required: true
-        example: illum
-        type: string
-        custom: []
-      standardPrice:
-        name: standardPrice
-        description: ''
-        required: true
-        example: nihil
-        type: string
-        custom: []
-      image:
-        name: image
-        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
-        required: true
-        example: null
-        type: file
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
-        required: false
-        example:
-          - 20
-        type: 'integer[]'
-        custom: []
-      subcategoryIds:
-        name: subcategoryIds
-        description: ''
-        required: false
-        example:
-          - 3
-        type: 'integer[]'
+        required: true
+        example: []
+        type: object
         custom: []
     cleanBodyParameters:
-      uuid: 95c94345-d62d-346c-8887-04770695b27e
-      title: consequatur
-      description: eligendi
-      status: 3
-      updatedBy: nostrum
-      restaurantId: illum
-      standardPrice: nihil
-      categoryIds:
-        - 20
-      subcategoryIds:
-        - 3
-    fileParameters:
-      image: null
+      title: est
+      description: quod
+      updatedBy: deserunt
+      categoryIds: []
+    fileParameters: []
     responses: []
     responseFields: []
     auth: []
@@ -744,12 +530,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/restaurant/menu/{uuid}'
+    uri: 'api/v1/restaurant/food-sub-categories/{id}'
     metadata:
-      groupName: 'Menu Management'
+      groupName: 'Food Sub Categories'
       groupDescription: |-
 
-        Menu API resource
+        Food Sub Categories API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -760,15 +546,47 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the food sub category.'
         required: true
-        example: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+        example: nostrum
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+      id: nostrum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/food-sub-categories/bulk
+    metadata:
+      groupName: 'Food Sub Categories'
+      groupDescription: |-
+
+        Food Sub Categories API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

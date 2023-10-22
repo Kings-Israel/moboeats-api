@@ -37,8 +37,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -74,11 +73,11 @@ endpoints:
         name: userId
         description: ''
         required: true
-        example: 8
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      userId: 8
+      userId: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -110,11 +109,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
+        example: 6853de20-a285-3829-b8ec-18e66e76a160
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
+      uuid: 6853de20-a285-3829-b8ec-18e66e76a160
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -127,8 +126,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -160,11 +158,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
+        example: 91636072-2565-3a51-aa07-c7482cda5bd7
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
+      uuid: 91636072-2565-3a51-aa07-c7482cda5bd7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

@@ -29,13 +29,13 @@ class FoodCommonCategory extends Model implements UrlRoutable
     }
 
     protected $fillable = [
-        // 'uuid',
         'title',
         'description',
         'status',
         'created_by',
         'updated_by',
         'image',
+        'restaurant_id',
     ];
 
     /**

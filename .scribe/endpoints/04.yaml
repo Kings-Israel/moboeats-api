@@ -1,17 +1,17 @@
-name: 'Food Categories Management'
+name: 'Restaurant Management'
 description: |-
 
-  Food Category API resource
+  Restaurant API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/orderer-food-categories
+    uri: api/v1/orderer/orderer-restaurants
     metadata:
-      groupName: 'Food Categories Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Food Category API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -23,8 +23,16 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      questionnaire:
+        name: questionnaire
+        description: 'to fetch associated restaurant questionnaire answers'
+        required: false
+        example: ullam
+        type: string
+        custom: []
+    cleanQueryParameters:
+      questionnaire: ullam
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -35,8 +43,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -48,12 +55,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderer-food-categories
+    uri: api/v1/orderer/orderer-restaurants
     metadata:
-      groupName: 'Food Categories Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Food Category API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -68,306 +75,129 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      title:
-        name: title
+      name:
+        name: name
         description: ''
         required: true
-        example: provident
+        example: dolorem
         type: string
         custom: []
-      description:
-        name: description
+      name_short:
+        name: name_short
         description: ''
         required: true
-        example: in
+        example: iure
         type: string
         custom: []
-      status:
-        name: status
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: cryan@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: sit
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: cumque
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
         description: ''
         required: false
         example: null
         type: string
         custom: []
-      createdBy:
-        name: createdBy
+      address:
+        name: address
         description: ''
-        required: true
-        example: corporis
+        required: false
+        example: null
         type: string
         custom: []
-    cleanBodyParameters:
-      title: provident
-      description: in
-      createdBy: corporis
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/orderer/orderer-food-categories/{id}'
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer food category.'
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: amet
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: hic
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
         required: true
         example: ut
         type: string
         custom: []
-    cleanUrlParameters:
-      id: ut
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/orderer-food-categories/{id}'
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer food category.'
-        required: true
-        example: rem
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: rem
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: ipsum
-        type: string
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: true
-        example: aut
-        type: string
-        custom: []
-      updatedBy:
-        name: updatedBy
-        description: ''
-        required: true
-        example: aliquid
-        type: string
-        custom: []
-    cleanBodyParameters:
-      title: ipsum
-      description: consequatur
-      status: aut
-      updatedBy: aliquid
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/orderer-food-categories/{id}'
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer food category.'
-        required: true
-        example: velit
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: velit
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/restaurant/food-categories
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/restaurant/food-categories
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: iusto
-        type: string
-        custom: []
-      status:
-        name: status
+      url:
+        name: url
         description: ''
         required: false
         example: null
         type: string
         custom: []
-      createdBy:
-        name: createdBy
+      logo:
+        name: logo
         description: ''
         required: true
-        example: eos
+        example: minima
         type: string
         custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 2
+        type: integer
+        custom: []
     cleanBodyParameters:
-      title: consequatur
-      description: iusto
-      createdBy: eos
+      name: dolorem
+      name_short: iure
+      email: cryan@example.com
+      about: sit
+      about_short: cumque
+      place_id: amet
+      latitude: hic
+      longitude: ut
+      logo: minima
+      sitting_capacity: 2
     fileParameters: []
     responses: []
     responseFields: []
@@ -379,12 +209,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/restaurant/food-categories/{id}'
+    uri: 'api/v1/orderer/orderer-restaurants/{id}'
     metadata:
-      groupName: 'Food Categories Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Food Category API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -397,13 +227,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the food category.'
+        description: 'The ID of the orderer restaurant.'
         required: true
-        example: omnis
+        example: ullam
         type: string
         custom: []
     cleanUrlParameters:
-      id: omnis
+      id: ullam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -416,8 +246,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -430,12 +259,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/restaurant/food-categories/{id}'
+    uri: 'api/v1/orderer/orderer-restaurants/{id}'
     metadata:
-      groupName: 'Food Categories Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Food Category API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -448,49 +277,134 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the food category.'
+        description: 'The ID of the orderer restaurant.'
         required: true
-        example: laudantium
+        example: temporibus
         type: string
         custom: []
     cleanUrlParameters:
-      id: laudantium
+      id: temporibus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      title:
-        name: title
+      name:
+        name: name
+        description: ''
+        required: true
+        example: ab
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: alias
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: cmills@example.org
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: harum
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: facere
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
         description: ''
         required: true
         example: tempore
         type: string
         custom: []
-      description:
-        name: description
+      address:
+        name: address
         description: ''
         required: true
-        example: praesentium
+        example: et
         type: string
         custom: []
-      status:
-        name: status
+      state:
+        name: state
         description: ''
         required: true
-        example: consequatur
+        example: fugit
         type: string
         custom: []
-      updatedBy:
-        name: updatedBy
+      postal_code:
+        name: postal_code
         description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 19
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
         required: true
         example: aut
         type: string
         custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: sequi
+        type: string
+        custom: []
     cleanBodyParameters:
-      title: tempore
-      description: praesentium
-      status: consequatur
-      updatedBy: aut
+      name: ab
+      name_short: alias
+      email: cmills@example.org
+      about: harum
+      about_short: facere
+      phone_no: tempore
+      address: et
+      state: fugit
+      postal_code: ut
+      sitting_capacity: 19
+      latitude: aut
+      longitude: sequi
     fileParameters: []
     responses: []
     responseFields: []
@@ -502,12 +416,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/restaurant/food-categories/{id}'
+    uri: 'api/v1/orderer/orderer-restaurants/{id}'
     metadata:
-      groupName: 'Food Categories Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Food Category API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -520,17 +434,1241 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the food category.'
+        description: 'The ID of the orderer restaurant.'
         required: true
-        example: quo
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: quo
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/restaurant
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: illo
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: veniam
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: rosenbaum.genevieve@example.org
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: mollitia
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: doloremque
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: quis
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: vel
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: true
+        example: molestias
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 20
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      name: illo
+      name_short: veniam
+      email: rosenbaum.genevieve@example.org
+      about: mollitia
+      about_short: doloremque
+      place_id: quis
+      latitude: vel
+      longitude: consequatur
+      logo: molestias
+      sitting_capacity: 20
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/dashboard
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      questionnaire:
+        name: questionnaire
+        description: 'to fetch associated restaurant questionnaire answers'
+        required: false
+        example: sit
+        type: string
+        custom: []
+    cleanQueryParameters:
+      questionnaire: sit
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: eligendi
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: omnis
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: padberg.courtney@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: praesentium
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: omnis
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: impedit
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: quam
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: consequuntur
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: true
+        example: quod
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 8
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      name: eligendi
+      name_short: omnis
+      email: padberg.courtney@example.com
+      about: praesentium
+      about_short: omnis
+      place_id: impedit
+      latitude: quam
+      longitude: consequuntur
+      logo: quod
+      sitting_capacity: 8
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: in
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: selena05@example.net
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: ipsum
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: corrupti
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: voluptas
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: true
+        example: temporibus
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 15
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: magni
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: quam
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: in
+      name_short: et
+      email: selena05@example.net
+      about: ipsum
+      about_short: corrupti
+      phone_no: et
+      address: voluptas
+      state: temporibus
+      postal_code: ut
+      sitting_capacity: 15
+      latitude: magni
+      longitude: quam
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/restaurants/{restaurant_uuid}/update'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: consectetur
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: pauline27@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: dolores
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: quam
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: voluptas
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: enim
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: true
+        example: dolorem
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: true
+        example: sint
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 20
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: deserunt
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: ut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: et
+      name_short: consectetur
+      email: pauline27@example.com
+      about: dolores
+      about_short: quam
+      phone_no: voluptas
+      address: enim
+      state: dolorem
+      postal_code: sint
+      sitting_capacity: 20
+      latitude: deserunt
+      longitude: ut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/riders/{id}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rider.'
+        required: true
+        example: labore
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: labore
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/payments
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurant/{restaurant_uuid}/payments'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurant/{restaurant_uuid}/orders'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurant/{restaurant_uuid}/menu'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/{restaurant}/categories'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Categories added by the restaurant'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        name: restaurant
+        description: 'The restaurant.'
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+      id:
+        name: id
+        description: 'The ID or the UUID of the restaurant'
+        required: false
+        example: necessitatibus
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant: c56fce74-ca91-4019-81d1-5e746f59ed24
+      id: necessitatibus
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/{restaurant_uuid}/categories/add'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Add a new category for the specified restaurant'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: ad
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: est
+      description: ad
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/{restaurant}/categories/{id}/update'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a category'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        name: restaurant
+        description: 'The restaurant.'
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+      id:
+        name: id
+        description: 'The id of the category'
+        required: false
+        example: distinctio
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The uuid of the restaurant'
+        required: false
+        example: 81884b8e-3275-3bb7-aad4-19e893c6ad54
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant: c56fce74-ca91-4019-81d1-5e746f59ed24
+      id: distinctio
+      uuid: 81884b8e-3275-3bb7-aad4-19e893c6ad54
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: labore
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: et
+      description: labore
     fileParameters: []
     responses: []
     responseFields: []

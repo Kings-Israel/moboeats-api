@@ -1,28 +1,44 @@
-name: 'Restaurant Questionnaire'
+name: 'Payment Post Controller'
 description: |-
 
-  Questionnaire API resource
+  Payment API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/restaurant/more-info
+    uri: 'api/v1/orderer/payment/{user_id}/{order_id}'
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Payment Post Controller'
       groupDescription: |-
 
-        Questionnaire API resource
+        Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Store a newly created resource in storage.'
       description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: quos
+        type: string
+        custom: []
+      order_id:
+        name: order_id
+        description: 'The ID of the order.'
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+    cleanUrlParameters:
+      user_id: quos
+      order_id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -30,13 +46,14 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        status: 403
+        content: '{"status":"Error has occured...","message":"User not found","data":"Order Payment"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          vary: Origin
         description: null
         custom: []
     responseFields: []
@@ -48,15 +65,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/restaurant/more-info
+    uri: api/v1/order/payment/create-paypal-order
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Payment Post Controller'
       groupDescription: |-
 
-        Questionnaire API resource
+        Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -67,121 +84,6 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      restaurantUuid:
-        name: restaurantUuid
-        description: ''
-        required: true
-        example: magnam
-        type: string
-        custom: []
-      delivery:
-        name: delivery
-        description: ''
-        required: true
-        example: odio
-        type: string
-        custom: []
-      booking:
-        name: booking
-        description: ''
-        required: true
-        example: quae
-        type: string
-        custom: []
-    cleanBodyParameters:
-      restaurantUuid: magnam
-      delivery: odio
-      booking: quae
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/more-info/{id}'
-    metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the more info.'
-        required: true
-        example: totam
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: totam
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: 'http://localhost:3000'
-          access-control-allow-credentials: 'true'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/restaurant/more-info/{id}'
-    metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the more info.'
-        required: true
-        example: nihil
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: nihil
-    queryParameters: []
-    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -194,32 +96,24 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/v1/restaurant/more-info/{id}'
+      - POST
+    uri: api/v1/order/payment/capture-paypal-order
     metadata:
-      groupName: 'Restaurant Questionnaire'
+      groupName: 'Payment Post Controller'
       groupDescription: |-
 
-        Questionnaire API resource
+        Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the more info.'
-        required: true
-        example: placeat
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: placeat
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

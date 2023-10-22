@@ -114,7 +114,11 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
         Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
-        Route::get('restaurant/{restaurant}/menu', [RestaurantController::class, 'restaurantMenu']);
+        Route::get('/restaurant/{restaurant}/menu', [RestaurantController::class, 'restaurantMenu']);
+
+        Route::get('{restaurant}/categories', [RestaurantController::class, 'categories']);
+        Route::post('{restaurant}/categories/add', [RestaurantController::class, 'addCategory']);
+        Route::post('{restaurant}/categories/{id}/update', [RestaurantController::class, 'updateCategory']);
 
         // Operating Hours
         Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);

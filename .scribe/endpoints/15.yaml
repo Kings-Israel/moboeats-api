@@ -1,17 +1,17 @@
-name: 'Orderer/Customer Management'
+name: 'Menu Prices Management'
 description: |-
 
-  Orderer/Customer API resource
+  Food Menu Prices API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/orderers
+    uri: api/v1/restaurant/menu-prices
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Menu Prices Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Food Menu Prices API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -47,12 +47,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderers
+    uri: api/v1/restaurant/menu-prices
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Menu Prices Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Food Menu Prices API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -67,65 +67,39 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
+      price:
+        name: price
+        description: 'Must be between 0 and 9999999999.99.'
+        required: true
+        example: 1
+        type: number
+        custom: []
+      description:
+        name: description
         description: ''
         required: true
-        example: impedit
+        example: ut
         type: string
         custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
+      status:
+        name: status
+        description: ''
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      menu_id:
+        name: menu_id
+        description: ''
         required: true
-        example: dillon13@example.com
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      mapLocation:
-        name: mapLocation
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      image:
-        name: image
-        description: ''
-        required: false
-        example: null
+        example: error
         type: string
         custom: []
     cleanBodyParameters:
-      name: impedit
-      email: dillon13@example.com
+      price: 1
+      description: ut
+      status: 2
+      menu_id: error
     fileParameters: []
     responses: []
     responseFields: []
@@ -137,12 +111,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/restaurant/menu-prices/{id}'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Menu Prices Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Food Menu Prices API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -153,15 +127,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the menu price.'
         required: true
-        example: dcbafe2b-9597-3394-a771-28b5f00aab3a
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: dcbafe2b-9597-3394-a771-28b5f00aab3a
+      id: b7da2f92-2051-4864-8824-3ad5e6af8971
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -187,12 +161,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/restaurant/menu-prices/{id}'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Menu Prices Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Food Menu Prices API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -203,90 +177,43 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the menu price.'
         required: true
-        example: 6f20eca5-180f-3863-a54a-ad0760168988
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6f20eca5-180f-3863-a54a-ad0760168988
+      id: b7da2f92-2051-4864-8824-3ad5e6af8971
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 4a83a280-92c8-3dbe-a0bd-d87bbcab3ca8
-        type: string
-        custom: []
-      name:
-        name: name
+      description:
+        name: description
         description: ''
         required: true
-        example: odit
+        example: quo
         type: string
         custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: hanna69@example.com
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
+      status:
+        name: status
         description: ''
         required: true
-        example: qui
+        example: quasi
         type: string
         custom: []
-      address:
-        name: address
-        description: ''
-        required: true
-        example: ut
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: true
-        example: aliquid
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: true
-        example: labore
-        type: string
-        custom: []
-      mapLocation:
-        name: mapLocation
-        description: ''
-        required: true
-        example: voluptatum
-        type: string
-        custom: []
-      image:
-        name: image
-        description: ''
+      price:
+        name: price
+        description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: null
-        type: string
+        example: 0
+        type: number
         custom: []
     cleanBodyParameters:
-      uuid: 4a83a280-92c8-3dbe-a0bd-d87bbcab3ca8
-      name: odit
-      email: hanna69@example.com
-      phoneNo: qui
-      address: ut
-      city: aliquid
-      state: labore
-      mapLocation: voluptatum
+      description: quo
+      status: quasi
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []
@@ -298,12 +225,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/restaurant/menu-prices/{id}'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Menu Prices Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Food Menu Prices API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -314,15 +241,119 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the menu price.'
         required: true
-        example: 0356a61e-0a16-330e-ac47-24feea4bdedb
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 0356a61e-0a16-330e-ac47-24feea4bdedb
+      id: b7da2f92-2051-4864-8824-3ad5e6af8971
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/menu-prices/{id}/update'
+    metadata:
+      groupName: 'Menu Prices Management'
+      groupDescription: |-
+
+        Food Menu Prices API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu price.'
+        required: true
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: b7da2f92-2051-4864-8824-3ad5e6af8971
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      description:
+        name: description
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: true
+        example: illo
+        type: string
+        custom: []
+      price:
+        name: price
+        description: 'Must be between 0 and 9999999999.99.'
+        required: false
+        example: 0
+        type: number
+        custom: []
+    cleanBodyParameters:
+      description: quia
+      status: illo
+      price: 0
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/menu-prices/{id}/delete'
+    metadata:
+      groupName: 'Menu Prices Management'
+      groupDescription: |-
+
+        Food Menu Prices API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu price.'
+        required: true
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: b7da2f92-2051-4864-8824-3ad5e6af8971
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

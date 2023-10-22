@@ -26,7 +26,6 @@ class FoodCommonCategoryController extends Controller
      */
     public function index(Request $request)
     {
-        // return FoodCommonCategory::all();
         $filter =  new FoodCommonCategoryFilter();
         $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
         $includeSubcategories = $request->query('includeSubcategories');

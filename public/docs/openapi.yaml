@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
-  title: MoboEats
+  title: Moboeats
   description: ''
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost:8000'
+    url: 'http://moboeats.test'
 paths:
   /api/v1/login:
     post:
@@ -16,29 +16,6 @@ paths:
       responses: {  }
       tags:
         - 'Authentication Management'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: nschulist@example.org
-                password:
-                  type: string
-                  description: ''
-                  example: D1FPFh
-                userType:
-                  type: string
-                  description: ''
-                  example: qui
-              required:
-                - email
-                - password
-                - userType
       security: []
   /api/v1/orderer/cart:
     get:
@@ -80,7 +57,7 @@ paths:
                 userId:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 20
               required:
                 - userId
       security: []
@@ -120,7 +97,7 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 424a527c-15f6-4b85-b2d1-c1e1a21c162w
+        example: 6853de20-a285-3829-b8ec-18e66e76a160
         required: true
         schema:
           type: string
@@ -164,15 +141,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 10
                 quantity:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 3
                 status:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 11
               required:
                 - menuId
                 - quantity
@@ -217,15 +194,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 12
                 quantity:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 11
                 status:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 10
               required:
                 - menuId
                 - quantity
@@ -244,7 +221,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the cart item.'
-        example: 085b995b-e9f2-4e64-887b-37b422b7ba66
+        example: non
         required: true
         schema:
           type: string
@@ -288,15 +265,15 @@ paths:
                 cartId:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 3
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 1
                 delivery:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 deliveryFee:
                   type: string
                   description: 'This field is required when <code>delivery</code> is <code>=</code> or <code>true</code>.'
@@ -305,6 +282,10 @@ paths:
                   type: string
                   description: 'This field is required when <code>delivery</code> is <code>=</code> or <code>true</code>.'
                   example: null
+                booking_time:
+                  type: string
+                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2023-10-22 13:00:53</code>.'
+                  example: '2051-01-08'
               required:
                 - cartId
                 - restaurantId
@@ -346,32 +327,10 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         required: true
         schema:
           type: string
-  /api/v1/restaurant/orders:
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - 'Customer Order Management'
-      security: []
   '/api/v1/restaurant/orders/{uuid}':
     get:
       summary: 'Display the specified resource.'
@@ -417,10 +376,60 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 6a2011e6-6be5-4763-9c64-ab94b59cd7ff
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         required: true
         schema:
           type: string
+  /api/v1/restaurant/orders:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Customer Order Management'
+      security: []
+  /api/v1/restaurant/orders/assign:
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantOrdersAssign
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Customer Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                  description: ''
+                  example: exercitationem
+                rider_id:
+                  type: string
+                  description: ''
+                  example: aut
+              required:
+                - order_id
+                - rider_id
+      security: []
   /api/v1/orderer/restaurant-bookmark:
     get:
       summary: 'Display a listing of the resource.'
@@ -461,7 +470,7 @@ paths:
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 6
               required:
                 - restaurantId
       security: []
@@ -501,7 +510,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the restaurant bookmark.'
-        example: 476e078f-3ad2-45b6-8bd6-051145768faa
+        example: sed
         required: true
         schema:
           type: string
@@ -545,7 +554,7 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 8
               required:
                 - menuId
       security: []
@@ -585,7 +594,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the menu bookmark.'
-        example: 96d91d74-fc7d-468d-a00d-9c244b6f0a7d
+        example: quaerat
         required: true
         schema:
           type: string
@@ -630,19 +639,19 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: j
+                  example: d
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: connor18@example.com
+                  example: jast.sandy@example.com
                 password:
                   type: string
                   description: ''
-                  example: officia
+                  example: et
                 userType:
                   type: string
                   description: ''
-                  example: sit
+                  example: reprehenderit
                 otp:
                   type: string
                   description: ''
@@ -675,6 +684,606 @@ paths:
     get:
       summary: ''
       operationId: getApiV1User
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/restaurant/{id}/operating-hours':
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantIdOperatingHours
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the restaurant.'
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{uuid}/operating-hours':
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantUuidOperatingHours
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{uuid}/operating-hours/update':
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantUuidOperatingHoursUpdate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                days:
+                  type: string
+                  description: ''
+                  example: qui
+                opening_times:
+                  type: array
+                  description: 'Must be a valid date in the format <code>H:i</code>.'
+                  example:
+                    - '13:00'
+                  items:
+                    type: string
+                closing_times:
+                  type: array
+                  description: 'Must be a valid date in the format <code>H:i</code>.'
+                  example:
+                    - '13:00'
+                  items:
+                    type: string
+              required:
+                - days
+                - opening_times
+                - closing_times
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{id}/documents':
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantIdDocuments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the restaurant.'
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{uuid}/documents/store':
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantUuidDocumentsStore
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                names:
+                  type: array
+                  description: ''
+                  example:
+                    - enim
+                  items:
+                    type: string
+                files:
+                  type: array
+                  description: ''
+                  example: null
+                  items:
+                    type: string
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{uuid}/documents/update':
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantUuidDocumentsUpdate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                names:
+                  type: array
+                  description: ''
+                  example:
+                    - commodi
+                  items:
+                    type: string
+                files:
+                  type: array
+                  description: ''
+                  example: null
+                  items:
+                    type: string
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/documents/{id}/download':
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantDocumentsIdDownload
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the document.'
+        example: animi
+        required: true
+        schema:
+          type: string
+  /api/v1/admin/login:
+    post:
+      summary: ''
+      operationId: postApiV1AdminLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/admin/dashboard:
+    get:
+      summary: ''
+      operationId: getApiV1AdminDashboard
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/admin/categories:
+    get:
+      summary: ''
+      operationId: getApiV1AdminCategories
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/admin/sub-categories:
+    get:
+      summary: ''
+      operationId: getApiV1AdminSubCategories
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/admin/sub-categories/add:
+    post:
+      summary: ''
+      operationId: postApiV1AdminSubCategoriesAdd
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: string
+                  description: ''
+                  example: deserunt
+                title:
+                  type: string
+                  description: ''
+                  example: cumque
+                status:
+                  type: integer
+                  description: ''
+                  example: 18
+              required:
+                - category_id
+                - title
+                - status
+      security: []
+  '/api/v1/admin/sub-categories/update/{id}':
+    post:
+      summary: ''
+      operationId: postApiV1AdminSubCategoriesUpdateId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: earum
+              required:
+                - title
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  '/api/v1/admin/users/{role}':
+    get:
+      summary: ''
+      operationId: getApiV1AdminUsersRole
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: role
+        description: ''
+        example: 6c0a4cb4-c8dc-47bc-9bd1-915f551e6237
+        required: true
+        schema:
+          type: string
+  '/api/v1/admin/users/customer/{id}/details':
+    get:
+      summary: ''
+      operationId: getApiV1AdminUsersCustomerIdDetails
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the customer.'
+        example: pariatur
+        required: true
+        schema:
+          type: string
+  '/api/v1/admin/users/restaurant-admin/{id}/details':
+    get:
+      summary: ''
+      operationId: getApiV1AdminUsersRestaurantAdminIdDetails
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the restaurant admin.'
+        example: iusto
+        required: true
+        schema:
+          type: string
+  '/api/v1/admin/users/rider/{id}/details':
+    get:
+      summary: ''
+      operationId: getApiV1AdminUsersRiderIdDetails
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the rider.'
+        example: veritatis
+        required: true
+        schema:
+          type: string
+  /api/v1/admin/orders:
+    get:
+      summary: ''
+      operationId: getApiV1AdminOrders
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/admin/restaurants:
+    get:
+      summary: ''
+      operationId: getApiV1AdminRestaurants
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/admin/restaurants/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1AdminRestaurantsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the restaurant.'
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  /api/v1/admin/payments:
+    get:
+      summary: ''
+      operationId: getApiV1AdminPayments
       description: ''
       parameters: []
       responses:
@@ -733,23 +1342,18 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: provident
+                  example: quos
                 description:
                   type: string
                   description: ''
-                  example: in
+                  example: minus
                 status:
                   type: string
                   description: ''
                   example: null
-                createdBy:
-                  type: string
-                  description: ''
-                  example: corporis
               required:
                 - title
                 - description
-                - createdBy
       security: []
   '/api/v1/orderer/orderer-food-categories/{id}':
     get:
@@ -791,24 +1395,14 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: molestiae
                 description:
                   type: string
                   description: ''
-                  example: consequatur
-                status:
-                  type: string
-                  description: ''
-                  example: aut
-                updatedBy:
-                  type: string
-                  description: ''
-                  example: aliquid
+                  example: hic
               required:
                 - title
                 - description
-                - status
-                - updatedBy
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -824,7 +1418,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food category.'
-        example: ut
+        example: unde
         required: true
         schema:
           type: string
@@ -868,23 +1462,18 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: amet
                 description:
                   type: string
                   description: ''
-                  example: iusto
+                  example: possimus
                 status:
                   type: string
                   description: ''
                   example: null
-                createdBy:
-                  type: string
-                  description: ''
-                  example: eos
               required:
                 - title
                 - description
-                - createdBy
       security: []
   '/api/v1/restaurant/food-categories/{id}':
     get:
@@ -926,24 +1515,14 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: tempore
+                  example: velit
                 description:
                   type: string
                   description: ''
-                  example: praesentium
-                status:
-                  type: string
-                  description: ''
-                  example: consequatur
-                updatedBy:
-                  type: string
-                  description: ''
-                  example: aut
+                  example: accusantium
               required:
                 - title
                 - description
-                - status
-                - updatedBy
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -959,7 +1538,76 @@ paths:
         in: path
         name: id
         description: 'The ID of the food category.'
-        example: omnis
+        example: in
+        required: true
+        schema:
+          type: string
+  /api/v1/admin/categories/add:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: quia
+                description:
+                  type: string
+                  description: ''
+                  example: sed
+                status:
+                  type: string
+                  description: ''
+                  example: null
+              required:
+                - title
+                - description
+      security: []
+  '/api/v1/admin/categories/update/{id}':
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Food Categories Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: laudantium
+                description:
+                  type: string
+                  description: ''
+                  example: molestias
+              required:
+                - title
+                - description
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: voluptates
         required: true
         schema:
           type: string
@@ -1003,19 +1651,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: est
+                  example: sed
                 description:
                   type: string
                   description: ''
-                  example: beatae
+                  example: recusandae
                 status:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 8
                 createdBy:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: cumque
                 categoryIds:
                   type: object
                   description: ''
@@ -1067,11 +1715,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: magni
                 description:
                   type: string
                   description: ''
-                  example: sed
+                  example: voluptas
                 status:
                   type: string
                   description: ''
@@ -1079,7 +1727,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: distinctio
+                  example: ab
                 categoryIds:
                   type: object
                   description: ''
@@ -1105,7 +1753,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food sub category.'
-        example: corrupti
+        example: illum
         required: true
         schema:
           type: string
@@ -1149,11 +1797,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: magni
+                  example: aut
                 description:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: assumenda
                 status:
                   type: integer
                   description: ''
@@ -1213,11 +1861,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: aut
+                  example: est
                 description:
                   type: string
                   description: ''
-                  example: temporibus
+                  example: quod
                 status:
                   type: string
                   description: ''
@@ -1225,7 +1873,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: omnis
+                  example: deserunt
                 categoryIds:
                   type: object
                   description: ''
@@ -1251,7 +1899,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food sub category.'
-        example: commodi
+        example: ut
         required: true
         schema:
           type: string
@@ -1265,6 +1913,28 @@ paths:
       tags:
         - 'Food Sub Categories'
       security: []
+  /api/v1/orderer/groceries:
+    get:
+      summary: 'Get Groceries'
+      operationId: getGroceries
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Management'
+      security: []
   /api/v1/orderer/orderer-menu:
     get:
       summary: 'Display a listing of the resource.'
@@ -1275,32 +1945,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: delectus
+          example: numquam
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: delectus
+            example: numquam
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: itaque
+          example: harum
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: itaque
+            example: harum
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: doloremque
+          example: laudantium
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: doloremque
+            example: laudantium
       responses:
         401:
           description: ''
@@ -1328,59 +1998,32 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
                 title:
                   type: string
                   description: ''
-                  example: nulla
+                  example: veritatis
                 description:
                   type: string
                   description: ''
-                  example: quis
+                  example: et
                 status:
                   type: integer
                   description: ''
-                  example: 20
-                createdBy:
-                  type: string
-                  description: ''
-                  example: vitae
-                restaurantId:
-                  type: string
-                  description: ''
-                  example: culpa
-                standardPrice:
-                  type: number
-                  description: ''
-                  example: 7.269577
-                image:
-                  type: string
-                  format: binary
-                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                  example: 15
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 7
-                  items:
-                    type: integer
-                subcategoryIds:
-                  type: array
-                  description: ''
-                  example:
-                    - 14
+                    - 1
                   items:
                     type: integer
               required:
                 - title
                 - description
-                - createdBy
-                - restaurantId
-                - standardPrice
-                - image
       security: []
   '/api/v1/orderer/orderer-menu/{id}':
     get:
@@ -1415,80 +2058,39 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
-                uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: 4ed672f1-a950-37d5-8a74-cea52f8ed4d3
                 title:
                   type: string
                   description: ''
-                  example: ullam
+                  example: iusto
                 description:
                   type: string
                   description: ''
-                  example: praesentium
+                  example: qui
                 status:
                   type: integer
                   description: ''
-                  example: 17
-                updatedBy:
-                  type: string
-                  description: ''
-                  example: quos
-                restaurantId:
-                  type: string
-                  description: ''
-                  example: molestias
-                standardPrice:
-                  type: string
-                  description: ''
-                  example: unde
-                image:
-                  type: string
-                  format: binary
-                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                  example: 14
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 18
-                  items:
-                    type: integer
-                subcategoryIds:
-                  type: array
-                  description: ''
-                  example:
-                    - 5
+                    - 15
                   items:
                     type: integer
               required:
-                - uuid
                 - title
                 - description
-                - updatedBy
-                - restaurantId
-                - standardPrice
-                - image
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - 'Menu Management'
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the orderer menu.'
-        example: ea
+        example: corrupti
         required: true
         schema:
           type: string
@@ -1502,32 +2104,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: id
+          example: consequuntur
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: id
+            example: consequuntur
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: architecto
+          example: dignissimos
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: architecto
+            example: dignissimos
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: porro
+          example: omnis
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: porro
+            example: omnis
       responses:
         401:
           description: ''
@@ -1555,59 +2157,32 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
                 title:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: ut
                 description:
                   type: string
                   description: ''
-                  example: dolores
+                  example: est
                 status:
                   type: integer
                   description: ''
-                  example: 7
-                createdBy:
-                  type: string
-                  description: ''
-                  example: aut
-                restaurantId:
-                  type: string
-                  description: ''
-                  example: commodi
-                standardPrice:
-                  type: number
-                  description: ''
-                  example: 15.8297746
-                image:
-                  type: string
-                  format: binary
-                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                  example: 5
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 10
-                  items:
-                    type: integer
-                subcategoryIds:
-                  type: array
-                  description: ''
-                  example:
-                    - 18
+                    - 2
                   items:
                     type: integer
               required:
                 - title
                 - description
-                - createdBy
-                - restaurantId
-                - standardPrice
-                - image
       security: []
   '/api/v1/restaurant/menu/{uuid}':
     get:
@@ -1642,68 +2217,142 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
-                uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: 95c94345-d62d-346c-8887-04770695b27e
                 title:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: rem
                 description:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: numquam
                 status:
                   type: integer
                   description: ''
-                  example: 3
-                updatedBy:
-                  type: string
-                  description: ''
-                  example: nostrum
-                restaurantId:
-                  type: string
-                  description: ''
-                  example: illum
-                standardPrice:
-                  type: string
-                  description: ''
-                  example: nihil
-                image:
-                  type: string
-                  format: binary
-                  description: 'Must be a file. Must not be greater than 2048 kilobytes.'
+                  example: 17
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 20
-                  items:
-                    type: integer
-                subcategoryIds:
-                  type: array
-                  description: ''
-                  example:
-                    - 3
+                    - 11
                   items:
                     type: integer
               required:
-                - uuid
                 - title
                 - description
-                - updatedBy
-                - restaurantId
-                - standardPrice
-                - image
       security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: 80372128-2857-4326-834c-e015ab10f6d5
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{id}/menu/add':
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: quas
+                description:
+                  type: string
+                  description: ''
+                  example: quo
+                status:
+                  type: integer
+                  description: ''
+                  example: 11
+                categoryIds:
+                  type: array
+                  description: ''
+                  example:
+                    - 4
+                  items:
+                    type: integer
+              required:
+                - title
+                - description
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the restaurant.'
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/menu/{id}/update':
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: omnis
+                description:
+                  type: string
+                  description: ''
+                  example: non
+                status:
+                  type: integer
+                  description: ''
+                  example: 2
+                categoryIds:
+                  type: array
+                  description: ''
+                  example:
+                    - 4
+                  items:
+                    type: integer
+              required:
+                - title
+                - description
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu.'
+        example: 80372128-2857-4326-834c-e015ab10f6d5
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/menu/{id}/images/update':
+    post:
+      summary: ''
+      operationId: postApiV1RestaurantMenuIdImagesUpdate
       description: ''
       parameters: []
       responses: {  }
@@ -1713,9 +2362,198 @@ paths:
     parameters:
       -
         in: path
-        name: uuid
-        description: ''
-        example: 7eb6bb38-6d64-4eac-a1a4-7ecf164d2c46
+        name: id
+        description: 'The ID of the menu.'
+        example: 80372128-2857-4326-834c-e015ab10f6d5
+        required: true
+        schema:
+          type: string
+  /api/v1/restaurant/menu-prices:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Prices Management'
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Prices Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: number
+                  description: 'Must be between 0 and 9999999999.99.'
+                  example: 1
+                description:
+                  type: string
+                  description: ''
+                  example: ut
+                status:
+                  type: integer
+                  description: ''
+                  example: 2
+                menu_id:
+                  type: string
+                  description: ''
+                  example: error
+              required:
+                - price
+                - description
+                - menu_id
+      security: []
+  '/api/v1/restaurant/menu-prices/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Menu Prices Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Prices Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: ''
+                  example: quo
+                status:
+                  type: string
+                  description: ''
+                  example: quasi
+                price:
+                  type: number
+                  description: 'Must be between 0 and 9999999999.99.'
+                  example: 0
+              required:
+                - description
+                - status
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Prices Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu price.'
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/menu-prices/{id}/update':
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Prices Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: ''
+                  example: quia
+                status:
+                  type: string
+                  description: ''
+                  example: illo
+                price:
+                  type: number
+                  description: 'Must be between 0 and 9999999999.99.'
+                  example: 0
+              required:
+                - description
+                - status
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu price.'
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/menu-prices/{id}/delete':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Menu Prices Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu price.'
+        example: b7da2f92-2051-4864-8824-3ad5e6af8971
         required: true
         schema:
           type: string
@@ -1759,11 +2597,11 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: eos
+                  example: impedit
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gorczany.elvera@example.com
+                  example: dillon13@example.com
                 phoneNo:
                   type: string
                   description: ''
@@ -1832,35 +2670,35 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 5b1e44d5-abef-3e33-8eeb-3d4c01147780
+                  example: 4a83a280-92c8-3dbe-a0bd-d87bbcab3ca8
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: odit
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ypredovic@example.org
+                  example: hanna69@example.com
                 phoneNo:
                   type: string
                   description: ''
-                  example: occaecati
+                  example: qui
                 address:
                   type: string
                   description: ''
-                  example: sint
+                  example: ut
                 city:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: aliquid
                 state:
                   type: string
                   description: ''
-                  example: rem
+                  example: labore
                 mapLocation:
                   type: string
                   description: ''
-                  example: nisi
+                  example: voluptatum
                 image:
                   type: string
                   description: ''
@@ -1889,108 +2727,71 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 5726ffff-3ef4-4237-b61b-5ac351a1b9b1
+        example: dcbafe2b-9597-3394-a771-28b5f00aab3a
         required: true
         schema:
           type: string
-  /api/v1/orderer/payment:
+  '/api/v1/orderer/payment/{user_id}/{order_id}':
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - 'Payment Post Controller'
-      security: []
-    post:
       summary: 'Store a newly created resource in storage.'
       operationId: storeANewlyCreatedResourceInStorage
       description: ''
       parameters: []
-      responses: {  }
-      tags:
-        - 'Payment Post Controller'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                orderId:
-                  type: string
-                  description: ''
-                  example: et
-              required:
-                - orderId
-      security: []
-  '/api/v1/orderer/payment/{uuid}':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
       responses:
-        401:
+        403:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  status: 'Error has occured...'
+                  message: 'User not found'
+                  data: 'Order Payment'
                 properties:
+                  status:
+                    type: string
+                    example: 'Error has occured...'
                   message:
                     type: string
-                    example: Unauthenticated.
-      tags:
-        - 'Payment Post Controller'
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: ''
-      parameters: []
-      responses: {  }
+                    example: 'User not found'
+                  data:
+                    type: string
+                    example: 'Order Payment'
       tags:
         - 'Payment Post Controller'
       security: []
     parameters:
       -
         in: path
-        name: uuid
-        description: ''
-        example: 101383a5-7be7-3afe-9e40-e5f7a0b855ef
+        name: user_id
+        description: 'The ID of the user.'
+        example: quos
         required: true
         schema:
           type: string
-  /api/api/create-paypal-order:
+      -
+        in: path
+        name: order_id
+        description: 'The ID of the order.'
+        example: voluptatem
+        required: true
+        schema:
+          type: string
+  /api/v1/order/payment/create-paypal-order:
     post:
       summary: ''
-      operationId: postApiApiCreatePaypalOrder
+      operationId: postApiV1OrderPaymentCreatePaypalOrder
       description: ''
       parameters: []
       responses: {  }
       tags:
         - 'Payment Post Controller'
       security: []
-  /api/api/capture-paypal-order:
+  /api/v1/order/payment/capture-paypal-order:
     post:
       summary: ''
-      operationId: postApiApiCapturePaypalOrder
+      operationId: postApiV1OrderPaymentCapturePaypalOrder
       description: ''
       parameters: []
       responses: {  }
@@ -2007,12 +2808,12 @@ paths:
           in: query
           name: questionnaire
           description: 'to fetch associated restaurant questionnaire answers'
-          example: quos
+          example: ullam
           required: false
           schema:
             type: string
             description: 'to fetch associated restaurant questionnaire answers'
-            example: quos
+            example: ullam
       responses:
         401:
           description: ''
@@ -2047,24 +2848,24 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: excepturi
-                nameShort:
+                  example: dolorem
+                name_short:
                   type: string
                   description: ''
-                  example: null
+                  example: iure
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: keshaun.brakus@example.net
+                  example: cryan@example.com
                 about:
                   type: string
                   description: ''
-                  example: null
-                aboutShort:
+                  example: sit
+                about_short:
                   type: string
                   description: ''
-                  example: null
-                phoneNo:
+                  example: cumque
+                phone_no:
                   type: string
                   description: ''
                   example: null
@@ -2072,30 +2873,26 @@ paths:
                   type: string
                   description: ''
                   example: null
-                city:
-                  type: string
-                  description: ''
-                  example: null
                 state:
                   type: string
                   description: ''
                   example: null
-                postalCode:
+                postal_code:
                   type: string
                   description: ''
                   example: null
-                mapLocation:
+                place_id:
                   type: string
                   description: ''
-                  example: null
+                  example: amet
                 latitude:
                   type: string
                   description: ''
-                  example: null
+                  example: hic
                 longitude:
                   type: string
                   description: ''
-                  example: null
+                  example: ut
                 url:
                   type: string
                   description: ''
@@ -2103,10 +2900,26 @@ paths:
                 logo:
                   type: string
                   description: ''
+                  example: minima
+                map_location:
+                  type: string
+                  description: ''
                   example: null
+                sitting_capacity:
+                  type: integer
+                  description: ''
+                  example: 2
               required:
                 - name
+                - name_short
                 - email
+                - about
+                - about_short
+                - place_id
+                - latitude
+                - longitude
+                - logo
+                - sitting_capacity
       security: []
   '/api/v1/orderer/orderer-restaurants/{id}':
     get:
@@ -2145,54 +2958,46 @@ paths:
             schema:
               type: object
               properties:
-                uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: fdfeb00a-1ad4-35fc-978e-0646f8b1e164
                 name:
                   type: string
                   description: ''
-                  example: unde
-                nameShort:
+                  example: ab
+                name_short:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: alias
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: alfredo.schiller@example.net
+                  example: cmills@example.org
                 about:
                   type: string
                   description: ''
-                  example: rerum
-                aboutShort:
+                  example: harum
+                about_short:
                   type: string
                   description: ''
-                  example: est
-                phoneNo:
+                  example: facere
+                phone_no:
                   type: string
                   description: ''
-                  example: et
+                  example: tempore
                 address:
                   type: string
                   description: ''
-                  example: vel
-                city:
-                  type: string
-                  description: ''
-                  example: dolore
+                  example: et
                 state:
                   type: string
                   description: ''
-                  example: dicta
-                postalCode:
+                  example: fugit
+                postal_code:
                   type: string
                   description: ''
-                  example: voluptate
-                mapLocation:
+                  example: ut
+                map_location:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: null
                 url:
                   type: string
                   description: ''
@@ -2201,19 +3006,31 @@ paths:
                   type: string
                   description: ''
                   example: null
+                sitting_capacity:
+                  type: integer
+                  description: ''
+                  example: 19
+                latitude:
+                  type: string
+                  description: 'Must not be one of <code>null</code>.'
+                  example: aut
+                longitude:
+                  type: string
+                  description: 'Must not be one of <code>null</code>.'
+                  example: sequi
               required:
-                - uuid
                 - name
-                - nameShort
+                - name_short
                 - email
                 - about
-                - aboutShort
-                - phoneNo
+                - about_short
+                - phone_no
                 - address
-                - city
                 - state
-                - postalCode
-                - mapLocation
+                - postal_code
+                - sitting_capacity
+                - latitude
+                - longitude
       security: []
     delete:
       summary: 'Remove the specified resource from storage.'
@@ -2229,10 +3046,124 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer restaurant.'
-        example: doloribus
+        example: ullam
         required: true
         schema:
           type: string
+  /api/v1/restaurant/restaurant:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: illo
+                name_short:
+                  type: string
+                  description: ''
+                  example: veniam
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: rosenbaum.genevieve@example.org
+                about:
+                  type: string
+                  description: ''
+                  example: mollitia
+                about_short:
+                  type: string
+                  description: ''
+                  example: doloremque
+                phone_no:
+                  type: string
+                  description: ''
+                  example: null
+                address:
+                  type: string
+                  description: ''
+                  example: null
+                state:
+                  type: string
+                  description: ''
+                  example: null
+                postal_code:
+                  type: string
+                  description: ''
+                  example: null
+                place_id:
+                  type: string
+                  description: ''
+                  example: quis
+                latitude:
+                  type: string
+                  description: ''
+                  example: vel
+                longitude:
+                  type: string
+                  description: ''
+                  example: consequatur
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: molestias
+                map_location:
+                  type: string
+                  description: ''
+                  example: null
+                sitting_capacity:
+                  type: integer
+                  description: ''
+                  example: 20
+              required:
+                - name
+                - name_short
+                - email
+                - about
+                - about_short
+                - place_id
+                - latitude
+                - longitude
+                - logo
+                - sitting_capacity
+      security: []
+  /api/v1/restaurant/dashboard:
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantDashboard
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
   /api/v1/restaurant/restaurants:
     get:
       summary: 'Display a listing of the resource.'
@@ -2243,12 +3174,12 @@ paths:
           in: query
           name: questionnaire
           description: 'to fetch associated restaurant questionnaire answers'
-          example: exercitationem
+          example: sit
           required: false
           schema:
             type: string
             description: 'to fetch associated restaurant questionnaire answers'
-            example: exercitationem
+            example: sit
       responses:
         401:
           description: ''
@@ -2283,24 +3214,24 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: voluptas
-                nameShort:
+                  example: eligendi
+                name_short:
                   type: string
                   description: ''
-                  example: null
+                  example: omnis
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: electa.larson@example.net
+                  example: padberg.courtney@example.com
                 about:
                   type: string
                   description: ''
-                  example: null
-                aboutShort:
+                  example: praesentium
+                about_short:
                   type: string
                   description: ''
-                  example: null
-                phoneNo:
+                  example: omnis
+                phone_no:
                   type: string
                   description: ''
                   example: null
@@ -2308,27 +3239,128 @@ paths:
                   type: string
                   description: ''
                   example: null
-                city:
-                  type: string
-                  description: ''
-                  example: null
                 state:
                   type: string
                   description: ''
                   example: null
-                postalCode:
+                postal_code:
                   type: string
                   description: ''
                   example: null
-                mapLocation:
+                place_id:
                   type: string
                   description: ''
-                  example: null
+                  example: impedit
                 latitude:
                   type: string
                   description: ''
-                  example: null
+                  example: quam
                 longitude:
+                  type: string
+                  description: ''
+                  example: consequuntur
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: quod
+                map_location:
+                  type: string
+                  description: ''
+                  example: null
+                sitting_capacity:
+                  type: integer
+                  description: ''
+                  example: 8
+              required:
+                - name
+                - name_short
+                - email
+                - about
+                - about_short
+                - place_id
+                - latitude
+                - longitude
+                - logo
+                - sitting_capacity
+      security: []
+  '/api/v1/restaurant/restaurants/{uuid}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: in
+                name_short:
+                  type: string
+                  description: ''
+                  example: et
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: selena05@example.net
+                about:
+                  type: string
+                  description: ''
+                  example: ipsum
+                about_short:
+                  type: string
+                  description: ''
+                  example: corrupti
+                phone_no:
+                  type: string
+                  description: ''
+                  example: et
+                address:
+                  type: string
+                  description: ''
+                  example: voluptas
+                state:
+                  type: string
+                  description: ''
+                  example: temporibus
+                postal_code:
+                  type: string
+                  description: ''
+                  example: ut
+                map_location:
                   type: string
                   description: ''
                   example: null
@@ -2340,14 +3372,153 @@ paths:
                   type: string
                   description: ''
                   example: null
+                sitting_capacity:
+                  type: integer
+                  description: ''
+                  example: 15
+                latitude:
+                  type: string
+                  description: 'Must not be one of <code>null</code>.'
+                  example: magni
+                longitude:
+                  type: string
+                  description: 'Must not be one of <code>null</code>.'
+                  example: quam
               required:
                 - name
+                - name_short
                 - email
+                - about
+                - about_short
+                - phone_no
+                - address
+                - state
+                - postal_code
+                - sitting_capacity
+                - latitude
+                - longitude
       security: []
-  '/api/v1/restaurant/restaurants/{id}':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/restaurants/{restaurant_uuid}/update':
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: et
+                name_short:
+                  type: string
+                  description: ''
+                  example: consectetur
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: pauline27@example.com
+                about:
+                  type: string
+                  description: ''
+                  example: dolores
+                about_short:
+                  type: string
+                  description: ''
+                  example: quam
+                phone_no:
+                  type: string
+                  description: ''
+                  example: voluptas
+                address:
+                  type: string
+                  description: ''
+                  example: enim
+                state:
+                  type: string
+                  description: ''
+                  example: dolorem
+                postal_code:
+                  type: string
+                  description: ''
+                  example: sint
+                map_location:
+                  type: string
+                  description: ''
+                  example: null
+                url:
+                  type: string
+                  description: ''
+                  example: null
+                logo:
+                  type: string
+                  description: ''
+                  example: null
+                sitting_capacity:
+                  type: integer
+                  description: ''
+                  example: 20
+                latitude:
+                  type: string
+                  description: 'Must not be one of <code>null</code>.'
+                  example: deserunt
+                longitude:
+                  type: string
+                  description: 'Must not be one of <code>null</code>.'
+                  example: ut
+              required:
+                - name
+                - name_short
+                - email
+                - about
+                - about_short
+                - phone_no
+                - address
+                - state
+                - postal_code
+                - sitting_capacity
+                - latitude
+                - longitude
+      security: []
+    parameters:
+      -
+        in: path
+        name: restaurant_uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/riders/{id}':
     get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
+      summary: ''
+      operationId: getApiV1RestaurantRidersId
       description: ''
       parameters: []
       responses:
@@ -2370,15 +3541,175 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the restaurant.'
-        example: 21cba068-7884-4f94-88a0-e65edfeebe1f
+        description: 'The ID of the rider.'
+        example: labore
         required: true
         schema:
           type: string
-  '/api/v1/restaurant/restaurants/{uuid}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
+  /api/v1/restaurant/payments:
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantPayments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+  '/api/v1/restaurant/restaurant/{restaurant_uuid}/payments':
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantRestaurantRestaurant_uuidPayments
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: restaurant_uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/restaurant/{restaurant_uuid}/orders':
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantRestaurantRestaurant_uuidOrders
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: restaurant_uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/restaurant/{restaurant_uuid}/menu':
+    get:
+      summary: ''
+      operationId: getApiV1RestaurantRestaurantRestaurant_uuidMenu
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: restaurant_uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{restaurant}/categories':
+    get:
+      summary: 'Get Categories added by the restaurant'
+      operationId: getCategoriesAddedByTheRestaurant
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: restaurant
+        description: 'The restaurant.'
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'Optional parameter. The ID or the UUID of the restaurant'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: necessitatibus
+  '/api/v1/restaurant/{restaurant_uuid}/categories/add':
+    post:
+      summary: 'Add a new category for the specified restaurant'
+      operationId: addANewCategoryForTheSpecifiedRestaurant
       description: ''
       parameters: []
       responses: {  }
@@ -2391,94 +3722,92 @@ paths:
             schema:
               type: object
               properties:
-                uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: 8452dda1-9743-393a-878c-0f52e46cfbc5
-                name:
+                title:
                   type: string
                   description: ''
-                  example: nemo
-                nameShort:
+                  example: est
+                description:
                   type: string
                   description: ''
-                  example: ratione
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: margaretta57@example.com
-                about:
-                  type: string
-                  description: ''
-                  example: officia
-                aboutShort:
-                  type: string
-                  description: ''
-                  example: debitis
-                phoneNo:
-                  type: string
-                  description: ''
-                  example: sint
-                address:
-                  type: string
-                  description: ''
-                  example: nobis
-                city:
-                  type: string
-                  description: ''
-                  example: sapiente
-                state:
-                  type: string
-                  description: ''
-                  example: ipsum
-                postalCode:
-                  type: string
-                  description: ''
-                  example: eaque
-                mapLocation:
-                  type: string
-                  description: ''
-                  example: quisquam
-                url:
-                  type: string
-                  description: ''
-                  example: null
-                logo:
-                  type: string
-                  description: ''
-                  example: null
+                  example: ad
               required:
-                - uuid
-                - name
-                - nameShort
-                - email
-                - about
-                - aboutShort
-                - phoneNo
-                - address
-                - city
-                - state
-                - postalCode
-                - mapLocation
+                - title
+                - description
       security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
+    parameters:
+      -
+        in: path
+        name: restaurant_uuid
+        description: ''
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        required: true
+        schema:
+          type: string
+  '/api/v1/restaurant/{restaurant}/categories/{id}/update':
+    post:
+      summary: 'Update a category'
+      operationId: updateACategory
       description: ''
       parameters: []
       responses: {  }
       tags:
         - 'Restaurant Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: et
+                description:
+                  type: string
+                  description: ''
+                  example: labore
+              required:
+                - title
+                - description
       security: []
     parameters:
       -
         in: path
-        name: uuid
-        description: ''
-        example: 21cba068-7884-4f94-88a0-e65edfeebe1f
+        name: restaurant
+        description: 'The restaurant.'
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
         required: true
         schema:
           type: string
+      -
+        in: path
+        name: id
+        description: 'Optional parameter. The id of the category'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: distinctio
+      -
+        in: path
+        name: uuid
+        description: 'Optional parameter. The uuid of the restaurant'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 81884b8e-3275-3bb7-aad4-19e893c6ad54
   /api/v1/restaurant/more-info:
     get:
       summary: 'Display a listing of the resource.'
@@ -2519,15 +3848,15 @@ paths:
                 restaurantUuid:
                   type: string
                   description: ''
-                  example: magnam
+                  example: dicta
                 delivery:
                   type: string
                   description: ''
-                  example: odio
+                  example: officia
                 booking:
                   type: string
                   description: ''
-                  example: quae
+                  example: eius
               required:
                 - restaurantUuid
                 - delivery
@@ -2578,339 +3907,162 @@ paths:
         in: path
         name: id
         description: 'The ID of the more info.'
-        example: totam
+        example: consectetur
         required: true
         schema:
           type: string
-  /api/v1/restaurant/riders:
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - 'Rider Management'
-      security: []
-  '/api/v1/restaurant/riders/{uuid}':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: 'Use uuid to get the specified resource.'
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - 'Rider Management'
-      security: []
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: 'Use uuid as identifier.'
-      parameters: []
-      responses: {  }
-      tags:
-        - 'Rider Management'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: 0aeaf0b0-5239-364a-9298-1b81370d5011
-                name:
-                  type: string
-                  description: ''
-                  example: quidem
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: bcasper@example.net
-                phoneNo:
-                  type: string
-                  description: ''
-                  example: itaque
-                address:
-                  type: string
-                  description: ''
-                  example: null
-                city:
-                  type: string
-                  description: ''
-                  example: null
-                state:
-                  type: string
-                  description: ''
-                  example: null
-                postalCode:
-                  type: string
-                  description: ''
-                  example: null
-                profilePicture:
-                  type: string
-                  description: ''
-                  example: null
-                vehicleType:
-                  type: string
-                  description: ''
-                  example: magni
-                vehicleLicensePlate:
-                  type: string
-                  description: ''
-                  example: aut
-                status:
-                  type: string
-                  description: ''
-                  example: inventore
-              required:
-                - uuid
-                - name
-                - email
-                - phoneNo
-                - vehicleType
-                - vehicleLicensePlate
-                - status
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: 'Use uuid as identifier..'
-      parameters: []
-      responses: {  }
-      tags:
-        - 'Rider Management'
-      security: []
-    parameters:
-      -
-        in: path
-        name: uuid
-        description: ''
-        example: 2a4cb41f-94f2-341b-8ce0-8290cb15629c
-        required: true
-        schema:
-          type: string
-  /api/v1/restaurant/order-riders:
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - 'Rider Management'
-      security: []
+  /api/v1/rider/profile/create:
     post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
+      summary: 'Create Rider Profile'
+      operationId: createRiderProfile
       description: ''
       parameters: []
-      responses: {  }
-      tags:
-        - 'Rider Management'
-      security: []
-  '/api/v1/restaurant/order-riders/{id}':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: 'Use uuid to get the specified resource.'
-      parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                example: {  }
+                properties: {  }
       tags:
-        - 'Rider Management'
-      security: []
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: 'Use uuid as identifier.'
-      parameters: []
-      responses: {  }
-      tags:
-        - 'Rider Management'
+        - 'Rider Profile APIs'
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
-                uuid:
+                vehicle_type:
                   type: string
-                  description: 'Must be a valid UUID.'
-                  example: 68e2f2d2-e40a-326c-9b69-24d809e27dfc
-                name:
-                  type: string
-                  description: ''
-                  example: omnis
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: uriel.harber@example.com
-                phoneNo:
+                  description: 'The vehicle type of the rider'
+                  example: dolores
+                vehicle_license_plate:
                   type: string
                   description: ''
-                  example: necessitatibus
-                address:
+                  example: enim
+                profile_picture:
                   type: string
-                  description: ''
-                  example: null
+                  format: binary
+                  description: 'The profile picture of the rider'
+                vehicle_licesne_plate:
+                  type: sring
+                  description: "The license plate of the rider's vehicle"
+                  example: quia
                 city:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'The city where the rider is located'
+                  example: voluptate
                 state:
                   type: string
-                  description: ''
-                  example: null
-                postalCode:
+                  description: 'The state of where the rider is located'
+                  example: ad
+                postal_code:
                   type: string
-                  description: ''
-                  example: null
-                profilePicture:
-                  type: string
-                  description: ''
-                  example: null
-                vehicleType:
-                  type: string
-                  description: ''
-                  example: nam
-                vehicleLicensePlate:
-                  type: string
-                  description: ''
-                  example: quia
-                status:
-                  type: string
-                  description: ''
-                  example: earum
+                  description: 'The postal code of the rider'
+                  example: rem
               required:
-                - uuid
-                - name
-                - email
-                - phoneNo
-                - vehicleType
-                - vehicleLicensePlate
-                - status
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: 'Use uuid as identifier..'
-      parameters: []
-      responses: {  }
-      tags:
-        - 'Rider Management'
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the order rider.'
-        example: fugit
-        required: true
-        schema:
-          type: string
-  /api/v1/rider/riders:
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+                - vehicle_type
+                - vehicle_license_plate
+                - profile_picture
+                - vehicle_licesne_plate
+  /api/v1/rider/profile/update:
+    post:
+      summary: 'Update Rider Prodile'
+      operationId: updateRiderProdile
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                example: {  }
+                properties: {  }
       tags:
-        - 'Rider Management'
-      security: []
-  '/api/v1/rider/riders/{uuid}':
+        - 'Rider Profile APIs'
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: null
+                vehicle_type:
+                  type: string
+                  description: 'The vehicle type of the rider'
+                  example: et
+                vehicle_licesne_plate:
+                  type: sring
+                  description: "The license plate of the rider's vehicle"
+                  example: repellat
+                profile_picture:
+                  type: string
+                  format: binary
+                  description: 'The profile picture of the rider'
+                city:
+                  type: string
+                  description: 'The city where the rider is located'
+                  example: perferendis
+                state:
+                  type: string
+                  description: 'The state of where the rider is located'
+                  example: quasi
+                postal_code:
+                  type: string
+                  description: 'The postal code of the rider'
+                  example: amet
+  /api/v1/rider/profile:
     get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: 'Use uuid to get the specified resource.'
+      summary: 'Get Rider Profile'
+      operationId: getRiderProfile
+      description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                example: {  }
+                properties: {  }
       tags:
-        - 'Rider Management'
-      security: []
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: 'Use uuid as identifier.'
+        - 'Rider Profile APIs'
+  /api/v1/rider/orders:
+    get:
+      summary: 'Get Orders and Assigned Orders'
+      operationId: getOrdersAndAssignedOrders
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - 'Rider Profile APIs'
+  /api/v1/rider/orders/update:
+    post:
+      summary: ''
+      operationId: postApiV1RiderOrdersUpdate
+      description: ''
       parameters: []
       responses: {  }
       tags:
-        - 'Rider Management'
+        - 'Rider Profile APIs'
       requestBody:
         required: true
         content:
@@ -2918,81 +4070,80 @@ paths:
             schema:
               type: object
               properties:
-                uuid:
-                  type: string
-                  description: 'Must be a valid UUID.'
-                  example: b9f082b6-4081-3872-a87b-bc59f14cdb00
-                name:
-                  type: string
-                  description: ''
-                  example: rerum
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: nitzsche.alek@example.org
-                phoneNo:
+                order_id:
                   type: string
                   description: ''
                   example: et
-                address:
-                  type: string
-                  description: ''
-                  example: null
-                city:
-                  type: string
-                  description: ''
-                  example: null
-                state:
-                  type: string
-                  description: ''
-                  example: null
-                postalCode:
-                  type: string
-                  description: ''
-                  example: null
-                profilePicture:
-                  type: string
-                  description: ''
-                  example: null
-                vehicleType:
-                  type: string
-                  description: ''
-                  example: beatae
-                vehicleLicensePlate:
-                  type: string
-                  description: ''
-                  example: quo
                 status:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: harum
               required:
-                - uuid
-                - name
-                - email
-                - phoneNo
-                - vehicleType
-                - vehicleLicensePlate
+                - order_id
                 - status
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
-      description: 'Use uuid as identifier..'
+  '/api/v1/rider/orders/{order_id}/delivery/location/update':
+    post:
+      summary: ''
+      operationId: postApiV1RiderOrdersOrder_idDeliveryLocationUpdate
+      description: ''
       parameters: []
       responses: {  }
       tags:
-        - 'Rider Management'
-      security: []
+        - 'Rider Profile APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                longitude:
+                  type: string
+                  description: ''
+                  example: magnam
+                latitude:
+                  type: string
+                  description: ''
+                  example: et
+              required:
+                - longitude
+                - latitude
     parameters:
       -
         in: path
-        name: uuid
-        description: ''
-        example: ca832b09-636f-375f-9e60-47f54880d586
+        name: order_id
+        description: 'The ID of the order.'
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         required: true
         schema:
           type: string
+  /api/v1/rider/location/update:
+    post:
+      summary: ''
+      operationId: postApiV1RiderLocationUpdate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Rider Profile APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                longitude:
+                  type: string
+                  description: ''
+                  example: quaerat
+                latitude:
+                  type: string
+                  description: ''
+                  example: molestias
+              required:
+                - longitude
+                - latitude
 tags:
   -
     name: 'Authentication Management'
@@ -3025,6 +4176,9 @@ tags:
     name: 'Menu Management'
     description: "\nMenu API resource"
   -
+    name: 'Menu Prices Management'
+    description: "\nFood Menu Prices API resource"
+  -
     name: 'Orderer/Customer Management'
     description: "\nOrderer/Customer API resource"
   -
@@ -3037,5 +4191,5 @@ tags:
     name: 'Restaurant Questionnaire'
     description: "\nQuestionnaire API resource"
   -
-    name: 'Rider Management'
-    description: "\nRider API resource"
+    name: 'Rider Profile APIs'
+    description: ''
