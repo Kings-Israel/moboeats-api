@@ -171,6 +171,11 @@ class OrderController extends Controller
                             ->where(function($query) use ($restaurant, $order, $user) {
                                 $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
 
+                                info('User latitude: '.$user->latitude);
+                                info('User longitude: '.$user->longitude);
+                                info('Delivery latitude: '.$order->user->latitude);
+                                info('Delivery longitude: '.$order->user->longitude);
+
                                 // Get riders who have been assigned delivery to the restaurant
                                 // and are going close to another order from the same restaurant
                                 $deliveries = DB::table("orders")
@@ -178,10 +183,10 @@ class OrderController extends Controller
                                                 ->where('restaurant_id', $order->restaurant_id)
                                                 ->whereIn('status', [1, 2, 3])
                                                 ->select("*",
-                                                    DB::raw("6371 * acos(cos(radians(" . $user->latitude . "))
+                                                    DB::raw("6371 * acos(cos(radians(".$user->latitude."))
                                                     * cos(radians(".$order->user->latitude."))
-                                                    * cos(radians(".$order->user->longitude.") - radians(" . $user->longitude . "))
-                                                    + sin(radians(" .$user->latitude. "))
+                                                    * cos(radians(".$order->user->longitude.") - radians(".$user->longitude."))
+                                                    + sin(radians(".$user->latitude."))
                                                     * sin(radians(".$order->user->latitude."))) AS distance"))
                                                 ->get();
 
