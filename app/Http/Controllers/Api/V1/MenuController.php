@@ -77,7 +77,7 @@ class MenuController extends Controller
             }
         }
 
-        return new MenuCollection($menu->with(['restaurant','menuPrices'])->paginate()->appends($request->query()));
+        return new MenuCollection($menu->with(['restaurant','menuPrices', 'categories.subCategories'])->paginate()->appends($request->query()));
     }
 
     /**
@@ -219,7 +219,7 @@ class MenuController extends Controller
                 return new MenuResource($menu->loadMissing('images'));
             }
         }
-        return new MenuResource($menu->loadMissing('menuPrices'));
+        return new MenuResource($menu->loadMissing('menuPrices', 'categories.subCategories'));
     }
 
     /**

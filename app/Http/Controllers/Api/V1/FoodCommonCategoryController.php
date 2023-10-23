@@ -31,9 +31,9 @@ class FoodCommonCategoryController extends Controller
         $includeSubcategories = $request->query('includeSubcategories');
 
         $categories = FoodCommonCategory::where($filterItems);
-        if ($includeSubcategories) {
-            $categories = $categories->with('food_sub_categories');
-        }
+        // if ($includeSubcategories) {
+        // }
+        $categories = $categories->with('food_sub_categories');
 
         return new FoodCommonCategoryCollection($categories->paginate()->appends($request->query()));
     }
@@ -72,7 +72,7 @@ class FoodCommonCategoryController extends Controller
      */
     public function show(FoodCommonCategory $food_category)
     {
-        return new FoodCommonCategoryResource($food_category);
+        return new FoodCommonCategoryResource($food_category->load('food_sub_categories'));
     }
 
     /**
