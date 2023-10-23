@@ -22,6 +22,14 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/restaurants', [AdminController::class, 'restaurants']);
         Route::get('/restaurants/{id}', [AdminController::class, 'restaurant']);
         Route::get('/payments', [AdminController::class, 'payments']);
+
+        Route::group(['prefix' => 'restaurant/{restaurant}/'], function () {
+            Route::get('/', [AdminController::class, 'restaurant']);
+            Route::get('/payments', [AdminController::class, 'restaurantPayments']);
+            Route::get('/menu', [AdminController::class, 'restaurantMenu']);
+            Route::get('/categories', [AdminController::class, 'restaurantCategories']);
+            Route::get('/orders', [AdminController::class, 'restaurantOrders']);
+        });
     });
 });
 
