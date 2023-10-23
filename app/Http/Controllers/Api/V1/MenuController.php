@@ -63,21 +63,21 @@ class MenuController extends Controller
 
         if ($includesubCategories &&  $includeCategories && $includesubImages) {
             // $menu = $menu->with(['restaurant','categories','subCategories']);
-            $menu = $menu->with(['categories','subCategories', 'images']);
+            $menu = $menu->with(['categories.food_sub_categories','subCategories', 'images']);
         } else {
             if ($includeCategories) {
                 // $menu = $menu->with(['restaurant','categories']);
                 $menu = $menu->with('categories');
             }
             if ($includesubCategories) {
-                $menu = $menu->with('subCategories');
+                $menu = $menu->with('categories.food_sub_categories');
             }
             if ($includesubImages) {
                 $menu = $menu->with('images');
             }
         }
 
-        return new MenuCollection($menu->with(['restaurant','menuPrices', 'categories.subCategories'])->paginate()->appends($request->query()));
+        return new MenuCollection($menu->with(['restaurant','menuPrices', 'categories.food_sub_categories'])->paginate()->appends($request->query()));
     }
 
     /**
