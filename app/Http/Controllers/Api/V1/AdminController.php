@@ -99,9 +99,9 @@ class AdminController extends Controller
 
         // Compare current months orders to previous month
         if ($prev_month_orders != 0) {
-            $orders_difference = ($current_month_orders / $prev_month_orders) * 100;
+            $orders_difference = ceil(($current_month_orders / $prev_month_orders) * 100);
         } else {
-            $orders_difference = $current_month_orders / 100;
+            $orders_difference = ceil($current_month_orders / 100);
         }
 
         $orders_direction = '';
@@ -168,20 +168,25 @@ class AdminController extends Controller
         // Top Restaurants
         $top_restaurants = Restaurant::withCount('orders')->with('user', 'orders')->whereHas('orders')->orderBy('orders_count', 'DESC')->get()->take(5);
 
-        // // Top Menu Items
-        // $top_menu_items = Menu::withCount('orderItems')->with('restaurant')->orders->orderBy('order_items_count', 'DESC')->get()->take(5);
+        // Top Menu Items
+        $top_menu_items = Menu::withCount('orderItems')->with('restaurant')->whereHas('orderItems')->orderBy('order_items_count', 'DESC')->get()->take(5);
 
-        // $top_menu_items_series = [];
-        // $top_menu_items_names = [];
-        // $total_orders_count = 0;
-        // foreach($top_menu_items as $item) {
-        //     $total_orders_count += $item->order_items_count;
-        // }
+        $top_menu_items_series = [];
+        $top_menu_items_names = [];
+        $total_orders_count = 0;
+        foreach($top_menu_items as $item) {
+            $total_orders_count += $item->order_items_count;
+        }
 
-        // foreach ($top_menu_items as $key => $item) {
-        //     array_push($top_menu_items_names, $item->title);
-        //     array_push($top_menu_items_series, ceil(($item->order_items_count / $total_orders_count) * 100));
-        // }
+        foreach ($top_menu_items as $key => $item) {
+            array_push($top_menu_items_names, $item->title);
+            array_push($top_menu_items_series, ceil(($item->order_items_count / $total_orders_count) * 100));
+        }
+
+        $top_menu_series = [
+            'top_menu_items_names' => $top_menu_items_names,
+            'top_menu_items_series' => $top_menu_items_series
+        ];
 
         return $this->success([
             'users' => $users,
@@ -191,6 +196,7 @@ class AdminController extends Controller
             'orders_series' => $orders_made_monthly,
             'payments_series' => $payments_made_monthly,
             'top_restaurants' => $top_restaurants,
+            'top_menu_series' => $top_menu_series,
         ]);
     }
 
