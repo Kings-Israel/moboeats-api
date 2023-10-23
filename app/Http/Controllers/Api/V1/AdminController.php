@@ -335,9 +335,86 @@ class AdminController extends Controller
 
     public function restaurant($id)
     {
-        $restaurant = Restaurant::with('users', 'orders.payments', 'orders.users', 'menus')->where('id', $id);
+        $restaurant = Restaurant::with('users', 'orders.payment', 'orders.user', 'menus', 'operatingHours', 'documents')->withCount('orders', 'menus')->where('id', $id)->orWhere('uuid', $id)->first();
 
         return $this->success($restaurant);
+    }
+
+    public function restaurantPayments(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $payments = Payment::with('order.restaurant', 'order.user')
+                            ->where('transaction_id', '!=', NULL)
+                            ->whereHas('order', function ($query) use ($restaurant) {
+                                $query->whereHas('restaurant', function ($query) use ($restaurant) {
+                                    $query->where('id', '=', $restaurant->id);
+                                });
+                            })
+                            ->when($search && $search != '', function ($query) use ($search) {
+                                $query->whereHas('order', function ($query) use ($search) {
+                                    $query->where(function ($query) use ($search) {
+                                        $query->where('uuid', 'LIKE', '%'.$search.'%')
+                                            ->orWhereHas('user', function ($query) use ($search) {
+                                                $query->where('name', 'LIKE', '%'.$search.'%');
+                                            });
+                                    });
+                                });
+                            })
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(5);
+
+        return $this->success($payments);
+    }
+
+    public function restaurantOrders(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $orders = Order::with('user')
+                        ->where('restaurant_id', $restaurant->id)
+                        ->when($search && $search != '', function ($query) use ($search) {
+                            $query->where('uuid', 'LIKE', '%' . $search . '%')
+                                ->where(function ($query) use ($search) {
+                                    $query->orWhereHas('user', function ($query) use ($search) {
+                                        $query->where('name', 'LIKE', '%' . $query . '%');
+                                    });
+                                });
+                        })
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(5);
+
+        return $this->success($orders);
+    }
+
+    public function restaurantMenu(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $menu = Menu::with('images', 'menuPrices', 'subCategories', 'categories.food_sub_categories')
+                    ->withCount('orderItems')
+                    ->where('restaurant_id', $restaurant->id)
+                    ->when($search && $search != '', function ($query) use ($search) {
+                        $query->where(function ($query) use ($search) {
+                            $query->where('title', 'LIKE', '%' . $search . '%')
+                                    ->orWhere('description', 'LIKE', '%' . $search . '%');
+                        });
+                    })
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(9);
+
+        $categories = FoodCommonCategory::where('restaurant_id', NULL)->orWhere('restaurant_id', $restaurant->id)->get();
+
+        return $this->success(['menu' => $menu, 'categories' => new FoodCommonCategoryCollection($categories)]);
+    }
+
+    public function restaurantCategories($id)
+    {
+        $restaurant = Restaurant::where('uuid', $id)->orWhere('uuid', $id)->first();
+
+        $categories = FoodCommonCategory::where('restaurant_id', $restaurant->id)->paginate(8);
+
+        return $this->success(['categories' => $categories]);
     }
 
     public function orders(Request $request)
