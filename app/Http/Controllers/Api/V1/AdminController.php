@@ -335,7 +335,7 @@ class AdminController extends Controller
 
     public function restaurant($id)
     {
-        $restaurant = Restaurant::with('users', 'orders.payment', 'orders.user', 'menus', 'operatingHours', 'documents')->withCount('orders', 'menus')->where('id', $id)->orWhere('uuid', $id)->first();
+        $restaurant = Restaurant::with('user', 'users', 'orders.payment', 'orders.user', 'menus', 'operatingHours', 'documents')->withCount('orders', 'menus')->where('id', $id)->orWhere('uuid', $id)->first();
 
         return $this->success($restaurant);
     }
@@ -436,6 +436,13 @@ class AdminController extends Controller
                         ->paginate(10);
 
         return $this->success($orders);
+    }
+
+    public function order(Order $order)
+    {
+        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'user');
+
+        return $this->success($order);
     }
 
     public function payments(Request $request)
