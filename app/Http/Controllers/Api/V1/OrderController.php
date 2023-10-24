@@ -171,13 +171,6 @@ class OrderController extends Controller
                             ->where(function($query) use ($restaurant, $order, $user) {
                                 $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
 
-                                info('User: '.$user);
-                                info('Delivery: '.$order->user);
-                                info('User latitude: '.$user->latitude);
-                                info('User longitude: '.$user->longitude);
-                                info('Delivery latitude: '.$order->user->latitude);
-                                info('Delivery longitude: '.$order->user->longitude);
-
                                 // Get riders who have been assigned delivery to the restaurant
                                 // and are going close to another order from the same restaurant
                                 $deliveries = DB::table("orders")
