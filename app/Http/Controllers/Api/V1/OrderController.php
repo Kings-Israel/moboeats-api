@@ -19,6 +19,7 @@ use App\Models\CartItem;
 use App\Models\OrderItem;
 use App\Models\Restaurant;
 use App\Models\User;
+use App\Models\UserRestaurant;
 use App\Notifications\NewOrder as NotificationsNewOrder;
 // use App\Notifications\NewOrder;
 use App\Traits\HttpResponses;
@@ -54,8 +55,7 @@ class OrderController extends Controller
                 ->paginate();
 
                 return new OrderCollection($orders);
-            }
-            if ($role === 'restaurant') {
+            } elseif ($role === 'restaurant') {
                 $search = $request->query('search');
                 $orders = Order::whereIn('restaurant_id', $user->restaurants->pluck('id'))
                                 ->where($filterItems)
@@ -68,6 +68,25 @@ class OrderController extends Controller
                                                 ->orWhereHas('restaurant', function ($query) use ($search) {
                                                     $query->where('name', 'LIKE', '%' . $search . '%')
                                                             ->orWhere('name_short', 'LIKE', '%' . $search . '%');
+                                                });
+                                    });
+                                })
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'user'])
+                                ->orderBy('created_at', 'DESC')
+                                ->paginate(10);
+
+                return new OrderCollection($orders);
+            } elseif ($role === 'restaurant employee') {
+                $search = $request->query('search');
+                $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
+                $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+                $orders = Order::where('restaurant_id', $restaurant->id)
+                                ->where($filterItems)
+                                ->when($search && $search != '', function ($query) use ($search) {
+                                    $query->where(function ($query) use ($search) {
+                                        $query->orWhere('uuid', 'LIKE', '%' . strtolower($search) . '%')
+                                                ->orWhereHas('user', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%');
                                                 });
                                     });
                                 })
@@ -180,8 +199,8 @@ class OrderController extends Controller
 
                 DB::commit();
 
-                $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
-                event(new NewOrder($restaurant, $order->load('user')));
+                // $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+                // event(new NewOrder($restaurant, $order->load('user')));
 
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images']));
             } catch (\Throwable $th) {
@@ -192,7 +211,6 @@ class OrderController extends Controller
         } else {
             return $this->error('', 'Unauthorized', 401);
         }
-
     }
 
     /**
@@ -204,7 +222,7 @@ class OrderController extends Controller
         $user = $order->user;
         $restaurant = $order->restaurant;
 
-        if (auth()->user()->hasRole('restaurant')) {
+        if (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee')) {
             $riders = User::whereHas('roles', function($query) {
                                 $query->where('name', 'rider');
                             })

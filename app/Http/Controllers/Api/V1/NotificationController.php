@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
+use App\Models\UserRestaurant;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
@@ -21,8 +23,10 @@ class NotificationController extends Controller
                     array_push($notifications, $notification);
                 }
             }
-        } elseif (auth()->user()->hasRole('employee')) {
-            $restaurant = auth()->user()->restaurants->first();
+        } elseif (auth()->user()->hasRole('restaurant employee')) {
+            $restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant = Restaurant::find($restaurant->restaurant_id);
+            // $restaurant = auth()->user()->restaurants->first();
             foreach ($restaurant->unreadNotifications->take(10) as $notification) {
                 array_push($notifications, $notification);
             }

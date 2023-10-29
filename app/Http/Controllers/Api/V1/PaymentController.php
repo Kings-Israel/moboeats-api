@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\NewOrder;
 use App\Helpers\AssignOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\UpdatePaymentRequest;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
+use App\Notifications\NewOrder as NotificationsNewOrder;
 use App\Traits\Admin\UploadFileTrait;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -15,7 +17,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 /**
  * @group Payment Post Controller
- * 
+ *
  * Payment API resource
  */
 class PaymentController extends Controller
@@ -206,6 +208,9 @@ class PaymentController extends Controller
 
         // Assign Order to Rider
         AssignOrder::assignOrder($order->id);
+
+        $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+        event(new NewOrder($order->restaurant, $order->load('user')));
 
         return response()->json([
             'message' => 'Successful Payment',

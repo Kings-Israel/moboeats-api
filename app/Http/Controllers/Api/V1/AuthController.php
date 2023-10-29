@@ -7,9 +7,11 @@ use App\Http\Requests\V1\LoginUserRequest;
 use App\Http\Requests\V1\StoreUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\Orderer;
+use App\Models\Restaurant;
 use App\Models\Rider;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRestaurant;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,7 @@ class AuthController extends Controller
             $request->validate([
                 'email' => ['required', 'string', 'email'],
                 'password' => ['required', 'string'],
-                'userType' => ['required', 'string', Rule::in(['orderer', 'restaurant', 'rider'])],
+                'userType' => ['required', 'string', Rule::in(['orderer', 'restaurant', 'rider', 'restaurant employee'])],
             ], [
                 'userType.in' => 'Please select a orderer, restaurant or rider for the user type'
             ]);
@@ -48,6 +50,7 @@ class AuthController extends Controller
             if (!$user->hasRole($request->userType)) {
                 return $this->error('', 'Unknown user type', 401);
             }
+
             if($user->status == 1) {
                 return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
             }
@@ -65,11 +68,17 @@ class AuthController extends Controller
 
             $user = new UserResource($user);
 
+            if ($user->hasRole('restaurant employee')) {
+                $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
+                $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+            }
+
             return $this->success([
                 'user' => $user,
                 'token' => $token->plainTextToken,
+                'role' => $request->userType,
                 'restaurants' => $request->userType == 'restaurant' ? $user->restaurants : NULL,
-                'restaurant' => $request->userType == 'employee' ? $user->restaurant : NULL,
+                'restaurant' => $request->userType == 'restaurant employee' ? $restaurant : NULL,
             ]);
         } catch (\Throwable $th) {
             info($th->getMessage());
