@@ -39,6 +39,11 @@ class RolesSeeder extends Seeder
                 'display_name' => 'Rider',
                 'description' => 'rider access requests for delivery, can be customer too'
             ],
+            [
+                'name' => 'restaurant employee',
+                'display_name' => 'Restaurant Employee',
+                'description' => 'Access details for specific restaurant'
+            ],
         ];
 
         collect($roles)->each(function ($role) {

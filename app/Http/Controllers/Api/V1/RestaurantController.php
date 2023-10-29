@@ -63,7 +63,7 @@ class RestaurantController extends Controller
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
                 $includeQuestionnaire = $request->query('questionnaire');
-                $restaurants = Restaurant::where($filterItems);
+                $restaurants = Restaurant::InOperation()->Approved()->where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
                 //             (6371 * acos(cos(radians($request->latitude))
@@ -75,7 +75,6 @@ class RestaurantController extends Controller
                 //             AS distance"))
                 //     ->having('distance', '<=', $radius)
                 //     ->orderBy('distance');
-
 
                 // if ($includeQuestionnaire) {
                 //     $restaurants = $restaurants->with('questionnaire');
@@ -99,9 +98,8 @@ class RestaurantController extends Controller
         } else {
             return $this->error('', 'Unauthorized', 401);
         }
-
-
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -144,7 +142,6 @@ class RestaurantController extends Controller
         // $restaurant = Restaurant::where('id', $restaurant)->orWhere('uuid', $restaurant)->first();
         return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant->load('operatingHours', 'documents'));
     }
-
 
     /**
      * Update the specified resource in storage.

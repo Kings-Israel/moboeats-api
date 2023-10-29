@@ -25,8 +25,9 @@ class StoreOrderRequest extends FormRequest
             'cartId' => ['required','integer'],
             'restaurantId' => ['required','integer'],
             'delivery' => ['required','boolean'],
-            'deliveryFee' => ['required_if:delivery,=,true'],
-            'deliveryAddress' => ['required_if:delivery,=,true'],
+            'delivery_address' => ['required_if:delivery,true'],
+            'delivery_location_lat' => ['required_if:delivery,true'],
+            'delivery_location_lng' => ['required_if:delivery,true'],
             'booking_time' => ['required_if:delivery,false', 'after:'.now(), 'date_format:Y-m-d H:i'],
         ];
     }
@@ -36,15 +37,16 @@ class StoreOrderRequest extends FormRequest
         $this->merge([
             'cart_id' => $this->cartId,
             'restaurant_id' => $this->restaurantId,
-            'delivery_fee' => $this->deliveryFee,
-            'delivery_address' => $this->deliveryAddress,
         ]);
     }
 
     public function messages(): array
     {
         return [
-            'booking_time.required_if' => 'Select dining time for non-delivered orders'
+            'delivery_address.required_if' => 'The delivery address is required if order is a delivery',
+            'delivery_location_lat.required_if' => 'The latitude is required if order is a delivery',
+            'delivery_location_lng.required_if' => 'The longitude is required if order is a delivery',
+            'booking_time.required_if' => 'Select dining time for non-delivered orders',
         ];
     }
 }

@@ -85,6 +85,11 @@ class User extends Authenticatable implements LaratrustUser
         'email_verified_at' => 'datetime',
     ];
 
+    public function receivesBroadcastNotificationOn(): string
+    {
+        return 'users.'.$this->email;
+    }
+
     /**
      * Get the avatar
      *

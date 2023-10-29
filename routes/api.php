@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\FooSubCategoryController;
 use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\MenuPriceController;
+use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\PaymentController;
@@ -49,6 +50,10 @@ Route::group(['prefix' => 'v1'], function() {
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('user', [AuthController::class, 'authUser']);
+
+    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
+    Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
 });
 /**Basically a customer who will be ordering food/drinks */
 Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], function() {

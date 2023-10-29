@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\NewOrder;
+use App\Events\UpdateOrder;
 use App\Filters\V1\OrderFilter;
 use App\Helpers\AssignOrder;
 use App\Models\Order;
@@ -17,6 +19,8 @@ use App\Models\CartItem;
 use App\Models\OrderItem;
 use App\Models\Restaurant;
 use App\Models\User;
+use App\Notifications\NewOrder as NotificationsNewOrder;
+// use App\Notifications\NewOrder;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -92,17 +96,39 @@ class OrderController extends Controller
             if ($role != 'orderer') {
                 return $this->error('', 'Unauthorized', 401);
             }
+
             try {
                 DB::beginTransaction();
                 $cart = Cart::where('user_id', $user->id)
-                ->where('id', $request->cartId)
-                // ->where('status', 2)
-                ->first();
+                            ->where('id', $request->cartId)
+                            ->first();
 
                 if (!$cart) {
                     return $this->error('Order Creation', 'User does not have active cart', 402);
                 }
+
                 $cartItems = CartItem::where('cart_id', $cart->id)->get();
+
+                $restaurant = Restaurant::find($request->restaurant_id);
+
+                $delivery_fee = 0;
+
+                if ($request->delivery) {
+                    $customer_restaurant_distance = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$request->delivery_location_lat.','.$request->delivery_location_lng.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+
+                    if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'NOT_FOUND') {
+                       return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
+                    }
+                    if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'ZERO_RESULTS') {
+                       return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
+                    }
+
+                    $distance = json_decode($customer_restaurant_distance)->rows[0]->elements[0]->distance->text;
+
+                    $distance = explode(' ', $distance)[0];
+
+                    $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) config('services.delivery_rate'));
+                }
 
                 //create Order object
                 $order = Order::create([
@@ -111,7 +137,6 @@ class OrderController extends Controller
                     'delivery' => ($request->delivery) ? 1 : 0,
                     'total_amount' => 0,
                     'created_by' => $user->name,
-                    'booking_time' => $request->has('booking_time') && $request->booking_time != null && $request->booking_time != '' ? $request->booking_time : NULL
                 ]);
 
                 // cart items will translate to order items
@@ -128,21 +153,36 @@ class OrderController extends Controller
 
                 // update total amount in Order
                 $totalSubtotal = $order->orderItems->sum('subtotal');
+
+                // Service Charge
+                $service_charge = $restaurant->service_charge_agreement ? ((int) $restaurant->service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
+
                 // add delivery fee if customer needs
                 if ($request->delivery == true) {
-                    $totalSubtotal = $totalSubtotal + $request->delivery_fee;
+                    $totalSubtotal = $totalSubtotal + $delivery_fee;
                     $order->update([
                         'total_amount' => $totalSubtotal,
-                        'delivery_fee' => $request->delivery_fee,
+                        'delivery_fee' => $delivery_fee,
                         'delivery_address' => $request->delivery_address,
+                        'delivery_location_lat' => $request->delivery_location_lat,
+                        'delivery_location_lng' => $request->delivery_location_lng,
+                        'service_charge' => $service_charge,
                     ]);
                 } else {
-                    $order->update(['total_amount' => $totalSubtotal]);
+                    $order->update([
+                        'total_amount' => $totalSubtotal,
+                        'service_charge' => $service_charge,
+                        'booking_time' => $request->has('booking_time') && $request->booking_time != null && $request->booking_time != '' ? $request->booking_time : NULL
+                    ]);
                 }
 
                 $cart->delete();
 
                 DB::commit();
+
+                $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+                event(new NewOrder($restaurant, $order->load('user')));
+
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images']));
             } catch (\Throwable $th) {
                 info($th);
@@ -170,6 +210,7 @@ class OrderController extends Controller
                             })
                             ->where(function($query) use ($restaurant, $order, $user) {
                                 $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                                $delivered_orders = Order::where('rider_id', '!=', NULL)->where('status', 5)->get()->pluck('rider_id');
 
                                 // Get riders who have been assigned delivery to the restaurant
                                 // and are going close to another order from the same restaurant
@@ -190,11 +231,12 @@ class OrderController extends Controller
                                     return (int) $delivery->distance <= 5;
                                 })->pluck('rider_id')->values()->all();
 
-                                $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('courier_id');
+                                $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
 
                                 $query->whereNotIn('id', $rejected_orders)
-                                        ->where(function($query) use ($nearby_deliveries, $orders) {
+                                        ->where(function($query) use ($nearby_deliveries, $orders, $delivered_orders) {
                                             $query->whereIn('id', $nearby_deliveries)
+                                                ->orWhereIn('id', $delivered_orders)
                                                 ->orWhereNotIn('id', $orders);
                                         });
                             })
@@ -219,6 +261,7 @@ class OrderController extends Controller
                                 })->sortBy([
                                     fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
                                 ]);
+
             return request()->wantsJson() ?
                 $this->success([
                     'order' => $order,
@@ -280,11 +323,15 @@ class OrderController extends Controller
             'rider_id' => 'required',
         ]);
 
-        $order = Order::where('id', $request->order_id)->orWhere('uuid', $request->order_id)->first();
+        $order = Order::where('uuid', $request->order_id)->first();
+
+        if (!$order) {
+            return $this->error('', 'Order not found. Please use the uuid of the order.', 404);
+        }
 
         $rider = User::find($request->rider_id);
 
-        AssignedOrder::create([
+        AssignedOrder::firstOrCreate([
             'order_id' => $order->id,
             'user_id' => $rider->id
         ]);
