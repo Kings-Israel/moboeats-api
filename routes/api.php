@@ -126,6 +126,14 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::post('{restaurant}/categories/add', [RestaurantController::class, 'addCategory']);
         Route::post('{restaurant}/categories/{id}/update', [RestaurantController::class, 'updateCategory']);
 
+        // Employees
+        Route::group(['prefix' => 'employees',], function () {
+            Route::get('/', [RestaurantController::class, 'employees']);
+            Route::get('/{restaurant}', [RestaurantController::class, 'restaurantEmployees']);
+            Route::post('/{restaurant}/add', [RestaurantController::class, 'addEmployee']);
+            Route::post('/{user}/update', [RestaurantController::class, 'updateEmployee']);
+        });
+
         // Operating Hours
         Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
         Route::post('/{uuid}/operating-hours', [RestaurantOperatingHoursController::class, 'store']);

@@ -17,7 +17,7 @@ class HasRestaurant
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->restaurants->count() == 0) {
+        if (auth()->user()->hasRole('restaurant') && auth()->user()->restaurants->count() == 0) {
             return response()->json(['data' => 'no_restaurant'], 422);
         }
 

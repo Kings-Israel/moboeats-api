@@ -18,6 +18,7 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Models\UserRestaurant;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -28,6 +29,8 @@ use App\Traits\Admin\UploadFileTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewAccount;
 
 /**
  * @group Restaurant Management
@@ -93,6 +96,17 @@ class RestaurantController extends Controller
                 }
 
                 return new RestaurantCollection($restaurants->paginate(10)->appends($request->query()));
+            }
+
+            if ($role === 'restaurant employee') {
+                $filter =  new RestaurantFilter();
+                $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+
+                $restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+
+                $restaurants = Restaurant::withCount('orders', 'menus')->with('orders.payment', 'menus')->where('id', $restaurant->restaurant_id)->where($filterItems)->first();
+
+                return new RestaurantCollection($restaurants);
             }
 
         } else {
@@ -282,11 +296,24 @@ class RestaurantController extends Controller
         $orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->count();
         $delivered_orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->where('status', 'Delivered')->count();
 
-        $orders_ids = Order::whereIn('restaurant_id', $restaurant_ids)
-                        ->get()
-                        ->pluck('id');
+        $order_ids = [];
 
-        $revenue = Payment::whereIn('order_id', $orders_ids)->where('status', '2')->sum('amount');
+        if (auth()->user()->hasRole('restaurant')) {
+            $order_ids = Order::whereIn('restaurant_id', $restaurant_ids)
+                            ->get()
+                            ->pluck('id');
+        }
+
+        if (auth()->user()->hasRole('restaurant employee')) {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
+
+            $order_ids = Order::whereIn('restaurant_id', $restaurant_ids)
+                                ->get()
+                                ->pluck('id');
+        }
+
+        $revenue = Payment::whereIn('order_id', $order_ids)->where('status', '2')->sum('amount');
 
         // Top Restaurants
         $top_restaurants = Restaurant::where('user_id', auth()->id())
@@ -298,19 +325,21 @@ class RestaurantController extends Controller
                                         ->take(3);
 
         $top_restaurants_formatted = [];
-        foreach ($top_restaurants as $restaurant) {
-            $payment['payments']['labels'] = $months_formatted;
-            $payment['payments']['amounts'] = [];
+        if (auth()->user()->hasRole('restaurant')) {
+            foreach ($top_restaurants as $restaurant) {
+                $payment['payments']['labels'] = $months_formatted;
+                $payment['payments']['amounts'] = [];
 
-            $order_ids = $restaurant->orders->pluck('id');
+                $order_ids = $restaurant->orders->pluck('id');
 
-            foreach ($months as $month) {
-                $sum = Payment::whereIn('order_id', $order_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
-                array_push($payment['payments']['amounts'], $sum);
+                foreach ($months as $month) {
+                    $sum = Payment::whereIn('order_id', $order_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                    array_push($payment['payments']['amounts'], $sum);
+                }
+
+                $restaurant = array_merge($restaurant->toArray(), $payment);
+                array_push($top_restaurants_formatted, $restaurant);
             }
-
-            $restaurant = array_merge($restaurant->toArray(), $payment);
-            array_push($top_restaurants_formatted, $restaurant);
         }
 
         // Most Popular Menu Items
@@ -341,7 +370,12 @@ class RestaurantController extends Controller
 
     public function payments(Request $request)
     {
-        $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        if (auth()->user()->hasRole('restaurant')) {
+            $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        } else {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
+        }
 
         $orders_ids = Order::whereIn('restaurant_id', $restaurant_ids)
                         ->get()
@@ -525,5 +559,113 @@ class RestaurantController extends Controller
                             ->paginate(5);
 
         return $this->success($payments);
+    }
+
+    public function employees(Request $request)
+    {
+        $search = $request->query('search');
+
+        $user_restaurants = auth()->user()->restaurants->pluck('id');
+        $restaurants = UserRestaurant::whereIn('restaurant_id', $user_restaurants)->get()->pluck('user_id');
+
+        $users = User::whereIn('id', $restaurants)
+                        ->when($search && $search != '', function ($query) use ($search) {
+                            $query->where(function ($query) use ($search) {
+                                $query->where('first_name', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('email', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
+                            });
+                        })
+                        ->paginate(10);
+
+        return $this->success($users);
+    }
+
+    public function restaurantEmployees(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $restaurants = UserRestaurant::where('id', $restaurant->id)->get()->pluck('user_id');
+
+        $users = User::whereIn('id', $restaurants)
+                        ->when($search && $search != '', function ($query) use ($search) {
+                            $query->where(function ($query) use ($search) {
+                                $query->where('first_name', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('email', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
+                            });
+                        })
+                        ->paginate(10);
+
+        return $this->success($users);
+    }
+
+    public function addEmployee(Restaurant $restaurant, Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required', 'string',
+            'last_name' => 'required', 'string',
+            'email' => 'required', 'email',
+            'phone_number' => 'required',
+            'avatar' => ['nullable', 'mimes:jpg,png', 'max:9000'],
+        ]);
+
+        $generate_password = rand(1000000000, 99999999999);
+
+        $user = User::create([
+            'name' => $request->first_name.' '.$request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'user_type' => 'restaurant employee',
+            'password' => bcrypt($generate_password),
+            'status' => 2,
+            'image' => $request->hasFile('avatar') ? pathinfo($request->avatar->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
+        ]);
+
+        UserRestaurant::create([
+            'user_id' => $user->id,
+            'restaurant_id' => $restaurant->id,
+        ]);
+
+        $user->addRole('restaurant employee');
+
+        Mail::to($request->email)->send(new NewAccount($user, $generate_password));
+
+        return $this->success($user, 'User created successfully');
+    }
+
+    public function updateEmployee(User $user, Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required', 'string',
+            'last_name' => 'required', 'string',
+            'email' => 'required', 'email',
+            'phone_number' => 'required',
+            'avatar' => ['nullable', 'max:9000'],
+            'suspend' => ['required', 'in:1,2'],
+        ]);
+
+        $generate_password = rand(1000000000, 99999999999);
+
+        $user->update([
+            'name' => $request->first_name.' '.$request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'status' => 2,
+            'password' => bcrypt($generate_password),
+            'status' => $request->suspend,
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $image = explode('/', $user->image);
+            Storage::disk('user')->delete('/avatar/'.end($image));
+            $user->update([
+                'image' => pathinfo($request->avatar->store('avatar', 'user'), PATHINFO_BASENAME),
+            ]);
+        }
+
+        Mail::to($request->email)->send(new NewAccount($user, $generate_password));
+
+        return $this->success($user, 'User update successfully');
     }
 }
