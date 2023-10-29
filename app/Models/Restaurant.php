@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RestaurantStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -9,16 +10,18 @@ use Illuminate\Support\Facades\Session;
 use App\Traits\Admin\SearchTrait;
 use App\Traits\Admin\ColumnsTrait;
 use App\Traits\Admin\UuidTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
 class Restaurant extends Model implements UrlRoutable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     // protected $primaryKey = 'uuid';
     // protected $guarded = [];
     protected $keyType = 'int';
@@ -55,6 +58,7 @@ class Restaurant extends Model implements UrlRoutable
         'created_by',
         'updated_by',
         'sitting_capacity',
+        'service_charge_agreement',
     ];
 
     public function getRouteKeyName()
@@ -93,10 +97,16 @@ class Restaurant extends Model implements UrlRoutable
         }
         if(isset($options)){
             return $options;
-        }else{
+        } else {
             return null;
         }
     }
+    
+    public function receivesBroadcastNotificationOn(): string
+    {
+        return 'restaurants.'.$this->email;
+    }
+
     /**
      * Get the logo
      *
@@ -110,6 +120,56 @@ class Restaurant extends Model implements UrlRoutable
         }
         return config('app.url').'/assets/user/default.png';
     }
+
+    /**
+     * Get the status of the restaurant
+     */
+    public function getStatusAttribute($value): string
+    {
+        switch ($value) {
+            case '1':
+                return RestaurantStatus::pending();
+                break;
+            case '2':
+                return RestaurantStatus::approved();
+                break;
+            case '3':
+                return RestaurantStatus::denied();
+                break;
+            default:
+                return RestaurantStatus::pending();
+                break;
+        }
+
+        return $value;
+    }
+
+    /**
+     * Scope a query to only include approved
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('status', 2);
+    }
+
+    /**
+     * Scope a query to only include restaurant that are operational at the moment.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeInOperation($query)
+    {
+        return $query->whereHas('operatingHours', function ($query) {
+            $query->where('opening_time', '<=' ,now()->format('H:i'))
+                    ->where('closing_time', '>=', now()->format('H:i'))
+                    ->where('day', now()->format('l'));
+        });
+    }
+
     /**
      * Get the questionnaire associated with the Restaurant
      *

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\OrderDeliveryLocationUpdate;
+use App\Events\UpdateOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\RiderResource;
 use App\Models\AssignedOrder;
 use App\Models\Order;
 use App\Models\Rider;
+use App\Notifications\OrderUpdate;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -185,7 +188,9 @@ class RiderController extends Controller
 
         if ($request->status == 'accept') {
             $order->update([
-                'rider_id' => auth()->id()
+                'rider_id' => auth()->id(),
+                'status' => 2,
+                'delivery_status' => 'Awaiting Pick Up'
             ]);
 
             $assignment->update([
@@ -202,6 +207,9 @@ class RiderController extends Controller
                     'rider_id' => auth()->id(),
                 ]
             ]);
+
+            $order->restaurant->notify(new OrderUpdate($order, 'accepted'));
+            event(new UpdateOrder($order->restaurant, $order, 'accepted'));
 
             return $this->success($order, 'Order updated successfully', 200);
         }
@@ -223,13 +231,20 @@ class RiderController extends Controller
                 ]
             ]);
 
+            $order->restaurant->notify(new OrderUpdate($order, 'on_delivery'));
+            event(new UpdateOrder($order->restaurant, $order, 'on_delivery'));
+
             return $this->success($order, 'Order updated successfully', 200);
         }
 
         if ($request->status == 'delivered') {
             $order->update([
                 'status' => 5, // Delivered
+                'delivery_status' => 'Delivered',
             ]);
+
+            $order->restaurant->notify(new OrderUpdate($order, 'delivered'));
+            event(new UpdateOrder($order->restaurant, $order, 'delivered'));
 
             return $this->success($order, 'Order updated successfully', 200);
         }
@@ -237,6 +252,9 @@ class RiderController extends Controller
         $assignment->update([
             'status' => 'rejected'
         ]);
+
+        $order->restaurant->notify(new OrderUpdate($order, 'rejected'));
+        event(new UpdateOrder($order->restaurant, $order, 'rejected'));
 
         return $this->success('', 'Order updated successfully', 200);
     }
@@ -296,12 +314,16 @@ class RiderController extends Controller
             ]);
         }
 
+        event(new OrderDeliveryLocationUpdate($order->load('restaurant'), $request->latitude, $request->longitude));
+
         return $this->success('Location update', 'Location updated successfully', 200);
     }
 
     public function earnings()
     {
+        $earnings = Order::where('rider_id', auth()->id())->where('status', 5)->sum('delivery_fee');
 
+        return $this->success(['earnings' => $earnings]);
     }
 
     public function withdraw(Request $request)

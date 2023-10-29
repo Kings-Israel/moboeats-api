@@ -13,7 +13,23 @@ use Illuminate\Support\Str;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','restaurant_id', 'total_amount', 'delivery', 'delivery_address', 'delivery_fee', 'delivery_status', 'status', 'created_by', 'updated_by', 'rider_id', 'booking_time'];
+    protected $fillable = [
+        'user_id',
+        'restaurant_id',
+        'total_amount',
+        'delivery',
+        'delivery_address',
+        'delivery_location_lat',
+        'delivery_location_lng',
+        'delivery_fee',
+        'delivery_status',
+        'status',
+        'created_by',
+        'updated_by',
+        'rider_id',
+        'booking_time',
+        'service_charge'
+    ];
 
     protected $keyType = 'int';
     public $incrementing = true;

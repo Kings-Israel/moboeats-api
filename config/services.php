@@ -39,4 +39,10 @@ return [
     'firebase' => [
         'key' => env('FIREBASE_KEY')
     ],
+
+    'delivery_rate' => env('DELIVERY_RATE'),
+
+    'default_service_charge' => env('DEFAULT_SERVICE_CHARGE'),
+
+    'kms_to_miles' => env('KMS_TO_MILES'),
 ];

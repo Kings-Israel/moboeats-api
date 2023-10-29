@@ -27,6 +27,7 @@ class OrderResource extends JsonResource
                 'deliveryStatus' => $this->delivery_status,
                 'createdAt' => $this->created_at->format('D, M j, Y g:i A'),
                 'status' => (string) $this->status,
+                'service_charge' => $this->service_charge,
                 'booking_time' => Carbon::parse($this->booking_time)->format('D, M j, Y g:i A'),
             ],
             'relationships' => [

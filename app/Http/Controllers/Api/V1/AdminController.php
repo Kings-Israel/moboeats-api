@@ -367,6 +367,21 @@ class AdminController extends Controller
         return $this->success($payments);
     }
 
+    public function updateRestaurantStatus(Request $request, Restaurant $restaurant)
+    {
+        $request->validate([
+            'status' => ['required', 'in:2,3'],
+            'denied_reason' => ['nullable', 'string'],
+        ]);
+
+        $restaurant->update([
+            'status' => $request->status,
+            'denied_reason' => $request->has('denied_reason') && $request->denied_reason != '' ? $request->denied_reason : NULL
+        ]);
+
+        return $this->success('Restaurants updated successfully');
+    }
+
     public function restaurantOrders(Request $request, Restaurant $restaurant)
     {
         $search = $request->query('search');

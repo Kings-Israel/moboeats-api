@@ -30,5 +30,6 @@ Route::get('/paypal/checkout/success', function() {
 Route::get('/paypal/checkout/failed', function() {
     return view('paypal.error');
 })->name('paypal.checkout.failed');
+
 require __DIR__.'/auth.php';
 

@@ -68,12 +68,8 @@ class AuthController extends Controller
             return $this->success([
                 'user' => $user,
                 'token' => $token->plainTextToken,
-                // 'tokens' => [
-                //     'admin' => $adminToken->plainTextToken,
-                //     'update' => $updateToken->plainTextToken,
-                //     'basic' => $basic->plainTextToken
-                // ],
-
+                'restaurants' => $request->userType == 'restaurant' ? $user->restaurants : NULL,
+                'restaurant' => $request->userType == 'employee' ? $user->restaurant : NULL,
             ]);
         } catch (\Throwable $th) {
             info($th->getMessage());
