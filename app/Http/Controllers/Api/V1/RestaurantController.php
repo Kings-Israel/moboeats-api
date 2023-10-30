@@ -587,6 +587,8 @@ class RestaurantController extends Controller
 
         $restaurants = UserRestaurant::where('id', $restaurant->id)->get()->pluck('user_id');
 
+        info($restaurants);
+
         $users = User::whereIn('id', $restaurants)
                         ->when($search && $search != '', function ($query) use ($search) {
                             $query->where(function ($query) use ($search) {
