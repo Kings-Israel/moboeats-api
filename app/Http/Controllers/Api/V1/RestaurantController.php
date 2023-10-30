@@ -585,10 +585,7 @@ class RestaurantController extends Controller
     {
         $search = $request->query('search');
 
-        info($restaurant);
-        
-        $restaurants = UserRestaurant::where('id', $restaurant->id)->get()->pluck('user_id');
-
+        $restaurants = UserRestaurant::where('restaurant_id', $restaurant->id)->get()->pluck('user_id');
 
         $users = User::whereIn('id', $restaurants)
                         ->when($search && $search != '', function ($query) use ($search) {
