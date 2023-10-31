@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Models\RestaurantDocument;
+use App\Models\User;
+use App\Notifications\UpdatedRestaurant;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -47,6 +49,19 @@ class RestaurantDocumentsController extends Controller
             }
         }
 
+        if ($restaurant->status == 'Pending' || $restaurant->status == 'Denied') {
+            // Update restaurant status to pending
+            if ($restaurant->status == 'Denied') {
+                $restaurant->update([
+                    'status' => '1'
+                ]);
+            }
+
+            // Notify admin to review the restaurant
+            $admin = User::where('email', 'admin@moboeats.com')->first();
+            $admin->notify(new UpdatedRestaurant($restaurant));
+        }
+
         return $this->success($restaurant->load('documents'), 'Documents saved successfully');
     }
 
@@ -82,6 +97,18 @@ class RestaurantDocumentsController extends Controller
                     ]);
                 }
             }
+        }
+
+        if ($restaurant->status == 'Pending' || $restaurant->status == 'Denied') {
+            // Update restaurant status to pending
+            if ($restaurant->status == 'Denied') {
+                $restaurant->update([
+                    'status' => '1'
+                ]);
+            }
+            // Notify admin to review the restaurant
+            $admin = User::where('email', 'admin@moboeats.com')->first();
+            $admin->notify(new UpdatedRestaurant($restaurant));
         }
 
         return $this->success($restaurant->load('documents'), 'Documents saved successfully');

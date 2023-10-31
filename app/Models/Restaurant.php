@@ -59,6 +59,7 @@ class Restaurant extends Model implements UrlRoutable
         'updated_by',
         'sitting_capacity',
         'service_charge_agreement',
+        'denied_reason'
     ];
 
     public function getRouteKeyName()
@@ -101,7 +102,7 @@ class Restaurant extends Model implements UrlRoutable
             return null;
         }
     }
-    
+
     public function receivesBroadcastNotificationOn(): string
     {
         return 'restaurants.'.$this->email;

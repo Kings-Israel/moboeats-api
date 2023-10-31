@@ -37,6 +37,7 @@ class RestaurantResource extends JsonResource
                 'logo' =>$this->logo,
                 'sitting_capacity' => $this->sitting_capacity,
                 'status' => (string) $this->status,
+                'denied_reason' => (string) $this->denied_reason,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ],
