@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewAccount;
+use App\Notifications\UpdatedRestaurant;
 
 /**
  * @group Restaurant Management
@@ -153,7 +154,6 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        // $restaurant = Restaurant::where('id', $restaurant)->orWhere('uuid', $restaurant)->first();
         return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant->load('operatingHours', 'documents'));
     }
 
@@ -181,6 +181,17 @@ class RestaurantController extends Controller
                     $restaurant->update([
                         'logo' => $request->logo->store('companyLogos/logos', 'public')
                     ]);
+                }
+                if ($restaurant->status == 'Pending' || $restaurant->status == 'Denied') {
+                    // Update restaurant status to pending
+                    if ($restaurant->status == 'Denied') {
+                        $restaurant->update([
+                            'status' => '1'
+                        ]);
+                    }
+                    // Notify admin to review the restaurant
+                    $admin = User::where('email', 'admin@moboeats.com')->first();
+                    $admin->notify(new UpdatedRestaurant($restaurant));
                 }
                 DB::commit();
                 return new RestaurantResource($restaurant);
@@ -276,13 +287,13 @@ class RestaurantController extends Controller
 
     public function dashboard()
     {
-        // Get past 9 months
         $months = [];
-        // $days = [0, 29, 59, 89, 119, 149, 179, 209, 239];
-        // $days = [239, 209, 179, 149, 119, 89, 59, 29, 0];
-        $days = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
-        foreach($days as $day) {
-            array_push($months, now()->subMonths($day));
+        // Get past 12 months
+        $months = [];
+        for ($i = 12; $i >= 0; $i--) {
+            $month = Carbon::today()->startOfMonth()->subMonth($i);
+            $year = Carbon::today()->startOfMonth()->subMonth($i)->format('Y');
+            array_push($months, $month);
         }
 
         // Format months
@@ -323,6 +334,10 @@ class RestaurantController extends Controller
                                         ->orderBy('orders_count', 'DESC')
                                         ->get()
                                         ->take(3);
+
+        $pending_approval = Restaurant::where('user_id', auth()->id())->where('status', 1)->count();
+        $approved_restaurants = Restaurant::where('user_id', auth()->id())->where('status', 2)->count();
+        $rejected_restaurants = Restaurant::where('user_id', auth()->id())->where('status', 3)->count();
 
         $top_restaurants_formatted = [];
         if (auth()->user()->hasRole('restaurant')) {
@@ -365,6 +380,9 @@ class RestaurantController extends Controller
             'revenue' => $revenue,
             'popular_menus' => $popular_menus,
             'top_restaurants' => $top_restaurants_formatted,
+            'pending_approval' => $pending_approval,
+            'approved_restaurants' => $approved_restaurants,
+            'rejected_restaurants' => $rejected_restaurants
         ]);
     }
 
@@ -422,7 +440,7 @@ class RestaurantController extends Controller
                     ->orderBy('created_at', 'DESC')
                     ->paginate(9);
 
-        $categories = FoodCommonCategory::where('restaurant_id', NULL)->orWhere('restaurant_id', $restaurant->id)->get();
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhere('restaurant_id', $restaurant->id)->get();
 
         return $this->success(['menu' => $menu, 'categories' => new FoodCommonCategoryCollection($categories)]);
     }
@@ -437,7 +455,7 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::where('uuid', $id)->orWhere('uuid', $id)->first();
 
-        $categories = FoodCommonCategory::where('restaurant_id', $restaurant->id)->paginate(8);
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', $restaurant->id)->paginate(8);
 
         return $this->success(['categories' => $categories]);
     }

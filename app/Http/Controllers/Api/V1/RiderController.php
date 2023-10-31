@@ -323,7 +323,12 @@ class RiderController extends Controller
     {
         $earnings = Order::where('rider_id', auth()->id())->where('status', 5)->sum('delivery_fee');
 
-        return $this->success(['earnings' => $earnings]);
+        $earnings_in_past_week = Order::whereBewteen('created_at', [now()->startOfWeek(), now()->endOfWeek()])->where('status', 5)->sum('delivery_fee');
+
+        return $this->success([
+            'earnings' => $earnings,
+            'earnings_in_past_week' => $earnings_in_past_week
+        ]);
     }
 
     public function withdraw(Request $request)

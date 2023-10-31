@@ -19,6 +19,7 @@ use App\Traits\HttpResponses;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\UpdatedRestaurantStatus;
 
 class AdminController extends Controller
 {
@@ -64,13 +65,12 @@ class AdminController extends Controller
         $riders = User::whereHasRole('rider')->count();
         $orders = Order::where('status', 2)->count();
 
-        // Get past 9 months
         $months = [];
-        // $days = [0, 29, 59, 89, 119, 149, 179, 209, 239];
-        // $days = [239, 209, 179, 149, 119, 89, 59, 29, 0];
-        $days = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
-        foreach($days as $day) {
-            array_push($months, now()->subMonths($day));
+        // Get past 12 months
+        for ($i = 12; $i >= 0; $i--) {
+            $month = Carbon::today()->startOfMonth()->subMonth($i);
+            $year = Carbon::today()->startOfMonth()->subMonth($i)->format('Y');
+            array_push($months, $month);
         }
 
         // Format months
@@ -371,13 +371,15 @@ class AdminController extends Controller
     {
         $request->validate([
             'status' => ['required', 'in:2,3'],
-            'denied_reason' => ['nullable', 'string'],
+            'reason' => ['nullable', 'string', 'required_if:status,3'],
         ]);
 
         $restaurant->update([
             'status' => $request->status,
-            'denied_reason' => $request->has('denied_reason') && $request->denied_reason != '' ? $request->denied_reason : NULL
+            'denied_reason' => $request->has('reason') && $request->reason != '' && $request->status == '3' ? $request->reason : NULL
         ]);
+
+        $restaurant->notify(new UpdatedRestaurantStatus($restaurant->status, $request->has('reason') && $request->reason != '' ? $request->reason : ''));
 
         return $this->success('Restaurants updated successfully');
     }

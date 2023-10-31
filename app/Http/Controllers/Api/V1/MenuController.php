@@ -56,9 +56,9 @@ class MenuController extends Controller
         $includesubImages = $request->query('images');
 
         if (auth()->user()->hasRole('restaurant')) {
-            $menu = Menu::whereHas('menuPrices')->whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
+            $menu = Menu::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
         } else {
-            $menu = Menu::whereHas('menuPrices')->where($filterItems);
+            $menu = Menu::whereHas('menuPrices')->whereHas('images')->where($filterItems);
         }
 
         if ($includesubCategories &&  $includeCategories && $includesubImages) {
@@ -141,6 +141,14 @@ class MenuController extends Controller
                         'created_by' => auth()->user()->email,
                         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
+                }
+
+                if ($request->has('subcategoryIds') && count($request->subcategoryIds) > 0) {
+                    foreach ($request->subcategoryIds as $subcategoryId) {
+                        $menu->subCategories()->attach($subcategoryId, [
+                            'created_by' => auth()->user()->email,
+                        ]);
+                    }
                 }
 
                 DB::commit();
@@ -288,13 +296,12 @@ class MenuController extends Controller
 
                 $menu->categories()->sync($syncData);
 
-                if ($request->subCategoryIds) {
+                if ($request->subcategoryIds) {
                     foreach ($subcategoryIds as $categoryId) {
                         $syncData2[$categoryId] = [
                             'uuid' => Str::uuid(),
                             'menu_id' => $menu->id,
                             'created_by' => auth()->user()->email,
-                            'created_at' => now()->format('Y-m-d H:i:s'),
                         ];
                     }
                     $menu->subCategories()->sync($syncData2);
