@@ -175,6 +175,7 @@ class MenuController extends Controller
                                 });
                         });
                     })
+                    ->orderBy('created_at', 'DESC')
                     ->paginate(10);
 
         $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
@@ -199,7 +200,18 @@ class MenuController extends Controller
         try {
             DB::beginTransaction();
 
-            collect(json_decode($request->restaurant_ids, true))->each(function ($restaurant) use ($request) {
+            $images = [];
+            if (count($request->images) > 0) {
+                foreach ($request->images as $image) {
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $newFilename = $originalFilename.'-'.uniqid().'.'.$image->guessExtension();
+                    $image->move('storage/menus/images/tmp', $newFilename);
+                    array_push($images, $newFilename);
+                }
+            }
+
+            collect(json_decode($request->restaurant_ids, true))->each(function ($restaurant, $index) use ($request, $images) {
                 $menu = Menu::create([
                     'title' => $request->title,
                     'description' => $request->description,
@@ -213,6 +225,7 @@ class MenuController extends Controller
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
                 }
+
                 if ($request->has('standarPrice')) {
                     MenuPrice::create([
                         'menu_id' => $menu->id,
@@ -223,10 +236,19 @@ class MenuController extends Controller
                     ]);
                 }
 
-                // if (count($request->images) > 0) {
-                //     $upload_images = new MenuController;
-                //     $upload_images->updateImages($request, $menu->id);
-                // }
+                if (count($request->images) > 0) {
+                    foreach ($images as $image) {
+                        $anotherFileName = explode('.', $image)[0].''.uniqid().'.'.explode('.', $image)[1];
+                        Storage::disk('public')->copy('menus/images/tmp/'.$image, 'menus/images/'.$anotherFileName);
+                        MenuImage::create([
+                            'menu_id' => $menu->id,
+                            'image_url' => $anotherFileName,
+                            'sequence' => 1,
+                            'status' => 2,
+                            'created_by' => auth()->user()->email,
+                        ]);
+                    }
+                }
 
                 foreach (json_decode($request->categoryIds, true) as $foodCategoryId) {
                     $menu->categories()->attach($foodCategoryId, [
@@ -238,13 +260,21 @@ class MenuController extends Controller
                 }
 
                 if ($request->has('subcategoryIds') && count(json_decode($request->subcategoryIds, true)) > 0) {
-                    foreach ($request->subcategoryIds as $subcategoryId) {
+                    foreach (json_decode($request->subcategoryIds, true) as $subcategoryId) {
                         $menu->subCategories()->attach($subcategoryId, [
+                            'uuid' => Str::uuid(),
                             'created_by' => auth()->user()->email,
+                            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                         ]);
                     }
                 }
             });
+            
+            if (count($images) > 0) {
+                foreach ($images as $image) {
+                    Storage::disk('public')->delete('menus/images/tmp/'.$image);
+                }
+            }
             DB::commit();
             return $this->success('', 'Menu added successfully');
         } catch (\Throwable $th) {
@@ -372,7 +402,6 @@ class MenuController extends Controller
             }
         }
 
-
         foreach ($request->images as $image) {
             $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             // this is needed to safely include the file name as part of the URL
@@ -386,14 +415,6 @@ class MenuController extends Controller
                 'status' => 2,
                 'created_by' => auth()->user()->email,
             ]);
-            // if (is_array($image)) {
-            //     foreach($image as $key => $data) {
-            //     }
-            // }
-            // $fileName = $this->generateFileName2($request->file('image'));
-            // $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
-            // if ($filename) {
-            // }
         }
 
         return $this->success('', 'Menu images updated successfully');
