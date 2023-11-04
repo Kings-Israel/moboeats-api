@@ -340,6 +340,8 @@ class RestaurantController extends Controller
         $rejected_restaurants = Restaurant::where('user_id', auth()->id())->where('status', 3)->count();
 
         $top_restaurants_formatted = [];
+        $orders_series = [];
+        $payments_series = [];
         if (auth()->user()->hasRole('restaurant')) {
             foreach ($top_restaurants as $restaurant) {
                 $payment['payments']['labels'] = $months_formatted;
@@ -354,6 +356,20 @@ class RestaurantController extends Controller
 
                 $restaurant = array_merge($restaurant->toArray(), $payment);
                 array_push($top_restaurants_formatted, $restaurant);
+            }
+
+            $restaurants_ids = auth()->user()->restaurants->pluck('id');
+
+            foreach ($months as $month) {
+                $orders = Order::whereIn('restaurant_id', $restaurants_ids)->whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
+                array_push($orders_series, $orders);
+            }
+
+            $orders_ids = Order::whereIn('restaurant_id', $restaurants_ids)->get()->pluck('id');
+
+            foreach ($months as $month) {
+                $payments = Payment::whereIn('order_id', $orders_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                array_push($payments_series, $payments);
             }
         }
 
@@ -374,6 +390,7 @@ class RestaurantController extends Controller
                             ->take(10);
 
         return $this->success([
+            'months' => $months_formatted,
             'restaurants_count' => $restaurants_count,
             'orders_count' => $orders_count,
             'delivered_orders_count' => $delivered_orders_count,
@@ -382,7 +399,9 @@ class RestaurantController extends Controller
             'top_restaurants' => $top_restaurants_formatted,
             'pending_approval' => $pending_approval,
             'approved_restaurants' => $approved_restaurants,
-            'rejected_restaurants' => $rejected_restaurants
+            'rejected_restaurants' => $rejected_restaurants,
+            'orders_series' => $orders_series,
+            'payments_series' => $payments_series,
         ]);
     }
 
