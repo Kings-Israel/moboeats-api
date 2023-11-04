@@ -42,7 +42,6 @@ class MenuResource extends JsonResource
                     return  new RestaurantResource($this->restaurant);
                 }),
             ],
-
         ];
     }
 

@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Http\Requests\V1\StoreMenuRequest;
 use App\Http\Requests\V1\UpdateMenuRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\FoodCommonCategoryCollection;
 use App\Http\Resources\V1\MenuCollection;
 use App\Http\Resources\V1\MenuResource;
 use App\Models\CategoryMenu;
@@ -86,23 +87,136 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request, $id)
     {
         $restaurant = Restaurant::where('id', $id)->orWhere('uuid', $id)->first();
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role != 'restaurant') {
-                return $this->error('', 'Unauthorized', 401);
-            }
-            try {
-                DB::beginTransaction();
-                if($request->hasFile('image')){
-                    $fileName = $this->generateFileName2($request->file('image'));
-                }
+        if (!auth()->user()->hasRole('restaurant')) {
+            return $this->error('', 'Unauthorized', 401);
+        }
 
+        try {
+            DB::beginTransaction();
+            if($request->hasFile('image')){
+                $fileName = $this->generateFileName2($request->file('image'));
+            }
+
+            $menu = Menu::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'restaurant_id' => $restaurant->id,
+                'status' => 2,
+                'created_by' => auth()->user()->email,
+                'updated_by' => auth()->user()->email,
+            ]);
+
+            if (!$menu) {
+                DB::rollBack();
+                return $this->error('', 'unable to create menu item', 403);
+            }
+            if ($request->has('standarPrice')) {
+                MenuPrice::create([
+                    'menu_id' => $menu->id,
+                    'description' => 'standard',
+                    'price' => $request->standardPrice,
+                    'status' => 2,
+                    'created_by' => auth()->user()->email,
+                ]);
+            }
+
+            if($request->hasFile('image')) {
+                $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
+                if ($filename) {
+                    MenuImage::create([
+                        'menu_id' => $menu->id,
+                        'image_url' => $fileName,
+                        'sequence' => 1,
+                        'status' => 2,
+                        'created_by' => auth()->user()->email,
+                    ]);
+                }
+            }
+
+            foreach ($request->input('categoryIds') as $foodCategoryId) {
+                $menu->categories()->attach($foodCategoryId, [
+                    // Add more pivot table attributes here
+                    'uuid' => Str::uuid(),
+                    'created_by' => auth()->user()->email,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ]);
+            }
+
+            if ($request->has('subcategoryIds') && count($request->subcategoryIds) > 0) {
+                foreach ($request->subcategoryIds as $subcategoryId) {
+                    $menu->subCategories()->attach($subcategoryId, [
+                        'created_by' => auth()->user()->email,
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return new MenuResource($menu);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+
+        }
+    }
+
+    public function commonMenus(Request $request)
+    {
+        $search = $request->query('search');
+        $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        $menu = Menu::with('restaurant', 'menuPrices', 'categories.food_sub_categories', 'subCategories', 'images')
+                    ->withCount('orderItems')
+                    ->whereIn('restaurant_id', $restaurant_ids)
+                    ->when($search && $search != '', function ($query) use ($search) {
+                        $query->where(function ($query) use ($search) {
+                            $query->where('title', 'LIKE', '%'.$search.'%')
+                                ->orWhereHas('restaurant', function ($query) use ($search) {
+                                    $query->where('name', 'LIKE', '%'.$search.'%');
+                                });
+                        });
+                    })
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(10);
+
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
+
+        return $this->success([
+            'menu' => $menu,
+            'categories' => new FoodCommonCategoryCollection($categories),
+            'restaurants' => auth()->user()->restaurants,
+        ]);
+    }
+
+    public function addMenu(Request $request)
+    {
+        $request->validate([
+            'restaurant_ids' => ['required'],
+            'title' => ['required'],
+            'description' => ['required'],
+            'status' => ['nullable', 'integer'],
+            'categoryIds' => 'required',
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $images = [];
+            if (count($request->images) > 0) {
+                foreach ($request->images as $image) {
+                    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $newFilename = $originalFilename.'-'.uniqid().'.'.$image->guessExtension();
+                    $image->move('storage/menus/images/tmp', $newFilename);
+                    array_push($images, $newFilename);
+                }
+            }
+
+            collect(json_decode($request->restaurant_ids, true))->each(function ($restaurant, $index) use ($request, $images) {
                 $menu = Menu::create([
                     'title' => $request->title,
                     'description' => $request->description,
-                    'restaurant_id' => $restaurant->id,
-                    'status' => 2,
+                    'restaurant_id' => $restaurant,
+                    'status' => $request->status,
                     'created_by' => auth()->user()->email,
                     'updated_by' => auth()->user()->email,
                 ]);
@@ -111,6 +225,7 @@ class MenuController extends Controller
                     DB::rollBack();
                     return $this->error('', 'unable to create menu item', 403);
                 }
+
                 if ($request->has('standarPrice')) {
                     MenuPrice::create([
                         'menu_id' => $menu->id,
@@ -121,12 +236,13 @@ class MenuController extends Controller
                     ]);
                 }
 
-                if($request->hasFile('image')){
-                    $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
-                    if ($filename) {
+                if (count($request->images) > 0) {
+                    foreach ($images as $image) {
+                        $anotherFileName = explode('.', $image)[0].''.uniqid().'.'.explode('.', $image)[1];
+                        Storage::disk('public')->copy('menus/images/tmp/'.$image, 'menus/images/'.$anotherFileName);
                         MenuImage::create([
                             'menu_id' => $menu->id,
-                            'image_url' => $fileName,
+                            'image_url' => $anotherFileName,
                             'sequence' => 1,
                             'status' => 2,
                             'created_by' => auth()->user()->email,
@@ -134,7 +250,7 @@ class MenuController extends Controller
                     }
                 }
 
-                foreach ($request->input('categoryIds') as $foodCategoryId) {
+                foreach (json_decode($request->categoryIds, true) as $foodCategoryId) {
                     $menu->categories()->attach($foodCategoryId, [
                         // Add more pivot table attributes here
                         'uuid' => Str::uuid(),
@@ -143,24 +259,129 @@ class MenuController extends Controller
                     ]);
                 }
 
-                if ($request->has('subcategoryIds') && count($request->subcategoryIds) > 0) {
-                    foreach ($request->subcategoryIds as $subcategoryId) {
+                if ($request->has('subcategoryIds') && count(json_decode($request->subcategoryIds, true)) > 0) {
+                    foreach (json_decode($request->subcategoryIds, true) as $subcategoryId) {
                         $menu->subCategories()->attach($subcategoryId, [
+                            'uuid' => Str::uuid(),
                             'created_by' => auth()->user()->email,
+                            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                         ]);
                     }
                 }
-
-                DB::commit();
-                return new MenuResource($menu);
-            } catch (\Throwable $th) {
-                info($th);
-                DB::rollBack();
-                return $this->error('', $th->getMessage(), 403);
-
+            });
+            
+            if (count($images) > 0) {
+                foreach ($images as $image) {
+                    Storage::disk('public')->delete('menus/images/tmp/'.$image);
+                }
             }
-        } else {
+            DB::commit();
+            return $this->success('', 'Menu added successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
+    }
+
+    public function updateMenu(Request $request, Menu $menu)
+    {
+        if (!auth()->user()->hasRole('restaurant')) {
             return $this->error('', 'Unauthorized', 401);
+        }
+
+        $request->validate([
+            'restaurant_ids' => ['required', 'array'],
+            'restaurant_ids.*' => ['integer'],
+            'title' => ['required'],
+            'description' => ['required'],
+            'status' => ['nullable', 'integer'],
+            'categoryIds' => 'required|array',
+            'categoryIds.*' => 'integer',
+        ]);
+
+        try {
+            DB::transaction();
+            if($request->hasFile('image')){
+                $fileName = $this->generateFileName2($request->file('image'));
+            }
+
+            collect($request->restaurant_ids)->each(function ($restaurant) use ($request, $fileName, $menu) {
+                if (!$menu) {
+                    return $this->error('', 'Unable to update menu item', 403);
+                }
+
+                $menu->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'restaurant_id' => $restaurant,
+                    'status' => $request->status,
+                    'updated_by' => auth()->user()->email,
+                ]);
+
+                if ($request->has('standarPrice')) {
+                    MenuPrice::create([
+                        'menu_id' => $menu->id,
+                        'description' => 'standard',
+                        'price' => $request->standardPrice,
+                        'status' => 2,
+                        'updated_by' => auth()->user()->email,
+                    ]);
+                }
+
+                if($request->hasFile('image')) {
+                    $image = MenuImage::where('menu_id', $menu->id)->where('sequence', 1)->first();
+                    if($image) {
+                        $image->delete();
+                        //delete file from
+                        $prevFile = $image->image_url;
+                    }
+                    MenuImage::create([
+                        'uuid' => Str::uuid(),
+                        'menu_id' => $menu->id,
+                        'image_url' => $fileName,
+                        'sequence' => 1,
+                        'status' => 2,
+                        'created_by' => auth()->user()->email,
+                    ]);
+
+                    $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => $prevFile];
+                    if(!$this->uploadFile($fileData)){
+                        DB::rollBack();
+                    }
+                }
+
+                $foodCategoryIds = $request->input('categoryIds');
+                $subcategoryIds = $request->input('subcategoryIds');
+
+                $syncData = [];
+                $syncData2 = [];
+                foreach ($foodCategoryIds as $foodCategoryId) {
+                    $syncData[$foodCategoryId] = [
+                        'menu_id' => $menu->id,
+                        'uuid' => Str::uuid(),
+                        'created_by' => auth()->user()->email,
+                        'created_at' => now()->format('Y-m-d H:i:s'),
+                    ];
+                }
+
+                $menu->categories()->sync($syncData);
+
+                if ($request->subcategoryIds) {
+                    foreach ($subcategoryIds as $categoryId) {
+                        $syncData2[$categoryId] = [
+                            'uuid' => Str::uuid(),
+                            'menu_id' => $menu->id,
+                            'created_by' => auth()->user()->email,
+                        ];
+                    }
+                    $menu->subCategories()->sync($syncData2);
+                }
+            });
+            DB::commit();
+            return $this->success('', 'Menu added successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $this->error('', 'An error occurred', 400);
         }
     }
 
@@ -174,9 +395,11 @@ class MenuController extends Controller
 
         $current_images = MenuImage::where('menu_id', $id)->get();
 
-        foreach ($current_images as $image) {
-            Storage::disk('public')->delete('/menus/images/'.$image->image_url);
-            $image->delete();
+        if($current_images->count() > 0) {
+            foreach ($current_images as $image) {
+                Storage::disk('public')->delete('/menus/images/'.$image->image_url);
+                $image->delete();
+            }
         }
 
         foreach ($request->images as $image) {
@@ -192,14 +415,6 @@ class MenuController extends Controller
                 'status' => 2,
                 'created_by' => auth()->user()->email,
             ]);
-            // if (is_array($image)) {
-            //     foreach($image as $key => $data) {
-            //     }
-            // }
-            // $fileName = $this->generateFileName2($request->file('image'));
-            // $filename = $request->file('image')->storeAs('menus/images', $fileName, 'public');
-            // if ($filename) {
-            // }
         }
 
         return $this->success('', 'Menu images updated successfully');

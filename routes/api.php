@@ -108,6 +108,9 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::apiResource('menu-prices', MenuPriceController::class);
         Route::post('/menu-prices/{id}/update', [MenuPriceController::class, 'update']);
         Route::delete('/menu-prices/{id}/delete', [MenuPriceController::class, 'destroy']);
+        Route::get('/menus', [MenuController::class, 'commonMenus']);
+        Route::post('/menu/create', [MenuController::class, 'addMenu']);
+        Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
 
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::apiResource('orders', OrderController::class)->except(['store']);
