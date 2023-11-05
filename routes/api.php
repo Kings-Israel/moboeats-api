@@ -78,6 +78,7 @@ Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], functio
 });
 
 Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
+    Route::apiResource('restaurants', RestaurantController::class);
     Route::post('/profile/create', [RiderController::class, 'create']);
     Route::post('/profile/update', [RiderController::class, 'update']);
     Route::get('/profile', [RiderController::class, 'profile']);

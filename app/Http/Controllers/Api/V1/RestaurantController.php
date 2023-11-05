@@ -85,6 +85,33 @@ class RestaurantController extends Controller
                 // }
                 return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
             }
+
+            if ($role === 'rider') {
+                $radius = 10;
+                $latitude = $request->latitude;
+                $longitude = $request->longitude;
+                $filter =  new RestaurantFilter();
+                $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+                $includeQuestionnaire = $request->query('questionnaire');
+                $restaurants = Restaurant::InOperation()->Approved()->where($filterItems);
+
+                // $restaurants = Restaurant::select(DB::raw("*,
+                //             (6371 * acos(cos(radians($request->latitude))
+                //             * cos(radians(latitude))
+                //             * cos(radians(longitude)
+                //             - radians($request->longitude))
+                //             + sin(radians($request->latitude))
+                //             * sin(radians(latitude))))
+                //             AS distance"))
+                //     ->having('distance', '<=', $radius)
+                //     ->orderBy('distance');
+
+                // if ($includeQuestionnaire) {
+                //     $restaurants = $restaurants->with('questionnaire');
+                // }
+                return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
+            }
+
             if ($role === 'restaurant') {
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
