@@ -341,7 +341,7 @@ class OrderController extends Controller
             'rider_id' => 'required',
         ]);
 
-        $order = Order::wit('user', 'restaurant')->where('uuid', $request->order_id)->first();
+        $order = Order::with('user', 'restaurant')->where('uuid', $request->order_id)->first();
 
         if (!$order) {
             return $this->error('', 'Order not found. Please use the uuid of the order.', 404);
