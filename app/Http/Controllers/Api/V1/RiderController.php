@@ -36,7 +36,7 @@ class RiderController extends Controller
     public function orders()
     {
         $orders = Order::with('restaurant', 'user')->where('rider_id', '=', auth()->id())->get();
-        $assigned_orders = AssignedOrder::with('order.user')->where('user_id', '=', auth()->id())->get();
+        $assigned_orders = AssignedOrder::with('order.user', 'order.restaurant')->where('user_id', '=', auth()->id())->get();
         return $this->success(['orders' => $orders, 'assigned_orders' => $assigned_orders], '', 200);
     }
 
