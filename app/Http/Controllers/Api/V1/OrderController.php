@@ -341,7 +341,7 @@ class OrderController extends Controller
             'rider_id' => 'required',
         ]);
 
-        $order = Order::where('uuid', $request->order_id)->first();
+        $order = Order::wit('user', 'restaurant')->where('uuid', $request->order_id)->first();
 
         if (!$order) {
             return $this->error('', 'Order not found. Please use the uuid of the order.', 404);
@@ -354,7 +354,7 @@ class OrderController extends Controller
             'user_id' => $rider->id
         ]);
 
-        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['delivery_location' => [$order->user->latitude, $order->user->longitude]]);
+        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['delivery_location' => [$order->user->latitude, $order->user->longitude], 'order_details' => $order]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
     }

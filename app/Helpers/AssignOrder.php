@@ -14,7 +14,7 @@ class AssignOrder
     {
         $rider = NULL;
         $success = true;
-        $order = Order::with('user')->find($order_id);
+        $order = Order::with('user', 'restaurant')->find($order_id);
         $rider = self::getRider($order_id);
 
         if($rider) {
@@ -29,7 +29,7 @@ class AssignOrder
             }
 
             $notification_response = false;
-            $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id]);
+            $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
             $notification_response = json_decode($response)->success == 1 ? true : false;
             while (!$notification_response) {
                 AssignedOrder::create([
@@ -37,7 +37,7 @@ class AssignOrder
                     'order_id' => $order->id,
                     'status' => 'rejected'
                 ]);
-                $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id]);
+                $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
                 $notification_response = json_decode($response)->success == 1 ? true : false;
                 $rider = self::getRider($order_id);
             }
