@@ -145,6 +145,7 @@ class MenuController extends Controller
             if ($request->has('subcategoryIds') && count($request->subcategoryIds) > 0) {
                 foreach ($request->subcategoryIds as $subcategoryId) {
                     $menu->subCategories()->attach($subcategoryId, [
+                        'uuid' => Str::uuid(),
                         'created_by' => auth()->user()->email,
                     ]);
                 }
@@ -269,7 +270,7 @@ class MenuController extends Controller
                     }
                 }
             });
-            
+
             if (count($images) > 0) {
                 foreach ($images as $image) {
                     Storage::disk('public')->delete('menus/images/tmp/'.$image);
