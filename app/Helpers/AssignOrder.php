@@ -84,7 +84,7 @@ class AssignOrder
                         })
                         // Order by distance and time
                         ->sortBy([
-                            fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
+                            fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
                         ])
                         // Get the first courier
                         ->first();

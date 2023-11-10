@@ -18,7 +18,7 @@
             </div>
             <div class="col-6 text-end">
                 <h3>{{ $order->restaurant->name }}</h3>
-                <h2>{{ Str::upper(config('paypal.currency')) }}.{{ $order->total_amount }}</h2>
+                <h2>{{ Str::upper(config('paypal.currency')) }} {{ $order->total_amount }}</h2>
             </div>
         </div>
         <div id="paypal-button-container" style="max-width:500pxx;" class="mx-auto"></div>

@@ -103,6 +103,8 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::apiResource('more-info', QuestionnaireController::class);
 
         Route::apiResource('menu', MenuController::class);
+        Route::get('/groceries', [MenuController::class, 'groceries']);
+        Route::get('{restaurant}/groceries', [MenuController::class, 'restaurantGroceries']);
         Route::post('/{id}/menu/add', [MenuController::class, 'store']);
         Route::post('/menu/{id}/update', [MenuController::class, 'update']);
         Route::post('/menu/{id}/images/update', [MenuController::class, 'updateImages']);

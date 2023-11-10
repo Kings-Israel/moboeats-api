@@ -16,6 +16,7 @@ use App\Models\MenuImage;
 use App\Models\MenuPrice;
 use App\Models\Restaurant;
 use App\Models\User;
+use App\Models\UserRestaurant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -537,13 +538,59 @@ class MenuController extends Controller
      * Get Groceries
      *
      */
-    public function groceries()
+    public function groceries(Request $request)
+    {
+        if (auth()->user()->hasRole('orderer')) {
+            $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+            $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+            $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(10);
+
+            return MenuResource::collection($menu);
+        }
+
+        if (auth()->user()->hasRole('restaurant')) {
+            $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+            $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+            $restaurants = auth()->user()->restaurants->pluck('id');
+
+            $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('restaurant_id', $restaurants)->whereIn('id', $category_menus)->paginate(10);
+
+            $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurants)->get();
+            
+            return $this->success([
+                'menu' => $menu,
+                'categories' => new FoodCommonCategoryCollection($categories),
+                'restaurants' => auth()->user()->restaurants,
+            ]);
+        }
+
+        if (auth()->user()->hasRole('restaurant employee')) {
+            $search = $request->query('search');
+            $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+
+            $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+            $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+            $menu = Menu::with('images', 'categories', 'subCategories')->where('restaurant_id', $restaurant->id)->whereIn('id', $category_menus)->paginate(10);
+
+            return MenuResource::collection($menu);
+        }
+
+    }
+
+    public function restaurantGroceries(Restaurant $restaurant)
     {
         $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
 
         $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-        $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(1);
+        $menu = Menu::with('images', 'categories', 'subCategories')->where('restaurant_id', $restaurant->id)->whereIn('id', $category_menus)->paginate(10);
 
         return MenuResource::collection($menu);
     }

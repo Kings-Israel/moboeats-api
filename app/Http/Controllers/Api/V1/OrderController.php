@@ -262,7 +262,6 @@ class OrderController extends Controller
                             ->each(function($rider, $key) use ($restaurant) {
                                 if ($rider->latitude != NULL && $rider->longitude != NULL && $restaurant->latitude != NULL && $restaurant->longitude != NULL) {
                                     $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
-                                    info($business_location);
                                     if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
                                         $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
                                         $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
@@ -277,7 +276,7 @@ class OrderController extends Controller
                                    $rider['time_away'] = NULL;
                                 }
                                 })->sortBy([
-                                    fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
+                                    fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
                                 ]);
 
             return request()->wantsJson() ?

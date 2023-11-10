@@ -59,7 +59,8 @@ class Restaurant extends Model implements UrlRoutable
         'updated_by',
         'sitting_capacity',
         'service_charge_agreement',
-        'denied_reason'
+        'denied_reason',
+        'groceries_service_charge_agreement'
     ];
 
     public function getRouteKeyName()

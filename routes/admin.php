@@ -31,6 +31,8 @@ Route::group(['prefix' => 'v1/admin'], function() {
             Route::get('/menu', [AdminController::class, 'restaurantMenu']);
             Route::get('/categories', [AdminController::class, 'restaurantCategories']);
             Route::get('/orders', [AdminController::class, 'restaurantOrders']);
+
+            Route::post('/update/service-charge-agreement', [AdminController::class, 'updateServiceChargeAgreement']);
         });
     });
 });
