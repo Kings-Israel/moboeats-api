@@ -384,6 +384,21 @@ class AdminController extends Controller
         return $this->success('Restaurants updated successfully');
     }
 
+    public function updateServiceChargeAgreement(Restaurant $restaurant, Request $request)
+    {
+        if ($request->has('groceries')) {
+            $restaurant->update([
+                'groceries_service_charge_agreement' => $request->service_charge_agreement
+            ]);
+        } else {
+            $restaurant->update([
+                'service_charge_agreement' => $request->service_charge_agreement
+            ]);
+        }
+
+        return $this->success('Restaurant updated successfully');
+    }
+
     public function restaurantOrders(Request $request, Restaurant $restaurant)
     {
         $search = $request->query('search');
