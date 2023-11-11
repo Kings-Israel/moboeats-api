@@ -212,6 +212,8 @@ class PaymentController extends Controller
         $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
         event(new NewOrder($order->restaurant, $order->load('user')));
 
+        activity()->causedBy($order->user)->performedOn($order)->log('paid for the order');
+
         return response()->json([
             'message' => 'Successful Payment',
          ], 200);

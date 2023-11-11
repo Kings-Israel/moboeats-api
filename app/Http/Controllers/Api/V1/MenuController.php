@@ -60,7 +60,11 @@ class MenuController extends Controller
         if (auth()->user()->hasRole('restaurant')) {
             $menu = Menu::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
         } else {
-            $menu = Menu::whereHas('menuPrices')->whereHas('images')->where($filterItems);
+            $menu = Menu::active()->whereHas('menuPrices', function ($query) {
+                            $query->where('status', '2');
+                        })
+                        ->whereHas('images')
+                        ->where($filterItems);
         }
 
         if ($includesubCategories &&  $includeCategories && $includesubImages) {
@@ -151,6 +155,8 @@ class MenuController extends Controller
                     ]);
                 }
             }
+
+            activity()->causedBy(auth()->user())->performedOn($menu)->log('added new menu item');
 
             DB::commit();
             return new MenuResource($menu);
@@ -545,7 +551,7 @@ class MenuController extends Controller
 
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-            $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(10);
+            $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(10);
 
             return MenuResource::collection($menu);
         }
@@ -560,7 +566,7 @@ class MenuController extends Controller
             $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('restaurant_id', $restaurants)->whereIn('id', $category_menus)->paginate(10);
 
             $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurants)->get();
-            
+
             return $this->success([
                 'menu' => $menu,
                 'categories' => new FoodCommonCategoryCollection($categories),

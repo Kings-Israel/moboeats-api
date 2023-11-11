@@ -164,7 +164,7 @@ class OrderController extends Controller
 
                 // cart items will translate to order items
                 foreach ($cartItems as $item) {
-                    $standardMenuPrice = $item->menu->menuPrices->where('description', 'standard')->first();
+                    $standardMenuPrice = $item->menu->menuPrices->where('status', '2')->first();
                     OrderItem::create([
                         'order_id' => $order->id,
                         'menu_id' => $item->menu_id,
@@ -218,6 +218,8 @@ class OrderController extends Controller
 
                 // $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
                 // event(new NewOrder($restaurant, $order->load('user')));
+
+                activity()->causedBy(auth()->user())->performedOn($order)->log('made a new order in restaurant'. $order->restaurant->name);
 
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images']));
             } catch (\Throwable $th) {

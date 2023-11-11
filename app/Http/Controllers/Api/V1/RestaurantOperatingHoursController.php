@@ -34,6 +34,8 @@ class RestaurantOperatingHoursController extends Controller
             }
         }
 
+        activity()->causedBy(auth()->user())->performedOn($restaurant)->log('added new operating hours');
+
         return $this->success($restaurant->load('operatingHours'), 'Operating Hours saved successfully');
     }
 
@@ -62,6 +64,8 @@ class RestaurantOperatingHoursController extends Controller
         }
 
         $operating_hours = RestaurantOperatingHour::where('restaurant_id', $restaurant->id)->get();
+
+        activity()->causedBy(auth()->user())->performedOn($restaurant)->log('updated operating hours');
 
         return $this->success($operating_hours, 'Operating Hour updated successfully');
     }

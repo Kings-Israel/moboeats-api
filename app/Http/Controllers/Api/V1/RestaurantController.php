@@ -165,6 +165,7 @@ class RestaurantController extends Controller
                         'logo' => $request->logo->store('companyLogos/logos', 'public')
                     ]);
                 }
+                activity()->causedBy(auth()->user())->performedOn($restaurant)->log('registered a new restaurant');
                 DB::commit();
                 return new RestaurantResource($restaurant);
             } catch (\Throwable $th) {
@@ -220,6 +221,7 @@ class RestaurantController extends Controller
                     $admin = User::where('email', 'admin@moboeats.com')->first();
                     $admin->notify(new UpdatedRestaurant($restaurant));
                 }
+                activity()->causedBy(auth()->user())->performedOn($restaurant)->log('update the restaurant');
                 DB::commit();
                 return new RestaurantResource($restaurant);
             } catch (\Throwable $th) {

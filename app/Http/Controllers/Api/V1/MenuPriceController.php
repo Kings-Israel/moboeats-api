@@ -60,7 +60,6 @@ class MenuPriceController extends Controller
                     if ($active_price->count() > 0) {
                         // Make other prices inactive
                         foreach($active_price as $price) {
-                            info($active_price);
                             $price->update([
                                 'status' => 1
                             ]);
@@ -73,6 +72,8 @@ class MenuPriceController extends Controller
                 ]);
 
                 $menuPrice = MenuPrice::create($request->all());
+
+                activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('added menu price at '.$request->price);
 
                 DB::commit();
 
@@ -108,7 +109,7 @@ class MenuPriceController extends Controller
 
             if ($request->status == 2) {
                 $active = MenuPrice::where('menu_id', $menuPrice->menu->id)
-                                    ->where('status', $request->status)
+                                    ->where('status', 2)
                                     ->where('id', '!=', $menuPrice->id)
                                     ->get();
 
@@ -126,7 +127,12 @@ class MenuPriceController extends Controller
                 'updated_by' => auth()->user()->email
             ]);
 
+            $current_price = $menuPrice->price;
+
             $menuPrice->update($request->all());
+
+            activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('update menu price from '.$current_price.' to '.$request->price);
+
             DB::commit();
 
             return new MenuPriceResource($menuPrice);
@@ -157,6 +163,8 @@ class MenuPriceController extends Controller
         if ($menuPrices == 1) {
             $menuPrices = MenuPrice::where('menu_id', $menuPrice->menu->id)->first()->update(['status', 2]);
         }
+
+        activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('deleted a menu price '.$menuPrice->price);
 
         return $this->success($menuPrice);
     }
