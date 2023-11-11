@@ -62,6 +62,8 @@ class RestaurantDocumentsController extends Controller
             $admin->notify(new UpdatedRestaurant($restaurant));
         }
 
+        activity()->causedBy(auth()->user())->performedOn($restaurant)->log('uploaded business documents');
+
         return $this->success($restaurant->load('documents'), 'Documents saved successfully');
     }
 
@@ -110,6 +112,8 @@ class RestaurantDocumentsController extends Controller
             $admin = User::where('email', 'admin@moboeats.com')->first();
             $admin->notify(new UpdatedRestaurant($restaurant));
         }
+
+        activity()->causedBy(auth()->user())->performedOn($restaurant)->log('updated business documents');
 
         return $this->success($restaurant->load('documents'), 'Documents saved successfully');
     }

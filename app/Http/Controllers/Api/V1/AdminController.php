@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UpdatedRestaurantStatus;
+use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
 {
@@ -499,5 +500,15 @@ class AdminController extends Controller
                             ->paginate(10);
 
         return $this->success($payments);
+    }
+
+    public function logs(Request $request)
+    {
+        $search = $request->query('search');
+
+        $logs = Activity::with('causer', 'subject')
+                                ->paginate(10);
+
+        return $this->success($logs);
     }
 }

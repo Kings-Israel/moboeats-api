@@ -38,7 +38,7 @@ class CartController extends Controller
             if ($role === 'orderer') {
                 $carts = Cart::where('user_id', Auth::user()->id)
                                 ->where($filterItems)
-                                ->with(['cartItems', 'user'])
+                                ->with(['cartItems.menu.images', 'user'])
                                 ->paginate();
 
                 return new CartCollection($carts);

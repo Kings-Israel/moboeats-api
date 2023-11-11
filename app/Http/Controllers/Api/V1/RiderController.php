@@ -211,6 +211,8 @@ class RiderController extends Controller
             $order->restaurant->notify(new OrderUpdate($order, 'accepted'));
             event(new UpdateOrder($order->restaurant, $order, 'accepted'));
 
+            activity()->causedBy(auth()->user())->performedOn($order)->log('accepted order delivery');
+
             return $this->success($order, 'Order updated successfully', 200);
         }
 
@@ -234,6 +236,8 @@ class RiderController extends Controller
             $order->restaurant->notify(new OrderUpdate($order, 'on_delivery'));
             event(new UpdateOrder($order->restaurant, $order, 'on_delivery'));
 
+            activity()->causedBy(auth()->user())->performedOn($order)->log('updated order to on delivery');
+
             return $this->success($order, 'Order updated successfully', 200);
         }
 
@@ -245,6 +249,8 @@ class RiderController extends Controller
 
             $order->restaurant->notify(new OrderUpdate($order, 'delivered'));
             event(new UpdateOrder($order->restaurant, $order, 'delivered'));
+
+            activity()->causedBy(auth()->user())->performedOn($order)->log('delivered the order');
 
             return $this->success($order, 'Order updated successfully', 200);
         }

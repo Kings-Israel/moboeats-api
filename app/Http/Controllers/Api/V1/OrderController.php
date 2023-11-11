@@ -16,6 +16,8 @@ use App\Jobs\SendNotification;
 use App\Models\AssignedOrder;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\CategoryMenu;
+use App\Models\FoodCommonCategory;
 use App\Models\OrderItem;
 use App\Models\Restaurant;
 use App\Models\User;
@@ -158,9 +160,11 @@ class OrderController extends Controller
                     'created_by' => $user->name,
                 ]);
 
+                $items_are_groceries = true;
+
                 // cart items will translate to order items
-                $cartItems->each(function($item) use ($order, $user){
-                    $standardMenuPrice = $item->menu->menuPrices->where('description', 'standard')->first();
+                foreach ($cartItems as $item) {
+                    $standardMenuPrice = $item->menu->menuPrices->where('status', '2')->first();
                     OrderItem::create([
                         'order_id' => $order->id,
                         'menu_id' => $item->menu_id,
@@ -168,13 +172,26 @@ class OrderController extends Controller
                         'subtotal' => ($standardMenuPrice->price * $item->quantity),
                         'created_by' => $user->name,
                     ]);
-                });
+
+                    $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+                    $item_is_grocery = CategoryMenu::where('category_id', $category->id)->where('menu_id', $item->menu_id)->first();
+
+                    if (!$item_is_grocery) {
+                        $items_are_groceries = false;
+                    }
+                }
 
                 // update total amount in Order
                 $totalSubtotal = $order->orderItems->sum('subtotal');
 
-                // Service Charge
-                $service_charge = $restaurant->service_charge_agreement ? ((int) $restaurant->service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
+                if ($items_are_groceries) {
+                    // Service Charge
+                    $service_charge = $restaurant->groceries_service_charge_agreement ? ((int) $restaurant->groceries_service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
+                } else {
+                    // Service Charge
+                    $service_charge = $restaurant->service_charge_agreement ? ((int) $restaurant->service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
+                }
 
                 // add delivery fee if customer needs
                 if ($request->delivery == true) {
@@ -201,6 +218,8 @@ class OrderController extends Controller
 
                 // $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
                 // event(new NewOrder($restaurant, $order->load('user')));
+
+                activity()->causedBy(auth()->user())->performedOn($order)->log('made a new order in restaurant'. $order->restaurant->name);
 
                 return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images']));
             } catch (\Throwable $th) {

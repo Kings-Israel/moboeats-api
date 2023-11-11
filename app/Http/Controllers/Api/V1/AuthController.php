@@ -144,6 +144,8 @@ class AuthController extends Controller
             $user->update(['role_id' => $request->user_type]);
             DB::commit();
 
+            activity()->causedBy($user)->log('registered a new account');
+
             $user = new UserResource($user);
 
             return $this->success([
