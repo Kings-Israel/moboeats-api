@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Events\OrderDeliveryLocationUpdate;
 use App\Events\UpdateOrder;
+use App\Helpers\AssignOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\RiderResource;
 use App\Models\AssignedOrder;
@@ -255,9 +256,13 @@ class RiderController extends Controller
             return $this->success($order, 'Order updated successfully', 200);
         }
 
+
         $assignment->update([
             'status' => 'rejected'
         ]);
+
+        // Assign Order to Different Rider Rider
+        AssignOrder::assignOrder($order->id);
 
         $order->restaurant->notify(new OrderUpdate($order, 'rejected'));
         event(new UpdateOrder($order->restaurant, $order, 'rejected'));

@@ -28,7 +28,8 @@ class Order extends Model
         'updated_by',
         'rider_id',
         'booking_time',
-        'service_charge'
+        'service_charge',
+        'discount'
     ];
 
     protected $keyType = 'int';

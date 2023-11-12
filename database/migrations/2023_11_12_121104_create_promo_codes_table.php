@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('promo_codes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('code');
+            $table->enum('type', ['amount', 'percentage'])->nullable()->default('amount');
+            $table->bigInteger('value');
+            $table->enum('status', ['active', 'inactive'])->nullable()->default('active');
+            $table->date('start_date')->default(now());
+            $table->date('end_date')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('promo_codes');
+    }
+};

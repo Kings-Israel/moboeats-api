@@ -236,4 +236,12 @@ class Restaurant extends Model implements UrlRoutable
     {
         return $this->hasMany(RestaurantDocument::class);
     }
+
+    /**
+     * Get all of the promoCodes for the Restaurant
+     */
+    public function promoCodes(): HasMany
+    {
+        return $this->hasMany(PromoCode::class);
+    }
 }

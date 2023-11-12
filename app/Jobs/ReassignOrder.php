@@ -33,28 +33,12 @@ class ReassignOrder implements ShouldQueue
         $assigned_orders = AssignedOrder::where(function ($query) {
                                                 $query->where('status', 'pending');
                                             })
-                                            ->whereBetween('created_at', [now(), now()->addSeconds(10)])
-                                            ->get()
-                                            ->pluck('order_id');
+                                            ->where('created_at', '>=', now()->addSeconds(7))
+                                            ->get();
 
         // Mark pending assigned orders as rejected
         $assigned_orders->each(function ($order) {
-            $order->update([
-                'status' => 'rejected'
-            ]);
-        });
-
-        // Get all pending orders that have been paid for and have no rider assigned
-        $orders = Order::whereHas('payment')
-                        ->where('rider_id', NULL)
-                        ->where(function ($query) {
-                            $query->where('status', '1')
-                                    ->orWhere('status', '2');
-                        })
-                        ->get();
-
-        $orders->each(function ($order) {
-            AssignOrder::assignOrder($order->id);
+            AssignOrder::assignOrder($order->order_id);
         });
     }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\Api\V1\PromoCodesController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
@@ -45,6 +46,11 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function() {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
+
+    Route::get('/groceries', [MenuController::class, 'groceries']);
+    Route::get('/menu', [MenuController::class, 'index']);
+    Route::get('/restaurants', [RestaurantController::class, 'index']);
+    Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
@@ -55,26 +61,31 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
     Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
 });
+
+
 /**Basically a customer who will be ordering food/drinks */
-Route::group(['prefix' => 'v1/orderer', 'middleware' => 'auth:sanctum'], function() {
-    Route::get('/groceries', [MenuController::class, 'groceries']);
-    Route::apiResource('orderers', OrdererController::class);
+Route::group(['prefix' => 'v1/orderer'], function() {
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+        Route::get('/groceries', [MenuController::class, 'groceries']);
 
-    Route::apiResource('orderer-restaurants', RestaurantController::class);
-    Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
-    Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
+        Route::apiResource('orderers', OrdererController::class);
 
-    Route::apiResource('orderer-menu', MenuController::class);
+        Route::apiResource('orderer-restaurants', RestaurantController::class);
+        Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
+        Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
 
-    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
-    Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
+        Route::apiResource('orderer-menu', MenuController::class);
 
-    Route::apiResource('cart', CartController::class)->except(['update']);
-    Route::apiResource('cart-items', CartItemController::class);
+        Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+        Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
 
-    Route::apiResource('orders', OrderController::class)->except(['update']);
+        Route::apiResource('cart', CartController::class)->except(['update']);
+        Route::apiResource('cart-items', CartItemController::class);
 
-    // Route::apiResource('payment', PaymentController::class)->except(['update']);
+        Route::apiResource('orders', OrderController::class)->except(['update']);
+
+        // Route::apiResource('payment', PaymentController::class)->except(['update']);
+    });
 });
 
 Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
@@ -151,6 +162,11 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::post('/{uuid}/documents/update', [RestaurantDocumentsController::class, 'update']);
 
         Route::get('/documents/{id}/download', [RestaurantDocumentsController::class, 'download']);
+
+        // Promo codes
+        Route::get('/promo-codes', [PromoCodesController::class, 'index']);
+        Route::post('/promo-codes/store', [PromoCodesController::class, 'store']);
+        Route::post('/promo-codes/{promo_code}/update', [PromoCodesController::class, 'update']);
     });
 });
 

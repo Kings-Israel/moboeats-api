@@ -24,8 +24,8 @@ class AssignOrder
             }
 
             $delivery_address = NULL;
-            if ($order->user->latitude && $order->user->longitude) {
-                $delivery_address = [$order->user->latitude, $order->user->longitude];
+            if ($order->delivery_location_lat && $order->delivery_location_lng) {
+                $delivery_address = [$order->delivery_location_lat, $order->delivery_location_lng];
             }
 
             $notification_response = false;
@@ -39,6 +39,7 @@ class AssignOrder
                 ]);
                 $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
                 $notification_response = json_decode($response)->success == 1 ? true : false;
+                info($rider);
                 $rider = self::getRider($order_id);
             }
 
@@ -84,7 +85,7 @@ class AssignOrder
                         })
                         // Order by distance and time
                         ->sortBy([
-                            fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
+                            fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
                         ])
                         // Get the first courier
                         ->first();
