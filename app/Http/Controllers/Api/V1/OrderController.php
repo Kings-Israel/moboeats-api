@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\PromoCode;
 
 /**
  * @group Customer Order Management
@@ -132,6 +133,18 @@ class OrderController extends Controller
 
                 $restaurant = Restaurant::find($request->restaurant_id);
 
+                $discount = 0;
+
+                $promo_code = NULL;
+
+                if ($request->has('promo_code') && $request->promo_code != '' && $request->promo_code != null && $request->promo_code != 'null') {
+                    $promo_code = PromoCode::active()->where('code', $request->promo_code)->where('restaurant_id', $request->restaurant_id)->first();
+
+                    if (!$promo_code) {
+                        return $this->error('Promo Code', 'The Promo Code is not valid or has expired', 400);
+                    }
+                }
+
                 $delivery_fee = 0;
 
                 if ($request->delivery) {
@@ -185,6 +198,21 @@ class OrderController extends Controller
                 // update total amount in Order
                 $totalSubtotal = $order->orderItems->sum('subtotal');
 
+                // Get Promo Code discount before adding service charge
+                if ($request->has('promo_code') && $request->promo_code != '' && $request->promo_code != null && $request->promo_code != 'null') {
+                    if ($promo_code->type == 'amount') {
+                        $totalSubtotal = $totalSubtotal - $promo_code->value;
+                        $discount = $promo_code->value;
+                    } else {
+                        $discount = ($promo_code->value / 100) * $totalSubtotal;
+                        $totalSubtotal = $totalSubtotal - $discount;
+                    }
+
+                    $order->update([
+                        'discount' => $discount
+                    ]);
+                }
+
                 if ($items_are_groceries) {
                     // Service Charge
                     $service_charge = $restaurant->groceries_service_charge_agreement ? ((int) $restaurant->groceries_service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
@@ -196,6 +224,7 @@ class OrderController extends Controller
                 // add delivery fee if customer needs
                 if ($request->delivery == true) {
                     $totalSubtotal = $totalSubtotal + $delivery_fee;
+                    $totalSubtotal = $totalSubtotal <= 0 ? 0 : $totalSubtotal;
                     $order->update([
                         'total_amount' => $totalSubtotal,
                         'delivery_fee' => $delivery_fee,

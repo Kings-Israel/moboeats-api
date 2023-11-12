@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\Api\V1\PromoCodesController;
 use App\Http\Controllers\Api\V1\QuestionnaireController;
 use App\Http\Controllers\Api\V1\RestaurantBookmarkController;
 use App\Http\Controllers\Api\V1\RestaurantController;
@@ -161,6 +162,11 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::post('/{uuid}/documents/update', [RestaurantDocumentsController::class, 'update']);
 
         Route::get('/documents/{id}/download', [RestaurantDocumentsController::class, 'download']);
+
+        // Promo codes
+        Route::get('/promo-codes', [PromoCodesController::class, 'index']);
+        Route::post('/promo-codes/store', [PromoCodesController::class, 'store']);
+        Route::post('/promo-codes/{promo_code}/update', [PromoCodesController::class, 'update']);
     });
 });
 
