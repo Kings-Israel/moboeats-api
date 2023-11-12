@@ -56,11 +56,8 @@ class RestaurantController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-
-            if ($role === 'orderer') {
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('orderer')) {
                 $radius = 10;
                 $latitude = $request->latitude;
                 $longitude = $request->longitude;
@@ -86,7 +83,7 @@ class RestaurantController extends Controller
                 return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
             }
 
-            if ($role === 'rider') {
+            if (auth()->user()->hasRole('rider')) {
                 $radius = 10;
                 $latitude = $request->latitude;
                 $longitude = $request->longitude;
@@ -112,7 +109,7 @@ class RestaurantController extends Controller
                 return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
             }
 
-            if ($role === 'restaurant') {
+            if (auth()->user()->hasRole('restaurant')) {
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
                 $includeQuestionnaire = $request->query('questionnaire');
@@ -126,7 +123,7 @@ class RestaurantController extends Controller
                 return new RestaurantCollection($restaurants->paginate(10)->appends($request->query()));
             }
 
-            if ($role === 'restaurant employee') {
+            if (auth()->user()->hasRole('restaurant employee')) {
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
 
@@ -136,9 +133,25 @@ class RestaurantController extends Controller
 
                 return new RestaurantCollection($restaurants);
             }
-
         } else {
-            return $this->error('', 'Unauthorized', 401);
+            $restaurants = Restaurant::InOperation()->Approved();
+
+            // $restaurants = Restaurant::select(DB::raw("*,
+            //             (6371 * acos(cos(radians($request->latitude))
+            //             * cos(radians(latitude))
+            //             * cos(radians(longitude)
+            //             - radians($request->longitude))
+            //             + sin(radians($request->latitude))
+            //             * sin(radians(latitude))))
+            //             AS distance"))
+            //     ->having('distance', '<=', $radius)
+            //     ->orderBy('distance');
+
+            // if ($includeQuestionnaire) {
+            //     $restaurants = $restaurants->with('questionnaire');
+            // }
+
+            return new RestaurantCollection($restaurants->paginate());
         }
     }
 
@@ -182,7 +195,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return $this->isNotAuthorized($restaurant) ?  $this->isNotAuthorized($restaurant) : new RestaurantResource($restaurant->load('operatingHours', 'documents'));
+        if(auth()->check()) {
+            return new RestaurantResource($restaurant->load('operatingHours', 'documents'));
+        } else {
+            return new RestaurantResource($restaurant);
+        }
     }
 
     /**
