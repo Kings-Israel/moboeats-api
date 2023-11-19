@@ -52,11 +52,7 @@ class RestaurantController extends Controller
         'caption' =>  "Restaurant",
         'storageName' =>  "companyLogos",
     ];
-    /**
-     * Display a listing of the resource.
-     *
-     * @queryParam questionnaire to fetch associated restaurant questionnaire answers
-     */
+
     public function index(Request $request)
     {
         if (auth()->check()) {
@@ -174,14 +170,13 @@ class RestaurantController extends Controller
     {
         $search = $request->query('search');
 
-        Excel::store(new RestaurantExport($search), 'restaurants.xlsx', 'exports');
+        $unique = explode('-', Str::uuid())[0];
 
-        return Storage::disk('exports')->download('restaurants.xlsx');
+        Excel::store(new RestaurantExport($search), 'restaurants'.$unique.'.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('restaurants'.$unique.'.xlsx');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRestaurantRequest $request)
     {
         $user = User::where('id',Auth::user()->id)->first();
@@ -527,9 +522,11 @@ class RestaurantController extends Controller
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
 
-        Excel::store(new PaymentExport($search, $from_created_at, $to_created_at), 'payments.xlsx', 'exports');
+        $unique = explode('-', Str::uuid())[0];
 
-        return Storage::disk('exports')->download('payments.xlsx');
+        Excel::store(new PaymentExport($search, $from_created_at, $to_created_at), 'payments'.$unique.'.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('payments'.$unique.'.xlsx');
     }
 
     public function restaurantMenu(Request $request, Restaurant $restaurant)

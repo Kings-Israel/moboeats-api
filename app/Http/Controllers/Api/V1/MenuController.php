@@ -201,9 +201,11 @@ class MenuController extends Controller
     {
         $search = $request->query('search');
 
-        Excel::store(new MenuExport($search), 'menu.xlsx', 'exports');
+        $unique = explode('-', Str::uuid())[0];
 
-        return Storage::disk('exports')->download('menu.xlsx');
+        Excel::store(new MenuExport($search), 'menu'.$unique.'.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('menu'.$unique.'.xlsx');
     }
 
     public function addMenu(Request $request)
@@ -615,9 +617,11 @@ class MenuController extends Controller
     {
         $search = $request->query('search');
 
-        Excel::store(new GroceryExport($search), 'groceries.xlsx', 'exports');
+        $unique = unique();
 
-        return Storage::disk('exports')->download('groceries.xlsx');
+        Excel::store(new GroceryExport($search), 'groceries'.$unique.'.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('groceries'.$unique.'.xlsx');
     }
 
     public function restaurantGroceries(Restaurant $restaurant)
