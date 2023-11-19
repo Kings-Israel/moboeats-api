@@ -192,6 +192,7 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -209,6 +210,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Paypal' => App\Helpers\Paypal::class,
         'Helper' => App\Helpers\Helper::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

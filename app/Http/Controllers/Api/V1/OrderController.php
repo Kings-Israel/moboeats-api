@@ -30,6 +30,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\PromoCode;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrderExport;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 /**
  * @group Customer Order Management
@@ -60,8 +64,16 @@ class OrderController extends Controller
                 return new OrderCollection($orders);
             } elseif ($role === 'restaurant') {
                 $search = $request->query('search');
+                $from_created_at = $request->query('from_created_at');
+                $to_created_at = $request->query('to_created_at');
                 $orders = Order::whereIn('restaurant_id', $user->restaurants->pluck('id'))
                                 ->where($filterItems)
+                                ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
+                                    $query->whereDate('created_at', '>=', Carbon::parse($from_created_at));
+                                })
+                                ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
+                                    $query->whereDate('created_at', '<=', Carbon::parse($to_created_at));
+                                })
                                 ->when($search && $search != '', function ($query) use ($search) {
                                     $query->where(function ($query) use ($search) {
                                         $query->orWhere('uuid', 'LIKE', '%' . strtolower($search) . '%')
@@ -81,10 +93,18 @@ class OrderController extends Controller
                 return new OrderCollection($orders);
             } elseif ($role === 'restaurant employee') {
                 $search = $request->query('search');
+                $from_created_at = $request->query('from_created_at');
+                $to_created_at = $request->query('to_created_at');
                 $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
                 $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
                 $orders = Order::where('restaurant_id', $restaurant->id)
                                 ->where($filterItems)
+                                ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
+                                    $query->whereDate('created_at', '>=', Carbon::parse($from_created_at));
+                                })
+                                ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
+                                    $query->whereDate('created_at', '<=', Carbon::parse($to_created_at));
+                                })
                                 ->when($search && $search != '', function ($query) use ($search) {
                                     $query->where(function ($query) use ($search) {
                                         $query->orWhere('uuid', 'LIKE', '%' . strtolower($search) . '%')
@@ -105,6 +125,17 @@ class OrderController extends Controller
         } else {
             return $this->error('', 'Unauthorized', 401);
         }
+    }
+
+    public function export(Request $request)
+    {
+        $search = $request->query('search');
+        $from_created_at = $request->query('from_created_at');
+        $to_created_at = $request->query('to_created_at');
+
+        Excel::store(new OrderExport($search, $from_created_at, $to_created_at), 'orders.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('orders.xlsx');
     }
 
     /**

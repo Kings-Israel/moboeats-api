@@ -25,6 +25,9 @@ use App\Traits\Admin\UploadFileTrait;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MenuExport;
+use App\Exports\GroceryExport;
 
 /**
  * @group Menu Management
@@ -56,17 +59,22 @@ class MenuController extends Controller
             $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
 
             if (auth()->user()->hasRole('restaurant')) {
-                $menu = Menu::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))->where($filterItems);
+                $menu = Menu::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'));
+            } else if(auth()->user()->hasRole('restaurant employee')) {
+                $search = $request->query('search');
+
+                $restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+
+                $menu = Menu::where('restaurant_id', $restaurant->resturant_id);
             } else {
                 $menu = Menu::active()
                             ->whereHas('menuPrices', function ($query) {
                                 $query->where('status', '2');
                             })
-                            ->whereHas('images')
-                            ->where($filterItems);
+                            ->whereHas('images');
             }
 
-            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images'])->paginate()->appends($request->query()));
+            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images'])->paginate(6)->appends($request->query()));
         } else {
             $menu = Menu::active()
                             ->whereHas('menuPrices', function ($query) {
@@ -163,7 +171,9 @@ class MenuController extends Controller
     public function commonMenus(Request $request)
     {
         $search = $request->query('search');
+
         $restaurant_ids = auth()->user()->restaurants->pluck('id');
+
         $menu = Menu::with('restaurant', 'menuPrices', 'categories.food_sub_categories', 'subCategories', 'images')
                     ->withCount('orderItems')
                     ->whereIn('restaurant_id', $restaurant_ids)
@@ -185,6 +195,15 @@ class MenuController extends Controller
             'categories' => new FoodCommonCategoryCollection($categories),
             'restaurants' => auth()->user()->restaurants,
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        $search = $request->query('search');
+
+        Excel::store(new MenuExport($search), 'menu.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('menu.xlsx');
     }
 
     public function addMenu(Request $request)
@@ -590,6 +609,15 @@ class MenuController extends Controller
             return MenuResource::collection($menu);
         }
 
+    }
+
+    public function exportGroceries(Request $request)
+    {
+        $search = $request->query('search');
+
+        Excel::store(new GroceryExport($search), 'groceries.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('groceries.xlsx');
     }
 
     public function restaurantGroceries(Restaurant $restaurant)

@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewAccount;
 use App\Notifications\UpdatedRestaurant;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RestaurantExport;
+use App\Exports\PaymentExport;
 
 /**
  * @group Restaurant Management
@@ -110,26 +113,38 @@ class RestaurantController extends Controller
             }
 
             if (auth()->user()->hasRole('restaurant')) {
-                $filter =  new RestaurantFilter();
-                $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
-                $includeQuestionnaire = $request->query('questionnaire');
+                $search = $request->query('search');
 
-                $restaurants = Restaurant::withCount('orders', 'menus')->with('orders.payment', 'menus')->where('user_id', Auth::user()->id)->where($filterItems)->orderBy('created_at', 'DESC');
+                $restaurants = Restaurant::withCount('orders', 'menus')
+                                        ->with('orders.payment', 'menus')
+                                        ->where('user_id', Auth::user()->id)
+                                        ->when($search && $search != '', function ($query) use ($search) {
+                                            $query->where(function ($query) use ($search) {
+                                                $query->where('name', 'LIKE', '%'.$search.'%')
+                                                        ->orWhere('address', 'LIKE', '%'.$search.'%');
+                                            });
+                                        })
+                                        ->orderBy('created_at', 'DESC')
+                                        ->paginate(10);
 
-                if ($includeQuestionnaire) {
-                    $restaurants = $restaurants->with('questionnaire');
-                }
-
-                return new RestaurantCollection($restaurants->paginate(10)->appends($request->query()));
+                return new RestaurantCollection($restaurants);
             }
 
             if (auth()->user()->hasRole('restaurant employee')) {
-                $filter =  new RestaurantFilter();
-                $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+                $search = $request->query('search');
 
                 $restaurant = UserRestaurant::where('user_id', auth()->id())->first();
 
-                $restaurants = Restaurant::withCount('orders', 'menus')->with('orders.payment', 'menus')->where('id', $restaurant->restaurant_id)->where($filterItems)->first();
+                $restaurants = Restaurant::withCount('orders', 'menus')
+                                            ->with('orders.payment', 'menus')
+                                            ->where('id', $restaurant->restaurant_id)
+                                            ->when($search && $search != '', function ($query) use ($search) {
+                                                $query->where(function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%'.$search.'%')
+                                                            ->orWhere('address', 'LIKE', '%'.$search.'%');
+                                                });
+                                            })
+                                            ->first();
 
                 return new RestaurantCollection($restaurants);
             }
@@ -153,6 +168,15 @@ class RestaurantController extends Controller
 
             return new RestaurantCollection($restaurants->paginate());
         }
+    }
+
+    public function export(Request $request)
+    {
+        $search = $request->query('search');
+
+        Excel::store(new RestaurantExport($search), 'restaurants.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('restaurants.xlsx');
     }
 
     /**
@@ -465,10 +489,18 @@ class RestaurantController extends Controller
                         ->pluck('id');
 
         $search = $request->query('search');
+        $from_created_at = $request->query('from_created_at');
+        $to_created_at = $request->query('to_created_at');
 
         $payments = Payment::with('order.user', 'order.restaurant')
                             ->whereIn('order_id', $orders_ids)
                             ->where('status', '2')
+                            ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
+                                $query->whereDate('created_at', '>=', Carbon::parse($from_created_at));
+                            })
+                            ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
+                                $query->whereDate('created_at', '<=', Carbon::parse($to_created_at));
+                            })
                             ->when($search && $search != '', function ($query) use ($search) {
                                 $query->where(function($query) use ($search) {
                                     $query->where('transaction_id', 'LIKE', '%' . $search . '%')
@@ -487,6 +519,17 @@ class RestaurantController extends Controller
                             ->paginate();
 
         return $this->success($payments);
+    }
+
+    public function exportPayments(Request $request)
+    {
+        $search = $request->query('search');
+        $from_created_at = $request->query('from_created_at');
+        $to_created_at = $request->query('to_created_at');
+
+        Excel::store(new PaymentExport($search, $from_created_at, $to_created_at), 'payments.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('payments.xlsx');
     }
 
     public function restaurantMenu(Request $request, Restaurant $restaurant)
