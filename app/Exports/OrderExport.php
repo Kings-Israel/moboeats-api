@@ -20,7 +20,8 @@ class OrderExport implements FromCollection, WithMapping, WithHeadings
     public $from;
     public $to;
 
-    public function __construct(string $var = null, string $from = null, string $to = null) {
+    public function __construct(string $var = null, string $from = null, string $to = null)
+    {
         $this->var = $var;
         $this->from = $from;
         $this->to = $to;
