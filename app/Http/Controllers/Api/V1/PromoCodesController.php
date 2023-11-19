@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class PromoCodesController extends Controller
 {
@@ -77,9 +78,11 @@ class PromoCodesController extends Controller
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
 
-        Excel::store(new PromoCodeExport($search, $from_created_at, $to_created_at), 'promo-codes.xlsx', 'exports');
+        $unique = explode('-', Str::uuid())[0];
 
-        return Storage::disk('exports')->download('promo-codes.xlsx');
+        Excel::store(new PromoCodeExport($search, $from_created_at, $to_created_at), 'promo-codes'.$unique.'.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('promo-codes'.$unique.'.xlsx');
     }
 
     /**

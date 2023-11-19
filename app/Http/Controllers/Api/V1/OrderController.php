@@ -34,6 +34,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OrderExport;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * @group Customer Order Management
@@ -133,9 +134,11 @@ class OrderController extends Controller
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
 
-        Excel::store(new OrderExport($search, $from_created_at, $to_created_at), 'orders.xlsx', 'exports');
+        $unique = explode('-', Str::uuid())[0];
 
-        return Storage::disk('exports')->download('orders.xlsx');
+        Excel::store(new OrderExport($search, $from_created_at, $to_created_at), 'orders'.$unique.'.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('orders'.$unique.'.xlsx');
     }
 
     /**
