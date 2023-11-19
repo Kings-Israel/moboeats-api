@@ -86,7 +86,15 @@ return [
             'url' => env('APP_URL').'/storage/restaurant',
             'visibility' => 'public',
             'throw' => false,
-        ]
+        ],
+
+        'exports' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/exports'),
+            'url' => env('APP_URL').'/storage/exports',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
     ],
 

@@ -107,6 +107,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
     Route::middleware(['has_restaurant'])->group(function () {
         Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
         Route::apiResource('restaurants', RestaurantController::class);
+        Route::get('/restaurants/export/data', [RestaurantController::class, 'export']);
         Route::post('/restaurants/{restaurant}/update', [RestaurantController::class, 'update']);
         Route::apiResource('food-categories', FoodCommonCategoryController::class);
         Route::apiResource('food-sub-categories', FooSubCategoryController::class);
@@ -115,6 +116,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::apiResource('menu', MenuController::class);
         Route::get('/groceries', [MenuController::class, 'groceries']);
+        Route::get('/groceries/export/data', [MenuController::class, 'exportGroceries']);
         Route::get('{restaurant}/groceries', [MenuController::class, 'restaurantGroceries']);
         Route::post('/{id}/menu/add', [MenuController::class, 'store']);
         Route::post('/menu/{id}/update', [MenuController::class, 'update']);
@@ -123,6 +125,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::post('/menu-prices/{id}/update', [MenuPriceController::class, 'update']);
         Route::delete('/menu-prices/{id}/delete', [MenuPriceController::class, 'destroy']);
         Route::get('/menus', [MenuController::class, 'commonMenus']);
+        Route::get('menus/export/data', [MenuController::class, 'export']);
         Route::post('/menu/create', [MenuController::class, 'addMenu']);
         Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
 
@@ -130,10 +133,12 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::apiResource('orders', OrderController::class)->except(['store']);
         Route::post('/orders/{order}/update', [OrderController::class, 'update']);
         Route::post('/orders/assign', [OrderController::class, 'assignorder']);
+        Route::get('/orders/export/data', [OrderController::class, 'export']);
 
         Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
 
         Route::get('/payments', [RestaurantController::class, 'payments']);
+        Route::get('/payments/export/data', [RestaurantController::class, 'exportPayments']);
 
         Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
         Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
