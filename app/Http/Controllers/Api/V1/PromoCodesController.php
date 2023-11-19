@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Exports\PromoCodeExport;
 use App\Http\Controllers\Controller;
 use App\Models\PromoCode;
 use App\Models\Restaurant;
 use App\Models\UserRestaurant;
 use App\Traits\HttpResponses;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PromoCodesController extends Controller
 {
@@ -19,13 +23,39 @@ class PromoCodesController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $from_created_at = $request->query('from_created_at');
+        $to_created_at = $request->query('to_created_at');
 
         $restaurants = [];
 
         if (auth()->user()->hasRole('restaurant')) {
             $restaurants_ids = auth()->user()->restaurants->pluck('id');
 
-            $codes = PromoCode::with('restaurant')->whereIn('restaurant_id', $restaurants_ids)->paginate(10);
+            $codes = PromoCode::with('restaurant')
+                                ->whereIn('restaurant_id', $restaurants_ids)
+                                ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
+                                    $query->where(function ($query) use ($from_created_at) {
+                                        $query->whereDate('created_at', '>=', Carbon::parse($from_created_at))
+                                                ->orWhereDate('start_date', '>=', Carbon::parse($from_created_at))
+                                                ->orWhereDate('end_date', '>=', Carbon::parse($from_created_at));
+                                    });
+                                })
+                                ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
+                                    $query->where(function ($query) use ($to_created_at) {
+                                        $query->whereDate('created_at', '<=', Carbon::parse($to_created_at))
+                                                ->orWhereDate('start_date', '<=', Carbon::parse($to_created_at))
+                                                ->orWhereDate('end_date', '<=', Carbon::parse($to_created_at));
+                                    });
+                                })
+                                ->when($search && $search != '', function ($query) use ($search) {
+                                    $query->where(function ($query) use ($search) {
+                                        $query->where('code', 'LIKE', '%'.$search.'%')
+                                            ->orWhereHas('restaurant', function ($query) use ($search) {
+                                                $query->where('name', 'LIKE', '%'.$search.'%');
+                                            });
+                                    });
+                                })
+                                ->paginate(10);
             $restaurants = Restaurant::whereIn('id', $restaurants_ids)->get();
         } else if (auth()->user()->hasRole('restaurant employee')) {
             $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
@@ -39,6 +69,17 @@ class PromoCodesController extends Controller
             'promo_codes' => $codes,
             'restaurants' => $restaurants
         ]);
+    }
+
+    public function export(Request $request)
+    {
+        $search = $request->query('search');
+        $from_created_at = $request->query('from_created_at');
+        $to_created_at = $request->query('to_created_at');
+
+        Excel::store(new PromoCodeExport($search, $from_created_at, $to_created_at), 'promo-codes.xlsx', 'exports');
+
+        return Storage::disk('exports')->download('promo-codes.xlsx');
     }
 
     /**

@@ -170,6 +170,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         // Promo codes
         Route::get('/promo-codes', [PromoCodesController::class, 'index']);
+        Route::get('/promo-codes/export/data', [PromoCodesController::class, 'export']);
         Route::post('/promo-codes/store', [PromoCodesController::class, 'store']);
         Route::post('/promo-codes/{promo_code}/update', [PromoCodesController::class, 'update']);
     });
