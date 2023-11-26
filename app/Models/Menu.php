@@ -9,6 +9,7 @@ use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Menu extends Model implements UrlRoutable
 {
@@ -128,6 +129,14 @@ class Menu extends Model implements UrlRoutable
     public function cartItems(): HasMany
     {
         return $this->hasMany(CartItem::class, 'menu_id', 'id');
+    }
+
+    /**
+     * Get the discount associated with the Menu
+     */
+    public function discount(): HasOne
+    {
+        return $this->hasOne(Discount::class);
     }
 
     /**

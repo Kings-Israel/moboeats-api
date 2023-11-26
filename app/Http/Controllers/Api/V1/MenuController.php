@@ -74,7 +74,7 @@ class MenuController extends Controller
                             ->whereHas('images');
             }
 
-            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images'])->paginate(6)->appends($request->query()));
+            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate(6)->appends($request->query()));
         } else {
             $menu = Menu::active()
                             ->whereHas('menuPrices', function ($query) {
@@ -82,7 +82,7 @@ class MenuController extends Controller
                             })
                             ->whereHas('images');
 
-            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images'])->paginate());
+            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate());
         }
     }
 
@@ -174,7 +174,7 @@ class MenuController extends Controller
 
         $restaurant_ids = auth()->user()->restaurants->pluck('id');
 
-        $menu = Menu::with('restaurant', 'menuPrices', 'categories.food_sub_categories', 'subCategories', 'images')
+        $menu = Menu::with('restaurant', 'menuPrices', 'categories.food_sub_categories', 'subCategories', 'images', 'discount')
                     ->withCount('orderItems')
                     ->whereIn('restaurant_id', $restaurant_ids)
                     ->when($search && $search != '', function ($query) use ($search) {
@@ -463,7 +463,7 @@ class MenuController extends Controller
                 return new MenuResource($menu->loadMissing('images'));
             }
         }
-        return new MenuResource($menu->loadMissing('menuPrices', 'categories.subCategories'));
+        return new MenuResource($menu->loadMissing('menuPrices', 'categories.subCategories', 'discount'));
     }
 
     /**
@@ -565,7 +565,7 @@ class MenuController extends Controller
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-                $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(10);
+                $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
 
                 return MenuResource::collection($menu);
             }
@@ -577,7 +577,7 @@ class MenuController extends Controller
 
                 $restaurants = auth()->user()->restaurants->pluck('id');
 
-                $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant')->whereIn('restaurant_id', $restaurants)->whereIn('id', $category_menus)->paginate(10);
+                $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('restaurant_id', $restaurants)->whereIn('id', $category_menus)->paginate(10);
 
                 $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurants)->get();
 
@@ -597,7 +597,7 @@ class MenuController extends Controller
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-                $menu = Menu::with('images', 'categories', 'subCategories')->where('restaurant_id', $restaurant->id)->whereIn('id', $category_menus)->paginate(10);
+                $menu = Menu::with('images', 'categories', 'subCategories', 'discount')->where('restaurant_id', $restaurant->id)->whereIn('id', $category_menus)->paginate(10);
 
                 return MenuResource::collection($menu);
             }
@@ -606,7 +606,7 @@ class MenuController extends Controller
 
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-            $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant')->whereIn('id', $category_menus)->paginate(10);
+            $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
 
             return MenuResource::collection($menu);
         }

@@ -35,6 +35,10 @@ Route::group(['prefix' => 'v1/admin'], function() {
             Route::post('/update/service-charge-agreement', [AdminController::class, 'updateServiceChargeAgreement']);
         });
 
+        Route::group(['prefix' => '/discounts'], function () {
+            Route::get('/', [AdminController::class, 'discounts']);
+        });
+
         Route::get('/logs', [AdminController::class, 'logs']);
     });
 });

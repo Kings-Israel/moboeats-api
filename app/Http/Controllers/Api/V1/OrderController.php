@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\PromoCode;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OrderExport;
+use App\Models\Discount;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -220,6 +221,20 @@ class OrderController extends Controller
                         'created_by' => $user->name,
                     ]);
 
+                    $menu_discount = Discount::where('menu_id', $item->menu_id)->first();
+
+                    if ($menu_discount) {
+                        if ($menu_discount->type == 'amount') {
+                            for ($i=1; $i <= $item->quantity; $i++) {
+                                $discount += $menu_discount->value;
+                            }
+                        } else {
+                            for ($i=1; $i <= $item->quantity; $i++) {
+                                $discount += ($menu_discount->value / 100) * $standardMenuPrice->price;
+                            }
+                        }
+                    }
+
                     $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
 
                     $item_is_grocery = CategoryMenu::where('category_id', $category->id)->where('menu_id', $item->menu_id)->first();
@@ -236,16 +251,16 @@ class OrderController extends Controller
                 if ($request->has('promo_code') && $request->promo_code != '' && $request->promo_code != null && $request->promo_code != 'null') {
                     if ($promo_code->type == 'amount') {
                         $totalSubtotal = $totalSubtotal - $promo_code->value;
-                        $discount = $promo_code->value;
+                        $discount += $promo_code->value;
                     } else {
-                        $discount = ($promo_code->value / 100) * $totalSubtotal;
+                        $discount += ($promo_code->value / 100) * $totalSubtotal;
                         $totalSubtotal = $totalSubtotal - $discount;
                     }
-
-                    $order->update([
-                        'discount' => $discount
-                    ]);
                 }
+
+                $order->update([
+                    'discount' => $discount
+                ]);
 
                 if ($items_are_groceries) {
                     // Service Charge
