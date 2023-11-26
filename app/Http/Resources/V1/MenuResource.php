@@ -41,6 +41,7 @@ class MenuResource extends JsonResource
                 }, function(){
                     return  new RestaurantResource($this->restaurant);
                 }),
+                'discount' => $this->whenLoaded('discount'),
             ],
         ];
     }

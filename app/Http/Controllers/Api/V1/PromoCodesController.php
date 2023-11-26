@@ -106,7 +106,6 @@ class PromoCodesController extends Controller
             PromoCode::create($promo->all());
         });
 
-
         return $this->success('', 'Promo Code added successfully');
     }
 

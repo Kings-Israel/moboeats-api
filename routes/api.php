@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\CartItemController;
+use App\Http\Controllers\Api\V1\DiscountController;
 use App\Http\Controllers\Api\V1\FCategorySubCategoryController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
@@ -173,6 +174,14 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::get('/promo-codes/export/data', [PromoCodesController::class, 'export']);
         Route::post('/promo-codes/store', [PromoCodesController::class, 'store']);
         Route::post('/promo-codes/{promo_code}/update', [PromoCodesController::class, 'update']);
+
+        // Discounts
+        Route::group(['prefix' => 'discounts'], function () {
+            Route::get('/', [DiscountController::class, 'index']);
+            Route::post('/store', [DiscountController::class, 'store']);
+            Route::post('/{discount}/update', [DiscountController::class, 'update']);
+            Route::get('/{discount}/delete', [DiscountController::class, 'destroy']);
+        });
     });
 });
 
