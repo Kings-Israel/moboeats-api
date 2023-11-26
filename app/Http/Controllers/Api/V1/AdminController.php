@@ -320,6 +320,7 @@ class AdminController extends Controller
     public function restaurants(Request $request)
     {
         $search = $request->query('search');
+        $status = $request->query('status');
 
         $restaurants = Restaurant::with('user', 'orders', 'menus')
                                 ->when($search && $search != '', function($query) use ($search) {
@@ -327,6 +328,11 @@ class AdminController extends Controller
                                         ->orWhereHas('user', function ($query) use ($search) {
                                             $query->where('name', 'LIKE', '%'.$search.'%');
                                         });
+                                })
+                                ->when($status && $status != '', function ($query) use ($status) {
+                                    $query->where(function ($query) use ($status) {
+                                        $query->where('status', $status);
+                                    });
                                 })
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
@@ -424,7 +430,7 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
 
-        $menu = Menu::with('images', 'menuPrices', 'subCategories', 'categories.food_sub_categories')
+        $menu = Menu::with('images', 'menuPrices', 'subCategories', 'categories.food_sub_categories', 'discount')
                     ->withCount('orderItems')
                     ->where('restaurant_id', $restaurant->id)
                     ->when($search && $search != '', function ($query) use ($search) {
@@ -510,5 +516,21 @@ class AdminController extends Controller
                                 ->paginate(10);
 
         return $this->success($logs);
+    }
+
+    public function discounts(Request $request)
+    {
+        $search = $request->query('search');
+
+        $menu = Menu::with('discount', 'restaurant')
+                    ->whereHas('discount')
+                    ->when($search && $search != '', function ($query) use ($search) {
+                        $query->where('title', 'LIKE', '%'.$search.'%');
+                    })
+                    ->paginate(6);
+
+        return $this->success([
+            'discounts' => $menu,
+        ]);
     }
 }

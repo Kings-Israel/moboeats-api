@@ -40,6 +40,7 @@ class RestaurantResource extends JsonResource
                 'denied_reason' => (string) $this->denied_reason,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
+                'status' => $this->when(auth()->check() && (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('admin')), $this->status),
                 'service_charge_agreement' => $this->when(auth()->check() && (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('admin')), $this->service_charge_agreement),
                 'groceries_service_charge_agreement' => $this->when(auth()->check() && (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('admin')), $this->groceries_service_charge_agreement),
             ],

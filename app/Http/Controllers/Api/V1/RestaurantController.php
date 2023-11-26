@@ -110,6 +110,7 @@ class RestaurantController extends Controller
 
             if (auth()->user()->hasRole('restaurant')) {
                 $search = $request->query('search');
+                $status = $request->query('status');
 
                 $restaurants = Restaurant::withCount('orders', 'menus')
                                         ->with('orders.payment', 'menus')
@@ -118,6 +119,11 @@ class RestaurantController extends Controller
                                             $query->where(function ($query) use ($search) {
                                                 $query->where('name', 'LIKE', '%'.$search.'%')
                                                         ->orWhere('address', 'LIKE', '%'.$search.'%');
+                                            });
+                                        })
+                                        ->when($status && $status != '', function ($query) use ($status) {
+                                            $query->where(function ($query) use ($status) {
+                                                $query->where('status', $status);
                                             });
                                         })
                                         ->orderBy('created_at', 'DESC')
@@ -169,10 +175,11 @@ class RestaurantController extends Controller
     public function export(Request $request)
     {
         $search = $request->query('search');
+        $status = $request->query('status');
 
         $unique = explode('-', Str::uuid())[0];
 
-        Excel::store(new RestaurantExport($search), 'restaurants'.$unique.'.xlsx', 'exports');
+        Excel::store(new RestaurantExport($search, $status), 'restaurants'.$unique.'.xlsx', 'exports');
 
         return Storage::disk('exports')->download('restaurants'.$unique.'.xlsx');
     }
