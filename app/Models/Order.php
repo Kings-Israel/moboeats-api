@@ -9,10 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
+use Malhal\Geographical\Geographical;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, Geographical;
+
+    const LATITUDE  = 'delivery_location_lat';
+    const LONGITUDE = 'delivery_location_lng';
+    
     protected $fillable = [
         'user_id',
         'restaurant_id',
@@ -57,6 +62,15 @@ class Order extends Model
         return $this->where('uuid', $value)->firstOrFail();
     }
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'delivery_location_lat' => 'double',
+        'delivery_location_lng' => 'double',
+    ];
 
     public static function options($column)
     {

@@ -43,12 +43,12 @@ class RiderResource extends JsonResource
             'vehicle_type' =>$this->vehicle_type,
             'vehicle_license_plate' =>$this->vehicle_license_plate,
             'status' => $status,
+            'paypal_email' => $this->paypal_email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
             ]
-
         ];
     }
 }

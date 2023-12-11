@@ -6,6 +6,7 @@ use App\Jobs\SendNotification;
 use App\Models\AssignedOrder;
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class AssignOrder
@@ -30,7 +31,11 @@ class AssignOrder
 
             $notification_response = false;
             $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
-            $notification_response = json_decode($response)->success == 1 ? true : false;
+
+            if (json_decode($response) != 0) {
+                $notification_response = true;
+            }
+            // $notification_response = json_decode($response)->success == 1 ? true : false;
             while (!$notification_response) {
                 AssignedOrder::create([
                     'user_id' => $rider->id,
@@ -38,10 +43,18 @@ class AssignOrder
                     'status' => 'rejected'
                 ]);
                 $response = SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
-                $notification_response = json_decode($response)->success == 1 ? true : false;
-                info($rider);
+                // $notification_response = json_decode($response)->success == 1 ? true : false;
+                if (json_decode($response) != 0) {
+                    $notification_response = true;
+                }
+
                 $rider = self::getRider($order_id);
             }
+
+            AssignedOrder::create([
+                'user_id' => $rider->id,
+                'order_id' => $order->id,
+            ]);
 
             return $success;
         }
@@ -58,13 +71,48 @@ class AssignOrder
                         ->whereHas('roles', function($query) {
                             $query->where('name', 'rider');
                         })
-                        // ->where('status', 'Active')
+                        ->whereHas('rider')
+                        ->where('status', 2)
                         ->where(function($query) use ($order) {
                             $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                            // Get couriers who have been assigned delivery to the restaurant
+                            // and are going close to another order from the same restaurant
+                            // $deliveries = DB::table("orders")
+                            //                     ->where('delivery', 1)
+                            //                     ->where('rider_id', '!=', NULL)
+                            //                     ->where('restaurant_id', $order->restaurant_id)
+                            //                     ->where('delivery_status', '!=', 'Delivered')
+                            //                     ->where('delivery_status', '!=', 'On Delivery')
+                            //                     ->where('delivery_location_lat', '!=', '')
+                            //                     ->select(
+                            //                         DB::raw("6371 * acos(cos(radians(" . $order->delivery_location_lat . "))
+                            //                         * cos(radians(orders.delivery_location_lat))
+                            //                         * cos(radians(orders.delivery_location_lng)
+                            //                         - radians(" . $order->delivery_location_lng . "))
+                            //                         + sin(radians(" . $order->delivery_location_lat. "))
+                            //                         * sin(radians(orders.delivery_location_lat))) AS distance"))
+                            //                     ->get();
+
+                            $deliveries = Order::where('delivery', 1)
+                                                ->where('rider_id', '!=', NULL)
+                                                ->where('restaurant_id', $order->restaurant_id)
+                                                ->where('delivery_status', '!=', 'Delivered')
+                                                ->where('delivery_status', '!=', 'On Delivery')
+                                                ->distance($order->delivery_location_lat, $order->delivery_location_lng)
+                                                ->get();
+
+                            // Filter to couriers distances less than 3 MILES
+                            $nearby_deliveries = $deliveries->filter(function($delivery) {
+                                return (int) ($delivery->distance) <= 3;
+                            })->pluck('rider_id')->values()->all();
+
                             // Check if rider rejected the delivery request
                             $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->pluck('user_id');
-                            $query->whereNotIn('id', $assigned_riders)
-                                    ->whereNotIn('id', $rejected_orders);
+
+                            $query->whereNotIn('id', $rejected_orders)
+                                    ->where(function ($query) use ($assigned_riders, $nearby_deliveries) {
+                                        $query->orWhereIn('id', $nearby_deliveries);
+                                    });
                         })
                         ->get()
                         // Filter by distance to restaurant
