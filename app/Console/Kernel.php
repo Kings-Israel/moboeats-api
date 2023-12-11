@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\Payouts;
 use App\Jobs\ReassignOrder;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -16,6 +17,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         // $schedule->command('sanctum:prune-expired --hours=24')->daily();
         $schedule->job(new ReassignOrder)->cron('* * * * *');
+        $schedule->job(new Payouts)->weeklyOn(7, '0:800');
     }
 
     /**

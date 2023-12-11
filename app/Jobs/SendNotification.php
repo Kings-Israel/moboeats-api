@@ -31,7 +31,7 @@ class SendNotification implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle()
     {
         if ($this->user->device_token) {
             $response = Http::withHeaders([
@@ -45,8 +45,8 @@ class SendNotification implements ShouldQueue
                     ],
                     'data' => $this->data
                 ]);
-
-            info($response);
+            info("Response: ".$response);
+            return $response;
         }
     }
 }

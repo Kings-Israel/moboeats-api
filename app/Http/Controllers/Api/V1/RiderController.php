@@ -77,7 +77,8 @@ class RiderController extends Controller
         $validator = Validator::make($request->all(), [
             'vehicle_type' => ['required'],
             'vehicle_license_plate' => ['required'],
-            'profile_picture' => ['required', 'mimes:png,jpg,jpeg', 'max:10000']
+            'profile_picture' => ['required', 'mimes:png,jpg,jpeg', 'max:10000'],
+            'paypal_email' => ['required', 'email']
         ]);
 
         if ($validator->fails()) {
@@ -97,6 +98,7 @@ class RiderController extends Controller
                 'vehicle_type' => $request->vehicle_type,
                 'vehicle_license_plate' => $request->vehicle_license_plate,
                 'profile_picture' => pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME),
+                'paypal_email' => $request->paypal_email
             ]);
         } else {
             $rider = auth()->user()->rider;
@@ -124,6 +126,7 @@ class RiderController extends Controller
     {
         $request->validate([
             'email' => ['nullable', 'unique:riders,email,except,id'],
+            'paypal_email' => ['required', 'email']
         ]);
 
         $rider = Rider::where('user_id', auth()->id())->first();
@@ -141,7 +144,8 @@ class RiderController extends Controller
             'postal_code' => $request->has('postal_code') ? $request->get('postal_code') : $rider->postal_code,
             'vehicle_type' => $request->has('vehicle_type') ? $request->vehicle_type : $rider->vehicle_type,
             'vehicle_license_plate' => $request->has('vehicle_license_plate') ? $request->vehicle_license_plate : $rider->vehicle_license_plate,
-            'status' => 1
+            'status' => 1,
+            'paypal_email' => $request->paypal_email,
         ]);
 
         if ($request->hasFile('profile_picture')) {

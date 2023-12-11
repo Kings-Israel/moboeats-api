@@ -26,7 +26,8 @@ class Rider extends Model
         'profile_picture',
         'status',
         'created_by',
-        'updated_by'
+        'updated_by',
+        'paypal_email',
     ];
 
     /**

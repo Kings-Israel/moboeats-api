@@ -52,6 +52,7 @@
         .then(order_id => order_id.order_id);
         },
         onApprove(data) {
+            console.log("Success"+ data)
             // This function captures the funds from the transaction.
             return fetch("/api/v1/order/payment/capture-paypal-order", {
                 method: "POST",
@@ -73,9 +74,11 @@
             });
         },
         onCancel(data) {
+            console.log('Cancelled: '+data);
             window.location.href = "{{ route('paypal.checkout.failed') }}"
         },
         onError(err) {
+            console.log("Error: " + err);
             window.location.href = "{{ route('paypal.checkout.failed') }}"
         }
       }).render('#paypal-button-container');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3c464371168766f124c15a9488e13da",
+    "content-hash": "b0ffe0afa00ff1f241d1729bbf0d1dc2",
     "packages": [
         {
             "name": "ably/ably-php",
@@ -2168,6 +2168,71 @@
                 }
             ],
             "time": "2023-06-21T14:59:35+00:00"
+        },
+        {
+            "name": "malhal/laravel-geographical",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malhal/Laravel-Geographical.git",
+                "reference": "cd8252c966a62acd52a6ca4f16235b1530a07478"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malhal/Laravel-Geographical/zipball/cd8252c966a62acd52a6ca4f16235b1530a07478",
+                "reference": "cd8252c966a62acd52a6ca4f16235b1530a07478",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*|6.*|7.*|8.*|9.*|10.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "slevomat/coding-standard": "^8.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Geographical.php"
+                ],
+                "psr-4": {
+                    "Malhal\\Geographical\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Malcolm Hall",
+                    "email": "composer@malcolmhall.com"
+                }
+            ],
+            "description": "Easily add longitude and latitude columns to your records and use inherited functionality for calculating distances",
+            "keywords": [
+                "Laravel Geographical",
+                "Laravel-Geographical",
+                "Malcolm Hall",
+                "framework",
+                "geographical",
+                "laravel",
+                "latitude",
+                "longitude",
+                "malhal",
+                "models",
+                "user"
+            ],
+            "support": {
+                "issues": "https://github.com/malhal/Laravel-Geographical/issues",
+                "source": "https://github.com/malhal/Laravel-Geographical/tree/1.0.6"
+            },
+            "time": "2023-02-14T14:19:34+00:00"
         },
         {
             "name": "markbaker/complex",
