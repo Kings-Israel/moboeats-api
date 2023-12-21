@@ -454,4 +454,22 @@ class OrderController extends Controller
 
         return $this->success('', 'Delivery request sent successfully', 200);
     }
+
+    public function pendingOrders()
+    {
+        $orders = 0;
+        if (auth()->user()->hasRole('restaurant')) {
+            $orders = Order::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))
+                            ->where('status', 1)
+                            ->count();
+        } elseif (auth()->user()->hasRole('restaurant employee')) {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->user()->id)->first();
+            $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+            $orders = Order::where('restaurant_id', $restaurant->id)
+                            ->where('status', 1)
+                            ->count();
+        }
+
+        return $orders;
+    }
 }

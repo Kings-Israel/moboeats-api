@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Helpers\Paypal;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Payout;
 use App\Models\Restaurant;
 use App\Models\Rider;
 use App\Models\User;
@@ -74,6 +75,12 @@ class Payouts implements ShouldQueue
                 ];
 
                 array_push($payouts_items['items'], $restaurant_payout_details);
+
+                Payout::create([
+                    'payable_id' => $restaurant->id,
+                    'payable_type' => Restaurant::class,
+                    'amount' => $amount
+                ]);
             }
         }
 
@@ -103,6 +110,12 @@ class Payouts implements ShouldQueue
                 ];
 
                 array_push($payouts_items['items'], $rider_payout_details);
+
+                Payout::create([
+                    'payable_id' => $rider_details->id,
+                    'payable_type' => User::class,
+                    'amount' => $amount
+                ]);
             }
         }
 
