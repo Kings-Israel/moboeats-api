@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payouts', function (Blueprint $table) {
             $table->id();
             $table->string('payable_id');
-            $table->string('payable_tyoe');
+            $table->string('payable_type');
             $table->string('amount');
             $table->timestamps();
         });

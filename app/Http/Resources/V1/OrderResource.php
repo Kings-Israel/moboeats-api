@@ -36,7 +36,6 @@ class OrderResource extends JsonResource
                 'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'orderItems' => OrderItemResource::collection($this->whenLoaded('orderItems')),
             ]
-
         ];
     }
 }
