@@ -35,6 +35,7 @@ use App\Notifications\UpdatedRestaurant;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RestaurantExport;
 use App\Exports\PaymentExport;
+use App\Models\Payout;
 
 /**
  * @group Restaurant Management
@@ -379,24 +380,24 @@ class RestaurantController extends Controller
         $orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->count();
         $delivered_orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->where('status', 'Delivered')->count();
 
-        $order_ids = [];
+        $orders = [];
 
         if (auth()->user()->hasRole('restaurant')) {
-            $order_ids = Order::whereIn('restaurant_id', $restaurant_ids)
-                            ->get()
-                            ->pluck('id');
+            $orders = Order::whereIn('restaurant_id', $restaurant_ids)
+                            ->get();
         }
 
         if (auth()->user()->hasRole('restaurant employee')) {
             $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
             $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
 
-            $order_ids = Order::whereIn('restaurant_id', $restaurant_ids)
-                                ->get()
-                                ->pluck('id');
+            $orders = Order::whereIn('restaurant_id', $restaurant_ids)
+                                ->get();
         }
 
-        $revenue = Payment::whereIn('order_id', $order_ids)->where('status', '2')->sum('amount');
+        $revenue = Payment::whereIn('order_id', $orders->pluck('id'))->where('status', '2')->sum('amount');
+        $service_charges = $orders->sum('service_charge');
+        $revenue = (float) $revenue - (float) $service_charges;
 
         // Top Restaurants
         $top_restaurants = Restaurant::where('user_id', auth()->id())
@@ -486,16 +487,27 @@ class RestaurantController extends Controller
             $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
         }
 
-        $orders_ids = Order::whereIn('restaurant_id', $restaurant_ids)
-                        ->get()
-                        ->pluck('id');
+        $total_amount = 0;
+        $paid_amount = 0;
+        $unpaid_amount = 0;
+
+        $orders = Order::whereIn('restaurant_id', $restaurant_ids)
+                            ->get();
+
+        $total_amount = Payment::whereIn('order_id', $orders->pluck('id'))->sum('amount');
+        $service_charges = $orders->sum('service_charge');
+        $total_amount = $total_amount - $service_charges;
+
+        $paid_amount = Payout::whereIn('payable_id', $restaurant_ids)->where('payable_type', Restaurant::class)->sum('amount');
+
+        $unpaid_amount = (int) $total_amount - (int) $paid_amount;
 
         $search = $request->query('search');
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
 
         $payments = Payment::with('order.user', 'order.restaurant')
-                            ->whereIn('order_id', $orders_ids)
+                            ->whereIn('order_id', $orders->pluck('id'))
                             ->where('status', '2')
                             ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
                                 $query->whereDate('created_at', '>=', Carbon::parse($from_created_at));
@@ -520,7 +532,12 @@ class RestaurantController extends Controller
                             ->orderBy('created_at', 'DESC')
                             ->paginate();
 
-        return $this->success($payments);
+        return $this->success([
+            'payments' => $payments,
+            'total_amount' => $total_amount,
+            'paid_amount' => $paid_amount,
+            'unpaid_amount' => $unpaid_amount,
+        ]);
     }
 
     public function exportPayments(Request $request)
