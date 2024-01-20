@@ -90,6 +90,8 @@ class AuthController extends Controller
     {
         $request->validated($request->all());
 
+        info($request->all());
+
         try {
             DB::beginTransaction();
             $user = User::create([
@@ -119,6 +121,10 @@ class AuthController extends Controller
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
             }
             if ($request->user_type === 'restaurant') {
+                $user->update([
+                    'type' => $request->type
+                ]);
+
                 $role = Role::where('name', $request->user_type)->first();
                 if (!$role) {
                     return $this->error('', 'Unknown user type: '.$request->user_type, 401);

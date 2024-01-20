@@ -767,6 +767,7 @@ class RestaurantController extends Controller
             'password' => bcrypt($generate_password),
             'status' => 2,
             'image' => $request->hasFile('avatar') ? pathinfo($request->avatar->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
+            'type' => auth()->user()->type
         ]);
 
         UserRestaurant::create([
