@@ -40,6 +40,7 @@ class User extends Authenticatable implements LaratrustUser
         'device_token',
         'image',
         'phone_number',
+        'type',
     ];
 
     protected $keyType = 'int';

@@ -28,8 +28,8 @@ class UserResource extends JsonResource
                 }, function(){
                     return  new OrdererResource($this->orderer);
                 }),
-            ]
-            // 'status' =>$this->status,
+            ],
+            'type' => $this->when(auth()->check() && (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee')), $this->type)
         ];
     }
 }
