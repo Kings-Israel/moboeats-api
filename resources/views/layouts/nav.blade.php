@@ -24,7 +24,7 @@
                         <a href="{{ route('about') }}" class="js-target-scroll">About Us</a>
                     </li>
                     <li class="@if(request()->routeIs('contact-us')) active @endif">
-                        <a href="{{ route('contact-us') }}" class="js-target-scroll">Contact</a>
+                        <a href="{{ route('contact-us') }}" class="js-target-scroll">Contact Us</a>
                     </li>
                     {{-- <li class="@if(request()->routeIs('services')) active @endif">
                         <a href="{{ route('services') }}" class="js-target-scroll">Our Services</a>
