@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
-});
-//create a symlink to storage folder
-Route::get('/storage-link', function() {
-    Artisan::call('storage:link');
-    return redirect('/');
-});
+    return view('welcome');
+})->name('home');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/contact-us', function () {
+    return view('contact-us');
+})->name('contact-us');
+
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 Route::get('/paypal/checkout/success', function() {
     return view('paypal.success');
