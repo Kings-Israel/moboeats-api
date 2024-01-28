@@ -17,7 +17,7 @@ class Order extends Model
 
     const LATITUDE  = 'delivery_location_lat';
     const LONGITUDE = 'delivery_location_lng';
-    
+
     protected $fillable = [
         'user_id',
         'restaurant_id',
@@ -70,6 +70,7 @@ class Order extends Model
     protected $casts = [
         'delivery_location_lat' => 'double',
         'delivery_location_lng' => 'double',
+        'delivery' => 'bool'
     ];
 
     public static function options($column)
