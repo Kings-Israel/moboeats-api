@@ -132,6 +132,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::get('/pending-orders', [OrderController::class, 'pendingOrders']);
+        Route::get('/pending-dineins', [OrderController::class, 'pendingDineins']);
         Route::apiResource('orders', OrderController::class)->except(['store']);
         Route::post('/orders/{order}/update', [OrderController::class, 'update']);
         Route::post('/orders/assign', [OrderController::class, 'assignorder']);

@@ -58,16 +58,19 @@ class OrderController extends Controller
             $role = $user->role_id;
             if ($role === 'orderer') {
                 $orders = Order::where('user_id', Auth::user()->id)
-                ->where($filterItems)
-                ->with(['orderItems.menu.images', 'restaurant', 'rider'])
-                ->orderBy('created_at', 'DESC')
-                ->paginate();
+                                ->where($filterItems)
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider'])
+                                ->orderBy('created_at', 'DESC')
+                                ->paginate(10);
 
                 return new OrderCollection($orders);
             } elseif ($role === 'restaurant') {
                 $search = $request->query('search');
                 $from_created_at = $request->query('from_created_at');
                 $to_created_at = $request->query('to_created_at');
+                $delivery = $request->query('delivery');
+                $from_booking_date = $request->query('from_booking_date');
+                $to_booking_date = $request->query('to_booking_date');
                 $orders = Order::whereIn('restaurant_id', $user->restaurants->pluck('id'))
                                 ->where($filterItems)
                                 ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
@@ -75,6 +78,16 @@ class OrderController extends Controller
                                 })
                                 ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
                                     $query->whereDate('created_at', '<=', Carbon::parse($to_created_at));
+                                })
+                                ->when($delivery && $delivery != '', function ($query) use ($delivery) {
+                                    info($delivery);
+                                    $query->where('delivery', $delivery);
+                                })
+                                ->when($from_booking_date && $from_booking_date != '', function ($query) use ($from_booking_date) {
+                                    $query->whereDate('booking_time', '>=', Carbon::parse($from_booking_date));
+                                })
+                                ->when($to_booking_date && $to_booking_date != '', function ($query) use ($to_booking_date) {
+                                    $query->whereDate('booking_time', '<=', Carbon::parse($to_booking_date));
                                 })
                                 ->when($search && $search != '', function ($query) use ($search) {
                                     $query->where(function ($query) use ($search) {
@@ -99,6 +112,7 @@ class OrderController extends Controller
                 $to_created_at = $request->query('to_created_at');
                 $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
                 $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+                $delivery = $request->query('delivery');
                 $orders = Order::where('restaurant_id', $restaurant->id)
                                 ->where($filterItems)
                                 ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
@@ -106,6 +120,9 @@ class OrderController extends Controller
                                 })
                                 ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
                                     $query->whereDate('created_at', '<=', Carbon::parse($to_created_at));
+                                })
+                                ->when($delivery && $delivery != '', function ($query) use ($delivery) {
+                                    $query->where('delivery', $delivery);
                                 })
                                 ->when($search && $search != '', function ($query) use ($search) {
                                     $query->where(function ($query) use ($search) {
@@ -460,12 +477,34 @@ class OrderController extends Controller
         $orders = 0;
         if (auth()->user()->hasRole('restaurant')) {
             $orders = Order::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))
+                            ->where('delivery', true)
                             ->where('status', 1)
                             ->count();
         } elseif (auth()->user()->hasRole('restaurant employee')) {
             $user_restaurant = UserRestaurant::where('user_id', auth()->user()->id)->first();
             $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
             $orders = Order::where('restaurant_id', $restaurant->id)
+                            ->where('delivery', true)
+                            ->where('status', 1)
+                            ->count();
+        }
+
+        return $orders;
+    }
+
+    public function pendingDineins()
+    {
+        $orders = 0;
+        if (auth()->user()->hasRole('restaurant')) {
+            $orders = Order::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'))
+                            ->where('delivery', false)
+                            ->where('status', 1)
+                            ->count();
+        } elseif (auth()->user()->hasRole('restaurant employee')) {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->user()->id)->first();
+            $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+            $orders = Order::where('restaurant_id', $restaurant->id)
+                            ->where('delivery', false)
                             ->where('status', 1)
                             ->count();
         }
