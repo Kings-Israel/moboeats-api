@@ -383,16 +383,18 @@ class RestaurantController extends Controller
         $orders = [];
 
         if (auth()->user()->hasRole('restaurant')) {
-            $orders = Order::whereIn('restaurant_id', $restaurant_ids)
-                            ->get();
+            $orders = Order::whereIn('restaurant_id', $restaurant_ids)->get();
+            $deliveries = Order::whereIn('restaurant_id', $restaurant_ids)->where('delivery', true)->get();
+            $dineins = Order::whereIn('restaurant_id', $restaurant_ids)->where('delivery', false)->get();
         }
 
         if (auth()->user()->hasRole('restaurant employee')) {
             $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
             $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
 
-            $orders = Order::whereIn('restaurant_id', $restaurant_ids)
-                                ->get();
+            $orders = Order::whereIn('restaurant_id', $restaurant_ids)->get();
+            $deliveries = Order::whereIn('restaurant_id', $restaurant_ids)->where('delivery', true)->get();
+            $dineins = Order::whereIn('restaurant_id', $restaurant_ids)->where('delivery', false)->get();
         }
 
         $revenue = Payment::whereIn('order_id', $orders->pluck('id'))->where('status', '2')->sum('amount');
@@ -415,6 +417,8 @@ class RestaurantController extends Controller
         $top_restaurants_formatted = [];
         $orders_series = [];
         $payments_series = [];
+        $delivery_payment_series = [];
+        $bookings_payments_series = [];
         if (auth()->user()->hasRole('restaurant')) {
             foreach ($top_restaurants as $restaurant) {
                 $payment['payments']['labels'] = $months_formatted;
@@ -443,6 +447,24 @@ class RestaurantController extends Controller
             foreach ($months as $month) {
                 $payments = Payment::whereIn('order_id', $orders_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
                 array_push($payments_series, $payments);
+                $delivery_payments = Payment::whereIn('order_id', $orders_ids)
+                                        ->whereHas('order', function ($query) {
+                                            $query->where('delivery', true);
+                                        })
+                                        ->where('status', 2)
+                                        ->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])
+                                        ->sum('amount');
+                                        
+                array_push($delivery_payment_series, $delivery_payments);
+                $booking_payments = Payment::whereIn('order_id', $orders_ids)
+                                            ->whereHas('order', function ($query) {
+                                                $query->where('delivery', false);
+                                            })
+                                            ->where('status', 2)
+                                            ->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])
+                                            ->sum('amount');
+
+                array_push($bookings_payments_series, $booking_payments);
             }
         }
 
@@ -475,6 +497,10 @@ class RestaurantController extends Controller
             'rejected_restaurants' => $rejected_restaurants,
             'orders_series' => $orders_series,
             'payments_series' => $payments_series,
+            'delivery_payment_series' => $delivery_payment_series,
+            'booking_payment_series' => $bookings_payments_series,
+            'deliveries' => $deliveries,
+            'dineins' => $dineins,
         ]);
     }
 
