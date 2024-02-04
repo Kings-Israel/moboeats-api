@@ -33,5 +33,9 @@ Route::get('/paypal/checkout/failed', function() {
     return view('paypal.error');
 })->name('paypal.checkout.failed');
 
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+});
+
 require __DIR__.'/auth.php';
 
