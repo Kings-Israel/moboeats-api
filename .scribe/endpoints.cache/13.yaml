@@ -16,7 +16,7 @@ endpoints:
         Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -28,19 +28,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: quos
+        example: et
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: voluptatem
+        example: sed
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: quos
-      order_id: voluptatem
+      user_id: et
+      order_id: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -53,8 +53,8 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '59'
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '295'
           vary: Origin
         description: null
         custom: []
@@ -100,6 +100,70 @@ endpoints:
     httpMethods:
       - POST
     uri: api/v1/order/payment/capture-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/order/tip/payment/create-tip-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/order/tip/payment/capture-tip-paypal-order
     metadata:
       groupName: 'Payment Post Controller'
       groupDescription: |-

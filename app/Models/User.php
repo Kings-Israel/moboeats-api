@@ -218,4 +218,12 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(Order::class, 'rider_id', 'id');
     }
+
+    /**
+     * Get all of the reviews for the Order
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }

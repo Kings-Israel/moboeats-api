@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\UpdatePaymentRequest;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Rider;
+use App\Models\RiderTip;
 use App\Models\User;
 use App\Notifications\NewOrder as NotificationsNewOrder;
 use App\Traits\Admin\UploadFileTrait;
@@ -25,17 +27,6 @@ class PaymentController extends Controller
     use HttpResponses;
     use UploadFileTrait;
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     // public function store(StorePaymentRequest $request)
     // {
     //     $user = User::where('id', Auth::user()->id)->first();
@@ -188,6 +179,88 @@ class PaymentController extends Controller
         event(new NewOrder($order->restaurant, $order->load('user')));
 
         activity()->causedBy($order->user)->performedOn($order)->log('paid for the order');
+
+        return response()->json([
+            'message' => 'Successful Payment',
+         ], 200);
+    }
+
+    public function storeTip($order_id, $amount)
+    {
+        $order = Order::with('rider')
+                    ->where(function ($query) use ($order_id) {
+                        $query->where('id', $order_id)->orWhere('uuid', $order_id);
+                    })
+                    ->first();
+
+        if (!$order) {
+            return $this->error('Order Tip Payment', 'Order not found', 404);
+        }
+
+        $rider = Rider::where('user_id', $order->rider->id)->first();
+
+        if ($rider) {
+            return view('paypal.tip-checkout', [
+                'client_id' => config('paypal.sandbox.client_id'),
+                'currency' => config('paypal.currency'),
+                'order' => $order,
+                'rider' => $order->rider,
+                'total_amount' => $amount,
+                'checkout_id' => $order->uuid,
+            ]);
+        } else {
+            return view('paypal.error', ['message' => 'Rider hasn\'t completed their profile']);
+        }
+
+    }
+
+    public function createTipPaypalOrder(Request $request)
+    {
+        $provider = new PayPalClient;
+
+        $provider->setApiCredentials(config('paypal'));
+
+        // Get Paypal Token
+        $provider->getAccessToken();
+
+        // Create Order for Paypal Payment
+        $paypal_order = $provider->createOrder([
+            'intent' => 'CAPTURE',
+            'purchase_units' => [
+                [
+                    'amount' => [
+                        'currency_code' => config('paypal.currency'),
+                        'value' => $request->total_price
+                    ],
+                ]
+            ]
+        ]);
+
+        return response()->json([
+            'order_id' => $paypal_order['id']
+        ], 200);
+    }
+
+    public function captureTipPaypalPayment(Request $request)
+    {
+        $order = Order::where('uuid', $request->checkout_id)->first();
+
+        $order->update([
+            'status' => 2
+        ]);
+
+        $rider = Rider::where('user_id', $order->rider->id)->first();
+
+        RiderTip::create([
+            'transaction_id' => $request->transaction_id,
+            'order_id' => $order->id,
+            'rider_id' => $rider->id,
+            'payment_method' => 'Paypal',
+            'amount' => $request->amount,
+            'status' => 'paid',
+        ]);
+
+        activity()->causedBy($order->user)->performedOn($order)->log('tipped '.$order.' the rider');
 
         return response()->json([
             'message' => 'Successful Payment',

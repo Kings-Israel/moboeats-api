@@ -14,7 +14,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -55,7 +55,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -71,14 +71,14 @@ endpoints:
         name: cartId
         description: ''
         required: true
-        example: 3
+        example: 14
         type: integer
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: 1
+        example: 17
         type: integer
         custom: []
       delivery:
@@ -88,32 +88,39 @@ endpoints:
         example: true
         type: boolean
         custom: []
-      deliveryFee:
-        name: deliveryFee
-        description: 'This field is required when <code>delivery</code> is <code>=</code> or <code>true</code>.'
+      delivery_address:
+        name: delivery_address
+        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
         required: false
         example: null
         type: string
         custom: []
-      deliveryAddress:
-        name: deliveryAddress
-        description: 'This field is required when <code>delivery</code> is <code>=</code> or <code>true</code>.'
+      delivery_location_lat:
+        name: delivery_location_lat
+        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      delivery_location_lng:
+        name: delivery_location_lng
+        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
         required: false
         example: null
         type: string
         custom: []
       booking_time:
         name: booking_time
-        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2023-10-22 13:00:53</code>.'
+        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-02-10 15:11:27</code>.'
         required: false
-        example: '2051-01-08'
+        example: '2092-11-08'
         type: string
         custom: []
     cleanBodyParameters:
-      cartId: 3
-      restaurantId: 1
+      cartId: 14
+      restaurantId: 17
       delivery: true
-      booking_time: '2051-01-08'
+      booking_time: '2092-11-08'
     fileParameters: []
     responses: []
     responseFields: []
@@ -133,7 +140,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -182,7 +189,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -213,6 +220,78 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - POST
+    uri: api/v1/orderer/order/reviews/store
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store review for an order'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: 'The id of the order'
+        required: false
+        example: 10
+        type: integer
+        custom: []
+      restaurant_rating:
+        name: restaurant_rating
+        description: 'The rating of the restaurant from 1 - 5'
+        required: false
+        example: 19
+        type: integer
+        custom: []
+      restaurant_review:
+        name: restaurant_review
+        description: 'A review of the restaurant'
+        required: false
+        example: voluptate
+        type: string
+        custom: []
+      rider_rating:
+        name: rider_rating
+        description: 'The rating of the rider from 1 - 5'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      rider_review:
+        name: rider_review
+        description: 'A review of the rider'
+        required: false
+        example: nihil
+        type: string
+        custom: []
+    cleanBodyParameters:
+      order_id: 10
+      restaurant_rating: 19
+      restaurant_review: voluptate
+      rider_rating: 1
+      rider_review: nihil
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - GET
     uri: 'api/v1/restaurant/orders/{uuid}'
     metadata:
@@ -222,7 +301,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -263,6 +342,88 @@ endpoints:
   -
     httpMethods:
       - GET
+    uri: api/v1/restaurant/pending-orders
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/pending-dineins
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
     uri: api/v1/restaurant/orders
     metadata:
       groupName: 'Customer Order Management'
@@ -271,7 +432,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -313,7 +474,55 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 51029150-f84b-4f26-a308-ee2cfc195ff9
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: ''
+        required: true
+        example: officia
+        type: string
+        custom: []
+    cleanBodyParameters:
+      status: officia
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/orders/{uuid}'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -344,8 +553,8 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/v1/restaurant/orders/{uuid}'
+      - POST
+    uri: 'api/v1/restaurant/orders/{order_uuid}/update'
     metadata:
       groupName: 'Customer Order Management'
       groupDescription: |-
@@ -353,7 +562,7 @@ endpoints:
         Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -361,19 +570,27 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
+      order_uuid:
+        name: order_uuid
         description: ''
         required: true
         example: 51029150-f84b-4f26-a308-ee2cfc195ff9
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
+      order_uuid: 51029150-f84b-4f26-a308-ee2cfc195ff9
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+    cleanBodyParameters:
+      status: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -409,21 +626,62 @@ endpoints:
         name: order_id
         description: ''
         required: true
-        example: exercitationem
+        example: itaque
         type: string
         custom: []
       rider_id:
         name: rider_id
         description: ''
         required: true
-        example: aut
+        example: voluptatum
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: exercitationem
-      rider_id: aut
+      order_id: itaque
+      rider_id: voluptatum
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/orders/export/data
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null

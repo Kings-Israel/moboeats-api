@@ -26,12 +26,16 @@ Route::get('/contact-us', function () {
 })->name('contact-us');
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
+
 Route::get('/paypal/checkout/success', function() {
     return view('paypal.success');
 })->name('paypal.checkout.success');
+
 Route::get('/paypal/checkout/failed', function() {
-    return view('paypal.error');
+    return view('paypal.error', ['message' => NULL]);
 })->name('paypal.checkout.failed');
+
+Route::get('/v1/orderer/tip/payment/{order_id}/{amount}', [PaymentController::class, 'storeTip']);
 
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');

@@ -16,6 +16,7 @@ use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
@@ -244,5 +245,22 @@ class Restaurant extends Model implements UrlRoutable
     public function promoCodes(): HasMany
     {
         return $this->hasMany(PromoCode::class);
+    }
+
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    public function averageRating()
+    {
+        $total_reviews_count = $this->reviews->count();
+        if ($total_reviews_count > 0) {
+            $total_reviews = $this->reviews->sum('rating');
+
+            return $total_reviews / $total_reviews_count;
+        }
+
+        return 0;
     }
 }

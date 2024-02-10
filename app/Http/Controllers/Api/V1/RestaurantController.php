@@ -7,6 +7,7 @@ use App\Http\Requests\V1\UpdateRestaurantRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\RestaurantCollection;
 use App\Http\Resources\V1\RestaurantResource;
+use App\Http\Resources\V1\ReviewResource;
 use App\Filters\V1\RestaurantFilter;
 use App\Http\Requests\V1\StoreRestaurantRequest;
 use App\Http\Resources\V1\FoodCommonCategoryCollection;
@@ -36,6 +37,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RestaurantExport;
 use App\Exports\PaymentExport;
 use App\Models\Payout;
+use App\Models\Review;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * @group Restaurant Management
@@ -56,14 +59,15 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
+        $radius = 10;
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
-                $radius = 10;
-                $latitude = $request->latitude;
-                $longitude = $request->longitude;
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
-                $includeQuestionnaire = $request->query('questionnaire');
+
                 $restaurants = Restaurant::InOperation()->Approved()->where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
@@ -77,10 +81,7 @@ class RestaurantController extends Controller
                 //     ->having('distance', '<=', $radius)
                 //     ->orderBy('distance');
 
-                // if ($includeQuestionnaire) {
-                //     $restaurants = $restaurants->with('questionnaire');
-                // }
-                return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
+                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews')->paginate());
             }
 
             if (auth()->user()->hasRole('rider')) {
@@ -165,11 +166,7 @@ class RestaurantController extends Controller
             //     ->having('distance', '<=', $radius)
             //     ->orderBy('distance');
 
-            // if ($includeQuestionnaire) {
-            //     $restaurants = $restaurants->with('questionnaire');
-            // }
-
-            return new RestaurantCollection($restaurants->paginate());
+            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews')->paginate());
         }
     }
 
@@ -217,16 +214,23 @@ class RestaurantController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Restaurant $restaurant)
     {
         if(auth()->check()) {
-            return new RestaurantResource($restaurant->load('operatingHours', 'documents'));
+            return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews'));
         } else {
-            return new RestaurantResource($restaurant);
+            return new RestaurantResource($restaurant->load('operatingHours', 'reviews'));
         }
+    }
+
+    /**
+     * Get Restaurant Reviews
+     */
+    public function reviews(Restaurant $restaurant)
+    {
+        $review = Review::where('reviewable_type', Restaurant::class)->where('reviewable_id', $restaurant->id)->get();
+
+        return ReviewResource::collection($review);
     }
 
     /**
@@ -328,6 +332,7 @@ class RestaurantController extends Controller
                         ->whereHas('roles', function($query) {
                             $query->where('name', 'rider');
                         })
+                        ->whereHas('rider')
                         // ->where('status', 'Active')
                         ->where(function($query) {
                             $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
@@ -454,7 +459,7 @@ class RestaurantController extends Controller
                                         ->where('status', 2)
                                         ->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])
                                         ->sum('amount');
-                                        
+
                 array_push($delivery_payment_series, $delivery_payments);
                 $booking_payments = Payment::whereIn('order_id', $orders_ids)
                                             ->whereHas('order', function ($query) {
@@ -841,5 +846,38 @@ class RestaurantController extends Controller
         Mail::to($request->email)->send(new NewAccount($user, $generate_password));
 
         return $this->success($user, 'User update successfully');
+    }
+
+    /**
+     * Store review for a restaurant
+     * @bodyParam restaurant_id integer The id of the restaurant
+     * @bodyParam rating integer The rating from 1 - 5
+     * @bodyParam review string A review of the restaurant
+     */
+    public function storeReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'restaurant_id' => ['required'],
+            'rating' => ['required', 'integer', 'max:5', 'min:1'],
+            'review' => ['nullable', 'sometimes', 'string']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', $validator->messages(), 400);
+        }
+
+        $restaurant = Restaurant::find($request->restaurant_id);
+
+        if (!$restaurant) {
+            return $this->error('', 'No such restaurant', 404);
+        }
+
+        $restaurant->reviews()->create([
+            'user_id' => auth()->id(),
+            'review' => $request->has('review') && !empty($request->review) ? $request->review : NULL,
+            'rating' => $request->rating
+        ]);
+
+        return $this->success('Review created successfully');
     }
 }

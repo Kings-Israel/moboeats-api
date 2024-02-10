@@ -15,7 +15,7 @@
       margin: 0 20px 0 20px;
     }
 
-    .success-text h3 {
+    .success-text h3, h4 {
       font-family: system-ui,
           -apple-system, /* Firefox supports this but not yet `system-ui` */
           'Segoe UI',
@@ -98,6 +98,11 @@
     </div>
     <div class="success-text">
       <h3>The transaction was cancelled.</h3>
+    </div>
+    <div class="success-text">
+        @if ($message)
+            <h4>{{ $message }}</h4>
+        @endif
     </div>
   </div>
 </body>

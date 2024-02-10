@@ -48,7 +48,8 @@ class RiderResource extends JsonResource
             'updated_at' => $this->updated_at,
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
-            ]
+            ],
+            'reviews' => new ReviewResource($this->reviews)
         ];
     }
 }
