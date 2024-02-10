@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\FoodCommonCategoryCollection;
+use App\Http\Resources\V1\ReviewResource;
 use App\Http\Resources\V1\RiderResource;
 use App\Http\Resources\V1\UserResource;
 use App\Models\FCategorySubCategory;
@@ -13,6 +14,7 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Restaurant;
+use App\Models\Review;
 use App\Models\Rider;
 use App\Models\User;
 use App\Traits\HttpResponses;
@@ -342,9 +344,20 @@ class AdminController extends Controller
 
     public function restaurant($id)
     {
-        $restaurant = Restaurant::with('user', 'users', 'orders.payment', 'orders.user', 'menus', 'operatingHours', 'documents')->withCount('orders', 'menus')->where('id', $id)->orWhere('uuid', $id)->first();
+        $restaurant = Restaurant::with('user', 'users', 'orders.payment', 'orders.user', 'menus', 'operatingHours', 'documents', 'reviews')
+                            ->withCount('orders', 'menus')
+                            ->where('id', $id)
+                            ->orWhere('uuid', $id)
+                            ->first();
 
-        return $this->success($restaurant);
+        return $this->success(['restaurant' => $restaurant, 'average_rating' => $restaurant->averageRating()]);
+    }
+
+    public function restaurantReviews(Restaurant $restaurant)
+    {
+        $review = Review::where('reviewable_type', Restaurant::class)->where('reviewable_id', $restaurant->id)->get();
+
+        return ReviewResource::collection($review);
     }
 
     public function restaurantPayments(Request $request, Restaurant $restaurant)

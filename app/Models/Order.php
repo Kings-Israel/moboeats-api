@@ -172,4 +172,12 @@ class Order extends Model
     {
         return $this->hasOne(User::class, 'id', 'rider_id');
     }
+
+    /**
+     * Get all of the reviews for the Order
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }

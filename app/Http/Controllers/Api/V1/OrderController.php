@@ -33,8 +33,10 @@ use App\Models\PromoCode;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OrderExport;
 use App\Models\Discount;
+use App\Models\Rider;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 /**
@@ -45,9 +47,7 @@ use Illuminate\Support\Str;
 class OrderController extends Controller
 {
     use HttpResponses;
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         $filter =  new OrderFilter();
@@ -159,9 +159,6 @@ class OrderController extends Controller
         return Storage::disk('exports')->download('orders'.$unique.'.xlsx');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreOrderRequest $request)
     {
         $user = User::where('id',Auth::user()->id)->first();
@@ -327,9 +324,6 @@ class OrderController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Order $order)
     {
         $order = $order->load('restaurant', 'rider', 'orderItems.menu');
@@ -406,10 +400,6 @@ class OrderController extends Controller
         }
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $order->update([
@@ -439,9 +429,6 @@ class OrderController extends Controller
         return $this->success($order, 'Order status updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Order $order)
     {
         //
@@ -510,5 +497,64 @@ class OrderController extends Controller
         }
 
         return $orders;
+    }
+
+    /**
+     * Store review for an order
+     * @bodyParam order_id integer The id of the order
+     * @bodyParam restaurant_rating integer The rating of the restaurant from 1 - 5
+     * @bodyParam rider_rating integer The rating of the rider from 1 - 5
+     * @bodyParam restaurant_review string A review of the restaurant
+     * @bodyParam rider_review string A review of the rider
+     */
+    public function storeReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'order_id' => ['required'],
+            'restaurant_rating' => ['required', 'integer', 'min:1', 'max:5'],
+            'restaurant_review' => ['nullable', 'sometimes', 'string'],
+            'rider_rating' => ['required', 'integer', 'min:1', 'max:5'],
+            'rider_review' => ['nullable', 'sometimes', 'string'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', $validator->messages(), 400);
+        }
+
+        if($request->has('order_id') && !empty($request->order_id)) {
+            $order = Order::find($request->order_id);
+
+            if (!$order) {
+                return $this->error('', 'Order not found', 404);
+            }
+
+            $restaurant = Restaurant::find($order->restaurant_id);
+
+            if ($restaurant) {
+                $restaurant->reviews()->create([
+                    'user_id' => auth()->id(),
+                    'order_id' => $request->has('order_id') && !empty($request->order_id) ? $request->order_id : NULL,
+                    'rating' => $request->restaurant_rating,
+                    'review' => $request->restaurant_review
+                ]);
+            }
+
+            $user = User::find($order->rider_id);
+
+            if ($user) {
+                $rider = Rider::where('user_id', $user->id)->first();
+
+                if ($rider) {
+                    $rider->reviews()->create([
+                        'user_id' => auth()->id(),
+                        'order_id' => $request->has('order_id') && !empty($request->order_id) ? $request->order_id : NULL,
+                        'rating' => $request->rider_rating,
+                        'review' => $request->rider_review
+                    ]);
+                }
+            }
+        }
+
+        return $this->success('Review', 'Review successfully saved');
     }
 }

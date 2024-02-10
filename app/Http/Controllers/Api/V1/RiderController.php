@@ -10,12 +10,14 @@ use App\Http\Resources\V1\RiderResource;
 use App\Models\AssignedOrder;
 use App\Models\Order;
 use App\Models\Rider;
+use App\Models\User;
 use App\Notifications\OrderUpdate;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Models\RiderTip;
 
 /**
  * @group Rider Profile APIs
@@ -349,5 +351,70 @@ class RiderController extends Controller
     public function withdraw(Request $request)
     {
 
+    }
+
+    /**
+     * Store review for a rider
+     * @bodyParam rider_id integer The id of the rider
+     * @bodyParam rating integer The rating from 1 - 5
+     * @bodyParam review string A review of the rider
+     */
+    public function storeReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rider_id' => ['required'],
+            'rating' => ['required', 'integer', 'max:5', 'min:1'],
+            'review' => ['nullable', 'sometimes', 'string']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', $validator->messages(), 400);
+        }
+
+        $user = User::where('id', $request->rider_id)
+                        ->whereHas('roles', function ($query) {
+                            $query->where('name', 'rider');
+                        })
+                        ->first();
+
+        $rider = Rider::where('user_id', $user->id)->first();
+
+        if (!$rider) {
+            return $this->error('', 'No such rider', 404);
+        }
+
+        $rider->reviews()->create([
+            'user_id' => auth()->id(),
+            'review' => $request->has('review') && !empty($request->review) ? $request->review : NULL,
+            'rating' => $request->rating
+        ]);
+
+        return $this->success('Review created successfully');
+    }
+
+    /**
+     * Get Tips paid to the rider
+     * @responseParam total_withdrawn Total Amount that has been withdrawn
+     * @responseParam total_paid Total Amount that has been paid but not withdrawn
+     * @responseParam withdrawn List of all paid and withdrawn tips
+     * @responseParam paid List of all paid but not withdrawn tips
+     */
+    public function getTips()
+    {
+        $rider = Rider::where('user_id', auth()->id())->first();
+
+        if (!$rider) {
+            return $this->error('', 'Complete your rider profile to get tips', 400);
+        }
+
+        $withdrawn = RiderTip::where('rider_id', $rider->id)->where('status', 'withdrawn')->get();
+        $paid = RiderTip::where('rider_id', $rider->id)->where('status', 'paid')->get();
+
+        return $this->success([
+            'total_withdrawn' => $withdrawn->sum('amount'),
+            'total_paid' => $paid->sum('amount'),
+            'withdrawn' => $withdrawn,
+            'paid' => $paid
+        ]);
     }
 }

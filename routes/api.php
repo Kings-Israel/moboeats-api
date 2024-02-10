@@ -63,30 +63,33 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
 });
 
-
 /**Basically a customer who will be ordering food/drinks */
-Route::group(['prefix' => 'v1/orderer'], function() {
-    Route::group(['middleware' => 'auth:sanctum'], function() {
-        Route::get('/groceries', [MenuController::class, 'groceries']);
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], function() {
+    Route::get('/groceries', [MenuController::class, 'groceries']);
 
-        Route::apiResource('orderers', OrdererController::class);
+    Route::apiResource('orderers', OrdererController::class);
 
-        Route::apiResource('orderer-restaurants', RestaurantController::class);
-        Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
-        Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
+    Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
+    Route::apiResource('orderer-restaurants', RestaurantController::class);
+    Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
+    Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
 
-        Route::apiResource('orderer-menu', MenuController::class);
+    Route::apiResource('orderer-menu', MenuController::class);
 
-        Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
-        Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
+    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+    Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
 
-        Route::apiResource('cart', CartController::class)->except(['update']);
-        Route::apiResource('cart-items', CartItemController::class);
+    Route::apiResource('cart', CartController::class)->except(['update']);
+    Route::apiResource('cart-items', CartItemController::class);
 
-        Route::apiResource('orders', OrderController::class)->except(['update']);
+    Route::apiResource('orders', OrderController::class)->except(['update']);
 
-        // Route::apiResource('payment', PaymentController::class)->except(['update']);
-    });
+    // Route::apiResource('payment', PaymentController::class)->except(['update']);
+
+    // Reviews
+    Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
+    Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
+    Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
 });
 
 Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
@@ -98,15 +101,18 @@ Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function(
     Route::post('/orders/update', [RiderController::class, 'updateOrder']);
     Route::post('/orders/{order_id}/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
     Route::post('/location/update', [RiderController::class, 'updateLocation']);
+    Route::get('/tips', [RiderController::class, 'getTips']);
 });
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 
-/**Restaurant owners management */
+/**Restaurant owners management and employees */
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
     Route::post('/restaurant', [RestaurantController::class, 'store']);
     Route::middleware(['has_restaurant'])->group(function () {
         Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
+        Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
+        Route::get('/restaurants/{restaurant}/reviews', [RestaurantController::class, 'reviews']);
         Route::apiResource('restaurants', RestaurantController::class);
         Route::get('/restaurants/export/data', [RestaurantController::class, 'export']);
         Route::post('/restaurants/{restaurant}/update', [RestaurantController::class, 'update']);
@@ -189,6 +195,9 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
 Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
 Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
+
+Route::post('/v1/order/tip/payment/create-tip-paypal-order', [PaymentController::class, 'createTipPaypalOrder']);
+Route::post('/v1/order/tip/payment/capture-tip-paypal-order', [PaymentController::class, 'captureTipPaypalPayment']);
 
 // Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
 //     // Define customer-specific routes here

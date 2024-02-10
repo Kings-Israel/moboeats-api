@@ -1,20 +1,163 @@
-name: 'Orderer/Customer Management'
+name: 'Restaurant Management'
 description: |-
 
-  Orderer/Customer API resource
+  Restaurant API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/orderers
+    uri: api/v1/restaurants
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"questionnaire":{"uuid":"ebfad6a0-000c-4728-8231-1b133e0124d5","restaurantId":1,"delivery":1,"booking":1},"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"questionnaire":{"id":1,"uuid":"ebfad6a0-000c-4728-8231-1b133e0124d5","restaurant_id":1,"delivery":1,"booking":1,"status":1,"created_by":"ubeatty@murray.com","updated_by":"dubuque.darryl@daniel.net","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z"},"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"questionnaire":{"id":1,"uuid":"ebfad6a0-000c-4728-8231-1b133e0124d5","restaurant_id":1,"delivery":1,"booking":1,"status":1,"created_by":"ubeatty@murray.com","updated_by":"dubuque.darryl@daniel.net","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z"},"reviews":[]},"reviews":[]}},{"id":16,"uuid":"ac46fbaf-65b9-4802-8fed-33742060c7d8","attributes":{"name":"Jast LLC","nameShort":"et","email":"kemmer.maximus@example.net","about":"Illo quibusdam sunt harum provident tenetur voluptate explicabo voluptatum. Autem sed beatae est et id. Id ipsum voluptatem aut dolores delectus. Eligendi distinctio assumenda et praesentium.\r\n\r\nProvident veritatis praesentium inventore. Incidunt et qui autem sint inventore. Deserunt perspiciatis eos excepturi quasi.\r\n\r\nAspernatur dolor odio quia nesciunt quia voluptas. Quia id non eos. Est atque aperiam aperiam iure est repellendus harum. Accusantium nisi laboriosam natus et in.","aboutShort":"Sequi reprehenderit harum perferendis excepturi.","phoneNo":"(623) 951-0041","address":"Development House, Nairobi, Kenya","city":"New Jacinthe","state":"Maryland","postalCode":"89717","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.johnson.com\/facilis-distinctio-vel-qui-natus-saepe-dolorem-delectus.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":0,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T09:05:36.000000Z","average_rating":2.4},"relationships":{"questionnaire":null,"orders_count":{"id":16,"uuid":"ac46fbaf-65b9-4802-8fed-33742060c7d8","name":"Jast LLC","name_short":"et","email":"kemmer.maximus@example.net","user_id":2,"about":"Illo quibusdam sunt harum provident tenetur voluptate explicabo voluptatum. Autem sed beatae est et id. Id ipsum voluptatem aut dolores delectus. Eligendi distinctio assumenda et praesentium.\r\n\r\nProvident veritatis praesentium inventore. Incidunt et qui autem sint inventore. Deserunt perspiciatis eos excepturi quasi.\r\n\r\nAspernatur dolor odio quia nesciunt quia voluptas. Quia id non eos. Est atque aperiam aperiam iure est repellendus harum. Accusantium nisi laboriosam natus et in.","about_short":"Sequi reprehenderit harum perferendis excepturi.","phone_no":"(623) 951-0041","address":"Development House, Nairobi, Kenya","city":"New Jacinthe","state":"Maryland","postal_code":"89717","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.johnson.com\/facilis-distinctio-vel-qui-natus-saepe-dolorem-delectus.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"paxton.koelpin@yahoo.com","updated_by":"javon.vonrueden@hotmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T09:05:36.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":4,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":10,"menus_count":1,"questionnaire":null,"reviews":[{"id":7,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":"Good restaurant with quality and tasty food","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":9,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":3,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":10,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":11,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":1,"review":"Bad Service","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":12,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Could be better","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"}]},"menus_count":{"id":16,"uuid":"ac46fbaf-65b9-4802-8fed-33742060c7d8","name":"Jast LLC","name_short":"et","email":"kemmer.maximus@example.net","user_id":2,"about":"Illo quibusdam sunt harum provident tenetur voluptate explicabo voluptatum. Autem sed beatae est et id. Id ipsum voluptatem aut dolores delectus. Eligendi distinctio assumenda et praesentium.\r\n\r\nProvident veritatis praesentium inventore. Incidunt et qui autem sint inventore. Deserunt perspiciatis eos excepturi quasi.\r\n\r\nAspernatur dolor odio quia nesciunt quia voluptas. Quia id non eos. Est atque aperiam aperiam iure est repellendus harum. Accusantium nisi laboriosam natus et in.","about_short":"Sequi reprehenderit harum perferendis excepturi.","phone_no":"(623) 951-0041","address":"Development House, Nairobi, Kenya","city":"New Jacinthe","state":"Maryland","postal_code":"89717","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.johnson.com\/facilis-distinctio-vel-qui-natus-saepe-dolorem-delectus.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"paxton.koelpin@yahoo.com","updated_by":"javon.vonrueden@hotmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T09:05:36.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":4,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":10,"menus_count":1,"questionnaire":null,"reviews":[{"id":7,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":"Good restaurant with quality and tasty food","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":9,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":3,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":10,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":11,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":1,"review":"Bad Service","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":12,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Could be better","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"}]},"reviews":[{"id":7,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":"Good restaurant with quality and tasty food","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":9,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":3,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":10,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":11,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":1,"review":"Bad Service","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":12,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Could be better","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"}]}}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","last":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/restaurants","per_page":15,"to":2,"total":2}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '297'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurants/{restaurant_uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"operating_hours":[{"id":34,"restaurant_id":1,"day":"Monday","opening_time":"10:30","closing_time":"22:30","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":35,"restaurant_id":1,"day":"Tuesday","opening_time":"11:30","closing_time":"23:30","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":36,"restaurant_id":1,"day":"Wednesday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":37,"restaurant_id":1,"day":"Thursday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":38,"restaurant_id":1,"day":"Friday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":39,"restaurant_id":1,"day":"Saturday","opening_time":"07:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":40,"restaurant_id":1,"day":"Sunday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"}],"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"operating_hours":[{"id":34,"restaurant_id":1,"day":"Monday","opening_time":"10:30","closing_time":"22:30","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":35,"restaurant_id":1,"day":"Tuesday","opening_time":"11:30","closing_time":"23:30","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":36,"restaurant_id":1,"day":"Wednesday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":37,"restaurant_id":1,"day":"Thursday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":38,"restaurant_id":1,"day":"Friday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":39,"restaurant_id":1,"day":"Saturday","opening_time":"07:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":40,"restaurant_id":1,"day":"Sunday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"}],"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"operating_hours":[{"id":34,"restaurant_id":1,"day":"Monday","opening_time":"10:30","closing_time":"22:30","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":35,"restaurant_id":1,"day":"Tuesday","opening_time":"11:30","closing_time":"23:30","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":36,"restaurant_id":1,"day":"Wednesday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":37,"restaurant_id":1,"day":"Thursday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":38,"restaurant_id":1,"day":"Friday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":39,"restaurant_id":1,"day":"Saturday","opening_time":"07:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"},{"id":40,"restaurant_id":1,"day":"Sunday","opening_time":"08:10","closing_time":"17:10","created_at":"2024-02-10T08:08:34.000000Z","updated_at":"2024-02-10T08:08:34.000000Z"}],"reviews":[]},"reviews":[]}}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '296'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/orderer-restaurants/{restaurant_uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/orderer/orderer-restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -47,15 +190,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderers
+    uri: api/v1/orderer/orderer-restaurants
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -71,18 +214,39 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: impedit
+        example: ullam
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: soluta
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: dillon13@example.com
+        example: jmraz@example.com
         type: string
         custom: []
-      phoneNo:
-        name: phoneNo
+      about:
+        name: about
+        description: ''
+        required: true
+        example: dolorem
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: odio
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
         description: ''
         required: false
         example: null
@@ -95,13 +259,6 @@ endpoints:
         example: null
         type: string
         custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
       state:
         name: state
         description: ''
@@ -109,23 +266,81 @@ endpoints:
         example: null
         type: string
         custom: []
-      mapLocation:
-        name: mapLocation
+      postal_code:
+        name: postal_code
         description: ''
         required: false
         example: null
         type: string
         custom: []
-      image:
-        name: image
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: non
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: cum
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: iste
+        type: string
+        custom: []
+      url:
+        name: url
         description: ''
         required: false
         example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: true
+        example: sit
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: feest.elva@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: impedit
-      email: dillon13@example.com
+      name: ullam
+      name_short: soluta
+      email: jmraz@example.com
+      about: dolorem
+      about_short: odio
+      place_id: non
+      latitude: cum
+      longitude: iste
+      logo: sit
+      sitting_capacity: 9
+      paypal_email: feest.elva@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -137,15 +352,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/orderer/orderer-restaurants/{id}'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -153,15 +368,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the orderer restaurant.'
         required: true
-        example: dcbafe2b-9597-3394-a771-28b5f00aab3a
+        example: debitis
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: dcbafe2b-9597-3394-a771-28b5f00aab3a
+      id: debitis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -187,12 +402,526 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/orderer/orderer-restaurants/{id}'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orderer restaurant.'
+        required: true
+        example: repudiandae
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: repudiandae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: rerum
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: quis
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: vrippin@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: veritatis
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: reprehenderit
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: true
+        example: dicta
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: true
+        example: vel
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 13
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: deserunt
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: saul.gleason@example.com
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: rerum
+      name_short: quis
+      email: vrippin@example.com
+      about: est
+      about_short: veritatis
+      phone_no: reprehenderit
+      address: architecto
+      state: dicta
+      postal_code: vel
+      sitting_capacity: 13
+      latitude: deserunt
+      longitude: voluptatem
+      paypal_email: saul.gleason@example.com
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orderer-restaurants/{id}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orderer restaurant.'
+        required: true
+        example: aut
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: aut
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/orderer/restaurant/reviews/store
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store review for a restaurant'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      restaurant_id:
+        name: restaurant_id
+        description: 'The id of the restaurant'
+        required: false
+        example: 15
+        type: integer
+        custom: []
+      rating:
+        name: rating
+        description: 'The rating from 1 - 5'
+        required: false
+        example: 5
+        type: integer
+        custom: []
+      review:
+        name: review
+        description: 'A review of the restaurant'
+        required: false
+        example: excepturi
+        type: string
+        custom: []
+    cleanBodyParameters:
+      restaurant_id: 15
+      rating: 5
+      review: excepturi
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/rider/restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/rider/restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: nemo
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: recusandae
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: melody.fadel@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: assumenda
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: fuga
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: corporis
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: eaque
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: saepe
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: true
+        example: aliquid
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: kessler.kathleen@example.org
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: nemo
+      name_short: recusandae
+      email: melody.fadel@example.com
+      about: assumenda
+      about_short: fuga
+      place_id: corporis
+      latitude: eaque
+      longitude: saepe
+      logo: aliquid
+      sitting_capacity: 16
+      paypal_email: kessler.kathleen@example.org
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/rider/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/rider/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -207,86 +936,140 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6f20eca5-180f-3863-a54a-ad0760168988
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6f20eca5-180f-3863-a54a-ad0760168988
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 4a83a280-92c8-3dbe-a0bd-d87bbcab3ca8
-        type: string
-        custom: []
       name:
         name: name
         description: ''
         required: true
-        example: odit
+        example: sequi
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: inventore
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: hanna69@example.com
+        example: libby12@example.com
         type: string
         custom: []
-      phoneNo:
-        name: phoneNo
+      about:
+        name: about
         description: ''
         required: true
-        example: qui
+        example: nesciunt
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: eaque
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: et
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: ut
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: true
-        example: aliquid
+        example: voluptate
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: labore
+        example: consectetur
         type: string
         custom: []
-      mapLocation:
-        name: mapLocation
+      postal_code:
+        name: postal_code
         description: ''
         required: true
-        example: voluptatum
+        example: optio
         type: string
         custom: []
-      image:
-        name: image
+      map_location:
+        name: map_location
         description: ''
         required: false
         example: null
         type: string
         custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 20
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: ipsam
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: sapiente
+        type: string
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: abdiel82@example.com
+        type: string
+        custom: []
     cleanBodyParameters:
-      uuid: 4a83a280-92c8-3dbe-a0bd-d87bbcab3ca8
-      name: odit
-      email: hanna69@example.com
-      phoneNo: qui
-      address: ut
-      city: aliquid
-      state: labore
-      mapLocation: voluptatum
+      name: sequi
+      name_short: inventore
+      email: libby12@example.com
+      about: nesciunt
+      about_short: eaque
+      phone_no: et
+      address: voluptate
+      state: consectetur
+      postal_code: optio
+      sitting_capacity: 20
+      latitude: ipsam
+      longitude: sapiente
+      paypal_email: abdiel82@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -298,12 +1081,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/rider/restaurants/{uuid}'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Restaurant Management'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Restaurant API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -318,15 +1101,1652 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 0356a61e-0a16-330e-ac47-24feea4bdedb
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 0356a61e-0a16-330e-ac47-24feea4bdedb
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/restaurant
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: incidunt
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: odio
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: willow.gulgowski@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: soluta
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: sequi
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: eveniet
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: officiis
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: true
+        example: nisi
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 5
+        type: integer
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: horeilly@example.org
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: incidunt
+      name_short: odio
+      email: willow.gulgowski@example.com
+      about: soluta
+      about_short: sequi
+      place_id: eveniet
+      latitude: officiis
+      longitude: et
+      logo: nisi
+      sitting_capacity: 5
+      paypal_email: horeilly@example.org
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/dashboard
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurants/{restaurant_uuid}/reviews'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Restaurant Reviews'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/restaurants
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: nihil
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: acassin@example.org
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: nesciunt
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: natus
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      place_id:
+        name: place_id
+        description: ''
+        required: true
+        example: minima
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: voluptatum
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: cupiditate
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: true
+        example: maxime
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: bherman@example.net
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: est
+      name_short: nihil
+      email: acassin@example.org
+      about: nesciunt
+      about_short: natus
+      place_id: minima
+      latitude: voluptatum
+      longitude: cupiditate
+      logo: maxime
+      sitting_capacity: 17
+      paypal_email: bherman@example.net
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: omnis
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: impedit
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: rowena63@example.com
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: quod
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: distinctio
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: illo
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: facere
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: true
+        example: at
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: true
+        example: autem
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 20
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: enim
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: facilis
+        type: string
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: zboncak.fae@example.net
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: omnis
+      name_short: impedit
+      email: rowena63@example.com
+      about: quod
+      about_short: distinctio
+      phone_no: illo
+      address: facere
+      state: at
+      postal_code: autem
+      sitting_capacity: 20
+      latitude: enim
+      longitude: facilis
+      paypal_email: zboncak.fae@example.net
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/restaurants/{uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/restaurants/export/data
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/restaurants/{restaurant_uuid}/update'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: beatae
+        type: string
+        custom: []
+      name_short:
+        name: name_short
+        description: ''
+        required: true
+        example: necessitatibus
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: veum.bryana@example.org
+        type: string
+        custom: []
+      about:
+        name: about
+        description: ''
+        required: true
+        example: occaecati
+        type: string
+        custom: []
+      about_short:
+        name: about_short
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: voluptas
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: true
+        example: nostrum
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: true
+        example: quae
+        type: string
+        custom: []
+      map_location:
+        name: map_location
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      url:
+        name: url
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      sitting_capacity:
+        name: sitting_capacity
+        description: ''
+        required: true
+        example: 15
+        type: integer
+        custom: []
+      latitude:
+        name: latitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: unde
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'Must not be one of <code>null</code>.'
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: jennyfer15@example.com
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: beatae
+      name_short: necessitatibus
+      email: veum.bryana@example.org
+      about: occaecati
+      about_short: voluptatem
+      phone_no: quia
+      address: voluptas
+      state: nostrum
+      postal_code: quae
+      sitting_capacity: 15
+      latitude: unde
+      longitude: voluptatem
+      paypal_email: jennyfer15@example.com
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/riders/{id}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rider.'
+        required: true
+        example: inventore
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: inventore
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/payments
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/payments/export/data
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurant/{restaurant_uuid}/payments'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurant/{restaurant_uuid}/orders'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/restaurant/{restaurant_uuid}/menu'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/{restaurant}/categories'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Categories added by the restaurant'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        name: restaurant
+        description: 'The restaurant.'
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+      id:
+        name: id
+        description: 'The ID or the UUID of the restaurant'
+        required: false
+        example: voluptas
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant: c56fce74-ca91-4019-81d1-5e746f59ed24
+      id: voluptas
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/{restaurant_uuid}/categories/add'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Add a new category for the specified restaurant'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: quia
+      description: ut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/{restaurant}/categories/{id}/update'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a category'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        name: restaurant
+        description: 'The restaurant.'
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+      id:
+        name: id
+        description: 'The id of the category'
+        required: false
+        example: at
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The uuid of the restaurant'
+        required: false
+        example: 5fc3afdd-899f-3ba4-b957-1644c36ba43b
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant: c56fce74-ca91-4019-81d1-5e746f59ed24
+      id: at
+      uuid: 5fc3afdd-899f-3ba4-b957-1644c36ba43b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: omnis
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: distinctio
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: omnis
+      description: distinctio
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/employees
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/employees/{restaurant_uuid}'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/employees/{restaurant_uuid}/add'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_uuid:
+        name: restaurant_uuid
+        description: ''
+        required: true
+        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+      last_name:
+        name: last_name
+        description: ''
+        required: true
+        example: nobis
+        type: string
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: true
+        example: minima
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: ''
+        required: true
+        example: ipsa
+        type: string
+        custom: []
+      avatar:
+        name: avatar
+        description: 'Must not be greater than 9000 characters.'
+        required: false
+        example: giwkhkrhqyh
+        type: string
+        custom: []
+    cleanBodyParameters:
+      first_name: quia
+      last_name: nobis
+      email: minima
+      phone_number: ipsa
+      avatar: giwkhkrhqyh
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/employees/{user_uuid}/update'
+    metadata:
+      groupName: 'Restaurant Management'
+      groupDescription: |-
+
+        Restaurant API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_uuid:
+        name: user_uuid
+        description: ''
+        required: true
+        example: 6c0a4cb4-c8dc-47bc-9bd1-915f551e6237
+        type: string
+        custom: []
+    cleanUrlParameters:
+      user_uuid: 6c0a4cb4-c8dc-47bc-9bd1-915f551e6237
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: ''
+        required: true
+        example: eos
+        type: string
+        custom: []
+      last_name:
+        name: last_name
+        description: ''
+        required: true
+        example: aut
+        type: string
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: ''
+        required: true
+        example: sed
+        type: string
+        custom: []
+      avatar:
+        name: avatar
+        description: 'Must not be greater than 9000 characters.'
+        required: false
+        example: xkqtgxutjrlciftm
+        type: string
+        custom: []
+      suspend:
+        name: suspend
+        description: 'Must be one of <code>1</code> or <code>2</code>.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      first_name: eos
+      last_name: aut
+      email: est
+      phone_number: sed
+      avatar: xkqtgxutjrlciftm
+      suspend: '1'
     fileParameters: []
     responses: []
     responseFields: []

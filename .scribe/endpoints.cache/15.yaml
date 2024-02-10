@@ -73,35 +73,35 @@ endpoints:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: true
-        example: 1
+        example: 0
         type: number
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: ut
+        example: vitae
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 2
+        example: 20
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: error
+        example: sit
         type: string
         custom: []
     cleanBodyParameters:
-      price: 1
-      description: ut
-      status: 2
-      menu_id: error
+      price: 0
+      description: vitae
+      status: 20
+      menu_id: sit
     fileParameters: []
     responses: []
     responseFields: []
@@ -195,27 +195,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: quo
+        example: architecto
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: quasi
+        example: nihil
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 0
+        example: 1
         type: number
         custom: []
     cleanBodyParameters:
-      description: quo
-      status: quasi
-      price: 0
+      description: architecto
+      status: nihil
+      price: 1
     fileParameters: []
     responses: []
     responseFields: []
@@ -306,20 +306,20 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: illo
+        example: vitae
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 0
+        example: 1
         type: number
         custom: []
     cleanBodyParameters:
       description: quia
-      status: illo
-      price: 0
+      status: vitae
+      price: 1
     fileParameters: []
     responses: []
     responseFields: []

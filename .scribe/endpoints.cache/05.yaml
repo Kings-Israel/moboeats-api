@@ -73,14 +73,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quos
+        example: eaque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: minus
+        example: voluptas
         type: string
         custom: []
       status:
@@ -91,8 +91,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: quos
-      description: minus
+      title: eaque
+      description: voluptas
     fileParameters: []
     responses: []
     responseFields: []
@@ -124,11 +124,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: unde
+        example: error
         type: string
         custom: []
     cleanUrlParameters:
-      id: unde
+      id: error
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -174,11 +174,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: adipisci
+        example: quo
         type: string
         custom: []
     cleanUrlParameters:
-      id: adipisci
+      id: quo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -186,19 +186,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: molestiae
+        example: vero
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: hic
+        example: corrupti
         type: string
         custom: []
     cleanBodyParameters:
-      title: molestiae
-      description: hic
+      title: vero
+      description: corrupti
     fileParameters: []
     responses: []
     responseFields: []
@@ -230,11 +230,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: nostrum
+        example: esse
         type: string
         custom: []
     cleanUrlParameters:
-      id: nostrum
+      id: esse
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -315,14 +315,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: amet
+        example: aspernatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: possimus
+        example: nostrum
         type: string
         custom: []
       status:
@@ -333,8 +333,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: amet
-      description: possimus
+      title: aspernatur
+      description: nostrum
     fileParameters: []
     responses: []
     responseFields: []
@@ -366,11 +366,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: in
+        example: minima
         type: string
         custom: []
     cleanUrlParameters:
-      id: in
+      id: minima
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -416,11 +416,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: est
+        example: eaque
         type: string
         custom: []
     cleanUrlParameters:
-      id: est
+      id: eaque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -428,19 +428,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: velit
+        example: at
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: accusantium
+        example: consequatur
         type: string
         custom: []
     cleanBodyParameters:
-      title: velit
-      description: accusantium
+      title: at
+      description: consequatur
     fileParameters: []
     responses: []
     responseFields: []
@@ -472,11 +472,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: praesentium
+        example: voluptate
         type: string
         custom: []
     cleanUrlParameters:
-      id: praesentium
+      id: voluptate
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -516,14 +516,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: labore
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: sed
+        example: quia
         type: string
         custom: []
       status:
@@ -534,8 +534,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: quia
-      description: sed
+      title: labore
+      description: quia
     fileParameters: []
     responses: []
     responseFields: []
@@ -567,11 +567,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: voluptates
+        example: error
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptates
+      id: error
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -579,19 +579,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: laudantium
+        example: sit
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: molestias
+        example: autem
         type: string
         custom: []
     cleanBodyParameters:
-      title: laudantium
-      description: molestias
+      title: sit
+      description: autem
     fileParameters: []
     responses: []
     responseFields: []
