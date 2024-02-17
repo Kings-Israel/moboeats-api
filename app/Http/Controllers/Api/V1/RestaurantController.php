@@ -37,6 +37,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RestaurantExport;
 use App\Exports\PaymentExport;
 use App\Models\Payout;
+use App\Models\SeatingArea;
+use App\Models\RestaurantTable;
 use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
 
@@ -81,7 +83,7 @@ class RestaurantController extends Controller
                 //     ->having('distance', '<=', $radius)
                 //     ->orderBy('distance');
 
-                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews')->paginate());
+                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
             }
 
             if (auth()->user()->hasRole('rider')) {
@@ -115,7 +117,7 @@ class RestaurantController extends Controller
                 $status = $request->query('status');
 
                 $restaurants = Restaurant::withCount('orders', 'menus')
-                                        ->with('orders.payment', 'menus')
+                                        ->with('orders.payment', 'orders.reservation', 'menus', 'restaurantTables.seatingArea')
                                         ->where('user_id', Auth::user()->id)
                                         ->when($search && $search != '', function ($query) use ($search) {
                                             $query->where(function ($query) use ($search) {
@@ -140,7 +142,7 @@ class RestaurantController extends Controller
                 $restaurant = UserRestaurant::where('user_id', auth()->id())->first();
 
                 $restaurants = Restaurant::withCount('orders', 'menus')
-                                            ->with('orders.payment', 'menus')
+                                            ->with('orders.payment', 'orders.reservation', 'menus', 'restaurantTables.seatingArea')
                                             ->where('id', $restaurant->restaurant_id)
                                             ->when($search && $search != '', function ($query) use ($search) {
                                                 $query->where(function ($query) use ($search) {
@@ -166,8 +168,15 @@ class RestaurantController extends Controller
             //     ->having('distance', '<=', $radius)
             //     ->orderBy('distance');
 
-            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews')->paginate());
+            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
         }
+    }
+
+    public function seatingAreas()
+    {
+        $seating_areas = SeatingArea::all();
+
+        return $this->success($seating_areas);
     }
 
     public function export(Request $request)
@@ -214,13 +223,42 @@ class RestaurantController extends Controller
 
     }
 
+    /**
+     * Show Restaurant Details
+     *
+     * @urlParam restaurant The ID of the restaurant
+     */
     public function show(Restaurant $restaurant)
     {
         if(auth()->check()) {
-            return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews'));
+            return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews', 'restaurantTables.seatingArea'));
         } else {
-            return new RestaurantResource($restaurant->load('operatingHours', 'reviews'));
+            return new RestaurantResource($restaurant->load('operatingHours', 'reviews', 'restaurantTables.seatingArea'));
         }
+    }
+
+    /**
+     * Get Restaurant Available Seating Areas
+     *
+     * @urlParam restaurant The ID of the restaurant
+     */
+    public function restaurantSeatingAreas(Request $request, Restaurant $restaurant)
+    {
+        if (auth()->user()->hasRole('restaurant')) {
+            $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        } else {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
+        }
+
+        $seating_areas = RestaurantTable::with('seatingArea')
+                                        ->whereIn('restaurant_id', $restaurant_ids)
+                                        ->get()
+                                        ->groupBy('seatingArea');
+
+        return $this->success([
+            'seating_areas' => $seating_areas,
+        ]);
     }
 
     /**
@@ -571,6 +609,65 @@ class RestaurantController extends Controller
         ]);
     }
 
+    public function tables(Request $request)
+    {
+        if (auth()->user()->hasRole('restaurant')) {
+            $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        } else {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
+        }
+
+        $tables = RestaurantTable::with('seatingArea')
+                                    ->whereIn('restaurant_id', $restaurant_ids)
+                                    ->paginate(10);
+
+        return $this->success($tables);
+    }
+
+    public function reservations(Request $request)
+    {
+        if (auth()->user()->hasRole('restaurant')) {
+            $restaurant_ids = auth()->user()->restaurants->pluck('id');
+        } else {
+            $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+            $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
+        }
+
+        $search = $request->query('search');
+        $from_created_at = $request->query('from_created_at');
+        $to_created_at = $request->query('to_created_at');
+
+        $orders = Order::whereIn('restaurant_id', $restaurant_ids)
+                            ->whereHas('reservation')
+                            ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
+                                $query->whereDate('reservation_date', '>=', Carbon::parse($from_created_at));
+                            })
+                            ->when($to_created_at && $to_created_at != '', function ($query) use ($to_created_at) {
+                                $query->whereDate('reservation_date', '<=', Carbon::parse($to_created_at));
+                            })
+                            ->when($search && $search != '', function ($query) use ($search) {
+                                $query->where(function($query) use ($search) {
+                                    $query->where('transaction_id', 'LIKE', '%' . $search . '%')
+                                        ->orWhereHas('order', function ($query) use ($search) {
+                                            $query->where('uuid', 'LIKE', '%' . $search . '%')
+                                                ->whereHas('restaurant', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%')->orWhere('name_short', 'LIKE', '%' . $search . '%');
+                                                })
+                                                ->orWhereHas('user', function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%' . $search . '%');
+                                                });
+                                    });
+                                });
+                            })
+                            ->orderBy('reservation_date')
+                            ->get();
+
+        return $this->success([
+            'orders' => $orders,
+        ]);
+    }
+
     public function exportPayments(Request $request)
     {
         $search = $request->query('search');
@@ -692,11 +789,73 @@ class RestaurantController extends Controller
         }
     }
 
+    /**
+     * Add a new table for the specified restaurant
+     */
+    public function addTable(Request $request, Restaurant $restaurant)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'seating_area_id' => ['required'],
+            'seat_number' => ['required'],
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $request->merge([
+                'restaurant_id' => $restaurant->id,
+            ]);
+
+            RestaurantTable::create($request->all());
+
+            DB::commit();
+
+            $tables = RestaurantTable::paginate(7);
+            return $this->success($tables);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
+    }
+
+    /**
+     * Update a table
+     * @urlParam uuid The uuid of the restaurant
+     * @urlParam id The id of the category
+     */
+    public function updateTable(Request $request, $uuid, $id)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'seating_area_id' => ['required'],
+            'seat_number' => ['required'],
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $table = RestaurantTable::find($id);
+
+            $table->update($request->all());
+
+            DB::commit();
+
+            $tables = RestaurantTable::paginate(7);
+            return $this->success($tables);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
+    }
+
     public function restaurantOrders(Request $request, Restaurant $restaurant)
     {
         $search = $request->query('search');
 
         $orders = Order::with('user')
+                        ->whereDoesntHave('reservation')
                         ->where('restaurant_id', $restaurant->id)
                         ->when($search && $search != '', function ($query) use ($search) {
                             $query->where('uuid', 'LIKE', '%' . $search . '%')
@@ -739,6 +898,27 @@ class RestaurantController extends Controller
         return $this->success($payments);
     }
 
+    public function restaurantReservations(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $orders = Order::with('user')
+                        ->whereHas('reservation')
+                        ->where('restaurant_id', $restaurant->id)
+                        ->when($search && $search != '', function ($query) use ($search) {
+                            $query->where('uuid', 'LIKE', '%' . $search . '%')
+                                ->where(function ($query) use ($search) {
+                                    $query->orWhereHas('user', function ($query) use ($search) {
+                                        $query->where('name', 'LIKE', '%' . $query . '%');
+                                    });
+                                });
+                        })
+                        ->orderBy('reservation_date', 'DESC')
+                        ->paginate(5);
+
+        return $this->success($orders);
+    }
+
     public function employees(Request $request)
     {
         $search = $request->query('search');
@@ -757,6 +937,15 @@ class RestaurantController extends Controller
                         ->paginate(10);
 
         return $this->success($users);
+    }
+
+    public function restaurantTables(Request $request, Restaurant $restaurant)
+    {
+        $search = $request->query('search');
+
+        $tables = RestaurantTable::with('seatingArea')->where('restaurant_id', $restaurant->id)->paginate(10);
+
+        return $this->success($tables);
     }
 
     public function restaurantEmployees(Request $request, Restaurant $restaurant)

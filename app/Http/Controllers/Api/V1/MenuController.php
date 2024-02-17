@@ -91,7 +91,11 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request, $id)
     {
-        $restaurant = Restaurant::where('id', $id)->orWhere('uuid', $id)->first();
+        $restaurant = Restaurant::where('uuid', $id)->first();
+        if (!$restaurant) {
+            $restaurant = Restaurant::where('id', $id)->first();
+        }
+
         if (!auth()->user()->hasRole('restaurant')) {
             return $this->error('', 'Unauthorized', 401);
         }
@@ -607,6 +611,89 @@ class MenuController extends Controller
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
             $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+
+            return MenuResource::collection($menu);
+        }
+
+    }
+
+    /**
+     * Get Restaurant Menu
+     *
+     */
+    public function restaurantMenu(Request $request, Restaurant $restaurant = null)
+    {
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('orderer')) {
+                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+                $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+                $menu = Menu::active()
+                            ->with('images', 'categories', 'subCategories', 'restaurant', 'discount')
+                            ->whereNotIn('id', $category_menus)
+                            ->when($restaurant && $restaurant != NULL, function ($query) use ($restaurant) {
+                                $query->where('restaurant_id', $restaurant->id);
+                            })
+                            ->paginate(10);
+
+                return MenuResource::collection($menu);
+            }
+
+            if (auth()->user()->hasRole('restaurant')) {
+                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+                $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+                $restaurants = auth()->user()->restaurants->pluck('id');
+
+                $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant', 'discount')
+                                ->whereIn('restaurant_id', $restaurants)
+                                ->whereNotIn('id', $category_menus)
+                                ->when($restaurant && $restaurant != NULL, function ($query) use ($restaurant) {
+                                    $query->where('restaurant_id', $restaurant->id);
+                                })
+                                ->paginate(10);
+
+                $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurants)->get();
+
+                return $this->success([
+                    'menu' => $menu,
+                    'categories' => new FoodCommonCategoryCollection($categories),
+                    'restaurants' => auth()->user()->restaurants,
+                ]);
+            }
+
+            if (auth()->user()->hasRole('restaurant employee')) {
+                $search = $request->query('search');
+                $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+                $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+
+                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+                $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+                $menu = Menu::with('images', 'categories', 'subCategories', 'discount')
+                                ->where('restaurant_id', $restaurant->id)
+                                ->whereNotIn('id', $category_menus)
+                                ->when($restaurant && $restaurant != NULL, function ($query) use ($restaurant) {
+                                    $query->where('restaurant_id', $restaurant->id);
+                                })
+                                ->paginate(10);
+
+                return MenuResource::collection($menu);
+            }
+        } else {
+            $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+            $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+            $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')
+                                ->whereNotIn('id', $category_menus)
+                                ->when($restaurant && $restaurant != NULL, function ($query) use ($restaurant) {
+                                    $query->where('restaurant_id', $restaurant->id);
+                                })
+                                ->paginate(10);
 
             return MenuResource::collection($menu);
         }

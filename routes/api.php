@@ -61,6 +61,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
     Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
+
+    Route::get('/seating-areas', [RestaurantController::class, 'seatingAreas']);
 });
 
 /**Basically a customer who will be ordering food/drinks */
@@ -70,6 +72,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
     Route::apiResource('orderers', OrdererController::class);
 
     Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
+    Route::get('orderer-restaurants/{restaurant?}/menu', [MenuController::class, 'restaurantMenu']);
     Route::apiResource('orderer-restaurants', RestaurantController::class);
     Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
     Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
@@ -85,6 +88,9 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
     Route::apiResource('orders', OrderController::class)->except(['update']);
 
     // Route::apiResource('payment', PaymentController::class)->except(['update']);
+
+    // Tables
+    Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
 
     // Reviews
     Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
@@ -137,6 +143,8 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
 
         Route::get('/orders/{order}', [OrderController::class, 'show']);
+        Route::post('/orders/reservation/{order}/assign', [OrderController::class, 'assignReservationToTables']);
+        Route::post('/orders/reservation/{order}/status/update', [OrderController::class, 'updateReservedOrder']);
         Route::get('/pending-orders', [OrderController::class, 'pendingOrders']);
         Route::get('/pending-dineins', [OrderController::class, 'pendingDineins']);
         Route::apiResource('orders', OrderController::class)->except(['store']);
@@ -148,8 +156,16 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 
         Route::get('/payments', [RestaurantController::class, 'payments']);
         Route::get('/payments/export/data', [RestaurantController::class, 'exportPayments']);
+        Route::get('/reservations', [RestaurantController::class, 'reservations']);
+        Route::get('/tables', [RestaurantController::class, 'tables']);
+
+        Route::get('/restaurant/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
+        Route::post('{restaurant}/tables/add', [RestaurantController::class, 'addTable']);
+        Route::post('{restaurant}/tables/{id}/update', [RestaurantController::class, 'updateTable']);
 
         Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
+        Route::get('/restaurant/{restaurant}/sitting-areas', [RestaurantController::class, 'restaurantSeatingAreas']);
+        Route::get('/restaurant/{restaurant}/reservations', [RestaurantController::class, 'restaurantReservations']);
         Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
         Route::get('/restaurant/{restaurant}/menu', [RestaurantController::class, 'restaurantMenu']);
 

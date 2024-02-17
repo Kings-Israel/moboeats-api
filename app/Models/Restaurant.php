@@ -252,6 +252,14 @@ class Restaurant extends Model implements UrlRoutable
         return $this->morphMany(Review::class, 'reviewable');
     }
 
+    /**
+     * Get all of the tables for the Restaurant
+     */
+    public function restaurantTables(): HasMany
+    {
+        return $this->hasMany(RestaurantTable::class);
+    }
+
     public function averageRating()
     {
         $total_reviews_count = $this->reviews->count();

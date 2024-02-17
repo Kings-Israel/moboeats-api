@@ -22,7 +22,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cartId' => ['required','integer'],
+            'cartId' => ['nullable','integer'],
             'restaurantId' => ['required','integer'],
             'delivery' => ['required','boolean'],
             'delivery_address' => ['required_if:delivery,true'],

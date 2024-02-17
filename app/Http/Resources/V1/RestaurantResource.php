@@ -55,6 +55,7 @@ class RestaurantResource extends JsonResource
                 'orders_count' => $this->loadCount('orders'),
                 'menus_count' => $this->loadCount('menus'),
                 'reviews' => $this->whenLoaded('reviews'),
+                'restaurantTables' => $this->whenLoaded('restaurantTables.seatingArea'),
             ]
         ];
     }

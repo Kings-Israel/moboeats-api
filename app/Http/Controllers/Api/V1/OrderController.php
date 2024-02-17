@@ -33,7 +33,10 @@ use App\Models\PromoCode;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OrderExport;
 use App\Models\Discount;
+use App\Models\Reservation;
+use App\Models\RestaurantTable;
 use App\Models\Rider;
+use App\Models\OrderTable;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -59,7 +62,7 @@ class OrderController extends Controller
             if ($role === 'orderer') {
                 $orders = Order::where('user_id', Auth::user()->id)
                                 ->where($filterItems)
-                                ->with(['orderItems.menu.images', 'restaurant', 'rider'])
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'reservation'])
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
 
@@ -101,7 +104,7 @@ class OrderController extends Controller
                                                 });
                                     });
                                 })
-                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'user'])
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'user', 'reservation'])
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
 
@@ -132,7 +135,7 @@ class OrderController extends Controller
                                                 });
                                     });
                                 })
-                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'user'])
+                                ->with(['orderItems.menu.images', 'restaurant', 'rider', 'user', 'reservation'])
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
 
@@ -175,7 +178,52 @@ class OrderController extends Controller
                             ->first();
 
                 if (!$cart) {
-                    return $this->error('Order Creation', 'User does not have active cart', 402);
+                    // Order is a dine in/reservation
+
+                    // return $this->error('Order Creation', 'User does not have active cart', 402);
+                    $validator = Validator::make($request->all(), [
+                        'seating_area_id' => ['required'],
+                        'seat_number' => ['required'],
+                        'booking_time' => ['required', 'date_format:Y-m-d H:i']
+                    ], [
+                        'seating_area_id.required' => 'Select sitting area',
+                        'seat_number.required' => 'Select number of seats',
+                        'booking_time.required' => 'Select date',
+                        'booking_time.date_format' => 'The date format should be Y-m-d H:i',
+                    ]);
+
+                    if ($validator->fails()) {
+                        return $this->error('An error occured while creating the reservation.', $validator->messages(), 403);
+                    }
+
+                    $restaurant_tables = RestaurantTable::where('restaurant_id', $request->restaurant_id)->first();
+
+                    if (!$restaurant_tables) {
+                        return $this->error('', 'This restaurant does not offer dine in services', 403);
+                    }
+
+                    //create Order object
+                    $order = Order::create([
+                        'user_id' => $user->id,
+                        'restaurant_id' => $request->restaurant_id,
+                        'delivery' => 0,
+                        'total_amount' => 0,
+                        'created_by' => $user->name,
+                        'booking_time' => $request->booking_time
+                    ]);
+
+                    // Create reservation
+                    Reservation::create([
+                        'order_id' => $order->id,
+                        'seat_number' => $request->seat_number,
+                        'reservation_date' => $request->booking_time,
+                    ]);
+
+                    activity()->causedBy(auth()->user())->performedOn($order)->log('made a new reservation in restaurant'. $order->restaurant->name);
+
+                    DB::commit();
+
+                    return new OrderResource($order->loadMissing('reservation'));
                 }
 
                 $cartItems = CartItem::where('cart_id', $cart->id)->get();
@@ -326,71 +374,85 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order = $order->load('restaurant', 'rider', 'orderItems.menu');
+        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTable.restaurantTable');
         $user = $order->user;
         $restaurant = $order->restaurant;
+        $riders = [];
+        $restaurant_tables = [];
 
-        if (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee')) {
-            $riders = User::whereHas('roles', function($query) {
-                                $query->where('name', 'rider');
-                            })
-                            ->where(function($query) use ($restaurant, $order, $user) {
-                                $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
-                                $delivered_orders = Order::where('rider_id', '!=', NULL)->where('status', 5)->get()->pluck('rider_id');
+        if ((auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee'))) {
+            if (auth()->user()->hasRole('restaurant')) {
+                $restaurant_ids = auth()->user()->restaurants->pluck('id');
+            } else {
+                $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+                $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
+            }
 
-                                // Get riders who have been assigned delivery to the restaurant
-                                // and are going close to another order from the same restaurant
-                                $deliveries = DB::table("orders")
-                                                ->where('rider_id', '!=', NULL)
-                                                ->where('restaurant_id', $order->restaurant_id)
-                                                ->whereIn('status', [1, 2, 3])
-                                                ->select("*",
-                                                    DB::raw("6371 * acos(cos(radians(".$user->latitude."))
-                                                    * cos(radians(".$order->user->latitude."))
-                                                    * cos(radians(".$order->user->longitude.") - radians(".$user->longitude."))
-                                                    + sin(radians(".$user->latitude."))
-                                                    * sin(radians(".$order->user->latitude."))) AS distance"))
-                                                ->get();
+            if ($order->delivery) {
+                $riders = User::whereHas('roles', function($query) {
+                                    $query->where('name', 'rider');
+                                })
+                                ->where(function($query) use ($restaurant, $order, $user) {
+                                    $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                                    $delivered_orders = Order::where('rider_id', '!=', NULL)->where('status', 5)->get()->pluck('rider_id');
 
-                                // Filter to riders distances less than 5 Kms
-                                $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                    return (int) $delivery->distance <= 5;
-                                })->pluck('rider_id')->values()->all();
+                                    // Get riders who have been assigned delivery to the restaurant
+                                    // and are going close to another order from the same restaurant
+                                    $deliveries = DB::table("orders")
+                                                    ->where('rider_id', '!=', NULL)
+                                                    ->where('restaurant_id', $order->restaurant_id)
+                                                    ->whereIn('status', [1, 2, 3])
+                                                    ->select("*",
+                                                        DB::raw("6371 * acos(cos(radians(".$user->latitude."))
+                                                        * cos(radians(".$order->user->latitude."))
+                                                        * cos(radians(".$order->user->longitude.") - radians(".$user->longitude."))
+                                                        + sin(radians(".$user->latitude."))
+                                                        * sin(radians(".$order->user->latitude."))) AS distance"))
+                                                    ->get();
 
-                                $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
+                                    // Filter to riders distances less than 5 Kms
+                                    $nearby_deliveries = $deliveries->filter(function($delivery) {
+                                        return (int) $delivery->distance <= 5;
+                                    })->pluck('rider_id')->values()->all();
 
-                                $query->whereNotIn('id', $rejected_orders)
-                                        ->where(function($query) use ($nearby_deliveries, $orders, $delivered_orders) {
-                                            $query->whereIn('id', $nearby_deliveries)
-                                                ->orWhereIn('id', $delivered_orders)
-                                                ->orWhereNotIn('id', $orders);
-                                        });
-                            })
-                            ->get()
-                            ->each(function($rider, $key) use ($restaurant) {
-                                if ($rider->latitude != NULL && $rider->longitude != NULL && $restaurant->latitude != NULL && $restaurant->longitude != NULL) {
-                                    $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
-                                    if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
-                                        $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
-                                        $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
-                                        $rider['distance'] = $distance;
-                                        $rider['time_away'] = $time;
+                                    $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
+
+                                    $query->whereNotIn('id', $rejected_orders)
+                                            ->where(function($query) use ($nearby_deliveries, $orders, $delivered_orders) {
+                                                $query->whereIn('id', $nearby_deliveries)
+                                                    ->orWhereIn('id', $delivered_orders)
+                                                    ->orWhereNotIn('id', $orders);
+                                            });
+                                })
+                                ->get()
+                                ->each(function($rider, $key) use ($restaurant) {
+                                    if ($rider->latitude != NULL && $rider->longitude != NULL && $restaurant->latitude != NULL && $restaurant->longitude != NULL) {
+                                        $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+                                        if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
+                                            $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
+                                            $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
+                                            $rider['distance'] = $distance;
+                                            $rider['time_away'] = $time;
+                                        } else {
+                                            $rider['distance'] = NULL;
+                                            $rider['time_away'] = NULL;
+                                        }
                                     } else {
-                                        $rider['distance'] = NULL;
-                                        $rider['time_away'] = NULL;
+                                       $rider['distance'] = NULL;
+                                       $rider['time_away'] = NULL;
                                     }
-                                } else {
-                                   $rider['distance'] = NULL;
-                                   $rider['time_away'] = NULL;
-                                }
-                                })->sortBy([
-                                    fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
-                                ]);
+                                    })->sortBy([
+                                        fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
+                                    ]);
+            }
+
+            $restaurant_tables = RestaurantTable::whereIn('restaurant_id', $restaurant_ids)->get();
 
             return request()->wantsJson() ?
                 $this->success([
                     'order' => $order,
                     'riders' => $riders,
+                    'restaurant_tables' => $restaurant_tables
                 ], '', 200) : '';
         } else {
             return request()->wantsJson() ?
@@ -427,6 +489,69 @@ class OrderController extends Controller
         }
 
         return $this->success($order, 'Order status updated successfully');
+    }
+
+    public function updateReservedOrder(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => ['required', 'in:completed,in progress,no show,cancelled']
+        ]);
+
+        if($request->status == 'completed') {
+            $order->update([
+                'status' => '5'
+            ]);
+
+            if ($order->reservation()->exists()) {
+                $order->reservation()->update([
+                    'status' => 'completed'
+                ]);
+            }
+
+            Http::withHeaders([
+                'Authorization' => 'key='.config('services.firebase.key'),
+                'Content-Type' => 'application/json'
+            ])->post('https://fcm.googleapis.com/fcm/send', [
+                'registration_id' => $order->user->device_token,
+                'notification' => 'Thank you for dining with us.',
+            ]);
+        }
+
+        if ($order->reservation()->exists()) {
+            $order->reservation()->update([
+                'status' => $request->status
+            ]);
+        }
+
+        activity()->causedBy(auth()->user())->performedOn($order)->log('updated the reservation to'. $request->status);
+
+        return $this->success('Reservation updated successfully');
+    }
+
+    public function assignReservationToTables(Request $request, Order $order)
+    {
+        if (Carbon::parse($order->booking_time)->lessThan(now())) {
+            return $this->error('', 'This reserved time for this order has already passed', 403);
+        }
+
+        $order->update([
+            'status' => 2
+        ]);
+
+        foreach(explode(',', $request->restaurant_table_ids) as $table_id) {
+            OrderTable::create(['restaurant_table_id' => $table_id, 'order_id' => $order->id]);
+        }
+
+        // Notify user
+        Http::withHeaders([
+            'Authorization' => 'key='.config('services.firebase.key'),
+            'Content-Type' => 'application/json'
+        ])->post('https://fcm.googleapis.com/fcm/send', [
+            'registration_id' => $order->user->device_token,
+            'notification' => 'Your reservation has started being prepared for. Looking forward to serving you.',
+        ]);
+
+        return $this->success('Table(s) assigned to order');
     }
 
     public function destroy(Order $order)
