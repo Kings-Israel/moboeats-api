@@ -289,7 +289,7 @@ class RestaurantController extends Controller
                     return $this->isNotAuthorized($restaurant);
                 }
                 $restaurant_logo = explode('/', $restaurant->logo);
-                $restaurant->update($request->all());
+                $restaurant->update(collect($request->all())->except('sitting_capacity')->toArray());
                 if($request->hasFile('logo')) {
                     Storage::disk('public')->delete('/companyLogos/logos/'.end($restaurant_logo));
                     $restaurant->update([
