@@ -191,10 +191,10 @@ class Order extends Model
     }
 
     /**
-     * Get the orderTable that owns the Order
+     * Get all of the orderTables for the Order
      */
-    public function orderTable(): BelongsTo
+    public function orderTables(): HasMany
     {
-        return $this->belongsTo(OrderTable::class);
+        return $this->hasMany(OrderTable::class);
     }
 }

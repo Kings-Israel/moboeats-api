@@ -28,19 +28,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: et
+        example: reiciendis
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: sed
+        example: ipsam
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: et
-      order_id: sed
+      user_id: reiciendis
+      order_id: ipsam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

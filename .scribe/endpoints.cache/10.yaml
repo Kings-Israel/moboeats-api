@@ -73,27 +73,27 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 14
+        example: 19
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 8
+        example: 12
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 18
+        example: 4
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 14
-      quantity: 8
-      status: 18
+      menuId: 19
+      quantity: 12
+      status: 4
     fileParameters: []
     responses: []
     responseFields: []
@@ -125,11 +125,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: et
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -175,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: eveniet
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: eveniet
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -187,27 +187,27 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 5
+        example: 17
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 14
+        example: 11
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 16
+        example: 9
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 5
-      quantity: 14
-      status: 16
+      menuId: 17
+      quantity: 11
+      status: 9
     fileParameters: []
     responses: []
     responseFields: []
@@ -239,11 +239,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: corporis
+        example: iure
         type: string
         custom: []
     cleanUrlParameters:
-      id: corporis
+      id: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

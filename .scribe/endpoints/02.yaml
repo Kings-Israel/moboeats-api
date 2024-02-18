@@ -31,7 +31,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","attributes":{"title":"Test Groceries","description":"new groceries","createdBy":null,"updatedBy":null,"status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png"}],"subCategories":[{"id":3,"uuid":"6c1defd7-0247-4972-885b-cdb37a3a7e22","title":"test 2","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null},{"id":4,"uuid":"f17c4805-7922-4511-8622-71032aa585ba","title":"test three","description":"description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"images":[{"id":117,"uuid":"396765b0-85e8-47c9-a177-16f8d9d2c302","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/b-654e10fa98e65.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}},{"id":118,"uuid":"0184c3be-5673-4d9c-8e09-76020802722f","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/c-654e10fa9db22.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}}],"menuPrices":[{"id":9,"uuid":"7d413ab2-0c0d-497a-bddd-e359d9d9bcc1","attributes":{"price":200,"description":"standard","status":"1"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}},{"id":19,"uuid":"8615c45b-6af0-407d-942b-61b3f63dc58c","attributes":{"price":520,"description":"description","status":"2"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}}],"restaurant":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"reviews":[]}},"discount":null}},{"id":11,"uuid":"8d900fb9-cb7f-40e8-ba81-0e61345c01bd","attributes":{"title":"Garlic","description":"Get fresh garlic","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png"}],"subCategories":[],"images":[{"id":120,"uuid":"fdcd983b-f50c-41e2-95ec-71c8103bd9d1","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/white bishop-654e112c02088.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":11,"uuid":"8d900fb9-cb7f-40e8-ba81-0e61345c01bd","title":"Garlic"}}}],"menuPrices":[{"id":11,"uuid":"749a28d9-5f88-4df8-ab58-3288ec151897","attributes":{"price":8,"description":"standard","status":"2"},"relationships":{"menu":{"id":11,"uuid":"8d900fb9-cb7f-40e8-ba81-0e61345c01bd","title":"Garlic"}}}],"restaurant":{"id":3,"uuid":"0f0234b9-a317-44ac-80b0-fa5dae3774af","attributes":{"name":"Prosacco Inc","nameShort":"repellendus","email":"annie55@example.org","about":"Dolor id ipsum est qui porro. Ipsum eius laborum sit odio. Consequatur magnam et neque ab. Rerum dolore molestiae dolorum totam. Officia numquam et officia est.\n\nVoluptas ut eius quae id aspernatur officia fuga ut. Inventore qui possimus voluptatem voluptas fugiat voluptates. Qui fugiat aut voluptates nostrum. Consequatur numquam consequatur consequuntur natus qui ea.\n\nEst dolor laboriosam reprehenderit quas enim. Dolorum quia consectetur fugiat rerum est asperiores. Fugiat dolorem sint inventore omnis saepe qui.","aboutShort":"Et quis officiis voluptatem nisi enim ut.","phoneNo":"+1.252.540.6202","address":"791 Bayer Well","city":"Lake Jessica","state":"New Jersey","postalCode":"70072","latitude":null,"longitude":null,"mapLocation":"-1.2454353,36.765585","url":"http:\/\/www.cormier.com\/est-totam-quis-saepe-maxime-maxime-iste.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","average_rating":0},"relationships":{"orders_count":{"id":3,"uuid":"0f0234b9-a317-44ac-80b0-fa5dae3774af","name":"Prosacco Inc","name_short":"repellendus","email":"annie55@example.org","user_id":2,"about":"Dolor id ipsum est qui porro. Ipsum eius laborum sit odio. Consequatur magnam et neque ab. Rerum dolore molestiae dolorum totam. Officia numquam et officia est.\n\nVoluptas ut eius quae id aspernatur officia fuga ut. Inventore qui possimus voluptatem voluptas fugiat voluptates. Qui fugiat aut voluptates nostrum. Consequatur numquam consequatur consequuntur natus qui ea.\n\nEst dolor laboriosam reprehenderit quas enim. Dolorum quia consectetur fugiat rerum est asperiores. Fugiat dolorem sint inventore omnis saepe qui.","about_short":"Et quis officiis voluptatem nisi enim ut.","phone_no":"+1.252.540.6202","address":"791 Bayer Well","city":"Lake Jessica","state":"New Jersey","postal_code":"70072","latitude":null,"longitude":null,"map_location":"-1.2454353,36.765585","url":"http:\/\/www.cormier.com\/est-totam-quis-saepe-maxime-maxime-iste.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Denied","created_by":"wiley.bosco@feeney.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"menus_count":{"id":3,"uuid":"0f0234b9-a317-44ac-80b0-fa5dae3774af","name":"Prosacco Inc","name_short":"repellendus","email":"annie55@example.org","user_id":2,"about":"Dolor id ipsum est qui porro. Ipsum eius laborum sit odio. Consequatur magnam et neque ab. Rerum dolore molestiae dolorum totam. Officia numquam et officia est.\n\nVoluptas ut eius quae id aspernatur officia fuga ut. Inventore qui possimus voluptatem voluptas fugiat voluptates. Qui fugiat aut voluptates nostrum. Consequatur numquam consequatur consequuntur natus qui ea.\n\nEst dolor laboriosam reprehenderit quas enim. Dolorum quia consectetur fugiat rerum est asperiores. Fugiat dolorem sint inventore omnis saepe qui.","about_short":"Et quis officiis voluptatem nisi enim ut.","phone_no":"+1.252.540.6202","address":"791 Bayer Well","city":"Lake Jessica","state":"New Jersey","postal_code":"70072","latitude":null,"longitude":null,"map_location":"-1.2454353,36.765585","url":"http:\/\/www.cormier.com\/est-totam-quis-saepe-maxime-maxime-iste.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Denied","created_by":"wiley.bosco@feeney.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"reviews":[]}},"discount":null}},{"id":87,"uuid":"ab11b9ee-d378-4070-84cd-d7efe6f6a06c","attributes":{"title":"Onions","description":"Good onions","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png"}],"subCategories":[{"id":3,"uuid":"6c1defd7-0247-4972-885b-cdb37a3a7e22","title":"test 2","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null},{"id":4,"uuid":"f17c4805-7922-4511-8622-71032aa585ba","title":"test three","description":"description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"images":[{"id":121,"uuid":"a9b0f7d1-9f09-454f-9c7c-d712878304bc","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black rook-654e164a87454654e164aa898d.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":87,"uuid":"ab11b9ee-d378-4070-84cd-d7efe6f6a06c","title":"Onions"}}},{"id":122,"uuid":"e99b1a3e-bdb0-4942-a212-bd5d0cd9d947","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black queen-654e164a89b77654e164aacea5.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":87,"uuid":"ab11b9ee-d378-4070-84cd-d7efe6f6a06c","title":"Onions"}}}],"menuPrices":[],"restaurant":{"id":2,"uuid":"8220c76a-7aec-4ed7-b227-ec99f02552da","attributes":{"name":"Lakin-Steuber","nameShort":"recusandae","email":"barrows.wilmer@example.org","about":"Labore aliquid sit est molestiae. Eos voluptas ex corporis ipsum ea harum. Magni non numquam qui officiis illum in. Fugiat aut temporibus eos illum omnis. Delectus rerum ad enim necessitatibus minima non.\n\nSint a nobis voluptatem quibusdam eveniet architecto. Et ex voluptas repellendus ut. Commodi nobis iusto consectetur adipisci qui adipisci ullam magnam. Aut aut molestiae dolores harum ut.\n\nQuibusdam qui omnis at quis placeat praesentium rerum. Unde ipsa et vel impedit tempore voluptatum veritatis. Repellendus sit nostrum voluptas molestias. Suscipit illum molestiae quia iste omnis sunt maxime.","aboutShort":"Minima laboriosam necessitatibus eos sit aut dolores.","phoneNo":"1-469-341-4211","address":"774 Sipes Junction","city":"Trompburgh","state":"South Dakota","postalCode":"59652","latitude":null,"longitude":null,"mapLocation":"-1.245453,36.8765585","url":"http:\/\/www.boyer.com\/","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","average_rating":0},"relationships":{"orders_count":{"id":2,"uuid":"8220c76a-7aec-4ed7-b227-ec99f02552da","name":"Lakin-Steuber","name_short":"recusandae","email":"barrows.wilmer@example.org","user_id":2,"about":"Labore aliquid sit est molestiae. Eos voluptas ex corporis ipsum ea harum. Magni non numquam qui officiis illum in. Fugiat aut temporibus eos illum omnis. Delectus rerum ad enim necessitatibus minima non.\n\nSint a nobis voluptatem quibusdam eveniet architecto. Et ex voluptas repellendus ut. Commodi nobis iusto consectetur adipisci qui adipisci ullam magnam. Aut aut molestiae dolores harum ut.\n\nQuibusdam qui omnis at quis placeat praesentium rerum. Unde ipsa et vel impedit tempore voluptatum veritatis. Repellendus sit nostrum voluptas molestias. Suscipit illum molestiae quia iste omnis sunt maxime.","about_short":"Minima laboriosam necessitatibus eos sit aut dolores.","phone_no":"1-469-341-4211","address":"774 Sipes Junction","city":"Trompburgh","state":"South Dakota","postal_code":"59652","latitude":null,"longitude":null,"map_location":"-1.245453,36.8765585","url":"http:\/\/www.boyer.com\/","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Pending","created_by":"keebler.dana@yahoo.com","updated_by":"meta76@gmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"menus_count":{"id":2,"uuid":"8220c76a-7aec-4ed7-b227-ec99f02552da","name":"Lakin-Steuber","name_short":"recusandae","email":"barrows.wilmer@example.org","user_id":2,"about":"Labore aliquid sit est molestiae. Eos voluptas ex corporis ipsum ea harum. Magni non numquam qui officiis illum in. Fugiat aut temporibus eos illum omnis. Delectus rerum ad enim necessitatibus minima non.\n\nSint a nobis voluptatem quibusdam eveniet architecto. Et ex voluptas repellendus ut. Commodi nobis iusto consectetur adipisci qui adipisci ullam magnam. Aut aut molestiae dolores harum ut.\n\nQuibusdam qui omnis at quis placeat praesentium rerum. Unde ipsa et vel impedit tempore voluptatum veritatis. Repellendus sit nostrum voluptas molestias. Suscipit illum molestiae quia iste omnis sunt maxime.","about_short":"Minima laboriosam necessitatibus eos sit aut dolores.","phone_no":"1-469-341-4211","address":"774 Sipes Junction","city":"Trompburgh","state":"South Dakota","postal_code":"59652","latitude":null,"longitude":null,"map_location":"-1.245453,36.8765585","url":"http:\/\/www.boyer.com\/","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Pending","created_by":"keebler.dana@yahoo.com","updated_by":"meta76@gmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"reviews":[]}},"discount":null}},{"id":88,"uuid":"5d0e094d-a67a-424c-86f0-15f857f4d08a","attributes":{"title":"Onions","description":"Good onions","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png"}],"subCategories":[{"id":3,"uuid":"6c1defd7-0247-4972-885b-cdb37a3a7e22","title":"test 2","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null},{"id":4,"uuid":"f17c4805-7922-4511-8622-71032aa585ba","title":"test three","description":"description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"images":[{"id":123,"uuid":"200f22d1-7fd0-4d0e-8bdb-db204ccd0ca8","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black rook-654e164a87454654e164ab2efe.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":88,"uuid":"5d0e094d-a67a-424c-86f0-15f857f4d08a","title":"Onions"}}},{"id":124,"uuid":"b0c83101-6f61-40e0-a09a-4f7d09c058d3","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black queen-654e164a89b77654e164ab37a2.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":88,"uuid":"5d0e094d-a67a-424c-86f0-15f857f4d08a","title":"Onions"}}}],"menuPrices":[],"restaurant":{"id":4,"uuid":"ea16d7d1-9f5a-4e53-89b1-41806c840543","attributes":{"name":"Dickens, Smitham and Kilback","nameShort":"dolorum","email":"collier.kendall@example.org","about":"Voluptatibus tempore omnis vero repellat accusantium voluptatem. Numquam at aut minus aut reiciendis mollitia. Quas quas repellat dignissimos autem quisquam maxime. Facilis qui quam voluptates id vero molestias.\n\nQuasi dolor commodi explicabo tempora sunt aut voluptatem. Et laudantium a velit omnis. Harum incidunt rem numquam iusto. Similique voluptas ipsam rerum.\n\nEst unde temporibus itaque expedita blanditiis. Ut consequatur sint sunt vero aliquam.","aboutShort":"Doloremque aspernatur ut quam minus explicabo asperiores.","phoneNo":"786.321.7779","address":"9771 Goldner Keys Apt. 430","city":"West Dereck","state":"Michigan","postalCode":"82562","latitude":null,"longitude":null,"mapLocation":"45.920639,130.938444","url":"http:\/\/www.white.org\/hic-quisquam-aut-aut-sequi.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","average_rating":0},"relationships":{"orders_count":{"id":4,"uuid":"ea16d7d1-9f5a-4e53-89b1-41806c840543","name":"Dickens, Smitham and Kilback","name_short":"dolorum","email":"collier.kendall@example.org","user_id":2,"about":"Voluptatibus tempore omnis vero repellat accusantium voluptatem. Numquam at aut minus aut reiciendis mollitia. Quas quas repellat dignissimos autem quisquam maxime. Facilis qui quam voluptates id vero molestias.\n\nQuasi dolor commodi explicabo tempora sunt aut voluptatem. Et laudantium a velit omnis. Harum incidunt rem numquam iusto. Similique voluptas ipsam rerum.\n\nEst unde temporibus itaque expedita blanditiis. Ut consequatur sint sunt vero aliquam.","about_short":"Doloremque aspernatur ut quam minus explicabo asperiores.","phone_no":"786.321.7779","address":"9771 Goldner Keys Apt. 430","city":"West Dereck","state":"Michigan","postal_code":"82562","latitude":null,"longitude":null,"map_location":"45.920639,130.938444","url":"http:\/\/www.white.org\/hic-quisquam-aut-aut-sequi.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"jackie.denesik@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"menus_count":{"id":4,"uuid":"ea16d7d1-9f5a-4e53-89b1-41806c840543","name":"Dickens, Smitham and Kilback","name_short":"dolorum","email":"collier.kendall@example.org","user_id":2,"about":"Voluptatibus tempore omnis vero repellat accusantium voluptatem. Numquam at aut minus aut reiciendis mollitia. Quas quas repellat dignissimos autem quisquam maxime. Facilis qui quam voluptates id vero molestias.\n\nQuasi dolor commodi explicabo tempora sunt aut voluptatem. Et laudantium a velit omnis. Harum incidunt rem numquam iusto. Similique voluptas ipsam rerum.\n\nEst unde temporibus itaque expedita blanditiis. Ut consequatur sint sunt vero aliquam.","about_short":"Doloremque aspernatur ut quam minus explicabo asperiores.","phone_no":"786.321.7779","address":"9771 Goldner Keys Apt. 430","city":"West Dereck","state":"Michigan","postal_code":"82562","latitude":null,"longitude":null,"map_location":"45.920639,130.938444","url":"http:\/\/www.white.org\/hic-quisquam-aut-aut-sequi.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"jackie.denesik@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"reviews":[]}},"discount":null}},{"id":89,"uuid":"6b9b664b-9b46-489f-957f-bdf8c958afd5","attributes":{"title":"Onions","description":"Good onions","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png"}],"subCategories":[{"id":3,"uuid":"6c1defd7-0247-4972-885b-cdb37a3a7e22","title":"test 2","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null},{"id":4,"uuid":"f17c4805-7922-4511-8622-71032aa585ba","title":"test three","description":"description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"images":[{"id":125,"uuid":"7b5a8542-72d3-40ca-8773-616b55aa9e39","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black rook-654e164a87454654e164ac6fc5.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":89,"uuid":"6b9b664b-9b46-489f-957f-bdf8c958afd5","title":"Onions"}}},{"id":126,"uuid":"f13dd4b8-1be3-40ae-9097-72eb6c84226e","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black queen-654e164a89b77654e164ac7aaf.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":89,"uuid":"6b9b664b-9b46-489f-957f-bdf8c958afd5","title":"Onions"}}}],"menuPrices":[],"restaurant":{"id":5,"uuid":"bb928439-85de-4caa-b085-f4731ea2069b","attributes":{"name":"Schuppe and Sons","nameShort":"rerum","email":"yhettinger@example.org","about":"Pariatur et ea repellendus nostrum. Labore mollitia laboriosam culpa praesentium dolor necessitatibus ut. Quo sed quasi sint est repellendus ullam. Aut aut odio maiores magni soluta qui.\n\nPerferendis magnam quo quis est veritatis. Odio numquam aliquid et est enim. Sunt voluptatem deleniti magni voluptatem. Adipisci sint aliquam dignissimos aspernatur nisi iure hic voluptas.\n\nEt doloremque nostrum est nihil rerum deleniti est. Enim et rerum consequuntur deleniti doloremque et eaque nam. Harum voluptatibus necessitatibus alias illo recusandae libero ut. Qui nemo voluptatem architecto doloribus velit laborum ex repellendus.","aboutShort":"Dolor similique cupiditate qui eveniet non saepe.","phoneNo":"+14179599943","address":"50180 Dayna Freeway Suite 452","city":"South Bailey","state":"Oregon","postalCode":"11594","latitude":null,"longitude":null,"mapLocation":"-11.584393,52.527759","url":"http:\/\/www.kohler.com\/","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","average_rating":0},"relationships":{"orders_count":{"id":5,"uuid":"bb928439-85de-4caa-b085-f4731ea2069b","name":"Schuppe and Sons","name_short":"rerum","email":"yhettinger@example.org","user_id":2,"about":"Pariatur et ea repellendus nostrum. Labore mollitia laboriosam culpa praesentium dolor necessitatibus ut. Quo sed quasi sint est repellendus ullam. Aut aut odio maiores magni soluta qui.\n\nPerferendis magnam quo quis est veritatis. Odio numquam aliquid et est enim. Sunt voluptatem deleniti magni voluptatem. Adipisci sint aliquam dignissimos aspernatur nisi iure hic voluptas.\n\nEt doloremque nostrum est nihil rerum deleniti est. Enim et rerum consequuntur deleniti doloremque et eaque nam. Harum voluptatibus necessitatibus alias illo recusandae libero ut. Qui nemo voluptatem architecto doloribus velit laborum ex repellendus.","about_short":"Dolor similique cupiditate qui eveniet non saepe.","phone_no":"+14179599943","address":"50180 Dayna Freeway Suite 452","city":"South Bailey","state":"Oregon","postal_code":"11594","latitude":null,"longitude":null,"map_location":"-11.584393,52.527759","url":"http:\/\/www.kohler.com\/","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Pending","created_by":"harry.sawayn@borer.com","updated_by":"rogahn.gilberto@gmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"menus_count":{"id":5,"uuid":"bb928439-85de-4caa-b085-f4731ea2069b","name":"Schuppe and Sons","name_short":"rerum","email":"yhettinger@example.org","user_id":2,"about":"Pariatur et ea repellendus nostrum. Labore mollitia laboriosam culpa praesentium dolor necessitatibus ut. Quo sed quasi sint est repellendus ullam. Aut aut odio maiores magni soluta qui.\n\nPerferendis magnam quo quis est veritatis. Odio numquam aliquid et est enim. Sunt voluptatem deleniti magni voluptatem. Adipisci sint aliquam dignissimos aspernatur nisi iure hic voluptas.\n\nEt doloremque nostrum est nihil rerum deleniti est. Enim et rerum consequuntur deleniti doloremque et eaque nam. Harum voluptatibus necessitatibus alias illo recusandae libero ut. Qui nemo voluptatem architecto doloribus velit laborum ex repellendus.","about_short":"Dolor similique cupiditate qui eveniet non saepe.","phone_no":"+14179599943","address":"50180 Dayna Freeway Suite 452","city":"South Bailey","state":"Oregon","postal_code":"11594","latitude":null,"longitude":null,"map_location":"-11.584393,52.527759","url":"http:\/\/www.kohler.com\/","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Pending","created_by":"harry.sawayn@borer.com","updated_by":"rogahn.gilberto@gmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"reviews":[]}},"discount":null}}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/groceries?page=1","last":"http:\/\/moboeats.test\/api\/v1\/groceries?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/groceries?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/groceries","per_page":10,"to":5,"total":5}}'
+        content: '{"data":[],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/groceries?page=1","last":"http:\/\/moboeats.test\/api\/v1\/groceries?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/groceries?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/groceries","per_page":10,"to":null,"total":0}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -71,34 +71,34 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: assumenda
+        example: voluptatem
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: corporis
+        example: quo
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: excepturi
+        example: reprehenderit
         type: string
         custom: []
     cleanQueryParameters:
-      categories: assumenda
-      subCategories: corporis
-      restaurant: excepturi
+      categories: voluptatem
+      subCategories: quo
+      restaurant: reprehenderit
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: '{"data":[{"id":2,"uuid":"90e9ccfb-e0c0-4011-b9db-35f970d26fa2","attributes":{"title":"Chicken wings 2","description":"Delicious wings","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2"},"relationships":{"categories":[{"id":9,"uuid":"04b5a11f-9d35-407c-9a5d-e4bc830b01b3","title":"Another Test","description":"Test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[]}],"images":[{"id":131,"uuid":"588f18ac-085b-43f7-a356-036b78f0a728","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/white king-6550b47f39006.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":2,"uuid":"90e9ccfb-e0c0-4011-b9db-35f970d26fa2","title":"Chicken wings 2"}}},{"id":132,"uuid":"98d211d1-f4e0-43bc-bcd6-ff8b2d3cbaf0","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/white bishop-6550b48168249.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":2,"uuid":"90e9ccfb-e0c0-4011-b9db-35f970d26fa2","title":"Chicken wings 2"}}}],"menuPrices":[{"id":2,"uuid":"08c81c43-afdb-47ca-8777-8355ab5928b1","attributes":{"price":105,"description":"standard","status":"2"},"relationships":{"menu":{"id":2,"uuid":"90e9ccfb-e0c0-4011-b9db-35f970d26fa2","title":"Chicken wings 2"}}}],"restaurant":{"id":16,"uuid":"ac46fbaf-65b9-4802-8fed-33742060c7d8","attributes":{"name":"Jast LLC","nameShort":"et","email":"kemmer.maximus@example.net","about":"Illo quibusdam sunt harum provident tenetur voluptate explicabo voluptatum. Autem sed beatae est et id. Id ipsum voluptatem aut dolores delectus. Eligendi distinctio assumenda et praesentium.\r\n\r\nProvident veritatis praesentium inventore. Incidunt et qui autem sint inventore. Deserunt perspiciatis eos excepturi quasi.\r\n\r\nAspernatur dolor odio quia nesciunt quia voluptas. Quia id non eos. Est atque aperiam aperiam iure est repellendus harum. Accusantium nisi laboriosam natus et in.","aboutShort":"Sequi reprehenderit harum perferendis excepturi.","phoneNo":"(623) 951-0041","address":"Development House, Nairobi, Kenya","city":"New Jacinthe","state":"Maryland","postalCode":"89717","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.johnson.com\/facilis-distinctio-vel-qui-natus-saepe-dolorem-delectus.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":0,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T09:05:36.000000Z","average_rating":2.4},"relationships":{"orders_count":{"id":16,"uuid":"ac46fbaf-65b9-4802-8fed-33742060c7d8","name":"Jast LLC","name_short":"et","email":"kemmer.maximus@example.net","user_id":2,"about":"Illo quibusdam sunt harum provident tenetur voluptate explicabo voluptatum. Autem sed beatae est et id. Id ipsum voluptatem aut dolores delectus. Eligendi distinctio assumenda et praesentium.\r\n\r\nProvident veritatis praesentium inventore. Incidunt et qui autem sint inventore. Deserunt perspiciatis eos excepturi quasi.\r\n\r\nAspernatur dolor odio quia nesciunt quia voluptas. Quia id non eos. Est atque aperiam aperiam iure est repellendus harum. Accusantium nisi laboriosam natus et in.","about_short":"Sequi reprehenderit harum perferendis excepturi.","phone_no":"(623) 951-0041","address":"Development House, Nairobi, Kenya","city":"New Jacinthe","state":"Maryland","postal_code":"89717","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.johnson.com\/facilis-distinctio-vel-qui-natus-saepe-dolorem-delectus.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"paxton.koelpin@yahoo.com","updated_by":"javon.vonrueden@hotmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T09:05:36.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":4,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":10,"menus_count":1,"reviews":[{"id":7,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":"Good restaurant with quality and tasty food","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":9,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":3,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":10,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":11,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":1,"review":"Bad Service","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":12,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Could be better","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"}]},"menus_count":{"id":16,"uuid":"ac46fbaf-65b9-4802-8fed-33742060c7d8","name":"Jast LLC","name_short":"et","email":"kemmer.maximus@example.net","user_id":2,"about":"Illo quibusdam sunt harum provident tenetur voluptate explicabo voluptatum. Autem sed beatae est et id. Id ipsum voluptatem aut dolores delectus. Eligendi distinctio assumenda et praesentium.\r\n\r\nProvident veritatis praesentium inventore. Incidunt et qui autem sint inventore. Deserunt perspiciatis eos excepturi quasi.\r\n\r\nAspernatur dolor odio quia nesciunt quia voluptas. Quia id non eos. Est atque aperiam aperiam iure est repellendus harum. Accusantium nisi laboriosam natus et in.","about_short":"Sequi reprehenderit harum perferendis excepturi.","phone_no":"(623) 951-0041","address":"Development House, Nairobi, Kenya","city":"New Jacinthe","state":"Maryland","postal_code":"89717","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.johnson.com\/facilis-distinctio-vel-qui-natus-saepe-dolorem-delectus.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"paxton.koelpin@yahoo.com","updated_by":"javon.vonrueden@hotmail.com","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T09:05:36.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":4,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":10,"menus_count":1,"reviews":[{"id":7,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":"Good restaurant with quality and tasty food","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":9,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":3,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":10,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":11,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":1,"review":"Bad Service","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":12,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Could be better","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"}]},"reviews":[{"id":7,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":"Good restaurant with quality and tasty food","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":9,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":3,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":10,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Average restaurant","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":11,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":1,"review":"Bad Service","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"},{"id":12,"user_id":1,"order_id":29,"reviewable_id":16,"reviewable_type":"App\\Models\\Restaurant","rating":2,"review":"Could be better","created_at":"2024-02-10T09:16:15.000000Z","updated_at":"2024-02-10T09:16:15.000000Z"}]}},"discount":{"id":2,"menu_id":2,"type":"percentage","value":20,"created_at":"2023-11-26T07:28:26.000000Z","updated_at":"2023-11-26T07:38:18.000000Z"}}},{"id":3,"uuid":"b9d24248-5baf-49fd-b656-d2eaf76ecd57","attributes":{"title":"Chicken wings 4","description":"chicken wings 4","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2"},"relationships":{"categories":[{"id":1,"uuid":"a6fe7343-f2e8-4d8e-9d2e-2f334b102587","title":"Menu Sections","description":"such as appetizers, entrees, sides, desserts, and beverages.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/storage\/category\/images\/tJnp0rgDs0g80Exs30j5iLOBSB0xcDLIUxQjiJsP.png","subCategories":[]},{"id":2,"uuid":"096e5d5d-0a4e-4ef1-9c62-24dc569b6c87","title":"Meal Type","description":"such as breakfast, lunch, dinner, or brunch.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[]}],"images":[{"id":127,"uuid":"a44266fb-a1d3-454a-a8ba-bd0c4b59ce32","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/white bishop-654e41401aaf4.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":3,"uuid":"b9d24248-5baf-49fd-b656-d2eaf76ecd57","title":"Chicken wings 4"}}},{"id":128,"uuid":"f8b66ad1-7622-43e2-9cc3-4fc430f0121d","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/black rook-654e41402eb5a.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":3,"uuid":"b9d24248-5baf-49fd-b656-d2eaf76ecd57","title":"Chicken wings 4"}}}],"menuPrices":[{"id":3,"uuid":"a673c1f1-dcf7-4fbf-b566-57d812bbebe8","attributes":{"price":50,"description":"Affordable","status":"1"},"relationships":{"menu":{"id":3,"uuid":"b9d24248-5baf-49fd-b656-d2eaf76ecd57","title":"Chicken wings 4"}}},{"id":20,"uuid":"8ce75eea-0f17-444e-9a57-a481f1e85903","attributes":{"price":20,"description":"Affordable","status":"2"},"relationships":{"menu":{"id":3,"uuid":"b9d24248-5baf-49fd-b656-d2eaf76ecd57","title":"Chicken wings 4"}}}],"restaurant":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"reviews":[]}},"discount":null}},{"id":4,"uuid":"1ca3e722-fc78-4306-9cc8-18e8c28a61b5","attributes":{"title":"Chicken wings6","description":"Chicken wings6","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2"},"relationships":{"categories":[],"images":[{"id":129,"uuid":"40fbf22f-a3d4-418d-9d98-4a05ea0cd506","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/mastercard_payment_icon-654e414af3d34.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":4,"uuid":"1ca3e722-fc78-4306-9cc8-18e8c28a61b5","title":"Chicken wings6"}}},{"id":130,"uuid":"400cc8a3-3fb5-40c6-99bc-8fb5ef8d4003","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/visa_icon-654e414b03560.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":4,"uuid":"1ca3e722-fc78-4306-9cc8-18e8c28a61b5","title":"Chicken wings6"}}}],"menuPrices":[{"id":4,"uuid":"c20d9ca4-d917-408f-b636-368cd5061807","attributes":{"price":10,"description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"1ca3e722-fc78-4306-9cc8-18e8c28a61b5","title":"Chicken wings6"}}}],"restaurant":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"reviews":[]}},"discount":{"id":3,"menu_id":4,"type":"amount","value":150,"created_at":"2023-11-26T07:28:26.000000Z","updated_at":"2023-11-26T07:37:55.000000Z"}}},{"id":8,"uuid":"178aaa3c-fa7a-42fd-8d7d-01ad60f85c12","attributes":{"title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2"},"relationships":{"categories":[],"images":[{"id":119,"uuid":"0b37c283-fffb-4c6c-be78-b601caac64ab","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/repair-654e110c3f2c6.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":8,"uuid":"178aaa3c-fa7a-42fd-8d7d-01ad60f85c12","title":"Canned Tuna"}}}],"menuPrices":[{"id":8,"uuid":"f8d90092-c6d9-4cc8-a18d-7d184931d1c7","attributes":{"price":350,"description":"standard","status":"2"},"relationships":{"menu":{"id":8,"uuid":"178aaa3c-fa7a-42fd-8d7d-01ad60f85c12","title":"Canned Tuna"}}}],"restaurant":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"reviews":[]}},"discount":{"id":5,"menu_id":8,"type":"amount","value":50,"created_at":"2023-11-26T07:28:26.000000Z","updated_at":"2023-11-26T07:28:26.000000Z"}}},{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","attributes":{"title":"Test Groceries","description":"new groceries","createdBy":null,"updatedBy":null,"status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[{"id":2,"uuid":"f4d610b3-e222-4b1f-af8f-7cf367b40137","title":"test update","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"},{"id":3,"uuid":"6c1defd7-0247-4972-885b-cdb37a3a7e22","title":"test 2","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null},{"id":4,"uuid":"f17c4805-7922-4511-8622-71032aa585ba","title":"test three","description":"description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}]}],"images":[{"id":117,"uuid":"396765b0-85e8-47c9-a177-16f8d9d2c302","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/b-654e10fa98e65.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}},{"id":118,"uuid":"0184c3be-5673-4d9c-8e09-76020802722f","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/c-654e10fa9db22.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}}],"menuPrices":[{"id":9,"uuid":"7d413ab2-0c0d-497a-bddd-e359d9d9bcc1","attributes":{"price":200,"description":"standard","status":"1"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}},{"id":19,"uuid":"8615c45b-6af0-407d-942b-61b3f63dc58c","attributes":{"price":520,"description":"description","status":"2"},"relationships":{"menu":{"id":9,"uuid":"00d9effd-fac8-4ab5-8713-7d4145e2a941","title":"Test Groceries"}}}],"restaurant":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","attributes":{"name":"Bartoletti-Feeney","nameShort":"consequuntur","email":"floy42@example.net","about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","aboutShort":"Perspiciatis provident quo ad autem.","phoneNo":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postalCode":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","mapLocation":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":40,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","average_rating":0},"relationships":{"orders_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"menus_count":{"id":1,"uuid":"c56fce74-ca91-4019-81d1-5e746f59ed24","name":"Bartoletti-Feeney","name_short":"consequuntur","email":"floy42@example.net","user_id":2,"about":"Rem odio blanditiis in et nobis. Veritatis laborum ut sint dolorem. Explicabo esse aut officiis laborum. Vero voluptatem perspiciatis omnis dolorem est ut eum.\r\n\r\nAspernatur voluptatem quis sit ex. Impedit consequuntur enim est tempore nostrum occaecati. Ut quas distinctio numquam.\r\n\r\nNeque necessitatibus inventore minima quasi sed qui. Dolor quo et corrupti facilis accusantium. Dolores sed aspernatur consectetur neque in autem voluptatibus. Dolorem nam in consectetur voluptatibus et dolorem laboriosam. Earum quia reiciendis voluptates nihil est.","about_short":"Perspiciatis provident quo ad autem.","phone_no":"470.863.1011","address":"Development House, Nairobi, Kenya","city":"Bernhardfort","state":"Maryland","postal_code":"91189-0367","latitude":"-1.2882878","longitude":"36.8274323","map_location":"https:\/\/maps.google.com\/?q=Development+House&ftid=0x182f1127cc53f877:0x923a4f651ef68033","url":"http:\/\/www.swift.info\/quas-qui-laborum-minima-enim-vel-et-in-nihil","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"brad75@yahoo.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-12-10T08:27:50.000000Z","sitting_capacity":40,"denied_reason":null,"service_charge_agreement":5,"groceries_service_charge_agreement":3,"paypal_email":"sb-iyvmj6642934@personal.example.com","orders_count":13,"menus_count":8,"reviews":[]},"reviews":[]}},"discount":null}},{"id":11,"uuid":"8d900fb9-cb7f-40e8-ba81-0e61345c01bd","attributes":{"title":"Garlic","description":"Get fresh garlic","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2"},"relationships":{"categories":[{"id":7,"uuid":"33ad2505-b477-43c9-993e-ecae64a7c9e4","title":"Groceries","description":"Get all groceries from our store","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[{"id":2,"uuid":"f4d610b3-e222-4b1f-af8f-7cf367b40137","title":"test update","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"},{"id":3,"uuid":"6c1defd7-0247-4972-885b-cdb37a3a7e22","title":"test 2","description":"test description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null},{"id":4,"uuid":"f17c4805-7922-4511-8622-71032aa585ba","title":"test three","description":"description","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}]}],"images":[{"id":120,"uuid":"fdcd983b-f50c-41e2-95ec-71c8103bd9d1","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/white bishop-654e112c02088.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":11,"uuid":"8d900fb9-cb7f-40e8-ba81-0e61345c01bd","title":"Garlic"}}}],"menuPrices":[{"id":11,"uuid":"749a28d9-5f88-4df8-ab58-3288ec151897","attributes":{"price":8,"description":"standard","status":"2"},"relationships":{"menu":{"id":11,"uuid":"8d900fb9-cb7f-40e8-ba81-0e61345c01bd","title":"Garlic"}}}],"restaurant":{"id":3,"uuid":"0f0234b9-a317-44ac-80b0-fa5dae3774af","attributes":{"name":"Prosacco Inc","nameShort":"repellendus","email":"annie55@example.org","about":"Dolor id ipsum est qui porro. Ipsum eius laborum sit odio. Consequatur magnam et neque ab. Rerum dolore molestiae dolorum totam. Officia numquam et officia est.\n\nVoluptas ut eius quae id aspernatur officia fuga ut. Inventore qui possimus voluptatem voluptas fugiat voluptates. Qui fugiat aut voluptates nostrum. Consequatur numquam consequatur consequuntur natus qui ea.\n\nEst dolor laboriosam reprehenderit quas enim. Dolorum quia consectetur fugiat rerum est asperiores. Fugiat dolorem sint inventore omnis saepe qui.","aboutShort":"Et quis officiis voluptatem nisi enim ut.","phoneNo":"+1.252.540.6202","address":"791 Bayer Well","city":"Lake Jessica","state":"New Jersey","postalCode":"70072","latitude":null,"longitude":null,"mapLocation":"-1.2454353,36.765585","url":"http:\/\/www.cormier.com\/est-totam-quis-saepe-maxime-maxime-iste.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","average_rating":0},"relationships":{"orders_count":{"id":3,"uuid":"0f0234b9-a317-44ac-80b0-fa5dae3774af","name":"Prosacco Inc","name_short":"repellendus","email":"annie55@example.org","user_id":2,"about":"Dolor id ipsum est qui porro. Ipsum eius laborum sit odio. Consequatur magnam et neque ab. Rerum dolore molestiae dolorum totam. Officia numquam et officia est.\n\nVoluptas ut eius quae id aspernatur officia fuga ut. Inventore qui possimus voluptatem voluptas fugiat voluptates. Qui fugiat aut voluptates nostrum. Consequatur numquam consequatur consequuntur natus qui ea.\n\nEst dolor laboriosam reprehenderit quas enim. Dolorum quia consectetur fugiat rerum est asperiores. Fugiat dolorem sint inventore omnis saepe qui.","about_short":"Et quis officiis voluptatem nisi enim ut.","phone_no":"+1.252.540.6202","address":"791 Bayer Well","city":"Lake Jessica","state":"New Jersey","postal_code":"70072","latitude":null,"longitude":null,"map_location":"-1.2454353,36.765585","url":"http:\/\/www.cormier.com\/est-totam-quis-saepe-maxime-maxime-iste.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Denied","created_by":"wiley.bosco@feeney.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"menus_count":{"id":3,"uuid":"0f0234b9-a317-44ac-80b0-fa5dae3774af","name":"Prosacco Inc","name_short":"repellendus","email":"annie55@example.org","user_id":2,"about":"Dolor id ipsum est qui porro. Ipsum eius laborum sit odio. Consequatur magnam et neque ab. Rerum dolore molestiae dolorum totam. Officia numquam et officia est.\n\nVoluptas ut eius quae id aspernatur officia fuga ut. Inventore qui possimus voluptatem voluptas fugiat voluptates. Qui fugiat aut voluptates nostrum. Consequatur numquam consequatur consequuntur natus qui ea.\n\nEst dolor laboriosam reprehenderit quas enim. Dolorum quia consectetur fugiat rerum est asperiores. Fugiat dolorem sint inventore omnis saepe qui.","about_short":"Et quis officiis voluptatem nisi enim ut.","phone_no":"+1.252.540.6202","address":"791 Bayer Well","city":"Lake Jessica","state":"New Jersey","postal_code":"70072","latitude":null,"longitude":null,"map_location":"-1.2454353,36.765585","url":"http:\/\/www.cormier.com\/est-totam-quis-saepe-maxime-maxime-iste.html","logo":"http:\/\/moboeats.test\/assets\/user\/default.png","status":"Denied","created_by":"wiley.bosco@feeney.com","updated_by":null,"created_at":"2023-09-15T18:52:20.000000Z","updated_at":"2023-09-15T18:52:20.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":null,"orders_count":0,"menus_count":1,"reviews":[]},"reviews":[]}},"discount":null}}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/menu?page=1","last":"http:\/\/moboeats.test\/api\/v1\/menu?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/menu?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/menu","per_page":15,"to":6,"total":6}}'
+        content: '{"data":[{"id":13,"uuid":"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f","attributes":{"title":"Test 4","description":"test","createdBy":"xicebuvipu@mailinator.com","updatedBy":"xicebuvipu@mailinator.com","status":"2"},"relationships":{"categories":[{"id":4,"uuid":"2e166da1-4eda-4d10-86eb-5d87ce5ec583","title":"Dietary Restrictions","description":"such as vegetarian, vegan, gluten-free, or dairy-free","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[]}],"images":[{"id":1,"uuid":"130c1107-b549-4673-b4aa-7025aa153354","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/f-65d105fbb2304.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":13,"uuid":"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f","title":"Test 4"}}},{"id":2,"uuid":"8b20691e-02ae-413b-ba2a-10bfbdfb26c9","attributes":{"imageUrl":"\/storage\/app\/public\/menus\/images\/g-65d105fc4bab6.png","sequence":1,"status":"2"},"relationships":{"menu":{"id":13,"uuid":"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f","title":"Test 4"}}}],"menuPrices":[{"id":9,"uuid":"ae00146c-01b7-42de-848c-0bf45588e7bc","attributes":{"price":20,"description":"Cheap","status":"2"},"relationships":{"menu":{"id":13,"uuid":"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f","title":"Test 4"}}}],"restaurant":{"id":22,"uuid":"9ca5fca9-cf45-4cee-ac7f-79bf4c895b0e","attributes":{"name":"Ray Durham","nameShort":"Damon Duke","email":"pyku@mailinator.com","about":"Non dolorum aliquid","aboutShort":"Ut ad ab ut eaque ap","phoneNo":"+1 (643) 614-9329","address":"Liverpool, UK","city":null,"state":"Felicia Delgado","postalCode":"Burke Vega","latitude":"53.4083714","longitude":"-2.9915726","mapLocation":"https:\/\/maps.google.com\/?q=Liverpool,+UK&ftid=0x487adf8a647060b7:0x42dc046f3f176e01","url":"rojeqomagu@mailinator.com","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/POEGc6HeW9GIgZlGuF3x3fAAlHXwha2SizUwf1k8.png","sitting_capacity":0,"denied_reason":"","created_at":"2024-02-17T17:19:38.000000Z","updated_at":"2024-02-17T19:17:22.000000Z","average_rating":0},"relationships":{"orders_count":{"id":22,"uuid":"9ca5fca9-cf45-4cee-ac7f-79bf4c895b0e","name":"Ray Durham","name_short":"Damon Duke","email":"pyku@mailinator.com","user_id":8,"about":"Non dolorum aliquid","about_short":"Ut ad ab ut eaque ap","phone_no":"+1 (643) 614-9329","address":"Liverpool, UK","city":null,"state":"Felicia Delgado","postal_code":"Burke Vega","latitude":"53.4083714","longitude":"-2.9915726","map_location":"https:\/\/maps.google.com\/?q=Liverpool,+UK&ftid=0x487adf8a647060b7:0x42dc046f3f176e01","url":"rojeqomagu@mailinator.com","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/POEGc6HeW9GIgZlGuF3x3fAAlHXwha2SizUwf1k8.png","status":"Approved","created_by":null,"updated_by":null,"created_at":"2024-02-17T17:19:38.000000Z","updated_at":"2024-02-17T19:17:22.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"fiqux@mailinator.com","orders_count":2,"menus_count":1,"reviews":[]},"menus_count":{"id":22,"uuid":"9ca5fca9-cf45-4cee-ac7f-79bf4c895b0e","name":"Ray Durham","name_short":"Damon Duke","email":"pyku@mailinator.com","user_id":8,"about":"Non dolorum aliquid","about_short":"Ut ad ab ut eaque ap","phone_no":"+1 (643) 614-9329","address":"Liverpool, UK","city":null,"state":"Felicia Delgado","postal_code":"Burke Vega","latitude":"53.4083714","longitude":"-2.9915726","map_location":"https:\/\/maps.google.com\/?q=Liverpool,+UK&ftid=0x487adf8a647060b7:0x42dc046f3f176e01","url":"rojeqomagu@mailinator.com","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/POEGc6HeW9GIgZlGuF3x3fAAlHXwha2SizUwf1k8.png","status":"Approved","created_by":null,"updated_by":null,"created_at":"2024-02-17T17:19:38.000000Z","updated_at":"2024-02-17T19:17:22.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"fiqux@mailinator.com","orders_count":2,"menus_count":1,"reviews":[]},"reviews":[]}},"discount":null}}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/menu?page=1","last":"http:\/\/moboeats.test\/api\/v1\/menu?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/menu?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/menu","per_page":15,"to":1,"total":1}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -157,6 +157,55 @@ endpoints:
   -
     httpMethods:
       - GET
+    uri: 'api/v1/orderer/orderer-restaurants/{restaurant?}/menu'
+    metadata:
+      groupName: 'Menu Management'
+      groupDescription: |-
+
+        Menu API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Restaurant Menu'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        name: restaurant
+        description: ''
+        required: false
+        example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
+        type: string
+        custom: []
+    cleanUrlParameters:
+      restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
     uri: api/v1/orderer/orderer-menu
     metadata:
       groupName: 'Menu Management'
@@ -179,27 +228,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: praesentium
+        example: libero
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
+        required: false
+        example: minima
+        type: string
+        custom: []
+      restaurant:
+        name: restaurant
+        description: 'to fetch restaurant that owns with Menu'
         required: false
         example: laudantium
         type: string
         custom: []
-      restaurant:
-        name: restaurant
-        description: 'to fetch restaurant that owns with Menu'
-        required: false
-        example: iure
-        type: string
-        custom: []
     cleanQueryParameters:
-      categories: praesentium
-      subCategories: laudantium
-      restaurant: iure
+      categories: libero
+      subCategories: minima
+      restaurant: laudantium
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -246,21 +295,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: assumenda
+        example: maxime
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: ut
+        example: molestiae
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 4
+        example: 3
         type: integer
         custom: []
       categoryIds:
@@ -268,15 +317,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 15
+          - 9
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: assumenda
-      description: ut
-      status: 4
+      title: maxime
+      description: molestiae
+      status: 3
       categoryIds:
-        - 15
+        - 9
     fileParameters: []
     responses: []
     responseFields: []
@@ -308,11 +357,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: voluptatibus
+        example: magnam
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptatibus
+      id: magnam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -358,11 +407,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: suscipit
+        example: aspernatur
         type: string
         custom: []
     cleanUrlParameters:
-      id: suscipit
+      id: aspernatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -370,21 +419,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: sed
+        example: id
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: consequatur
+        example: tempore
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 5
+        example: 14
         type: integer
         custom: []
       categoryIds:
@@ -392,15 +441,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 6
+          - 1
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: sed
-      description: consequatur
-      status: 5
+      title: id
+      description: tempore
+      status: 14
       categoryIds:
-        - 6
+        - 1
     fileParameters: []
     responses: []
     responseFields: []
@@ -434,27 +483,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: repellendus
+        example: corporis
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: beatae
+        example: iste
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: doloribus
+        example: qui
         type: string
         custom: []
     cleanQueryParameters:
-      categories: repellendus
-      subCategories: beatae
-      restaurant: doloribus
+      categories: corporis
+      subCategories: iste
+      restaurant: qui
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -494,130 +543,6 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: est
-        type: string
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: optio
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: 13
-        type: integer
-        custom: []
-      categoryIds:
-        name: categoryIds
-        description: ''
-        required: false
-        example:
-          - 14
-        type: 'integer[]'
-        custom: []
-    cleanBodyParameters:
-      title: est
-      description: optio
-      status: 13
-      categoryIds:
-        - 14
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/menu/{uuid}'
-    metadata:
-      groupName: 'Menu Management'
-      groupDescription: |-
-
-        Menu API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 80372128-2857-4326-834c-e015ab10f6d5
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 80372128-2857-4326-834c-e015ab10f6d5
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/restaurant/menu/{uuid}'
-    metadata:
-      groupName: 'Menu Management'
-      groupDescription: |-
-
-        Menu API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 80372128-2857-4326-834c-e015ab10f6d5
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 80372128-2857-4326-834c-e015ab10f6d5
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -632,14 +557,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: et
+        example: a
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 12
+        example: 13
         type: integer
         custom: []
       categoryIds:
@@ -647,15 +572,139 @@ endpoints:
         description: ''
         required: false
         example:
-          - 1
+          - 10
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
       title: nam
-      description: et
-      status: 12
+      description: a
+      status: 13
       categoryIds:
-        - 1
+        - 10
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/menu/{uuid}'
+    metadata:
+      groupName: 'Menu Management'
+      groupDescription: |-
+
+        Menu API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/menu/{uuid}'
+    metadata:
+      groupName: 'Menu Management'
+      groupDescription: |-
+
+        Menu API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: nulla
+        type: string
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: false
+        example: 6
+        type: integer
+        custom: []
+      categoryIds:
+        name: categoryIds
+        description: ''
+        required: false
+        example:
+          - 5
+        type: 'integer[]'
+        custom: []
+    cleanBodyParameters:
+      title: et
+      description: nulla
+      status: 6
+      categoryIds:
+        - 5
     fileParameters: []
     responses: []
     responseFields: []
@@ -769,11 +818,11 @@ endpoints:
         name: restaurant_uuid
         description: ''
         required: true
-        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
         type: string
         custom: []
     cleanUrlParameters:
-      restaurant_uuid: c56fce74-ca91-4019-81d1-5e746f59ed24
+      restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -818,11 +867,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant.'
         required: true
-        example: c56fce74-ca91-4019-81d1-5e746f59ed24
+        example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
         type: string
         custom: []
     cleanUrlParameters:
-      id: c56fce74-ca91-4019-81d1-5e746f59ed24
+      id: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -830,21 +879,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quo
+        example: odio
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quia
+        example: mollitia
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 15
+        example: 4
         type: integer
         custom: []
       categoryIds:
@@ -852,15 +901,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 3
+          - 19
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: quo
-      description: quia
-      status: 15
+      title: odio
+      description: mollitia
+      status: 4
       categoryIds:
-        - 3
+        - 19
     fileParameters: []
     responses: []
     responseFields: []
@@ -892,11 +941,11 @@ endpoints:
         name: id
         description: 'The ID of the menu.'
         required: true
-        example: 80372128-2857-4326-834c-e015ab10f6d5
+        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
         type: string
         custom: []
     cleanUrlParameters:
-      id: 80372128-2857-4326-834c-e015ab10f6d5
+      id: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -904,21 +953,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: officia
+        example: labore
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: consequuntur
+        example: voluptatum
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 9
+        example: 11
         type: integer
         custom: []
       categoryIds:
@@ -926,15 +975,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 11
+          - 14
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: officia
-      description: consequuntur
-      status: 9
+      title: labore
+      description: voluptatum
+      status: 11
       categoryIds:
-        - 11
+        - 14
     fileParameters: []
     responses: []
     responseFields: []
@@ -966,11 +1015,11 @@ endpoints:
         name: id
         description: 'The ID of the menu.'
         required: true
-        example: 80372128-2857-4326-834c-e015ab10f6d5
+        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
         type: string
         custom: []
     cleanUrlParameters:
-      id: 80372128-2857-4326-834c-e015ab10f6d5
+      id: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1092,43 +1141,43 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: ab
+        example: quae
         type: string
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: sapiente
+        example: repellendus
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: doloremque
+        example: perferendis
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 9
+        example: 12
         type: integer
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
         required: true
-        example: et
+        example: enim
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: ab
-      title: sapiente
-      description: doloremque
-      status: 9
-      categoryIds: et
+      restaurant_ids: quae
+      title: repellendus
+      description: perferendis
+      status: 12
+      categoryIds: enim
     fileParameters: []
     responses: []
     responseFields: []
@@ -1160,11 +1209,11 @@ endpoints:
         name: menu_uuid
         description: ''
         required: true
-        example: 80372128-2857-4326-834c-e015ab10f6d5
+        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
         type: string
         custom: []
     cleanUrlParameters:
-      menu_uuid: 80372128-2857-4326-834c-e015ab10f6d5
+      menu_uuid: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1173,28 +1222,28 @@ endpoints:
         description: ''
         required: false
         example:
-          - 5
+          - 19
         type: 'integer[]'
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: voluptas
+        example: blanditiis
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: sint
+        example: delectus
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 20
+        example: 13
         type: integer
         custom: []
       categoryIds:
@@ -1202,17 +1251,17 @@ endpoints:
         description: ''
         required: false
         example:
-          - 15
+          - 12
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
       restaurant_ids:
-        - 5
-      title: voluptas
-      description: sint
-      status: 20
+        - 19
+      title: blanditiis
+      description: delectus
+      status: 13
       categoryIds:
-        - 15
+        - 12
     fileParameters: []
     responses: []
     responseFields: []

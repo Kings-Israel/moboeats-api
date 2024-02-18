@@ -71,14 +71,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: id
+        example: fugiat
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: elmira.wiza@example.net
+        example: justine.cassin@example.com
         type: string
         custom: []
       phoneNo:
@@ -124,8 +124,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: id
-      email: elmira.wiza@example.net
+      name: fugiat
+      email: justine.cassin@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -157,11 +157,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6825ae91-6d53-3288-8c47-1551556d216b
+        example: 87f1c66c-e0fa-3ade-beda-b3844a7a73e7
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6825ae91-6d53-3288-8c47-1551556d216b
+      uuid: 87f1c66c-e0fa-3ade-beda-b3844a7a73e7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -207,11 +207,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 39683526-562b-309a-af6d-0423905afbce
+        example: fd4ad2af-ec83-330b-b26f-9e2d6b40f7aa
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 39683526-562b-309a-af6d-0423905afbce
+      uuid: fd4ad2af-ec83-330b-b26f-9e2d6b40f7aa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -219,56 +219,56 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 67867b95-ca52-3cd4-a5b2-618589bd671d
+        example: f8872eae-e5de-375b-aa04-aefb0e27c460
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: veniam
+        example: et
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: odell.hauck@example.net
+        example: doyle.hartmann@example.com
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: in
+        example: sapiente
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: voluptas
+        example: sapiente
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: alias
+        example: delectus
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: est
+        example: cupiditate
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: est
+        example: non
         type: string
         custom: []
       image:
@@ -279,14 +279,14 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 67867b95-ca52-3cd4-a5b2-618589bd671d
-      name: veniam
-      email: odell.hauck@example.net
-      phoneNo: in
-      address: voluptas
-      city: alias
-      state: est
-      mapLocation: est
+      uuid: f8872eae-e5de-375b-aa04-aefb0e27c460
+      name: et
+      email: doyle.hartmann@example.com
+      phoneNo: sapiente
+      address: sapiente
+      city: delectus
+      state: cupiditate
+      mapLocation: non
     fileParameters: []
     responses: []
     responseFields: []
@@ -318,11 +318,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 95aa780c-b9b5-3516-8591-e3dfbcb1bf9d
+        example: 2fd8c052-d259-39c4-966f-fd0c61def53b
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 95aa780c-b9b5-3516-8591-e3dfbcb1bf9d
+      uuid: 2fd8c052-d259-39c4-966f-fd0c61def53b
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
