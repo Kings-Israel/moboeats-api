@@ -34,7 +34,7 @@ class UpdateRestaurantRequest extends FormRequest
             'map_location' => ['nullable'],
             'url' => ['nullable'],
             'logo' => ['nullable'],
-            'sitting_capacity' => ['required', 'integer'],
+            // 'sitting_capacity' => ['required', 'integer'],
             'latitude' => ['required', 'string', 'not_in:null'],
             'longitude' => ['required', 'string', 'not_in:null'],
             'paypal_email' => ['required', 'email']
