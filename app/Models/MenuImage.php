@@ -56,7 +56,7 @@ class MenuImage extends Model implements UrlRoutable
 
     public function getImageUrlAttribute($value)
     {
-        return config('app.url').'/' .config('app.storagePaths')['menus']['readPath'].'/' .$value;
+        return config('app.url').'/storage/menus/images/' .$value;
     }
 
     /**
