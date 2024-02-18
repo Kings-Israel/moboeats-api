@@ -18,7 +18,7 @@ class MenuImageResource extends JsonResource
             'id' =>$this->id,
             'uuid' =>$this->uuid,
             'attributes' => [
-                'imageUrl' =>  config('app.url').'/' .config('app.storagePaths')['menus']['readPath'].'/' .$this->image_url,
+                'imageUrl' =>  $this->image_url,
                 'sequence' =>$this->sequence,
                 'status' => (string) $this->status,
             ],
