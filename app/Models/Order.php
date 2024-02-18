@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Str;
 use Malhal\Geographical\Geographical;
 
@@ -179,5 +180,21 @@ class Order extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Get the reservation associated with the Order
+     */
+    public function reservation(): HasOne
+    {
+        return $this->hasOne(Reservation::class);
+    }
+
+    /**
+     * Get all of the orderTables for the Order
+     */
+    public function orderTables(): HasMany
+    {
+        return $this->hasMany(OrderTable::class);
     }
 }

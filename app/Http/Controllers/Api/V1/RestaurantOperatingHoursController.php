@@ -24,7 +24,7 @@ class RestaurantOperatingHoursController extends Controller
         $restaurant = Restaurant::where('uuid', $uuid)->first();
 
         foreach (json_decode($request->days) as $key => $day) {
-            if (array_key_exists($key, json_decode($request->opening_times)) && array_key_exists($key, json_decode($request->closing_times))) {
+            if (array_key_exists($key, json_decode($request->opening_times)) && json_decode($request->opening_times)[$key] != null  && array_key_exists($key, json_decode($request->closing_times)) && json_decode($request->closing_times)[$key] != null) {
                 RestaurantOperatingHour::create([
                     'restaurant_id' => $restaurant->id,
                     'day' => $day,
@@ -53,7 +53,7 @@ class RestaurantOperatingHoursController extends Controller
         RestaurantOperatingHour::where('restaurant_id', $restaurant->id)->delete();
 
         foreach (json_decode($request->days) as $key => $day) {
-            if (array_key_exists($key, json_decode($request->opening_times)) && array_key_exists($key, json_decode($request->closing_times))) {
+            if (array_key_exists($key, json_decode($request->opening_times)) && json_decode($request->opening_times)[$key] != null && array_key_exists($key, json_decode($request->closing_times)) && json_decode($request->closing_times)[$key] != null) {
                 RestaurantOperatingHour::create([
                     'restaurant_id' => $restaurant->id,
                     'day' => $day,

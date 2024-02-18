@@ -39,7 +39,6 @@ class AuthController extends Controller
             ], [
                 'userType.in' => 'Please select a orderer, restaurant or rider for the user type'
             ]);
-            // $request->validated($request->all());
 
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return $this->error('', 'Unauthorized', 401);
@@ -90,8 +89,6 @@ class AuthController extends Controller
     {
         $request->validated($request->all());
 
-        info($request->all());
-
         try {
             DB::beginTransaction();
             $user = User::create([
@@ -121,16 +118,16 @@ class AuthController extends Controller
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
             }
             if ($request->user_type === 'restaurant') {
-                $user->update([
-                    'type' => $request->type
-                ]);
-
                 $role = Role::where('name', $request->user_type)->first();
                 if (!$role) {
                     return $this->error('', 'Unknown user type: '.$request->user_type, 401);
                 }
                 $user->addRole($request->user_type);
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
+
+                $user->update([
+                    'type' => $request->type
+                ]);
             }
             if ($request->user_type === 'rider') {
                 $rider = Rider::create([
@@ -147,7 +144,9 @@ class AuthController extends Controller
                 $user->addRole($request->user_type);
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
             }
+
             $user->update(['role_id' => $request->user_type]);
+
             DB::commit();
 
             activity()->causedBy($user)->log('registered a new account');
