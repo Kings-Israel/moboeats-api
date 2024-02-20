@@ -30,7 +30,7 @@ class StoreUserRequest extends FormRequest
             'userType' => ['required'],
             'otp' => ['nullable'],
             'image' => ['nullable'],
-            'phoneNo' => ['nullable'],
+            'phoneNo' => ['nullable', 'unique:'.User::class.',phone_number'],
         ];
     }
 
