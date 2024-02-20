@@ -89,6 +89,8 @@ class AuthController extends Controller
     {
         $request->validated($request->all());
 
+        return $request->all();
+
         try {
             DB::beginTransaction();
             $user = User::create([
@@ -99,6 +101,7 @@ class AuthController extends Controller
                 'status' => 2,
                 'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
                 'image' => $request->hasFile('image') ? pathinfo($request->image->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
+                'phone_number' => $request->has('phone_no') && !empty($request->phone_no) ? $request->phone_no : NULL
             ]);
 
             if ($request->user_type === 'orderer') {
@@ -106,7 +109,7 @@ class AuthController extends Controller
                     'user_id' => $user->id,
                     'name' => $request->name,
                     'email' => $request->email,
-                    'phone_no' => $request->phone_no??'',
+                    'phone_no' => $request->phone_no ?? NULL,
                     'address' => '',
                     'status' => 2,
                 ]);
