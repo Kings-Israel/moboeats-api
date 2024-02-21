@@ -17,7 +17,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Jobs\SendCommunication;
 
 class AuthController extends Controller
 {
@@ -169,7 +171,6 @@ class AuthController extends Controller
 
     public function logout()
     {
-        // Auth::user()->currentAccessToken()->delete();
         try {
             Auth::user()->tokens->each(function($token, $key) {
                 $token->delete();
@@ -183,6 +184,77 @@ class AuthController extends Controller
             return $this->error('', $th->getMessage(), 403);
         }
 
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required_without:phone_number'],
+            'phone_number' => ['required_without:email']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('Auth Error', $validator->messages(), 403);
+        }
+
+        $user = User::when($request->has('email') && !empty($request->email), fn ($query) => $query->where('email', $request->email))->when($request->has('phone_number') && !empty($request->phone_number), fn ($query) => $query->where('phone_number', $request->phone_number))->first();
+
+        if (!$user) {
+            if ($request->has('email') && !empty($request->email)) {
+                return $this->error('Auth Error', 'User with email'.$request->email.' was not found', 404);
+            } else {
+                return $this->error('Auth Error', 'User with phone number'.$request->phone_number.' was not found', 404);
+            }
+        }
+
+        // Generate token
+        $token = rand(000000, 999999);
+
+        $email = $request->has('email') && !empty($request->email) ? $request->email : $request->phone_number;
+
+        $user = DB::table('password_reset_tokens')->where('email', $email)->first();
+
+        if ($user) {
+            $token = $user->token;
+        } else {
+            DB::table('password_reset_tokens')
+                ->insert([
+                    'email' => $request->has('email') && !empty($request->email) ? $request->email : $request->phone_number,
+                    'token' => $token
+                ]);
+        }
+
+        SendCommunication::dispatchAfterResponse('mail', $request->email, 'ResetPassword', ['code' => $token]);
+
+        return $this->success('', 'Password reset code sent successfully');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => ['required'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('Reset Password Error', $validator->messages(), 403);
+        }
+
+        $token = DB::table('password_reset_tokens')->where('token', $request->code)->first();
+
+        if (!$token) {
+            return $this->error('Password Reset Error', 'Invalid Credentials', 403);
+        }
+
+        $user = User::where('email', $token->email)->orWhere('phone_number', $token->email)->first();
+
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        DB::table('password_reset_tokens')->where('token', $request->code)->delete();
+
+        return $this->success('', 'Password was reset successfully.');
     }
 
     public function authUser()
