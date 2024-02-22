@@ -93,8 +93,6 @@ class AuthController extends Controller
     {
         $request->validated($request->all());
 
-        return $request->all();
-
         try {
             DB::beginTransaction();
             $user = User::create([
