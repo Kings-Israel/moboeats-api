@@ -45,4 +45,9 @@ return [
     'default_service_charge' => env('DEFAULT_SERVICE_CHARGE'),
 
     'kms_to_miles' => env('KMS_TO_MILES'),
+
+    'voodoo' => [
+        'BASE_URL' => env('VOODOO_BASE_URL'),
+        'API_KEY' => env('VOODOO_API_KEY'),
+    ],
 ];

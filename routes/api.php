@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\V1\RiderController;
 use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Jobs\SendSMS;
 
 /*
 |--------------------------------------------------------------------------
@@ -227,5 +228,9 @@ Route::post('/v1/order/tip/payment/capture-tip-paypal-order', [PaymentController
 // Route::group(['prefix' => 'v1/admin', 'middleware' => 'auth:sanctum'], function() {
 //     // Define admin-specific routes here
 // });
+
+Route::post('/sms/test', function(Request $request) {
+    SendSMS::dispatchAfterResponse($request->phone_number, 'Test');
+});
 
 require __DIR__.'/admin.php';

@@ -35,7 +35,7 @@ class SendCommunication implements ShouldQueue
                 }
                 break;
             case 'sms':
-                // TODO: Create voodoo sms
+                SendSMS::dispatch($this->receipient, 'Your verification code is: '.$this->content['code']);
                 break;
             default:
                 # code...
