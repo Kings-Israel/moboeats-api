@@ -11,6 +11,7 @@ use App\Models\Restaurant;
 use App\Models\Rider;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Otp;
 use App\Models\UserRestaurant;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Jobs\SendCommunication;
+use App\Helpers\NumberGenerator;
 
 class AuthController extends Controller
 {
@@ -121,6 +123,15 @@ class AuthController extends Controller
                 }
                 $user->addRole($request->user_type);
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
+
+                $code = NumberGenerator::generateVerificationCode(Otp::class, 'code');
+
+                Otp::create([
+                    'phone_number' => $user->phone_number,
+                    'code' => $code,
+                ]);
+
+                SendCommunication::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
             }
             if ($request->user_type === 'restaurant') {
                 $role = Role::where('name', $request->user_type)->first();

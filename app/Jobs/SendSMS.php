@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 
 class SendSMS implements ShouldQueue
 {
@@ -16,7 +17,7 @@ class SendSMS implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(public string $receiver, public string $message)
     {
         //
     }
@@ -26,6 +27,16 @@ class SendSMS implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . config('services.voodoo.API_KEY')
+        ])
+        ->post(config('services.voodoo.BASE_URL').'/sendsms', [
+            'to' => $this->receiver,
+            'from' => 'VoodooSMS',
+            'msg' => $this->message,
+            'sandbox' => true
+        ]);
+
+        info($response);
     }
 }
