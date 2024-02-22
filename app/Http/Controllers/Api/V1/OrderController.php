@@ -405,7 +405,8 @@ class OrderController extends Controller
                                                     ->select("*",
                                                         DB::raw("6371 * acos(cos(radians(".$user->latitude."))
                                                         * cos(radians(".$order->user->latitude."))
-                                                        * cos(radians(".$order->user->longitude.") - radians(".$user->longitude."))
+                                                        * cos(radians(".$order->user->longitude.")
+                                                        - radians(".$user->longitude."))
                                                         + sin(radians(".$user->latitude."))
                                                         * sin(radians(".$order->user->latitude."))) AS distance"))
                                                     ->get();
