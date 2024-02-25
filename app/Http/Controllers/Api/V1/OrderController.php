@@ -405,12 +405,12 @@ class OrderController extends Controller
                                                     ->where('restaurant_id', $order->restaurant_id)
                                                     ->whereIn('status', [1, 2, 3])
                                                     ->select("*",
-                                                        DB::raw("6371 * acos(cos(radians(".$order->user->latitude."))
-                                                        * cos(radians(".$order->user->latitude."))
-                                                        * cos(radians(".$order->user->longitude.")
-                                                        - radians(".$order->user->longitude."))
-                                                        + sin(radians(".$order->user->latitude."))
-                                                        * sin(radians(".$order->user->latitude."))) AS distance"))
+                                                        DB::raw("6371 * acos(cos(radians(".$latitude."))
+                                                        * cos(radians(".$latitude."))
+                                                        * cos(radians(".$longitude.")
+                                                        - radians(".$longitude."))
+                                                        + sin(radians(".$latitude."))
+                                                        * sin(radians(".$latitude."))) AS distance"))
                                                     ->get();
 
                                     // Filter to riders distances less than 5 Kms
