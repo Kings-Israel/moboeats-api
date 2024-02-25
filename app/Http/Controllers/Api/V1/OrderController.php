@@ -389,10 +389,12 @@ class OrderController extends Controller
             }
 
             if ($order->delivery) {
+                $latitude = $order->delivery_location_lat ? $order->delivery_location_lat : $order->user->latitude;
+                $longitude = $order->delivery_location_lng ? $order->delivery_location_lng : $order->user->longitude;
                 $riders = User::whereHas('roles', function($query) {
                                     $query->where('name', 'rider');
                                 })
-                                ->where(function($query) use ($restaurant, $order, $user) {
+                                ->where(function($query) use ($restaurant, $order, $user, $latitude, $longitude) {
                                     $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
                                     $delivered_orders = Order::where('rider_id', '!=', NULL)->where('status', 5)->get()->pluck('rider_id');
 
@@ -403,11 +405,11 @@ class OrderController extends Controller
                                                     ->where('restaurant_id', $order->restaurant_id)
                                                     ->whereIn('status', [1, 2, 3])
                                                     ->select("*",
-                                                        DB::raw("6371 * acos(cos(radians(".$user->latitude."))
+                                                        DB::raw("6371 * acos(cos(radians(".$order->user->latitude."))
                                                         * cos(radians(".$order->user->latitude."))
                                                         * cos(radians(".$order->user->longitude.")
-                                                        - radians(".$user->longitude."))
-                                                        + sin(radians(".$user->latitude."))
+                                                        - radians(".$order->user->longitude."))
+                                                        + sin(radians(".$order->user->latitude."))
                                                         * sin(radians(".$order->user->latitude."))) AS distance"))
                                                     ->get();
 
