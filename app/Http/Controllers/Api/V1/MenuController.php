@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MenuExport;
 use App\Exports\GroceryExport;
+use App\Models\Order;
 
 /**
  * @group Menu Management
@@ -119,7 +120,8 @@ class MenuController extends Controller
                 DB::rollBack();
                 return $this->error('', 'unable to create menu item', 403);
             }
-            if ($request->has('standarPrice')) {
+
+            if ($request->has('standardPrice')) {
                 MenuPrice::create([
                     'menu_id' => $menu->id,
                     'description' => 'standard',
@@ -445,34 +447,21 @@ class MenuController extends Controller
         return $this->success('', 'Menu images updated successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Menu $menu)
     {
-        $includeCategories = request()->query('categories');
-        $includesubCategories = request()->query('subCategories');
-        $includesubImages = request()->query('images');
-
-        if ($includesubCategories &&  $includeCategories && $includesubImages) {
-            return new MenuResource($menu->loadMissing(['categories', 'subCategories', 'images']));
+        if (auth()->user()->hasRole('restaurant')) {
+            $restaurant_ids = auth()->user()->restaurants->pluck('id');
         } else {
-            if ($includeCategories) {
-                return new MenuResource($menu->loadMissing('categories'));
-            }
-            if ($includesubCategories) {
-                return new MenuResource($menu->loadMissing('subCategories'));
-            }
-            if ($includesubImages) {
-                return new MenuResource($menu->loadMissing('images'));
-            }
+            $restaurant_ids = UserRestaurant::where('user_id', auth()->id())->first()->pluck('restaurant_id');
         }
-        return new MenuResource($menu->loadMissing('menuPrices', 'categories.subCategories', 'discount'));
+
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
+        return [
+            'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order')),
+            'categories' => new FoodCommonCategoryCollection($categories),
+        ];
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateMenuRequest $request, Menu $menu = NULL, $id = NULL)
     {
         if ($menu == NULL) {
@@ -557,10 +546,6 @@ class MenuController extends Controller
         }
     }
 
-    /**
-     * Get Groceries
-     *
-     */
     public function groceries(Request $request)
     {
         if (auth()->check()) {
@@ -617,10 +602,6 @@ class MenuController extends Controller
 
     }
 
-    /**
-     * Get Restaurant Menu
-     *
-     */
     public function restaurantMenu(Request $request, Restaurant $restaurant = null)
     {
         if (auth()->check()) {
@@ -720,5 +701,20 @@ class MenuController extends Controller
         $menu = Menu::with('images', 'categories', 'subCategories')->where('restaurant_id', $restaurant->id)->whereIn('id', $category_menus)->paginate(10);
 
         return MenuResource::collection($menu);
+    }
+
+    public function menuOrders(Request $request, Menu $menu)
+    {
+        $search = $request->query('search');
+
+        $orders = Order::with('orderItems', 'user')
+                            ->whereHas('orderItems', function ($query) use ($menu) {
+                                $query->where('menu_id', $menu->id);
+                            })
+                            ->whereIn('status', [2, 3, 4, 5])
+                            ->orderBy('created_at', 'DESC')
+                            ->paginate(10);
+
+        return $this->success($orders);
     }
 }

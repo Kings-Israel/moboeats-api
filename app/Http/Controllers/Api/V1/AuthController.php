@@ -95,16 +95,20 @@ class AuthController extends Controller
 
         try {
             DB::beginTransaction();
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'user_type' => $request->user_type,
-                'status' => 2,
-                'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
-                'image' => $request->hasFile('image') ? pathinfo($request->image->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
-                'phone_number' => $request->has('phone_no') && !empty($request->phone_no) ? $request->phone_no : NULL
-            ]);
+            $user = User::firstOrCreate(
+                [
+                    'email' => $request->email,
+                    'phone_number' => $request->phone_no
+                ],
+                [
+                    'name' => $request->name,
+                    'password' => Hash::make($request->password),
+                    'user_type' => $request->user_type,
+                    'status' => 2,
+                    'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
+                    'image' => $request->hasFile('image') ? pathinfo($request->image->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
+                ]
+            );
 
             if ($request->user_type === 'orderer') {
                 $orderer = Orderer::create([
@@ -124,13 +128,14 @@ class AuthController extends Controller
 
                 $code = NumberGenerator::generateVerificationCode(Otp::class, 'code');
 
-                Otp::create([
-                    'phone_number' => $user->phone_number,
-                    'code' => $code,
-                ]);
+                // Otp::create([
+                //     'phone_number' => $user->phone_number,
+                //     'code' => $code,
+                // ]);
 
-                SendCommunication::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
+                // SendCommunication::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
             }
+
             if ($request->user_type === 'restaurant') {
                 $role = Role::where('name', $request->user_type)->first();
                 if (!$role) {
@@ -143,27 +148,38 @@ class AuthController extends Controller
                     'type' => $request->type
                 ]);
             }
+
             if ($request->user_type === 'rider') {
                 $rider = Rider::create([
                     'user_id' => $user->id,
                     'name' => $request->name,
                     'email' => $request->email,
-                    'phone_no' => $request->phone_no??'',
+                    'phone_no' => $request->phone_no ?? NULL,
                     'status' => 2,
+                    'address' => $request->address ?? NULL,
+                    'city' => $request->city ?? NULL,
+                    'state' => $request->state ?? NULL,
+                    'postal_code' => $request->postal_code ?? NULL,
+                    'vehicle_type' => $request->hicle_type ?? NULL,
+                    'vehicle_license_plate' => $request->vehicle_license_plate ?? NULL,
+                    'paypal_email' => $request->paypal_email ?? NULL,
                 ]);
+
                 $role = Role::where('name', $request->user_type)->first();
+
                 if (!$role) {
                     return $this->error('', 'Unknown user type: '.$request->user_type, 401);
                 }
+
                 $user->addRole($request->user_type);
                 $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
             }
 
             $user->update(['role_id' => $request->user_type]);
 
-            DB::commit();
+            activity()->causedBy($user)->log('registered a new account as '.$request->user_type);
 
-            activity()->causedBy($user)->log('registered a new account');
+            DB::commit();
 
             $user = new UserResource($user);
 

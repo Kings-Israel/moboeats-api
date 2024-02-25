@@ -145,6 +145,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::get('menus/export/data', [MenuController::class, 'export']);
         Route::post('/menu/create', [MenuController::class, 'addMenu']);
         Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
+        Route::get('/menus/{menu}/orders', [MenuController::class, 'menuOrders']);
 
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::post('/orders/reservation/{order}/assign', [OrderController::class, 'assignReservationToTables']);
