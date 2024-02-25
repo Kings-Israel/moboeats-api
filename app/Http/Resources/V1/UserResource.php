@@ -28,7 +28,7 @@ class UserResource extends JsonResource
                     return  new OrdererResource($this->orderer);
                 }),
             ],
-            'type' => $this->type
+            'type' => $this->when(auth()->check() && (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee')), $this->type)
         ];
     }
 }

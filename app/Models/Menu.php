@@ -148,6 +148,26 @@ class Menu extends Model implements UrlRoutable
     {
         return $this->hasMany(OrderItem::class, 'menu_id', 'id');
     }
+
+    public function getOrdersValue(): int
+    {
+        $total_value = 0;
+
+        $orders = $this->orderItems()
+                        ->whereHas('order', function ($query) {
+                            $query->where('status', 5);
+                        })
+                        ->get()
+                        ->groupBy('order_id');
+
+        foreach ($orders as $key => $order) {
+            $order_details = Order::find($key);
+            $total_value += $order_details->total_amount - $order_details->service_charge;
+        }
+
+        return $total_value;
+    }
+
     public static function options($column)
     {
         if($column == 'status'){

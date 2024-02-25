@@ -15,7 +15,6 @@ class MenuResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
         return [
             'id' =>$this->id,
             'uuid' => $this->uuid,
@@ -27,7 +26,6 @@ class MenuResource extends JsonResource
                 'status' => (string) $this->status,
             ],
             'relationships' => [
-                // 'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'categories' => FoodCommonCategoryResource::collection($this->whenLoaded('categories')),
                 'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('subCategories')),
                 'images' => MenuImageResource::collection($this->whenLoaded('images')),
@@ -42,9 +40,10 @@ class MenuResource extends JsonResource
                     return  new RestaurantResource($this->restaurant);
                 }),
                 'discount' => $this->whenLoaded('discount'),
+                'orderItems' => $this->orderItems->load('order')->groupBy('order_id'),
+                'orders_count' => $this->orderItems()->whereHas('order', fn ($query) => $query->where('status', 5))->groupBy('order_id')->count(),
+                'total_orders_value' => $this->getOrdersValue()
             ],
         ];
     }
-
-
 }

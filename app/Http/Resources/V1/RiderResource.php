@@ -49,7 +49,7 @@ class RiderResource extends JsonResource
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
             ],
-            'reviews' => new ReviewResource($this->reviews)
+            'reviews' => $this->when($this->reviews()->exists(), new ReviewResource($this->reviews))
         ];
     }
 }

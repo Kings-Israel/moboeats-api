@@ -106,7 +106,7 @@ class RiderController extends Controller
             $rider = auth()->user()->rider;
         }
 
-        return $this->success(new RiderResource($rider), 'Profile created successfully');
+        return $this->success(new RiderResource($rider->load('user')), 'Profile created successfully');
     }
 
     /**
@@ -128,7 +128,8 @@ class RiderController extends Controller
     {
         $request->validate([
             'email' => ['nullable', 'unique:riders,email,except,id'],
-            'paypal_email' => ['required', 'email']
+            'paypal_email' => ['required', 'email'],
+            'vehicle_type' => ['required']
         ]);
 
         $rider = Rider::where('user_id', auth()->id())->first();

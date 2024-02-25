@@ -156,6 +156,8 @@ class MenuPriceController extends Controller
 
         if ($menuPrices > 1) {
             $menuPrice->delete();
+        } else {
+            return $this->error('', 'Must have at least one menu price', 403);
         }
 
         $menuPrices = MenuPrice::where('menu_id', $menuPrice->menu->id)->count();
