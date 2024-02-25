@@ -8,11 +8,23 @@
    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
    <title>Moboeats</title>
+   <style>
+    .checkout-img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 5px;
+        width: 100%;
+    }
+   </style>
 </head>
-<body style="background: #c4c4c4">
+<body style="background: #2E5945">
     <div class="container">
+        <img src="{{ asset('assets/img/1024.png') }}" alt="" class="checkout-img">
         <h1>Send a Tip to the Rider</h1>
-        <div class="row text-gray-500">
+        <div class="row" style="color: white">
             <div class="col-6">
                 <h3>Rider:</h3>
                 <h2>Amount:</h2>

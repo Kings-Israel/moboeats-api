@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moboeats</title>
   <style>
+    body {
+      background: #2E5945;
+    }
     .container {
       text-align: center;
       margin-top: 50px;
@@ -14,6 +17,7 @@
       margin: 0 20px 0 20px;
     }
     .success-text h3 {
+        color: white;
       font-family: system-ui,
           -apple-system, /* Firefox supports this but not yet `system-ui` */
           'Segoe UI',
@@ -36,7 +40,7 @@
       height: 140px;
       border-radius: 50%;
       background: white;
-      border: 2px solid #007cc2;
+      border: 2px solid #F8C410;
       position: absolute;
 
       -webkit-transition: all 220ms linear;
@@ -78,8 +82,8 @@
       -ms-transform-origin: left top;
       -o-transform-origin: left top;
       transform-origin: left top;
-      border-right: 11px solid #007cc2;
-      border-top: 11px solid #007cc2;
+      border-right: 11px solid #F8C410;
+      border-top: 11px solid #F8C410;
       border-radius: 2.5px !important;
       content: '';
       left: 25px;
@@ -164,10 +168,21 @@
       width: 50px;
       z-index: 2;
     }
+
+    .checkout-img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 5px;
+        width: 100%;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <img src="{{ asset('assets/img/1024.png') }}" alt="" class="checkout-img">
     <div class="checkmark-circle">
       <div class="background"></div>
       <div class="checkmark draw"></div>
