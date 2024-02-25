@@ -6,16 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moboeats</title>
   <style>
+    body {
+      background: #2E5945;
+    }
     .container {
       text-align: center;
       margin-top: 50px;
     }
     .success-text {
       color: #fff;
-      margin: 0 20px 0 20px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .success-text h3, h4 {
+        color: white;
       font-family: system-ui,
           -apple-system, /* Firefox supports this but not yet `system-ui` */
           'Segoe UI',
@@ -27,16 +33,23 @@
           'Segoe UI Emoji';
     }
 
-    body{
-      background-color: #1E272D;
+    .checkout-img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 5px;
+        width: 100%;
     }
 
     .close-container{
       position: relative;
-      margin: auto;
-      width: 50px;
+      width: 28px;
       height: 50px;
-      margin-top: 100px;
+      margin-top: 50px;
+      margin-left: auto;
+      margin-right: auto;
       cursor: pointer;
     }
 
@@ -91,13 +104,14 @@
 </head>
 <body>
   <div class="container">
+    <img src="{{ asset('assets/img/1024.png') }}" alt="" class="checkout-img">
     <div class="close-container">
       <div class="leftright"></div>
       <div class="rightleft"></div>
       <label class="close">close</label>
     </div>
     <div class="success-text">
-      <h3>The transaction was cancelled.</h3>
+      <h3>The transaction was cancelled or failed.</h3>
     </div>
     <div class="success-text">
         @if ($message)
