@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
 
     Route::apiResource('orderer-menu', MenuController::class);
 
+    Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
     Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
     Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
 

@@ -98,9 +98,13 @@ class MenuBookmarkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuBookmark $menu_bookmark)
+    // public function destroy(MenuBookmark $menuBookmark)
+    public function destroy($menu_id)
     {
         $user = User::where('id',Auth::user()->id)->first();
+
+        $menuBookmark = MenuBookmark::find($menu_id);
+        
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
             if ($role != 'orderer') {
@@ -108,10 +112,10 @@ class MenuBookmarkController extends Controller
             }
             try {
                 DB::beginTransaction();
-                if ($this->isNotAuthorized($menu_bookmark)) {
-                    $menu_bookmark->delete();
+                if ($this->isNotAuthorized($menuBookmark)) {
+                    $menuBookmark->delete();
                 } else {
-                    return $this->isNotAuthorized($menu_bookmark);
+                    return $this->isNotAuthorized($menuBookmark);
                 }
                 DB::commit();
                 return response(null, 204);
