@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
+
 class CartItem extends Model
 {
     use HasFactory;
@@ -46,7 +47,7 @@ class CartItem extends Model
                 ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
             ];
         }
-        
+
         if(isset($options)){
             return $options;
         }else{
