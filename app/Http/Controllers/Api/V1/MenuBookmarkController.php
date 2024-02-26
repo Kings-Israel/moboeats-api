@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * @group Customer menu Bookmark Management
- * 
+ *
  * MenuBookmark API resource
  */
 class MenuBookmarkController extends Controller
@@ -46,7 +46,7 @@ class MenuBookmarkController extends Controller
         }
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -94,11 +94,11 @@ class MenuBookmarkController extends Controller
 
     }
 
-    
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuBookmark $menuBookmark)
+    public function destroy(MenuBookmark $menu_bookmark)
     {
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
@@ -108,10 +108,10 @@ class MenuBookmarkController extends Controller
             }
             try {
                 DB::beginTransaction();
-                if ($this->isNotAuthorized($menuBookmark)) {
-                    $menuBookmark->delete();
+                if ($this->isNotAuthorized($menu_bookmark)) {
+                    $menu_bookmark->delete();
                 } else {
-                    return $this->isNotAuthorized($menuBookmark);
+                    return $this->isNotAuthorized($menu_bookmark);
                 }
                 DB::commit();
                 return response(null, 204);
