@@ -266,7 +266,7 @@ class RestaurantController extends Controller
      */
     public function reviews(Restaurant $restaurant)
     {
-        $review = Review::where('reviewable_type', Restaurant::class)->where('reviewable_id', $restaurant->id)->get();
+        $review = Review::where('reviewable_type', Restaurant::class)->where('reviewable_id', $restaurant->id)->orderBy('created_at', 'DESC')->get();
 
         return ReviewResource::collection($review);
     }

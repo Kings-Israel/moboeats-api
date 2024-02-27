@@ -26,19 +26,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: reiciendis
+        example: labore
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: ipsam
+        example: provident
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: reiciendis
-      order_id: ipsam
+      user_id: labore
+      order_id: provident
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

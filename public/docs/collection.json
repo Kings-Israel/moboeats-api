@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Moboeats",
-        "_postman_id": "5aac8285-cabb-4b49-9de2-ba105a7edb5e",
+        "_postman_id": "8b40da38-bcf0-4308-be2d-71e0076ae6cf",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -123,7 +123,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"userId\":16}"
+                            "raw": "{\"userId\":11}"
                         },
                         "description": "",
                         "auth": {
@@ -144,7 +144,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "c3d83d54-b51f-3990-80d3-d4da9979179b",
+                                    "value": "8fe7bb95-09d2-4e17-ae0d-584d2c81b579",
                                     "description": ""
                                 }
                             ]
@@ -200,7 +200,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "35bb4caa-bd1f-394b-9e69-9a7bed96638f",
+                                    "value": "8fe7bb95-09d2-4e17-ae0d-584d2c81b579",
                                     "description": ""
                                 }
                             ]
@@ -300,7 +300,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":19,\"quantity\":12,\"status\":4}"
+                            "raw": "{\"menuId\":18,\"quantity\":9,\"status\":19}"
                         },
                         "description": "",
                         "auth": {
@@ -321,7 +321,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "rerum",
+                                    "value": "d3c1bd94-3a00-4c79-a1b1-a5ae1900ae96",
                                     "description": "The ID of the cart item."
                                 }
                             ]
@@ -377,7 +377,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "d3c1bd94-3a00-4c79-a1b1-a5ae1900ae96",
                                     "description": "The ID of the cart item."
                                 }
                             ]
@@ -395,7 +395,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":17,\"quantity\":11,\"status\":9}"
+                            "raw": "{\"menuId\":20,\"quantity\":19,\"status\":18}"
                         },
                         "description": "",
                         "auth": {
@@ -416,7 +416,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "iure",
+                                    "value": "d3c1bd94-3a00-4c79-a1b1-a5ae1900ae96",
                                     "description": "The ID of the cart item."
                                 }
                             ]
@@ -516,7 +516,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cartId\":20,\"restaurantId\":5,\"delivery\":true,\"booking_time\":\"2039-08-01\"}"
+                            "raw": "{\"cartId\":9,\"restaurantId\":7,\"delivery\":true,\"booking_time\":\"2117-11-20\"}"
                         },
                         "description": "",
                         "auth": {
@@ -639,7 +639,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":6,\"restaurant_rating\":14,\"restaurant_review\":\"sit\",\"rider_rating\":17,\"rider_review\":\"natus\"}"
+                            "raw": "{\"order_id\":5,\"restaurant_rating\":13,\"restaurant_review\":\"deserunt\",\"rider_rating\":5,\"rider_review\":\"unde\"}"
                         },
                         "description": "",
                         "auth": {
@@ -770,7 +770,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"in progress\"}"
+                            "raw": "{\"status\":\"cancelled\"}"
                         },
                         "description": "",
                         "auth": {
@@ -953,7 +953,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"quo\"}"
+                            "raw": "{\"status\":\"sed\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1028,7 +1028,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"neque\"}"
+                            "raw": "{\"status\":\"consectetur\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1059,7 +1059,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":\"fugit\",\"rider_id\":\"rerum\"}"
+                            "raw": "{\"order_id\":\"voluptates\",\"rider_id\":\"quo\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1192,7 +1192,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurantId\":6}"
+                            "raw": "{\"restaurantId\":19}"
                         },
                         "description": "",
                         "auth": {
@@ -1213,7 +1213,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sit",
+                                    "value": "ff963853-1928-4ab4-96a6-3117f5e5b7e0",
                                     "description": "The ID of the restaurant bookmark."
                                 }
                             ]
@@ -1269,7 +1269,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ipsam",
+                                    "value": "ff963853-1928-4ab4-96a6-3117f5e5b7e0",
                                     "description": "The ID of the restaurant bookmark."
                                 }
                             ]
@@ -1299,6 +1299,62 @@
             "name": "Customer menu Bookmark Management",
             "description": "\nMenuBookmark API resource",
             "item": [
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/menu-bookmark\/:menuId\/delete",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/menu-bookmark\/:menuId\/delete",
+                            "variable": [
+                                {
+                                    "id": "menuId",
+                                    "key": "menuId",
+                                    "value": "consequatur",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "Display a listing of the resource.",
                     "request": {
@@ -1369,7 +1425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":14}"
+                            "raw": "{\"menuId\":2}"
                         },
                         "description": "",
                         "auth": {
@@ -1390,7 +1446,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "minima",
+                                    "value": "aut",
                                     "description": "The ID of the menu bookmark."
                                 }
                             ]
@@ -1446,7 +1502,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nihil",
+                                    "value": "aut",
                                     "description": "The ID of the menu bookmark."
                                 }
                             ]
@@ -1546,7 +1602,69 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"me\",\"email\":\"carli.torphy@example.com\",\"password\":\"hic\",\"userType\":\"non\"}"
+                            "raw": "{\"name\":\"zrkcdgypvyyrtggemvysgf\",\"email\":\"moises46@example.com\",\"password\":\"et\",\"userType\":\"ut\",\"phone\":\"ea\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/forgot-password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/forgot-password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/forgot-password"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/reset-password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/reset-password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/reset-password"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"repellendus\",\"password\":\"quasi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1691,7 +1809,7 @@
                                 {
                                     "id": "notification",
                                     "key": "notification",
-                                    "value": "quia",
+                                    "value": "ex",
                                     "description": "The notification."
                                 }
                             ]
@@ -1905,7 +2023,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"days\":\"atque\",\"opening_times\":[\"09:00\"],\"closing_times\":[\"09:00\"]}"
+                            "raw": "{\"days\":\"quibusdam\",\"opening_times\":[\"21:51\"],\"closing_times\":[\"21:51\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2000,7 +2118,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"names\":[\"sint\"]}"
+                            "raw": "{\"names\":[\"perferendis\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2039,7 +2157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"names\":[\"atque\"]}"
+                            "raw": "{\"names\":[\"provident\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2060,7 +2178,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "soluta",
+                                    "value": "recusandae",
                                     "description": "The ID of the document."
                                 }
                             ]
@@ -2222,7 +2340,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_ids\":\"vitae\",\"code\":\"alias\",\"start_date\":\"2024-02-18T09:00:27\",\"end_date\":\"2024-02-18T09:00:27\",\"type\":\"amount\",\"value\":1,\"status\":\"active\"}"
+                            "raw": "{\"restaurant_ids\":\"molestiae\",\"code\":\"sequi\",\"start_date\":\"2024-02-27T21:51:28\",\"end_date\":\"2024-02-27T21:51:28\",\"type\":\"percentage\",\"value\":4,\"status\":\"inactive\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2243,7 +2361,7 @@
                                 {
                                     "id": "promo_code_id",
                                     "key": "promo_code_id",
-                                    "value": "7",
+                                    "value": "1",
                                     "description": "The ID of the promo code."
                                 }
                             ]
@@ -2261,7 +2379,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"code\":\"quam\",\"start_date\":\"2024-02-18T09:00:27\",\"end_date\":\"2024-02-18T09:00:27\",\"type\":\"percentage\",\"value\":7,\"status\":\"active\"}"
+                            "raw": "{\"code\":\"labore\",\"start_date\":\"2024-02-27T21:51:28\",\"end_date\":\"2024-02-27T21:51:28\",\"type\":\"amount\",\"value\":11,\"status\":\"active\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2340,7 +2458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menu_ids\":\"ratione\",\"type\":\"amount\",\"value\":7}"
+                            "raw": "{\"menu_ids\":\"sint\",\"type\":\"amount\",\"value\":5}"
                         },
                         "description": "",
                         "auth": {
@@ -2361,7 +2479,7 @@
                                 {
                                     "id": "discount_id",
                                     "key": "discount_id",
-                                    "value": "11",
+                                    "value": "1",
                                     "description": "The ID of the discount."
                                 }
                             ]
@@ -2379,7 +2497,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"type\":\"percentage\",\"value\":17}"
+                            "raw": "{\"type\":\"percentage\",\"value\":6}"
                         },
                         "description": "",
                         "auth": {
@@ -2400,7 +2518,7 @@
                                 {
                                     "id": "discount_id",
                                     "key": "discount_id",
-                                    "value": "19",
+                                    "value": "1",
                                     "description": "The ID of the discount."
                                 }
                             ]
@@ -2443,6 +2561,34 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "POST api\/sms\/test",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/sms\/test",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/sms\/test"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
                 },
                 {
                     "name": "POST api\/v1\/admin\/login",
@@ -2638,7 +2784,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_id\":\"qui\",\"title\":\"nesciunt\",\"status\":18}"
+                            "raw": "{\"category_id\":\"ab\",\"title\":\"corrupti\",\"status\":7}"
                         },
                         "description": "",
                         "auth": {
@@ -2659,7 +2805,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vero",
+                                    "value": "iure",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -2677,7 +2823,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"aut\"}"
+                            "raw": "{\"title\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2754,7 +2900,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolor",
+                                    "value": "ut",
                                     "description": "The ID of the customer."
                                 }
                             ]
@@ -2810,7 +2956,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vel",
+                                    "value": "qui",
                                     "description": "The ID of the restaurant admin."
                                 }
                             ]
@@ -2866,7 +3012,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "occaecati",
+                                    "value": "qui",
                                     "description": "The ID of the rider."
                                 }
                             ]
@@ -3204,7 +3350,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"3\",\"reason\":\"quia\"}"
+                            "raw": "{\"status\":\"2\",\"reason\":\"voluptas\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3749,7 +3895,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"nobis\",\"description\":\"autem\"}"
+                            "raw": "{\"title\":\"ad\",\"description\":\"earum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3770,7 +3916,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "repellendus",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -3826,7 +3972,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nihil",
+                                    "value": "qui",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -3844,7 +3990,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"dicta\",\"description\":\"soluta\"}"
+                            "raw": "{\"title\":\"ea\",\"description\":\"inventore\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3865,7 +4011,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "repellat",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -3959,7 +4105,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"quaerat\",\"description\":\"sed\"}"
+                            "raw": "{\"title\":\"distinctio\",\"description\":\"blanditiis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3980,7 +4126,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "alias",
+                                    "value": "animi",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -4036,7 +4182,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eos",
+                                    "value": "magni",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -4054,7 +4200,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"dolorum\",\"description\":\"aperiam\"}"
+                            "raw": "{\"title\":\"aspernatur\",\"description\":\"saepe\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4075,7 +4221,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "exercitationem",
+                                    "value": "neque",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -4121,7 +4267,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"enim\",\"description\":\"enim\"}"
+                            "raw": "{\"title\":\"ratione\",\"description\":\"neque\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4142,7 +4288,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "id",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -4160,7 +4306,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"iure\",\"description\":\"et\"}"
+                            "raw": "{\"title\":\"blanditiis\",\"description\":\"facilis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4245,7 +4391,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"et\",\"description\":\"accusamus\",\"status\":11,\"createdBy\":\"optio\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"sunt\",\"description\":\"ipsa\",\"status\":12,\"createdBy\":\"laboriosam\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4266,7 +4412,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "placeat",
+                                    "value": "eos",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -4322,7 +4468,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "velit",
+                                    "value": "id",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -4340,7 +4486,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"dolorem\",\"description\":\"eveniet\",\"updatedBy\":\"et\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"sequi\",\"description\":\"recusandae\",\"updatedBy\":\"et\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4361,7 +4507,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "deleniti",
+                                    "value": "perferendis",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -4455,7 +4601,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"est\",\"description\":\"accusamus\",\"status\":8,\"createdBy\":\"doloremque\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"amet\",\"description\":\"facere\",\"status\":1,\"createdBy\":\"quo\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4476,7 +4622,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "est",
+                                    "value": "ad",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -4532,7 +4678,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quibusdam",
+                                    "value": "ut",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -4550,7 +4696,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"accusamus\",\"description\":\"sed\",\"updatedBy\":\"laboriosam\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"excepturi\",\"description\":\"deleniti\",\"updatedBy\":\"dignissimos\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4571,7 +4717,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "praesentium",
+                                    "value": "id",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -4630,7 +4776,7 @@
             "description": "\nMenu API resource",
             "item": [
                 {
-                    "name": "Get Groceries",
+                    "name": "GET api\/v1\/groceries",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -4680,7 +4826,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries\",\"per_page\":10,\"to\":null,\"total\":0}}",
+                            "body": "{\"data\":[{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\"}],\"subCategories\":[],\"images\":[{\"id\":5,\"uuid\":\"c335a3e1-dbc4-4ca3-879d-1182d788cc21\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db32984a5f3.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"menuPrices\":[{\"id\":10,\"uuid\":\"a2687d02-ce69-4071-88cf-5ea46f1da638\",\"attributes\":{\"price\":15,\"description\":\"Description\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"restaurant\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}},{\"id\":15,\"uuid\":\"f4717c18-a3ef-4801-a087-4a1471acfa83\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\"}],\"subCategories\":[],\"images\":[{\"id\":6,\"uuid\":\"76fe3c6a-c937-4214-af0d-4d837b90eeb6\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db329864fca.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":15,\"uuid\":\"f4717c18-a3ef-4801-a087-4a1471acfa83\",\"title\":\"Onions\"}}}],\"menuPrices\":[],\"restaurant\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"attributes\":{\"name\":\"Ullrich, McDermott and Hintz\",\"nameShort\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"aboutShort\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phoneNo\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postalCode\":\"07024\",\"latitude\":null,\"longitude\":null,\"mapLocation\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"name\":\"Ullrich, McDermott and Hintz\",\"name_short\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"user_id\":3,\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"about_short\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phone_no\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postal_code\":\"07024\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"glennie.huels@hotmail.com\",\"updated_by\":\"dach.earnest@auer.org\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":1,\"reviews\":[]},\"menus_count\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"name\":\"Ullrich, McDermott and Hintz\",\"name_short\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"user_id\":3,\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"about_short\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phone_no\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postal_code\":\"07024\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"glennie.huels@hotmail.com\",\"updated_by\":\"dach.earnest@auer.org\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":1,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries\",\"per_page\":10,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -4694,24 +4840,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "voluptatem",
+                                    "value": "cupiditate",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "quo",
+                                    "value": "ut",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "reprehenderit",
+                                    "value": "saepe",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/menu?categories=voluptatem&subCategories=quo&restaurant=reprehenderit"
+                            "raw": "{{baseUrl}}\/api\/v1\/menu?categories=cupiditate&subCategories=ut&restaurant=saepe"
                         },
                         "method": "GET",
                         "header": [
@@ -4755,13 +4901,13 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":13,\"uuid\":\"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f\",\"attributes\":{\"title\":\"Test 4\",\"description\":\"test\",\"createdBy\":\"xicebuvipu@mailinator.com\",\"updatedBy\":\"xicebuvipu@mailinator.com\",\"status\":\"2\"},\"relationships\":{\"categories\":[{\"id\":4,\"uuid\":\"2e166da1-4eda-4d10-86eb-5d87ce5ec583\",\"title\":\"Dietary Restrictions\",\"description\":\"such as vegetarian, vegan, gluten-free, or dairy-free\",\"status\":2,\"createdBy\":\"info@moboeats.com\",\"updatedBy\":\"info@moboeats.com\",\"image\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/category\\\/default.png\",\"subCategories\":[]}],\"images\":[{\"id\":1,\"uuid\":\"130c1107-b549-4673-b4aa-7025aa153354\",\"attributes\":{\"imageUrl\":\"\\\/storage\\\/app\\\/public\\\/menus\\\/images\\\/f-65d105fbb2304.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":13,\"uuid\":\"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f\",\"title\":\"Test 4\"}}},{\"id\":2,\"uuid\":\"8b20691e-02ae-413b-ba2a-10bfbdfb26c9\",\"attributes\":{\"imageUrl\":\"\\\/storage\\\/app\\\/public\\\/menus\\\/images\\\/g-65d105fc4bab6.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":13,\"uuid\":\"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f\",\"title\":\"Test 4\"}}}],\"menuPrices\":[{\"id\":9,\"uuid\":\"ae00146c-01b7-42de-848c-0bf45588e7bc\",\"attributes\":{\"price\":20,\"description\":\"Cheap\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":13,\"uuid\":\"5af6c30b-c224-49ca-94dc-9e1c1ebfe50f\",\"title\":\"Test 4\"}}}],\"restaurant\":{\"id\":22,\"uuid\":\"9ca5fca9-cf45-4cee-ac7f-79bf4c895b0e\",\"attributes\":{\"name\":\"Ray Durham\",\"nameShort\":\"Damon Duke\",\"email\":\"pyku@mailinator.com\",\"about\":\"Non dolorum aliquid\",\"aboutShort\":\"Ut ad ab ut eaque ap\",\"phoneNo\":\"+1 (643) 614-9329\",\"address\":\"Liverpool, UK\",\"city\":null,\"state\":\"Felicia Delgado\",\"postalCode\":\"Burke Vega\",\"latitude\":\"53.4083714\",\"longitude\":\"-2.9915726\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=Liverpool,+UK&ftid=0x487adf8a647060b7:0x42dc046f3f176e01\",\"url\":\"rojeqomagu@mailinator.com\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/POEGc6HeW9GIgZlGuF3x3fAAlHXwha2SizUwf1k8.png\",\"sitting_capacity\":0,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T17:19:38.000000Z\",\"updated_at\":\"2024-02-17T19:17:22.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":22,\"uuid\":\"9ca5fca9-cf45-4cee-ac7f-79bf4c895b0e\",\"name\":\"Ray Durham\",\"name_short\":\"Damon Duke\",\"email\":\"pyku@mailinator.com\",\"user_id\":8,\"about\":\"Non dolorum aliquid\",\"about_short\":\"Ut ad ab ut eaque ap\",\"phone_no\":\"+1 (643) 614-9329\",\"address\":\"Liverpool, UK\",\"city\":null,\"state\":\"Felicia Delgado\",\"postal_code\":\"Burke Vega\",\"latitude\":\"53.4083714\",\"longitude\":\"-2.9915726\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=Liverpool,+UK&ftid=0x487adf8a647060b7:0x42dc046f3f176e01\",\"url\":\"rojeqomagu@mailinator.com\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/POEGc6HeW9GIgZlGuF3x3fAAlHXwha2SizUwf1k8.png\",\"status\":\"Approved\",\"created_by\":null,\"updated_by\":null,\"created_at\":\"2024-02-17T17:19:38.000000Z\",\"updated_at\":\"2024-02-17T19:17:22.000000Z\",\"sitting_capacity\":0,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"fiqux@mailinator.com\",\"orders_count\":2,\"menus_count\":1,\"reviews\":[]},\"menus_count\":{\"id\":22,\"uuid\":\"9ca5fca9-cf45-4cee-ac7f-79bf4c895b0e\",\"name\":\"Ray Durham\",\"name_short\":\"Damon Duke\",\"email\":\"pyku@mailinator.com\",\"user_id\":8,\"about\":\"Non dolorum aliquid\",\"about_short\":\"Ut ad ab ut eaque ap\",\"phone_no\":\"+1 (643) 614-9329\",\"address\":\"Liverpool, UK\",\"city\":null,\"state\":\"Felicia Delgado\",\"postal_code\":\"Burke Vega\",\"latitude\":\"53.4083714\",\"longitude\":\"-2.9915726\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=Liverpool,+UK&ftid=0x487adf8a647060b7:0x42dc046f3f176e01\",\"url\":\"rojeqomagu@mailinator.com\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/POEGc6HeW9GIgZlGuF3x3fAAlHXwha2SizUwf1k8.png\",\"status\":\"Approved\",\"created_by\":null,\"updated_by\":null,\"created_at\":\"2024-02-17T17:19:38.000000Z\",\"updated_at\":\"2024-02-17T19:17:22.000000Z\",\"sitting_capacity\":0,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"fiqux@mailinator.com\",\"orders_count\":2,\"menus_count\":1,\"reviews\":[]},\"reviews\":[]}},\"discount\":null}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu\",\"per_page\":15,\"to\":1,\"total\":1}}",
+                            "body": "{\"data\":[{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\",\"subCategories\":[{\"id\":1,\"uuid\":\"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3\",\"title\":\"Dairy\",\"description\":\"dairy description\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null}]}],\"images\":[{\"id\":5,\"uuid\":\"c335a3e1-dbc4-4ca3-879d-1182d788cc21\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db32984a5f3.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"menuPrices\":[{\"id\":10,\"uuid\":\"a2687d02-ce69-4071-88cf-5ea46f1da638\",\"attributes\":{\"price\":15,\"description\":\"Description\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"restaurant\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu\",\"per_page\":15,\"to\":1,\"total\":1}}",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Get Groceries",
+                    "name": "GET api\/v1\/orderer\/groceries",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -4809,7 +4955,7 @@
                     ]
                 },
                 {
-                    "name": "Get Restaurant Menu",
+                    "name": "GET api\/v1\/orderer\/orderer-restaurants\/{restaurant?}\/menu",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -4873,24 +5019,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "libero",
+                                    "value": "sit",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "minima",
+                                    "value": "nam",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "laudantium",
+                                    "value": "consequatur",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=libero&subCategories=minima&restaurant=laudantium"
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=sit&subCategories=nam&restaurant=consequatur"
                         },
                         "method": "GET",
                         "header": [
@@ -4953,7 +5099,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"maxime\",\"description\":\"molestiae\",\"status\":3,\"categoryIds\":[9]}"
+                            "raw": "{\"title\":\"qui\",\"description\":\"vitae\",\"status\":15,\"categoryIds\":[11]}"
                         },
                         "description": "",
                         "auth": {
@@ -4963,7 +5109,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "GET api\/v1\/orderer\/orderer-menu\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -4974,7 +5120,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "magnam",
+                                    "value": "sed",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -5019,7 +5165,7 @@
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "PUT api\/v1\/orderer\/orderer-menu\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5030,7 +5176,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aspernatur",
+                                    "value": "delectus",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -5048,7 +5194,38 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"id\",\"description\":\"tempore\",\"status\":14,\"categoryIds\":[1]}"
+                            "raw": "{\"title\":\"sapiente\",\"description\":\"molestiae\",\"status\":3,\"categoryIds\":[9]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store review for an menu item",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/menu\/reviews\/store",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/menu\/reviews\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"menu_id\":17,\"menu_rating\":5,\"menu_review\":\"eius\",\"order_id\":10}"
                         },
                         "description": "",
                         "auth": {
@@ -5066,7 +5243,7 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "corporis",
+                                    "value": "ut",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
@@ -5078,12 +5255,12 @@
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "qui",
+                                    "value": "doloremque",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=corporis&subCategories=iste&restaurant=qui"
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=ut&subCategories=iste&restaurant=doloremque"
                         },
                         "method": "GET",
                         "header": [
@@ -5146,7 +5323,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"nam\",\"description\":\"a\",\"status\":13,\"categoryIds\":[10]}"
+                            "raw": "{\"title\":\"cum\",\"description\":\"officiis\",\"status\":13,\"categoryIds\":[18]}"
                         },
                         "description": "",
                         "auth": {
@@ -5156,7 +5333,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "GET api\/v1\/restaurant\/menu\/{uuid}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5212,7 +5389,7 @@
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "PUT api\/v1\/restaurant\/menu\/{uuid}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5241,7 +5418,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"et\",\"description\":\"nulla\",\"status\":6,\"categoryIds\":[5]}"
+                            "raw": "{\"title\":\"quo\",\"description\":\"sit\",\"status\":6,\"categoryIds\":[14]}"
                         },
                         "description": "",
                         "auth": {
@@ -5251,7 +5428,63 @@
                     "response": []
                 },
                 {
-                    "name": "Get Groceries",
+                    "name": "Get Restaurant Reviews",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/menu\/:menu_uuid\/reviews",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu\/:menu_uuid\/reviews",
+                            "variable": [
+                                {
+                                    "id": "menu_uuid",
+                                    "key": "menu_uuid",
+                                    "value": "e86aa007-66ba-4a51-88c9-53f0c21f0e3b",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/restaurant\/groceries",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5432,7 +5665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"odio\",\"description\":\"mollitia\",\"status\":4,\"categoryIds\":[19]}"
+                            "raw": "{\"title\":\"beatae\",\"description\":\"et\",\"status\":2,\"categoryIds\":[2]}"
                         },
                         "description": "",
                         "auth": {
@@ -5442,7 +5675,7 @@
                     "response": []
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "POST api\/v1\/restaurant\/menu\/{id}\/update",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5471,7 +5704,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"labore\",\"description\":\"voluptatum\",\"status\":11,\"categoryIds\":[14]}"
+                            "raw": "{\"title\":\"quidem\",\"description\":\"laboriosam\",\"status\":8,\"categoryIds\":[2]}"
                         },
                         "description": "",
                         "auth": {
@@ -5634,7 +5867,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_ids\":\"quae\",\"title\":\"repellendus\",\"description\":\"perferendis\",\"status\":12,\"categoryIds\":\"enim\"}"
+                            "raw": "{\"restaurant_ids\":\"a\",\"title\":\"et\",\"description\":\"eos\",\"status\":2,\"categoryIds\":\"voluptates\"}"
                         },
                         "description": "",
                         "auth": {
@@ -5673,7 +5906,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_ids\":[19],\"title\":\"blanditiis\",\"description\":\"delectus\",\"status\":13,\"categoryIds\":[12]}"
+                            "raw": "{\"restaurant_ids\":[15],\"title\":\"hic\",\"description\":\"culpa\",\"status\":15,\"categoryIds\":[5]}"
                         },
                         "description": "",
                         "auth": {
@@ -5681,6 +5914,62 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "GET api\/v1\/restaurant\/menus\/{menu_uuid}\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/restaurant\/menus\/:menu_uuid\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menus\/:menu_uuid\/orders",
+                            "variable": [
+                                {
+                                    "id": "menu_uuid",
+                                    "key": "menu_uuid",
+                                    "value": "e86aa007-66ba-4a51-88c9-53f0c21f0e3b",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -5758,7 +6047,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"price\":0,\"description\":\"ipsa\",\"status\":18,\"menu_id\":\"deserunt\"}"
+                            "raw": "{\"price\":0,\"description\":\"dolorum\",\"status\":17,\"menu_id\":\"non\"}"
                         },
                         "description": "",
                         "auth": {
@@ -5853,7 +6142,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"description\":\"voluptatibus\",\"status\":\"voluptates\",\"price\":0}"
+                            "raw": "{\"description\":\"culpa\",\"status\":\"exercitationem\",\"price\":0}"
                         },
                         "description": "",
                         "auth": {
@@ -5928,7 +6217,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"description\":\"dolor\",\"status\":\"sunt\",\"price\":1}"
+                            "raw": "{\"description\":\"qui\",\"status\":\"similique\",\"price\":0}"
                         },
                         "description": "",
                         "auth": {
@@ -6049,7 +6338,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"fugiat\",\"email\":\"justine.cassin@example.com\"}"
+                            "raw": "{\"name\":\"quidem\",\"email\":\"vicente.harris@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6070,7 +6359,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "87f1c66c-e0fa-3ade-beda-b3844a7a73e7",
+                                    "value": "8a524ad1-280c-377d-999c-924e34d3f249",
                                     "description": ""
                                 }
                             ]
@@ -6126,7 +6415,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "fd4ad2af-ec83-330b-b26f-9e2d6b40f7aa",
+                                    "value": "5827b6e7-1165-3644-8a22-e0294912bc7f",
                                     "description": ""
                                 }
                             ]
@@ -6144,7 +6433,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"f8872eae-e5de-375b-aa04-aefb0e27c460\",\"name\":\"et\",\"email\":\"doyle.hartmann@example.com\",\"phoneNo\":\"sapiente\",\"address\":\"sapiente\",\"city\":\"delectus\",\"state\":\"cupiditate\",\"mapLocation\":\"non\"}"
+                            "raw": "{\"uuid\":\"38b1ef12-2d3b-3fba-a318-b9b66c79c984\",\"name\":\"odio\",\"email\":\"lmorar@example.com\",\"phoneNo\":\"explicabo\",\"address\":\"veniam\",\"city\":\"qui\",\"state\":\"aliquid\",\"mapLocation\":\"optio\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6165,7 +6454,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "2fd8c052-d259-39c4-966f-fd0c61def53b",
+                                    "value": "24523266-12c3-318f-a308-04cb9eb4fc06",
                                     "description": ""
                                 }
                             ]
@@ -6207,13 +6496,13 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": "reiciendis",
+                                    "value": "labore",
                                     "description": "The ID of the user."
                                 },
                                 {
                                     "id": "order_id",
                                     "key": "order_id",
-                                    "value": "ipsam",
+                                    "value": "provident",
                                     "description": "The ID of the order."
                                 }
                             ]
@@ -6434,7 +6723,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":2,\"uuid\":\"9d8e5cf8-a54e-491d-80c8-c3a02662e20e\",\"attributes\":{\"name\":\"Price Inc\",\"nameShort\":\"numquam\",\"email\":\"chloe53@example.org\",\"about\":\"In quisquam consequatur molestiae aut minus nihil. Voluptatibus assumenda recusandae amet molestias consequatur. Vel sunt quis voluptate ipsa nostrum ea tempora. Ut nihil voluptate enim odit. Nobis esse id ducimus maiores.\\n\\nPerspiciatis dolor eum quis dolores. Adipisci minima sit autem ea praesentium commodi perferendis doloribus. Consequatur autem harum et occaecati.\\n\\nIncidunt sapiente sunt sit voluptatem. Accusamus omnis numquam suscipit maxime laudantium rerum. Aut voluptate repudiandae fugit quod.\",\"aboutShort\":\"Molestiae consequuntur voluptas rerum assumenda magni sed asperiores.\",\"phoneNo\":\"732.744.8007\",\"address\":\"96780 Langosh Stravenue\",\"city\":\"Pierceview\",\"state\":\"North Dakota\",\"postalCode\":\"57779\",\"latitude\":null,\"longitude\":null,\"mapLocation\":\"-61.789051,-63.175534\",\"url\":\"https:\\\/\\\/www.abshire.com\\\/optio-atque-sunt-reprehenderit-ipsa-id-est-quod\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"average_rating\":0},\"relationships\":{\"questionnaire\":{\"uuid\":\"bbb15d9e-61e7-4600-9bae-a3bf88108071\",\"restaurantId\":2,\"delivery\":0,\"booking\":1},\"orders_count\":{\"id\":2,\"uuid\":\"9d8e5cf8-a54e-491d-80c8-c3a02662e20e\",\"name\":\"Price Inc\",\"name_short\":\"numquam\",\"email\":\"chloe53@example.org\",\"user_id\":3,\"about\":\"In quisquam consequatur molestiae aut minus nihil. Voluptatibus assumenda recusandae amet molestias consequatur. Vel sunt quis voluptate ipsa nostrum ea tempora. Ut nihil voluptate enim odit. Nobis esse id ducimus maiores.\\n\\nPerspiciatis dolor eum quis dolores. Adipisci minima sit autem ea praesentium commodi perferendis doloribus. Consequatur autem harum et occaecati.\\n\\nIncidunt sapiente sunt sit voluptatem. Accusamus omnis numquam suscipit maxime laudantium rerum. Aut voluptate repudiandae fugit quod.\",\"about_short\":\"Molestiae consequuntur voluptas rerum assumenda magni sed asperiores.\",\"phone_no\":\"732.744.8007\",\"address\":\"96780 Langosh Stravenue\",\"city\":\"Pierceview\",\"state\":\"North Dakota\",\"postal_code\":\"57779\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-61.789051,-63.175534\",\"url\":\"https:\\\/\\\/www.abshire.com\\\/optio-atque-sunt-reprehenderit-ipsa-id-est-quod\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"christ.cronin@effertz.com\",\"updated_by\":\"amelia93@lubowitz.com\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":0,\"questionnaire\":{\"id\":2,\"uuid\":\"bbb15d9e-61e7-4600-9bae-a3bf88108071\",\"restaurant_id\":2,\"delivery\":0,\"booking\":1,\"status\":2,\"created_by\":\"ebony.mckenzie@hotmail.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\"},\"reviews\":[],\"restaurant_tables\":[{\"id\":1,\"seating_area_id\":1,\"restaurant_id\":2,\"name\":\"Table 01\",\"seat_number\":5,\"created_at\":\"2024-02-17T16:39:07.000000Z\",\"updated_at\":\"2024-02-17T16:39:07.000000Z\",\"seating_area\":{\"id\":1,\"name\":\"Indoor\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\"}}]},\"menus_count\":{\"id\":2,\"uuid\":\"9d8e5cf8-a54e-491d-80c8-c3a02662e20e\",\"name\":\"Price Inc\",\"name_short\":\"numquam\",\"email\":\"chloe53@example.org\",\"user_id\":3,\"about\":\"In quisquam consequatur molestiae aut minus nihil. Voluptatibus assumenda recusandae amet molestias consequatur. Vel sunt quis voluptate ipsa nostrum ea tempora. Ut nihil voluptate enim odit. Nobis esse id ducimus maiores.\\n\\nPerspiciatis dolor eum quis dolores. Adipisci minima sit autem ea praesentium commodi perferendis doloribus. Consequatur autem harum et occaecati.\\n\\nIncidunt sapiente sunt sit voluptatem. Accusamus omnis numquam suscipit maxime laudantium rerum. Aut voluptate repudiandae fugit quod.\",\"about_short\":\"Molestiae consequuntur voluptas rerum assumenda magni sed asperiores.\",\"phone_no\":\"732.744.8007\",\"address\":\"96780 Langosh Stravenue\",\"city\":\"Pierceview\",\"state\":\"North Dakota\",\"postal_code\":\"57779\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-61.789051,-63.175534\",\"url\":\"https:\\\/\\\/www.abshire.com\\\/optio-atque-sunt-reprehenderit-ipsa-id-est-quod\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"christ.cronin@effertz.com\",\"updated_by\":\"amelia93@lubowitz.com\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":0,\"questionnaire\":{\"id\":2,\"uuid\":\"bbb15d9e-61e7-4600-9bae-a3bf88108071\",\"restaurant_id\":2,\"delivery\":0,\"booking\":1,\"status\":2,\"created_by\":\"ebony.mckenzie@hotmail.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\"},\"reviews\":[],\"restaurant_tables\":[{\"id\":1,\"seating_area_id\":1,\"restaurant_id\":2,\"name\":\"Table 01\",\"seat_number\":5,\"created_at\":\"2024-02-17T16:39:07.000000Z\",\"updated_at\":\"2024-02-17T16:39:07.000000Z\",\"seating_area\":{\"id\":1,\"name\":\"Indoor\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\"}}]},\"reviews\":[]}},{\"id\":21,\"uuid\":\"64d36b08-5a4d-4232-82d2-c7c83a834b3f\",\"attributes\":{\"name\":\"Nathan Nixon\",\"nameShort\":\"Nathan\",\"email\":\"faguxuxi@mailinator.com\",\"about\":\"Natus fuga Elit mi\",\"aboutShort\":\"Veniam aut officia\",\"phoneNo\":\"+1 (912) 232-3407\",\"address\":\"Manchester, UK\",\"city\":null,\"state\":\"Malik Good\",\"postalCode\":\"Alfreda Hines\",\"latitude\":\"53.4807593\",\"longitude\":\"-2.2426305\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=Manchester,+UK&ftid=0x487a4d4c5226f5db:0xd9be143804fe6baa\",\"url\":null,\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/Ig08IKnVv45HsPMTQvUG5gq4j3Duw5aWVouFvER0.png\",\"sitting_capacity\":0,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T17:02:41.000000Z\",\"updated_at\":\"2024-02-17T19:05:43.000000Z\",\"average_rating\":0},\"relationships\":{\"questionnaire\":null,\"orders_count\":{\"id\":21,\"uuid\":\"64d36b08-5a4d-4232-82d2-c7c83a834b3f\",\"name\":\"Nathan Nixon\",\"name_short\":\"Nathan\",\"email\":\"faguxuxi@mailinator.com\",\"user_id\":5,\"about\":\"Natus fuga Elit mi\",\"about_short\":\"Veniam aut officia\",\"phone_no\":\"+1 (912) 232-3407\",\"address\":\"Manchester, UK\",\"city\":null,\"state\":\"Malik Good\",\"postal_code\":\"Alfreda Hines\",\"latitude\":\"53.4807593\",\"longitude\":\"-2.2426305\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=Manchester,+UK&ftid=0x487a4d4c5226f5db:0xd9be143804fe6baa\",\"url\":null,\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/Ig08IKnVv45HsPMTQvUG5gq4j3Duw5aWVouFvER0.png\",\"status\":\"Approved\",\"created_by\":null,\"updated_by\":null,\"created_at\":\"2024-02-17T17:02:41.000000Z\",\"updated_at\":\"2024-02-17T19:05:43.000000Z\",\"sitting_capacity\":0,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":12,\"paypal_email\":\"vuzuqelyc@mailinator.com\",\"orders_count\":0,\"menus_count\":0,\"questionnaire\":null,\"reviews\":[],\"restaurant_tables\":[{\"id\":2,\"seating_area_id\":1,\"restaurant_id\":21,\"name\":\"Table 001\",\"seat_number\":6,\"created_at\":\"2024-02-17T17:07:50.000000Z\",\"updated_at\":\"2024-02-17T17:07:50.000000Z\",\"seating_area\":{\"id\":1,\"name\":\"Indoor\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\"}}]},\"menus_count\":{\"id\":21,\"uuid\":\"64d36b08-5a4d-4232-82d2-c7c83a834b3f\",\"name\":\"Nathan Nixon\",\"name_short\":\"Nathan\",\"email\":\"faguxuxi@mailinator.com\",\"user_id\":5,\"about\":\"Natus fuga Elit mi\",\"about_short\":\"Veniam aut officia\",\"phone_no\":\"+1 (912) 232-3407\",\"address\":\"Manchester, UK\",\"city\":null,\"state\":\"Malik Good\",\"postal_code\":\"Alfreda Hines\",\"latitude\":\"53.4807593\",\"longitude\":\"-2.2426305\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=Manchester,+UK&ftid=0x487a4d4c5226f5db:0xd9be143804fe6baa\",\"url\":null,\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/Ig08IKnVv45HsPMTQvUG5gq4j3Duw5aWVouFvER0.png\",\"status\":\"Approved\",\"created_by\":null,\"updated_by\":null,\"created_at\":\"2024-02-17T17:02:41.000000Z\",\"updated_at\":\"2024-02-17T19:05:43.000000Z\",\"sitting_capacity\":0,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":12,\"paypal_email\":\"vuzuqelyc@mailinator.com\",\"orders_count\":0,\"menus_count\":0,\"questionnaire\":null,\"reviews\":[],\"restaurant_tables\":[{\"id\":2,\"seating_area_id\":1,\"restaurant_id\":21,\"name\":\"Table 001\",\"seat_number\":6,\"created_at\":\"2024-02-17T17:07:50.000000Z\",\"updated_at\":\"2024-02-17T17:07:50.000000Z\",\"seating_area\":{\"id\":1,\"name\":\"Indoor\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\"}}]},\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/restaurants\",\"per_page\":15,\"to\":null,\"total\":0}}",
                             "name": ""
                         }
                     ]
@@ -6457,7 +6746,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "voluptas",
+                                    "value": "ea",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -6504,7 +6793,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\n\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\n\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"75790 Toy Loaf\",\"city\":\"North Hanshaven\",\"state\":\"West Virginia\",\"postalCode\":\"99606-1076\",\"latitude\":null,\"longitude\":null,\"mapLocation\":\"38.971969,-144.293403\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"average_rating\":0},\"relationships\":{\"operating_hours\":[],\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\n\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\n\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"75790 Toy Loaf\",\"city\":\"North Hanshaven\",\"state\":\"West Virginia\",\"postal_code\":\"99606-1076\",\"latitude\":null,\"longitude\":null,\"map_location\":\"38.971969,-144.293403\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":8,\"operating_hours\":[],\"reviews\":[],\"restaurant_tables\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\n\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\n\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"75790 Toy Loaf\",\"city\":\"North Hanshaven\",\"state\":\"West Virginia\",\"postal_code\":\"99606-1076\",\"latitude\":null,\"longitude\":null,\"map_location\":\"38.971969,-144.293403\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":8,\"operating_hours\":[],\"reviews\":[],\"restaurant_tables\":[]},\"reviews\":[]}}}",
+                            "body": "{\"data\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":0},\"relationships\":{\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"reviews\":[],\"restaurant_tables\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"reviews\":[],\"restaurant_tables\":[]},\"reviews\":[]}}}",
                             "name": ""
                         }
                     ]
@@ -6575,7 +6864,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "veniam",
+                                    "value": "id",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -6689,7 +6978,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"est\",\"name_short\":\"aliquid\",\"email\":\"flangworth@example.org\",\"about\":\"mollitia\",\"about_short\":\"beatae\",\"place_id\":\"quos\",\"latitude\":\"rerum\",\"longitude\":\"aut\",\"logo\":\"sint\",\"sitting_capacity\":9,\"paypal_email\":\"cronin.eli@example.org\"}"
+                            "raw": "{\"name\":\"atque\",\"name_short\":\"odio\",\"email\":\"jennie.howell@example.org\",\"about\":\"ipsum\",\"about_short\":\"at\",\"place_id\":\"magni\",\"latitude\":\"aut\",\"longitude\":\"eligendi\",\"logo\":\"assumenda\",\"sitting_capacity\":18,\"paypal_email\":\"gerlach.alta@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6710,13 +6999,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "omnis",
+                                    "value": "vel",
                                     "description": "The ID of the orderer restaurant."
                                 },
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "sint",
+                                    "value": "tempora",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -6772,7 +7061,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repudiandae",
+                                    "value": "velit",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -6790,7 +7079,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"officia\",\"name_short\":\"et\",\"email\":\"zrohan@example.org\",\"about\":\"deserunt\",\"about_short\":\"iure\",\"phone_no\":\"aut\",\"address\":\"sit\",\"state\":\"nam\",\"postal_code\":\"sed\",\"sitting_capacity\":18,\"latitude\":\"et\",\"longitude\":\"eveniet\",\"paypal_email\":\"corbin03@example.net\"}"
+                            "raw": "{\"name\":\"sequi\",\"name_short\":\"a\",\"email\":\"odell.considine@example.com\",\"about\":\"aliquam\",\"about_short\":\"libero\",\"phone_no\":\"maiores\",\"address\":\"id\",\"state\":\"fugit\",\"postal_code\":\"consequatur\",\"latitude\":\"dolor\",\"longitude\":\"harum\",\"paypal_email\":\"uabernathy@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6811,7 +7100,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vitae",
+                                    "value": "a",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -6913,7 +7202,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_id\":1,\"rating\":17,\"review\":\"voluptas\"}"
+                            "raw": "{\"restaurant_id\":5,\"rating\":17,\"review\":\"architecto\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6992,7 +7281,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"necessitatibus\",\"name_short\":\"quo\",\"email\":\"bartell.aiden@example.org\",\"about\":\"ut\",\"about_short\":\"recusandae\",\"place_id\":\"fuga\",\"latitude\":\"at\",\"longitude\":\"est\",\"logo\":\"quod\",\"sitting_capacity\":4,\"paypal_email\":\"lebsack.nikolas@example.org\"}"
+                            "raw": "{\"name\":\"ut\",\"name_short\":\"soluta\",\"email\":\"fflatley@example.com\",\"about\":\"mollitia\",\"about_short\":\"a\",\"place_id\":\"nesciunt\",\"latitude\":\"vero\",\"longitude\":\"in\",\"logo\":\"voluptate\",\"sitting_capacity\":6,\"paypal_email\":\"hmohr@example.com\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7019,7 +7308,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "aut",
+                                    "value": "laudantium",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -7093,7 +7382,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"optio\",\"name_short\":\"quis\",\"email\":\"schuyler.spencer@example.net\",\"about\":\"ipsum\",\"about_short\":\"distinctio\",\"phone_no\":\"ullam\",\"address\":\"repudiandae\",\"state\":\"adipisci\",\"postal_code\":\"ducimus\",\"sitting_capacity\":16,\"latitude\":\"dolor\",\"longitude\":\"est\",\"paypal_email\":\"aufderhar.lila@example.net\"}"
+                            "raw": "{\"name\":\"magni\",\"name_short\":\"in\",\"email\":\"meghan.lindgren@example.org\",\"about\":\"vitae\",\"about_short\":\"quaerat\",\"phone_no\":\"asperiores\",\"address\":\"blanditiis\",\"state\":\"praesentium\",\"postal_code\":\"sit\",\"latitude\":\"dolores\",\"longitude\":\"doloremque\",\"paypal_email\":\"pink92@example.com\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7160,7 +7449,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"nemo\",\"name_short\":\"quasi\",\"email\":\"tbruen@example.com\",\"about\":\"atque\",\"about_short\":\"repellendus\",\"place_id\":\"cum\",\"latitude\":\"eligendi\",\"longitude\":\"amet\",\"logo\":\"saepe\",\"sitting_capacity\":9,\"paypal_email\":\"koss.claude@example.org\"}"
+                            "raw": "{\"name\":\"est\",\"name_short\":\"eveniet\",\"email\":\"lwolf@example.org\",\"about\":\"sint\",\"about_short\":\"labore\",\"place_id\":\"blanditiis\",\"latitude\":\"sint\",\"longitude\":\"incidunt\",\"logo\":\"fugiat\",\"sitting_capacity\":6,\"paypal_email\":\"gussie.oconnell@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7235,7 +7524,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "sit",
+                                    "value": "iste",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -7405,7 +7694,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"aut\",\"name_short\":\"soluta\",\"email\":\"evelyn.stark@example.net\",\"about\":\"reprehenderit\",\"about_short\":\"quidem\",\"place_id\":\"dolore\",\"latitude\":\"est\",\"longitude\":\"reiciendis\",\"logo\":\"dolores\",\"sitting_capacity\":14,\"paypal_email\":\"ruecker.vergie@example.net\"}"
+                            "raw": "{\"name\":\"officiis\",\"name_short\":\"ea\",\"email\":\"shanny.lubowitz@example.org\",\"about\":\"eaque\",\"about_short\":\"aliquam\",\"place_id\":\"voluptatem\",\"latitude\":\"sequi\",\"longitude\":\"aspernatur\",\"logo\":\"hic\",\"sitting_capacity\":2,\"paypal_email\":\"rice.hassan@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7444,7 +7733,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"repudiandae\",\"name_short\":\"enim\",\"email\":\"stone47@example.org\",\"about\":\"quaerat\",\"about_short\":\"occaecati\",\"phone_no\":\"et\",\"address\":\"nihil\",\"state\":\"odio\",\"postal_code\":\"laborum\",\"sitting_capacity\":2,\"latitude\":\"magnam\",\"longitude\":\"ea\",\"paypal_email\":\"dlemke@example.org\"}"
+                            "raw": "{\"name\":\"necessitatibus\",\"name_short\":\"ipsam\",\"email\":\"beahan.elaina@example.org\",\"about\":\"vel\",\"about_short\":\"commodi\",\"phone_no\":\"deleniti\",\"address\":\"hic\",\"state\":\"dolores\",\"postal_code\":\"illum\",\"latitude\":\"tenetur\",\"longitude\":\"in\",\"paypal_email\":\"lane77@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7567,7 +7856,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"debitis\",\"name_short\":\"et\",\"email\":\"vnicolas@example.org\",\"about\":\"explicabo\",\"about_short\":\"molestiae\",\"phone_no\":\"inventore\",\"address\":\"in\",\"state\":\"deserunt\",\"postal_code\":\"molestias\",\"sitting_capacity\":15,\"latitude\":\"eveniet\",\"longitude\":\"libero\",\"paypal_email\":\"femard@example.com\"}"
+                            "raw": "{\"name\":\"asperiores\",\"name_short\":\"explicabo\",\"email\":\"feeney.erica@example.org\",\"about\":\"totam\",\"about_short\":\"possimus\",\"phone_no\":\"fugit\",\"address\":\"veritatis\",\"state\":\"ut\",\"postal_code\":\"tenetur\",\"latitude\":\"aspernatur\",\"longitude\":\"quas\",\"paypal_email\":\"meghan.conn@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7588,7 +7877,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "optio",
+                                    "value": "provident",
                                     "description": "The ID of the rider."
                                 }
                             ]
@@ -7910,7 +8199,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ipsa\",\"seating_area_id\":\"officiis\",\"seat_number\":\"voluptatum\"}"
+                            "raw": "{\"name\":\"alias\",\"seating_area_id\":\"sed\",\"seat_number\":\"magni\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7937,13 +8226,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "ipsum",
                                     "description": "The id of the category"
                                 },
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "58caed40-2de9-3c45-be5e-429e605fbc3e",
+                                    "value": "175c1681-5b22-35f5-9b44-7349e5165fc4",
                                     "description": "The uuid of the restaurant"
                                 }
                             ]
@@ -7961,7 +8250,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"accusamus\",\"seating_area_id\":\"molestias\",\"seat_number\":\"voluptatibus\"}"
+                            "raw": "{\"name\":\"minima\",\"seating_area_id\":\"eveniet\",\"seat_number\":\"exercitationem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8044,7 +8333,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "quia",
+                                    "value": "temporibus",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -8274,7 +8563,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "fugit",
+                                    "value": "est",
                                     "description": "The ID or the UUID of the restaurant"
                                 }
                             ]
@@ -8348,7 +8637,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"repudiandae\",\"description\":\"quos\"}"
+                            "raw": "{\"title\":\"vero\",\"description\":\"facere\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8375,13 +8664,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "temporibus",
+                                    "value": "consequatur",
                                     "description": "The id of the category"
                                 },
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "fbdfeea8-b5b5-33c2-ac6f-b35fe41964c2",
+                                    "value": "380153e4-bde1-3d8a-8707-3e0f3b0627ba",
                                     "description": "The uuid of the restaurant"
                                 }
                             ]
@@ -8399,7 +8688,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"dolore\",\"description\":\"assumenda\"}"
+                            "raw": "{\"title\":\"ea\",\"description\":\"labore\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8542,7 +8831,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"possimus\",\"last_name\":\"qui\",\"email\":\"quod\",\"phone_number\":\"ducimus\",\"avatar\":\"cdrfffetol\"}"
+                            "raw": "{\"first_name\":\"quo\",\"last_name\":\"tempore\",\"email\":\"facilis\",\"phone_number\":\"saepe\",\"avatar\":\"mfsifglqplqurjic\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8581,7 +8870,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"minus\",\"last_name\":\"omnis\",\"email\":\"sit\",\"phone_number\":\"velit\",\"avatar\":\"jwapdmsueagdfdwszwn\",\"suspend\":\"1\"}"
+                            "raw": "{\"first_name\":\"tenetur\",\"last_name\":\"nostrum\",\"email\":\"omnis\",\"phone_number\":\"minima\",\"avatar\":\"fjcf\",\"suspend\":\"1\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8666,7 +8955,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurantUuid\":\"cupiditate\",\"delivery\":\"fugiat\",\"booking\":\"officia\"}"
+                            "raw": "{\"restaurantUuid\":\"reprehenderit\",\"delivery\":\"aut\",\"booking\":\"ut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8687,7 +8976,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "molestiae",
+                                    "value": "voluptas",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -8743,7 +9032,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "fuga",
+                                    "value": "molestias",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -8779,7 +9068,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nisi",
+                                    "value": "porro",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -8831,7 +9120,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"rider_id\":11,\"rating\":20,\"review\":\"ea\"}"
+                            "raw": "{\"rider_id\":15,\"rating\":8,\"review\":\"inventore\"}"
                         },
                         "description": ""
                     },
@@ -8862,43 +9151,43 @@
                             "formdata": [
                                 {
                                     "key": "vehicle_type",
-                                    "value": "placeat",
+                                    "value": "blanditiis",
                                     "type": "text",
                                     "description": "The vehicle type of the rider"
                                 },
                                 {
                                     "key": "vehicle_license_plate",
-                                    "value": "qui",
+                                    "value": "consequatur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "paypal_email",
-                                    "value": "alec.bartell@example.net",
+                                    "value": "john.walker@example.net",
                                     "type": "text",
                                     "description": "Must be a valid email address."
                                 },
                                 {
                                     "key": "vehicle_licesne_plate",
-                                    "value": "et",
+                                    "value": "omnis",
                                     "type": "text",
                                     "description": "The license plate of the rider's vehicle"
                                 },
                                 {
                                     "key": "city",
-                                    "value": "sed",
+                                    "value": "adipisci",
                                     "type": "text",
                                     "description": "The city where the rider is located"
                                 },
                                 {
                                     "key": "state",
-                                    "value": "qui",
+                                    "value": "animi",
                                     "type": "text",
                                     "description": "The state of where the rider is located"
                                 },
                                 {
                                     "key": "postal_code",
-                                    "value": "laboriosam",
+                                    "value": "est",
                                     "type": "text",
                                     "description": "The postal code of the rider"
                                 },
@@ -8945,25 +9234,25 @@
                             "formdata": [
                                 {
                                     "key": "paypal_email",
-                                    "value": "croberts@example.com",
+                                    "value": "mschroeder@example.net",
                                     "type": "text",
                                     "description": "Must be a valid email address."
                                 },
                                 {
                                     "key": "vehicle_type",
-                                    "value": "quidem",
+                                    "value": "magni",
                                     "type": "text",
                                     "description": "The vehicle type of the rider"
                                 },
                                 {
                                     "key": "vehicle_licesne_plate",
-                                    "value": "ut",
+                                    "value": "facilis",
                                     "type": "text",
                                     "description": "The license plate of the rider's vehicle"
                                 },
                                 {
                                     "key": "city",
-                                    "value": "ab",
+                                    "value": "explicabo",
                                     "type": "text",
                                     "description": "The city where the rider is located"
                                 },
@@ -8975,7 +9264,7 @@
                                 },
                                 {
                                     "key": "postal_code",
-                                    "value": "quia",
+                                    "value": "voluptatum",
                                     "type": "text",
                                     "description": "The postal code of the rider"
                                 },
@@ -9083,7 +9372,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":\"maiores\",\"status\":\"dolorem\"}"
+                            "raw": "{\"order_id\":\"eum\",\"status\":\"vel\"}"
                         },
                         "description": ""
                     },
@@ -9119,7 +9408,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"longitude\":\"consequuntur\",\"latitude\":\"itaque\"}"
+                            "raw": "{\"longitude\":\"eaque\",\"latitude\":\"mollitia\"}"
                         },
                         "description": ""
                     },
@@ -9147,7 +9436,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"longitude\":\"eos\",\"latitude\":\"voluptate\"}"
+                            "raw": "{\"longitude\":\"laborum\",\"latitude\":\"voluptatum\"}"
                         },
                         "description": ""
                     },
