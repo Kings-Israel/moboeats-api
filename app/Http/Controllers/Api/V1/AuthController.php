@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Jobs\SendCommunication;
 use App\Helpers\NumberGenerator;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -89,8 +90,10 @@ class AuthController extends Controller
         }
     }
 
-    public function register(StoreUserRequest $request)
+    public function register(Request $request)
     {
+        Log::info($request->all());
+        return $this->error('User Register', 'Please enter phone number', 403);
         $request->validated($request->all());
 
         try {
