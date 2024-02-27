@@ -57,7 +57,7 @@ paths:
                 userId:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 5
               required:
                 - userId
       security: []
@@ -141,15 +141,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 11
                 quantity:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 16
                 status:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 12
               required:
                 - menuId
                 - quantity
@@ -194,7 +194,7 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 4
                 quantity:
                   type: integer
                   description: ''
@@ -202,7 +202,7 @@ paths:
                 status:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 12
               required:
                 - menuId
                 - quantity
@@ -265,11 +265,11 @@ paths:
                 cartId:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 3
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 9
                 delivery:
                   type: boolean
                   description: ''
@@ -288,8 +288,8 @@ paths:
                   example: null
                 booking_time:
                   type: string
-                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-02-27 21:51:25</code>.'
-                  example: '2117-11-20'
+                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-02-28 00:36:18</code>.'
+                  example: '2073-06-28'
               required:
                 - restaurantId
                 - delivery
@@ -353,23 +353,23 @@ paths:
                 order_id:
                   type: integer
                   description: 'The id of the order'
-                  example: 5
+                  example: 20
                 restaurant_rating:
                   type: integer
                   description: 'The rating of the restaurant from 1 - 5'
-                  example: 13
+                  example: 19
                 restaurant_review:
                   type: string
                   description: 'A review of the restaurant'
-                  example: deserunt
+                  example: sit
                 rider_rating:
                   type: integer
                   description: 'The rating of the rider from 1 - 5'
-                  example: 5
+                  example: 17
                 rider_review:
                   type: string
                   description: 'A review of the rider'
-                  example: unde
+                  example: consequatur
       security: []
   '/api/v1/restaurant/orders/{uuid}':
     get:
@@ -411,7 +411,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: sed
+                  example: praesentium
               required:
                 - status
       security: []
@@ -471,7 +471,7 @@ paths:
                 status:
                   type: string
                   description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
-                  example: cancelled
+                  example: completed
               required:
                 - status
       security: []
@@ -569,7 +569,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: consectetur
+                  example: aut
               required:
                 - status
       security: []
@@ -601,11 +601,11 @@ paths:
                 order_id:
                   type: string
                   description: ''
-                  example: voluptates
+                  example: deserunt
                 rider_id:
                   type: string
                   description: ''
-                  example: quo
+                  example: nostrum
               required:
                 - order_id
                 - rider_id
@@ -672,7 +672,7 @@ paths:
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 7
               required:
                 - restaurantId
       security: []
@@ -743,7 +743,7 @@ paths:
         in: path
         name: menuId
         description: ''
-        example: consequatur
+        example: qui
         required: true
         schema:
           type: string
@@ -787,7 +787,7 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 3
               required:
                 - menuId
       security: []
@@ -827,7 +827,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the menu bookmark.'
-        example: aut
+        example: vero
         required: true
         schema:
           type: string
@@ -872,19 +872,19 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: zrkcdgypvyyrtggemvysgf
+                  example: qjdjtzuoawmdaphljnqetvc
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: moises46@example.com
+                  example: freeman.wisozk@example.org
                 password:
                   type: string
                   description: ''
-                  example: et
+                  example: aliquam
                 userType:
                   type: string
                   description: ''
-                  example: ut
+                  example: nostrum
                 otp:
                   type: string
                   description: ''
@@ -896,7 +896,7 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: ea
+                  example: facilis
               required:
                 - name
                 - email
@@ -948,11 +948,11 @@ paths:
                 code:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: fugit
                 password:
                   type: string
                   description: ''
-                  example: quasi
+                  example: voluptatibus
               required:
                 - code
                 - password
@@ -1038,7 +1038,7 @@ paths:
         in: path
         name: notification
         description: 'The notification.'
-        example: ex
+        example: nemo
         required: true
         schema:
           type: string
@@ -1133,19 +1133,19 @@ paths:
                 days:
                   type: string
                   description: ''
-                  example: quibusdam
+                  example: quas
                 opening_times:
                   type: array
                   description: 'Must be a valid date in the format <code>H:i</code>.'
                   example:
-                    - '21:51'
+                    - '00:36'
                   items:
                     type: string
                 closing_times:
                   type: array
                   description: 'Must be a valid date in the format <code>H:i</code>.'
                   example:
-                    - '21:51'
+                    - '00:36'
                   items:
                     type: string
               required:
@@ -1213,7 +1213,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - perferendis
+                    - nisi
                   items:
                     type: string
                 files:
@@ -1252,7 +1252,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - provident
+                    - magni
                   items:
                     type: string
                 files:
@@ -1298,7 +1298,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the document.'
-        example: recusandae
+        example: dolores
         required: true
         schema:
           type: string
@@ -1365,31 +1365,31 @@ paths:
                 restaurant_ids:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: debitis
                 code:
                   type: string
                   description: ''
-                  example: sequi
+                  example: deserunt
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-27T21:51:28'
+                  example: '2024-02-28T00:36:19'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-27T21:51:28'
+                  example: '2024-02-28T00:36:19'
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: percentage
+                  example: amount
                 value:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 1
                 status:
                   type: string
                   description: 'Must be one of <code>active</code> or <code>inactive</code>.'
-                  example: inactive
+                  example: active
               required:
                 - restaurant_ids
                 - code
@@ -1418,23 +1418,23 @@ paths:
                 code:
                   type: string
                   description: ''
-                  example: labore
+                  example: amet
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-27T21:51:28'
+                  example: '2024-02-28T00:36:19'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-02-27T21:51:28'
+                  example: '2024-02-28T00:36:19'
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: amount
+                  example: percentage
                 value:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 19
                 status:
                   type: string
                   description: 'Must be one of <code>active</code> or <code>inactive</code>.'
@@ -1452,7 +1452,7 @@ paths:
         in: path
         name: promo_code_id
         description: 'The ID of the promo code.'
-        example: 1
+        example: 8
         required: true
         schema:
           type: integer
@@ -1497,7 +1497,7 @@ paths:
                 menu_ids:
                   type: string
                   description: ''
-                  example: sint
+                  example: beatae
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
@@ -1505,7 +1505,7 @@ paths:
                 value:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 3
               required:
                 - menu_ids
                 - type
@@ -1534,7 +1534,7 @@ paths:
                 value:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 19
               required:
                 - type
                 - value
@@ -1684,15 +1684,15 @@ paths:
                 category_id:
                   type: string
                   description: ''
-                  example: ab
+                  example: quas
                 title:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: totam
                 status:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 20
               required:
                 - category_id
                 - title
@@ -1717,7 +1717,7 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: et
+                  example: eveniet
               required:
                 - title
       security: []
@@ -1726,7 +1726,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: iure
+        example: aut
         required: true
         schema:
           type: string
@@ -1788,7 +1788,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the customer.'
-        example: ut
+        example: non
         required: true
         schema:
           type: string
@@ -1819,7 +1819,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the restaurant admin.'
-        example: qui
+        example: et
         required: true
         schema:
           type: string
@@ -1850,7 +1850,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the rider.'
-        example: qui
+        example: doloremque
         required: true
         schema:
           type: string
@@ -2010,11 +2010,11 @@ paths:
                 status:
                   type: string
                   description: 'Must be one of <code>2</code> or <code>3</code>.'
-                  example: '2'
+                  example: '3'
                 reason:
                   type: string
                   description: 'This field is required when <code>status</code> is <code>3</code>.'
-                  example: voluptas
+                  example: est
               required:
                 - status
       security: []
@@ -2307,11 +2307,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ad
+                  example: iusto
                 description:
                   type: string
                   description: ''
-                  example: earum
+                  example: laudantium
                 status:
                   type: string
                   description: ''
@@ -2360,11 +2360,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ea
+                  example: at
                 description:
                   type: string
                   description: ''
-                  example: inventore
+                  example: et
               required:
                 - title
                 - description
@@ -2383,7 +2383,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food category.'
-        example: repellendus
+        example: repudiandae
         required: true
         schema:
           type: string
@@ -2427,11 +2427,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: distinctio
+                  example: ipsam
                 description:
                   type: string
                   description: ''
-                  example: blanditiis
+                  example: quibusdam
                 status:
                   type: string
                   description: ''
@@ -2480,11 +2480,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: aspernatur
+                  example: perspiciatis
                 description:
                   type: string
                   description: ''
-                  example: saepe
+                  example: iusto
               required:
                 - title
                 - description
@@ -2503,7 +2503,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food category.'
-        example: animi
+        example: delectus
         required: true
         schema:
           type: string
@@ -2526,11 +2526,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ratione
+                  example: exercitationem
                 description:
                   type: string
                   description: ''
-                  example: neque
+                  example: illum
                 status:
                   type: string
                   description: ''
@@ -2558,11 +2558,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: blanditiis
+                  example: doloremque
                 description:
                   type: string
                   description: ''
-                  example: facilis
+                  example: doloremque
               required:
                 - title
                 - description
@@ -2572,7 +2572,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: id
+        example: eaque
         required: true
         schema:
           type: string
@@ -2616,19 +2616,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sunt
+                  example: libero
                 description:
                   type: string
                   description: ''
-                  example: ipsa
+                  example: dolor
                 status:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 8
                 createdBy:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: quo
                 categoryIds:
                   type: object
                   description: ''
@@ -2680,11 +2680,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sequi
+                  example: accusantium
                 description:
                   type: string
                   description: ''
-                  example: recusandae
+                  example: voluptate
                 status:
                   type: string
                   description: ''
@@ -2692,7 +2692,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: et
+                  example: autem
                 categoryIds:
                   type: object
                   description: ''
@@ -2718,7 +2718,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food sub category.'
-        example: eos
+        example: vero
         required: true
         schema:
           type: string
@@ -2762,19 +2762,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: amet
+                  example: minus
                 description:
                   type: string
                   description: ''
-                  example: facere
+                  example: quia
                 status:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 15
                 createdBy:
                   type: string
                   description: ''
-                  example: quo
+                  example: voluptatem
                 categoryIds:
                   type: object
                   description: ''
@@ -2826,11 +2826,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: excepturi
+                  example: perferendis
                 description:
                   type: string
                   description: ''
-                  example: deleniti
+                  example: ut
                 status:
                   type: string
                   description: ''
@@ -2838,7 +2838,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: et
                 categoryIds:
                   type: object
                   description: ''
@@ -2864,7 +2864,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food sub category.'
-        example: ad
+        example: est
         required: true
         schema:
           type: string
@@ -2964,7 +2964,7 @@ paths:
                             denied_reason: ''
                             created_at: '2024-02-17T16:34:45.000000Z'
                             updated_at: '2024-02-25T07:27:08.000000Z'
-                            average_rating: 0
+                            average_rating: 4
                           relationships:
                             orders_count:
                               id: 1
@@ -2997,7 +2997,17 @@ paths:
                               paypal_email: milimokings@gmail.com
                               orders_count: 1
                               menus_count: 9
-                              reviews: []
+                              reviews:
+                                -
+                                  id: 1
+                                  user_id: 2
+                                  order_id: null
+                                  reviewable_id: 1
+                                  reviewable_type: App\Models\Restaurant
+                                  rating: 4
+                                  review: null
+                                  created_at: '2024-02-27T18:25:16.000000Z'
+                                  updated_at: '2024-02-27T18:25:16.000000Z'
                             menus_count:
                               id: 1
                               uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
@@ -3029,8 +3039,28 @@ paths:
                               paypal_email: milimokings@gmail.com
                               orders_count: 1
                               menus_count: 9
-                              reviews: []
-                            reviews: []
+                              reviews:
+                                -
+                                  id: 1
+                                  user_id: 2
+                                  order_id: null
+                                  reviewable_id: 1
+                                  reviewable_type: App\Models\Restaurant
+                                  rating: 4
+                                  review: null
+                                  created_at: '2024-02-27T18:25:16.000000Z'
+                                  updated_at: '2024-02-27T18:25:16.000000Z'
+                            reviews:
+                              -
+                                id: 1
+                                user_id: 2
+                                order_id: null
+                                reviewable_id: 1
+                                reviewable_type: App\Models\Restaurant
+                                rating: 4
+                                review: null
+                                created_at: '2024-02-27T18:25:16.000000Z'
+                                updated_at: '2024-02-27T18:25:16.000000Z'
                         discount: null
                         orderItems: []
                         orders_count: 0
@@ -3268,7 +3298,7 @@ paths:
                               denied_reason: ''
                               created_at: '2024-02-17T16:34:45.000000Z'
                               updated_at: '2024-02-25T07:27:08.000000Z'
-                              average_rating: 0
+                              average_rating: 4
                             relationships:
                               orders_count:
                                 id: 1
@@ -3301,7 +3331,17 @@ paths:
                                 paypal_email: milimokings@gmail.com
                                 orders_count: 1
                                 menus_count: 9
-                                reviews: []
+                                reviews:
+                                  -
+                                    id: 1
+                                    user_id: 2
+                                    order_id: null
+                                    reviewable_id: 1
+                                    reviewable_type: App\Models\Restaurant
+                                    rating: 4
+                                    review: null
+                                    created_at: '2024-02-27T18:25:16.000000Z'
+                                    updated_at: '2024-02-27T18:25:16.000000Z'
                               menus_count:
                                 id: 1
                                 uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
@@ -3333,8 +3373,28 @@ paths:
                                 paypal_email: milimokings@gmail.com
                                 orders_count: 1
                                 menus_count: 9
-                                reviews: []
-                              reviews: []
+                                reviews:
+                                  -
+                                    id: 1
+                                    user_id: 2
+                                    order_id: null
+                                    reviewable_id: 1
+                                    reviewable_type: App\Models\Restaurant
+                                    rating: 4
+                                    review: null
+                                    created_at: '2024-02-27T18:25:16.000000Z'
+                                    updated_at: '2024-02-27T18:25:16.000000Z'
+                              reviews:
+                                -
+                                  id: 1
+                                  user_id: 2
+                                  order_id: null
+                                  reviewable_id: 1
+                                  reviewable_type: App\Models\Restaurant
+                                  rating: 4
+                                  review: null
+                                  created_at: '2024-02-27T18:25:16.000000Z'
+                                  updated_at: '2024-02-27T18:25:16.000000Z'
                           discount: null
                           orderItems: []
                           orders_count: 0
@@ -3685,19 +3745,20 @@ paths:
                                       example: '2024-02-25T07:27:08.000000Z'
                                     average_rating:
                                       type: integer
-                                      example: 0
+                                      example: 4
                                 relationships:
                                   type: object
                                   properties:
                                     orders_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [] } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     menus_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [] } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     reviews:
                                       type: array
-                                      example: []
+                                      example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }]
+                                      items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } }
                             discount:
                               type: string
                               example: null
@@ -3792,32 +3853,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: cupiditate
+          example: sint
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: cupiditate
+            example: sint
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: ut
+          example: voluptas
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: ut
+            example: voluptas
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: saepe
+          example: facilis
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: saepe
+            example: facilis
       responses:
         200:
           description: ''
@@ -3906,7 +3967,7 @@ paths:
                             denied_reason: ''
                             created_at: '2024-02-17T16:34:45.000000Z'
                             updated_at: '2024-02-25T07:27:08.000000Z'
-                            average_rating: 0
+                            average_rating: 4
                           relationships:
                             orders_count:
                               id: 1
@@ -3939,7 +4000,17 @@ paths:
                               paypal_email: milimokings@gmail.com
                               orders_count: 1
                               menus_count: 9
-                              reviews: []
+                              reviews:
+                                -
+                                  id: 1
+                                  user_id: 2
+                                  order_id: null
+                                  reviewable_id: 1
+                                  reviewable_type: App\Models\Restaurant
+                                  rating: 4
+                                  review: null
+                                  created_at: '2024-02-27T18:25:16.000000Z'
+                                  updated_at: '2024-02-27T18:25:16.000000Z'
                             menus_count:
                               id: 1
                               uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
@@ -3971,8 +4042,28 @@ paths:
                               paypal_email: milimokings@gmail.com
                               orders_count: 1
                               menus_count: 9
-                              reviews: []
-                            reviews: []
+                              reviews:
+                                -
+                                  id: 1
+                                  user_id: 2
+                                  order_id: null
+                                  reviewable_id: 1
+                                  reviewable_type: App\Models\Restaurant
+                                  rating: 4
+                                  review: null
+                                  created_at: '2024-02-27T18:25:16.000000Z'
+                                  updated_at: '2024-02-27T18:25:16.000000Z'
+                            reviews:
+                              -
+                                id: 1
+                                user_id: 2
+                                order_id: null
+                                reviewable_id: 1
+                                reviewable_type: App\Models\Restaurant
+                                rating: 4
+                                review: null
+                                created_at: '2024-02-27T18:25:16.000000Z'
+                                updated_at: '2024-02-27T18:25:16.000000Z'
                         discount: null
                         orderItems: []
                         orders_count: 0
@@ -4087,7 +4178,7 @@ paths:
                               denied_reason: ''
                               created_at: '2024-02-17T16:34:45.000000Z'
                               updated_at: '2024-02-25T07:27:08.000000Z'
-                              average_rating: 0
+                              average_rating: 4
                             relationships:
                               orders_count:
                                 id: 1
@@ -4120,7 +4211,17 @@ paths:
                                 paypal_email: milimokings@gmail.com
                                 orders_count: 1
                                 menus_count: 9
-                                reviews: []
+                                reviews:
+                                  -
+                                    id: 1
+                                    user_id: 2
+                                    order_id: null
+                                    reviewable_id: 1
+                                    reviewable_type: App\Models\Restaurant
+                                    rating: 4
+                                    review: null
+                                    created_at: '2024-02-27T18:25:16.000000Z'
+                                    updated_at: '2024-02-27T18:25:16.000000Z'
                               menus_count:
                                 id: 1
                                 uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
@@ -4152,8 +4253,28 @@ paths:
                                 paypal_email: milimokings@gmail.com
                                 orders_count: 1
                                 menus_count: 9
-                                reviews: []
-                              reviews: []
+                                reviews:
+                                  -
+                                    id: 1
+                                    user_id: 2
+                                    order_id: null
+                                    reviewable_id: 1
+                                    reviewable_type: App\Models\Restaurant
+                                    rating: 4
+                                    review: null
+                                    created_at: '2024-02-27T18:25:16.000000Z'
+                                    updated_at: '2024-02-27T18:25:16.000000Z'
+                              reviews:
+                                -
+                                  id: 1
+                                  user_id: 2
+                                  order_id: null
+                                  reviewable_id: 1
+                                  reviewable_type: App\Models\Restaurant
+                                  rating: 4
+                                  review: null
+                                  created_at: '2024-02-27T18:25:16.000000Z'
+                                  updated_at: '2024-02-27T18:25:16.000000Z'
                           discount: null
                           orderItems: []
                           orders_count: 0
@@ -4386,19 +4507,20 @@ paths:
                                       example: '2024-02-25T07:27:08.000000Z'
                                     average_rating:
                                       type: integer
-                                      example: 0
+                                      example: 4
                                 relationships:
                                   type: object
                                   properties:
                                     orders_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [] } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     menus_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [] } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 1 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     reviews:
                                       type: array
-                                      example: []
+                                      example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }]
+                                      items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } }
                             discount:
                               type: string
                               example: null
@@ -4552,12 +4674,12 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: sit
+          example: corrupti
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: sit
+            example: corrupti
         -
           in: query
           name: subCategories
@@ -4572,12 +4694,12 @@ paths:
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: consequatur
+          example: odit
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: consequatur
+            example: odit
       responses:
         401:
           description: ''
@@ -4612,20 +4734,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: qui
+                  example: sequi
                 description:
                   type: string
                   description: ''
-                  example: vitae
+                  example: ut
                 status:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 11
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 5
                   items:
                     type: integer
               required:
@@ -4672,20 +4794,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: ea
                 description:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: et
                 status:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 1
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 9
+                    - 20
                   items:
                     type: integer
               required:
@@ -4697,7 +4819,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer menu.'
-        example: sed
+        example: dolore
         required: true
         schema:
           type: string
@@ -4720,19 +4842,19 @@ paths:
                 menu_id:
                   type: integer
                   description: 'The id of the menu item'
-                  example: 17
+                  example: 15
                 menu_rating:
                   type: integer
                   description: 'The rating of the menu from 1 - 5'
-                  example: 5
+                  example: 11
                 menu_review:
                   type: string
                   description: 'A review of the menu'
-                  example: eius
+                  example: facere
                 order_id:
                   type: integer
                   description: 'The id of the order'
-                  example: 10
+                  example: 1
               required:
                 - menu_id
                 - menu_rating
@@ -4747,22 +4869,22 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: ut
+          example: corrupti
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: ut
+            example: corrupti
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: iste
+          example: officia
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: iste
+            example: officia
         -
           in: query
           name: restaurant
@@ -4807,20 +4929,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: cum
+                  example: architecto
                 description:
                   type: string
                   description: ''
-                  example: officiis
+                  example: voluptatum
                 status:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 11
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 18
+                    - 12
                   items:
                     type: integer
               required:
@@ -4867,20 +4989,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quo
+                  example: et
                 description:
                   type: string
                   description: ''
-                  example: sit
+                  example: doloremque
                 status:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 5
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 14
+                    - 12
                   items:
                     type: integer
               required:
@@ -5021,20 +5143,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: beatae
+                  example: iusto
                 description:
                   type: string
                   description: ''
-                  example: et
+                  example: distinctio
                 status:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 14
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 2
+                    - 18
                   items:
                     type: integer
               required:
@@ -5069,15 +5191,15 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quidem
+                  example: recusandae
                 description:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: rerum
                 status:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 6
                 categoryIds:
                   type: array
                   description: ''
@@ -5180,15 +5302,15 @@ paths:
                 restaurant_ids:
                   type: string
                   description: ''
-                  example: a
+                  example: aut
                 title:
                   type: string
                   description: ''
-                  example: et
+                  example: voluptatum
                 description:
                   type: string
                   description: ''
-                  example: eos
+                  example: eius
                 status:
                   type: integer
                   description: ''
@@ -5196,7 +5318,7 @@ paths:
                 categoryIds:
                   type: string
                   description: ''
-                  example: voluptates
+                  example: odio
               required:
                 - restaurant_ids
                 - title
@@ -5223,26 +5345,26 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 15
+                    - 10
                   items:
                     type: integer
                 title:
                   type: string
                   description: ''
-                  example: hic
+                  example: quia
                 description:
                   type: string
                   description: ''
-                  example: culpa
+                  example: assumenda
                 status:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 10
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 5
+                    - 15
                   items:
                     type: integer
               required:
@@ -5329,19 +5451,19 @@ paths:
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
-                  example: 0
+                  example: 1
                 description:
                   type: string
                   description: ''
-                  example: dolorum
+                  example: molestias
                 status:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 3
                 menu_id:
                   type: string
                   description: ''
-                  example: non
+                  example: vitae
               required:
                 - price
                 - description
@@ -5387,15 +5509,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: culpa
+                  example: enim
                 status:
                   type: string
                   description: ''
-                  example: exercitationem
+                  example: nisi
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
-                  example: 0
+                  example: 1
               required:
                 - description
                 - status
@@ -5437,15 +5559,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: qui
+                  example: error
                 status:
                   type: string
                   description: ''
-                  example: similique
+                  example: pariatur
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
-                  example: 0
+                  example: 1
               required:
                 - description
                 - status
@@ -5518,11 +5640,11 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: quidem
+                  example: porro
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: vicente.harris@example.net
+                  example: rpacocha@example.org
                 phoneNo:
                   type: string
                   description: ''
@@ -5591,35 +5713,35 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 38b1ef12-2d3b-3fba-a318-b9b66c79c984
+                  example: 650829e9-f6a7-3533-89a9-e10cd038d325
                 name:
                   type: string
                   description: ''
-                  example: odio
+                  example: id
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lmorar@example.com
+                  example: gaylord.elody@example.com
                 phoneNo:
                   type: string
                   description: ''
-                  example: explicabo
+                  example: ratione
                 address:
                   type: string
                   description: ''
-                  example: veniam
+                  example: et
                 city:
                   type: string
                   description: ''
-                  example: qui
+                  example: et
                 state:
                   type: string
                   description: ''
-                  example: aliquid
+                  example: quae
                 mapLocation:
                   type: string
                   description: ''
-                  example: optio
+                  example: rem
                 image:
                   type: string
                   description: ''
@@ -5648,7 +5770,7 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 8a524ad1-280c-377d-999c-924e34d3f249
+        example: 3a4709c8-ed38-329d-96ca-0e61ee2349cf
         required: true
         schema:
           type: string
@@ -5687,7 +5809,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: labore
+        example: quam
         required: true
         schema:
           type: string
@@ -5695,7 +5817,7 @@ paths:
         in: path
         name: order_id
         description: 'The ID of the order.'
-        example: provident
+        example: deserunt
         required: true
         schema:
           type: string
@@ -5890,7 +6012,7 @@ paths:
                       denied_reason: ''
                       created_at: '2024-02-17T16:34:45.000000Z'
                       updated_at: '2024-02-25T07:27:08.000000Z'
-                      average_rating: 0
+                      average_rating: 4
                     relationships:
                       operating_hours:
                         -
@@ -6037,7 +6159,17 @@ paths:
                             closing_time: '19:43'
                             created_at: '2024-02-25T07:28:28.000000Z'
                             updated_at: '2024-02-25T07:28:28.000000Z'
-                        reviews: []
+                        reviews:
+                          -
+                            id: 1
+                            user_id: 2
+                            order_id: null
+                            reviewable_id: 1
+                            reviewable_type: App\Models\Restaurant
+                            rating: 4
+                            review: null
+                            created_at: '2024-02-27T18:25:16.000000Z'
+                            updated_at: '2024-02-27T18:25:16.000000Z'
                         restaurant_tables: []
                       menus_count:
                         id: 1
@@ -6127,9 +6259,29 @@ paths:
                             closing_time: '19:43'
                             created_at: '2024-02-25T07:28:28.000000Z'
                             updated_at: '2024-02-25T07:28:28.000000Z'
-                        reviews: []
+                        reviews:
+                          -
+                            id: 1
+                            user_id: 2
+                            order_id: null
+                            reviewable_id: 1
+                            reviewable_type: App\Models\Restaurant
+                            rating: 4
+                            review: null
+                            created_at: '2024-02-27T18:25:16.000000Z'
+                            updated_at: '2024-02-27T18:25:16.000000Z'
                         restaurant_tables: []
-                      reviews: []
+                      reviews:
+                        -
+                          id: 1
+                          user_id: 2
+                          order_id: null
+                          reviewable_id: 1
+                          reviewable_type: App\Models\Restaurant
+                          rating: 4
+                          review: null
+                          created_at: '2024-02-27T18:25:16.000000Z'
+                          updated_at: '2024-02-27T18:25:16.000000Z'
                 properties:
                   data:
                     type: object
@@ -6202,7 +6354,7 @@ paths:
                             example: '2024-02-25T07:27:08.000000Z'
                           average_rating:
                             type: integer
-                            example: 0
+                            example: 4
                       relationships:
                         type: object
                         properties:
@@ -6467,7 +6619,47 @@ paths:
                                       example: '2024-02-25T07:28:28.000000Z'
                               reviews:
                                 type: array
-                                example: []
+                                example:
+                                  -
+                                    id: 1
+                                    user_id: 2
+                                    order_id: null
+                                    reviewable_id: 1
+                                    reviewable_type: App\Models\Restaurant
+                                    rating: 4
+                                    review: null
+                                    created_at: '2024-02-27T18:25:16.000000Z'
+                                    updated_at: '2024-02-27T18:25:16.000000Z'
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 1
+                                    user_id:
+                                      type: integer
+                                      example: 2
+                                    order_id:
+                                      type: string
+                                      example: null
+                                    reviewable_id:
+                                      type: integer
+                                      example: 1
+                                    reviewable_type:
+                                      type: string
+                                      example: App\Models\Restaurant
+                                    rating:
+                                      type: integer
+                                      example: 4
+                                    review:
+                                      type: string
+                                      example: null
+                                    created_at:
+                                      type: string
+                                      example: '2024-02-27T18:25:16.000000Z'
+                                    updated_at:
+                                      type: string
+                                      example: '2024-02-27T18:25:16.000000Z'
                               restaurant_tables:
                                 type: array
                                 example: []
@@ -6649,13 +6841,93 @@ paths:
                                       example: '2024-02-25T07:28:28.000000Z'
                               reviews:
                                 type: array
-                                example: []
+                                example:
+                                  -
+                                    id: 1
+                                    user_id: 2
+                                    order_id: null
+                                    reviewable_id: 1
+                                    reviewable_type: App\Models\Restaurant
+                                    rating: 4
+                                    review: null
+                                    created_at: '2024-02-27T18:25:16.000000Z'
+                                    updated_at: '2024-02-27T18:25:16.000000Z'
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 1
+                                    user_id:
+                                      type: integer
+                                      example: 2
+                                    order_id:
+                                      type: string
+                                      example: null
+                                    reviewable_id:
+                                      type: integer
+                                      example: 1
+                                    reviewable_type:
+                                      type: string
+                                      example: App\Models\Restaurant
+                                    rating:
+                                      type: integer
+                                      example: 4
+                                    review:
+                                      type: string
+                                      example: null
+                                    created_at:
+                                      type: string
+                                      example: '2024-02-27T18:25:16.000000Z'
+                                    updated_at:
+                                      type: string
+                                      example: '2024-02-27T18:25:16.000000Z'
                               restaurant_tables:
                                 type: array
                                 example: []
                           reviews:
                             type: array
-                            example: []
+                            example:
+                              -
+                                id: 1
+                                user_id: 2
+                                order_id: null
+                                reviewable_id: 1
+                                reviewable_type: App\Models\Restaurant
+                                rating: 4
+                                review: null
+                                created_at: '2024-02-27T18:25:16.000000Z'
+                                updated_at: '2024-02-27T18:25:16.000000Z'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                user_id:
+                                  type: integer
+                                  example: 2
+                                order_id:
+                                  type: string
+                                  example: null
+                                reviewable_id:
+                                  type: integer
+                                  example: 1
+                                reviewable_type:
+                                  type: string
+                                  example: App\Models\Restaurant
+                                rating:
+                                  type: integer
+                                  example: 4
+                                review:
+                                  type: string
+                                  example: null
+                                created_at:
+                                  type: string
+                                  example: '2024-02-27T18:25:16.000000Z'
+                                updated_at:
+                                  type: string
+                                  example: '2024-02-27T18:25:16.000000Z'
       tags:
         - 'Restaurant Management'
       security: []
@@ -6681,11 +6953,33 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: ea
+            value: exercitationem
   /api/v1/seating-areas:
     get:
       summary: ''
       operationId: getApiV1SeatingAreas
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Restaurant Management'
+      security: []
+  /api/v1/orderer/orderer-restaurants/rated:
+    get:
+      summary: 'Get Rated and Reviewed Restaurants.'
+      operationId: getRatedAndReviewedRestaurants
       description: ''
       parameters: []
       responses:
@@ -6748,7 +7042,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: id
+            value: sed
   /api/v1/orderer/orderer-restaurants:
     get:
       summary: ''
@@ -6789,23 +7083,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: atque
+                  example: hic
                 name_short:
                   type: string
                   description: ''
-                  example: odio
+                  example: impedit
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: jennie.howell@example.org
+                  example: jessika.shanahan@example.com
                 about:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: quis
                 about_short:
                   type: string
                   description: ''
-                  example: at
+                  example: expedita
                 phone_no:
                   type: string
                   description: ''
@@ -6825,15 +7119,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: magni
+                  example: omnis
                 latitude:
                   type: string
                   description: ''
-                  example: aut
+                  example: ab
                 longitude:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: quo
                 url:
                   type: string
                   description: ''
@@ -6841,7 +7135,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: assumenda
+                  example: maiores
                 map_location:
                   type: string
                   description: ''
@@ -6849,11 +7143,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 15
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gerlach.alta@example.net
+                  example: eric06@example.net
               required:
                 - name
                 - name_short
@@ -6907,39 +7201,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: sequi
+                  example: iste
                 name_short:
                   type: string
                   description: ''
-                  example: a
+                  example: adipisci
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: odell.considine@example.com
+                  example: ckozey@example.org
                 about:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: et
                 about_short:
                   type: string
                   description: ''
-                  example: libero
+                  example: similique
                 phone_no:
                   type: string
                   description: ''
-                  example: maiores
+                  example: unde
                 address:
                   type: string
                   description: ''
-                  example: id
+                  example: non
                 state:
                   type: string
                   description: ''
-                  example: fugit
+                  example: nesciunt
                 postal_code:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: non
                 map_location:
                   type: string
                   description: ''
@@ -6955,15 +7249,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: dolor
+                  example: laudantium
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: harum
+                  example: fugit
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: uabernathy@example.org
+                  example: leffler.larue@example.com
               required:
                 - name
                 - name_short
@@ -6992,7 +7286,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer restaurant.'
-        example: vel
+        example: inventore
         required: true
         schema:
           type: string
@@ -7009,7 +7303,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: tempora
+            value: aut
   '/api/v1/orderer/orderer-restaurants/{restaurant_uuid}/tables':
     get:
       summary: ''
@@ -7064,11 +7358,11 @@ paths:
                 rating:
                   type: integer
                   description: 'The rating from 1 - 5'
-                  example: 17
+                  example: 9
                 review:
                   type: string
                   description: 'A review of the restaurant'
-                  example: architecto
+                  example: tempora
       security: []
   /api/v1/rider/restaurants:
     get:
@@ -7110,23 +7404,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: ut
+                  example: aut
                 name_short:
                   type: string
                   description: ''
-                  example: soluta
+                  example: vel
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: fflatley@example.com
+                  example: legros.alexzander@example.com
                 about:
                   type: string
                   description: ''
-                  example: mollitia
+                  example: fuga
                 about_short:
                   type: string
                   description: ''
-                  example: a
+                  example: omnis
                 phone_no:
                   type: string
                   description: ''
@@ -7146,15 +7440,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: nesciunt
+                  example: ipsa
                 latitude:
                   type: string
                   description: ''
-                  example: vero
+                  example: voluptatem
                 longitude:
                   type: string
                   description: ''
-                  example: in
+                  example: repudiandae
                 url:
                   type: string
                   description: ''
@@ -7162,7 +7456,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: voluptate
+                  example: fugit
                 map_location:
                   type: string
                   description: ''
@@ -7170,11 +7464,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 2
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: hmohr@example.com
+                  example: dbaumbach@example.net
               required:
                 - name
                 - name_short
@@ -7228,39 +7522,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: magni
+                  example: odio
                 name_short:
                   type: string
                   description: ''
-                  example: in
+                  example: dolor
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: meghan.lindgren@example.org
+                  example: vfranecki@example.net
                 about:
                   type: string
                   description: ''
-                  example: vitae
+                  example: perspiciatis
                 about_short:
                   type: string
                   description: ''
-                  example: quaerat
+                  example: accusantium
                 phone_no:
                   type: string
                   description: ''
-                  example: asperiores
+                  example: molestiae
                 address:
                   type: string
                   description: ''
-                  example: blanditiis
+                  example: et
                 state:
                   type: string
                   description: ''
-                  example: praesentium
+                  example: voluptas
                 postal_code:
                   type: string
                   description: ''
-                  example: sit
+                  example: praesentium
                 map_location:
                   type: string
                   description: ''
@@ -7276,15 +7570,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: dolores
+                  example: sapiente
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: doloremque
+                  example: rerum
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: pink92@example.com
+                  example: tevin41@example.org
               required:
                 - name
                 - name_short
@@ -7330,7 +7624,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: laudantium
+            value: ex
   /api/v1/restaurant/restaurant:
     post:
       summary: ''
@@ -7350,23 +7644,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: est
+                  example: ut
                 name_short:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: in
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lwolf@example.org
+                  example: jude27@example.net
                 about:
                   type: string
                   description: ''
-                  example: sint
+                  example: unde
                 about_short:
                   type: string
                   description: ''
-                  example: labore
+                  example: nulla
                 phone_no:
                   type: string
                   description: ''
@@ -7386,15 +7680,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: blanditiis
+                  example: nulla
                 latitude:
                   type: string
                   description: ''
-                  example: sint
+                  example: id
                 longitude:
                   type: string
                   description: ''
-                  example: incidunt
+                  example: non
                 url:
                   type: string
                   description: ''
@@ -7402,7 +7696,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: fugiat
+                  example: tempore
                 map_location:
                   type: string
                   description: ''
@@ -7410,11 +7704,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 5
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gussie.oconnell@example.net
+                  example: ichristiansen@example.net
               required:
                 - name
                 - name_short
@@ -7490,39 +7784,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: rerum
                 name_short:
                   type: string
                   description: ''
-                  example: ipsam
+                  example: delectus
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: beahan.elaina@example.org
+                  example: pfannerstill.daija@example.org
                 about:
                   type: string
                   description: ''
-                  example: vel
+                  example: quia
                 about_short:
                   type: string
                   description: ''
-                  example: commodi
+                  example: nemo
                 phone_no:
                   type: string
                   description: ''
-                  example: deleniti
+                  example: perspiciatis
                 address:
                   type: string
                   description: ''
-                  example: hic
+                  example: voluptate
                 state:
                   type: string
                   description: ''
-                  example: dolores
+                  example: ipsam
                 postal_code:
                   type: string
                   description: ''
-                  example: illum
+                  example: perspiciatis
                 map_location:
                   type: string
                   description: ''
@@ -7538,15 +7832,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: tenetur
+                  example: ex
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: in
+                  example: dolor
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lane77@example.org
+                  example: dicki.arthur@example.org
               required:
                 - name
                 - name_short
@@ -7592,7 +7886,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: iste
+            value: vel
   '/api/v1/restaurant/restaurants/{restaurant_uuid}/reviews':
     get:
       summary: 'Get Restaurant Reviews'
@@ -7664,23 +7958,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: officiis
+                  example: quos
                 name_short:
                   type: string
                   description: ''
-                  example: ea
+                  example: quae
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: shanny.lubowitz@example.org
+                  example: crawford.batz@example.com
                 about:
                   type: string
                   description: ''
-                  example: eaque
+                  example: sapiente
                 about_short:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: magnam
                 phone_no:
                   type: string
                   description: ''
@@ -7700,15 +7994,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: inventore
                 latitude:
                   type: string
                   description: ''
-                  example: sequi
+                  example: adipisci
                 longitude:
                   type: string
                   description: ''
-                  example: aspernatur
+                  example: quis
                 url:
                   type: string
                   description: ''
@@ -7716,7 +8010,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: hic
+                  example: veritatis
                 map_location:
                   type: string
                   description: ''
@@ -7724,11 +8018,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 10
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: rice.hassan@example.net
+                  example: sophia.walsh@example.org
               required:
                 - name
                 - name_short
@@ -7783,31 +8077,31 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: asperiores
+                  example: mollitia
                 name_short:
                   type: string
                   description: ''
-                  example: explicabo
+                  example: dolor
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: feeney.erica@example.org
+                  example: hernser@example.org
                 about:
                   type: string
                   description: ''
-                  example: totam
+                  example: quaerat
                 about_short:
                   type: string
                   description: ''
-                  example: possimus
+                  example: neque
                 phone_no:
                   type: string
                   description: ''
-                  example: fugit
+                  example: doloribus
                 address:
                   type: string
                   description: ''
-                  example: veritatis
+                  example: illum
                 state:
                   type: string
                   description: ''
@@ -7815,7 +8109,7 @@ paths:
                 postal_code:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: sit
                 map_location:
                   type: string
                   description: ''
@@ -7831,15 +8125,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: aspernatur
+                  example: impedit
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: quas
+                  example: commodi
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: meghan.conn@example.net
+                  example: blynch@example.org
               required:
                 - name
                 - name_short
@@ -7890,7 +8184,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the rider.'
-        example: provident
+        example: quidem
         required: true
         schema:
           type: string
@@ -8032,15 +8326,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: alias
+                  example: dolorem
                 seating_area_id:
                   type: string
                   description: ''
-                  example: sed
+                  example: architecto
                 seat_number:
                   type: string
                   description: ''
-                  example: magni
+                  example: ea
               required:
                 - name
                 - seating_area_id
@@ -8074,15 +8368,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: minima
+                  example: est
                 seating_area_id:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: exercitationem
                 seat_number:
                   type: string
                   description: ''
-                  example: exercitationem
+                  example: id
               required:
                 - name
                 - seating_area_id
@@ -8110,7 +8404,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: ipsum
+            value: distinctio
       -
         in: path
         name: uuid
@@ -8124,7 +8418,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 175c1681-5b22-35f5-9b44-7349e5165fc4
+            value: 6796135c-2630-39e5-9d92-1f1d8ef5bbbd
   '/api/v1/restaurant/restaurant/{restaurant_uuid}/payments':
     get:
       summary: ''
@@ -8200,7 +8494,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: temporibus
+            value: velit
   '/api/v1/restaurant/restaurant/{restaurant_uuid}/reservations':
     get:
       summary: ''
@@ -8338,7 +8632,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: est
+            value: qui
   '/api/v1/restaurant/{restaurant_uuid}/categories/add':
     post:
       summary: 'Add a new category for the specified restaurant'
@@ -8358,11 +8652,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: vero
+                  example: est
                 description:
                   type: string
                   description: ''
-                  example: facere
+                  example: eos
               required:
                 - title
                 - description
@@ -8395,11 +8689,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ea
+                  example: et
                 description:
                   type: string
                   description: ''
-                  example: labore
+                  example: mollitia
               required:
                 - title
                 - description
@@ -8426,7 +8720,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: consequatur
+            value: ullam
       -
         in: path
         name: uuid
@@ -8440,7 +8734,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 380153e4-bde1-3d8a-8707-3e0f3b0627ba
+            value: 10fec5c1-7c1b-3913-b128-dc07f951f02f
   /api/v1/restaurant/employees:
     get:
       summary: ''
@@ -8513,23 +8807,23 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: quo
+                  example: qui
                 last_name:
                   type: string
                   description: ''
-                  example: tempore
+                  example: quae
                 email:
                   type: string
                   description: ''
-                  example: facilis
+                  example: libero
                 phone_number:
                   type: string
                   description: ''
-                  example: saepe
+                  example: omnis
                 avatar:
                   type: string
                   description: 'Must not be greater than 9000 characters.'
-                  example: mfsifglqplqurjic
+                  example: w
               required:
                 - first_name
                 - last_name
@@ -8564,27 +8858,27 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: dolores
                 last_name:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: consequatur
                 email:
                   type: string
                   description: ''
-                  example: omnis
+                  example: modi
                 phone_number:
                   type: string
                   description: ''
-                  example: minima
+                  example: repudiandae
                 avatar:
                   type: string
                   description: 'Must not be greater than 9000 characters.'
-                  example: fjcf
+                  example: aohehyxtbskozksuxb
                 suspend:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
-                  example: '1'
+                  example: '2'
               required:
                 - first_name
                 - last_name
@@ -8641,15 +8935,15 @@ paths:
                 restaurantUuid:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: sed
                 delivery:
                   type: string
                   description: ''
-                  example: aut
+                  example: blanditiis
                 booking:
                   type: string
                   description: ''
-                  example: ut
+                  example: magnam
               required:
                 - restaurantUuid
                 - delivery
@@ -8700,7 +8994,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the more info.'
-        example: voluptas
+        example: repudiandae
         required: true
         schema:
           type: string
@@ -8723,15 +9017,15 @@ paths:
                 rider_id:
                   type: integer
                   description: 'The id of the rider'
-                  example: 15
+                  example: 13
                 rating:
                   type: integer
                   description: 'The rating from 1 - 5'
-                  example: 8
+                  example: 10
                 review:
                   type: string
                   description: 'A review of the rider'
-                  example: inventore
+                  example: qui
   /api/v1/rider/profile/create:
     post:
       summary: 'Create Rider Profile'
@@ -8759,11 +9053,11 @@ paths:
                 vehicle_type:
                   type: string
                   description: 'The vehicle type of the rider'
-                  example: blanditiis
+                  example: rerum
                 vehicle_license_plate:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: facere
                 profile_picture:
                   type: string
                   format: binary
@@ -8771,23 +9065,23 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: john.walker@example.net
+                  example: rlockman@example.net
                 vehicle_licesne_plate:
                   type: sring
                   description: "The license plate of the rider's vehicle"
-                  example: omnis
+                  example: libero
                 city:
                   type: string
                   description: 'The city where the rider is located'
-                  example: adipisci
+                  example: et
                 state:
                   type: string
                   description: 'The state of where the rider is located'
-                  example: animi
+                  example: distinctio
                 postal_code:
                   type: string
                   description: 'The postal code of the rider'
-                  example: est
+                  example: et
               required:
                 - vehicle_type
                 - vehicle_license_plate
@@ -8825,15 +9119,15 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: mschroeder@example.net
+                  example: christine.conn@example.com
                 vehicle_type:
                   type: string
                   description: 'The vehicle type of the rider'
-                  example: magni
+                  example: occaecati
                 vehicle_licesne_plate:
                   type: sring
                   description: "The license plate of the rider's vehicle"
-                  example: facilis
+                  example: qui
                 profile_picture:
                   type: string
                   format: binary
@@ -8841,15 +9135,15 @@ paths:
                 city:
                   type: string
                   description: 'The city where the rider is located'
-                  example: explicabo
+                  example: perspiciatis
                 state:
                   type: string
                   description: 'The state of where the rider is located'
-                  example: ut
+                  example: deserunt
                 postal_code:
                   type: string
                   description: 'The postal code of the rider'
-                  example: voluptatum
+                  example: placeat
               required:
                 - paypal_email
   /api/v1/rider/profile:
@@ -8905,11 +9199,11 @@ paths:
                 order_id:
                   type: string
                   description: ''
-                  example: eum
+                  example: est
                 status:
                   type: string
                   description: ''
-                  example: vel
+                  example: architecto
               required:
                 - order_id
                 - status
@@ -8932,11 +9226,11 @@ paths:
                 longitude:
                   type: string
                   description: ''
-                  example: eaque
+                  example: nobis
                 latitude:
                   type: string
                   description: ''
-                  example: mollitia
+                  example: et
               required:
                 - longitude
                 - latitude
@@ -8968,11 +9262,11 @@ paths:
                 longitude:
                   type: string
                   description: ''
-                  example: laborum
+                  example: excepturi
                 latitude:
                   type: string
                   description: ''
-                  example: voluptatum
+                  example: consequatur
               required:
                 - longitude
                 - latitude
