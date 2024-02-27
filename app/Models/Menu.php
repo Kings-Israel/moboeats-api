@@ -62,6 +62,17 @@ class Menu extends Model implements UrlRoutable
     }
 
     /**
+     * Scope a query to only include has set prices
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeHasActivePrices($query)
+    {
+        return $query->whereHas('menuPrices', fn ($q) => $q->where('status', 2));
+    }
+
+    /**
      * The categories that belong to the Post
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
