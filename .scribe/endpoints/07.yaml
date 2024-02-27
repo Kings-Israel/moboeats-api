@@ -6,6 +6,55 @@ endpoints:
   -
     httpMethods:
       - GET
+    uri: 'api/v1/orderer/menu-bookmark/{menuId}/delete'
+    metadata:
+      groupName: 'Customer menu Bookmark Management'
+      groupDescription: |-
+
+        MenuBookmark API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      menuId:
+        name: menuId
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+    cleanUrlParameters:
+      menuId: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
     uri: api/v1/orderer/menu-bookmark
     metadata:
       groupName: 'Customer menu Bookmark Management'
@@ -71,11 +120,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 14
+        example: 2
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 14
+      menuId: 2
     fileParameters: []
     responses: []
     responseFields: []
@@ -107,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: minima
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      id: minima
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -156,11 +205,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: nihil
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      id: nihil
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

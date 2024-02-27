@@ -36,6 +36,7 @@ use App\Models\Discount;
 use App\Models\Reservation;
 use App\Models\RestaurantTable;
 use App\Models\Rider;
+use App\Models\Menu;
 use App\Models\OrderTable;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;

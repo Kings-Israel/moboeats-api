@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Menu extends Model implements UrlRoutable
 {
@@ -150,6 +151,11 @@ class Menu extends Model implements UrlRoutable
         return $this->hasOne(Discount::class);
     }
 
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
     /**
      * Get all of the orderItems for the Menu
      *
@@ -192,5 +198,17 @@ class Menu extends Model implements UrlRoutable
         }else{
             return null;
         }
+    }
+
+    public function averageRating()
+    {
+        $total_reviews_count = $this->reviews->count();
+        if ($total_reviews_count > 0) {
+            $total_reviews = $this->reviews->sum('rating');
+
+            return $total_reviews / $total_reviews_count;
+        }
+
+        return 0;
     }
 }

@@ -28,7 +28,10 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MenuExport;
 use App\Exports\GroceryExport;
+use App\Http\Resources\V1\ReviewResource;
 use App\Models\Order;
+use App\Models\Review;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * @group Menu Management
@@ -459,9 +462,19 @@ class MenuController extends Controller
 
         $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
         return [
-            'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order')),
+            'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews')),
             'categories' => new FoodCommonCategoryCollection($categories),
         ];
+    }
+
+    /**
+     * Get Restaurant Reviews
+     */
+    public function reviews(Menu $menu)
+    {
+        $review = Review::where('reviewable_type', Menu::class)->where('reviewable_id', $menu->id)->orderBy('created_at', 'DESC')->get();
+
+        return ReviewResource::collection($review);
     }
 
     public function update(UpdateMenuRequest $request, Menu $menu = NULL, $id = NULL)
@@ -719,5 +732,40 @@ class MenuController extends Controller
                             ->paginate(10);
 
         return $this->success($orders);
+    }
+
+    /**
+     * Store review for an menu item
+     * @bodyParam order_id integer The id of the order
+     * @bodyParam menu_id integer required The id of the menu item
+     * @bodyParam menu_rating integer required The rating of the menu from 1 - 5
+     * @bodyParam menu_review string A review of the menu
+     */
+    public function storeReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'menu_id' => ['required'],
+            'menu_rating' => ['required', 'integer', 'max:5'],
+            'menu_review' => ['nullable', 'string', 'sometimes']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('Error', $validator->messages(), 403);
+        }
+
+        $menu = Menu::find($request->menu_id);
+
+        if (!$menu) {
+            return $this->error('Error', 'Menu item not found', 404);
+        }
+
+        $menu->reviews()->create([
+            'user_id' => auth()->id(),
+            'order_id' => $request->has('order_id') && !empty($request->order_id) ? $request->order_id : NULL,
+            'rating' => $request->menu_rating,
+            'review' => $request->menu_review
+        ]);
+
+        return $this->success(['menu' => $menu], 'Review successfully saved');
     }
 }

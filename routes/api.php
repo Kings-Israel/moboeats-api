@@ -101,6 +101,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
     Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
     Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
     Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
+    Route::post('/menu/reviews/store', [MenuController::class, 'storeReview']);
 });
 
 Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
@@ -133,6 +134,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::apiResource('more-info', QuestionnaireController::class);
 
         Route::apiResource('menu', MenuController::class);
+        Route::get('/menu/{menu}/reviews', [MenuController::class, 'reviews']);
         Route::get('/groceries', [MenuController::class, 'groceries']);
         Route::get('/groceries/export/data', [MenuController::class, 'exportGroceries']);
         Route::get('{restaurant}/groceries', [MenuController::class, 'restaurantGroceries']);
