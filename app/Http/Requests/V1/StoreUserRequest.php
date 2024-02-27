@@ -41,4 +41,11 @@ class StoreUserRequest extends FormRequest
             'phone_no' => $this->phoneNo,
         ]);
     }
+
+    public function messages()
+    {
+        return [
+            'phoneNo.required' => 'Please enter your phone number'
+        ];
+    }
 }

@@ -69,6 +69,7 @@ class MenuController extends Controller
                 $menu = Menu::where('restaurant_id', $restaurant->resturant_id);
             } else {
                 $menu = Menu::active()
+                            ->hasActivePrices()
                             ->whereHas('menuPrices', function ($query) {
                                 $query->where('status', '2');
                             })
@@ -78,6 +79,7 @@ class MenuController extends Controller
             return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate(6)->appends($request->query()));
         } else {
             $menu = Menu::active()
+                            ->hasActivePrices()
                             ->whereHas('menuPrices', function ($query) {
                                 $query->where('status', '2');
                             })
