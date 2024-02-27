@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Jobs\SendCommunication;
 use App\Helpers\NumberGenerator;
-use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -90,10 +89,8 @@ class AuthController extends Controller
         }
     }
 
-    public function register(Request $request)
+    public function register(StoreUserRequest $request)
     {
-        Log::info($request->all());
-        return $this->error('User Register', 'Please enter phone number', 403);
         $request->validated($request->all());
 
         try {
@@ -101,7 +98,7 @@ class AuthController extends Controller
             $user = User::firstOrCreate(
                 [
                     'email' => $request->email,
-                    'phone_number' => $request->phone_no
+                    'phone_number' => $request->phone
                 ],
                 [
                     'name' => $request->name,
@@ -118,7 +115,7 @@ class AuthController extends Controller
                     'user_id' => $user->id,
                     'name' => $request->name,
                     'email' => $request->email,
-                    'phone_no' => $request->phone_no ?? NULL,
+                    'phone_no' => $request->phone ?? NULL,
                     'address' => '',
                     'status' => 2,
                 ]);
