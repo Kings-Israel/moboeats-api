@@ -103,14 +103,14 @@ class AuthController extends Controller
                 [
                     'name' => $request->name,
                     'password' => Hash::make($request->password),
-                    'user_type' => $request->user_type,
+                    'user_type' => $request->userType,
                     'status' => 2,
                     'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
                     'image' => $request->hasFile('image') ? pathinfo($request->image->store('avatar', 'user'), PATHINFO_BASENAME) : NULL,
                 ]
             );
 
-            if ($request->user_type === 'orderer') {
+            if ($request->userType === 'orderer') {
                 $orderer = Orderer::create([
                     'user_id' => $user->id,
                     'name' => $request->name,
@@ -119,14 +119,14 @@ class AuthController extends Controller
                     'address' => '',
                     'status' => 2,
                 ]);
-                $role = Role::where('name', $request->user_type)->first();
+                $role = Role::where('name', $request->userType)->first();
                 if (!$role) {
-                    return $this->error('', 'Unknown user type: ' .$request->user_type, 401);
+                    return $this->error('', 'Unknown user type: ' .$request->userType, 401);
                 }
-                $user->addRole($request->user_type);
-                $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
+                $user->addRole($request->userType);
+                // $token = $user->createToken($request->userType, ['create', 'update', 'delete']);
 
-                $code = NumberGenerator::generateVerificationCode(Otp::class, 'code');
+                // $code = NumberGenerator::generateVerificationCode(Otp::class, 'code');
 
                 // Otp::create([
                 //     'phone_number' => $user->phone_number,
@@ -136,20 +136,20 @@ class AuthController extends Controller
                 // SendCommunication::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
             }
 
-            if ($request->user_type === 'restaurant') {
-                $role = Role::where('name', $request->user_type)->first();
+            if ($request->userType === 'restaurant') {
+                $role = Role::where('name', $request->userType)->first();
                 if (!$role) {
-                    return $this->error('', 'Unknown user type: '.$request->user_type, 401);
+                    return $this->error('', 'Unknown user type: '.$request->userType, 401);
                 }
-                $user->addRole($request->user_type);
-                $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
+                $user->addRole($request->userType);
+                // $token = $user->createToken($request->userType, ['create', 'update', 'delete']);
 
                 $user->update([
                     'type' => $request->type
                 ]);
             }
 
-            if ($request->user_type === 'rider') {
+            if ($request->userType === 'rider') {
                 $rider = Rider::create([
                     'user_id' => $user->id,
                     'name' => $request->name,
@@ -165,19 +165,20 @@ class AuthController extends Controller
                     'paypal_email' => $request->paypal_email ?? NULL,
                 ]);
 
-                $role = Role::where('name', $request->user_type)->first();
+                $role = Role::where('name', $request->userType)->first();
 
                 if (!$role) {
-                    return $this->error('', 'Unknown user type: '.$request->user_type, 401);
+                    return $this->error('', 'Unknown user type: '.$request->userType, 401);
                 }
 
-                $user->addRole($request->user_type);
-                $token = $user->createToken($request->user_type, ['create', 'update', 'delete']);
+                $user->addRole($request->userType);
             }
 
-            $user->update(['role_id' => $request->user_type]);
+            $token = $user->createToken($request->userType, ['create', 'update', 'delete']);
 
-            activity()->causedBy($user)->log('registered a new account as '.$request->user_type);
+            $user->update(['role_id' => $request->userType]);
+
+            activity()->causedBy($user)->log('registered a new account as '.$request->userType);
 
             DB::commit();
 
