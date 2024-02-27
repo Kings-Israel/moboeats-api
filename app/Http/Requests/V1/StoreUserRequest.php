@@ -30,8 +30,16 @@ class StoreUserRequest extends FormRequest
             'userType' => ['required'],
             'otp' => ['nullable'],
             'image' => ['nullable'],
-            'phone_no' => ['required'],
+            'phoneNo' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_type' => $this->userType,
+            'phone_no' => $this->phoneNo,
+        ]);
     }
 
     public function messages()
