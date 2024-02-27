@@ -672,7 +672,7 @@ class MenuController extends Controller
 
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-            $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')
+            $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')
                                 ->whereNotIn('id', $category_menus)
                                 ->when($restaurant && $restaurant != NULL, function ($query) use ($restaurant) {
                                     $query->where('restaurant_id', $restaurant->id);
