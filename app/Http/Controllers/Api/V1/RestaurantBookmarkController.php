@@ -31,10 +31,10 @@ class RestaurantBookmarkController extends Controller
             $role = $user->role_id;
             if ($role === 'orderer') {
                 $favorites = RestaurantBookmark::where('user_id', Auth::user()->id)
-                ->with(['restaurant' => function ($query) {
-                    $query->where('status', 2);
-                }, 'user'])
-                ->paginate();
+                                                ->with(['restaurant' => function ($query) {
+                                                    $query->where('status', 2);
+                                                }, 'user'])
+                                                ->paginate();
                 return RestaurantBookMarkResource::collection($favorites);
             } else {
                 return $this->error('', 'Unauthorized. This is a customer feature only.', 401);
