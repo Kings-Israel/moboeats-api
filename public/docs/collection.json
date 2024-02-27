@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Moboeats",
-        "_postman_id": "8b40da38-bcf0-4308-be2d-71e0076ae6cf",
+        "_postman_id": "9248046f-80a2-4b21-a402-4d5939bf1404",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -123,7 +123,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"userId\":11}"
+                            "raw": "{\"userId\":5}"
                         },
                         "description": "",
                         "auth": {
@@ -300,7 +300,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":18,\"quantity\":9,\"status\":19}"
+                            "raw": "{\"menuId\":11,\"quantity\":16,\"status\":12}"
                         },
                         "description": "",
                         "auth": {
@@ -395,7 +395,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":20,\"quantity\":19,\"status\":18}"
+                            "raw": "{\"menuId\":4,\"quantity\":19,\"status\":12}"
                         },
                         "description": "",
                         "auth": {
@@ -516,7 +516,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cartId\":9,\"restaurantId\":7,\"delivery\":true,\"booking_time\":\"2117-11-20\"}"
+                            "raw": "{\"cartId\":3,\"restaurantId\":9,\"delivery\":true,\"booking_time\":\"2073-06-28\"}"
                         },
                         "description": "",
                         "auth": {
@@ -639,7 +639,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":5,\"restaurant_rating\":13,\"restaurant_review\":\"deserunt\",\"rider_rating\":5,\"rider_review\":\"unde\"}"
+                            "raw": "{\"order_id\":20,\"restaurant_rating\":19,\"restaurant_review\":\"sit\",\"rider_rating\":17,\"rider_review\":\"consequatur\"}"
                         },
                         "description": "",
                         "auth": {
@@ -770,7 +770,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"cancelled\"}"
+                            "raw": "{\"status\":\"completed\"}"
                         },
                         "description": "",
                         "auth": {
@@ -953,7 +953,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"sed\"}"
+                            "raw": "{\"status\":\"praesentium\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1028,7 +1028,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"consectetur\"}"
+                            "raw": "{\"status\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1059,7 +1059,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":\"voluptates\",\"rider_id\":\"quo\"}"
+                            "raw": "{\"order_id\":\"deserunt\",\"rider_id\":\"nostrum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1192,7 +1192,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurantId\":19}"
+                            "raw": "{\"restaurantId\":7}"
                         },
                         "description": "",
                         "auth": {
@@ -1311,7 +1311,7 @@
                                 {
                                     "id": "menuId",
                                     "key": "menuId",
-                                    "value": "consequatur",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -1425,7 +1425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menuId\":2}"
+                            "raw": "{\"menuId\":3}"
                         },
                         "description": "",
                         "auth": {
@@ -1446,7 +1446,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "vero",
                                     "description": "The ID of the menu bookmark."
                                 }
                             ]
@@ -1502,7 +1502,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "molestiae",
                                     "description": "The ID of the menu bookmark."
                                 }
                             ]
@@ -1602,7 +1602,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"zrkcdgypvyyrtggemvysgf\",\"email\":\"moises46@example.com\",\"password\":\"et\",\"userType\":\"ut\",\"phone\":\"ea\"}"
+                            "raw": "{\"name\":\"qjdjtzuoawmdaphljnqetvc\",\"email\":\"freeman.wisozk@example.org\",\"password\":\"aliquam\",\"userType\":\"nostrum\",\"phone\":\"facilis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1664,7 +1664,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"code\":\"repellendus\",\"password\":\"quasi\"}"
+                            "raw": "{\"code\":\"fugit\",\"password\":\"voluptatibus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1809,7 +1809,7 @@
                                 {
                                     "id": "notification",
                                     "key": "notification",
-                                    "value": "ex",
+                                    "value": "nemo",
                                     "description": "The notification."
                                 }
                             ]
@@ -2023,7 +2023,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"days\":\"quibusdam\",\"opening_times\":[\"21:51\"],\"closing_times\":[\"21:51\"]}"
+                            "raw": "{\"days\":\"quas\",\"opening_times\":[\"00:36\"],\"closing_times\":[\"00:36\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2118,7 +2118,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"names\":[\"perferendis\"]}"
+                            "raw": "{\"names\":[\"nisi\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2157,7 +2157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"names\":[\"provident\"]}"
+                            "raw": "{\"names\":[\"magni\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -2178,7 +2178,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "recusandae",
+                                    "value": "dolores",
                                     "description": "The ID of the document."
                                 }
                             ]
@@ -2340,7 +2340,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_ids\":\"molestiae\",\"code\":\"sequi\",\"start_date\":\"2024-02-27T21:51:28\",\"end_date\":\"2024-02-27T21:51:28\",\"type\":\"percentage\",\"value\":4,\"status\":\"inactive\"}"
+                            "raw": "{\"restaurant_ids\":\"debitis\",\"code\":\"deserunt\",\"start_date\":\"2024-02-28T00:36:19\",\"end_date\":\"2024-02-28T00:36:19\",\"type\":\"amount\",\"value\":1,\"status\":\"active\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2361,7 +2361,7 @@
                                 {
                                     "id": "promo_code_id",
                                     "key": "promo_code_id",
-                                    "value": "1",
+                                    "value": "8",
                                     "description": "The ID of the promo code."
                                 }
                             ]
@@ -2379,7 +2379,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"code\":\"labore\",\"start_date\":\"2024-02-27T21:51:28\",\"end_date\":\"2024-02-27T21:51:28\",\"type\":\"amount\",\"value\":11,\"status\":\"active\"}"
+                            "raw": "{\"code\":\"amet\",\"start_date\":\"2024-02-28T00:36:19\",\"end_date\":\"2024-02-28T00:36:19\",\"type\":\"percentage\",\"value\":19,\"status\":\"active\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2458,7 +2458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menu_ids\":\"sint\",\"type\":\"amount\",\"value\":5}"
+                            "raw": "{\"menu_ids\":\"beatae\",\"type\":\"amount\",\"value\":3}"
                         },
                         "description": "",
                         "auth": {
@@ -2497,7 +2497,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"type\":\"percentage\",\"value\":6}"
+                            "raw": "{\"type\":\"percentage\",\"value\":19}"
                         },
                         "description": "",
                         "auth": {
@@ -2784,7 +2784,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_id\":\"ab\",\"title\":\"corrupti\",\"status\":7}"
+                            "raw": "{\"category_id\":\"quas\",\"title\":\"totam\",\"status\":20}"
                         },
                         "description": "",
                         "auth": {
@@ -2805,7 +2805,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "iure",
+                                    "value": "aut",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -2823,7 +2823,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"et\"}"
+                            "raw": "{\"title\":\"eveniet\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2900,7 +2900,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "non",
                                     "description": "The ID of the customer."
                                 }
                             ]
@@ -2956,7 +2956,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "qui",
+                                    "value": "et",
                                     "description": "The ID of the restaurant admin."
                                 }
                             ]
@@ -3012,7 +3012,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "qui",
+                                    "value": "doloremque",
                                     "description": "The ID of the rider."
                                 }
                             ]
@@ -3350,7 +3350,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"2\",\"reason\":\"voluptas\"}"
+                            "raw": "{\"status\":\"3\",\"reason\":\"est\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3895,7 +3895,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ad\",\"description\":\"earum\"}"
+                            "raw": "{\"title\":\"iusto\",\"description\":\"laudantium\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3916,7 +3916,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repellendus",
+                                    "value": "repudiandae",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -3972,7 +3972,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "qui",
+                                    "value": "aut",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -3990,7 +3990,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ea\",\"description\":\"inventore\"}"
+                            "raw": "{\"title\":\"at\",\"description\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4011,7 +4011,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "repellat",
+                                    "value": "quisquam",
                                     "description": "The ID of the orderer food category."
                                 }
                             ]
@@ -4105,7 +4105,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"distinctio\",\"description\":\"blanditiis\"}"
+                            "raw": "{\"title\":\"ipsam\",\"description\":\"quibusdam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4126,7 +4126,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "animi",
+                                    "value": "delectus",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -4182,7 +4182,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "magni",
+                                    "value": "commodi",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -4200,7 +4200,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"aspernatur\",\"description\":\"saepe\"}"
+                            "raw": "{\"title\":\"perspiciatis\",\"description\":\"iusto\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4221,7 +4221,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "neque",
+                                    "value": "labore",
                                     "description": "The ID of the food category."
                                 }
                             ]
@@ -4267,7 +4267,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ratione\",\"description\":\"neque\"}"
+                            "raw": "{\"title\":\"exercitationem\",\"description\":\"illum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4288,7 +4288,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "id",
+                                    "value": "eaque",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -4306,7 +4306,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"blanditiis\",\"description\":\"facilis\"}"
+                            "raw": "{\"title\":\"doloremque\",\"description\":\"doloremque\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4391,7 +4391,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"sunt\",\"description\":\"ipsa\",\"status\":12,\"createdBy\":\"laboriosam\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"libero\",\"description\":\"dolor\",\"status\":8,\"createdBy\":\"quo\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4412,7 +4412,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eos",
+                                    "value": "vero",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -4468,7 +4468,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "id",
+                                    "value": "ut",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -4486,7 +4486,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"sequi\",\"description\":\"recusandae\",\"updatedBy\":\"et\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"accusantium\",\"description\":\"voluptate\",\"updatedBy\":\"autem\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4507,7 +4507,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "perferendis",
+                                    "value": "consequatur",
                                     "description": "The ID of the orderer food sub category."
                                 }
                             ]
@@ -4601,7 +4601,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"amet\",\"description\":\"facere\",\"status\":1,\"createdBy\":\"quo\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"minus\",\"description\":\"quia\",\"status\":15,\"createdBy\":\"voluptatem\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4622,7 +4622,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ad",
+                                    "value": "est",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -4678,7 +4678,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "et",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -4696,7 +4696,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"excepturi\",\"description\":\"deleniti\",\"updatedBy\":\"dignissimos\",\"categoryIds\":[]}"
+                            "raw": "{\"title\":\"perferendis\",\"description\":\"ut\",\"updatedBy\":\"et\",\"categoryIds\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -4717,7 +4717,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "id",
+                                    "value": "assumenda",
                                     "description": "The ID of the food sub category."
                                 }
                             ]
@@ -4826,7 +4826,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\"}],\"subCategories\":[],\"images\":[{\"id\":5,\"uuid\":\"c335a3e1-dbc4-4ca3-879d-1182d788cc21\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db32984a5f3.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"menuPrices\":[{\"id\":10,\"uuid\":\"a2687d02-ce69-4071-88cf-5ea46f1da638\",\"attributes\":{\"price\":15,\"description\":\"Description\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"restaurant\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}},{\"id\":15,\"uuid\":\"f4717c18-a3ef-4801-a087-4a1471acfa83\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\"}],\"subCategories\":[],\"images\":[{\"id\":6,\"uuid\":\"76fe3c6a-c937-4214-af0d-4d837b90eeb6\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db329864fca.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":15,\"uuid\":\"f4717c18-a3ef-4801-a087-4a1471acfa83\",\"title\":\"Onions\"}}}],\"menuPrices\":[],\"restaurant\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"attributes\":{\"name\":\"Ullrich, McDermott and Hintz\",\"nameShort\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"aboutShort\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phoneNo\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postalCode\":\"07024\",\"latitude\":null,\"longitude\":null,\"mapLocation\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"name\":\"Ullrich, McDermott and Hintz\",\"name_short\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"user_id\":3,\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"about_short\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phone_no\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postal_code\":\"07024\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"glennie.huels@hotmail.com\",\"updated_by\":\"dach.earnest@auer.org\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":1,\"reviews\":[]},\"menus_count\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"name\":\"Ullrich, McDermott and Hintz\",\"name_short\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"user_id\":3,\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"about_short\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phone_no\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postal_code\":\"07024\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"glennie.huels@hotmail.com\",\"updated_by\":\"dach.earnest@auer.org\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":1,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries\",\"per_page\":10,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\"}],\"subCategories\":[],\"images\":[{\"id\":5,\"uuid\":\"c335a3e1-dbc4-4ca3-879d-1182d788cc21\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db32984a5f3.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"menuPrices\":[{\"id\":10,\"uuid\":\"a2687d02-ce69-4071-88cf-5ea46f1da638\",\"attributes\":{\"price\":15,\"description\":\"Description\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"restaurant\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":4},\"relationships\":{\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]},\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}},{\"id\":15,\"uuid\":\"f4717c18-a3ef-4801-a087-4a1471acfa83\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\"}],\"subCategories\":[],\"images\":[{\"id\":6,\"uuid\":\"76fe3c6a-c937-4214-af0d-4d837b90eeb6\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db329864fca.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":15,\"uuid\":\"f4717c18-a3ef-4801-a087-4a1471acfa83\",\"title\":\"Onions\"}}}],\"menuPrices\":[],\"restaurant\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"attributes\":{\"name\":\"Ullrich, McDermott and Hintz\",\"nameShort\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"aboutShort\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phoneNo\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postalCode\":\"07024\",\"latitude\":null,\"longitude\":null,\"mapLocation\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"name\":\"Ullrich, McDermott and Hintz\",\"name_short\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"user_id\":3,\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"about_short\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phone_no\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postal_code\":\"07024\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"glennie.huels@hotmail.com\",\"updated_by\":\"dach.earnest@auer.org\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":1,\"reviews\":[]},\"menus_count\":{\"id\":3,\"uuid\":\"108b5b9c-cc08-47ed-a1a8-9efc3dea760e\",\"name\":\"Ullrich, McDermott and Hintz\",\"name_short\":\"dolorum\",\"email\":\"karson.ortiz@example.com\",\"user_id\":3,\"about\":\"Ipsum ex dolor occaecati. Recusandae et rerum harum voluptas voluptas est velit. Ratione sint molestiae quae velit amet quaerat saepe. Voluptates aut nobis quos quam id quae numquam.\\n\\nVoluptatibus inventore similique ut ipsam saepe repellendus accusamus. Quod qui cum esse dolor non qui atque. Iste consequatur illum vel quasi ut qui. Vitae amet quibusdam sed.\\n\\nCupiditate est similique voluptatem perspiciatis deserunt. Numquam et unde debitis enim molestiae et ut quae. Asperiores ut omnis qui voluptatem earum sed rerum. Dolor perferendis esse temporibus possimus est voluptate.\",\"about_short\":\"Sapiente praesentium consequuntur delectus dolorem molestiae et.\",\"phone_no\":\"+1.386.462.3085\",\"address\":\"778 Legros Highway Suite 490\",\"city\":\"Omaland\",\"state\":\"Delaware\",\"postal_code\":\"07024\",\"latitude\":null,\"longitude\":null,\"map_location\":\"-11.051426,165.945581\",\"url\":\"http:\\\/\\\/beier.com\\\/aut-qui-consequatur-totam-id.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/assets\\\/user\\\/default.png\",\"status\":\"Approved\",\"created_by\":\"glennie.huels@hotmail.com\",\"updated_by\":\"dach.earnest@auer.org\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-17T16:34:45.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":null,\"orders_count\":0,\"menus_count\":1,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/groceries\",\"per_page\":10,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -4840,24 +4840,24 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "cupiditate",
+                                    "value": "sint",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "ut",
+                                    "value": "voluptas",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "saepe",
+                                    "value": "facilis",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/menu?categories=cupiditate&subCategories=ut&restaurant=saepe"
+                            "raw": "{{baseUrl}}\/api\/v1\/menu?categories=sint&subCategories=voluptas&restaurant=facilis"
                         },
                         "method": "GET",
                         "header": [
@@ -4901,7 +4901,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\",\"subCategories\":[{\"id\":1,\"uuid\":\"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3\",\"title\":\"Dairy\",\"description\":\"dairy description\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null}]}],\"images\":[{\"id\":5,\"uuid\":\"c335a3e1-dbc4-4ca3-879d-1182d788cc21\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db32984a5f3.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"menuPrices\":[{\"id\":10,\"uuid\":\"a2687d02-ce69-4071-88cf-5ea46f1da638\",\"attributes\":{\"price\":15,\"description\":\"Description\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"restaurant\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":0},\"relationships\":{\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[]},\"reviews\":[]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu\",\"per_page\":15,\"to\":1,\"total\":1}}",
+                            "body": "{\"data\":[{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"attributes\":{\"title\":\"Onions\",\"description\":\"Tasty Onions\",\"createdBy\":\"test@restaurant.com\",\"updatedBy\":\"test@restaurant.com\",\"status\":\"2\",\"average_rating\":0},\"relationships\":{\"categories\":[{\"id\":7,\"uuid\":\"0d256427-4432-40d9-8dc9-3f7ea9ec8d82\",\"title\":\"Groceries\",\"description\":\"All Groceries\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null,\"image\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/category\\\/images\\\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png\",\"subCategories\":[{\"id\":1,\"uuid\":\"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3\",\"title\":\"Dairy\",\"description\":\"dairy description\",\"status\":2,\"createdBy\":\"admin@moboeats.com\",\"updatedBy\":null}]}],\"images\":[{\"id\":5,\"uuid\":\"c335a3e1-dbc4-4ca3-879d-1182d788cc21\",\"attributes\":{\"imageUrl\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/menus\\\/images\\\/undraw_Cooking_p7m1-65db329815d1c65db32984a5f3.png\",\"sequence\":1,\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"menuPrices\":[{\"id\":10,\"uuid\":\"a2687d02-ce69-4071-88cf-5ea46f1da638\",\"attributes\":{\"price\":15,\"description\":\"Description\",\"status\":\"2\"},\"relationships\":{\"menu\":{\"id\":14,\"uuid\":\"b37bad6c-d29f-449a-83c2-e73adaa6b8ea\",\"title\":\"Onions\"}}}],\"restaurant\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":4},\"relationships\":{\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]},\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]}},\"discount\":null,\"orderItems\":[],\"orders_count\":0,\"total_orders_value\":0,\"reviews\":[]}}],\"links\":{\"first\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"last\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/moboeats.test\\\/api\\\/v1\\\/menu\",\"per_page\":15,\"to\":1,\"total\":1}}",
                             "name": ""
                         }
                     ]
@@ -5019,7 +5019,7 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "sit",
+                                    "value": "corrupti",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
@@ -5031,12 +5031,12 @@
                                 },
                                 {
                                     "key": "restaurant",
-                                    "value": "consequatur",
+                                    "value": "odit",
                                     "description": "to fetch restaurant that owns with Menu",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=sit&subCategories=nam&restaurant=consequatur"
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-menu?categories=corrupti&subCategories=nam&restaurant=odit"
                         },
                         "method": "GET",
                         "header": [
@@ -5099,7 +5099,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"qui\",\"description\":\"vitae\",\"status\":15,\"categoryIds\":[11]}"
+                            "raw": "{\"title\":\"sequi\",\"description\":\"ut\",\"status\":11,\"categoryIds\":[5]}"
                         },
                         "description": "",
                         "auth": {
@@ -5120,7 +5120,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sed",
+                                    "value": "dolore",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -5176,7 +5176,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "delectus",
+                                    "value": "sed",
                                     "description": "The ID of the orderer menu."
                                 }
                             ]
@@ -5194,7 +5194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"sapiente\",\"description\":\"molestiae\",\"status\":3,\"categoryIds\":[9]}"
+                            "raw": "{\"title\":\"ea\",\"description\":\"et\",\"status\":1,\"categoryIds\":[20]}"
                         },
                         "description": "",
                         "auth": {
@@ -5225,7 +5225,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"menu_id\":17,\"menu_rating\":5,\"menu_review\":\"eius\",\"order_id\":10}"
+                            "raw": "{\"menu_id\":15,\"menu_rating\":11,\"menu_review\":\"facere\",\"order_id\":1}"
                         },
                         "description": "",
                         "auth": {
@@ -5243,13 +5243,13 @@
                             "query": [
                                 {
                                     "key": "categories",
-                                    "value": "ut",
+                                    "value": "corrupti",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
                                 {
                                     "key": "subCategories",
-                                    "value": "iste",
+                                    "value": "officia",
                                     "description": "to fetch categories associated with Menu",
                                     "disabled": false
                                 },
@@ -5260,7 +5260,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=ut&subCategories=iste&restaurant=doloremque"
+                            "raw": "{{baseUrl}}\/api\/v1\/restaurant\/menu?categories=corrupti&subCategories=officia&restaurant=doloremque"
                         },
                         "method": "GET",
                         "header": [
@@ -5323,7 +5323,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"cum\",\"description\":\"officiis\",\"status\":13,\"categoryIds\":[18]}"
+                            "raw": "{\"title\":\"architecto\",\"description\":\"voluptatum\",\"status\":11,\"categoryIds\":[12]}"
                         },
                         "description": "",
                         "auth": {
@@ -5418,7 +5418,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"quo\",\"description\":\"sit\",\"status\":6,\"categoryIds\":[14]}"
+                            "raw": "{\"title\":\"et\",\"description\":\"doloremque\",\"status\":5,\"categoryIds\":[12]}"
                         },
                         "description": "",
                         "auth": {
@@ -5665,7 +5665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"beatae\",\"description\":\"et\",\"status\":2,\"categoryIds\":[2]}"
+                            "raw": "{\"title\":\"iusto\",\"description\":\"distinctio\",\"status\":14,\"categoryIds\":[18]}"
                         },
                         "description": "",
                         "auth": {
@@ -5704,7 +5704,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"quidem\",\"description\":\"laboriosam\",\"status\":8,\"categoryIds\":[2]}"
+                            "raw": "{\"title\":\"recusandae\",\"description\":\"rerum\",\"status\":6,\"categoryIds\":[2]}"
                         },
                         "description": "",
                         "auth": {
@@ -5867,7 +5867,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_ids\":\"a\",\"title\":\"et\",\"description\":\"eos\",\"status\":2,\"categoryIds\":\"voluptates\"}"
+                            "raw": "{\"restaurant_ids\":\"aut\",\"title\":\"voluptatum\",\"description\":\"eius\",\"status\":2,\"categoryIds\":\"odio\"}"
                         },
                         "description": "",
                         "auth": {
@@ -5906,7 +5906,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_ids\":[15],\"title\":\"hic\",\"description\":\"culpa\",\"status\":15,\"categoryIds\":[5]}"
+                            "raw": "{\"restaurant_ids\":[10],\"title\":\"quia\",\"description\":\"assumenda\",\"status\":10,\"categoryIds\":[15]}"
                         },
                         "description": "",
                         "auth": {
@@ -6047,7 +6047,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"price\":0,\"description\":\"dolorum\",\"status\":17,\"menu_id\":\"non\"}"
+                            "raw": "{\"price\":1,\"description\":\"molestias\",\"status\":3,\"menu_id\":\"vitae\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6142,7 +6142,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"description\":\"culpa\",\"status\":\"exercitationem\",\"price\":0}"
+                            "raw": "{\"description\":\"enim\",\"status\":\"nisi\",\"price\":1}"
                         },
                         "description": "",
                         "auth": {
@@ -6217,7 +6217,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"description\":\"qui\",\"status\":\"similique\",\"price\":0}"
+                            "raw": "{\"description\":\"error\",\"status\":\"pariatur\",\"price\":1}"
                         },
                         "description": "",
                         "auth": {
@@ -6338,7 +6338,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"quidem\",\"email\":\"vicente.harris@example.net\"}"
+                            "raw": "{\"name\":\"porro\",\"email\":\"rpacocha@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6359,7 +6359,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "8a524ad1-280c-377d-999c-924e34d3f249",
+                                    "value": "3a4709c8-ed38-329d-96ca-0e61ee2349cf",
                                     "description": ""
                                 }
                             ]
@@ -6415,7 +6415,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "5827b6e7-1165-3644-8a22-e0294912bc7f",
+                                    "value": "a3648a35-eddb-3e79-b794-5b0c9710fe67",
                                     "description": ""
                                 }
                             ]
@@ -6433,7 +6433,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"uuid\":\"38b1ef12-2d3b-3fba-a318-b9b66c79c984\",\"name\":\"odio\",\"email\":\"lmorar@example.com\",\"phoneNo\":\"explicabo\",\"address\":\"veniam\",\"city\":\"qui\",\"state\":\"aliquid\",\"mapLocation\":\"optio\"}"
+                            "raw": "{\"uuid\":\"650829e9-f6a7-3533-89a9-e10cd038d325\",\"name\":\"id\",\"email\":\"gaylord.elody@example.com\",\"phoneNo\":\"ratione\",\"address\":\"et\",\"city\":\"et\",\"state\":\"quae\",\"mapLocation\":\"rem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6454,7 +6454,7 @@
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "24523266-12c3-318f-a308-04cb9eb4fc06",
+                                    "value": "a36df649-0c31-36ff-b49a-6e82ba5c61eb",
                                     "description": ""
                                 }
                             ]
@@ -6496,13 +6496,13 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": "labore",
+                                    "value": "quam",
                                     "description": "The ID of the user."
                                 },
                                 {
                                     "id": "order_id",
                                     "key": "order_id",
-                                    "value": "provident",
+                                    "value": "deserunt",
                                     "description": "The ID of the order."
                                 }
                             ]
@@ -6746,7 +6746,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "ea",
+                                    "value": "exercitationem",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -6793,7 +6793,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":0},\"relationships\":{\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"reviews\":[],\"restaurant_tables\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"reviews\":[],\"restaurant_tables\":[]},\"reviews\":[]}}}",
+                            "body": "{\"data\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"attributes\":{\"name\":\"Price-Okuneva\",\"nameShort\":\"et\",\"email\":\"stephany76@example.com\",\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"aboutShort\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phoneNo\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postalCode\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"mapLocation\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"sitting_capacity\":null,\"denied_reason\":\"\",\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"average_rating\":4},\"relationships\":{\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"orders_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}],\"restaurant_tables\":[]},\"menus_count\":{\"id\":1,\"uuid\":\"4a9e2363-67d1-4661-84e4-e3f4815ef30b\",\"name\":\"Price-Okuneva\",\"name_short\":\"et\",\"email\":\"stephany76@example.com\",\"user_id\":3,\"about\":\"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\\r\\n\\r\\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\\r\\n\\r\\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.\",\"about_short\":\"Nihil voluptas ut ut nulla nihil consectetur.\",\"phone_no\":\"413.890.1105\",\"address\":\"London, UK\",\"city\":\"North Hanshaven\",\"state\":\"NAIROBI\",\"postal_code\":\"00100\",\"latitude\":\"51.5072178\",\"longitude\":\"-0.1275862\",\"map_location\":\"https:\\\/\\\/maps.google.com\\\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99\",\"url\":\"https:\\\/\\\/lehner.com\\\/minima-est-cumque-ad-et-et-deleniti-alias.html\",\"logo\":\"http:\\\/\\\/moboeats.test\\\/storage\\\/companyLogos\\\/logos\\\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png\",\"status\":\"Approved\",\"created_by\":\"dale14@erdman.com\",\"updated_by\":null,\"created_at\":\"2024-02-17T16:34:45.000000Z\",\"updated_at\":\"2024-02-25T07:27:08.000000Z\",\"sitting_capacity\":null,\"denied_reason\":null,\"service_charge_agreement\":null,\"groceries_service_charge_agreement\":0,\"paypal_email\":\"milimokings@gmail.com\",\"orders_count\":1,\"menus_count\":9,\"operating_hours\":[{\"id\":23,\"restaurant_id\":1,\"day\":\"Monday\",\"opening_time\":\"20:46\",\"closing_time\":\"03:03\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":24,\"restaurant_id\":1,\"day\":\"Tuesday\",\"opening_time\":\"04:19\",\"closing_time\":\"06:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":25,\"restaurant_id\":1,\"day\":\"Wednesday\",\"opening_time\":\"10:58\",\"closing_time\":\"19:00\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":26,\"restaurant_id\":1,\"day\":\"Thursday\",\"opening_time\":\"22:55\",\"closing_time\":\"02:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":27,\"restaurant_id\":1,\"day\":\"Friday\",\"opening_time\":\"23:32\",\"closing_time\":\"17:54\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":28,\"restaurant_id\":1,\"day\":\"Saturday\",\"opening_time\":\"18:38\",\"closing_time\":\"07:58\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"},{\"id\":29,\"restaurant_id\":1,\"day\":\"Sunday\",\"opening_time\":\"21:07\",\"closing_time\":\"19:43\",\"created_at\":\"2024-02-25T07:28:28.000000Z\",\"updated_at\":\"2024-02-25T07:28:28.000000Z\"}],\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}],\"restaurant_tables\":[]},\"reviews\":[{\"id\":1,\"user_id\":2,\"order_id\":null,\"reviewable_id\":1,\"reviewable_type\":\"App\\\\Models\\\\Restaurant\",\"rating\":4,\"review\":null,\"created_at\":\"2024-02-27T18:25:16.000000Z\",\"updated_at\":\"2024-02-27T18:25:16.000000Z\"}]}}}",
                             "name": ""
                         }
                     ]
@@ -6806,6 +6806,54 @@
                             "path": "api\/v1\/seating-areas",
                             "query": [],
                             "raw": "{{baseUrl}}\/api\/v1\/seating-areas"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Rated and Reviewed Restaurants.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/orderer\/orderer-restaurants\/rated",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/orderer\/orderer-restaurants\/rated"
                         },
                         "method": "GET",
                         "header": [
@@ -6864,7 +6912,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "id",
+                                    "value": "sed",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -6978,7 +7026,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"atque\",\"name_short\":\"odio\",\"email\":\"jennie.howell@example.org\",\"about\":\"ipsum\",\"about_short\":\"at\",\"place_id\":\"magni\",\"latitude\":\"aut\",\"longitude\":\"eligendi\",\"logo\":\"assumenda\",\"sitting_capacity\":18,\"paypal_email\":\"gerlach.alta@example.net\"}"
+                            "raw": "{\"name\":\"hic\",\"name_short\":\"impedit\",\"email\":\"jessika.shanahan@example.com\",\"about\":\"quis\",\"about_short\":\"expedita\",\"place_id\":\"omnis\",\"latitude\":\"ab\",\"longitude\":\"quo\",\"logo\":\"maiores\",\"sitting_capacity\":15,\"paypal_email\":\"eric06@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6999,13 +7047,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vel",
+                                    "value": "inventore",
                                     "description": "The ID of the orderer restaurant."
                                 },
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "tempora",
+                                    "value": "aut",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -7061,7 +7109,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "velit",
+                                    "value": "possimus",
                                     "description": "The ID of the orderer restaurant."
                                 }
                             ]
@@ -7079,7 +7127,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"sequi\",\"name_short\":\"a\",\"email\":\"odell.considine@example.com\",\"about\":\"aliquam\",\"about_short\":\"libero\",\"phone_no\":\"maiores\",\"address\":\"id\",\"state\":\"fugit\",\"postal_code\":\"consequatur\",\"latitude\":\"dolor\",\"longitude\":\"harum\",\"paypal_email\":\"uabernathy@example.org\"}"
+                            "raw": "{\"name\":\"iste\",\"name_short\":\"adipisci\",\"email\":\"ckozey@example.org\",\"about\":\"et\",\"about_short\":\"similique\",\"phone_no\":\"unde\",\"address\":\"non\",\"state\":\"nesciunt\",\"postal_code\":\"non\",\"latitude\":\"laudantium\",\"longitude\":\"fugit\",\"paypal_email\":\"leffler.larue@example.com\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7202,7 +7250,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurant_id\":5,\"rating\":17,\"review\":\"architecto\"}"
+                            "raw": "{\"restaurant_id\":5,\"rating\":9,\"review\":\"tempora\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7281,7 +7329,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ut\",\"name_short\":\"soluta\",\"email\":\"fflatley@example.com\",\"about\":\"mollitia\",\"about_short\":\"a\",\"place_id\":\"nesciunt\",\"latitude\":\"vero\",\"longitude\":\"in\",\"logo\":\"voluptate\",\"sitting_capacity\":6,\"paypal_email\":\"hmohr@example.com\"}"
+                            "raw": "{\"name\":\"aut\",\"name_short\":\"vel\",\"email\":\"legros.alexzander@example.com\",\"about\":\"fuga\",\"about_short\":\"omnis\",\"place_id\":\"ipsa\",\"latitude\":\"voluptatem\",\"longitude\":\"repudiandae\",\"logo\":\"fugit\",\"sitting_capacity\":2,\"paypal_email\":\"dbaumbach@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7308,7 +7356,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "laudantium",
+                                    "value": "ex",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -7382,7 +7430,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"magni\",\"name_short\":\"in\",\"email\":\"meghan.lindgren@example.org\",\"about\":\"vitae\",\"about_short\":\"quaerat\",\"phone_no\":\"asperiores\",\"address\":\"blanditiis\",\"state\":\"praesentium\",\"postal_code\":\"sit\",\"latitude\":\"dolores\",\"longitude\":\"doloremque\",\"paypal_email\":\"pink92@example.com\"}"
+                            "raw": "{\"name\":\"odio\",\"name_short\":\"dolor\",\"email\":\"vfranecki@example.net\",\"about\":\"perspiciatis\",\"about_short\":\"accusantium\",\"phone_no\":\"molestiae\",\"address\":\"et\",\"state\":\"voluptas\",\"postal_code\":\"praesentium\",\"latitude\":\"sapiente\",\"longitude\":\"rerum\",\"paypal_email\":\"tevin41@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7449,7 +7497,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"est\",\"name_short\":\"eveniet\",\"email\":\"lwolf@example.org\",\"about\":\"sint\",\"about_short\":\"labore\",\"place_id\":\"blanditiis\",\"latitude\":\"sint\",\"longitude\":\"incidunt\",\"logo\":\"fugiat\",\"sitting_capacity\":6,\"paypal_email\":\"gussie.oconnell@example.net\"}"
+                            "raw": "{\"name\":\"ut\",\"name_short\":\"in\",\"email\":\"jude27@example.net\",\"about\":\"unde\",\"about_short\":\"nulla\",\"place_id\":\"nulla\",\"latitude\":\"id\",\"longitude\":\"non\",\"logo\":\"tempore\",\"sitting_capacity\":5,\"paypal_email\":\"ichristiansen@example.net\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7524,7 +7572,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "iste",
+                                    "value": "vel",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -7694,7 +7742,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"officiis\",\"name_short\":\"ea\",\"email\":\"shanny.lubowitz@example.org\",\"about\":\"eaque\",\"about_short\":\"aliquam\",\"place_id\":\"voluptatem\",\"latitude\":\"sequi\",\"longitude\":\"aspernatur\",\"logo\":\"hic\",\"sitting_capacity\":2,\"paypal_email\":\"rice.hassan@example.net\"}"
+                            "raw": "{\"name\":\"quos\",\"name_short\":\"quae\",\"email\":\"crawford.batz@example.com\",\"about\":\"sapiente\",\"about_short\":\"magnam\",\"place_id\":\"inventore\",\"latitude\":\"adipisci\",\"longitude\":\"quis\",\"logo\":\"veritatis\",\"sitting_capacity\":10,\"paypal_email\":\"sophia.walsh@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7733,7 +7781,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"necessitatibus\",\"name_short\":\"ipsam\",\"email\":\"beahan.elaina@example.org\",\"about\":\"vel\",\"about_short\":\"commodi\",\"phone_no\":\"deleniti\",\"address\":\"hic\",\"state\":\"dolores\",\"postal_code\":\"illum\",\"latitude\":\"tenetur\",\"longitude\":\"in\",\"paypal_email\":\"lane77@example.org\"}"
+                            "raw": "{\"name\":\"rerum\",\"name_short\":\"delectus\",\"email\":\"pfannerstill.daija@example.org\",\"about\":\"quia\",\"about_short\":\"nemo\",\"phone_no\":\"perspiciatis\",\"address\":\"voluptate\",\"state\":\"ipsam\",\"postal_code\":\"perspiciatis\",\"latitude\":\"ex\",\"longitude\":\"dolor\",\"paypal_email\":\"dicki.arthur@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7856,7 +7904,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"asperiores\",\"name_short\":\"explicabo\",\"email\":\"feeney.erica@example.org\",\"about\":\"totam\",\"about_short\":\"possimus\",\"phone_no\":\"fugit\",\"address\":\"veritatis\",\"state\":\"ut\",\"postal_code\":\"tenetur\",\"latitude\":\"aspernatur\",\"longitude\":\"quas\",\"paypal_email\":\"meghan.conn@example.net\"}"
+                            "raw": "{\"name\":\"mollitia\",\"name_short\":\"dolor\",\"email\":\"hernser@example.org\",\"about\":\"quaerat\",\"about_short\":\"neque\",\"phone_no\":\"doloribus\",\"address\":\"illum\",\"state\":\"ut\",\"postal_code\":\"sit\",\"latitude\":\"impedit\",\"longitude\":\"commodi\",\"paypal_email\":\"blynch@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7877,7 +7925,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "provident",
+                                    "value": "quidem",
                                     "description": "The ID of the rider."
                                 }
                             ]
@@ -8199,7 +8247,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"alias\",\"seating_area_id\":\"sed\",\"seat_number\":\"magni\"}"
+                            "raw": "{\"name\":\"dolorem\",\"seating_area_id\":\"architecto\",\"seat_number\":\"ea\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8226,13 +8274,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ipsum",
+                                    "value": "distinctio",
                                     "description": "The id of the category"
                                 },
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "175c1681-5b22-35f5-9b44-7349e5165fc4",
+                                    "value": "6796135c-2630-39e5-9d92-1f1d8ef5bbbd",
                                     "description": "The uuid of the restaurant"
                                 }
                             ]
@@ -8250,7 +8298,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"minima\",\"seating_area_id\":\"eveniet\",\"seat_number\":\"exercitationem\"}"
+                            "raw": "{\"name\":\"est\",\"seating_area_id\":\"exercitationem\",\"seat_number\":\"id\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8333,7 +8381,7 @@
                                 {
                                     "id": "restaurant",
                                     "key": "restaurant",
-                                    "value": "temporibus",
+                                    "value": "velit",
                                     "description": "The ID of the restaurant"
                                 }
                             ]
@@ -8563,7 +8611,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "est",
+                                    "value": "qui",
                                     "description": "The ID or the UUID of the restaurant"
                                 }
                             ]
@@ -8637,7 +8685,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"vero\",\"description\":\"facere\"}"
+                            "raw": "{\"title\":\"est\",\"description\":\"eos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8664,13 +8712,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "ullam",
                                     "description": "The id of the category"
                                 },
                                 {
                                     "id": "uuid",
                                     "key": "uuid",
-                                    "value": "380153e4-bde1-3d8a-8707-3e0f3b0627ba",
+                                    "value": "10fec5c1-7c1b-3913-b128-dc07f951f02f",
                                     "description": "The uuid of the restaurant"
                                 }
                             ]
@@ -8688,7 +8736,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ea\",\"description\":\"labore\"}"
+                            "raw": "{\"title\":\"et\",\"description\":\"mollitia\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8831,7 +8879,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"quo\",\"last_name\":\"tempore\",\"email\":\"facilis\",\"phone_number\":\"saepe\",\"avatar\":\"mfsifglqplqurjic\"}"
+                            "raw": "{\"first_name\":\"qui\",\"last_name\":\"quae\",\"email\":\"libero\",\"phone_number\":\"omnis\",\"avatar\":\"w\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8870,7 +8918,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"tenetur\",\"last_name\":\"nostrum\",\"email\":\"omnis\",\"phone_number\":\"minima\",\"avatar\":\"fjcf\",\"suspend\":\"1\"}"
+                            "raw": "{\"first_name\":\"dolores\",\"last_name\":\"consequatur\",\"email\":\"modi\",\"phone_number\":\"repudiandae\",\"avatar\":\"aohehyxtbskozksuxb\",\"suspend\":\"2\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8955,7 +9003,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"restaurantUuid\":\"reprehenderit\",\"delivery\":\"aut\",\"booking\":\"ut\"}"
+                            "raw": "{\"restaurantUuid\":\"sed\",\"delivery\":\"blanditiis\",\"booking\":\"magnam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8976,7 +9024,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptas",
+                                    "value": "repudiandae",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -9032,7 +9080,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "molestias",
+                                    "value": "voluptatem",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -9068,7 +9116,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "porro",
+                                    "value": "iste",
                                     "description": "The ID of the more info."
                                 }
                             ]
@@ -9120,7 +9168,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"rider_id\":15,\"rating\":8,\"review\":\"inventore\"}"
+                            "raw": "{\"rider_id\":13,\"rating\":10,\"review\":\"qui\"}"
                         },
                         "description": ""
                     },
@@ -9151,43 +9199,43 @@
                             "formdata": [
                                 {
                                     "key": "vehicle_type",
-                                    "value": "blanditiis",
+                                    "value": "rerum",
                                     "type": "text",
                                     "description": "The vehicle type of the rider"
                                 },
                                 {
                                     "key": "vehicle_license_plate",
-                                    "value": "consequatur",
+                                    "value": "facere",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "paypal_email",
-                                    "value": "john.walker@example.net",
+                                    "value": "rlockman@example.net",
                                     "type": "text",
                                     "description": "Must be a valid email address."
                                 },
                                 {
                                     "key": "vehicle_licesne_plate",
-                                    "value": "omnis",
+                                    "value": "libero",
                                     "type": "text",
                                     "description": "The license plate of the rider's vehicle"
                                 },
                                 {
                                     "key": "city",
-                                    "value": "adipisci",
+                                    "value": "et",
                                     "type": "text",
                                     "description": "The city where the rider is located"
                                 },
                                 {
                                     "key": "state",
-                                    "value": "animi",
+                                    "value": "distinctio",
                                     "type": "text",
                                     "description": "The state of where the rider is located"
                                 },
                                 {
                                     "key": "postal_code",
-                                    "value": "est",
+                                    "value": "et",
                                     "type": "text",
                                     "description": "The postal code of the rider"
                                 },
@@ -9234,37 +9282,37 @@
                             "formdata": [
                                 {
                                     "key": "paypal_email",
-                                    "value": "mschroeder@example.net",
+                                    "value": "christine.conn@example.com",
                                     "type": "text",
                                     "description": "Must be a valid email address."
                                 },
                                 {
                                     "key": "vehicle_type",
-                                    "value": "magni",
+                                    "value": "occaecati",
                                     "type": "text",
                                     "description": "The vehicle type of the rider"
                                 },
                                 {
                                     "key": "vehicle_licesne_plate",
-                                    "value": "facilis",
+                                    "value": "qui",
                                     "type": "text",
                                     "description": "The license plate of the rider's vehicle"
                                 },
                                 {
                                     "key": "city",
-                                    "value": "explicabo",
+                                    "value": "perspiciatis",
                                     "type": "text",
                                     "description": "The city where the rider is located"
                                 },
                                 {
                                     "key": "state",
-                                    "value": "ut",
+                                    "value": "deserunt",
                                     "type": "text",
                                     "description": "The state of where the rider is located"
                                 },
                                 {
                                     "key": "postal_code",
-                                    "value": "voluptatum",
+                                    "value": "placeat",
                                     "type": "text",
                                     "description": "The postal code of the rider"
                                 },
@@ -9372,7 +9420,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":\"eum\",\"status\":\"vel\"}"
+                            "raw": "{\"order_id\":\"est\",\"status\":\"architecto\"}"
                         },
                         "description": ""
                     },
@@ -9408,7 +9456,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"longitude\":\"eaque\",\"latitude\":\"mollitia\"}"
+                            "raw": "{\"longitude\":\"nobis\",\"latitude\":\"et\"}"
                         },
                         "description": ""
                     },
@@ -9436,7 +9484,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"longitude\":\"laborum\",\"latitude\":\"voluptatum\"}"
+                            "raw": "{\"longitude\":\"excepturi\",\"latitude\":\"consequatur\"}"
                         },
                         "description": ""
                     },

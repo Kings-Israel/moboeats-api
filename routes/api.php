@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
 
     Route::apiResource('orderers', OrdererController::class);
 
+    Route::get('/orderer-restaurants/rated', [RestaurantController::class, 'rating']);
     Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
     Route::get('orderer-restaurants/{restaurant?}/menu', [MenuController::class, 'restaurantMenu']);
     Route::apiResource('orderer-restaurants', RestaurantController::class);

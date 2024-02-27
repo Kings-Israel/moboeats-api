@@ -175,6 +175,33 @@ class Restaurant extends Model implements UrlRoutable
     }
 
     /**
+     * Scope a query to only include restaurants that have menu items with prices
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeHasMenu($query)
+    {
+        return $query->whereHas('menus', function ($query) {
+            $query->where('status', 2)
+                    ->whereHas('menuPrices', function ($query) {
+                        $query->where('status', 2);
+                    });
+        });
+    }
+
+    /**
+     * Scope a query to only include rated restaurants
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRated($query)
+    {
+        return $query->whereHas('reviews');
+    }
+
+    /**
      * Get the questionnaire associated with the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

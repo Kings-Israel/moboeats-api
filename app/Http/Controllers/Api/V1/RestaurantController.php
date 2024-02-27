@@ -41,6 +41,7 @@ use App\Models\SeatingArea;
 use App\Models\RestaurantTable;
 use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Query\JoinClause;
 
 /**
  * @group Restaurant Management
@@ -70,7 +71,7 @@ class RestaurantController extends Controller
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
 
-                $restaurants = Restaurant::InOperation()->Approved()->where($filterItems);
+                $restaurants = Restaurant::InOperation()->Approved()->hasMenu()->where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
                 //             (6371 * acos(cos(radians($request->latitude))
@@ -93,7 +94,7 @@ class RestaurantController extends Controller
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
                 $includeQuestionnaire = $request->query('questionnaire');
-                $restaurants = Restaurant::InOperation()->Approved()->where($filterItems);
+                $restaurants = Restaurant::InOperation()->Approved()->hasMenu()->where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
                 //             (6371 * acos(cos(radians($request->latitude))
@@ -155,7 +156,7 @@ class RestaurantController extends Controller
                 return new RestaurantCollection($restaurants);
             }
         } else {
-            $restaurants = Restaurant::InOperation()->Approved();
+            $restaurants = Restaurant::InOperation()->Approved()->hasMenu();
 
             // $restaurants = Restaurant::select(DB::raw("*,
             //             (6371 * acos(cos(radians($request->latitude))
@@ -170,6 +171,16 @@ class RestaurantController extends Controller
 
             return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
         }
+    }
+
+    /**
+     * Get Rated and Reviewed Restaurants.
+     */
+    public function rating(Request $request)
+    {
+        $restaurants = Restaurant::InOperation()->Approved()->hasMenu()->rated();
+
+        return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
     }
 
     public function seatingAreas()
