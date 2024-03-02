@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MenuExport;
 use App\Exports\GroceryExport;
+use App\Http\Resources\V1\FoodCommonCategoryResource;
 use App\Http\Resources\V1\ReviewResource;
 use App\Models\FooSubCategory;
 use App\Models\Order;
@@ -618,13 +619,12 @@ class MenuController extends Controller
 
             return MenuResource::collection($menu);
         }
-
     }
 
     /**
-     * Get Groceries Subcategories
+     * Get Groceries Details
      */
-    public function groceryCategories(FoodCommonCategory $food_category)
+    public function groceryCategories()
     {
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
@@ -641,13 +641,26 @@ class MenuController extends Controller
                     ->where('title', 'groceries')
                     ->first();
 
-                $sub_categories = $food_category->food_sub_categories->pluck('id');
+                return new FoodCommonCategoryResource(
+                    $category->load([
+                        'food_sub_categories',
+                        'menus' => function ($query) {
+                            $query->whereHas('restaurant', function ($query) {
+                                $query->inOperation()->approved();
+                            })
+                            ->whereHas('menuPrices', function ($query) {
+                                $query->where('status', 2);
+                            });
+                        }
+                ]));
 
-                $category_menus = FooSubCategory::where('category_id', $category->id)->get()->pluck('menu_id');
+                // $sub_categories = $food_category->food_sub_categories->pluck('id');
 
-                $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+                // $category_menus = FooSubCategory::where('category_id', $category->id)->get()->pluck('menu_id');
 
-                return MenuResource::collection($menu);
+                // $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+
+                // return MenuResource::collection($menu);
             }
 
             if (auth()->user()->hasRole('restaurant')) {
@@ -680,12 +693,25 @@ class MenuController extends Controller
                 }])
                 ->where('title', 'groceries')
                 ->first();
+            info($category);
+            return new FoodCommonCategoryResource(
+                $category->load([
+                    'food_sub_categories',
+                    'menus' => function ($query) {
+                        $query->whereHas('restaurant', function ($query) {
+                            $query->inOperation()->approved();
+                        })
+                        ->whereHas('menuPrices', function ($query) {
+                            $query->where('status', 2);
+                        });
+                    }
+            ]));
 
-            $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+            // $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-            $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+            // $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
 
-            return MenuResource::collection($menu);
+            // return MenuResource::collection($menu);
         }
 
     }
