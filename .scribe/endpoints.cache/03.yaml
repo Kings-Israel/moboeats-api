@@ -33,12 +33,12 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","last":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/restaurants","per_page":15,"to":null,"total":0}}'
+        content: '{"data":[{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4},"relationships":{"questionnaire":{"uuid":"43313783-ba7e-4ca3-b240-01ff23fc11b4","restaurantId":1,"delivery":1,"booking":0},"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":1,"menus_count":9,"questionnaire":{"id":1,"uuid":"43313783-ba7e-4ca3-b240-01ff23fc11b4","restaurant_id":1,"delivery":1,"booking":0,"status":2,"created_by":"jacobi.domingo@gmail.com","updated_by":"dmonahan@rempel.com","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-17T16:34:45.000000Z"},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}],"restaurant_tables":[]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":1,"menus_count":9,"questionnaire":{"id":1,"uuid":"43313783-ba7e-4ca3-b240-01ff23fc11b4","restaurant_id":1,"delivery":1,"booking":0,"status":2,"created_by":"jacobi.domingo@gmail.com","updated_by":"dmonahan@rempel.com","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-17T16:34:45.000000Z"},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}],"restaurant_tables":[]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","last":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/restaurants?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/restaurants","per_page":15,"to":1,"total":1}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '297'
+          x-ratelimit-remaining: '296'
           vary: Origin
         description: null
         custom: []
@@ -78,12 +78,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: exercitationem
+        example: delectus
         type: string
         custom: []
     cleanUrlParameters:
       restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: exercitationem
+      restaurant: delectus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -92,12 +92,12 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4},"relationships":{"operating_hours":[{"id":23,"restaurant_id":1,"day":"Monday","opening_time":"20:46","closing_time":"03:03","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":24,"restaurant_id":1,"day":"Tuesday","opening_time":"04:19","closing_time":"06:43","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":25,"restaurant_id":1,"day":"Wednesday","opening_time":"10:58","closing_time":"19:00","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":26,"restaurant_id":1,"day":"Thursday","opening_time":"22:55","closing_time":"02:54","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":27,"restaurant_id":1,"day":"Friday","opening_time":"23:32","closing_time":"17:54","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":28,"restaurant_id":1,"day":"Saturday","opening_time":"18:38","closing_time":"07:58","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":29,"restaurant_id":1,"day":"Sunday","opening_time":"21:07","closing_time":"19:43","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"}],"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":1,"menus_count":9,"operating_hours":[{"id":23,"restaurant_id":1,"day":"Monday","opening_time":"20:46","closing_time":"03:03","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":24,"restaurant_id":1,"day":"Tuesday","opening_time":"04:19","closing_time":"06:43","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":25,"restaurant_id":1,"day":"Wednesday","opening_time":"10:58","closing_time":"19:00","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":26,"restaurant_id":1,"day":"Thursday","opening_time":"22:55","closing_time":"02:54","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":27,"restaurant_id":1,"day":"Friday","opening_time":"23:32","closing_time":"17:54","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":28,"restaurant_id":1,"day":"Saturday","opening_time":"18:38","closing_time":"07:58","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":29,"restaurant_id":1,"day":"Sunday","opening_time":"21:07","closing_time":"19:43","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"}],"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}],"restaurant_tables":[]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":1,"menus_count":9,"operating_hours":[{"id":23,"restaurant_id":1,"day":"Monday","opening_time":"20:46","closing_time":"03:03","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":24,"restaurant_id":1,"day":"Tuesday","opening_time":"04:19","closing_time":"06:43","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":25,"restaurant_id":1,"day":"Wednesday","opening_time":"10:58","closing_time":"19:00","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":26,"restaurant_id":1,"day":"Thursday","opening_time":"22:55","closing_time":"02:54","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":27,"restaurant_id":1,"day":"Friday","opening_time":"23:32","closing_time":"17:54","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":28,"restaurant_id":1,"day":"Saturday","opening_time":"18:38","closing_time":"07:58","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"},{"id":29,"restaurant_id":1,"day":"Sunday","opening_time":"21:07","closing_time":"19:43","created_at":"2024-02-25T07:28:28.000000Z","updated_at":"2024-02-25T07:28:28.000000Z"}],"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}],"restaurant_tables":[]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}}}'
+        content: '{"data":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4},"relationships":{"operating_hours":[{"id":30,"restaurant_id":1,"day":"Monday","opening_time":"20:46","closing_time":"03:03","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":31,"restaurant_id":1,"day":"Tuesday","opening_time":"04:19","closing_time":"06:43","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":32,"restaurant_id":1,"day":"Wednesday","opening_time":"10:58","closing_time":"19:00","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":33,"restaurant_id":1,"day":"Thursday","opening_time":"22:55","closing_time":"02:54","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":34,"restaurant_id":1,"day":"Friday","opening_time":"06:32","closing_time":"17:54","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":35,"restaurant_id":1,"day":"Saturday","opening_time":"06:38","closing_time":"19:58","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":36,"restaurant_id":1,"day":"Sunday","opening_time":"09:07","closing_time":"19:43","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"}],"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":1,"menus_count":9,"operating_hours":[{"id":30,"restaurant_id":1,"day":"Monday","opening_time":"20:46","closing_time":"03:03","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":31,"restaurant_id":1,"day":"Tuesday","opening_time":"04:19","closing_time":"06:43","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":32,"restaurant_id":1,"day":"Wednesday","opening_time":"10:58","closing_time":"19:00","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":33,"restaurant_id":1,"day":"Thursday","opening_time":"22:55","closing_time":"02:54","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":34,"restaurant_id":1,"day":"Friday","opening_time":"06:32","closing_time":"17:54","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":35,"restaurant_id":1,"day":"Saturday","opening_time":"06:38","closing_time":"19:58","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":36,"restaurant_id":1,"day":"Sunday","opening_time":"09:07","closing_time":"19:43","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"}],"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}],"restaurant_tables":[]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":1,"menus_count":9,"operating_hours":[{"id":30,"restaurant_id":1,"day":"Monday","opening_time":"20:46","closing_time":"03:03","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":31,"restaurant_id":1,"day":"Tuesday","opening_time":"04:19","closing_time":"06:43","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":32,"restaurant_id":1,"day":"Wednesday","opening_time":"10:58","closing_time":"19:00","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":33,"restaurant_id":1,"day":"Thursday","opening_time":"22:55","closing_time":"02:54","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":34,"restaurant_id":1,"day":"Friday","opening_time":"06:32","closing_time":"17:54","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":35,"restaurant_id":1,"day":"Saturday","opening_time":"06:38","closing_time":"19:58","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"},{"id":36,"restaurant_id":1,"day":"Sunday","opening_time":"09:07","closing_time":"19:43","created_at":"2024-03-02T09:07:40.000000Z","updated_at":"2024-03-02T09:07:40.000000Z"}],"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}],"restaurant_tables":[]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '296'
+          x-ratelimit-remaining: '295'
           vary: Origin
         description: null
         custom: []
@@ -219,12 +219,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: sed
+        example: aliquam
         type: string
         custom: []
     cleanUrlParameters:
       restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: sed
+      restaurant: aliquam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -314,35 +314,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: hic
+        example: nisi
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: impedit
+        example: quaerat
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: jessika.shanahan@example.com
+        example: oschowalter@example.com
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: quis
+        example: et
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: expedita
+        example: aperiam
         type: string
         custom: []
       phone_no:
@@ -377,21 +377,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: omnis
+        example: iste
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: ab
+        example: quisquam
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: quo
+        example: ducimus
         type: string
         custom: []
       url:
@@ -405,7 +405,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: maiores
+        example: iusto
         type: string
         custom: []
       map_location:
@@ -419,28 +419,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 15
+        example: 3
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: eric06@example.net
+        example: candice.hudson@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: hic
-      name_short: impedit
-      email: jessika.shanahan@example.com
-      about: quis
-      about_short: expedita
-      place_id: omnis
-      latitude: ab
-      longitude: quo
-      logo: maiores
-      sitting_capacity: 15
-      paypal_email: eric06@example.net
+      name: nisi
+      name_short: quaerat
+      email: oschowalter@example.com
+      about: et
+      about_short: aperiam
+      place_id: iste
+      latitude: quisquam
+      longitude: ducimus
+      logo: iusto
+      sitting_capacity: 3
+      paypal_email: candice.hudson@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -472,19 +472,19 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: inventore
+        example: maxime
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: aut
+        example: sit
         type: string
         custom: []
     cleanUrlParameters:
-      id: inventore
-      restaurant: aut
+      id: maxime
+      restaurant: sit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -530,11 +530,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: possimus
+        example: ad
         type: string
         custom: []
     cleanUrlParameters:
-      id: possimus
+      id: ad
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -542,63 +542,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: iste
+        example: recusandae
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: adipisci
+        example: sint
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ckozey@example.org
+        example: luettgen.aracely@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: et
+        example: optio
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: similique
+        example: molestiae
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: unde
+        example: sint
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: non
+        example: consequatur
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: nesciunt
+        example: aut
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: non
+        example: et
         type: string
         custom: []
       map_location:
@@ -626,36 +626,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: laudantium
+        example: et
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: fugit
+        example: cum
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: leffler.larue@example.com
+        example: qbecker@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: iste
-      name_short: adipisci
-      email: ckozey@example.org
-      about: et
-      about_short: similique
-      phone_no: unde
-      address: non
-      state: nesciunt
-      postal_code: non
-      latitude: laudantium
-      longitude: fugit
-      paypal_email: leffler.larue@example.com
+      name: recusandae
+      name_short: sint
+      email: luettgen.aracely@example.org
+      about: optio
+      about_short: molestiae
+      phone_no: sint
+      address: consequatur
+      state: aut
+      postal_code: et
+      latitude: et
+      longitude: cum
+      paypal_email: qbecker@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -687,11 +687,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: a
+        example: reprehenderit
         type: string
         custom: []
     cleanUrlParameters:
-      id: a
+      id: reprehenderit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -780,27 +780,27 @@ endpoints:
         name: restaurant_id
         description: 'The id of the restaurant'
         required: false
-        example: 5
+        example: 19
         type: integer
         custom: []
       rating:
         name: rating
         description: 'The rating from 1 - 5'
         required: false
-        example: 9
+        example: 16
         type: integer
         custom: []
       review:
         name: review
         description: 'A review of the restaurant'
         required: false
-        example: tempora
+        example: fugiat
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_id: 5
-      rating: 9
-      review: tempora
+      restaurant_id: 19
+      rating: 16
+      review: fugiat
     fileParameters: []
     responses: []
     responseFields: []
@@ -877,35 +877,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: aut
+        example: eum
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: vel
+        example: et
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: legros.alexzander@example.com
+        example: bulah.williamson@example.net
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: fuga
+        example: et
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: omnis
+        example: nostrum
         type: string
         custom: []
       phone_no:
@@ -940,21 +940,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: ipsa
+        example: deserunt
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: voluptatem
+        example: delectus
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: repudiandae
+        example: molestiae
         type: string
         custom: []
       url:
@@ -968,7 +968,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: fugit
+        example: illo
         type: string
         custom: []
       map_location:
@@ -982,28 +982,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 2
+        example: 14
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: dbaumbach@example.net
+        example: austen25@example.com
         type: string
         custom: []
     cleanBodyParameters:
-      name: aut
-      name_short: vel
-      email: legros.alexzander@example.com
-      about: fuga
-      about_short: omnis
-      place_id: ipsa
-      latitude: voluptatem
-      longitude: repudiandae
-      logo: fugit
-      sitting_capacity: 2
-      paypal_email: dbaumbach@example.net
+      name: eum
+      name_short: et
+      email: bulah.williamson@example.net
+      about: et
+      about_short: nostrum
+      place_id: deserunt
+      latitude: delectus
+      longitude: molestiae
+      logo: illo
+      sitting_capacity: 14
+      paypal_email: austen25@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -1042,12 +1042,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: ex
+        example: reprehenderit
         type: string
         custom: []
     cleanUrlParameters:
       uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: ex
+      restaurant: reprehenderit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1105,63 +1105,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: odio
+        example: et
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: dolor
+        example: odit
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: vfranecki@example.net
+        example: darian00@example.com
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: perspiciatis
+        example: odio
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: accusantium
+        example: beatae
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: molestiae
+        example: maiores
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: et
+        example: accusamus
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: voluptas
+        example: non
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: praesentium
+        example: et
         type: string
         custom: []
       map_location:
@@ -1189,36 +1189,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: sapiente
+        example: ut
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: rerum
+        example: quae
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: tevin41@example.org
+        example: toni.sawayn@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: odio
-      name_short: dolor
-      email: vfranecki@example.net
-      about: perspiciatis
-      about_short: accusantium
-      phone_no: molestiae
-      address: et
-      state: voluptas
-      postal_code: praesentium
-      latitude: sapiente
-      longitude: rerum
-      paypal_email: tevin41@example.org
+      name: et
+      name_short: odit
+      email: darian00@example.com
+      about: odio
+      about_short: beatae
+      phone_no: maiores
+      address: accusamus
+      state: non
+      postal_code: et
+      latitude: ut
+      longitude: quae
+      paypal_email: toni.sawayn@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -1294,35 +1294,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: ut
+        example: et
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: in
+        example: ducimus
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: jude27@example.net
+        example: demond72@example.com
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: unde
+        example: molestiae
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: nulla
+        example: sed
         type: string
         custom: []
       phone_no:
@@ -1357,21 +1357,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: nulla
+        example: explicabo
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: id
+        example: labore
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: non
+        example: quia
         type: string
         custom: []
       url:
@@ -1385,7 +1385,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: tempore
+        example: dicta
         type: string
         custom: []
       map_location:
@@ -1399,28 +1399,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 5
+        example: 16
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: ichristiansen@example.net
+        example: eleonore68@example.org
         type: string
         custom: []
     cleanBodyParameters:
-      name: ut
-      name_short: in
-      email: jude27@example.net
-      about: unde
-      about_short: nulla
-      place_id: nulla
-      latitude: id
-      longitude: non
-      logo: tempore
-      sitting_capacity: 5
-      paypal_email: ichristiansen@example.net
+      name: et
+      name_short: ducimus
+      email: demond72@example.com
+      about: molestiae
+      about_short: sed
+      place_id: explicabo
+      latitude: labore
+      longitude: quia
+      logo: dicta
+      sitting_capacity: 16
+      paypal_email: eleonore68@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -1500,12 +1500,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: vel
+        example: facere
         type: string
         custom: []
     cleanUrlParameters:
       uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: vel
+      restaurant: facere
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1644,35 +1644,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: quos
+        example: quo
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: quae
+        example: officia
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: crawford.batz@example.com
+        example: burnice29@example.com
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: sapiente
+        example: possimus
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: magnam
+        example: omnis
         type: string
         custom: []
       phone_no:
@@ -1707,21 +1707,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: inventore
+        example: adipisci
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: adipisci
+        example: necessitatibus
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: quis
+        example: quo
         type: string
         custom: []
       url:
@@ -1735,7 +1735,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: veritatis
+        example: aut
         type: string
         custom: []
       map_location:
@@ -1749,28 +1749,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 10
+        example: 19
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: sophia.walsh@example.org
+        example: rahul.olson@example.org
         type: string
         custom: []
     cleanBodyParameters:
-      name: quos
-      name_short: quae
-      email: crawford.batz@example.com
-      about: sapiente
-      about_short: magnam
-      place_id: inventore
-      latitude: adipisci
-      longitude: quis
-      logo: veritatis
-      sitting_capacity: 10
-      paypal_email: sophia.walsh@example.org
+      name: quo
+      name_short: officia
+      email: burnice29@example.com
+      about: possimus
+      about_short: omnis
+      place_id: adipisci
+      latitude: necessitatibus
+      longitude: quo
+      logo: aut
+      sitting_capacity: 19
+      paypal_email: rahul.olson@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -1815,63 +1815,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: rerum
+        example: quaerat
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: delectus
+        example: reprehenderit
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: pfannerstill.daija@example.org
+        example: irma44@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: quia
+        example: ut
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: nemo
+        example: vitae
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: perspiciatis
+        example: quam
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: voluptate
+        example: maiores
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: ipsam
+        example: et
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: perspiciatis
+        example: quo
         type: string
         custom: []
       map_location:
@@ -1899,36 +1899,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: ex
+        example: optio
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: dolor
+        example: libero
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: dicki.arthur@example.org
+        example: hayes.susan@example.com
         type: string
         custom: []
     cleanBodyParameters:
-      name: rerum
-      name_short: delectus
-      email: pfannerstill.daija@example.org
-      about: quia
-      about_short: nemo
-      phone_no: perspiciatis
-      address: voluptate
-      state: ipsam
-      postal_code: perspiciatis
-      latitude: ex
-      longitude: dolor
-      paypal_email: dicki.arthur@example.org
+      name: quaerat
+      name_short: reprehenderit
+      email: irma44@example.org
+      about: ut
+      about_short: vitae
+      phone_no: quam
+      address: maiores
+      state: et
+      postal_code: quo
+      latitude: optio
+      longitude: libero
+      paypal_email: hayes.susan@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -2053,63 +2053,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: mollitia
+        example: voluptas
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: dolor
+        example: et
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: hernser@example.org
+        example: buster41@example.net
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: quaerat
+        example: eum
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: neque
+        example: tempora
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: doloribus
+        example: nihil
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: illum
+        example: consequatur
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: ut
+        example: est
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: sit
+        example: repudiandae
         type: string
         custom: []
       map_location:
@@ -2137,36 +2137,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: impedit
+        example: est
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: commodi
+        example: nihil
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: blynch@example.org
+        example: gflatley@example.com
         type: string
         custom: []
     cleanBodyParameters:
-      name: mollitia
-      name_short: dolor
-      email: hernser@example.org
-      about: quaerat
-      about_short: neque
-      phone_no: doloribus
-      address: illum
-      state: ut
-      postal_code: sit
-      latitude: impedit
-      longitude: commodi
-      paypal_email: blynch@example.org
+      name: voluptas
+      name_short: et
+      email: buster41@example.net
+      about: eum
+      about_short: tempora
+      phone_no: nihil
+      address: consequatur
+      state: est
+      postal_code: repudiandae
+      latitude: est
+      longitude: nihil
+      paypal_email: gflatley@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -2198,11 +2198,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: quidem
+        example: laborum
         type: string
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: laborum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2472,27 +2472,27 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: dolorem
+        example: blanditiis
         type: string
         custom: []
       seating_area_id:
         name: seating_area_id
         description: ''
         required: true
-        example: architecto
+        example: quas
         type: string
         custom: []
       seat_number:
         name: seat_number
         description: ''
         required: true
-        example: ea
+        example: nihil
         type: string
         custom: []
     cleanBodyParameters:
-      name: dolorem
-      seating_area_id: architecto
-      seat_number: ea
+      name: blanditiis
+      seating_area_id: quas
+      seat_number: nihil
     fileParameters: []
     responses: []
     responseFields: []
@@ -2531,20 +2531,20 @@ endpoints:
         name: id
         description: 'The id of the category'
         required: false
-        example: distinctio
+        example: et
         type: string
         custom: []
       uuid:
         name: uuid
         description: 'The uuid of the restaurant'
         required: false
-        example: 6796135c-2630-39e5-9d92-1f1d8ef5bbbd
+        example: 29a3d262-3132-387e-8877-2a5b2accecb1
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: distinctio
-      uuid: 6796135c-2630-39e5-9d92-1f1d8ef5bbbd
+      id: et
+      uuid: 29a3d262-3132-387e-8877-2a5b2accecb1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2552,27 +2552,27 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: est
+        example: ipsam
         type: string
         custom: []
       seating_area_id:
         name: seating_area_id
         description: ''
         required: true
-        example: exercitationem
+        example: excepturi
         type: string
         custom: []
       seat_number:
         name: seat_number
         description: ''
         required: true
-        example: id
+        example: necessitatibus
         type: string
         custom: []
     cleanBodyParameters:
-      name: est
-      seating_area_id: exercitationem
-      seat_number: id
+      name: ipsam
+      seating_area_id: excepturi
+      seat_number: necessitatibus
     fileParameters: []
     responses: []
     responseFields: []
@@ -2660,12 +2660,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: velit
+        example: enim
         type: string
         custom: []
     cleanUrlParameters:
       restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: velit
+      restaurant: enim
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2864,12 +2864,12 @@ endpoints:
         name: id
         description: 'The ID or the UUID of the restaurant'
         required: false
-        example: qui
+        example: ratione
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: qui
+      id: ratione
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2926,19 +2926,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: est
+        example: officia
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eos
+        example: ex
         type: string
         custom: []
     cleanBodyParameters:
-      title: est
-      description: eos
+      title: officia
+      description: ex
     fileParameters: []
     responses: []
     responseFields: []
@@ -2977,20 +2977,20 @@ endpoints:
         name: id
         description: 'The id of the category'
         required: false
-        example: ullam
+        example: repellat
         type: string
         custom: []
       uuid:
         name: uuid
         description: 'The uuid of the restaurant'
         required: false
-        example: 10fec5c1-7c1b-3913-b128-dc07f951f02f
+        example: be32578b-59ad-38a0-ba7f-6ec0beeb9d0c
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: ullam
-      uuid: 10fec5c1-7c1b-3913-b128-dc07f951f02f
+      id: repellat
+      uuid: be32578b-59ad-38a0-ba7f-6ec0beeb9d0c
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2998,19 +2998,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: et
+        example: quo
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: mollitia
+        example: reiciendis
         type: string
         custom: []
     cleanBodyParameters:
-      title: et
-      description: mollitia
+      title: quo
+      description: reiciendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -3144,43 +3144,43 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: qui
+        example: eos
         type: string
         custom: []
       last_name:
         name: last_name
         description: ''
         required: true
-        example: quae
+        example: nostrum
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: libero
+        example: sunt
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: omnis
+        example: est
         type: string
         custom: []
       avatar:
         name: avatar
         description: 'Must not be greater than 9000 characters.'
         required: false
-        example: w
+        example: pznmlvxzoxrwvpbgrmzrnnhhe
         type: string
         custom: []
     cleanBodyParameters:
-      first_name: qui
-      last_name: quae
-      email: libero
-      phone_number: omnis
-      avatar: w
+      first_name: eos
+      last_name: nostrum
+      email: sunt
+      phone_number: est
+      avatar: pznmlvxzoxrwvpbgrmzrnnhhe
     fileParameters: []
     responses: []
     responseFields: []
@@ -3224,51 +3224,51 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: dolores
+        example: quo
         type: string
         custom: []
       last_name:
         name: last_name
         description: ''
         required: true
-        example: consequatur
+        example: fuga
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: modi
+        example: non
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: repudiandae
+        example: qui
         type: string
         custom: []
       avatar:
         name: avatar
         description: 'Must not be greater than 9000 characters.'
         required: false
-        example: aohehyxtbskozksuxb
+        example: vgeobgtjfp
         type: string
         custom: []
       suspend:
         name: suspend
         description: 'Must be one of <code>1</code> or <code>2</code>.'
         required: true
-        example: '2'
+        example: '1'
         type: string
         custom: []
     cleanBodyParameters:
-      first_name: dolores
-      last_name: consequatur
-      email: modi
-      phone_number: repudiandae
-      avatar: aohehyxtbskozksuxb
-      suspend: '2'
+      first_name: quo
+      last_name: fuga
+      email: non
+      phone_number: qui
+      avatar: vgeobgtjfp
+      suspend: '1'
     fileParameters: []
     responses: []
     responseFields: []
