@@ -71,11 +71,11 @@ endpoints:
         name: userId
         description: ''
         required: true
-        example: 5
+        example: 14
         type: integer
         custom: []
     cleanBodyParameters:
-      userId: 5
+      userId: 14
     fileParameters: []
     responses: []
     responseFields: []

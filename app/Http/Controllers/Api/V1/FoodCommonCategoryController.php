@@ -22,25 +22,36 @@ class FoodCommonCategoryController extends Controller
 {
     use HttpResponses;
     /**
-     * Display a listing of the resource.
+     * Show List of categories
      */
     public function index(Request $request)
     {
         $filter =  new FoodCommonCategoryFilter();
-        $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+        $filterItems = $filter->transform($request);
         $includeSubcategories = $request->query('includeSubcategories');
 
-        $categories = FoodCommonCategory::where($filterItems);
-        // if ($includeSubcategories) {
-        // }
-        $categories = $categories->with('food_sub_categories');
+        $categories = FoodCommonCategory::whereHas('menus', function ($query) {
+            $query->where('status', 2)
+                ->whereHas('menuPrices', function ($query) {
+                    $query->where('status', 2);
+                });
+        })->where($filterItems);
+
+        $categories = $categories->with([
+            'food_sub_categories',
+            'menus' => function ($query) {
+                $query->whereHas('restaurant', function ($query) {
+                        $query->inOperation()->approved();
+                    })
+                    ->whereHas('menuPrices', function ($query) {
+                        $query->where('status', 2);
+                    });
+            }
+        ]);
 
         return new FoodCommonCategoryCollection($categories->paginate()->appends($request->query()));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreFoodCommonCategoryRequest $request)
     {
         try {
@@ -68,16 +79,24 @@ class FoodCommonCategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show category details
      */
-    public function show(FoodCommonCategory $food_category)
+    public function show(FoodCommonCategory $food_common_category)
     {
-        return new FoodCommonCategoryResource($food_category->load('food_sub_categories'));
+        return new FoodCommonCategoryResource(
+            $food_common_category->load([
+                'food_sub_categories',
+                'menus' => function ($query) {
+                    $query->whereHas('restaurant', function ($query) {
+                        $query->inOperation()->approved();
+                    })
+                    ->whereHas('menuPrices', function ($query) {
+                        $query->where('status', 2);
+                    });
+                }
+        ]));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateFoodCommonCategoryRequest $request, $id)
     {
         try {

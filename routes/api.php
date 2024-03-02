@@ -53,9 +53,16 @@ Route::group(['prefix' => 'v1'], function() {
     Route::post('reset-password', [AuthController::class, 'resetPassword']);
 
     Route::get('/groceries', [MenuController::class, 'groceries']);
+    Route::get('/groceries/categories', [MenuController::class, 'groceryCategories']);
     Route::get('/menu', [MenuController::class, 'index']);
     Route::get('/restaurants', [RestaurantController::class, 'index']);
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
+
+    Route::get('/categories/{food_common_category}', [FoodCommonCategoryController::class, 'show']);
+    Route::apiResource('categories', FoodCommonCategoryController::class);
+
+    Route::get('sub-categories/{food_sub_category}', [FooSubCategoryController::class, 'show']);
+    Route::apiResource('sub-categories', FooSubCategoryController::class);
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {

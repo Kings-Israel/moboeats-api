@@ -16,7 +16,6 @@ class FoodCommonCategory extends Model implements UrlRoutable
 {
     use HasFactory;
 
-    // protected $primaryKey = 'uuid';
     protected $keyType = 'int';
     public $incrementing = true;
 

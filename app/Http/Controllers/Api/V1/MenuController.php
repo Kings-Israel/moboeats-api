@@ -29,6 +29,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MenuExport;
 use App\Exports\GroceryExport;
 use App\Http\Resources\V1\ReviewResource;
+use App\Models\FooSubCategory;
 use App\Models\Order;
 use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
@@ -561,6 +562,9 @@ class MenuController extends Controller
         }
     }
 
+    /**
+     * Get Groceries and groceries subcategories
+     */
     public function groceries(Request $request)
     {
         if (auth()->check()) {
@@ -569,7 +573,7 @@ class MenuController extends Controller
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-                $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+                $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
 
                 return MenuResource::collection($menu);
             }
@@ -610,13 +614,87 @@ class MenuController extends Controller
 
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
-            $menu = Menu::active()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+            $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
 
             return MenuResource::collection($menu);
         }
 
     }
 
+    /**
+     * Get Groceries Subcategories
+     */
+    public function groceryCategories(FoodCommonCategory $food_category)
+    {
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('orderer')) {
+                $category = FoodCommonCategory::with([
+                    'food_sub_categories',
+                    'menus' => function ($query) {
+                        $query->whereHas('restaurant', function ($query) {
+                            $query->inOperation()->approved();
+                        })
+                        ->whereHas('menuPrices', function ($query) {
+                            $query->where('status', 2);
+                        });
+                    }])
+                    ->where('title', 'groceries')
+                    ->first();
+
+                $sub_categories = $food_category->food_sub_categories->pluck('id');
+
+                $category_menus = FooSubCategory::where('category_id', $category->id)->get()->pluck('menu_id');
+
+                $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+
+                return MenuResource::collection($menu);
+            }
+
+            if (auth()->user()->hasRole('restaurant')) {
+                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+
+                $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+                $restaurants = auth()->user()->restaurants->pluck('id');
+
+                $menu = Menu::with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('restaurant_id', $restaurants)->whereIn('id', $category_menus)->paginate(10);
+
+                $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurants)->get();
+
+                return $this->success([
+                    'menu' => $menu,
+                    'categories' => new FoodCommonCategoryCollection($categories),
+                    'restaurants' => auth()->user()->restaurants,
+                ]);
+            }
+        } else {
+            $category = FoodCommonCategory::with([
+                'food_sub_categories',
+                'menus' => function ($query) {
+                    $query->whereHas('restaurant', function ($query) {
+                        $query->inOperation()->approved();
+                    })
+                    ->whereHas('menuPrices', function ($query) {
+                        $query->where('status', 2);
+                    });
+                }])
+                ->where('title', 'groceries')
+                ->first();
+
+            $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
+
+            $menu = Menu::active()->hasActivePrices()->with('images', 'categories', 'subCategories', 'restaurant', 'discount')->whereIn('id', $category_menus)->paginate(10);
+
+            return MenuResource::collection($menu);
+        }
+
+    }
+
+    /**
+     * Get Menu Restaurant Menu Items
+     *
+     * @urlParam id The ID of the restaurant
+     */
     public function restaurantMenu(Request $request, Restaurant $restaurant = null)
     {
         if (auth()->check()) {
