@@ -28,19 +28,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: eos
+        example: qui
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: dolor
+        example: quis
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: eos
-      order_id: dolor
+      user_id: qui
+      order_id: quis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
