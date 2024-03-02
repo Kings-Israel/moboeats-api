@@ -24,6 +24,7 @@ class FoodCommonCategoryResource extends JsonResource
             'updatedBy' => $this->updated_by,
             'image' => $this->image,
             'subCategories' => FooSubCategoryResource::collection($this->whenLoaded('food_sub_categories')),
+            'menus' => MenuResource::collection($this->whenLoaded('menus')),
         ];
     }
 }

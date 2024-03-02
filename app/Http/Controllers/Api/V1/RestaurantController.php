@@ -110,6 +110,7 @@ class RestaurantController extends Controller
                 // if ($includeQuestionnaire) {
                 //     $restaurants = $restaurants->with('questionnaire');
                 // }
+
                 return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
             }
 

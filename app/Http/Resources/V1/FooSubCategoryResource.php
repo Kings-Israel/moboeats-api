@@ -23,6 +23,7 @@ class FooSubCategoryResource extends JsonResource
             'status' => $this->status,
             'createdBy' => $this->created_by,
             'updatedBy' => $this->updated_by,
+            'menus' => MenuResource::collection($this->whenLoaded('menus')),
         ];
     }
 }

@@ -18,35 +18,36 @@ use Illuminate\Support\Str;
 
 /**
  * @group Food Sub Categories
- * 
+ *
  * Food Sub Categories API resource
  */
 
 class FooSubCategoryController extends Controller
 {
-     
+
     /**
-     * Display a listing of the resource.
-     * 
+     * Get all subcategories
      */
     public function index(Request $request)
     {
-        // return FoodCommonCategory::all();
         $filter =  new FoodSubCategoryFilter();
         $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
         $includeSubcategories = $request->query('includeSubcategories');
 
-        $categories = FooSubCategory::where($filterItems);
+        $categories = FooSubCategory::whereHas('menus', function ($query) {
+            $query->where('status', 2)
+                ->whereHas('menuPrices', function ($query) {
+                    $query->where('status', 2);
+                });
+        })->where($filterItems);
+
         if ($includeSubcategories) {
             $categories = $categories->with('food_sub_categories');
         }
-       
+
         return new FooSubCategoryCollection($categories->paginate()->appends($request->query()));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreFooSubCategoryRequest $request)
     {
         try {
@@ -68,7 +69,7 @@ class FooSubCategoryController extends Controller
             DB::rollBack();
             return $this->error('', $th->getMessage(), 403);
         }
-        
+
     }
 
     public function bulkStore(BulkStoreFooSubCategoryRequest $request)
@@ -82,18 +83,18 @@ class FooSubCategoryController extends Controller
             $subCategoriesData = $bulk->toArray();
 
             $createdSubCategories = [];
-    
+
             foreach ($subCategoriesData as $subCategoryData) {
                 $subCategory = FooSubCategory::create($subCategoryData);
-    
+
                 $foodCategoryIds = $subCategoryData['category_ids'];
-    
+
                 $subCategory->foodCategories()->attach($foodCategoryIds, [
                     'uuid' => Str::uuid(),
                     'created_by' => $request->createdBy,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 ]);
-    
+
                 $createdSubCategories[] = $subCategory;
             }
             // $foodSubCategory = FooSubCategory::create($request->all());
@@ -106,25 +107,29 @@ class FooSubCategoryController extends Controller
             DB::rollBack();
             return $this->error('', $th->getMessage(), 403);
         }
-       
+
     }
 
     /**
-     * Display the specified resource.
+     * Show subcategory details
      */
     public function show(FooSubCategory $food_sub_category)
     {
-        return new FooSubCategoryResource($food_sub_category);
+        return new FooSubCategoryResource(
+            $food_sub_category->load(['menus' => function ($query) {
+                $query->where('status', 2)
+                    ->whereHas('menuPrices', function ($query) {
+                        $query->where('status', 2);
+                    });
+            }])
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateFooSubCategoryRequest $request, FooSubCategory $food_sub_category)
     {
        try {
             DB::beginTransaction();
-       
+
             $food_sub_category->update($request->all());
             $foodCategoryIds = $request->input('categoryIds');
 
