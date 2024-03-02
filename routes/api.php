@@ -53,7 +53,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::post('reset-password', [AuthController::class, 'resetPassword']);
 
     Route::get('/groceries', [MenuController::class, 'groceries']);
-    Route::get('/groceries/categories', [MenuController::class, 'groceryCategories']);
+    Route::get('/groceries/subcategories/{foo_sub_category}', [MenuController::class, 'grocerySubcategories']);
     Route::get('/menu', [MenuController::class, 'index']);
     Route::get('/restaurants', [RestaurantController::class, 'index']);
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);

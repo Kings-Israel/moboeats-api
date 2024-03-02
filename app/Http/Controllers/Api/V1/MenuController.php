@@ -29,6 +29,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MenuExport;
 use App\Exports\GroceryExport;
 use App\Http\Resources\V1\FoodCommonCategoryResource;
+use App\Http\Resources\V1\FooSubCategoryResource;
 use App\Http\Resources\V1\ReviewResource;
 use App\Models\FooSubCategory;
 use App\Models\Order;
@@ -622,37 +623,48 @@ class MenuController extends Controller
     }
 
     /**
-     * Get Groceries Details
+     * Get Groceries Subcategory Details
+     *
+     * @urlParam ID The ID of the Subcategory
      */
-    public function groceryCategories()
+    public function grocerySubcategories(FooSubCategory $foo_sub_category)
     {
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
-                $category = FoodCommonCategory::with([
-                    'food_sub_categories',
-                    'menus' => function ($query) {
-                        $query->whereHas('restaurant', function ($query) {
-                            $query->inOperation()->approved();
-                        })
-                        ->whereHas('menuPrices', function ($query) {
-                            $query->where('status', 2);
-                        });
-                    }])
-                    ->where('title', 'groceries')
-                    ->first();
-
-                return new FoodCommonCategoryResource(
-                    $category->load([
-                        'food_sub_categories',
-                        'menus' => function ($query) {
-                            $query->whereHas('restaurant', function ($query) {
-                                $query->inOperation()->approved();
-                            })
+                return new FooSubCategoryResource(
+                    $foo_sub_category->load(['menus' => function ($query) {
+                        $query->where('status', 2)
                             ->whereHas('menuPrices', function ($query) {
                                 $query->where('status', 2);
                             });
-                        }
-                ]));
+                    }])
+                );
+
+                // $category = FoodCommonCategory::with([
+                //     'food_sub_categories',
+                //     'menus' => function ($query) {
+                //         $query->whereHas('restaurant', function ($query) {
+                //             $query->inOperation()->approved();
+                //         })
+                //         ->whereHas('menuPrices', function ($query) {
+                //             $query->where('status', 2);
+                //         });
+                //     }])
+                //     ->where('title', 'groceries')
+                //     ->first();
+
+                // return new FoodCommonCategoryResource(
+                //     $category->load([
+                //         'food_sub_categories',
+                //         'menus' => function ($query) {
+                //             $query->whereHas('restaurant', function ($query) {
+                //                 $query->inOperation()->approved();
+                //             })
+                //             ->whereHas('menuPrices', function ($query) {
+                //                 $query->where('status', 2);
+                //             });
+                //         }
+                // ]));
 
                 // $sub_categories = $food_category->food_sub_categories->pluck('id');
 
@@ -681,31 +693,40 @@ class MenuController extends Controller
                 ]);
             }
         } else {
-            $category = FoodCommonCategory::with([
-                'food_sub_categories',
-                'menus' => function ($query) {
-                    $query->whereHas('restaurant', function ($query) {
-                        $query->inOperation()->approved();
-                    })
-                    ->whereHas('menuPrices', function ($query) {
-                        $query->where('status', 2);
-                    });
-                }])
-                ->where('title', 'groceries')
-                ->first();
-            info($category);
-            return new FoodCommonCategoryResource(
-                $category->load([
-                    'food_sub_categories',
-                    'menus' => function ($query) {
-                        $query->whereHas('restaurant', function ($query) {
-                            $query->inOperation()->approved();
-                        })
+            return new FooSubCategoryResource(
+                $foo_sub_category->load(['menus' => function ($query) {
+                    $query->where('status', 2)
                         ->whereHas('menuPrices', function ($query) {
                             $query->where('status', 2);
                         });
-                    }
-            ]));
+                }])
+            );
+
+            // $category = FoodCommonCategory::with([
+            //     'food_sub_categories',
+            //     'menus' => function ($query) {
+            //         $query->whereHas('restaurant', function ($query) {
+            //             $query->inOperation()->approved();
+            //         })
+            //         ->whereHas('menuPrices', function ($query) {
+            //             $query->where('status', 2);
+            //         });
+            //     }])
+            //     ->where('title', 'groceries')
+            //     ->first();
+
+            // return new FoodCommonCategoryResource(
+            //     $category->load([
+            //         'food_sub_categories',
+            //         'menus' => function ($query) {
+            //             $query->whereHas('restaurant', function ($query) {
+            //                 $query->inOperation()->approved();
+            //             })
+            //             ->whereHas('menuPrices', function ($query) {
+            //                 $query->where('status', 2);
+            //             });
+            //         }
+            // ]));
 
             // $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
