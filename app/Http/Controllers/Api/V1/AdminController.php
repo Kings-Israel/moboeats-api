@@ -346,7 +346,6 @@ class AdminController extends Controller
     {
         $restaurant = Restaurant::with('user', 'users', 'orders.payment', 'orders.user', 'menus', 'operatingHours', 'documents', 'reviews')
                             ->withCount('orders', 'menus')
-                            ->where('id', $id)
                             ->orWhere('uuid', $id)
                             ->first();
 
@@ -462,7 +461,7 @@ class AdminController extends Controller
 
     public function restaurantCategories($id)
     {
-        $restaurant = Restaurant::where('uuid', $id)->orWhere('uuid', $id)->first();
+        $restaurant = Restaurant::where('uuid', $id)->first();
 
         $categories = FoodCommonCategory::where('restaurant_id', $restaurant->id)->paginate(8);
 
