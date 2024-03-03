@@ -197,4 +197,15 @@ class Order extends Model
     {
         return $this->hasMany(OrderTable::class);
     }
+
+    public function getTotalPreparationTime(): int
+    {
+        $total_preparation_time = 0;
+
+        foreach ($this->orderItems as $order_item) {
+            $total_preparation_time += $order_item->menu->preparation_time;
+        }
+
+        return $total_preparation_time;
+    }
 }

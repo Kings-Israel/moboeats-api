@@ -24,6 +24,7 @@ class MenuResource extends JsonResource
                 'createdBy' => $this->created_by,
                 'updatedBy' => $this->updated_by,
                 'status' => (string) $this->status,
+                'preparation_time' => $this->preparation_time,
                 'average_rating' => $this->averageRating()
             ],
             'relationships' => [
@@ -42,7 +43,7 @@ class MenuResource extends JsonResource
                 }),
                 'discount' => $this->whenLoaded('discount'),
                 'orderItems' => $this->orderItems->load('order')->groupBy('order_id'),
-                'orders_count' => $this->orderItems()->whereHas('order', fn ($query) => $query->where('status', 5))->groupBy('order_id')->count(),
+                'orders_count' => $this->orderItems()->whereHas('order')->count() > 0 ? $this->orderItems()->whereHas('order', fn ($query) => $query->where('status', 5))->groupBy('order_id')->count() : 0,
                 'total_orders_value' => $this->getOrdersValue(),
                 'reviews' => $this->whenLoaded('reviews'),
             ],

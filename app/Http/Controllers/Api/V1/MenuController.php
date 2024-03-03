@@ -119,6 +119,7 @@ class MenuController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'restaurant_id' => $restaurant->id,
+                'preparation_time' => $request->preparation_time,
                 'status' => 2,
                 'created_by' => auth()->user()->email,
                 'updated_by' => auth()->user()->email,
@@ -252,6 +253,7 @@ class MenuController extends Controller
                     'description' => $request->description,
                     'restaurant_id' => $restaurant,
                     'status' => $request->status,
+                    'preparation_time' => $request->preparation_time,
                     'created_by' => auth()->user()->email,
                     'updated_by' => auth()->user()->email,
                 ]);
@@ -261,7 +263,7 @@ class MenuController extends Controller
                     return $this->error('', 'unable to create menu item', 403);
                 }
 
-                if ($request->has('standarPrice')) {
+                if ($request->has('standardPrice')) {
                     MenuPrice::create([
                         'menu_id' => $menu->id,
                         'description' => 'standard',
@@ -465,7 +467,7 @@ class MenuController extends Controller
 
         $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
         return [
-            'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews')),
+            'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews', 'subCategories')),
             'categories' => new FoodCommonCategoryCollection($categories),
         ];
     }

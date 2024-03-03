@@ -29,7 +29,8 @@ class OrderResource extends JsonResource
                 'status' => (string) $this->status,
                 'service_charge' => $this->service_charge,
                 'booking_time' => $this->booking_time ? Carbon::parse($this->booking_time)->format('D, M j, Y g:i A') : NULL,
-                'discount' => $this->discount
+                'discount' => $this->discount,
+                'preparation_time' => $this->getTotalPreparationTime()
             ],
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),

@@ -24,6 +24,7 @@ class Menu extends Model implements UrlRoutable
         'description',
         'restaurant_id',
         'status',
+        'preparation_time',
         'created_by',
         'updated_by',
     ];
