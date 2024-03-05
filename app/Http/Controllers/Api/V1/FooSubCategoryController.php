@@ -52,7 +52,13 @@ class FooSubCategoryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $foodSubCategory = FooSubCategory::create($request->all());
+            $foodSubCategory = FooSubCategory::create(collect($request->all())->except('image')->toArray());
+
+            if ($request->hasFile('image')) {
+                $foodSubCategory->update([
+                    'image' => pathinfo($request->image->store('subcategory', 'category'), PATHINFO_BASENAME)
+                ]);
+            }
 
             foreach ($request->input('categoryIds') as $foodCategoryId) {
                 $foodSubCategory->foodCategories()->attach($foodCategoryId, [
@@ -130,7 +136,14 @@ class FooSubCategoryController extends Controller
        try {
             DB::beginTransaction();
 
-            $food_sub_category->update($request->all());
+            $food_sub_category->update(collect($request->all())->except('image')->toArray());
+
+            if ($request->hasFile('image')) {
+                $food_sub_category->update([
+                    'image' => pathinfo($request->image->store('subcategory', 'category'), PATHINFO_BASENAME)
+                ]);
+            }
+
             $foodCategoryIds = $request->input('categoryIds');
 
             $syncData = [];

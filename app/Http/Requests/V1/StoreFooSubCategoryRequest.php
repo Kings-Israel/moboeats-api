@@ -28,6 +28,7 @@ class StoreFooSubCategoryRequest extends FormRequest
             'status' => ['nullable', 'integer'],
             'createdBy' => ['required'],
             'categoryIds' => 'required|array',
+            'image' => ['nullable', 'sometimes', 'mimes:png,jpg', 'max:3000']
             // 'food_category_ids.*' => 'exists:food_categories,id',
         ];
     }

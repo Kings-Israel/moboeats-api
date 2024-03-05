@@ -21,6 +21,7 @@ class FooSubCategory extends Model implements UrlRoutable
         'status',
         'created_by',
         'updated_by',
+        'image'
     ];
     public function getRouteKeyName()
     {
@@ -46,6 +47,20 @@ class FooSubCategory extends Model implements UrlRoutable
     }
 
     /**
+     * Get the image
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getImageAttribute($value)
+    {
+        if ($value) {
+            return config('app.url').'/storage/category/subcategory/' . $value;
+        }
+        return config('app.url').'/assets/category/default.png';
+    }
+
+    /**
      * The foodCategories that belong to the FooSubCategory
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -63,5 +78,5 @@ class FooSubCategory extends Model implements UrlRoutable
     {
         return $this->belongsToMany(Menu::class, 'sub_category_menus', 'sub_category_id', 'menu_id');
     }
-    
+
 }

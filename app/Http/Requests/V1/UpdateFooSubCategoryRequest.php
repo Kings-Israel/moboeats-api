@@ -30,6 +30,7 @@ class UpdateFooSubCategoryRequest extends FormRequest
                 'status' => ['nullable'],
                 'updatedBy' => ['required'],
                 'categoryIds' => 'required|array',
+                'image' => ['nullable', 'sometimes', 'mimes:png,jpg', 'max:3000']
                 // 'food_category_ids.*' => 'exists:food_categories,id',
             ];
         } else {
@@ -40,6 +41,7 @@ class UpdateFooSubCategoryRequest extends FormRequest
                 'status' => ['sometimes','nullable'],
                 'updatedBy' => ['required'],
                 'categoryIds' => ['sometimes', 'required','array'],
+                'image' => ['nullable', 'sometimes', 'mimes:png,jpg', 'max:3000']
                 // 'food_category_ids.*' => 'exists:food_categories,id',
             ];
         }
