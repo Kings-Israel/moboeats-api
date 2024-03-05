@@ -237,6 +237,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'description' => $request->has('description') && $request->description != '' ? $request->description : NULL,
             'status' => $request->status,
+            'image' => pathinfo($request->image->store('subcategory', 'category'), PATHINFO_BASENAME),
             'created_by' => auth()->user()->email,
         ]);
 
@@ -261,6 +262,7 @@ class AdminController extends Controller
             'title' => $request->title,
             'description' => $request->has('description') && $request->description != '' ? $request->description : $subcategory->description,
             'status' => $request->status,
+            'image' => pathinfo($request->image->store('subcategory', 'category'), PATHINFO_BASENAME),
             'updated_by' => auth()->user()->email,
         ]);
 

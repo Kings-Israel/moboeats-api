@@ -19,6 +19,7 @@ class FooSubCategoryResource extends JsonResource
             'id' =>$this->id,
             'uuid' => $this->uuid,
             'title' => $this->title,
+            'image' => $this->image,
             'description' => $this->description,
             'status' => $this->status,
             'createdBy' => $this->created_by,
