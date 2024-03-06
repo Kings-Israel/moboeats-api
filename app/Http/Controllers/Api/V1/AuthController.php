@@ -11,6 +11,7 @@ use App\Models\Restaurant;
 use App\Models\Rider;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\ReferralCode;
 use App\Models\Otp;
 use App\Models\UserRestaurant;
 use App\Traits\HttpResponses;
@@ -179,6 +180,16 @@ class AuthController extends Controller
             $user->update(['role_id' => $request->userType]);
 
             activity()->causedBy($user)->log('registered a new account as '.$request->userType);
+
+            if ($request->has('referral_code') && !empty($request->referral_code)) {
+                $code = ReferralCode::where('referral_code', $request->referral_code)->first();
+
+                if ($code) {
+                    $code->update([
+                        'uses' => $code->uses + 1,
+                    ]);
+                }
+            }
 
             DB::commit();
 

@@ -50,4 +50,11 @@ return [
         'BASE_URL' => env('VOODOO_BASE_URL'),
         'API_KEY' => env('VOODOO_API_KEY'),
     ],
+
+    'stripe' => [
+        'LIVE_KEY' => env('STRIPE_LIVE_KEY'),
+        'LIVE_SECRET_KEY' => env('STRIPE_LIVE_SECRET_KEY'),
+        'SANDBOX_KEY' => env('STRIPE_SANDBOX_KEY'),
+        'SANDBOX_SECRET_KEY' => env('STRIPE_SANDBOX_SECRET_KEY'),
+    ]
 ];

@@ -28,7 +28,8 @@ class UserResource extends JsonResource
                     return  new OrdererResource($this->orderer);
                 }),
             ],
-            'type' => $this->type
+            'type' => $this->type,
+            'referral_code' => $this->referralCode->referral_code
         ];
     }
 }
