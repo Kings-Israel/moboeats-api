@@ -130,8 +130,10 @@ class MenuController extends Controller
                 return $this->error('', 'unable to create menu item', 403);
             }
 
+            $menuPrice = null;
+
             if ($request->has('standardPrice')) {
-                MenuPrice::create([
+                $menuPrice = MenuPrice::create([
                     'menu_id' => $menu->id,
                     'description' => 'standard',
                     'price' => $request->standardPrice,
@@ -169,6 +171,36 @@ class MenuController extends Controller
                         'created_by' => auth()->user()->email,
                     ]);
                 }
+            }
+
+            $restaurant = Restaurant::find($restaurant);
+
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            $product = $stripe->products->create([
+                'name' => $request->title,
+                'description' => $request->description,
+                'metadata' => [
+                    'restaurant_id' => $restaurant->id,
+                    'restaurant_name' => $restaurant->name,
+                ]
+            ]);
+
+            $menu->update([
+                'stripe_product_id' => $product->id
+            ]);
+
+            if ($request->has('standardPrice')) {
+                $price = $stripe->prices->create([
+                    'unit_amount' => $request->standardPrice,
+                    'product' => $product['id'],
+                    'currency' => 'gbp'
+                ]);
+
+                $menuPrice->update([
+                    'stripe_price_id' => $price->id
+                ]);
             }
 
             activity()->causedBy(auth()->user())->performedOn($menu)->log('added new menu item');
@@ -263,8 +295,10 @@ class MenuController extends Controller
                     return $this->error('', 'unable to create menu item', 403);
                 }
 
+                $menuPrice = null;
+
                 if ($request->has('standardPrice')) {
-                    MenuPrice::create([
+                    $menuPrice = MenuPrice::create([
                         'menu_id' => $menu->id,
                         'description' => 'standard',
                         'price' => $request->standardPrice,
@@ -304,6 +338,36 @@ class MenuController extends Controller
                             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                         ]);
                     }
+                }
+
+                $restaurant = Restaurant::find($restaurant);
+
+                // Make request to stripe to store menu item
+                $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+                $product = $stripe->products->create([
+                    'name' => $request->title,
+                    'description' => $request->description,
+                    'metadata' => [
+                        'restaurant_id' => $restaurant->id,
+                        'restaurant_name' => $restaurant->name,
+                    ]
+                ]);
+
+                $menu->update([
+                    'stripe_product_id' => $product->id,
+                ]);
+
+                if ($request->has('standardPrice')) {
+                    $price = $stripe->prices->create([
+                        'unit_amount' => $request->standardPrice,
+                        'product' => $product['id'],
+                        'currency' => 'gbp'
+                    ]);
+
+                    $menuPrice->update([
+                        'stripe_price_id' => $price->id
+                    ]);
                 }
             });
 
@@ -501,7 +565,9 @@ class MenuController extends Controller
                 if($request->hasFile('image')){
                     $fileName = $this->generateFileName2($request->file('image'));
                 }
+
                 $menu->update($request->all());
+
                 if ($request->standardPrice) {
                     $standardPrice = MenuPrice::where('menu_id', $menu->id)->first();
                     $standardPrice->update(['price' => $request->standardPrice]);
@@ -555,6 +621,31 @@ class MenuController extends Controller
                     }
                     $menu->subCategories()->sync($syncData2);
                 }
+
+                // Make request to stripe to store menu item
+                $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+                if (!$menu->stripe_product_id) {
+                    $product = $stripe->products->create([
+                        'name' => $request->title,
+                        'description' => $request->description,
+                        'metadata' => [
+                            'restaurant_id' => $menu->restaurant->id,
+                            'restaurant_name' => $menu->restaurant->name,
+                        ]
+                    ]);
+
+                    $menu->update([
+                        'stripe_product_id' => $product->id,
+                    ]);
+                } else {
+                    $stripe->products->update($menu->stripe_product_id, [
+                        'name' => $request->title,
+                        'description' => $request->description,
+                    ]);
+                }
+
+
                 DB::commit();
                 return new MenuResource($menu);
             } catch (\Throwable $th) {

@@ -27,6 +27,7 @@ class Menu extends Model implements UrlRoutable
         'preparation_time',
         'created_by',
         'updated_by',
+        'stripe_product_id',
     ];
 
     public function getRouteKeyName()

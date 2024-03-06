@@ -9,6 +9,7 @@ use App\Http\Requests\V1\StoreMenuPriceRequest;
 use App\Http\Requests\V1\UpdateMenuPriceRequest;
 use App\Http\Resources\V1\MenuPriceCollection;
 use App\Http\Resources\V1\MenuPriceResource;
+use App\Models\Menu;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,39 @@ class MenuPriceController extends Controller
 
                 $menuPrice = MenuPrice::create($request->all());
 
+                $menu = Menu::with('restaurant')->find($request->menu_id);
+
+                // Make request to stripe to store menu item
+                $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+                if ($menu->stripe_product_id) {
+                    $product = $stripe->products->retrieve($menu->stripe_product_id);
+                } else {
+                    $product = $stripe->products->create([
+                        'name' => $menu->title,
+                        'description' => $menu->description,
+                        'metadata' => [
+                            'restaurant_id' => $menu->restaurant->id,
+                            'restaurant_name' => $menu->restaurant->name,
+                        ]
+                    ]);
+
+                    $menu->update([
+                        'stripe_product_id' => $product->id,
+                    ]);
+                }
+
+                if ($request->has('standardPrice')) {
+                    $price = $stripe->prices->create([
+                        'unit_amount' => $request->standardPrice,
+                        'product' => $product['id']
+                    ]);
+
+                    $menuPrice->update([
+                        'stripe_price_id' => $price->id
+                    ]);
+                }
+
                 activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('added menu price at '.$request->price);
 
                 DB::commit();
@@ -130,6 +164,43 @@ class MenuPriceController extends Controller
             $current_price = $menuPrice->price;
 
             $menuPrice->update($request->all());
+
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            if ($menuPrice->stripe_price_id) {
+                // $stripe->prices->update($menuPrice->stripe_price_id, $request->price);
+            } else {
+                $menu = Menu::with('restaurant')->find($menuPrice->menu->id);
+
+                if ($menu->stripe_product_id) {
+                    $product = $stripe->products->retrieve($menu->stripe_product_id);
+                } else {
+                    $product = $stripe->products->create([
+                        'name' => $menu->title,
+                        'description' => $menu->description,
+                        'metadata' => [
+                            'restaurant_id' => $menu->restaurant->id,
+                            'restaurant_name' => $menu->restaurant->name,
+                        ]
+                    ]);
+
+                    $menu->update([
+                        'stripe_product_id' => $product->id,
+                    ]);
+                }
+
+                $price = $stripe->prices->create([
+                    'unit_amount' => $request->price,
+                    'product' => $product['id'],
+                    'currency' => 'gbp'
+                ]);
+
+                $menuPrice->update([
+                    'stripe_price_id' => $price->id
+                ]);
+            }
+
 
             activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('update menu price from '.$current_price.' to '.$request->price);
 

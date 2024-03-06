@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Helpers\NumberGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,13 +16,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
-
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements LaratrustUser
 {
     use HasRolesAndPermissions;
 
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +46,7 @@ class User extends Authenticatable implements LaratrustUser
     ];
 
     protected $keyType = 'int';
+
     public $incrementing = true;
 
     protected static function boot()
@@ -51,6 +54,13 @@ class User extends Authenticatable implements LaratrustUser
         parent::boot();
         static::creating(function ($model) {
             $model->uuid = (string) Str::uuid();
+        });
+
+        static::created(function ($model) {
+            $code = NumberGenerator::generateVerificationCode(ReferralCode::class, 'referral_code');
+            $model->referralCode()->create([
+                'referral_code' => $code,
+            ]);
         });
     }
     public function getRouteKeyName()
@@ -225,5 +235,13 @@ class User extends Authenticatable implements LaratrustUser
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Get the referralCode associated with the User
+     */
+    public function referralCode(): HasOne
+    {
+        return $this->hasOne(ReferralCode::class);
     }
 }

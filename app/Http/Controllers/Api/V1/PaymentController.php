@@ -176,6 +176,7 @@ class PaymentController extends Controller
         AssignOrder::assignOrder($order->id);
 
         $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+
         event(new NewOrder($order->restaurant, $order->load('user')));
 
         activity()->causedBy($order->user)->performedOn($order)->log('paid for the order');
@@ -265,5 +266,50 @@ class PaymentController extends Controller
         return response()->json([
             'message' => 'Successful Payment',
          ], 200);
+    }
+
+    public function stripeCheckout($user_id, $order_id)
+    {
+        $user = User::where('id', $user_id)->first();
+
+        if (!$user) {
+            return $this->error('Order Payment', 'User not found', 403);
+        }
+
+        $order = Order::with('restaurant')
+                        ->where(function ($query) use ($order_id) {
+                            $query->where('id', $order_id)->orWhere('uuid', $order_id);
+                        })
+                        ->first();
+
+        if (!$order) {
+            return $this->error('Order Payment', 'Order not found', 404);
+        }
+
+        if ($order->status !== 'Pending') {
+            return $this->error('Order Payment', 'Order already paid', 422);
+        }
+
+        if ($order->user_id != $user->id) {
+            return $this->error('Order Payment', 'Cannot make payment for order.', 403);
+        }
+
+        $items = [];
+        foreach ($order->orderItems as $order_item) {
+            $items[] = [
+                'price' => $order_item->menu->menuPrice->where('status', 2)->where('stripe_price_id', '!=', NULL)->first()->stripe_price_id,
+                'quantity' => $order_item->quantity
+            ];
+        }
+
+        return $items;
+
+        // Make request to stripe to store menu item
+        $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+        return $user->checkout([], [
+            'success_url' => route('paypal.checkout.success'),
+            'cancel_url' => route('paypal.checkout.failed')
+        ]);
     }
 }
