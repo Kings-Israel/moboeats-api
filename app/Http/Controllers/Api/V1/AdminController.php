@@ -205,7 +205,7 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $categories = FoodCommonCategory::with('food_sub_categories')->orderBy('created_at', 'DESC')->paginate(7);
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('title', '!=', 'groceries')->orderBy('created_at', 'DESC')->paginate(7);
 
         return $this->success($categories);
     }
