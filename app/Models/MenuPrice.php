@@ -14,7 +14,7 @@ class MenuPrice extends Model implements UrlRoutable
 
     protected $keyType = 'int';
     public $incrementing = true;
-    
+
     // protected $guarded = [];
     protected $fillable = [
         'menu_id',
@@ -23,6 +23,7 @@ class MenuPrice extends Model implements UrlRoutable
         'status',
         'created_by',
         'updated_by',
+        'stripe_price_id',
     ];
 
     public function getRouteKeyName()

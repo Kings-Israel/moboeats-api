@@ -52,9 +52,9 @@ return [
     ],
 
     'stripe' => [
-        'LIVE_KEY' => env('STRIPE_LIVE_KEY'),
-        'LIVE_SECRET_KEY' => env('STRIPE_LIVE_SECRET_KEY'),
-        'SANDBOX_KEY' => env('STRIPE_SANDBOX_KEY'),
-        'SANDBOX_SECRET_KEY' => env('STRIPE_SANDBOX_SECRET_KEY'),
+        // 'LIVE_KEY' => env('STRIPE_LIVE_KEY'),
+        // 'LIVE_SECRET_KEY' => env('STRIPE_LIVE_SECRET_KEY'),
+        'KEY' => env('STRIPE_KEY'),
+        'SECRET_KEY' => env('STRIPE_SECRET_KEY'),
     ]
 ];
