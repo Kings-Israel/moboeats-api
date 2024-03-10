@@ -143,6 +143,7 @@ class PaymentController extends Controller
         return request()->wantsJson() ?
                 $this->success([
                     'order' => $order,
+                    'payment' => $payment,
                 ], '', 200) : '';
     }
 
