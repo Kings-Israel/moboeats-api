@@ -236,6 +236,8 @@ class AdminController extends Controller
 
         $groceries = FoodCommonCategory::where('title', 'groceries')->first();
 
+        info($groceries);
+
         $subcategory = FooSubCategory::create([
             'category_id' => $groceries->id,
             'title' => $request->title,
