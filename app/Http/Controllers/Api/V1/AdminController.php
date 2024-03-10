@@ -234,7 +234,7 @@ class AdminController extends Controller
             'status' => ['required', 'integer'],
         ]);
 
-        $groceries = FoodCommonCategory:::where('title', 'groceries')->first();
+        $groceries = FoodCommonCategory::where('title', 'groceries')->first();
 
         $subcategory = FooSubCategory::create([
             'category_id' => $groceries->id,
