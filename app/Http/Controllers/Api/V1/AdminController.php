@@ -229,12 +229,15 @@ class AdminController extends Controller
     public function addSubCategory(Request $request)
     {
         $request->validate([
-            'category_id' => ['required'],
+            // 'category_id' => ['required'],
             'title' => ['required'],
             'status' => ['required', 'integer'],
         ]);
 
+        $groceries = FoodCommonCategory:::where('title', 'groceries')->first();
+
         $subcategory = FooSubCategory::create([
+            'category_id' => $groceries->id,
             'title' => $request->title,
             'description' => $request->has('description') && $request->description != '' ? $request->description : NULL,
             'status' => $request->status,
