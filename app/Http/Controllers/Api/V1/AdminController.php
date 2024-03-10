@@ -247,7 +247,7 @@ class AdminController extends Controller
 
         FCategorySubCategory::create([
             'sub_category_id' => $subcategory->id,
-            'category_id' => $request->category_id,
+            'category_id' => $groceries->id,
             'created_by' => auth()->user()->email,
         ]);
 
