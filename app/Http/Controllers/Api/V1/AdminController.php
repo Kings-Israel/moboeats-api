@@ -512,9 +512,9 @@ class AdminController extends Controller
         $restaurant_amount_paid_out = 0;
         $rider_amount_paid_out = 0;
 
-        $orders = Order::all();
+        $orders = Order::where('delivery_status', 'delivered')->get();
 
-        $total_amount = Payment::where('transaction_id', '!=', NULL)->sum('amount');
+        $total_amount = Payment::where('transaction_id', $orders->pluck('id'))->sum('amount');
         $total_service_charges = $orders->where('delivery_status', 'delivered')->sum('service_charge');
         $total_amount = $total_amount - $total_service_charges;
         $restaurant_earnings = $total_amount;
