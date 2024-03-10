@@ -573,6 +573,7 @@ class RestaurantController extends Controller
         $unpaid_amount = 0;
 
         $orders = Order::whereIn('restaurant_id', $restaurant_ids)
+                            ->where('delivery_status', 'delivered')
                             ->get();
 
         $total_amount = Payment::whereIn('order_id', $orders->pluck('id'))->sum('amount');
