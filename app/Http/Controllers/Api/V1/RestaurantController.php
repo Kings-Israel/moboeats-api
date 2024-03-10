@@ -453,7 +453,7 @@ class RestaurantController extends Controller
         }
 
         $revenue = Payment::whereIn('order_id', $orders->pluck('id'))->where('status', '2')->sum('amount');
-        $service_charges = $orders->sum('service_charge');
+        $service_charges = $orders->where('delivery_status', 'delivered')->sum('service_charge');
         $revenue = (float) $revenue - (float) $service_charges;
 
         // Top Restaurants
@@ -576,7 +576,7 @@ class RestaurantController extends Controller
                             ->get();
 
         $total_amount = Payment::whereIn('order_id', $orders->pluck('id'))->sum('amount');
-        $service_charges = $orders->sum('service_charge');
+        $service_charges = $orders->where('delivery_status', 'delivered')->sum('service_charge');
         $total_amount = $total_amount - $service_charges;
 
         $paid_amount = Payout::whereIn('payable_id', $restaurant_ids)->where('payable_type', Restaurant::class)->sum('amount');

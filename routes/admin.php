@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
+use App\Http\Controllers\Api\V1\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1/admin'], function() {
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/restaurants/{id}', [AdminController::class, 'restaurant']);
         Route::get('/restaurants/{id}/reviews', [AdminController::class, 'restaurantReviews']);
         Route::post('/restaurants/{restaurant}/status/update', [AdminController::class, 'updateRestaurantStatus']);
+        Route::get('/payments/{payment}/details', [PaymentController::class, 'show']);
         Route::get('/payments', [AdminController::class, 'payments']);
 
         Route::group(['prefix' => 'restaurant/{restaurant}/'], function () {

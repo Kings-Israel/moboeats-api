@@ -13,6 +13,7 @@ use App\Models\FooSubCategory;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Payout;
 use App\Models\Restaurant;
 use App\Models\Review;
 use App\Models\Rider;
@@ -502,6 +503,29 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
 
+        $total_amount = 0;
+        $total_service_charges = 0;
+        $paid_amount = 0;
+        $unpaid_amount = 0;
+        $restaurant_earnings = 0;
+        $rider_earnings = 0;
+        $restaurant_amount_paid_out = 0;
+        $rider_amount_paid_out = 0;
+
+        $orders = Order::all();
+
+        $total_amount = Payment::whereIn('order_id', $orders->pluck('id'))->sum('amount');
+        $total_service_charges = $orders->where('delivery_status', 'delivered')->sum('service_charge');
+        $total_amount = $total_amount - $total_service_charges;
+        $restaurant_earnings = $total_amount;
+        $rider_earnings = $orders->where('delivery_status', 'delivered')->where('delivery', true)->sum('total_amount');
+
+        $paid_amount = Payout::sum('amount');
+        $restaurant_amount_paid_out = Payout::where('payable_type', Restaurant::class)->sum('amount');
+        $rider_amount_paid_out = Payout::where('payable_type', User::class)->sum('amount');
+
+        $unpaid_amount = (int) $total_amount - (int) $paid_amount;
+
         $payments = Payment::with('order.user', 'order.restaurant')
                             ->where('transaction_id', '!=', NULL)
                             ->when($search && $search != null, function ($query) use ($search) {
@@ -519,7 +543,17 @@ class AdminController extends Controller
                             ->orderBy('created_at', 'DESC')
                             ->paginate(10);
 
-        return $this->success($payments);
+        return $this->success([
+            'payments' => $payments,
+            'total_amount' => $total_amount,
+            'paid_out_amount' => $paid_amount,
+            'unpaid_amount' => $unpaid_amount,
+            'restaurant_earnings' => $restaurant_earnings,
+            'rider_earnings' => $rider_earnings,
+            'total_service_charges' => $total_service_charges,
+            'restaurant_amount_paid_out' => $restaurant_amount_paid_out,
+            'rider_amount_paid_out' => $rider_amount_paid_out,
+        ]);
     }
 
     public function logs(Request $request)

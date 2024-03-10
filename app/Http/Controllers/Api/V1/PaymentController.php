@@ -6,15 +6,21 @@ use App\Events\NewOrder;
 use App\Helpers\AssignOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\UpdatePaymentRequest;
+use App\Models\AssignedOrder;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Restaurant;
+use App\Models\RestaurantTable;
 use App\Models\Rider;
 use App\Models\RiderTip;
 use App\Models\User;
+use App\Models\UserRestaurant;
 use App\Notifications\NewOrder as NotificationsNewOrder;
 use App\Traits\Admin\UploadFileTrait;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 /**
@@ -126,6 +132,19 @@ class PaymentController extends Controller
             'total_amount' => $order->total_amount,
             'checkout_id' => $order->uuid,
         ]);
+    }
+
+    public function show(Payment $payment)
+    {
+        $order = $payment->order->load('user', 'restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable');
+
+        $order->preparation_time = $order->getTotalPreparationTime();
+
+        return request()->wantsJson() ?
+                $this->success([
+                    'order' => $order,
+                    'payment' => $payment,
+                ], '', 200) : '';
     }
 
     public function createPaypalOrder(Request $request)
