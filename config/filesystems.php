@@ -88,6 +88,14 @@ return [
             'throw' => false,
         ],
 
+        'ad' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/ad'),
+            'url' => env('APP_URL').'/storage/ad',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'exports' => [
             'driver' => 'local',
             'root' => storage_path('app/public/exports'),

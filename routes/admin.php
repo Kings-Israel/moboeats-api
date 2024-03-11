@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
+use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,13 @@ Route::group(['prefix' => 'v1/admin'], function() {
 
         Route::group(['prefix' => '/discounts'], function () {
             Route::get('/', [AdminController::class, 'discounts']);
+        });
+
+        Route::group(['prefix' => '/marketing'], function () {
+            Route::get('/', [MarketingController::class, 'index']);
+            Route::post('/store', [MarketingController::class, 'store']);
+            Route::post('/{advert_poster}/update', [MarketingController::class, 'update']);
+            Route::delete('/{advert_poster}/delete', [MarketingController::class, 'delete']);
         });
 
         Route::get('/logs', [AdminController::class, 'logs']);
