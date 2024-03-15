@@ -26,27 +26,27 @@ endpoints:
         name: rider_id
         description: 'The id of the rider'
         required: false
-        example: 9
+        example: 17
         type: integer
         custom: []
       rating:
         name: rating
         description: 'The rating from 1 - 5'
         required: false
-        example: 6
+        example: 18
         type: integer
         custom: []
       review:
         name: review
         description: 'A review of the rider'
         required: false
-        example: necessitatibus
+        example: voluptates
         type: string
         custom: []
     cleanBodyParameters:
-      rider_id: 9
-      rating: 6
-      review: necessitatibus
+      rider_id: 17
+      rating: 18
+      review: voluptates
     fileParameters: []
     responses: []
     responseFields: []
@@ -80,14 +80,14 @@ endpoints:
         name: vehicle_type
         description: 'The vehicle type of the rider'
         required: true
-        example: aut
+        example: qui
         type: string
         custom: []
       vehicle_license_plate:
         name: vehicle_license_plate
         description: ''
         required: true
-        example: ea
+        example: praesentium
         type: string
         custom: []
       profile_picture:
@@ -101,45 +101,45 @@ endpoints:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: tgraham@example.net
+        example: ggoldner@example.com
         type: string
         custom: []
       vehicle_licesne_plate:
         name: vehicle_licesne_plate
         description: "The license plate of the rider's vehicle"
         required: true
-        example: quia
+        example: enim
         type: sring
         custom: []
       city:
         name: city
         description: 'The city where the rider is located'
         required: false
-        example: incidunt
+        example: eum
         type: string
         custom: []
       state:
         name: state
         description: 'The state of where the rider is located'
         required: false
-        example: nihil
+        example: quo
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: 'The postal code of the rider'
         required: false
-        example: aut
+        example: similique
         type: string
         custom: []
     cleanBodyParameters:
-      vehicle_type: aut
-      vehicle_license_plate: ea
-      paypal_email: tgraham@example.net
-      vehicle_licesne_plate: quia
-      city: incidunt
-      state: nihil
-      postal_code: aut
+      vehicle_type: qui
+      vehicle_license_plate: praesentium
+      paypal_email: ggoldner@example.com
+      vehicle_licesne_plate: enim
+      city: eum
+      state: quo
+      postal_code: similique
     fileParameters:
       profile_picture: null
     responses:
@@ -187,21 +187,21 @@ endpoints:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: otto78@example.org
+        example: powlowski.garry@example.com
         type: string
         custom: []
       vehicle_type:
         name: vehicle_type
         description: 'The vehicle type of the rider'
         required: false
-        example: non
+        example: quasi
         type: string
         custom: []
       vehicle_licesne_plate:
         name: vehicle_licesne_plate
         description: "The license plate of the rider's vehicle"
         required: false
-        example: cum
+        example: mollitia
         type: sring
         custom: []
       profile_picture:
@@ -215,30 +215,30 @@ endpoints:
         name: city
         description: 'The city where the rider is located'
         required: false
-        example: dolorem
+        example: et
         type: string
         custom: []
       state:
         name: state
         description: 'The state of where the rider is located'
         required: false
-        example: saepe
+        example: sequi
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: 'The postal code of the rider'
         required: false
-        example: eaque
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      paypal_email: otto78@example.org
-      vehicle_type: non
-      vehicle_licesne_plate: cum
-      city: dolorem
-      state: saepe
-      postal_code: eaque
+      paypal_email: powlowski.garry@example.com
+      vehicle_type: quasi
+      vehicle_licesne_plate: mollitia
+      city: et
+      state: sequi
+      postal_code: et
     fileParameters:
       profile_picture: null
     responses:
@@ -351,19 +351,19 @@ endpoints:
         name: order_id
         description: ''
         required: true
-        example: ut
+        example: placeat
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: aliquid
+        example: voluptas
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: ut
-      status: aliquid
+      order_id: placeat
+      status: voluptas
     fileParameters: []
     responses: []
     responseFields: []
@@ -405,19 +405,19 @@ endpoints:
         name: longitude
         description: ''
         required: true
-        example: quis
+        example: sint
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: odio
+        example: dolorem
         type: string
         custom: []
     cleanBodyParameters:
-      longitude: quis
-      latitude: odio
+      longitude: sint
+      latitude: dolorem
     fileParameters: []
     responses: []
     responseFields: []
@@ -451,19 +451,19 @@ endpoints:
         name: longitude
         description: ''
         required: true
-        example: ullam
+        example: at
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: adipisci
+        example: consequatur
         type: string
         custom: []
     cleanBodyParameters:
-      longitude: ullam
-      latitude: adipisci
+      longitude: at
+      latitude: consequatur
     fileParameters: []
     responses: []
     responseFields: []

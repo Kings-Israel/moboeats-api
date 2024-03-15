@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
     Route::get('/orderer-restaurants/rated', [RestaurantController::class, 'rating']);
     Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
     Route::get('orderer-restaurants/{restaurant?}/menu', [MenuController::class, 'restaurantMenu']);
+    Route::get('orderer-grocery-shops/', [RestaurantController::class, 'groceryShops']);
     Route::apiResource('orderer-restaurants', RestaurantController::class);
     Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
     Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
