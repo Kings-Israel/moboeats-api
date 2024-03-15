@@ -71,7 +71,7 @@ class RestaurantController extends Controller
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
 
-                $restaurants = Restaurant::InOperation()->Approved()->hasMenu()->where($filterItems);
+                $restaurants = Restaurant::Approved()->hasMenu()->where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
                 //             (6371 * acos(cos(radians($request->latitude))
@@ -94,7 +94,7 @@ class RestaurantController extends Controller
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
                 $includeQuestionnaire = $request->query('questionnaire');
-                $restaurants = Restaurant::InOperation()->Approved()->hasMenu()->where($filterItems);
+                $restaurants = Restaurant::Approved()->hasMenu()->where($filterItems);
 
                 // $restaurants = Restaurant::select(DB::raw("*,
                 //             (6371 * acos(cos(radians($request->latitude))
@@ -157,7 +157,7 @@ class RestaurantController extends Controller
                 return new RestaurantCollection($restaurants);
             }
         } else {
-            $restaurants = Restaurant::InOperation()->Approved()->hasMenu();
+            $restaurants = Restaurant::Approved()->hasMenu();
 
             // $restaurants = Restaurant::select(DB::raw("*,
             //             (6371 * acos(cos(radians($request->latitude))
@@ -1081,5 +1081,120 @@ class RestaurantController extends Controller
         ]);
 
         return $this->success('Review created successfully');
+    }
+
+    /**
+     * Get Grocery SHops
+     */
+    public function groceryShops(Request $request)
+    {
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('orderer')) {
+                $filter =  new RestaurantFilter();
+                $filterItems = $filter->transform($request);
+
+                $restaurants = Restaurant::Approved()->groceryShops()->where($filterItems);
+
+                // $restaurants = Restaurant::select(DB::raw("*,
+                //             (6371 * acos(cos(radians($request->latitude))
+                //             * cos(radians(latitude))
+                //             * cos(radians(longitude)
+                //             - radians($request->longitude))
+                //             + sin(radians($request->latitude))
+                //             * sin(radians(latitude))))
+                //             AS distance"))
+                //     ->having('distance', '<=', $radius)
+                //     ->orderBy('distance');
+
+                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
+            }
+
+            if (auth()->user()->hasRole('rider')) {
+                $radius = 10;
+                $latitude = $request->latitude;
+                $longitude = $request->longitude;
+                $filter =  new RestaurantFilter();
+                $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+                $includeQuestionnaire = $request->query('questionnaire');
+                $restaurants = Restaurant::Approved()->hasMenu()->groceryShops()->where($filterItems);
+
+                // $restaurants = Restaurant::select(DB::raw("*,
+                //             (6371 * acos(cos(radians($request->latitude))
+                //             * cos(radians(latitude))
+                //             * cos(radians(longitude)
+                //             - radians($request->longitude))
+                //             + sin(radians($request->latitude))
+                //             * sin(radians(latitude))))
+                //             AS distance"))
+                //     ->having('distance', '<=', $radius)
+                //     ->orderBy('distance');
+
+                // if ($includeQuestionnaire) {
+                //     $restaurants = $restaurants->with('questionnaire');
+                // }
+
+                return new RestaurantCollection($restaurants->with('questionnaire')->paginate());
+            }
+
+            if (auth()->user()->hasRole('restaurant')) {
+                $search = $request->query('search');
+                $status = $request->query('status');
+
+                $restaurants = Restaurant::withCount('orders', 'menus')
+                                        ->groceryShops()
+                                        ->with('orders.payment', 'orders.reservation', 'menus', 'restaurantTables.seatingArea')
+                                        ->where('user_id', Auth::user()->id)
+                                        ->when($search && $search != '', function ($query) use ($search) {
+                                            $query->where(function ($query) use ($search) {
+                                                $query->where('name', 'LIKE', '%'.$search.'%')
+                                                        ->orWhere('address', 'LIKE', '%'.$search.'%');
+                                            });
+                                        })
+                                        ->when($status && $status != '', function ($query) use ($status) {
+                                            $query->where(function ($query) use ($status) {
+                                                $query->where('status', $status);
+                                            });
+                                        })
+                                        ->orderBy('created_at', 'DESC')
+                                        ->paginate(10);
+
+                return new RestaurantCollection($restaurants);
+            }
+
+            if (auth()->user()->hasRole('restaurant employee')) {
+                $search = $request->query('search');
+
+                $restaurant = UserRestaurant::where('user_id', auth()->id())->first();
+
+                $restaurants = Restaurant::withCount('orders', 'menus')
+                                            ->groceryShops()
+                                            ->with('orders.payment', 'orders.reservation', 'menus', 'restaurantTables.seatingArea')
+                                            ->where('id', $restaurant->restaurant_id)
+                                            ->when($search && $search != '', function ($query) use ($search) {
+                                                $query->where(function ($query) use ($search) {
+                                                    $query->where('name', 'LIKE', '%'.$search.'%')
+                                                            ->orWhere('address', 'LIKE', '%'.$search.'%');
+                                                });
+                                            })
+                                            ->first();
+
+                return new RestaurantCollection($restaurants);
+            }
+        } else {
+            $restaurants = Restaurant::Approved()->hasMenu()->groceryShops();
+
+            // $restaurants = Restaurant::select(DB::raw("*,
+            //             (6371 * acos(cos(radians($request->latitude))
+            //             * cos(radians(latitude))
+            //             * cos(radians(longitude)
+            //             - radians($request->longitude))
+            //             + sin(radians($request->latitude))
+            //             * sin(radians(latitude))))
+            //             AS distance"))
+            //     ->having('distance', '<=', $radius)
+            //     ->orderBy('distance');
+
+            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
+        }
     }
 }

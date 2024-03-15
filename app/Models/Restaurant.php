@@ -202,6 +202,23 @@ class Restaurant extends Model implements UrlRoutable
     }
 
     /**
+     * Scope a query to only grocerry shops
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGroceryShops($query)
+    {
+        $grocery_category_id = FoodCommonCategory::where('title', 'Groceries')->orWhere('title', 'groceries')->first()->id;
+
+        return $query->whereHas('menus', function ($query) use ($grocery_category_id) {
+            $query->whereHas('categories', function ($query) use ($grocery_category_id) {
+                $query->where('category_id', $grocery_category_id);
+            });
+        });
+    }
+
+    /**
      * Get the questionnaire associated with the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -297,5 +314,20 @@ class Restaurant extends Model implements UrlRoutable
         }
 
         return 0;
+    }
+
+    public function isOpen()
+    {
+        $operating_hours = $this->operatingHours()->where('day', now()->format('l'))->first();
+
+        if ($operating_hours){
+            if (now()->greaterThan(Carbon::parse($operating_hours->opening_time)) && now()->lessThan(Carbon::parse($operating_hours->closing_time))) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
     }
 }

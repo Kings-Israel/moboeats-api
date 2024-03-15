@@ -28,19 +28,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: qui
+        example: ut
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: quis
+        example: possimus
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: qui
-      order_id: quis
+      user_id: ut
+      order_id: possimus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -186,6 +186,55 @@ endpoints:
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/payments/{payment_uuid}/details'
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      payment_uuid:
+        name: payment_uuid
+        description: ''
+        required: true
+        example: bb1ddf9c-ece0-4412-884a-bc0986ced163
+        type: string
+        custom: []
+    cleanUrlParameters:
+      payment_uuid: bb1ddf9c-ece0-4412-884a-bc0986ced163
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
