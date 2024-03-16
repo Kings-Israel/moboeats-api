@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+Route::get('/partners', function () {
+    return view('partners');
+})->name('partners');
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
