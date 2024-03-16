@@ -30,6 +30,7 @@ class Rider extends Model
         'created_by',
         'updated_by',
         'paypal_email',
+        'rejection_reason',
     ];
 
     /**
@@ -78,6 +79,7 @@ class Rider extends Model
             $options = [
                 ['id' => 1,'caption' => 'Inactive', 'color' => 'bg-yellow-500'],
                 ['id' => 2,'caption' => 'Active', 'color' => 'bg-green-500'],
+                ['id' => 3,'caption' => 'Rejected', 'color' => 'bg-red-500'],
             ];
         }
         if(isset($options)){
