@@ -63,7 +63,7 @@
     </div>
     <div class="flex space-x-2">
         @guest
-            <a href="{{ route('login') }}" class="hidden my-auto md:block">
+            <a href="{{ route('login') }}" class="my-auto">
                 <x-primary-button class="py-2 bg-primary-two">Sign In</x-primary-button>
             </a>
         @endguest

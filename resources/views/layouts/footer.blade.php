@@ -1,5 +1,7 @@
 <div class="bg-primary-one px-2 lg:px-24 mt-2 pb-12 lg:flex lg:gap-12">
-    <img src="{{ asset('assets/img/favicon/android-chrome-192x192.png') }}" class="w-[10rem] h-[10rem] object-contain" alt="">
+    <div class="flex justify-center lg:justify-start">
+        <img src="{{ asset('assets/img/favicon/android-chrome-192x192.png') }}" class="w-[10rem] h-[10rem] object-contain" alt="">
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-32 py-8 text-white">
         <div class="text-center md:text-left">
             <ul class="space-y-4">
@@ -13,8 +15,8 @@
                 <li><a href="#" class="font-bold hover:text-primary-two">Be Our Driver</a></li>
             </ul>
         </div>
-        <div class="text-center md:text-left">
-            <ul class="py-2 flex gap-4">
+        <div class="">
+            <ul class="py-2 flex gap-4 justify-center">
                 <li class="px-0.5">
                     <a href="#" class="">
                         <img src="{{ asset('assets/img/instagram.png') }}" alt="" class="w-9 h-9">

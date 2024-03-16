@@ -42,7 +42,7 @@
             </section>
 
             <div class="px-2 lg:px-24 p-4">
-                <div class="grid grid-cols-2 gap-4 px-44">
+                <div class="grid grid-cols-2 gap-4 px-4 lg:px-44">
                     <div class="border-2 border-primary-one p-2 rounded-md">
                         <h4 class="font-extrabold text-xl">Customer Support</h4>
                         <h5 class="font-bold">For assistance with orders, deliveries, or any other inquiries, our dedicated customer support is here to help.</h5>
@@ -64,7 +64,7 @@
 
             <div class="px-2 lg:px-24">
                 <form action="coming-soon.php" method="post">
-                    <div class="px-2 md:px-44 grid grid-cols-3 gap-3 my-4">
+                    <div class="px-4 lg:px-44 grid grid-cols-3 gap-3 my-4">
                         <div class="flex flex-col">
                             <label class="text-black text-md font-bold">Full Name</label>
                             <input name="fullname" class="border-2 border-gray-300 dark:border-gray-300 dark:text-dark bg-slate-200 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-gray-400 dark:focus:ring-gray-400 rounded-md shadow-sm h-10" />
@@ -81,7 +81,7 @@
                             <label class="text-black text-md font-bold">Message</label>
                             <textarea name="message" id="" class="w-full bg-gray-200 border-0 rounded-md" rows="5"></textarea>
                         </div>
-                        <div class="col-span-3">
+                        <div class="col-span-3 flex justify-end">
                             <button type="submit" class="bg-primary-one mb-8 rounded-lg text-white px-4 py-1 font-bold tracking-wider">Submit</button>
                         </div>
                     </div>

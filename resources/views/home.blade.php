@@ -37,7 +37,7 @@
                 </div>
             </section>
 
-            <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
+            <div class="mt-4 md:mt-24 px-4 lg:px-24 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
                     <img src="{{ asset('assets/img/convenience.jpg') }}" alt="" class="w-[38rem] h-[20rem] object-cover rounded-lg">
                 </div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
+            <div class="mt-4 md:mt-24 px-4 lg:px-24 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
                     <img src="{{ asset('assets/img/personalized.jpg') }}" alt="" class="w-[38rem] h-[20rem] object-cover rounded-lg">
                 </div>
@@ -77,9 +77,9 @@
                 </div>
             </div>
 
-            <div class="bg-[#eae1e1bf] h-[52rem]">
+            <div class="bg-[#eae1e1bf] lg:h-[52rem]">
                 <h1 class="text-3xl text-center my-5 pt-6 font-semibold">How it works</h1>
-                <div class="flex flex-nowrap gap-4 overflow-x-auto px-2 md:px-24 4xl:px-72 no-scrollbar">
+                <div class="flex flex-nowrap gap-4 overflow-x-auto px-4 md:px-24 4xl:px-72 no-scrollbar">
                     <div class="flex-shrink-0 my-4 relative">
                         <img src="{{ asset('assets/img/app-img.jpg') }}" class="h-96 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
                         <div class="text-center text-white absolute bottom-8 left-2">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="px-2 lg:px-44">
+                <div class="px-8 mb-12 lg:px-44">
                     <h1 class="text-3xl text-center my-2 py-2 font-semibold">Have any Complains</h1>
                     <div class="flex justify-center">
                         {{-- <video class="h-96 rounded-lg" controls>
