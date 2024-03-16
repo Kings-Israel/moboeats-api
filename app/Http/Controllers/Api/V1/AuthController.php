@@ -66,6 +66,17 @@ class AuthController extends Controller
                 ]);
             }
 
+            if ($request->userType == 'rider') {
+                $rider = $user->rider;
+                if (!$rider) {
+                    return $this->error('Rider profile not complete', 'Complete your rider profile.', 400);
+                }
+
+                if ($rider->status == 1) {
+                    return $this->success(['Rider profile awaiting approval']);
+                }
+            }
+
             $token = $user->createToken($request->userType, ['create', 'read', 'update', 'delete']);
 
             $user->update(['role_id' => $request->userType]);

@@ -49,7 +49,8 @@ class RiderResource extends JsonResource
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
             ],
-            'reviews' => $this->when($this->reviews()->exists(), new ReviewResource($this->reviews))
+            'reviews' => $this->when($this->reviews()->exists(), new ReviewResource($this->reviews)),
+            'rejection_reason' => $this->when($this->status == '3', $this->rejection_reason)
         ];
     }
 }

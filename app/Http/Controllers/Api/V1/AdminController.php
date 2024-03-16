@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\UpdatedRestaurantStatus;
 use Spatie\Activitylog\Models\Activity;
+use App\Jobs\SendNotification;
 
 class AdminController extends Controller
 {
@@ -277,7 +278,7 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
 
-        $users = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users')
+        $users = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users', 'rider.tips', 'deliveries')
                         ->whereHas('roles', function ($query) use ($role) { $query->where('name', $role); })
                         ->when($search && $search != '', function($query) use ($search) {
                             $query->where(function ($query) use ($search) {
@@ -323,6 +324,25 @@ class AdminController extends Controller
         $deliveries = Order::where('rider_id', $id)->orderBy('created_at', 'DESC')->paginate(5);
 
         return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile]);
+    }
+
+    public function updateRiderStatus(Request $request, Rider $rider)
+    {
+        $request->validate([
+            'status' => ['required', 'in:approved,denied']
+        ]);
+
+        $rider->update([
+            'status' => $request->status == 'approved' ? '2' : '3',
+            'rejection_reason' => $request->has('rejection_reason') && !empty($request->rejection_reason) ? $request->rejection_reason : NULL,
+        ]);
+
+        if ($rider->user->device_token) {
+            // Send Notification to user
+            SendNotification::dispatchAfterResponse($rider->user->device_token, 'Your profile has been '.$request->status, ['rejection_reason' => $request->has('rejection_reason') && !empty($request->rejection_reason) ? $request->rejection_reason : NULL]);
+        }
+
+        return $this->success(['message' => 'Rider profile updated successfully']);
     }
 
     public function restaurants(Request $request)
