@@ -15,14 +15,14 @@ export default {
                 outfit: ['Outfit'],
             },
             backgroundImage: {
-                'home-hero' : "url('assets/img/simona-toma.jpg')",
+                'home-hero' : "url('/public/assets/img/simona-toma.jpg')",
             },
             screens: {
                 '4xl': '1900px'
             },
             colors: {
-                'primary-one': '#EE5D32',
-                'primary-two': '#6F1310',
+                'primary-one': '#2E5945',
+                'primary-two': '#F8C410',
                 'secondary-one': '#FFE5D3',
                 'secondary-two': '#F2F2F2',
                 'secondary-three': '#FFFFFF',
