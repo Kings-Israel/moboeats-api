@@ -65,28 +65,28 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ujueqgwlmfrknet
+        example: zu
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: isabell.thompson@example.com
+        example: bartoletti.lempi@example.org
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: maxime
+        example: aspernatur
         type: string
         custom: []
       userType:
         name: userType
         description: ''
         required: true
-        example: voluptatum
+        example: sequi
         type: string
         custom: []
       otp:
@@ -107,15 +107,15 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: quos
+        example: iure
         type: string
         custom: []
     cleanBodyParameters:
-      name: ujueqgwlmfrknet
-      email: isabell.thompson@example.com
-      password: maxime
-      userType: voluptatum
-      phone: quos
+      name: zu
+      email: bartoletti.lempi@example.org
+      password: aspernatur
+      userType: sequi
+      phone: iure
     fileParameters: []
     responses: []
     responseFields: []
@@ -193,19 +193,19 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: voluptatem
+        example: eum
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: eligendi
+        example: architecto
         type: string
         custom: []
     cleanBodyParameters:
-      code: voluptatem
-      password: eligendi
+      code: eum
+      password: architecto
     fileParameters: []
     responses: []
     responseFields: []
@@ -343,11 +343,11 @@ endpoints:
         name: notification
         description: 'The notification.'
         required: true
-        example: ipsam
+        example: consequatur
         type: string
         custom: []
     cleanUrlParameters:
-      notification: ipsam
+      notification: consequatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -526,7 +526,7 @@ endpoints:
         name: days
         description: ''
         required: true
-        example: omnis
+        example: distinctio
         type: string
         custom: []
       opening_times:
@@ -534,7 +534,7 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '18:13'
+          - '13:53'
         type: 'string[]'
         custom: []
       closing_times:
@@ -542,15 +542,15 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '18:13'
+          - '13:53'
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      days: omnis
+      days: distinctio
       opening_times:
-        - '18:13'
+        - '13:53'
       closing_times:
-        - '18:13'
+        - '13:53'
     fileParameters: []
     responses: []
     responseFields: []
@@ -640,7 +640,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - inventore
+          - doloribus
         type: 'string[]'
         custom: []
       files:
@@ -652,7 +652,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - inventore
+        - doloribus
     fileParameters: []
     responses: []
     responseFields: []
@@ -695,7 +695,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - voluptatem
+          - aliquid
         type: 'string[]'
         custom: []
       files:
@@ -707,7 +707,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - voluptatem
+        - aliquid
     fileParameters: []
     responses: []
     responseFields: []
@@ -737,11 +737,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: numquam
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: numquam
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -866,42 +866,42 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: nobis
+        example: architecto
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: true
-        example: est
+        example: placeat
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-15T18:13:06'
+        example: '2024-03-17T13:53:54'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-15T18:13:06'
+        example: '2024-03-17T13:53:54'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 4
+        example: 17
         type: integer
         custom: []
       status:
@@ -912,12 +912,12 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: nobis
-      code: est
-      start_date: '2024-03-15T18:13:06'
-      end_date: '2024-03-15T18:13:06'
-      type: percentage
-      value: 4
+      restaurant_ids: architecto
+      code: placeat
+      start_date: '2024-03-17T13:53:54'
+      end_date: '2024-03-17T13:53:54'
+      type: amount
+      value: 17
       status: active
     fileParameters: []
     responses: []
@@ -948,11 +948,11 @@ endpoints:
         name: promo_code_id
         description: 'The ID of the promo code.'
         required: true
-        example: 15
+        example: 2
         type: integer
         custom: []
     cleanUrlParameters:
-      promo_code_id: 15
+      promo_code_id: 2
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -960,51 +960,51 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: amet
+        example: modi
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-15T18:13:06'
+        example: '2024-03-17T13:53:54'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-15T18:13:06'
+        example: '2024-03-17T13:53:54'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 9
+        example: 17
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: inactive
+        example: active
         type: string
         custom: []
     cleanBodyParameters:
-      code: amet
-      start_date: '2024-03-15T18:13:06'
-      end_date: '2024-03-15T18:13:06'
-      type: amount
-      value: 9
-      status: inactive
+      code: modi
+      start_date: '2024-03-17T13:53:54'
+      end_date: '2024-03-17T13:53:54'
+      type: percentage
+      value: 17
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -1077,27 +1077,27 @@ endpoints:
         name: menu_ids
         description: ''
         required: true
-        example: consequatur
+        example: sit
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 1
+        example: 5
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_ids: consequatur
-      type: percentage
-      value: 1
+      menu_ids: sit
+      type: amount
+      value: 5
     fileParameters: []
     responses: []
     responseFields: []
@@ -1139,19 +1139,19 @@ endpoints:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 17
+        example: 5
         type: integer
         custom: []
     cleanBodyParameters:
-      type: amount
-      value: 17
+      type: percentage
+      value: 5
     fileParameters: []
     responses: []
     responseFields: []
@@ -1409,19 +1409,19 @@ endpoints:
         name: title
         description: "'category_id' => ['required'],."
         required: true
-        example: deserunt
+        example: sint
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: 19
+        example: 13
         type: integer
         custom: []
     cleanBodyParameters:
-      title: deserunt
-      status: 19
+      title: sint
+      status: 13
     fileParameters: []
     responses: []
     responseFields: []
@@ -1451,11 +1451,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: ut
+        example: magni
         type: string
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: magni
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1463,11 +1463,11 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ut
+        example: labore
         type: string
         custom: []
     cleanBodyParameters:
-      title: ut
+      title: labore
     fileParameters: []
     responses: []
     responseFields: []
@@ -1544,11 +1544,11 @@ endpoints:
         name: id
         description: 'The ID of the customer.'
         required: true
-        example: mollitia
+        example: amet
         type: string
         custom: []
     cleanUrlParameters:
-      id: mollitia
+      id: amet
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1591,11 +1591,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant admin.'
         required: true
-        example: porro
+        example: optio
         type: string
         custom: []
     cleanUrlParameters:
-      id: porro
+      id: optio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1638,11 +1638,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: placeat
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: placeat
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1658,6 +1658,52 @@ endpoints:
           vary: Origin
         description: null
         custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/users/rider/{rider_uuid}/status/update'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      rider_uuid:
+        name: rider_uuid
+        description: ''
+        required: true
+        example: 971fc707-7f7b-4d18-a566-473820f67abf
+        type: string
+        custom: []
+    cleanUrlParameters:
+      rider_uuid: 971fc707-7f7b-4d18-a566-473820f67abf
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: 'Must be one of <code>approved</code> or <code>denied</code>.'
+        required: true
+        example: approved
+        type: string
+        custom: []
+    cleanBodyParameters:
+      status: approved
+    fileParameters: []
+    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -1923,12 +1969,12 @@ endpoints:
         name: reason
         description: 'This field is required when <code>status</code> is <code>3</code>.'
         required: false
-        example: fuga
+        example: blanditiis
         type: string
         custom: []
     cleanBodyParameters:
       status: '2'
-      reason: fuga
+      reason: blanditiis
     fileParameters: []
     responses: []
     responseFields: []
@@ -2352,19 +2398,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: odit
+        example: nobis
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: true
-        example: aa
+        example: rwbfdynvgvkeqkl
         type: string
         custom: []
     cleanBodyParameters:
-      title: odit
-      poster: aa
+      title: nobis
+      poster: rwbfdynvgvkeqkl
     fileParameters: []
     responses: []
     responseFields: []
@@ -2394,11 +2440,11 @@ endpoints:
         name: advert_poster_id
         description: 'The ID of the advert poster.'
         required: true
-        example: 8
+        example: 11
         type: integer
         custom: []
     cleanUrlParameters:
-      advert_poster_id: 8
+      advert_poster_id: 11
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2406,19 +2452,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: optio
+        example: alias
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: false
-        example: fachtnk
+        example: wp
         type: string
         custom: []
     cleanBodyParameters:
-      title: optio
-      poster: fachtnk
+      title: alias
+      poster: wp
     fileParameters: []
     responses: []
     responseFields: []
@@ -2448,11 +2494,11 @@ endpoints:
         name: advert_poster_id
         description: 'The ID of the advert poster.'
         required: true
-        example: 8
+        example: 14
         type: integer
         custom: []
     cleanUrlParameters:
-      advert_poster_id: 8
+      advert_poster_id: 14
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

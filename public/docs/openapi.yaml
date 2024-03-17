@@ -57,7 +57,7 @@ paths:
                 userId:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 10
               required:
                 - userId
       security: []
@@ -97,7 +97,7 @@ paths:
         in: path
         name: uuid
         description: ''
-        example: 8fe7bb95-09d2-4e17-ae0d-584d2c81b579
+        example: 58b14723-d165-4dc9-8204-c1f6d97d9375
         required: true
         schema:
           type: string
@@ -141,15 +141,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 19
                 quantity:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 15
                 status:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 18
               required:
                 - menuId
                 - quantity
@@ -194,15 +194,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 8
                 quantity:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 14
                 status:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 18
               required:
                 - menuId
                 - quantity
@@ -221,7 +221,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the cart item.'
-        example: d3c1bd94-3a00-4c79-a1b1-a5ae1900ae96
+        example: 5616df97-21ea-4c36-b1c1-9c15e0d707dc
         required: true
         schema:
           type: string
@@ -265,11 +265,11 @@ paths:
                 cartId:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 3
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 16
                 delivery:
                   type: boolean
                   description: ''
@@ -288,8 +288,8 @@ paths:
                   example: null
                 booking_time:
                   type: string
-                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-03-15 18:13:03</code>.'
-                  example: '2029-11-24'
+                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-03-17 13:53:52</code>.'
+                  example: '2116-09-02'
               required:
                 - restaurantId
                 - delivery
@@ -353,23 +353,23 @@ paths:
                 order_id:
                   type: integer
                   description: 'The id of the order'
-                  example: 5
+                  example: 8
                 restaurant_rating:
                   type: integer
                   description: 'The rating of the restaurant from 1 - 5'
-                  example: 8
+                  example: 5
                 restaurant_review:
                   type: string
                   description: 'A review of the restaurant'
-                  example: tempora
+                  example: repellendus
                 rider_rating:
                   type: integer
                   description: 'The rating of the rider from 1 - 5'
-                  example: 14
+                  example: 19
                 rider_review:
                   type: string
                   description: 'A review of the rider'
-                  example: aut
+                  example: vel
       security: []
   '/api/v1/restaurant/orders/{uuid}':
     get:
@@ -411,7 +411,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: eum
+                  example: dolor
               required:
                 - status
       security: []
@@ -471,7 +471,7 @@ paths:
                 status:
                   type: string
                   description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
-                  example: 'no show'
+                  example: cancelled
               required:
                 - status
       security: []
@@ -569,7 +569,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: quis
+                  example: porro
               required:
                 - status
       security: []
@@ -601,11 +601,11 @@ paths:
                 order_id:
                   type: string
                   description: ''
-                  example: commodi
+                  example: beatae
                 rider_id:
                   type: string
                   description: ''
-                  example: asperiores
+                  example: suscipit
               required:
                 - order_id
                 - rider_id
@@ -672,7 +672,7 @@ paths:
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 14
               required:
                 - restaurantId
       security: []
@@ -743,7 +743,7 @@ paths:
         in: path
         name: menuId
         description: ''
-        example: odio
+        example: rerum
         required: true
         schema:
           type: string
@@ -827,7 +827,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the menu bookmark.'
-        example: temporibus
+        example: ipsum
         required: true
         schema:
           type: string
@@ -872,19 +872,19 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ujueqgwlmfrknet
+                  example: zu
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: isabell.thompson@example.com
+                  example: bartoletti.lempi@example.org
                 password:
                   type: string
                   description: ''
-                  example: maxime
+                  example: aspernatur
                 userType:
                   type: string
                   description: ''
-                  example: voluptatum
+                  example: sequi
                 otp:
                   type: string
                   description: ''
@@ -896,7 +896,7 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: quos
+                  example: iure
               required:
                 - name
                 - email
@@ -948,11 +948,11 @@ paths:
                 code:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: eum
                 password:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: architecto
               required:
                 - code
                 - password
@@ -1038,7 +1038,7 @@ paths:
         in: path
         name: notification
         description: 'The notification.'
-        example: ipsam
+        example: consequatur
         required: true
         schema:
           type: string
@@ -1133,19 +1133,19 @@ paths:
                 days:
                   type: string
                   description: ''
-                  example: omnis
+                  example: distinctio
                 opening_times:
                   type: array
                   description: 'Must be a valid date in the format <code>H:i</code>.'
                   example:
-                    - '18:13'
+                    - '13:53'
                   items:
                     type: string
                 closing_times:
                   type: array
                   description: 'Must be a valid date in the format <code>H:i</code>.'
                   example:
-                    - '18:13'
+                    - '13:53'
                   items:
                     type: string
               required:
@@ -1213,7 +1213,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - inventore
+                    - doloribus
                   items:
                     type: string
                 files:
@@ -1252,7 +1252,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - voluptatem
+                    - aliquid
                   items:
                     type: string
                 files:
@@ -1298,7 +1298,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the document.'
-        example: numquam
+        example: qui
         required: true
         schema:
           type: string
@@ -1365,27 +1365,27 @@ paths:
                 restaurant_ids:
                   type: string
                   description: ''
-                  example: nobis
+                  example: architecto
                 code:
                   type: string
                   description: ''
-                  example: est
+                  example: placeat
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-03-15T18:13:06'
+                  example: '2024-03-17T13:53:54'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-03-15T18:13:06'
+                  example: '2024-03-17T13:53:54'
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: percentage
+                  example: amount
                 value:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 17
                 status:
                   type: string
                   description: 'Must be one of <code>active</code> or <code>inactive</code>.'
@@ -1418,27 +1418,27 @@ paths:
                 code:
                   type: string
                   description: ''
-                  example: amet
+                  example: modi
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-03-15T18:13:06'
+                  example: '2024-03-17T13:53:54'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-03-15T18:13:06'
+                  example: '2024-03-17T13:53:54'
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: amount
+                  example: percentage
                 value:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 17
                 status:
                   type: string
                   description: 'Must be one of <code>active</code> or <code>inactive</code>.'
-                  example: inactive
+                  example: active
               required:
                 - code
                 - start_date
@@ -1452,7 +1452,7 @@ paths:
         in: path
         name: promo_code_id
         description: 'The ID of the promo code.'
-        example: 15
+        example: 2
         required: true
         schema:
           type: integer
@@ -1497,15 +1497,15 @@ paths:
                 menu_ids:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: sit
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: percentage
+                  example: amount
                 value:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 5
               required:
                 - menu_ids
                 - type
@@ -1530,11 +1530,11 @@ paths:
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: amount
+                  example: percentage
                 value:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 5
               required:
                 - type
                 - value
@@ -1684,11 +1684,11 @@ paths:
                 title:
                   type: string
                   description: "'category_id' => ['required'],."
-                  example: deserunt
+                  example: sint
                 status:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 13
               required:
                 - title
                 - status
@@ -1712,7 +1712,7 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ut
+                  example: labore
               required:
                 - title
       security: []
@@ -1721,7 +1721,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: ut
+        example: magni
         required: true
         schema:
           type: string
@@ -1783,7 +1783,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the customer.'
-        example: mollitia
+        example: amet
         required: true
         schema:
           type: string
@@ -1814,7 +1814,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the restaurant admin.'
-        example: porro
+        example: optio
         required: true
         schema:
           type: string
@@ -1845,7 +1845,39 @@ paths:
         in: path
         name: id
         description: 'The ID of the rider.'
-        example: placeat
+        example: qui
+        required: true
+        schema:
+          type: string
+  '/api/v1/admin/users/rider/{rider_uuid}/status/update':
+    post:
+      summary: ''
+      operationId: postApiV1AdminUsersRiderRider_uuidStatusUpdate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: 'Must be one of <code>approved</code> or <code>denied</code>.'
+                  example: approved
+              required:
+                - status
+      security: []
+    parameters:
+      -
+        in: path
+        name: rider_uuid
+        description: ''
+        example: 971fc707-7f7b-4d18-a566-473820f67abf
         required: true
         schema:
           type: string
@@ -2009,7 +2041,7 @@ paths:
                 reason:
                   type: string
                   description: 'This field is required when <code>status</code> is <code>3</code>.'
-                  example: fuga
+                  example: blanditiis
               required:
                 - status
       security: []
@@ -2281,11 +2313,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: odit
+                  example: nobis
                 poster:
                   type: string
                   description: 'Must not be greater than 10000 characters.'
-                  example: aa
+                  example: rwbfdynvgvkeqkl
               required:
                 - title
                 - poster
@@ -2309,11 +2341,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: optio
+                  example: alias
                 poster:
                   type: string
                   description: 'Must not be greater than 10000 characters.'
-                  example: fachtnk
+                  example: wp
               required:
                 - title
       security: []
@@ -2322,7 +2354,7 @@ paths:
         in: path
         name: advert_poster_id
         description: 'The ID of the advert poster.'
-        example: 8
+        example: 11
         required: true
         schema:
           type: integer
@@ -2341,7 +2373,7 @@ paths:
         in: path
         name: advert_poster_id
         description: 'The ID of the advert poster.'
-        example: 8
+        example: 14
         required: true
         schema:
           type: integer
@@ -2577,7 +2609,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -2619,7 +2651,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -2674,10 +2706,44 @@ paths:
                                     delivery_status: pending
                                     rider_id: null
                                     booking_time: null
-                                    delivery_location_lat: -1.237637
-                                    delivery_location_lng: 36.458948
+                                    delivery_location_lat: -1.248743
+                                    delivery_location_lng: 36.558948
                                     service_charge: 25
                                     discount: 0
+                              '6':
+                                -
+                                  id: 3
+                                  uuid: 2e874d67-9fac-4aa2-8beb-1c50dd9d890f
+                                  order_id: 6
+                                  menu_id: 1
+                                  quantity: 1
+                                  subtotal: '5.00'
+                                  status: 1
+                                  created_by: 'Test User'
+                                  updated_by: null
+                                  created_at: '2024-03-17T06:45:26.000000Z'
+                                  updated_at: '2024-03-17T06:45:26.000000Z'
+                                  order:
+                                    id: 6
+                                    uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88
+                                    user_id: 2
+                                    restaurant_id: 1
+                                    total_amount: '102.14'
+                                    delivery: true
+                                    status: Pending
+                                    created_by: 'Test User'
+                                    updated_by: null
+                                    created_at: '2024-03-17T06:45:26.000000Z'
+                                    updated_at: '2024-03-17T06:45:26.000000Z'
+                                    delivery_fee: '62.14'
+                                    delivery_address: 'Deveint Ltd, Westlands Office park'
+                                    delivery_status: pending
+                                    rider_id: null
+                                    booking_time: null
+                                    delivery_location_lat: -1.237637
+                                    delivery_location_lng: 36.458948
+                                    service_charge: 2
+                                    discount: 12
                             orders_count: 0
                             total_orders_value: 0
                             reviews: []
@@ -2772,7 +2838,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -2814,7 +2880,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -2869,10 +2935,44 @@ paths:
                                     delivery_status: pending
                                     rider_id: null
                                     booking_time: null
+                                    delivery_location_lat: -1.247637
+                                    delivery_location_lng: 36.468948
+                                    service_charge: 2
+                                    discount: 0
+                              '6':
+                                -
+                                  id: 4
+                                  uuid: a245c277-c365-4054-a38e-a6802bcb5943
+                                  order_id: 6
+                                  menu_id: 2
+                                  quantity: 1
+                                  subtotal: '35.00'
+                                  status: 1
+                                  created_by: 'Test User'
+                                  updated_by: null
+                                  created_at: '2024-03-17T06:45:26.000000Z'
+                                  updated_at: '2024-03-17T06:45:26.000000Z'
+                                  order:
+                                    id: 6
+                                    uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88
+                                    user_id: 2
+                                    restaurant_id: 1
+                                    total_amount: '102.14'
+                                    delivery: true
+                                    status: Pending
+                                    created_by: 'Test User'
+                                    updated_by: null
+                                    created_at: '2024-03-17T06:45:26.000000Z'
+                                    updated_at: '2024-03-17T06:45:26.000000Z'
+                                    delivery_fee: '62.14'
+                                    delivery_address: 'Deveint Ltd, Westlands Office park'
+                                    delivery_status: pending
+                                    rider_id: null
+                                    booking_time: null
                                     delivery_location_lat: -1.237637
                                     delivery_location_lng: 36.458948
                                     service_charge: 2
-                                    discount: 0
+                                    discount: 12
                             orders_count: 0
                             total_orders_value: 0
                             reviews:
@@ -2986,7 +3086,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -3028,7 +3128,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -3136,7 +3236,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -3178,7 +3278,7 @@ paths:
                                   service_charge_agreement: null
                                   groceries_service_charge_agreement: 0
                                   paypal_email: milimokings@gmail.com
-                                  orders_count: 2
+                                  orders_count: 3
                                   menus_count: 9
                                   reviews:
                                     -
@@ -3360,7 +3460,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3393,7 +3493,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3439,10 +3539,44 @@ paths:
                                       delivery_status: pending
                                       rider_id: null
                                       booking_time: null
-                                      delivery_location_lat: -1.237637
-                                      delivery_location_lng: 36.458948
+                                      delivery_location_lat: -1.248743
+                                      delivery_location_lng: 36.558948
                                       service_charge: 25
                                       discount: 0
+                                6:
+                                  -
+                                    id: 3
+                                    uuid: 2e874d67-9fac-4aa2-8beb-1c50dd9d890f
+                                    order_id: 6
+                                    menu_id: 1
+                                    quantity: 1
+                                    subtotal: '5.00'
+                                    status: 1
+                                    created_by: 'Test User'
+                                    updated_by: null
+                                    created_at: '2024-03-17T06:45:26.000000Z'
+                                    updated_at: '2024-03-17T06:45:26.000000Z'
+                                    order:
+                                      id: 6
+                                      uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88
+                                      user_id: 2
+                                      restaurant_id: 1
+                                      total_amount: '102.14'
+                                      delivery: true
+                                      status: Pending
+                                      created_by: 'Test User'
+                                      updated_by: null
+                                      created_at: '2024-03-17T06:45:26.000000Z'
+                                      updated_at: '2024-03-17T06:45:26.000000Z'
+                                      delivery_fee: '62.14'
+                                      delivery_address: 'Deveint Ltd, Westlands Office park'
+                                      delivery_status: pending
+                                      rider_id: null
+                                      booking_time: null
+                                      delivery_location_lat: -1.237637
+                                      delivery_location_lng: 36.458948
+                                      service_charge: 2
+                                      discount: 12
                               orders_count: 0
                               total_orders_value: 0
                               reviews: []
@@ -3537,7 +3671,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3570,7 +3704,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3616,10 +3750,44 @@ paths:
                                       delivery_status: pending
                                       rider_id: null
                                       booking_time: null
+                                      delivery_location_lat: -1.247637
+                                      delivery_location_lng: 36.468948
+                                      service_charge: 2
+                                      discount: 0
+                                6:
+                                  -
+                                    id: 4
+                                    uuid: a245c277-c365-4054-a38e-a6802bcb5943
+                                    order_id: 6
+                                    menu_id: 2
+                                    quantity: 1
+                                    subtotal: '35.00'
+                                    status: 1
+                                    created_by: 'Test User'
+                                    updated_by: null
+                                    created_at: '2024-03-17T06:45:26.000000Z'
+                                    updated_at: '2024-03-17T06:45:26.000000Z'
+                                    order:
+                                      id: 6
+                                      uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88
+                                      user_id: 2
+                                      restaurant_id: 1
+                                      total_amount: '102.14'
+                                      delivery: true
+                                      status: Pending
+                                      created_by: 'Test User'
+                                      updated_by: null
+                                      created_at: '2024-03-17T06:45:26.000000Z'
+                                      updated_at: '2024-03-17T06:45:26.000000Z'
+                                      delivery_fee: '62.14'
+                                      delivery_address: 'Deveint Ltd, Westlands Office park'
+                                      delivery_status: pending
+                                      rider_id: null
+                                      booking_time: null
                                       delivery_location_lat: -1.237637
                                       delivery_location_lng: 36.458948
                                       service_charge: 2
-                                      discount: 0
+                                      discount: 12
                               orders_count: 0
                               total_orders_value: 0
                               reviews:
@@ -3733,7 +3901,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3766,7 +3934,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3865,7 +4033,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -3898,7 +4066,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -4037,11 +4205,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: neque
+                  example: perferendis
                 description:
                   type: string
                   description: ''
-                  example: quis
+                  example: quos
                 status:
                   type: string
                   description: ''
@@ -4868,11 +5036,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: laborum
+                  example: quod
                 description:
                   type: string
                   description: ''
-                  example: sed
+                  example: earum
               required:
                 - title
                 - description
@@ -4891,7 +5059,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the category.'
-        example: et
+        example: iure
         required: true
         schema:
           type: string
@@ -4935,11 +5103,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sit
+                  example: modi
                 description:
                   type: string
                   description: ''
-                  example: quas
+                  example: ipsam
                 status:
                   type: string
                   description: ''
@@ -4988,11 +5156,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: aut
+                  example: delectus
                 description:
                   type: string
                   description: ''
-                  example: veritatis
+                  example: praesentium
               required:
                 - title
                 - description
@@ -5011,7 +5179,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food category.'
-        example: molestiae
+        example: nulla
         required: true
         schema:
           type: string
@@ -5055,11 +5223,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: eos
+                  example: sed
                 description:
                   type: string
                   description: ''
-                  example: et
+                  example: molestiae
                 status:
                   type: string
                   description: ''
@@ -5108,11 +5276,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: laboriosam
                 description:
                   type: string
                   description: ''
-                  example: facilis
+                  example: ut
               required:
                 - title
                 - description
@@ -5131,7 +5299,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food category.'
-        example: vero
+        example: nisi
         required: true
         schema:
           type: string
@@ -5154,11 +5322,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: magnam
+                  example: aut
                 description:
                   type: string
                   description: ''
-                  example: consectetur
+                  example: non
                 status:
                   type: string
                   description: ''
@@ -5186,7 +5354,7 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quia
+                  example: eveniet
                 description:
                   type: string
                   description: ''
@@ -5200,7 +5368,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: aut
+        example: quia
         required: true
         schema:
           type: string
@@ -5308,7 +5476,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -5350,7 +5518,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -5489,7 +5657,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -5522,7 +5690,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -5606,7 +5774,7 @@ paths:
                                       properties: { name: { type: string, example: Price-Okuneva }, nameShort: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, aboutShort: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phoneNo: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postalCode: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, mapLocation: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: '' }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, average_rating: { type: integer, example: 4 }, is_open: { type: boolean, example: true } }
                                     relationships:
                                       type: object
-                                      properties: { orders_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, menus_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
+                                      properties: { orders_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, menus_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                 orderItems:
                                   type: array
                                   example: []
@@ -5808,19 +5976,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: et
+                  example: sed
                 description:
                   type: string
                   description: ''
-                  example: saepe
+                  example: atque
                 status:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 1
                 createdBy:
                   type: string
                   description: ''
-                  example: et
+                  example: facilis
                 categoryIds:
                   type: object
                   description: ''
@@ -5829,7 +5997,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: ypskynckuapezbdmaikm
+                  example: nrpivivzcr
               required:
                 - title
                 - description
@@ -6654,11 +6822,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: numquam
+                  example: sint
                 description:
                   type: string
                   description: ''
-                  example: velit
+                  example: similique
                 status:
                   type: string
                   description: ''
@@ -6666,7 +6834,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: iste
+                  example: et
                 categoryIds:
                   type: object
                   description: ''
@@ -6675,7 +6843,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: ffuvalzfuvjzehspdxvpok
+                  example: palmkcsufpn
               required:
                 - title
                 - description
@@ -6696,7 +6864,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the sub category.'
-        example: commodi
+        example: debitis
         required: true
         schema:
           type: string
@@ -6740,19 +6908,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: vel
+                  example: et
                 description:
                   type: string
                   description: ''
-                  example: ea
+                  example: qui
                 status:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 1
                 createdBy:
                   type: string
                   description: ''
-                  example: et
+                  example: cum
                 categoryIds:
                   type: object
                   description: ''
@@ -6761,7 +6929,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: mxrcwsr
+                  example: zuzznyvehoqbrkgazzrjjpb
               required:
                 - title
                 - description
@@ -6808,11 +6976,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quasi
+                  example: at
                 description:
                   type: string
                   description: ''
-                  example: qui
+                  example: voluptates
                 status:
                   type: string
                   description: ''
@@ -6820,7 +6988,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: vel
                 categoryIds:
                   type: object
                   description: ''
@@ -6829,7 +6997,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: qnsx
+                  example: laoopspogqu
               required:
                 - title
                 - description
@@ -6894,19 +7062,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: omnis
+                  example: perferendis
                 description:
                   type: string
                   description: ''
-                  example: quo
+                  example: quod
                 status:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 10
                 createdBy:
                   type: string
                   description: ''
-                  example: odio
+                  example: temporibus
                 categoryIds:
                   type: object
                   description: ''
@@ -6915,7 +7083,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: dziasbqdyjydmhxfgwlhcl
+                  example: vslcweicjmlurpbjk
               required:
                 - title
                 - description
@@ -6962,11 +7130,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: animi
+                  example: repellat
                 description:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: officiis
                 status:
                   type: string
                   description: ''
@@ -6974,7 +7142,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: error
                 categoryIds:
                   type: object
                   description: ''
@@ -6983,7 +7151,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: ghwdkvvpjlwpdvnm
+                  example: csaffkhrzmowsztrourxbtcg
               required:
                 - title
                 - description
@@ -7004,7 +7172,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food sub category.'
-        example: quas
+        example: odio
         required: true
         schema:
           type: string
@@ -7146,7 +7314,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -7188,7 +7356,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -7321,7 +7489,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -7363,7 +7531,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -7680,7 +7848,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -7722,7 +7890,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -7855,7 +8023,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -7897,7 +8065,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -8333,10 +8501,10 @@ paths:
                                   properties:
                                     orders_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     menus_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     reviews:
                                       type: array
                                       example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }]
@@ -8529,7 +8697,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -8571,7 +8739,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -8710,7 +8878,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -8743,7 +8911,7 @@ paths:
                                     service_charge_agreement: null
                                     groceries_service_charge_agreement: 0
                                     paypal_email: milimokings@gmail.com
-                                    orders_count: 2
+                                    orders_count: 3
                                     menus_count: 9
                                     reviews:
                                       - { id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }
@@ -8827,7 +8995,7 @@ paths:
                                       properties: { name: { type: string, example: Price-Okuneva }, nameShort: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, aboutShort: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phoneNo: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postalCode: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, mapLocation: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: '' }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, average_rating: { type: integer, example: 4 }, is_open: { type: boolean, example: true } }
                                     relationships:
                                       type: object
-                                      properties: { orders_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, menus_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
+                                      properties: { orders_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, menus_count: { type: object, properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } } }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                 orderItems:
                                   type: array
                                   example: []
@@ -8865,7 +9033,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: assumenda
+            value: eligendi
   /api/v1/menu:
     get:
       summary: 'Display a listing of the resource.'
@@ -8876,32 +9044,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: voluptas
+          example: illo
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: voluptas
+            example: illo
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: atque
+          example: veniam
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: atque
+            example: veniam
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: voluptatem
+          example: quasi
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: voluptatem
+            example: quasi
       responses:
         200:
           description: ''
@@ -9015,7 +9183,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -9057,7 +9225,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -9113,10 +9281,44 @@ paths:
                                 delivery_status: pending
                                 rider_id: null
                                 booking_time: null
+                                delivery_location_lat: -1.247637
+                                delivery_location_lng: 36.468948
+                                service_charge: 2
+                                discount: 0
+                          '6':
+                            -
+                              id: 4
+                              uuid: a245c277-c365-4054-a38e-a6802bcb5943
+                              order_id: 6
+                              menu_id: 2
+                              quantity: 1
+                              subtotal: '35.00'
+                              status: 1
+                              created_by: 'Test User'
+                              updated_by: null
+                              created_at: '2024-03-17T06:45:26.000000Z'
+                              updated_at: '2024-03-17T06:45:26.000000Z'
+                              order:
+                                id: 6
+                                uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88
+                                user_id: 2
+                                restaurant_id: 1
+                                total_amount: '102.14'
+                                delivery: true
+                                status: Pending
+                                created_by: 'Test User'
+                                updated_by: null
+                                created_at: '2024-03-17T06:45:26.000000Z'
+                                updated_at: '2024-03-17T06:45:26.000000Z'
+                                delivery_fee: '62.14'
+                                delivery_address: 'Deveint Ltd, Westlands Office park'
+                                delivery_status: pending
+                                rider_id: null
+                                booking_time: null
                                 delivery_location_lat: -1.237637
                                 delivery_location_lng: 36.458948
                                 service_charge: 2
-                                discount: 0
+                                discount: 12
                         orders_count: 0
                         total_orders_value: 0
                         reviews:
@@ -9243,7 +9445,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -9285,7 +9487,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -9427,7 +9629,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -9469,7 +9671,7 @@ paths:
                               service_charge_agreement: null
                               groceries_service_charge_agreement: 0
                               paypal_email: milimokings@gmail.com
-                              orders_count: 2
+                              orders_count: 3
                               menus_count: 9
                               reviews:
                                 -
@@ -10416,7 +10618,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -10458,7 +10660,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -10514,10 +10716,44 @@ paths:
                                   delivery_status: pending
                                   rider_id: null
                                   booking_time: null
+                                  delivery_location_lat: -1.247637
+                                  delivery_location_lng: 36.468948
+                                  service_charge: 2
+                                  discount: 0
+                            6:
+                              -
+                                id: 4
+                                uuid: a245c277-c365-4054-a38e-a6802bcb5943
+                                order_id: 6
+                                menu_id: 2
+                                quantity: 1
+                                subtotal: '35.00'
+                                status: 1
+                                created_by: 'Test User'
+                                updated_by: null
+                                created_at: '2024-03-17T06:45:26.000000Z'
+                                updated_at: '2024-03-17T06:45:26.000000Z'
+                                order:
+                                  id: 6
+                                  uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88
+                                  user_id: 2
+                                  restaurant_id: 1
+                                  total_amount: '102.14'
+                                  delivery: true
+                                  status: Pending
+                                  created_by: 'Test User'
+                                  updated_by: null
+                                  created_at: '2024-03-17T06:45:26.000000Z'
+                                  updated_at: '2024-03-17T06:45:26.000000Z'
+                                  delivery_fee: '62.14'
+                                  delivery_address: 'Deveint Ltd, Westlands Office park'
+                                  delivery_status: pending
+                                  rider_id: null
+                                  booking_time: null
                                   delivery_location_lat: -1.237637
                                   delivery_location_lng: 36.458948
                                   service_charge: 2
-                                  discount: 0
+                                  discount: 12
                           orders_count: 0
                           total_orders_value: 0
                           reviews:
@@ -10644,7 +10880,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -10686,7 +10922,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -10828,7 +11064,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -10870,7 +11106,7 @@ paths:
                                 service_charge_agreement: null
                                 groceries_service_charge_agreement: 0
                                 paypal_email: milimokings@gmail.com
-                                orders_count: 2
+                                orders_count: 3
                                 menus_count: 9
                                 reviews:
                                   -
@@ -11910,10 +12146,10 @@ paths:
                                   properties:
                                     orders_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     menus_count:
                                       type: object
-                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 2 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
+                                      properties: { id: { type: integer, example: 1 }, uuid: { type: string, example: 4a9e2363-67d1-4661-84e4-e3f4815ef30b }, name: { type: string, example: Price-Okuneva }, name_short: { type: string, example: et }, email: { type: string, example: stephany76@example.com }, user_id: { type: integer, example: 3 }, about: { type: string, example: "Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima." }, about_short: { type: string, example: 'Nihil voluptas ut ut nulla nihil consectetur.' }, phone_no: { type: string, example: 413.890.1105 }, address: { type: string, example: 'London, UK' }, city: { type: string, example: 'North Hanshaven' }, state: { type: string, example: NAIROBI }, postal_code: { type: string, example: '00100' }, latitude: { type: string, example: '51.5072178' }, longitude: { type: string, example: '-0.1275862' }, map_location: { type: string, example: 'https://maps.google.com/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99' }, url: { type: string, example: 'https://lehner.com/minima-est-cumque-ad-et-et-deleniti-alias.html' }, logo: { type: string, example: 'http://moboeats.test/storage/companyLogos/logos/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png' }, status: { type: string, example: Approved }, created_by: { type: string, example: dale14@erdman.com }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-02-17T16:34:45.000000Z' }, updated_at: { type: string, example: '2024-02-25T07:27:08.000000Z' }, sitting_capacity: { type: string, example: null }, denied_reason: { type: string, example: null }, service_charge_agreement: { type: string, example: null }, groceries_service_charge_agreement: { type: integer, example: 0 }, paypal_email: { type: string, example: milimokings@gmail.com }, orders_count: { type: integer, example: 3 }, menus_count: { type: integer, example: 9 }, reviews: { type: array, example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }], items: { type: object, properties: { id: { type: integer, example: 1 }, user_id: { type: integer, example: 2 }, order_id: { type: string, example: null }, reviewable_id: { type: integer, example: 1 }, reviewable_type: { type: string, example: App\Models\Restaurant }, rating: { type: integer, example: 4 }, review: { type: string, example: null }, created_at: { type: string, example: '2024-02-27T18:25:16.000000Z' }, updated_at: { type: string, example: '2024-02-27T18:25:16.000000Z' } } } } }
                                     reviews:
                                       type: array
                                       example: [{ id: 1, user_id: 2, order_id: null, reviewable_id: 1, reviewable_type: App\Models\Restaurant, rating: 4, review: null, created_at: '2024-02-27T18:25:16.000000Z', updated_at: '2024-02-27T18:25:16.000000Z' }]
@@ -11939,7 +12175,7 @@ paths:
                                       updated_by: null
                                       created_at: '2024-03-06T16:13:28.000000Z'
                                       updated_at: '2024-03-06T16:13:28.000000Z'
-                                      order: { id: 5, uuid: adf184c8-30f0-4f83-b7e4-d41372fb1191, user_id: 15, restaurant_id: 1, total_amount: '97.14', delivery: true, status: Pending, created_by: 'Referred Test', updated_by: null, created_at: '2024-03-06T16:13:28.000000Z', updated_at: '2024-03-06T16:13:28.000000Z', delivery_fee: '62.14', delivery_address: 'Deveint Ltd, Westlands Office park', delivery_status: pending, rider_id: null, booking_time: null, delivery_location_lat: -1.237637, delivery_location_lng: 36.458948, service_charge: 2, discount: 0 }
+                                      order: { id: 5, uuid: adf184c8-30f0-4f83-b7e4-d41372fb1191, user_id: 15, restaurant_id: 1, total_amount: '97.14', delivery: true, status: Pending, created_by: 'Referred Test', updated_by: null, created_at: '2024-03-06T16:13:28.000000Z', updated_at: '2024-03-06T16:13:28.000000Z', delivery_fee: '62.14', delivery_address: 'Deveint Ltd, Westlands Office park', delivery_status: pending, rider_id: null, booking_time: null, delivery_location_lat: -1.247637, delivery_location_lng: 36.468948, service_charge: 2, discount: 0 }
                                   items:
                                     type: object
                                     properties:
@@ -11954,7 +12190,38 @@ paths:
                                       updated_by: { type: string, example: null }
                                       created_at: { type: string, example: '2024-03-06T16:13:28.000000Z' }
                                       updated_at: { type: string, example: '2024-03-06T16:13:28.000000Z' }
-                                      order: { type: object, properties: { id: { type: integer, example: 5 }, uuid: { type: string, example: adf184c8-30f0-4f83-b7e4-d41372fb1191 }, user_id: { type: integer, example: 15 }, restaurant_id: { type: integer, example: 1 }, total_amount: { type: string, example: '97.14' }, delivery: { type: boolean, example: true }, status: { type: string, example: Pending }, created_by: { type: string, example: 'Referred Test' }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-03-06T16:13:28.000000Z' }, updated_at: { type: string, example: '2024-03-06T16:13:28.000000Z' }, delivery_fee: { type: string, example: '62.14' }, delivery_address: { type: string, example: 'Deveint Ltd, Westlands Office park' }, delivery_status: { type: string, example: pending }, rider_id: { type: string, example: null }, booking_time: { type: string, example: null }, delivery_location_lat: { type: number, example: -1.237637 }, delivery_location_lng: { type: number, example: 36.458948 }, service_charge: { type: integer, example: 2 }, discount: { type: integer, example: 0 } } }
+                                      order: { type: object, properties: { id: { type: integer, example: 5 }, uuid: { type: string, example: adf184c8-30f0-4f83-b7e4-d41372fb1191 }, user_id: { type: integer, example: 15 }, restaurant_id: { type: integer, example: 1 }, total_amount: { type: string, example: '97.14' }, delivery: { type: boolean, example: true }, status: { type: string, example: Pending }, created_by: { type: string, example: 'Referred Test' }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-03-06T16:13:28.000000Z' }, updated_at: { type: string, example: '2024-03-06T16:13:28.000000Z' }, delivery_fee: { type: string, example: '62.14' }, delivery_address: { type: string, example: 'Deveint Ltd, Westlands Office park' }, delivery_status: { type: string, example: pending }, rider_id: { type: string, example: null }, booking_time: { type: string, example: null }, delivery_location_lat: { type: number, example: -1.247637 }, delivery_location_lng: { type: number, example: 36.468948 }, service_charge: { type: integer, example: 2 }, discount: { type: integer, example: 0 } } }
+                                6:
+                                  type: array
+                                  example:
+                                    -
+                                      id: 4
+                                      uuid: a245c277-c365-4054-a38e-a6802bcb5943
+                                      order_id: 6
+                                      menu_id: 2
+                                      quantity: 1
+                                      subtotal: '35.00'
+                                      status: 1
+                                      created_by: 'Test User'
+                                      updated_by: null
+                                      created_at: '2024-03-17T06:45:26.000000Z'
+                                      updated_at: '2024-03-17T06:45:26.000000Z'
+                                      order: { id: 6, uuid: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88, user_id: 2, restaurant_id: 1, total_amount: '102.14', delivery: true, status: Pending, created_by: 'Test User', updated_by: null, created_at: '2024-03-17T06:45:26.000000Z', updated_at: '2024-03-17T06:45:26.000000Z', delivery_fee: '62.14', delivery_address: 'Deveint Ltd, Westlands Office park', delivery_status: pending, rider_id: null, booking_time: null, delivery_location_lat: -1.237637, delivery_location_lng: 36.458948, service_charge: 2, discount: 12 }
+                                  items:
+                                    type: object
+                                    properties:
+                                      id: { type: integer, example: 4 }
+                                      uuid: { type: string, example: a245c277-c365-4054-a38e-a6802bcb5943 }
+                                      order_id: { type: integer, example: 6 }
+                                      menu_id: { type: integer, example: 2 }
+                                      quantity: { type: integer, example: 1 }
+                                      subtotal: { type: string, example: '35.00' }
+                                      status: { type: integer, example: 1 }
+                                      created_by: { type: string, example: 'Test User' }
+                                      updated_by: { type: string, example: null }
+                                      created_at: { type: string, example: '2024-03-17T06:45:26.000000Z' }
+                                      updated_at: { type: string, example: '2024-03-17T06:45:26.000000Z' }
+                                      order: { type: object, properties: { id: { type: integer, example: 6 }, uuid: { type: string, example: 5e9b7a83-b3e2-414f-b3ca-f2a12c632e88 }, user_id: { type: integer, example: 2 }, restaurant_id: { type: integer, example: 1 }, total_amount: { type: string, example: '102.14' }, delivery: { type: boolean, example: true }, status: { type: string, example: Pending }, created_by: { type: string, example: 'Test User' }, updated_by: { type: string, example: null }, created_at: { type: string, example: '2024-03-17T06:45:26.000000Z' }, updated_at: { type: string, example: '2024-03-17T06:45:26.000000Z' }, delivery_fee: { type: string, example: '62.14' }, delivery_address: { type: string, example: 'Deveint Ltd, Westlands Office park' }, delivery_status: { type: string, example: pending }, rider_id: { type: string, example: null }, booking_time: { type: string, example: null }, delivery_location_lat: { type: number, example: -1.237637 }, delivery_location_lng: { type: number, example: 36.458948 }, service_charge: { type: integer, example: 2 }, discount: { type: integer, example: 12 } } }
                             orders_count:
                               type: integer
                               example: 0
@@ -12145,7 +12412,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: quae
+            value: tempora
   /api/v1/orderer/orderer-menu:
     get:
       summary: 'Display a listing of the resource.'
@@ -12156,32 +12423,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: aut
+          example: a
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: aut
+            example: a
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: aliquid
+          example: rerum
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: aliquid
+            example: rerum
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: quidem
+          example: animi
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: quidem
+            example: animi
       responses:
         401:
           description: ''
@@ -12216,20 +12483,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: neque
+                  example: animi
                 description:
                   type: string
                   description: ''
-                  example: autem
+                  example: dolore
                 status:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 6
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 20
+                    - 13
                   items:
                     type: integer
               required:
@@ -12276,20 +12543,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: eius
                 description:
                   type: string
                   description: ''
-                  example: dicta
+                  example: maxime
                 status:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 13
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 3
+                    - 2
                   items:
                     type: integer
               required:
@@ -12301,7 +12568,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer menu.'
-        example: in
+        example: maiores
         required: true
         schema:
           type: string
@@ -12324,19 +12591,19 @@ paths:
                 menu_id:
                   type: integer
                   description: 'The id of the menu item'
-                  example: 19
+                  example: 1
                 menu_rating:
                   type: integer
                   description: 'The rating of the menu from 1 - 5'
-                  example: 11
+                  example: 17
                 menu_review:
                   type: string
                   description: 'A review of the menu'
-                  example: blanditiis
+                  example: corporis
                 order_id:
                   type: integer
                   description: 'The id of the order'
-                  example: 12
+                  example: 4
               required:
                 - menu_id
                 - menu_rating
@@ -12351,32 +12618,32 @@ paths:
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: non
+          example: sint
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: non
+            example: sint
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: aut
+          example: sint
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: aut
+            example: sint
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: placeat
+          example: non
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: placeat
+            example: non
       responses:
         401:
           description: ''
@@ -12411,20 +12678,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: inventore
+                  example: neque
                 description:
                   type: string
                   description: ''
-                  example: aut
+                  example: voluptas
                 status:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 3
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 3
+                    - 9
                   items:
                     type: integer
               required:
@@ -12471,20 +12738,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: officia
                 description:
                   type: string
                   description: ''
-                  example: ipsam
+                  example: ducimus
                 status:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 5
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 3
+                    - 19
                   items:
                     type: integer
               required:
@@ -12625,20 +12892,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: dolor
+                  example: vel
                 description:
                   type: string
                   description: ''
-                  example: harum
+                  example: sequi
                 status:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 9
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 2
                   items:
                     type: integer
               required:
@@ -12673,15 +12940,15 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: omnis
+                  example: autem
                 description:
                   type: string
                   description: ''
-                  example: qui
+                  example: perspiciatis
                 status:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 5
                 categoryIds:
                   type: array
                   description: ''
@@ -12784,23 +13051,23 @@ paths:
                 restaurant_ids:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: consequatur
                 title:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: non
                 description:
                   type: string
                   description: ''
-                  example: quisquam
+                  example: id
                 status:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 11
                 categoryIds:
                   type: string
                   description: ''
-                  example: quis
+                  example: autem
               required:
                 - restaurant_ids
                 - title
@@ -12827,26 +13094,26 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - 9
+                    - 11
                   items:
                     type: integer
                 title:
                   type: string
                   description: ''
-                  example: quos
+                  example: sunt
                 description:
                   type: string
                   description: ''
-                  example: sed
+                  example: accusamus
                 status:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 10
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 8
+                    - 12
                   items:
                     type: integer
               required:
@@ -12937,15 +13204,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: rem
+                  example: voluptatem
                 status:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 19
                 menu_id:
                   type: string
                   description: ''
-                  example: magnam
+                  example: quis
               required:
                 - price
                 - description
@@ -12991,15 +13258,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: dolor
+                  example: aspernatur
                 status:
                   type: string
                   description: ''
-                  example: rem
+                  example: et
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
-                  example: 1
+                  example: 0
               required:
                 - description
                 - status
@@ -13041,11 +13308,11 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: quibusdam
                 status:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: impedit
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
@@ -13122,11 +13389,11 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: earum
+                  example: et
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: grady.mitchell@example.com
+                  example: kian.leuschke@example.com
                 phoneNo:
                   type: string
                   description: ''
@@ -13195,35 +13462,35 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: 4d43db38-c945-36ee-a2f8-e59bb75ed1e2
+                  example: fa19ceb2-fa56-38a0-8d84-f6884701b581
                 name:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: dolores
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: rath.jaunita@example.com
+                  example: porter.dach@example.net
                 phoneNo:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: suscipit
                 address:
                   type: string
                   description: ''
-                  example: aut
+                  example: cum
                 city:
                   type: string
                   description: ''
-                  example: vel
+                  example: rerum
                 state:
                   type: string
                   description: ''
-                  example: quibusdam
+                  example: enim
                 mapLocation:
                   type: string
                   description: ''
-                  example: quisquam
+                  example: deserunt
                 image:
                   type: string
                   description: ''
@@ -13256,6 +13523,104 @@ paths:
         required: true
         schema:
           type: string
+  /api/v1/stripe/webhook:
+    post:
+      summary: ''
+      operationId: postApiV1StripeWebhook
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Payment Post Controller'
+      security: []
+  '/api/v1/orderer/stripe/checkout/{order_id}':
+    get:
+      summary: 'Stripe Order checkout'
+      operationId: stripeOrderCheckout
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Payment Post Controller'
+      security: []
+    parameters:
+      -
+        in: path
+        name: order_id
+        description: 'Optional parameter. The id of the order'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 4
+  '/api/v1/orderer/stripe/checkout/{order_id}/{amount}':
+    get:
+      summary: 'Stripe Tip checkout'
+      operationId: stripeTipCheckout
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Payment Post Controller'
+      security: []
+    parameters:
+      -
+        in: path
+        name: order_id
+        description: 'Optional parameter. The id of the order'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 12
+      -
+        in: path
+        name: amount
+        description: 'Optional parameter. The amount to tip'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
   '/api/v1/orderer/payment/{user_id}/{order_id}':
     get:
       summary: ''
@@ -13291,7 +13656,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: ut
+        example: aspernatur
         required: true
         schema:
           type: string
@@ -13299,7 +13664,7 @@ paths:
         in: path
         name: order_id
         description: 'The ID of the order.'
-        example: possimus
+        example: exercitationem
         required: true
         schema:
           type: string
@@ -13449,7 +13814,7 @@ paths:
                           service_charge_agreement: null
                           groceries_service_charge_agreement: 0
                           paypal_email: milimokings@gmail.com
-                          orders_count: 2
+                          orders_count: 3
                           menus_count: 9
                           questionnaire:
                             id: 1
@@ -13503,7 +13868,7 @@ paths:
                           service_charge_agreement: null
                           groceries_service_charge_agreement: 0
                           paypal_email: milimokings@gmail.com
-                          orders_count: 2
+                          orders_count: 3
                           menus_count: 9
                           questionnaire:
                             id: 1
@@ -13629,7 +13994,7 @@ paths:
                             service_charge_agreement: null
                             groceries_service_charge_agreement: 0
                             paypal_email: milimokings@gmail.com
-                            orders_count: 2
+                            orders_count: 3
                             menus_count: 9
                             questionnaire:
                               id: 1
@@ -13683,7 +14048,7 @@ paths:
                             service_charge_agreement: null
                             groceries_service_charge_agreement: 0
                             paypal_email: milimokings@gmail.com
-                            orders_count: 2
+                            orders_count: 3
                             menus_count: 9
                             questionnaire:
                               id: 1
@@ -13901,7 +14266,7 @@ paths:
                                   example: milimokings@gmail.com
                                 orders_count:
                                   type: integer
-                                  example: 2
+                                  example: 3
                                 menus_count:
                                   type: integer
                                   example: 9
@@ -14055,7 +14420,7 @@ paths:
                                   example: milimokings@gmail.com
                                 orders_count:
                                   type: integer
-                                  example: 2
+                                  example: 3
                                 menus_count:
                                   type: integer
                                   example: 9
@@ -14358,7 +14723,7 @@ paths:
                         service_charge_agreement: null
                         groceries_service_charge_agreement: 0
                         paypal_email: milimokings@gmail.com
-                        orders_count: 2
+                        orders_count: 3
                         menus_count: 9
                         operating_hours:
                           -
@@ -14458,7 +14823,7 @@ paths:
                         service_charge_agreement: null
                         groceries_service_charge_agreement: 0
                         paypal_email: milimokings@gmail.com
-                        orders_count: 2
+                        orders_count: 3
                         menus_count: 9
                         operating_hours:
                           -
@@ -14791,7 +15156,7 @@ paths:
                                 example: milimokings@gmail.com
                               orders_count:
                                 type: integer
-                                example: 2
+                                example: 3
                               menus_count:
                                 type: integer
                                 example: 9
@@ -15013,7 +15378,7 @@ paths:
                                 example: milimokings@gmail.com
                               orders_count:
                                 type: integer
-                                example: 2
+                                example: 3
                               menus_count:
                                 type: integer
                                 example: 9
@@ -15214,7 +15579,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: dolores
+            value: cumque
   /api/v1/seating-areas:
     get:
       summary: ''
@@ -15303,7 +15668,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: aspernatur
+            value: vel
   /api/v1/orderer/orderer-grocery-shops:
     get:
       summary: 'Get Grocery SHops'
@@ -15366,23 +15731,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: eos
                 name_short:
                   type: string
                   description: ''
-                  example: quas
+                  example: possimus
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gibson.lou@example.org
+                  example: ttoy@example.org
                 about:
                   type: string
                   description: ''
-                  example: omnis
+                  example: nihil
                 about_short:
                   type: string
                   description: ''
-                  example: at
+                  example: et
                 phone_no:
                   type: string
                   description: ''
@@ -15402,15 +15767,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: aut
                 latitude:
                   type: string
                   description: ''
-                  example: asperiores
+                  example: praesentium
                 longitude:
                   type: string
                   description: ''
-                  example: et
+                  example: voluptas
                 url:
                   type: string
                   description: ''
@@ -15426,11 +15791,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 8
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: nellie.dicki@example.com
+                  example: mcclure.karolann@example.org
               required:
                 - name
                 - name_short
@@ -15484,39 +15849,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: alias
+                  example: esse
                 name_short:
                   type: string
                   description: ''
-                  example: sed
+                  example: repudiandae
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: wendell43@example.com
+                  example: pat89@example.org
                 about:
                   type: string
                   description: ''
-                  example: sit
+                  example: sunt
                 about_short:
                   type: string
                   description: ''
-                  example: et
+                  example: iste
                 phone_no:
                   type: string
                   description: ''
-                  example: et
+                  example: deleniti
                 address:
                   type: string
                   description: ''
-                  example: quae
+                  example: eveniet
                 state:
                   type: string
                   description: ''
-                  example: exercitationem
+                  example: fuga
                 postal_code:
                   type: string
                   description: ''
-                  example: vel
+                  example: et
                 map_location:
                   type: string
                   description: ''
@@ -15532,15 +15897,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: tenetur
+                  example: eos
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: sit
+                  example: et
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: kling.zoey@example.org
+                  example: mclaughlin.serenity@example.com
               required:
                 - name
                 - name_short
@@ -15569,7 +15934,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer restaurant.'
-        example: voluptate
+        example: necessitatibus
         required: true
         schema:
           type: string
@@ -15586,7 +15951,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: expedita
+            value: incidunt
   '/api/v1/orderer/orderer-restaurants/{restaurant_uuid}/tables':
     get:
       summary: ''
@@ -15637,15 +16002,15 @@ paths:
                 restaurant_id:
                   type: integer
                   description: 'The id of the restaurant'
-                  example: 18
+                  example: 11
                 rating:
                   type: integer
                   description: 'The rating from 1 - 5'
-                  example: 1
+                  example: 12
                 review:
                   type: string
                   description: 'A review of the restaurant'
-                  example: dolorem
+                  example: corporis
       security: []
   /api/v1/rider/restaurants:
     get:
@@ -15687,23 +16052,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: rerum
+                  example: voluptatem
                 name_short:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: laboriosam
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: jnicolas@example.net
+                  example: shyanne.mraz@example.com
                 about:
                   type: string
                   description: ''
-                  example: mollitia
+                  example: quia
                 about_short:
                   type: string
                   description: ''
-                  example: excepturi
+                  example: quo
                 phone_no:
                   type: string
                   description: ''
@@ -15723,15 +16088,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: error
+                  example: molestias
                 latitude:
                   type: string
                   description: ''
-                  example: occaecati
+                  example: enim
                 longitude:
                   type: string
                   description: ''
-                  example: alias
+                  example: reiciendis
                 url:
                   type: string
                   description: ''
@@ -15739,7 +16104,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: voluptate
+                  example: et
                 map_location:
                   type: string
                   description: ''
@@ -15747,11 +16112,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 5
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: hazel42@example.com
+                  example: johnston.sally@example.org
               required:
                 - name
                 - name_short
@@ -15805,39 +16170,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: impedit
+                  example: in
                 name_short:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: iusto
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lorna.rowe@example.com
+                  example: valentine.schuppe@example.org
                 about:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: ratione
                 about_short:
                   type: string
                   description: ''
-                  example: voluptates
+                  example: impedit
                 phone_no:
                   type: string
                   description: ''
-                  example: autem
+                  example: porro
                 address:
                   type: string
                   description: ''
-                  example: quibusdam
+                  example: cum
                 state:
                   type: string
                   description: ''
-                  example: vel
+                  example: iusto
                 postal_code:
                   type: string
                   description: ''
-                  example: cumque
+                  example: eum
                 map_location:
                   type: string
                   description: ''
@@ -15853,15 +16218,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: vero
+                  example: asperiores
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: sit
+                  example: ipsam
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ustamm@example.org
+                  example: gilberto.rosenbaum@example.net
               required:
                 - name
                 - name_short
@@ -15907,7 +16272,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: sed
+            value: sit
   /api/v1/restaurant/restaurant:
     post:
       summary: ''
@@ -15927,23 +16292,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: eaque
+                  example: et
                 name_short:
                   type: string
                   description: ''
-                  example: illo
+                  example: dolores
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: sawayn.rebekah@example.net
+                  example: dustin95@example.org
                 about:
                   type: string
                   description: ''
-                  example: ut
+                  example: et
                 about_short:
                   type: string
                   description: ''
-                  example: natus
+                  example: illum
                 phone_no:
                   type: string
                   description: ''
@@ -15963,15 +16328,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: soluta
+                  example: culpa
                 latitude:
                   type: string
                   description: ''
-                  example: vitae
+                  example: officia
                 longitude:
                   type: string
                   description: ''
-                  example: sunt
+                  example: laudantium
                 url:
                   type: string
                   description: ''
@@ -15979,7 +16344,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: at
                 map_location:
                   type: string
                   description: ''
@@ -15991,7 +16356,7 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: weldon40@example.net
+                  example: hkertzmann@example.org
               required:
                 - name
                 - name_short
@@ -16067,39 +16432,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: dolore
                 name_short:
                   type: string
                   description: ''
-                  example: aperiam
+                  example: omnis
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: von.rolando@example.org
+                  example: reece.muller@example.net
                 about:
                   type: string
                   description: ''
-                  example: rerum
+                  example: laudantium
                 about_short:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: rerum
                 phone_no:
                   type: string
                   description: ''
-                  example: eum
+                  example: nostrum
                 address:
                   type: string
                   description: ''
-                  example: ea
+                  example: et
                 state:
                   type: string
                   description: ''
-                  example: sed
+                  example: non
                 postal_code:
                   type: string
                   description: ''
-                  example: quisquam
+                  example: et
                 map_location:
                   type: string
                   description: ''
@@ -16115,15 +16480,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: dolorem
+                  example: veniam
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: minima
+                  example: voluptatem
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: garrett40@example.org
+                  example: olson.chanel@example.org
               required:
                 - name
                 - name_short
@@ -16169,7 +16534,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: magnam
+            value: aut
   '/api/v1/restaurant/restaurants/{restaurant_uuid}/reviews':
     get:
       summary: 'Get Restaurant Reviews'
@@ -16241,23 +16606,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: quia
+                  example: officiis
                 name_short:
                   type: string
                   description: ''
-                  example: tempora
+                  example: rem
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: florian.satterfield@example.com
+                  example: curtis.adams@example.net
                 about:
                   type: string
                   description: ''
-                  example: minima
+                  example: exercitationem
                 about_short:
                   type: string
                   description: ''
-                  example: fugit
+                  example: velit
                 phone_no:
                   type: string
                   description: ''
@@ -16277,15 +16642,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: est
+                  example: ut
                 latitude:
                   type: string
                   description: ''
-                  example: magni
+                  example: quo
                 longitude:
                   type: string
                   description: ''
-                  example: natus
+                  example: facere
                 url:
                   type: string
                   description: ''
@@ -16293,7 +16658,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: quae
+                  example: quod
                 map_location:
                   type: string
                   description: ''
@@ -16305,7 +16670,7 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: remington63@example.org
+                  example: vdickinson@example.net
               required:
                 - name
                 - name_short
@@ -16360,39 +16725,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: soluta
+                  example: quia
                 name_short:
                   type: string
                   description: ''
-                  example: possimus
+                  example: in
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: jefferey.beahan@example.org
+                  example: roxane.legros@example.org
                 about:
                   type: string
                   description: ''
-                  example: facilis
+                  example: perspiciatis
                 about_short:
                   type: string
                   description: ''
-                  example: nihil
+                  example: quis
                 phone_no:
                   type: string
                   description: ''
-                  example: occaecati
+                  example: id
                 address:
                   type: string
                   description: ''
-                  example: consectetur
+                  example: est
                 state:
                   type: string
                   description: ''
-                  example: libero
+                  example: minus
                 postal_code:
                   type: string
                   description: ''
-                  example: et
+                  example: iste
                 map_location:
                   type: string
                   description: ''
@@ -16408,15 +16773,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: qui
+                  example: nesciunt
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: sed
+                  example: id
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: virginia.waelchi@example.net
+                  example: garnett.schimmel@example.com
               required:
                 - name
                 - name_short
@@ -16467,7 +16832,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the rider.'
-        example: velit
+        example: possimus
         required: true
         schema:
           type: string
@@ -16609,15 +16974,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: rerum
+                  example: dolorem
                 seating_area_id:
                   type: string
                   description: ''
-                  example: ullam
+                  example: repudiandae
                 seat_number:
                   type: string
                   description: ''
-                  example: tempora
+                  example: natus
               required:
                 - name
                 - seating_area_id
@@ -16651,15 +17016,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: in
+                  example: reprehenderit
                 seating_area_id:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: placeat
                 seat_number:
                   type: string
                   description: ''
-                  example: eos
+                  example: doloribus
               required:
                 - name
                 - seating_area_id
@@ -16687,7 +17052,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: eius
+            value: et
       -
         in: path
         name: uuid
@@ -16701,7 +17066,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 073c1abd-866b-3d95-82ea-f3f84f19ac0c
+            value: 717744a0-2799-3993-bf44-4b1084c36288
   '/api/v1/restaurant/restaurant/{restaurant_uuid}/payments':
     get:
       summary: ''
@@ -16777,7 +17142,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: consequatur
+            value: sed
   '/api/v1/restaurant/restaurant/{restaurant_uuid}/reservations':
     get:
       summary: ''
@@ -16915,7 +17280,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: ipsa
+            value: voluptatem
   '/api/v1/restaurant/{restaurant_uuid}/categories/add':
     post:
       summary: 'Add a new category for the specified restaurant'
@@ -16935,11 +17300,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quas
+                  example: sequi
                 description:
                   type: string
                   description: ''
-                  example: veniam
+                  example: eius
               required:
                 - title
                 - description
@@ -16972,11 +17337,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: iure
+                  example: et
                 description:
                   type: string
                   description: ''
-                  example: nihil
+                  example: dolore
               required:
                 - title
                 - description
@@ -17003,7 +17368,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: repellat
+            value: rem
       -
         in: path
         name: uuid
@@ -17017,7 +17382,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 2cc2b12c-bf78-3d57-8a7f-0a7e2916b8fd
+            value: d5c7d4de-61c4-361e-b37d-9f44c70a50b3
   /api/v1/restaurant/employees:
     get:
       summary: ''
@@ -17090,23 +17455,23 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: quia
+                  example: ullam
                 last_name:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: commodi
                 email:
                   type: string
                   description: ''
-                  example: sed
+                  example: magnam
                 phone_number:
                   type: string
                   description: ''
-                  example: expedita
+                  example: molestias
                 avatar:
                   type: string
                   description: 'Must not be greater than 9000 characters.'
-                  example: hppznumnjukl
+                  example: ytjz
               required:
                 - first_name
                 - last_name
@@ -17141,27 +17506,27 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: voluptatibus
+                  example: mollitia
                 last_name:
                   type: string
                   description: ''
-                  example: itaque
+                  example: sint
                 email:
                   type: string
                   description: ''
-                  example: natus
+                  example: et
                 phone_number:
                   type: string
                   description: ''
-                  example: enim
+                  example: cupiditate
                 avatar:
                   type: string
                   description: 'Must not be greater than 9000 characters.'
-                  example: aiaucigvechjbe
+                  example: avedhodpvuqmcaidesbatcaf
                 suspend:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
-                  example: '1'
+                  example: '2'
               required:
                 - first_name
                 - last_name
@@ -17218,15 +17583,15 @@ paths:
                 restaurantUuid:
                   type: string
                   description: ''
-                  example: nulla
+                  example: modi
                 delivery:
                   type: string
                   description: ''
-                  example: rerum
+                  example: corporis
                 booking:
                   type: string
                   description: ''
-                  example: iusto
+                  example: autem
               required:
                 - restaurantUuid
                 - delivery
@@ -17277,7 +17642,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the more info.'
-        example: odio
+        example: aut
         required: true
         schema:
           type: string
@@ -17304,11 +17669,11 @@ paths:
                 rating:
                   type: integer
                   description: 'The rating from 1 - 5'
-                  example: 18
+                  example: 17
                 review:
                   type: string
                   description: 'A review of the rider'
-                  example: voluptates
+                  example: quo
   /api/v1/rider/profile/create:
     post:
       summary: 'Create Rider Profile'
@@ -17336,11 +17701,11 @@ paths:
                 vehicle_type:
                   type: string
                   description: 'The vehicle type of the rider'
-                  example: qui
+                  example: tempore
                 vehicle_license_plate:
                   type: string
                   description: ''
-                  example: praesentium
+                  example: quia
                 profile_picture:
                   type: string
                   format: binary
@@ -17348,23 +17713,23 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ggoldner@example.com
+                  example: ally04@example.com
                 vehicle_licesne_plate:
                   type: sring
                   description: "The license plate of the rider's vehicle"
-                  example: enim
+                  example: nemo
                 city:
                   type: string
                   description: 'The city where the rider is located'
-                  example: eum
+                  example: ut
                 state:
                   type: string
                   description: 'The state of where the rider is located'
-                  example: quo
+                  example: totam
                 postal_code:
                   type: string
                   description: 'The postal code of the rider'
-                  example: similique
+                  example: dolor
               required:
                 - vehicle_type
                 - vehicle_license_plate
@@ -17402,15 +17767,15 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: powlowski.garry@example.com
+                  example: vrempel@example.com
                 vehicle_type:
                   type: string
                   description: 'The vehicle type of the rider'
-                  example: quasi
+                  example: ut
                 vehicle_licesne_plate:
                   type: sring
                   description: "The license plate of the rider's vehicle"
-                  example: mollitia
+                  example: amet
                 profile_picture:
                   type: string
                   format: binary
@@ -17418,15 +17783,15 @@ paths:
                 city:
                   type: string
                   description: 'The city where the rider is located'
-                  example: et
+                  example: dolor
                 state:
                   type: string
                   description: 'The state of where the rider is located'
-                  example: sequi
+                  example: aut
                 postal_code:
                   type: string
                   description: 'The postal code of the rider'
-                  example: et
+                  example: id
               required:
                 - paypal_email
   /api/v1/rider/profile:
@@ -17482,11 +17847,11 @@ paths:
                 order_id:
                   type: string
                   description: ''
-                  example: placeat
+                  example: et
                 status:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: vero
               required:
                 - order_id
                 - status
@@ -17509,11 +17874,11 @@ paths:
                 longitude:
                   type: string
                   description: ''
-                  example: sint
+                  example: aspernatur
                 latitude:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: asperiores
               required:
                 - longitude
                 - latitude
@@ -17545,11 +17910,11 @@ paths:
                 longitude:
                   type: string
                   description: ''
-                  example: at
+                  example: est
                 latitude:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: earum
               required:
                 - longitude
                 - latitude

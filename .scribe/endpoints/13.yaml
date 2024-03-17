@@ -1,44 +1,277 @@
-name: 'Payment Post Controller'
-description: |-
-
-  Payment API resource
+name: 'Rider Profile APIs'
+description: ''
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: 'api/v1/orderer/payment/{user_id}/{order_id}'
+      - POST
+    uri: api/v1/orderer/rider/reviews/store
     metadata:
-      groupName: 'Payment Post Controller'
-      groupDescription: |-
-
-        Payment API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Store review for a rider'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      user_id:
-        name: user_id
-        description: 'The ID of the user.'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      rider_id:
+        name: rider_id
+        description: 'The id of the rider'
+        required: false
+        example: 17
+        type: integer
+        custom: []
+      rating:
+        name: rating
+        description: 'The rating from 1 - 5'
+        required: false
+        example: 17
+        type: integer
+        custom: []
+      review:
+        name: review
+        description: 'A review of the rider'
+        required: false
+        example: quo
+        type: string
+        custom: []
+    cleanBodyParameters:
+      rider_id: 17
+      rating: 17
+      review: quo
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/rider/profile/create
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create Rider Profile'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_type:
+        name: vehicle_type
+        description: 'The vehicle type of the rider'
         required: true
+        example: tempore
+        type: string
+        custom: []
+      vehicle_license_plate:
+        name: vehicle_license_plate
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+      profile_picture:
+        name: profile_picture
+        description: 'The profile picture of the rider'
+        required: true
+        example: null
+        type: file
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: ally04@example.com
+        type: string
+        custom: []
+      vehicle_licesne_plate:
+        name: vehicle_licesne_plate
+        description: "The license plate of the rider's vehicle"
+        required: true
+        example: nemo
+        type: sring
+        custom: []
+      city:
+        name: city
+        description: 'The city where the rider is located'
+        required: false
         example: ut
         type: string
         custom: []
-      order_id:
-        name: order_id
-        description: 'The ID of the order.'
-        required: true
-        example: possimus
+      state:
+        name: state
+        description: 'The state of where the rider is located'
+        required: false
+        example: totam
         type: string
         custom: []
-    cleanUrlParameters:
-      user_id: ut
-      order_id: possimus
+      postal_code:
+        name: postal_code
+        description: 'The postal code of the rider'
+        required: false
+        example: dolor
+        type: string
+        custom: []
+    cleanBodyParameters:
+      vehicle_type: tempore
+      vehicle_license_plate: quia
+      paypal_email: ally04@example.com
+      vehicle_licesne_plate: nemo
+      city: ut
+      state: totam
+      postal_code: dolor
+    fileParameters:
+      profile_picture: null
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/rider/profile/update
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update Rider Prodile'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: vrempel@example.com
+        type: string
+        custom: []
+      vehicle_type:
+        name: vehicle_type
+        description: 'The vehicle type of the rider'
+        required: false
+        example: ut
+        type: string
+        custom: []
+      vehicle_licesne_plate:
+        name: vehicle_licesne_plate
+        description: "The license plate of the rider's vehicle"
+        required: false
+        example: amet
+        type: sring
+        custom: []
+      profile_picture:
+        name: profile_picture
+        description: 'The profile picture of the rider'
+        required: false
+        example: null
+        type: file
+        custom: []
+      city:
+        name: city
+        description: 'The city where the rider is located'
+        required: false
+        example: dolor
+        type: string
+        custom: []
+      state:
+        name: state
+        description: 'The state of where the rider is located'
+        required: false
+        example: aut
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: 'The postal code of the rider'
+        required: false
+        example: id
+        type: string
+        custom: []
+    cleanBodyParameters:
+      paypal_email: vrempel@example.com
+      vehicle_type: ut
+      vehicle_licesne_plate: amet
+      city: dolor
+      state: aut
+      postal_code: id
+    fileParameters:
+      profile_picture: null
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/rider/profile
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Rider Profile'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -46,15 +279,46 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 403
-        content: '{"status":"Error has occured...","message":"User not found","data":"Order Payment"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '288'
-          vary: Origin
-        description: null
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/rider/orders
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Orders and Assigned Orders'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -65,17 +329,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/order/payment/create-paypal-order
+    uri: api/v1/rider/orders/update
     metadata:
-      groupName: 'Payment Post Controller'
-      groupDescription: |-
-
-        Payment API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -84,8 +346,24 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      status:
+        name: status
+        description: ''
+        required: true
+        example: vero
+        type: string
+        custom: []
+    cleanBodyParameters:
+      order_id: et
+      status: vero
     fileParameters: []
     responses: []
     responseFields: []
@@ -97,27 +375,49 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/order/payment/capture-paypal-order
+    uri: 'api/v1/rider/orders/{order_id}/delivery/location/update'
     metadata:
-      groupName: 'Payment Post Controller'
-      groupDescription: |-
-
-        Payment API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      order_id:
+        name: order_id
+        description: 'The ID of the order.'
+        required: true
+        example: f3b9c89a-029e-4f50-9325-5414c7dc6c65
+        type: string
+        custom: []
+    cleanUrlParameters:
+      order_id: f3b9c89a-029e-4f50-9325-5414c7dc6c65
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: aspernatur
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: asperiores
+        type: string
+        custom: []
+    cleanBodyParameters:
+      longitude: aspernatur
+      latitude: asperiores
     fileParameters: []
     responses: []
     responseFields: []
@@ -129,17 +429,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/order/tip/payment/create-tip-paypal-order
+    uri: api/v1/rider/location/update
     metadata:
-      groupName: 'Payment Post Controller'
-      groupDescription: |-
-
-        Payment API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -148,40 +446,24 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/order/tip/payment/capture-tip-paypal-order
-    metadata:
-      groupName: 'Payment Post Controller'
-      groupDescription: |-
-
-        Payment API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: earum
+        type: string
+        custom: []
+    cleanBodyParameters:
+      longitude: est
+      latitude: earum
     fileParameters: []
     responses: []
     responseFields: []
@@ -193,31 +475,21 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/admin/payments/{payment_uuid}/details'
+    uri: api/v1/rider/tips
     metadata:
-      groupName: 'Payment Post Controller'
-      groupDescription: |-
-
-        Payment API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Get Tips paid to the rider'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      payment_uuid:
-        name: payment_uuid
-        description: ''
-        required: true
-        example: bb1ddf9c-ece0-4412-884a-bc0986ced163
-        type: string
-        custom: []
-    cleanUrlParameters:
-      payment_uuid: bb1ddf9c-ece0-4412-884a-bc0986ced163
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

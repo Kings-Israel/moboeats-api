@@ -1,17 +1,17 @@
-name: 'Customer Cart'
+name: 'Customer Restaurants Bookmark Management'
 description: |-
 
-  Cart API resource
+  RestaurantBookmark API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/cart
+    uri: api/v1/orderer/restaurant-bookmark
     metadata:
-      groupName: 'Customer Cart'
+      groupName: 'Customer Restaurants Bookmark Management'
       groupDescription: |-
 
-        Cart API resource
+        RestaurantBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -47,12 +47,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/cart
+    uri: api/v1/orderer/restaurant-bookmark
     metadata:
-      groupName: 'Customer Cart'
+      groupName: 'Customer Restaurants Bookmark Management'
       groupDescription: |-
 
-        Cart API resource
+        RestaurantBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -67,15 +67,15 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      userId:
-        name: userId
+      restaurantId:
+        name: restaurantId
         description: ''
         required: true
-        example: 17
+        example: 14
         type: integer
         custom: []
     cleanBodyParameters:
-      userId: 17
+      restaurantId: 14
     fileParameters: []
     responses: []
     responseFields: []
@@ -87,12 +87,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/cart/{uuid}'
+    uri: 'api/v1/orderer/restaurant-bookmark/{id}'
     metadata:
-      groupName: 'Customer Cart'
+      groupName: 'Customer Restaurants Bookmark Management'
       groupDescription: |-
 
-        Cart API resource
+        RestaurantBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -103,15 +103,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the restaurant bookmark.'
         required: true
-        example: 8fe7bb95-09d2-4e17-ae0d-584d2c81b579
+        example: ff963853-1928-4ab4-96a6-3117f5e5b7e0
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 8fe7bb95-09d2-4e17-ae0d-584d2c81b579
+      id: ff963853-1928-4ab4-96a6-3117f5e5b7e0
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -136,12 +136,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/cart/{uuid}'
+    uri: 'api/v1/orderer/restaurant-bookmark/{id}'
     metadata:
-      groupName: 'Customer Cart'
+      groupName: 'Customer Restaurants Bookmark Management'
       groupDescription: |-
 
-        Cart API resource
+        RestaurantBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -152,15 +152,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the restaurant bookmark.'
         required: true
-        example: 8fe7bb95-09d2-4e17-ae0d-584d2c81b579
+        example: ff963853-1928-4ab4-96a6-3117f5e5b7e0
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 8fe7bb95-09d2-4e17-ae0d-584d2c81b579
+      id: ff963853-1928-4ab4-96a6-3117f5e5b7e0
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
