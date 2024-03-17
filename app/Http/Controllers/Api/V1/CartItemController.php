@@ -30,6 +30,7 @@ class CartItemController extends Controller
     public function index(Request $request)
     {
         $user = User::where('id',Auth::user()->id)->first();
+
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
             if ($role === 'orderer') {
@@ -39,9 +40,9 @@ class CartItemController extends Controller
 
                 if ($cart) {
                     $cartsItems = CartItem::where('cart_id', $cart->id)
-                                            ->with(['menu', 'cart'])
-                                            ->paginate();
-
+                                            ->with('menu', 'cart')
+                                            ->paginate(10);
+                    
                     return new CartItemCollection($cartsItems);
                 } else {
                     return $this->success('', 'No cart items were found');
@@ -51,15 +52,15 @@ class CartItemController extends Controller
                 $filterItems = $filter->transform($request);
 
                 $cartsItems = CartItem::where($filterItems)
-                ->with(['menu', 'cart'])
-                ->paginate();
+                                        ->with('menu', 'cart')
+                                        ->paginate(10);
+
                 return new CartItemCollection($cartsItems);
             }
         } else {
             return $this->error('', 'Unauthorized', 401);
         }
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -108,7 +109,6 @@ class CartItemController extends Controller
     {
         return new CartItemResource($cartItem->loadMissing(['menu', 'cart']));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -159,6 +159,4 @@ class CartItemController extends Controller
             }
         }
     }
-
-
 }

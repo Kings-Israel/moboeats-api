@@ -24,10 +24,9 @@ class CartItemResource extends JsonResource
                 'status' => (string) $this->status,
             ],
             'relationships' => [
-                'menu' => new MenuResource($this->whenLoaded('menu')),
-                'cart' => new CartResource($this->whenLoaded('cart')),
+                'menu' => $this->menu->load('images'),
+                'cart' => $this->cart->load('user'),
             ]
-                        
         ];
     }
 }
