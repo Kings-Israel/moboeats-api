@@ -12,7 +12,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['CenturyGothic', ...defaultTheme.fontFamily.sans],
-                outfit: ['Outfit'],
+                comfortaa: ['Comfortaa'],
             },
             backgroundImage: {
                 'home-hero' : "url('/public/assets/img/simona-toma.jpg')",
