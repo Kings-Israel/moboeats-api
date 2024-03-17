@@ -6,6 +6,7 @@ use App\Events\NewOrder;
 use App\Helpers\AssignOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\UpdatePaymentRequest;
+use App\Jobs\SendNotification;
 use App\Models\AssignedOrder;
 use App\Models\Order;
 use App\Models\Payment;
@@ -13,6 +14,7 @@ use App\Models\Restaurant;
 use App\Models\RestaurantTable;
 use App\Models\Rider;
 use App\Models\RiderTip;
+use App\Models\StripePayment;
 use App\Models\User;
 use App\Models\UserRestaurant;
 use App\Notifications\NewOrder as NotificationsNewOrder;
@@ -287,9 +289,9 @@ class PaymentController extends Controller
          ], 200);
     }
 
-    public function stripeCheckout($user_id, $order_id)
+    public function stripeCheckout($order_id)
     {
-        $user = User::where('id', $user_id)->first();
+        $user = auth()->user();
 
         if (!$user) {
             return $this->error('Order Payment', 'User not found', 403);
@@ -313,22 +315,197 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Cannot make payment for order.', 403);
         }
 
-        $items = [];
-        foreach ($order->orderItems as $order_item) {
-            $items[] = [
-                'price' => $order_item->menu->menuPrice->where('status', 2)->where('stripe_price_id', '!=', NULL)->first()->stripe_price_id,
-                'quantity' => $order_item->quantity
-            ];
-        }
+        // info((double)($order->total_amount));
+        // $amount = explode('.', $order->total_amount);
+        // if (count($amount) > 1) {
+        //     if ((int)(end($amount)) > 30) {
+        //         $amount = ceil((double)($order->total_amount));
+        //     } else {
+        //         $amount = $amount[0].'.30';
+        //     }
+        // } else {
+        //     $amount = $order->total_amount;
+        // }
 
-        return $items;
+        $amount = ceil((double)($order->total_amount));
 
         // Make request to stripe to store menu item
         $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
 
-        return $user->checkout([], [
-            'success_url' => route('paypal.checkout.success'),
-            'cancel_url' => route('paypal.checkout.failed')
+        // Use an existing Customer ID if this is a returning customer.
+        $customer = $stripe->customers->create();
+        $ephemeralKey = $stripe->ephemeralKeys->create([
+                            'customer' => $customer->id,
+                        ], [
+                            'stripe_version' => '2023-10-16',
+                        ]);
+
+        $paymentIntent = $stripe->paymentIntents->create([
+            'amount' => $amount,
+            'currency' => 'gbp',
+            'customer' => $customer->id,
+            // In the latest version of the API, specifying the `automatic_payment_methods` parameter
+            // is optional because Stripe enables its functionality by default.
+            'automatic_payment_methods' => [
+                'enabled' => 'true',
+            ],
         ]);
+
+        StripePayment::create([
+            'user_id' => $user->id,
+            'payment_intent' => $paymentIntent->client_secret,
+            'payable_type' => Order::class,
+            'payable_id' => $order->id,
+            'amount' => $amount,
+        ]);
+
+        return response()->json(
+            [
+              'paymentIntent' => $paymentIntent->client_secret,
+              'ephemeralKey' => $ephemeralKey->secret,
+              'customer' => $customer->id,
+              'publishableKey' => config('services.stripe.KEY')
+            ]
+        );
+    }
+
+    public function stripeTipCheckout($order_id, $amount)
+    {
+        $order = Order::with('rider')
+                    ->where(function ($query) use ($order_id) {
+                        $query->where('id', $order_id)->orWhere('uuid', $order_id);
+                    })
+                    ->first();
+
+        if (!$order) {
+            return $this->error('Order Tip Payment', 'Order not found', 404);
+        }
+
+        $rider = Rider::where('user_id', $order->rider->id)->first();
+
+        $rider_tip = RiderTip::create([
+            'rider_id' => $rider->id,
+            'order_id' => $order->id,
+            'amount' => $amount,
+        ]);
+
+        // Make request to stripe to store menu item
+        $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+        // Use an existing Customer ID if this is a returning customer.
+        $customer = $stripe->customers->create();
+        $ephemeralKey = $stripe->ephemeralKeys->create([
+                            'customer' => $customer->id,
+                        ], [
+                            'stripe_version' => '2023-10-16',
+                        ]);
+
+        $paymentIntent = $stripe->paymentIntents->create([
+            'amount' => $amount,
+            'currency' => 'gbp',
+            'customer' => $customer->id,
+            // In the latest version of the API, specifying the `automatic_payment_methods` parameter
+            // is optional because Stripe enables its functionality by default.
+            'automatic_payment_methods' => [
+                'enabled' => 'true',
+            ],
+        ]);
+
+        StripePayment::create([
+            'user_id' => auth()->id(),
+            'payment_intent' => $paymentIntent->client_secret,
+            'payable_type' => RiderTip::class,
+            'payable_id' => $rider_tip->id,
+            'amount' => $amount,
+        ]);
+
+        return response()->json(
+            [
+              'paymentIntent' => $paymentIntent->client_secret,
+              'ephemeralKey' => $ephemeralKey->secret,
+              'customer' => $customer->id,
+              'publishableKey' => config('services.stripe.KEY')
+            ]
+        );
+    }
+
+    public function stripeWebhookCallback(Request $request)
+    {
+        // Get the payment details
+        if ($request->all()['data']['object']['object'] == 'charge') {
+            // Check if payment is successful
+            $payment_intent = $request->all()['data']['object']['payment_intent'];
+
+            $stripe_payment = StripePayment::where('payment_intent', $payment_intent)->first();
+
+            if ($stripe_payment) {
+                if ($request->all()['type'] == 'charge.succeeded') {
+                    $stripe_payment->update([
+                        'status' => 'success'
+                    ]);
+
+                    switch ($stripe_payment->payable_type) {
+                        case 'App\\Models\\Order':
+                            // Get and update order details and send notification to user
+                            $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+
+                            if ($order) {
+                                // Assign Order to Rider
+                                AssignOrder::assignOrder($order->id);
+
+                                $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+
+                                event(new NewOrder($order->restaurant, $order->load('user')));
+
+                                Payment::create([
+                                    'transaction_id' => $request->all()['data']['object']['id'],
+                                    'order_id' => $order->id,
+                                    'payment_method' => 'Stripe',
+                                    'amount' => $order->total_amount,
+                                    'status' => 2,
+                                    'created_by' => $order->user->name,
+                                ]);
+
+                                SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Order has started being prepared', ['order' => $order]);
+
+                                activity()->causedBy($order->user)->performedOn($order)->log('paid for the order');
+
+                                return response()->json([
+                                    'message' => 'Successful Payment',
+                                ], 200);
+                            }
+                            break;
+                        case 'App\\Models\\RiderTip':
+                            // Update Tip
+                            $rider_tip = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+                            if ($rider_tip) {
+                                $rider_tip->update([
+                                    'status' => 'paid',
+                                ]);
+
+                                SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Rider hhas been tipped');
+
+                                activity()->causedBy($rider_tip->order->user)->performedOn($rider_tip->order)->log('tipped '.$rider_tip->order.' the rider');
+
+                                return response()->json([
+                                    'message' => 'Successful Payment',
+                                ], 200);
+                            }
+                            break;
+
+                        default:
+                            # code...
+                            break;
+                    }
+                }
+
+                if ($request->all()['type'] == 'charge.payment_failed') {
+                    if ($stripe_payment->user->device_token) {
+                        SendNotification::dispatchSync($stripe_payment->user, 'Payment was not successful');
+                    }
+                }
+            }
+
+        }
     }
 }

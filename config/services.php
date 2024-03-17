@@ -55,6 +55,6 @@ return [
         // 'LIVE_KEY' => env('STRIPE_LIVE_KEY'),
         // 'LIVE_SECRET_KEY' => env('STRIPE_LIVE_SECRET_KEY'),
         'KEY' => env('STRIPE_KEY'),
-        'SECRET_KEY' => env('STRIPE_SECRET_KEY'),
+        'SECRET_KEY' => env('STRIPE_SECRET'),
     ]
 ];
