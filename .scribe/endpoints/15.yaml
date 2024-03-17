@@ -78,28 +78,28 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: rem
+        example: voluptatem
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 6
+        example: 19
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: magnam
+        example: quis
         type: string
         custom: []
     cleanBodyParameters:
       price: 0
-      description: rem
-      status: 6
-      menu_id: magnam
+      description: voluptatem
+      status: 19
+      menu_id: quis
     fileParameters: []
     responses: []
     responseFields: []
@@ -193,27 +193,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: dolor
+        example: aspernatur
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: rem
+        example: et
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 1
+        example: 0
         type: number
         custom: []
     cleanBodyParameters:
-      description: dolor
-      status: rem
-      price: 1
+      description: aspernatur
+      status: et
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []
@@ -297,14 +297,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: laudantium
+        example: quibusdam
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: repellendus
+        example: impedit
         type: string
         custom: []
       price:
@@ -315,8 +315,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: laudantium
-      status: repellendus
+      description: quibusdam
+      status: impedit
       price: 1
     fileParameters: []
     responses: []

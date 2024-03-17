@@ -1,66 +1,17 @@
-name: 'Customer menu Bookmark Management'
+name: 'Orderer/Customer Management'
 description: |-
 
-  MenuBookmark API resource
+  Orderer/Customer API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/menu-bookmark/{menuId}/delete'
+    uri: api/v1/orderer/orderers
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Orderer/Customer Management'
       groupDescription: |-
 
-        MenuBookmark API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      menuId:
-        name: menuId
-        description: ''
-        required: true
-        example: odio
-        type: string
-        custom: []
-    cleanUrlParameters:
-      menuId: odio
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/orderer/menu-bookmark
-    metadata:
-      groupName: 'Customer menu Bookmark Management'
-      groupDescription: |-
-
-        MenuBookmark API resource
+        Orderer/Customer API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -96,12 +47,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/menu-bookmark
+    uri: api/v1/orderer/orderers
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Orderer/Customer Management'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Orderer/Customer API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -116,15 +67,65 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      menuId:
-        name: menuId
+      name:
+        name: name
         description: ''
         required: true
-        example: 17
-        type: integer
+        example: et
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: kian.leuschke@example.com
+        type: string
+        custom: []
+      phoneNo:
+        name: phoneNo
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      city:
+        name: city
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      mapLocation:
+        name: mapLocation
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      image:
+        name: image
+        description: ''
+        required: false
+        example: null
+        type: string
         custom: []
     cleanBodyParameters:
-      menuId: 17
+      name: et
+      email: kian.leuschke@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -136,12 +137,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/menu-bookmark/{id}'
+    uri: 'api/v1/orderer/orderers/{uuid}'
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Orderer/Customer Management'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Orderer/Customer API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -152,15 +153,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the menu bookmark.'
+      uuid:
+        name: uuid
+        description: ''
         required: true
-        example: temporibus
+        example: 90c43195-315a-428c-8820-bd8112e5d2fa
         type: string
         custom: []
     cleanUrlParameters:
-      id: temporibus
+      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -184,13 +185,125 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/menu-bookmark/{id}'
+      - PUT
+      - PATCH
+    uri: 'api/v1/orderer/orderers/{uuid}'
     metadata:
-      groupName: 'Customer menu Bookmark Management'
+      groupName: 'Orderer/Customer Management'
       groupDescription: |-
 
-        MenuBookmark API resource
+        Orderer/Customer API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 90c43195-315a-428c-8820-bd8112e5d2fa
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      uuid:
+        name: uuid
+        description: 'Must be a valid UUID.'
+        required: true
+        example: fa19ceb2-fa56-38a0-8d84-f6884701b581
+        type: string
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: dolores
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: porter.dach@example.net
+        type: string
+        custom: []
+      phoneNo:
+        name: phoneNo
+        description: ''
+        required: true
+        example: suscipit
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: cum
+        type: string
+        custom: []
+      city:
+        name: city
+        description: ''
+        required: true
+        example: rerum
+        type: string
+        custom: []
+      state:
+        name: state
+        description: ''
+        required: true
+        example: enim
+        type: string
+        custom: []
+      mapLocation:
+        name: mapLocation
+        description: ''
+        required: true
+        example: deserunt
+        type: string
+        custom: []
+      image:
+        name: image
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    cleanBodyParameters:
+      uuid: fa19ceb2-fa56-38a0-8d84-f6884701b581
+      name: dolores
+      email: porter.dach@example.net
+      phoneNo: suscipit
+      address: cum
+      city: rerum
+      state: enim
+      mapLocation: deserunt
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orderers/{uuid}'
+    metadata:
+      groupName: 'Orderer/Customer Management'
+      groupDescription: |-
+
+        Orderer/Customer API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -201,15 +314,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the menu bookmark.'
+      uuid:
+        name: uuid
+        description: ''
         required: true
-        example: veniam
+        example: 90c43195-315a-428c-8820-bd8112e5d2fa
         type: string
         custom: []
     cleanUrlParameters:
-      id: veniam
+      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

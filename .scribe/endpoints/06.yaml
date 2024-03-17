@@ -1,20 +1,20 @@
-name: 'Orderer/Customer Management'
+name: 'Payment Post Controller'
 description: |-
 
-  Orderer/Customer API resource
+  Payment API resource
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/v1/orderer/orderers
+      - POST
+    uri: api/v1/stripe/webhook
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Payment Post Controller'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -28,6 +28,46 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/stripe/checkout/{order_id}'
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Stripe Order checkout'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_id:
+        name: order_id
+        description: 'The id of the order'
+        required: false
+        example: 4
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      order_id: 4
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
     responses:
       -
         status: 401
@@ -35,6 +75,122 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/stripe/checkout/{order_id}/{amount}'
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Stripe Tip checkout'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_id:
+        name: order_id
+        description: 'The id of the order'
+        required: false
+        example: 12
+        type: integer
+        custom: []
+      amount:
+        name: amount
+        description: 'The amount to tip'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      order_id: 12
+      amount: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/payment/{user_id}/{order_id}'
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: aspernatur
+        type: string
+        custom: []
+      order_id:
+        name: order_id
+        description: 'The ID of the order.'
+        required: true
+        example: exercitationem
+        type: string
+        custom: []
+    cleanUrlParameters:
+      user_id: aspernatur
+      order_id: exercitationem
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 403
+        content: '{"status":"Error has occured...","message":"User not found","data":"Order Payment"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '288'
           vary: Origin
         description: null
         custom: []
@@ -47,15 +203,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderers
+    uri: api/v1/order/payment/create-paypal-order
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Payment Post Controller'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -66,66 +222,104 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: ''
-        required: true
-        example: earum
-        type: string
-        custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: grady.mitchell@example.com
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      mapLocation:
-        name: mapLocation
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      image:
-        name: image
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-    cleanBodyParameters:
-      name: earum
-      email: grady.mitchell@example.com
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/order/payment/capture-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/order/tip/payment/create-tip-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/order/tip/payment/capture-tip-paypal-order
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
@@ -137,15 +331,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/admin/payments/{payment_uuid}/details'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      groupName: 'Payment Post Controller'
       groupDescription: |-
 
-        Orderer/Customer API resource
+        Payment API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -153,15 +347,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
+      payment_uuid:
+        name: payment_uuid
         description: ''
         required: true
-        example: 90c43195-315a-428c-8820-bd8112e5d2fa
+        example: bb1ddf9c-ece0-4412-884a-bc0986ced163
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
+      payment_uuid: bb1ddf9c-ece0-4412-884a-bc0986ced163
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -177,158 +371,6 @@ endpoints:
           vary: Origin
         description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/orderers/{uuid}'
-    metadata:
-      groupName: 'Orderer/Customer Management'
-      groupDescription: |-
-
-        Orderer/Customer API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 90c43195-315a-428c-8820-bd8112e5d2fa
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 4d43db38-c945-36ee-a2f8-e59bb75ed1e2
-        type: string
-        custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: voluptas
-        type: string
-        custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: rath.jaunita@example.com
-        type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
-        required: true
-        example: doloribus
-        type: string
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: true
-        example: aut
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: true
-        example: vel
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: true
-        example: quibusdam
-        type: string
-        custom: []
-      mapLocation:
-        name: mapLocation
-        description: ''
-        required: true
-        example: quisquam
-        type: string
-        custom: []
-      image:
-        name: image
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-    cleanBodyParameters:
-      uuid: 4d43db38-c945-36ee-a2f8-e59bb75ed1e2
-      name: voluptas
-      email: rath.jaunita@example.com
-      phoneNo: doloribus
-      address: aut
-      city: vel
-      state: quibusdam
-      mapLocation: quisquam
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/orderers/{uuid}'
-    metadata:
-      groupName: 'Orderer/Customer Management'
-      groupDescription: |-
-
-        Orderer/Customer API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 90c43195-315a-428c-8820-bd8112e5d2fa
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null

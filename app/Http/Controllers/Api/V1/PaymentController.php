@@ -35,72 +35,6 @@ class PaymentController extends Controller
     use HttpResponses;
     use UploadFileTrait;
 
-    // public function store(StorePaymentRequest $request)
-    // {
-    //     $user = User::where('id', Auth::user()->id)->first();
-    //     if ($user->hasRole(Auth::user()->role_id)) {
-    //         try {
-    //             // DB::beginTransaction();
-    //             //get order to be paid for
-    //             $order = Order::where('id',$request->orderId)
-    //             ->where('status', 1) //pending
-    //             ->first();
-
-    //             if (!$order) {
-    //                 return $this->error('Order Payment', 'User does not have pending order', 402);
-    //             }
-
-    //             if ($order->user_id != auth()->id()) {
-    //                 return $this->error('Order Payment', 'User not authorized to make payment', 403);
-    //             }
-
-    //             return view('paypal.checkout', [
-    //                 'client_id' => config('paypal.sandbox.client_id'),
-    //                 'currency' => config('paypal.currency'),
-    //                 'total_amount' => $order->total_amount,
-    //                 'checkout_id' => $order->uuid,
-    //              ]);
-
-    //             // process payement order
-    //             //nomarly we will get payment details from payment gateway callback
-    //             // $pay = Payment::create([
-    //             //     'transaction_id' => $request->transaction_id,
-    //             //     'order_id' => $order->id,
-    //             //     'payment_method' => $request->payment_method,
-    //             //     'amount' => $request->amount,
-    //             //     'status' => 2,
-    //             //     'created_by' => $user->name,
-    //             // ]);
-
-    //             // if ($pay->amount == $order->total_amount) {
-    //             //     $order->update(['status' =>2]);
-    //             // }
-
-    //             // if ($pay->amount > $order->total_amount) {
-    //             //     $balance = $order->amount - $order->total_amount;
-    //             //     // DB::rollBack();
-    //             //     return $this->error('Payment Incomplete', 'Amount is given is extra by ' .$balance, 402);
-    //             // }
-
-    //             // if ($pay->amount < $order->total_amount) {
-    //             //     $balance = $order->total_amount - $order->amount;
-    //             //     // DB::rollBack();
-    //             //     return $this->error('Payment Incomplete', 'Amount is given is less by ' .$balance, 402);
-    //             // }
-
-    //             // DB::commit();
-    //             // return $this->success('Order', 'Order confirmed successfully');
-
-    //         } catch (\Throwable $th) {
-    //             info($th);
-    //             // DB::rollBack();
-    //             return $this->error('', $th->getMessage(), 403);
-    //         }
-    //     } else {
-    //         return $this->error('', 'Unauthorized', 401);
-    //     }
-    // }
-
     public function store($user_id, $order_id)
     {
         $user = User::where('id', $user_id)->first();
@@ -289,6 +223,10 @@ class PaymentController extends Controller
          ], 200);
     }
 
+    /**
+     * Stripe Order checkout
+     * @urlParam order_id int The id of the order
+     */
     public function stripeCheckout($order_id)
     {
         $user = auth()->user();
@@ -369,6 +307,11 @@ class PaymentController extends Controller
         );
     }
 
+    /**
+     * Stripe Tip checkout
+     * @urlParam order_id int The id of the order
+     * @urlParam amount int The amount to tip
+     */
     public function stripeTipCheckout($order_id, $amount)
     {
         $order = Order::with('rider')
