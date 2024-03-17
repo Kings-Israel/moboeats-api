@@ -44,7 +44,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 /**
  *Auth
-*/
+ */
 Route::group(['prefix' => 'v1'], function() {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
@@ -63,6 +63,8 @@ Route::group(['prefix' => 'v1'], function() {
 
     Route::get('sub-categories/{food_sub_category}', [FooSubCategoryController::class, 'show']);
     Route::apiResource('sub-categories', FooSubCategoryController::class);
+
+    Route::post('/stripe/webhook', [PaymentController::class, 'stripeWebhookCallback']);
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
@@ -102,6 +104,8 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
     Route::apiResource('orders', OrderController::class)->except(['update']);
 
     // Route::apiResource('payment', PaymentController::class)->except(['update']);
+    Route::get('/stripe/checkout/{order_id}', [PaymentController::class, 'stripeCheckout']);
+    Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
 
     // Tables
     Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);

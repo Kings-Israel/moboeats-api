@@ -195,6 +195,14 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(Order::class, 'user_id', 'id');
     }
 
+    /**
+     * Get all of the stripePayments for the User
+     */
+    public function stripePayments(): HasMany
+    {
+        return $this->hasMany(StripePayment::class);
+    }
+
     public static function options($column)
     {
         if($column == 'status'){
