@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::get('/partners', function () {
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
+
+Route::post('/contact-us/submit', [HomeController::class, 'contactSubmit'])->name('submit.contact-us');
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 

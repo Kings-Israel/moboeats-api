@@ -29,20 +29,11 @@
                     <div
                         class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[390px] lg:items-center"
                     >
-                    <div class="max-w-4xl text-white text-center md:text-left">
-                        <h1 class="text-3xl font-bold sm:text-5xl">
-                            Have a Question, feedback, or just want to say hello?
-                        </h1>
-
-                        <p class="mt-4 max-w-2xl sm:text-xl/relaxed font-semibold">
-                            We'd love to hear from you? Reach out to our friendly team using the contact details below.
-                        </p>
-                    </div>
                 </div>
             </section>
 
             <div class="px-2 lg:px-24 p-4">
-                <div class="grid grid-cols-2 gap-4 px-4 lg:px-44">
+                <div class="grid md:grid-cols-2 gap-4 px-4 lg:px-44">
                     <div class="border-2 border-primary-one p-2 rounded-md">
                         <h4 class="font-extrabold text-xl">Customer Support</h4>
                         <h5 class="font-bold">For assistance with orders, deliveries, or any other inquiries, our dedicated customer support is here to help.</h5>
@@ -63,8 +54,9 @@
             </div>
 
             <div class="px-2 lg:px-24">
-                <form action="coming-soon.php" method="post">
-                    <div class="px-4 lg:px-44 grid grid-cols-3 gap-3 my-4">
+                <form action="{{ route('submit.contact-us') }}" method="post">
+                    @csrf
+                    <div class="px-4 lg:px-44 md:grid md:grid-cols-2 gap-3 my-4">
                         <div class="flex flex-col">
                             <label class="text-black text-md font-bold">Full Name</label>
                             <input name="fullname" class="border-2 border-gray-300 dark:border-gray-300 dark:text-dark bg-slate-200 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-gray-400 dark:focus:ring-gray-400 rounded-md shadow-sm h-10" />
@@ -73,11 +65,11 @@
                             <label class="text-black text-md font-bold">Email Address</label>
                             <input name="email" class="border-2 border-gray-300 dark:border-gray-300 dark:text-dark bg-slate-200 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-gray-400 dark:focus:ring-gray-400 rounded-md shadow-sm h-10" />
                         </div>
-                        <div class="flex flex-col">
+                        <div class="md:col-span-2 flex flex-col">
                             <label class="text-black text-md font-bold">Subject</label>
                             <input name="subject" class="border-2 border-gray-300 dark:border-gray-300 dark:text-dark bg-slate-200 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-gray-400 dark:focus:ring-gray-400 rounded-md shadow-sm h-10" />
                         </div>
-                        <div class="col-span-3">
+                        <div class="md:col-span-2">
                             <label class="text-black text-md font-bold">Message</label>
                             <textarea name="message" id="" class="w-full bg-gray-200 border-0 rounded-md" rows="5"></textarea>
                         </div>

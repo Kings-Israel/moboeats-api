@@ -21,25 +21,14 @@
             @include('layouts.navigation')
 
             <section
-                class="relative bg-home-hero bg-cover bg-center bg-no-repeat"
+                class=""
             >
-                <div
-                    class="absolute inset-0"
-                ></div>
-                    <div
-                        class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[690px] lg:items-center"
-                    >
-                    <div class="max-w-4xl text-white text-center md:text-left">
-                        <h1 class="text-3xl font-bold sm:text-5xl">
-                            Discover the Moboeats Advantage
-                        </h1>
-                    </div>
-                </div>
+                <img src="{{ asset('assets/img/Moboeats Company Profile (1).jpeg') }}" class="w-full object-cover" alt="">
             </section>
 
             <div class="mt-4 md:mt-24 px-4 lg:px-24 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
-                    <img src="{{ asset('assets/img/convenience.jpg') }}" alt="" class="w-[38rem] h-[20rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/convenience.png') }}" alt="" class="w-[38rem] object-cover rounded-lg">
                 </div>
                 <div class="lg:my-auto md:max-w-md flex flex-col justify-center md:block">
                     <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Convenience</h2>
@@ -53,13 +42,13 @@
                     <p class="font-semibold text-center md:text-left">We source our products from trusted merchants to ensure freshness and quality with every purchase. From farm-fresh fruits and vegetables to premium meals.</p>
                 </div>
                 <div class="">
-                    <img src="{{ asset('assets/img/quality.jpg') }}" alt="" class="w-[38rem] h-[20rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/quality-guaranteed.png') }}" alt="" class="w-[38rem] object-cover rounded-lg">
                 </div>
             </div>
 
             <div class="mt-4 md:mt-24 px-4 lg:px-24 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
-                    <img src="{{ asset('assets/img/personalized.jpg') }}" alt="" class="w-[38rem] h-[20rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/personalized-experience.png') }}" alt="" class="w-[38rem] object-cover rounded-lg">
                 </div>
                 <div class="lg:my-auto md:max-w-md flex flex-col justify-center md:block">
                     <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Personalized Experience</h2>
@@ -73,7 +62,7 @@
                     <p class="font-semibold text-center md:text-left">Choose from a range of delivery options to suit your schedule. Whether you need your groceries ASAP or prefer to schedule a delivery for later, we've got you covered.</p>
                 </div>
                 <div class="">
-                    <img src="{{ asset('assets/img/delivery.jpg') }}" alt="" class="w-[38rem] h-[20rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/delivery-options.png') }}" alt="" class="w-[38rem] object-cover rounded-lg">
                 </div>
             </div>
 
