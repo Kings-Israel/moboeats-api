@@ -250,4 +250,8 @@ Route::post('/sms/test', function(Request $request) {
     SendSMS::dispatchAfterResponse($request->phone_number, 'Test');
 });
 
+Route::post('/sms/test/callback', function(Request $request) {
+    info($request->all());
+});
+
 require __DIR__.'/admin.php';
