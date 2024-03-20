@@ -33,7 +33,7 @@
             </section>
 
             <div class="px-2 lg:px-24 p-4">
-                <div class="grid md:grid-cols-2 gap-4 px-4 lg:px-44">
+                <div class="grid md:grid-cols-2 gap-10 px-4 lg:px-44">
                     <div class="border-2 border-primary-one p-2 rounded-md">
                         <h4 class="font-extrabold text-xl">Customer Support</h4>
                         <h5 class="font-bold">For assistance with orders, deliveries, or any other inquiries, our dedicated customer support is here to help.</h5>

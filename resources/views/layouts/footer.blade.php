@@ -6,13 +6,13 @@
         <div class="text-center md:text-left">
             <ul class="space-y-4">
                 <li>
-                    <a href="#" class="font-bold hover:text-primary-two">
+                    <a href="https://play.google.com/store/apps/details?id=com.moboeats.orderer" class="font-bold hover:text-primary-two">
                         Install our App
                     </a>
                 </li>
-                <li><a href="https://restaurant.moboeats.com/signup" class="font-bold hover:text-primary-two">Register your Restaurant</a></li>
-                <li><a href="https://restaurant.moboeats.com/signup" class="font-bold hover:text-primary-two">Register Your Shop</a></li>
-                <li><a href="#" class="font-bold hover:text-primary-two">Be Our Driver</a></li>
+                <li><a href="https://restaurant.moboeats.com/signup" target="_blank" class="font-bold hover:text-primary-two">Register your Restaurant</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.moboeats.partners" target="_blank" class="font-bold hover:text-primary-two">Register Your Shop</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.moboeats.driver" target="_blank" class="font-bold hover:text-primary-two">Be Our Driver</a></li>
             </ul>
         </div>
         <div class="">
