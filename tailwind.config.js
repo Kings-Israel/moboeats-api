@@ -15,7 +15,8 @@ export default {
                 comfortaa: ['Comfortaa'],
             },
             backgroundImage: {
-                'home-hero' : "url('/public/assets/img/simona-toma.jpg')",
+                'home-hero' : "url('/public/assets/img/Ad-copy.jpg')",
+                'merchant-hero' : "url('/public/assets/img/merchant-home.png')",
             },
             screens: {
                 '4xl': '1900px'

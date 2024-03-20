@@ -27,22 +27,17 @@
                     class="absolute inset-0"
                 ></div>
                     <div
-                        class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[690px] lg:items-center"
+                        class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[720px] lg:items-center"
                     >
-                    <div class="max-w-4xl text-white text-center md:text-left">
-                        <h1 class="text-3xl font-bold sm:text-5xl">
-                            Want to Work With Us?
-                        </h1>
-                    </div>
                 </div>
             </section>
 
+            <h1 class="text-3xl text-center my-3 py-2 font-semibold underline">Why you should partner with us</h1>
             <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
-                    <img src="{{ asset('assets/img/convenience.jpg') }}" alt="" class="w-88 h-96 lg:w-[38rem] lg:h-[40rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/partners1.png') }}" alt="" class="w-88 lg:w-[34rem] object-cover rounded-lg">
                 </div>
                 <div class="lg:my-auto md:max-w-lg flex flex-col justify-center md:block">
-                    <h2 class="text-2xl font-bold lg:mb-6 text-center md:text-left">Why you should partner with us</h2>
                     <ul class="list-desc mb-8 space-y-4">
                         <li class="flex flex-col">
                             <h3 class="font-bold text-xl text-primary-one underline">Increased Visibility:</h3>
@@ -63,13 +58,12 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="https://restaurant.moboeats.com/register" class="hidden md:block bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
+                    <a href="https://restaurant.moboeats.com/register" class="hidden md:block md:w-fit bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
                 </div>
             </div>
 
             <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="lg:my-8 md:max-w-lg flex flex-col justify-center md:block">
-                    <h2 class="hidden md:block text-2xl font-bold lg:mb-6 text-center md:text-left">Why you should partner with us</h2>
                     <ul class="list-desc mb-8 space-y-4">
                         <li class="flex flex-col">
                             <h3 class="font-bold text-xl text-primary-one underline">Flexible Ordering Options:</h3>
@@ -93,7 +87,7 @@
                     <a href="https://restaurant.moboeats.com/register" class="my-2 bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
                 </div>
                 <div class="">
-                    <img src="{{ asset('assets/img/personalized.jpg') }}" alt="" class="w-88 h-96 lg:w-[38rem] lg:h-[40rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/partners2.png') }}" alt="" class="w-88 lg:w-[34rem] object-cover rounded-lg">
                 </div>
             </div>
 
@@ -116,12 +110,12 @@
                                 <span class="font-bold">Create and customize your menu to showcase your signature dishes, specials, and promotions. Add enticing descriptions, mouth-watering photos, and pricing to entice customers.</span>
                             </div>
                             <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
-                                <img src="{{ asset('assets/img/Menu Management.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
+                                <img src="{{ asset('assets/img/merchant-menu-management.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
                             </div>
                         </div>
                         <div class="flex gap-2">
                             <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
-                                <img src="{{ asset('assets/img/Order Management.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
+                                <img src="{{ asset('assets/img/merchant-order-management.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
                             </div>
                             <div class="flex flex-col my-auto md:basis-1/2 lg:basis-2/5">
                                 <span class="font-bold text-2xl">Order Management</span>
@@ -134,12 +128,12 @@
                                 <span class="font-bold">Monitor and analyse performance of different branches as well as a centralised earning management for multiple shops.</span>
                             </div>
                             <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
-                                <img src="{{ asset('assets/img/Multibranch Management.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
+                                <img src="{{ asset('assets/img/merchant-home.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
                             </div>
                         </div>
                         <div class="flex gap-2">
                             <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
-                                <img src="{{ asset('assets/img/Partner Dashboard.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
+                                <img src="{{ asset('assets/img/merchant-partner.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
                             </div>
                             <div class="flex flex-col my-auto md:basis-1/2 lg:basis-2/5">
                                 <span class="font-bold text-2xl">Grow Your Business</span>
@@ -156,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="px-4 lg:px-24 mt-10">
+            {{-- <div class="px-4 lg:px-24 mt-10">
                 <h1 class="text-3xl text-center my-3 font-semibold underline">Our Partners</h1>
                 <p class="text-center font-bold text-sm pb-6">Join a wide range of companies operating within our network</p>
                 <div class="flex flex-nowrap gap-4 overflow-x-auto mt-4 no-scrollbar">
@@ -176,7 +170,7 @@
                         <img src="{{ asset('assets/img/favicon/android-chrome-512x512.png') }}" class="h-20 w-52 object-contain" alt="">
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @include('layouts.footer')
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
