@@ -35,11 +35,11 @@
             <h1 class="text-3xl text-center my-3 py-2 font-semibold underline">Why you should partner with us</h1>
             <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
-                    <img src="{{ asset('assets/img/partners1.png') }}" alt="" class="w-88 lg:w-[34rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/partners1.png') }}" alt="" class="w-72 lg:w-[28rem] mx-auto object-cover rounded-lg">
                 </div>
                 <div class="lg:my-auto md:max-w-lg flex flex-col justify-center md:block">
-                    <ul class="list-desc mb-8 space-y-4">
-                        <li class="flex flex-col">
+                    <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
+                        <li class="flex flex-col mt-4 md:mt-0">
                             <h3 class="font-bold text-xl text-primary-one underline">Increased Visibility:</h3>
                             <span class="font-bold">
                                 Joining us allows you to showcase your restaurant to a wider audience of food enthusiasts. Benefit from increased visibility and exposure in your local community and beyond.
@@ -58,13 +58,13 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="https://restaurant.moboeats.com/register" class="hidden md:block md:w-fit bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
+                    <a href="https://restaurant.moboeats.com/signup" class="hidden md:block md:w-fit bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
                 </div>
             </div>
 
-            <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
+            <div class="mt-0 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="lg:my-8 md:max-w-lg flex flex-col justify-center md:block">
-                    <ul class="list-desc mb-8 space-y-4">
+                    <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col">
                             <h3 class="font-bold text-xl text-primary-one underline">Flexible Ordering Options:</h3>
                             <span class="font-bold">
@@ -84,10 +84,10 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="https://restaurant.moboeats.com/register" class="my-2 bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
+                    <a href="https://restaurant.moboeats.com/signup" class="my-2 bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
                 </div>
                 <div class="">
-                    <img src="{{ asset('assets/img/partners2.png') }}" alt="" class="w-88 lg:w-[34rem] object-cover rounded-lg">
+                    <img src="{{ asset('assets/img/partners2.png') }}" alt="" class="w-72 lg:w-[28rem] mx-auto object-cover rounded-lg">
                 </div>
             </div>
 
