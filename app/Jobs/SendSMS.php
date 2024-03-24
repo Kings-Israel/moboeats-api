@@ -27,16 +27,27 @@ class SendSMS implements ShouldQueue
      */
     public function handle(): void
     {
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . config('services.voodoo.API_KEY')
-        ])
-        ->post(config('services.voodoo.BASE_URL').'/sendsms', [
-            'to' => $this->receiver,
-            'from' => 'VoodooSMS',
-            'msg' => $this->message,
-            'sandbox' => true
-        ]);
+        $api_key = config('services.voodoo.API_KEY');
 
-        info($response);
+        $msg = json_encode(
+            [
+                'to' => $this->receiver,
+                'from' => "VoodooSMS",
+                'msg' => $this->message,
+            ]
+        );
+
+        $ch = curl_init('https://api.voodoosms.com/sendsms');
+
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: ' . $api_key
+        ]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $msg);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
     }
 }

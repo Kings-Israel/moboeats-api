@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\Api\V1\RestaurantDocumentsController;
 use App\Http\Controllers\Api\V1\RestaurantOperatingHoursController;
 use App\Http\Controllers\Api\V1\RiderController;
+use App\Http\Controllers\FrequentlyAskedQuestionController;
 use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,9 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('sub-categories', FooSubCategoryController::class);
 
     Route::post('/stripe/webhook', [PaymentController::class, 'stripeWebhookCallback']);
+
+    // Frequently Asked Questions
+    Route::resource('/frequently-asked-questions', FrequentlyAskedQuestionController::class)->except('create', 'show', 'edit');
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
@@ -227,6 +231,7 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
             Route::post('/{discount}/update', [DiscountController::class, 'update']);
             Route::get('/{discount}/delete', [DiscountController::class, 'destroy']);
         });
+
     });
 });
 
