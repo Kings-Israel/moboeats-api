@@ -42,7 +42,7 @@ class CartItemController extends Controller
                     $cartsItems = CartItem::where('cart_id', $cart->id)
                                             ->with('menu', 'cart')
                                             ->paginate(10);
-                    
+
                     return new CartItemCollection($cartsItems);
                 } else {
                     return $this->success('', 'No cart items were found');
