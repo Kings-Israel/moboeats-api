@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\DiscountController;
 use App\Http\Controllers\Api\V1\FCategorySubCategoryController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\FooSubCategoryController;
+use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\MenuPriceController;
@@ -69,6 +70,7 @@ Route::group(['prefix' => 'v1'], function() {
 
     // Frequently Asked Questions
     Route::resource('/frequently-asked-questions', FrequentlyAskedQuestionController::class)->except('create', 'show', 'edit');
+    Route::resource('/ads', [MarketingController::class, 'index'])->except('create', 'show', 'edit');
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
