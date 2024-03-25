@@ -127,7 +127,7 @@ class RiderController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'email' => ['nullable', 'unique:riders,email,except,id'],
+            'email' => ['nullable'],
             'paypal_email' => ['required', 'email'],
             'vehicle_type' => ['required']
         ]);
