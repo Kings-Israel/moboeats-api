@@ -180,8 +180,6 @@ class OrderController extends Controller
 
                 if (!$cart) {
                     // Order is a dine in/reservation
-
-                    // return $this->error('Order Creation', 'User does not have active cart', 402);
                     $validator = Validator::make($request->all(), [
                         'seating_area_id' => ['required'],
                         'seat_number' => ['required'],
