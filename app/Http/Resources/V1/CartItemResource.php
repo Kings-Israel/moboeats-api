@@ -24,7 +24,7 @@ class CartItemResource extends JsonResource
                 'status' => (string) $this->status,
             ],
             'relationships' => [
-                'menu' => $this->menu->load('images'),
+                'menu' => new MenuResource($this->menu->load('images')),
                 'cart' => $this->cart->load('user'),
             ]
         ];
