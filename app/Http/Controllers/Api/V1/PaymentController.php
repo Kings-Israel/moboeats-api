@@ -393,6 +393,10 @@ class PaymentController extends Controller
                             $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
 
                             if ($order) {
+                                $order->update([
+                                    'status' => 2
+                                ]);
+
                                 // Assign Order to Rider
                                 AssignOrder::assignOrder($order->id);
 
