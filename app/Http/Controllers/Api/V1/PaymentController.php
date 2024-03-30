@@ -374,6 +374,7 @@ class PaymentController extends Controller
 
     public function stripeWebhookCallback(Request $request)
     {
+        return response()->json(['data' => $request->all()]);
         // Get the payment details
         if ($request->all()['data']['object']['object'] == 'charge') {
             // Check if payment is successful
