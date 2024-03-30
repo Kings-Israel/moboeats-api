@@ -282,11 +282,6 @@ class PaymentController extends Controller
             'amount' => $amount,
             'currency' => 'gbp',
             'customer' => $customer->id,
-            // In the latest version of the API, specifying the `automatic_payment_methods` parameter
-            // is optional because Stripe enables its functionality by default.
-            'automatic_payment_methods' => [
-                'enabled' => 'true',
-            ],
         ]);
 
         StripePayment::create([
@@ -374,7 +369,6 @@ class PaymentController extends Controller
 
     public function stripeWebhookCallback(Request $request)
     {
-        return response()->json(['data' => $request->all()]);
         // Get the payment details
         if ($request->all()['data']['object']['object'] == 'charge') {
             // Check if payment is successful
@@ -453,7 +447,6 @@ class PaymentController extends Controller
                     }
                 }
             }
-
         }
     }
 }
