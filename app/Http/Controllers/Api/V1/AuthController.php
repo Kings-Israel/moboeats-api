@@ -20,20 +20,27 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Jobs\SendCommunication;
 use App\Helpers\NumberGenerator;
 
+/**
+ * @group Authentication Management
+ *
+ * User API resource
+ */
 class AuthController extends Controller
 {
     use HttpResponses;
 
     /**
-     * @group Authentication Management
+     * Login through email and password
      *
-     * User API resource
+     * @bodyParam email string required The email of the user
+     * @bodyParam password string required The password of the user
+     * @bodyParam userType string required The type of user
      */
-
     public function login(Request $request)
     {
         try {
@@ -101,6 +108,13 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Registration
+     * @bodyParam email string required The email of the user
+     * @bodyParam password string required The password of the user
+     * @bodyParam userType string required The type of user
+     * @bodyParam phone string required The type of user
+     */
     public function register(StoreUserRequest $request)
     {
         $request->validated($request->all());
@@ -217,6 +231,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Logout
+     */
     public function logout()
     {
         try {
@@ -234,6 +251,12 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * Forgot Password
+     *
+     * @bodyParam email The email of the user
+     * @bodyParam phone_number The phone number of the user
+     */
     public function forgotPassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -277,6 +300,13 @@ class AuthController extends Controller
         return $this->success('', 'Password reset code sent successfully');
     }
 
+    /**
+     * Reset password
+     *
+     * @bodyParam code The Verification OTP code
+     * @bodyParam password The new password to be set
+     * @bodyParam password_confirmation The new password confirmation
+     */
     public function resetPassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -305,6 +335,9 @@ class AuthController extends Controller
         return $this->success('', 'Password was reset successfully.');
     }
 
+    /**
+     * Get the authenticated user
+     */
     public function authUser()
     {
         return $this->success([
@@ -312,4 +345,127 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Login through OTP
+     *
+     * @bodyParam phone_number string required The phone number of the user. Example 44374673827
+     */
+    public function otpLogin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'phone_number' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('Authentication', 'Phone number is required', 400);
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::firstOrCreate(
+                [
+                    'email' => $request->email,
+                ],
+                [
+                    'password' => Hash::make(Str::random(8)),
+                    'user_type' => $request->userType,
+                    'status' => 2,
+                    'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
+                ]
+            );
+
+            if($user->status == 1) {
+                return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
+            }
+
+            // $token = $user->createToken($request->userType, ['create', 'update', 'delete']);
+
+            $code = NumberGenerator::generateVerificationCode(Otp::class, 'code');
+
+            Otp::create([
+                'phone_number' => $user->phone_number,
+                'code' => $code,
+            ]);
+
+            SendCommunication::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
+
+            DB::commit();
+
+            $user = new UserResource($user);
+
+            return $this->success([
+                'user' => $user,
+                // 'token' => $token->plainTextToken,
+                'code' => $code
+            ]);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
+    }
+
+    /**
+     * Verify OTP
+     *
+     * @bodyParam code string required The phone number of the user
+     * @bodyParam userType string required The type of user logging in
+     */
+    public function verifyOtp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => ['required'],
+            'userType' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('Authentication', 'Verification code is required', 400);
+        }
+
+        $code = Otp::where('code', $request->code)->first();
+
+        if (!$code) {
+            return $this->error('Authentication', 'Invalid Code', 400);
+        }
+
+        $user = User::where('phone_number', $code->phone_number)->first();
+
+        // Update device token
+        if ($request->has('device_token') && $request->device_token != '') {
+            $user->update([
+                'device_token' => $request->device_token
+            ]);
+        }
+
+        if ($request->userType == 'rider') {
+            $rider = $user->rider;
+            if (!$rider) {
+                return $this->error('Rider profile not complete', 'Complete your rider profile.', 400);
+            }
+
+            if ($rider->status == 1) {
+                return $this->success(['Rider profile awaiting approval']);
+            }
+        }
+
+        $token = $user->createToken($request->userType, ['create', 'read', 'update', 'delete']);
+
+        $user->update(['role_id' => $request->userType]);
+
+        $user = new UserResource($user);
+
+        if ($user->hasRole('restaurant employee')) {
+            $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
+            $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+        }
+
+        return $this->success([
+            'user' => $user,
+            'token' => $token->plainTextToken,
+            'role' => $request->userType,
+            'restaurants' => $request->userType == 'restaurant' ? $user->restaurants : NULL,
+            'restaurant' => $request->userType == 'restaurant employee' ? $restaurant : NULL,
+        ]);
+    }
 }

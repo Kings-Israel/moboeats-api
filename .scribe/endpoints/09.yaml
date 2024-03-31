@@ -71,11 +71,11 @@ endpoints:
         name: restaurantId
         description: ''
         required: true
-        example: 14
+        example: 3
         type: integer
         custom: []
     cleanBodyParameters:
-      restaurantId: 14
+      restaurantId: 3
     fileParameters: []
     responses: []
     responseFields: []
