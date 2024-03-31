@@ -26,43 +26,49 @@
                 <img src="{{ asset('assets/img/Moboeats Company Profile (1).jpeg') }}" class="w-full object-cover" alt="">
             </section>
 
-            <div class="mt-4 md:mt-24 px-4 lg:px-32 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-2">
-                <div class="">
-                    <img src="{{ asset('assets/img/convenience.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
+            <div class="mt-4 md:mt-24 px-4 lg:px-32 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-4">
+                <div class="flex gap-4">
+                    <div class="">
+                        <img src="{{ asset('assets/img/convenience.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
+                    </div>
+                    <div class="">
+                        <img src="{{ asset('assets/img/quality-guaranteed.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
+                    </div>
                 </div>
                 <div class="md:my-auto md:max-w-md flex flex-col justify-center md:block">
-                    <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Convenience</h2>
-                    <p class="font-semibold text-center md:text-left">With Moboeats you can shop anytime, anywhere, and have your items delivered straight to your doorstep.</p>
-                </div>
-            </div>
-
-            <div class="mt-4 md:mt-24 px-4 lg:px-32 md:grid md:grid-cols-2 md:gap-2">
-                <div class="md:my-auto md:max-w-md flex flex-col justify-center md:block lg:ml-24">
-                    <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Quality Guaranteed</h2>
-                    <p class="font-semibold text-center md:text-left">We source our products from trusted merchants to ensure freshness and quality with every purchase. From farm-fresh fruits and vegetables to premium meals.</p>
-                </div>
-                <div class="">
-                    <img src="{{ asset('assets/img/quality-guaranteed.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
-                </div>
-            </div>
-
-            <div class="mt-4 md:mt-24 px-4 lg:px-24 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-2">
-                <div class="">
-                    <img src="{{ asset('assets/img/personalized-experience.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
-                </div>
-                <div class="md:my-auto md:max-w-md flex flex-col justify-center md:block">
-                    <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Personalized Experience</h2>
-                    <p class="font-semibold text-center md:text-left">Tailor your shopping experience with personalized recommendations based on your preferences and past purchases.</p>
+                    <div class="flex flex-col gap-4">
+                        <div class="">
+                            <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Convenience</h2>
+                            <p class="font-semibold text-center md:text-left">With Moboeats you can shop anytime, anywhere, and have your items delivered straight to your doorstep.</p>
+                        </div>
+                        <div class="">
+                            <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Quality Guaranteed</h2>
+                            <p class="font-semibold text-center md:text-left">We source our products from trusted merchants to ensure freshness and quality with every purchase. From farm-fresh fruits and vegetables to premium meals.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="md:my-auto md:max-w-md flex flex-col justify-center md:block lg:ml-24">
-                    <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Flexible Delivery Options</h2>
-                    <p class="font-semibold text-center md:text-left">Choose from a range of delivery options to suit your schedule. Whether you need your groceries ASAP or prefer to schedule a delivery for later, we've got you covered.</p>
+                    <div class="flex flex-col gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Flexible Delivery Options</h2>
+                            <p class="font-semibold text-center md:text-left">Choose from a range of delivery options to suit your schedule. Whether you need your groceries ASAP or prefer to schedule a delivery for later, we've got you covered.</p>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Personalized Experience</h2>
+                            <p class="font-semibold text-center md:text-left">Tailor your shopping experience with personalized recommendations based on your preferences and past purchases.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="">
-                    <img src="{{ asset('assets/img/delivery-options.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
+                <div class="flex gap-4">
+                    <div class="">
+                        <img src="{{ asset('assets/img/delivery-options.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
+                    </div>
+                    <div class="">
+                        <img src="{{ asset('assets/img/personalized-experience.png') }}" alt="" class="w-[18rem] md:w-[18rem] lg:w-[24rem] mx-auto object-cover rounded-lg">
+                    </div>
                 </div>
             </div>
 
