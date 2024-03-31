@@ -254,18 +254,16 @@ class PaymentController extends Controller
         }
 
         // info((double)($order->total_amount));
-        // $amount = explode('.', $order->total_amount);
-        // if (count($amount) > 1) {
-        //     if ((int)(end($amount)) > 30) {
-        //         $amount = ceil((double)($order->total_amount));
-        //     } else {
-        //         $amount = $amount[0].'.30';
-        //     }
-        // } else {
-        //     $amount = $order->total_amount;
-        // }
-
-        $amount = ceil((double)($order->total_amount));
+        $amount = explode('.', $order->total_amount);
+        if (count($amount) > 1) {
+            if ((int)(end($amount)) > 30) {
+                $amount = ceil((double)($order->total_amount));
+            } else {
+                $amount = $amount[0].'.30';
+            }
+        } else {
+            $amount = $order->total_amount;
+        }
 
         // Make request to stripe to store menu item
         $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
@@ -279,7 +277,7 @@ class PaymentController extends Controller
                         ]);
 
         $paymentIntent = $stripe->paymentIntents->create([
-            'amount' => $amount,
+            'amount' => $amount * 100,
             'currency' => 'gbp',
             'customer' => $customer->id,
         ]);
@@ -369,7 +367,6 @@ class PaymentController extends Controller
 
     public function stripeWebhookCallback(Request $request)
     {
-        info($request->all());
         // Get the payment details
         if ($request->all()['data']['object']['object'] == 'charge') {
             // Check if payment is successful
