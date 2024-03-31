@@ -284,7 +284,7 @@ class PaymentController extends Controller
 
         StripePayment::create([
             'user_id' => $user->id,
-            'payment_intent' => $paymentIntent->client_secret,
+            'payment_intent' => $paymentIntent->id,
             'payable_type' => Order::class,
             'payable_id' => $order->id,
             'amount' => $amount,
