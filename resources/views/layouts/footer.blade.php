@@ -5,9 +5,12 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-32 py-8 text-white">
         <div class="text-center md:text-left">
             <ul class="space-y-4">
-                <li>
-                    <a href="https://play.google.com/store/apps/details?id=com.moboeats.orderer" class="font-bold hover:text-primary-two">
-                        Install our App
+                <li class="flex gap-2">
+                    <a href="https://play.google.com/store/apps/details?id=com.moboeats.orderer" class="">
+                        <img src="{{ asset('assets/img/play-store.png') }}" alt="" class="w-52 object-contain">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.moboeats.orderer" class="">
+                        <img src="{{ asset('assets/img/app-store.png') }}" alt="" class="w-52 object-contain">
                     </a>
                 </li>
                 <li><a href="https://restaurant.moboeats.com/signup" target="_blank" class="font-bold hover:text-primary-two">Register your Restaurant</a></li>
