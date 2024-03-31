@@ -78,28 +78,28 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: voluptatem
+        example: autem
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 5
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: quis
+        example: pariatur
         type: string
         custom: []
     cleanBodyParameters:
       price: 0
-      description: voluptatem
-      status: 19
-      menu_id: quis
+      description: autem
+      status: 5
+      menu_id: pariatur
     fileParameters: []
     responses: []
     responseFields: []
@@ -193,14 +193,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: aspernatur
+        example: labore
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: et
+        example: nam
         type: string
         custom: []
       price:
@@ -211,8 +211,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: aspernatur
-      status: et
+      description: labore
+      status: nam
       price: 0
     fileParameters: []
     responses: []
@@ -297,27 +297,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: quibusdam
+        example: repudiandae
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: impedit
+        example: nihil
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 1
+        example: 0
         type: number
         custom: []
     cleanBodyParameters:
-      description: quibusdam
-      status: impedit
-      price: 1
+      description: repudiandae
+      status: nihil
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []

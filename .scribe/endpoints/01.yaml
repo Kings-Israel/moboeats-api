@@ -1,5 +1,7 @@
 name: 'Authentication Management'
-description: ''
+description: |-
+
+  User API resource
 endpoints:
   -
     httpMethods:
@@ -7,10 +9,346 @@ endpoints:
     uri: api/v1/login
     metadata:
       groupName: 'Authentication Management'
-      groupDescription: ''
+      groupDescription: |-
+
+        User API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'User API resource'
+      title: 'Login through email and password'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of the user'
+        required: true
+        example: christian.leffler@example.org
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user'
+        required: true
+        example: 'cg"S__c=NFvUG`~r'
+        type: string
+        custom: []
+      userType:
+        name: userType
+        description: 'The type of user'
+        required: true
+        example: similique
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: christian.leffler@example.org
+      password: 'cg"S__c=NFvUG`~r'
+      userType: similique
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/register
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: Registration
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: dafzogtsf
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'The email of the user'
+        required: true
+        example: rryan@example.net
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user'
+        required: true
+        example: 85M0/1HZ
+        type: string
+        custom: []
+      userType:
+        name: userType
+        description: 'The type of user'
+        required: true
+        example: sint
+        type: string
+        custom: []
+      otp:
+        name: otp
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      image:
+        name: image
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      phone:
+        name: phone
+        description: 'The type of user'
+        required: true
+        example: vitae
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: dafzogtsf
+      email: rryan@example.net
+      password: 85M0/1HZ
+      userType: sint
+      phone: vitae
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/forgot-password
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Forgot Password'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'email of the user'
+        required: false
+        example: carson75@example.com
+        type: The
+        custom: []
+      phone_number:
+        name: phone_number
+        description: 'phone number of the user'
+        required: false
+        example: ut
+        type: The
+        custom: []
+    cleanBodyParameters:
+      email: carson75@example.com
+      phone_number: ut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/reset-password
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reset password'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'Verification OTP code'
+        required: false
+        example: laboriosam
+        type: The
+        custom: []
+      password:
+        name: password
+        description: 'new password to be set'
+        required: false
+        example: 'nDG[\&^sU|l''%OxB6'
+        type: The
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'new password confirmation'
+        required: false
+        example: illum
+        type: The
+        custom: []
+    cleanBodyParameters:
+      code: laboriosam
+      password: 'nDG[\&^sU|l''%OxB6'
+      password_confirmation: illum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v2/login
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Login through OTP'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      phone_number:
+        name: phone_number
+        description: 'The phone number of the user. Example 44374673827'
+        required: true
+        example: dolores
+        type: string
+        custom: []
+    cleanBodyParameters:
+      phone_number: dolores
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v2/login/otp/verify
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Verify OTP'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'The phone number of the user'
+        required: true
+        example: dolores
+        type: string
+        custom: []
+      userType:
+        name: userType
+        description: 'The type of user logging in'
+        required: true
+        example: nihil
+        type: string
+        custom: []
+    cleanBodyParameters:
+      code: dolores
+      userType: nihil
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/logout
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: Logout
       description: ''
       authenticated: false
       custom: []
@@ -25,6 +363,47 @@ endpoints:
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/user
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the authenticated user'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null

@@ -73,6 +73,11 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('/ads', [MarketingController::class, 'index']);
 });
 
+Route::group(['prefix' => 'v2'], function() {
+    Route::post('login', [AuthController::class, 'otpLogin']);
+    Route::post('login/otp/verify', [AuthController::class, 'verifyOtp']);
+});
+
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('user', [AuthController::class, 'authUser']);
