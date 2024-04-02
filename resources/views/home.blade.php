@@ -39,7 +39,7 @@
                     <div class="flex flex-col gap-4">
                         <div class="">
                             <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Convenience</h2>
-                            <p class="font-semibold text-center md:text-left">With Moboeats you can shop anytime, anywhere, and have your items delivered straight to your doorstep.</p>
+                            <p class="font-semibold text-center md:text-left">With Mobo Eats you can shop anytime, anywhere, and have your items delivered straight to your doorstep.</p>
                         </div>
                         <div class="">
                             <h2 class="text-2xl font-bold lg:mt-12 lg:mb-6 text-center md:text-left">Quality Guaranteed</h2>
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="px-8 mb-12 lg:px-44">
-                    <h1 class="text-3xl text-center my-2 py-2 font-semibold">Have any Complains</h1>
+                    <h1 class="text-3xl text-center my-2 py-2 font-semibold">Have any Complaint</h1>
                     <div class="flex justify-center">
                         {{-- <video class="h-96 rounded-lg" controls>
                             <source src="">

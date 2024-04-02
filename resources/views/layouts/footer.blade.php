@@ -45,11 +45,11 @@
         <div class="text-center md:text-left">
             <ul class="space-y-4">
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="customer-terms-and-conditions" data-modal-toggle="customer-terms-and-conditions">Customer Terms and Conditions</button></li>
-                <li><button class="font-bold hover:text-primary-two" data-modal-target="courier-terms-and-conditions" data-modal-toggle="courier-terms-and-conditions">Courier Terms and Conditions</button></li>
+                {{-- <li><button class="font-bold hover:text-primary-two" data-modal-target="courier-terms-and-conditions" data-modal-toggle="courier-terms-and-conditions">Courier Terms and Conditions</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="alcohol-delivery-guidelines" data-modal-toggle="alcohol-delivery-guidelines">Alcohol Delivery Guidelines</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="courier-training" data-modal-toggle="courier-training">Courier Training</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="merchant-payment-policy" data-modal-toggle="merchant-payment-policy">Merchant Payment Policy</button></li>
-                <li><button class="font-bold hover:text-primary-two" data-modal-target="partnership-terms-and-conditions" data-modal-toggle="partnership-terms-and-conditions">Partnership Terms and Conditions</button></li>
+                <li><button class="font-bold hover:text-primary-two" data-modal-target="partnership-terms-and-conditions" data-modal-toggle="partnership-terms-and-conditions">Partnership Terms and Conditions</button></li> --}}
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="refund-policy" data-modal-toggle="refund-policy">Refund Policy</button></li>
             </ul>
         </div>

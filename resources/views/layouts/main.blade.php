@@ -25,7 +25,7 @@
             <div class="bg-slate-950 px-2 lg:px-24 mt-4 pb-12">
                 <img src="{{ asset('assets/img/logo-alt.png') }}" class="w-[10rem] h-[10rem] object-contain" alt="">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-2 lg:gap-0 text-white">
-                    <p class="md:max-w-xs text-center md:text-left font-thin">Moboeats</p>
+                    <p class="md:max-w-xs text-center md:text-left font-thin">Mobo Eats</p>
                     <div class="text-center md:text-left">
                         <ul>
                             <li><p class="font-bold">Company</p></li>
