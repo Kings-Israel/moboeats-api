@@ -168,7 +168,7 @@ class RiderController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->messages(), 'Please select an order', 422);
+            return $this->error('Please select an order', $validator->messages(), 422);
         }
 
         $order = Order::with('user', 'restaurant')->where('id', $request->order_id)->orWhere('uuid', $request->order_id)->first();
@@ -176,6 +176,9 @@ class RiderController extends Controller
         if (!$order) {
             return $this->error('Order not found', 'The selected order was not found', 422);
         }
+
+        info($order);
+        info($request->status == 'accept' ? 'true' : 'false');
 
         if ($request->status == 'accept') {
             if ($order->rider_id != NULL) {
@@ -194,8 +197,6 @@ class RiderController extends Controller
             ]);
         }
 
-        info($order);
-        info($request->status == 'accept' ? 'true' : 'false');
         if ($request->status == 'accept') {
             $order->update([
                 'rider_id' => auth()->id(),
