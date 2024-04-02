@@ -426,13 +426,7 @@ class OrderController extends Controller
                                     //                 ->orWhereIn('id', $delivered_orders)
                                     //                 ->orWhereNotIn('id', $orders);
                                     //         });
-                                    $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
-
-                                    $query->whereNotIn('id', $rejected_orders)
-                                            ->where(function($query) use ($orders, $delivered_orders) {
-                                                $query->whereIn('id', $delivered_orders)
-                                                    ->orWhereNotIn('id', $orders);
-                                            });
+                                    
                                 })
                                 ->get()
                                 ->each(function($rider, $key) use ($restaurant) {
