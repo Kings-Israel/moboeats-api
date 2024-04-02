@@ -162,6 +162,7 @@ class RiderController extends Controller
 
     public function updateOrder(Request $request)
     {
+        info($request->all());
         $validator = Validator::make($request->all(), [
             'order_id' => 'required',
             'status' => ['required', Rule::in(['accept', 'reject', 'on_delivery', 'delivered'])]
@@ -176,9 +177,6 @@ class RiderController extends Controller
         if (!$order) {
             return $this->error('Order not found', 'The selected order was not found', 422);
         }
-
-        info($order);
-        info($request->status == 'accept' ? 'true' : 'false');
 
         if ($request->status == 'accept') {
             if ($order->rider_id != NULL) {

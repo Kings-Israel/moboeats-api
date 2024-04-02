@@ -583,6 +583,8 @@ class OrderController extends Controller
             'user_id' => $rider->id
         ]);
 
+        info($order);
+
         SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['delivery_location' => [$order->user->latitude, $order->user->longitude], 'order_details' => $order]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
