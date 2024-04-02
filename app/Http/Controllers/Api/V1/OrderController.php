@@ -413,17 +413,24 @@ class OrderController extends Controller
                                                         * sin(radians(".$latitude."))) AS distance"))
                                                     ->get();
 
-                                    // Filter to riders distances less than 5 Kms
-                                    $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                        return (int) $delivery->distance <= 25;
-                                    })->pluck('rider_id')->values()->all();
+                                    // // Filter to riders distances less than 5 Kms
+                                    // $nearby_deliveries = $deliveries->filter(function($delivery) {
+                                    //     return (int) $delivery->distance <= 25;
+                                    // })->pluck('rider_id')->values()->all();
 
+                                    // $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
+
+                                    // $query->whereNotIn('id', $rejected_orders)
+                                    //         ->where(function($query) use ($nearby_deliveries, $orders, $delivered_orders) {
+                                    //             $query->whereIn('id', $nearby_deliveries)
+                                    //                 ->orWhereIn('id', $delivered_orders)
+                                    //                 ->orWhereNotIn('id', $orders);
+                                    //         });
                                     $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
 
                                     $query->whereNotIn('id', $rejected_orders)
-                                            ->where(function($query) use ($nearby_deliveries, $orders, $delivered_orders) {
-                                                $query->whereIn('id', $nearby_deliveries)
-                                                    ->orWhereIn('id', $delivered_orders)
+                                            ->where(function($query) use ($orders, $delivered_orders) {
+                                                $query->whereIn('id', $delivered_orders)
                                                     ->orWhereNotIn('id', $orders);
                                             });
                                 })
