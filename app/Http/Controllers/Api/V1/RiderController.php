@@ -194,8 +194,9 @@ class RiderController extends Controller
             ]);
         }
 
+        info($order);
+        info($request->status == 'accept' ? 'true' : 'false');
         if ($request->status == 'accept') {
-            info($order);
             $order->update([
                 'rider_id' => auth()->id(),
                 'status' => 2,
