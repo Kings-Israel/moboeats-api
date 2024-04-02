@@ -171,7 +171,7 @@ class RiderController extends Controller
             return $this->error('Please select an order', $validator->messages(), 422);
         }
 
-        $order = Order::with('user', 'restaurant')->where('id', $request->order_id)->orWhere('uuid', $request->order_id)->first();
+        $order = Order::with('user', 'restaurant')->where('uuid', $request->order_id)->first();
 
         if (!$order) {
             return $this->error('Order not found', 'The selected order was not found', 422);
