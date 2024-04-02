@@ -177,9 +177,6 @@ class RiderController extends Controller
             return $this->error('Order not found', 'The selected order was not found', 422);
         }
 
-        info($order);
-        info($request->status == 'accept' ? 'true' : 'false');
-
         if ($request->status == 'accept') {
             if ($order->rider_id != NULL) {
                 return $this->success('Order assigned', 'The order was already assigned', 200);
