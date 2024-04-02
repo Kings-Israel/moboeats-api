@@ -426,7 +426,7 @@ class OrderController extends Controller
                                     //                 ->orWhereIn('id', $delivered_orders)
                                     //                 ->orWhereNotIn('id', $orders);
                                     //         });
-                                    
+
                                 })
                                 ->get()
                                 ->each(function($rider, $key) use ($restaurant) {
