@@ -415,7 +415,7 @@ class OrderController extends Controller
 
                                     // Filter to riders distances less than 5 Kms
                                     $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                        return (int) $delivery->distance <= 5;
+                                        return (int) $delivery->distance <= 25;
                                     })->pluck('rider_id')->values()->all();
 
                                     $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
