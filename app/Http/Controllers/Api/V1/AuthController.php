@@ -368,7 +368,7 @@ class AuthController extends Controller
                     'phone_number' => $request->phone_number,
                 ],
                 [
-                    'password' => Hash::make(Str::random(8)),
+                    'password' => Hash::make($request->phone_number),
                     'user_type' => $request->userType,
                     'status' => 2,
                     'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
