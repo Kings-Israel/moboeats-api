@@ -734,7 +734,6 @@
                     </p>
                     <ul>
                         <li>By email: <strong>info@moboeats.com</strong></li>
-                        <li>By phone number: <strong>+44 7849 453337</strong></li>
                     </ul>
                 </div>
             </div>
