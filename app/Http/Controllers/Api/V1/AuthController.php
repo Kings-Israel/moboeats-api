@@ -365,7 +365,7 @@ class AuthController extends Controller
 
             $user = User::firstOrCreate(
                 [
-                    'email' => $request->email,
+                    'phone_number' => $request->phone_number,
                 ],
                 [
                     'password' => Hash::make(Str::random(8)),
