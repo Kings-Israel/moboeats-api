@@ -50,12 +50,15 @@
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="courier-training" data-modal-toggle="courier-training">Courier Training</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="merchant-payment-policy" data-modal-toggle="merchant-payment-policy">Merchant Payment Policy</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="partnership-terms-and-conditions" data-modal-toggle="partnership-terms-and-conditions">Partnership Terms and Conditions</button></li> --}}
+                <li><button class="font-bold hover:text-primary-two" data-modal-target="privacy" data-modal-toggle="privacy">Privacy</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="refund-policy" data-modal-toggle="refund-policy">Refund Policy</button></li>
+                <li><button class="font-bold hover:text-primary-two" data-modal-target="cookie-policy" data-modal-toggle="cookie-policy">Cookie Policy</button></li>
+                <li><button class="font-bold hover:text-primary-two" data-modal-target="modern-slavery-statement" data-modal-toggle="modern-slavery-statement">Modern Day Slavery Statement</button></li>
             </ul>
         </div>
 
         <!-- Main modal -->
-        <div id="customer-terms-and-conditions" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="customer-terms-and-conditions" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -224,7 +227,7 @@
             </div>
         </div>
 
-        <div id="courier-terms-and-conditions" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="courier-terms-and-conditions" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -387,7 +390,7 @@
             </div>
         </div>
 
-        <div id="alcohol-delivery-guidelines" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="alcohol-delivery-guidelines" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -497,7 +500,7 @@
             </div>
         </div>
 
-        <div id="courier-training" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="courier-training" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -664,7 +667,7 @@
             </div>
         </div>
 
-        <div id="merchant-payment-policy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="merchant-payment-policy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -823,7 +826,7 @@
             </div>
         </div>
 
-        <div id="partnership-terms-and-conditions" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="partnership-terms-and-conditions" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -995,7 +998,7 @@
             </div>
         </div>
 
-        <div id="refund-policy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div id="refund-policy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-4xl max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-primary-one rounded-lg shadow">
@@ -1163,6 +1166,520 @@
                         <span class="mx-4 font-bold pb-3">
                             Thank you for choosing Mobo Eats for your delivery needs.
                         </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cookie-policy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-4xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-primary-one rounded-lg shadow">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-semibold text-white">
+                            Cookie Policy
+                        </h3>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="refund-policy">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-4 md:p-5 space-y-4">
+                        <span class="font-bold">
+                            This Cookie Policy explains how we use cookies and similar technologies on our website and
+                            mobile application (collectively referred to as "platform"). By using our platform, you consent to
+                            the use of cookies and similar technologies as described in this policy.
+                        </span>
+                        <br>
+                        <div class="mt-10">
+                            <span class="font-bold text-lg">
+                                What are cookies?
+                            </span>
+                            <br>
+                            <span class="font-bold">
+                                Cookies are small text files that are stored on your device (computer, smartphone, or tablet)
+                                when you visit a website or use a mobile application. They are widely used to enhance user
+                                experience, analyse website usage, and provide personalized content and advertisements.
+                            </span>
+                        </div>
+                        <ul class="list-disc space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-lg">
+                                    Types of Cookies We Use
+                                </span>
+                                <ul class="list-decimal font-semibold mx-4 space-y-2">
+                                    <li>
+                                        <span class="font-semibold">Essential cookies:</span>
+                                        <span class="font-thin">
+                                            These cookies are necessary for the operation of our platform and
+                                            enable you to navigate and use its features. Without these cookies, certain
+                                            functionalities may not be available.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Performance Cookies:</span>
+                                        <span class="font-thin">
+                                            These cookies collect information about how visitors use our
+                                            platform, such as which pages are visited most frequently and if users encounter error
+                                            messages. This helps us improve the performance and usability of our platform.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Functionality Cookies:</span>
+                                        <span class="font-thin">
+                                            These cookies allow our platform to remember choices you
+                                            make (such as your language preferences or location) and provide enhanced, more
+                                            personalized features.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Advertising Cookies:</span>
+                                        <span>
+                                            These cookies are necessary for the operation of our platform and
+                                            enable you to navigate and use its features. Without these cookies, certain
+                                            functionalities may not be available.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Essential cookies</span>
+                                        <span class="font-thin">
+                                            These cookies are used to deliver advertisements that are more
+                                            relevant to you and your interests. They may also be used to limit the number of times
+                                            you see an advertisement and measure the effectiveness of advertising campaigns.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="mt-10">
+                            <span class="font-bold">Third-Party Cookies</span>
+                            <div>
+                                <span class="font-thin">
+                                    We may also use third-party cookies provided by trusted partners for analytics, advertising, and
+                                    other purposes. These third parties may collect information about your online activities over
+                                    time and across different websites and applications.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <span class="font-bold">Your Cookie Choices</span>
+                            <div>
+                                <span class="font-thin">
+                                    You have the option to accept or reject cookies through your browser settings. Most web
+                                    browsers automatically accept cookies, but you can usually modify your browser settings to
+                                    decline cookies if you prefer. Please note that disabling cookies may impact the functionality
+                                    and performance of our platform.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <span class="font-bold">Cookie Management</span>
+                            <div>
+                                <span class="font-thin">
+                                    You can manage your cookie preferences and settings directly through your browser or device
+                                    settings. Additionally, you can opt-out of certain third-party cookies by visiting the opt-out pages
+                                    provided by the relevant third parties.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <span class="font-bold">Changes to this Cookie Policy</span>
+                            <div>
+                                <span class="font-thin">
+                                    We may update this Cookie Policy from time to time to reflect changes in our practices or legal
+                                    requirements. We will notify you of any material changes by posting the updated policy on our
+                                    platform. Your continued use of our platform after the posting of changes constitutes your
+                                    acceptance of such changes.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <span class="font-bold">Contact Us</span>
+                            <div>
+                                <span class="font-thin">
+                                    If you have any questions or concerns about our use of cookies or this Cookie Policy, please contact us at <a href="mailto:info@moboeats.co.uk" class="text-primary-two underline font-semibold">info@moboeats.co.uk</a>.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="privacy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-4xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-primary-one rounded-lg shadow">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-semibold text-white">
+                            Privacy
+                        </h3>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="refund-policy">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-4 md:p-5 space-y-4">
+                        <span class="font-bold">
+                            We are committed to protecting the privacy and security of your personal information. This
+                            Privacy Policy outlines the types of information we collect, how we use it, and the choices you
+                            have regarding your information.
+                        </span>
+                        <br>
+                        <ul class="list-disc space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-lg">
+                                    Information We Collect
+                                </span>
+                                <div>
+                                    <span class="font-thin">
+                                        We may collect personal information from you when you interact with our website, mobile application, or other services we provide. This information may include:
+                                    </span>
+                                </div>
+                                <ul class="list-decimal font-semibold mx-4 space-y-2 mt-5">
+                                    <li>
+                                        <span class="font-semibold">Personal Information:</span>
+                                        <span class="font-thin">
+                                            such as your name, email address, phone number, and delivery address.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Payment Information:</span>
+                                        <span class="font-thin">
+                                            such as credit card details or other payment information necessary to process your orders.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Location Information:</span>
+                                        <span class="font-thin">
+                                            if you enable location services on your device, we may collect your precise location to provide you with relevant services, such as delivery tracking.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Order History:</span>
+                                        <span class="font-thin">
+                                            details of your orders, including the items purchased, delivery preferences, and any special instructions.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Device Information:</span>
+                                        <span class="font-thin">
+                                            information about the device you use to access our services, such as your IP address, browser type, and operating system.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Cookies and Tracking Technologies:</span>
+                                        <span class="font-thin">
+                                            we may use cookies and similar technologies to enhance your experience, analyse trends, and track your interactions with our services.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="list-disc space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-lg">
+                                    How We Use Your Information
+                                </span>
+                                <div>
+                                    <span class="font-thin">
+                                        We may use the information we collect for the following purposes:
+                                    </span>
+                                </div>
+                                <ul class="list-decimal font-semibold mx-4 space-y-2">
+                                    <li>
+                                        <span class="font-semibold">Providing Services:</span>
+                                        <span class="font-thin">
+                                            to process your orders, deliver food, booking dining and communicate with you about your orders.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Improving Services:</span>
+                                        <span class="font-thin">
+                                            to analyse trends, monitor usage patterns, and improve the functionality and performance of our services.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Personalization:</span>
+                                        <span class="font-thin">
+                                            to personalize your experience and provide you with relevant content, promotions, and recommendations.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Customer Support:</span>
+                                        <span class="font-thin">
+                                            to respond to your inquiries, address your concerns, and provide customer support.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Marketing:</span>
+                                        <span class="font-thin">
+                                            to send you promotional materials, offers, and updates about our services, with your consent where required by law.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Legal Compliance:</span>
+                                        <span class="font-thin">
+                                            to comply with legal obligations, enforce our terms and policies, and protect the rights, property, or safety of our users or others.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="list-disc space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-lg">
+                                    Information Sharing
+                                </span>
+                                <div>
+                                    <span class="font-thin">
+                                        We may share your personal information with third parties under the following circumstances:
+                                    </span>
+                                </div>
+                                <ul class="list-decimal font-semibold mx-4 space-y-2">
+                                    <li>
+                                        <span class="font-semibold">Service Providers:</span>
+                                        <span class="font-thin">
+                                            we may engage third-party service providers to perform functions on
+                                            our behalf, such as processing payments, delivering orders, or analysing data. These
+                                            service providers will have access to your personal information only to the extent
+                                            necessary to perform their functions.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Business Transfers:</span>
+                                        <span class="font-thin">
+                                            in the event of a merger, acquisition, or sale of all or a portion of our
+                                            assets, your personal information may be transferred as part of the transaction. We will
+                                            notify you via email or prominent notice on our website of any change in ownership or
+                                            uses of your personal information.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Legal Requirements:</span>
+                                        <span class="font-thin">
+                                            we may disclose your information if required to do so by law or in response to a valid legal request, such as a court order or subpoena.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="list-disc space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-lg">
+                                    Your Choices
+                                </span>
+                                <div>
+                                    <span class="font-thin">
+                                        You have certain rights and choices regarding your personal information:
+                                    </span>
+                                </div>
+                                <ul class="list-decimal font-semibold mx-4 space-y-2">
+                                    <li>
+                                        <span class="font-semibold">Access and Update:</span>
+                                        <span class="font-thin">
+                                            you may access, update, or correct your personal information by logging into your account or contacting us directly.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Opt-Out:</span>
+                                        <span class="font-thin">
+                                            you may opt-out of receiving promotional emails by following the instructions provided in the email or contacting us.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Location Services:</span>
+                                        <span class="font-thin">
+                                            you can disable location services on your device or adjust your device settings to prevent us from accessing your location information.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Cookies:</span>
+                                        <span class="font-thin">
+                                            you can set your browser to refuse all or some browser cookies or to alert you
+                                            when websites set or access cookies. However, if you disable or refuse cookies, please
+                                            note that some parts of our services may become inaccessible or not function properly.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="mt-10">
+                            <span class="font-bold text-lg">
+                                Data Security
+                            </span>
+                            <br>
+                            <span class="font-thin">
+                                We have implemented measures to protect the security of your personal information and
+                                prevent unauthorized access, use, or disclosure. However, please be aware that no method of
+                                transmission over the internet or electronic storage is 100% secure, and we cannot guarantee
+                                absolute security.
+                            </span>
+                        </div>
+
+                        <div class="mt-10">
+                            <span class="font-bold text-lg">
+                                Children's Privacy
+                            </span>
+                            <br>
+                            <span class="font-thin">
+                                Our services are not intended for children under the age of 13, and we do not knowingly collect
+                                personal information from children under the age of 13. If you believe we have collected
+                                personal information from a child under 13, please contact us immediately.
+                            </span>
+                        </div>
+
+                        <div class="mt-10">
+                            <span class="font-bold text-lg">
+                                Changes to this Privacy Policy
+                            </span>
+                            <br>
+                            <span class="font-thin">
+                                We may update this Privacy Policy from time to time to reflect changes in our practices or legal
+                                requirements. We will notify you of any material changes by posting the updated Privacy Policy
+                                on our website or mobile application and updating the "Last Updated" date at the top of this
+                                page.
+                            </span>
+                        </div>
+
+                        <div class="mt-10">
+                            <span class="font-bold">Contact Us</span>
+                            <div>
+                                <span class="font-thin">
+                                    If you have any questions or concerns about our use of cookies or this Cookie Policy, please contact us at <a href="mailto:info@moboeats.co.uk" class="text-primary-two underline font-semibold">info@moboeats.co.uk</a>.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modern-slavery-statement" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto bg-[#113c22] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-4xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-primary-one rounded-lg shadow">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-semibold text-white">
+                            Modern Slavery Statement
+                        </h3>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="refund-policy">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-4 md:p-5 space-y-4">
+                        <span class="font-bold">
+                            Mobo Eats is committed to combatting modern slavery and human trafficking in all aspects of
+                            our business and supply chain. We recognize the importance of upholding human rights and
+                            ethical labour practices, and we are dedicated to ensuring that our operations are conducted in
+                            a responsible and sustainable manner.
+                        </span>
+                        <br>
+                        <ul class="list-disc space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-lg">
+                                    Our Approach
+                                </span>
+                                <div>
+                                    <span class="font-thin">
+                                        We believe that transparency, accountability, and collaboration are essential in addressing modern slavery risks effectively. Our approach to combating modern slavery includes:
+                                    </span>
+                                </div>
+                                <ul class="list-decimal font-semibold mx-4 space-y-2 mt-5">
+                                    <li>
+                                        <span class="font-semibold">Policies and Procedures:</span>
+                                        <span class="font-thin">
+                                            We have established policies and procedures that prohibit
+                                            modern slavery and human trafficking in our operations and supply chain. These
+                                            policies are communicated to all employees and suppliers, emphasizing our zero-
+                                            tolerance stance towards any form of exploitation.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Supplier Due Diligence:</span>
+                                        <span class="font-thin">
+                                            We conduct due diligence assessments of our suppliers to
+                                            evaluate their adherence to ethical labour practices. This includes assessing supplier
+                                            policies, conducting site visits, and engaging in dialogue to understand their approach
+                                            to labour rights and social responsibility.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Training and Awareness:</span>
+                                        <span class="font-thin">
+                                            We provide training and awareness programs to our
+                                            employees to educate them about the risks of modern slavery and empower them to
+                                            identify and report any concerns. We also engage with our suppliers to raise awareness
+                                            of modern slavery issues and promote responsible sourcing practices.
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="font-semibold">Monitoring and Compliance:</span>
+                                        <span class="font-thin">
+                                            We regularly monitor and evaluate our supply chain to
+                                            identify and address any potential instances of modern slavery. This includes
+                                            conducting audits, implementing corrective actions, and collaborating with
+                                            stakeholders to drive continuous improvement.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="mt-10">
+                            <span class="font-bold text-lg">
+                                Reporting Mechanism
+                            </span>
+                            <br>
+                            <span class="font-thin">
+                                If you have any concerns or suspicions regarding modern slavery or human trafficking within our
+                                operations or supply chain, we encourage you to report them promptly through our confidential
+                                reporting mechanism. Reports can be submitted anonymously, and all information will be
+                                treated with the utmost confidentiality and sensitivity.
+                            </span>
+                        </div>
+
+                        <div class="mt-10">
+                            <span class="font-bold text-lg">
+                                Conclusion
+                            </span>
+                            <br>
+                            <span class="font-thin">
+                                At Mobo Eats, we are committed to upholding the highest standards of integrity, ethics, and
+                                respect for human rights. We recognize that eradicating modern slavery requires collective
+                                effort and ongoing vigilance, and we remain steadfast in our commitment to combatting this
+                                abhorrent crime.
+                            </span>
+                        </div>
+
+                        <div class="mt-10">
+                            <span class="font-bold">Kennedy King</span>
+                            <div>
+                                <span class="font-thin">
+                                    CEO & Founder.
+                                </span>
+                            </div>
+                            <div>
+                                <span class="font-thin">{{ now()->format('Y') }}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
