@@ -593,17 +593,8 @@ class OrderController extends Controller
             'user_id' => $rider->id
         ]);
 
-        $order_items = [];
-        foreach ($order->orderItems as $order_item) {
-            $items['id'] = $order_item->uuid;
-            $items['quantity'] = $order_item->quantity;
-            $items['price'] = $order_item->menu->menuPrices->where('status', 2)->first()->price;
-            $items['image'] = $order_item->menu->images->where('status', 2)->first()->image_url;
-            array_push($items, $order_items);
-        }
-
-        info(json_encode(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]));
-        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
+        // return response()->json(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'orderer' => ['id' => $order->user->uuid, 'name' => $order->user->name, 'phone_number' => $order->user->phone_number], 'order_details' => ['id' => $order->uuid, 'order_items' => $order->orderItems->load('menu.menuPrices')], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
+        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'orderer' => ['id' => $order->user->uuid, 'name' => $order->user->name, 'phone_number' => $order->user->phone_number], 'order_details' => ['id' => $order->uuid, 'order_items' => $order->orderItems->load('menu.menuPrices')], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
     }
