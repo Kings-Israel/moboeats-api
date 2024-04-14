@@ -578,14 +578,23 @@ class OrderController extends Controller
 
         $rider = User::find($request->rider_id);
 
+        $pickup_address = NULL;
+        if ($order->restaurant->latitude && $order->restaurant->longitude) {
+            $pickup_address = [$order->restaurant->latitude, $order->restaurant->longitude];
+        }
+
+        $delivery_address = NULL;
+        if ($order->delivery_location_lat && $order->delivery_location_lng) {
+            $delivery_address = [$order->delivery_location_lat, $order->delivery_location_lng];
+        }
+
         AssignedOrder::firstOrCreate([
             'order_id' => $order->id,
             'user_id' => $rider->id
         ]);
 
-        info($order);
-
-        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['delivery_location' => [$order->user->latitude, $order->user->longitude], 'order_details' => $order]);
+        info(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
+        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
     }
