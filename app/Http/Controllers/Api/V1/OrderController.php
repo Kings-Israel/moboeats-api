@@ -595,10 +595,11 @@ class OrderController extends Controller
 
         $order_items = [];
         foreach ($order->orderItems as $order_item) {
-            $order_items['id'] = $order_item->uuid;
-            $order_items['quantity'] = $order_item->quantity;
-            $order_items['price'] = $order_item->menu->menuPrices->where('status', 2)->first()->price;
-            $order_items['image'] = $order_item->menu->images->where('status', 2)->first()->image_url;
+            $items['id'] = $order_item->uuid;
+            $items['quantity'] = $order_item->quantity;
+            $items['price'] = $order_item->menu->menuPrices->where('status', 2)->first()->price;
+            $items['image'] = $order_item->menu->images->where('status', 2)->first()->image_url;
+            array_push($items, $order_items);
         }
 
         info(json_encode(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]));
