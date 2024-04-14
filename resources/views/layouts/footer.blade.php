@@ -21,23 +21,28 @@
         <div class="">
             <ul class="py-2 flex gap-4 justify-center">
                 <li class="px-0.5">
-                    <a href="#" class="">
-                        <img src="{{ asset('assets/img/instagram.png') }}" alt="" class="w-9 h-9">
-                    </a>
-                </li>
-                <li class="-mt-1">
-                    <a href="#" class="">
-                        <img src="{{ asset('assets/img/linkedin.png') }}" alt="" class="w-11 h-11">
-                    </a>
-                </li>
-                <li class="px-1">
-                    <a href="#" class="">
-                        <img src="{{ asset('assets/img/facebook.png') }}" alt="" class="w-9 h-9">
+                    <a href="https://www.instagram.com/officialmoboeats?igsh=MWtjdjhtbGZ1NTM3bQ%3D%3D&utm_source=qr" class="">
+                        <img src="{{ asset('assets/img/instagram-color.png') }}" alt="" class="w-10 h-10">
                     </a>
                 </li>
                 <li class="">
+                    <a href="https://www.linkedin.com/company/mobo-eats/?viewAsMember=true" class="">
+                        <img src="{{ asset('assets/img/linkedin-color.png') }}" alt="" class="w-9 h-9">
+                    </a>
+                </li>
+                <li class="px-1">
+                    <a href="https://www.facebook.com/profile.php?id=61557389856966" class="">
+                        <img src="{{ asset('assets/img/facebook-color.png') }}" alt="" class="w-9 h-9">
+                    </a>
+                </li>
+                {{-- <li class="-mt-1">
                     <a href="#" class="">
-                        <img src="{{ asset('assets/img/threads-logo.png') }}" alt="" class="w-9 h-9">
+                        <img src="{{ asset('assets/img/tiktok.png') }}" alt="" class="w-11 h-11">
+                    </a>
+                </li> --}}
+                <li class="mt-1">
+                    <a href="https://twitter.com/moboeats" class="">
+                        <img src="{{ asset('assets/img/x-color.png') }}" alt="" class="w-7 h-7">
                     </a>
                 </li>
             </ul>
