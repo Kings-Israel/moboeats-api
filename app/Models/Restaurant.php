@@ -120,9 +120,9 @@ class Restaurant extends Model implements UrlRoutable
     public function getLogoAttribute($value)
     {
         if ($value) {
-            return config('app.url').'/storage/'.$value;
+            return 'https://moboeats.com/storage/'.$value;
         }
-        return config('app.url').'/assets/user/default.png';
+        return 'https://moboeats.com/assets/user/default.png';
     }
 
     /**
