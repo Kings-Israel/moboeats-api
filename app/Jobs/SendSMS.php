@@ -48,6 +48,8 @@ class SendSMS implements ShouldQueue
 
         $response = curl_exec($ch);
 
+        info($response);
+
         curl_close($ch);
     }
 }
