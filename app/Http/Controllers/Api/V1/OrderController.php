@@ -593,7 +593,7 @@ class OrderController extends Controller
             'user_id' => $rider->id
         ]);
 
-        // return response()->json(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'orderer' => ['id' => $order->user->uuid, 'name' => $order->user->name, 'phone_number' => $order->user->phone_number], 'order_details' => ['id' => $order->uuid, 'order_items' => $order->orderItems->load('menu.menuPrices')], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
+        info(json_encode(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'orderer' => ['id' => $order->user->uuid, 'name' => $order->user->name, 'phone_number' => $order->user->phone_number], 'order_details' => ['id' => $order->uuid, 'order_items' => $order->orderItems->load('menu.menuPrices')], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]));
         SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'orderer' => ['id' => $order->user->uuid, 'name' => $order->user->name, 'phone_number' => $order->user->phone_number], 'order_details' => ['id' => $order->uuid, 'order_items' => $order->orderItems->load('menu.menuPrices')], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
