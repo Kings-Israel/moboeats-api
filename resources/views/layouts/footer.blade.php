@@ -13,9 +13,9 @@
                         <img src="{{ asset('assets/img/app-store.png') }}" alt="" class="w-52 object-contain">
                     </a>
                 </li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.moboeats.partners" target="_blank" class="font-bold hover:text-primary-two">Register your Convenient Store</a></li>
                 <li><a href="https://restaurant.moboeats.com/signup" target="_blank" class="font-bold hover:text-primary-two">Register your Restaurant</a></li>
-                <li><a href="https://play.google.com/store/apps/details?id=com.moboeats.partners" target="_blank" class="font-bold hover:text-primary-two">Register Your Shop</a></li>
-                <li><a href="https://play.google.com/store/apps/details?id=com.moboeats.driver" target="_blank" class="font-bold hover:text-primary-two">Be Our Driver</a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.moboeats.driver" target="_blank" class="font-bold hover:text-primary-two">Become a Driver</a></li>
             </ul>
         </div>
         <div class="">
@@ -44,7 +44,6 @@
         </div>
         <div class="text-center md:text-left">
             <ul class="space-y-4">
-                <li><button class="font-bold hover:text-primary-two" data-modal-target="customer-terms-and-conditions" data-modal-toggle="customer-terms-and-conditions">Customer Terms and Conditions</button></li>
                 {{-- <li><button class="font-bold hover:text-primary-two" data-modal-target="courier-terms-and-conditions" data-modal-toggle="courier-terms-and-conditions">Courier Terms and Conditions</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="alcohol-delivery-guidelines" data-modal-toggle="alcohol-delivery-guidelines">Alcohol Delivery Guidelines</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="courier-training" data-modal-toggle="courier-training">Courier Training</button></li>
@@ -53,6 +52,7 @@
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="privacy" data-modal-toggle="privacy">Privacy</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="refund-policy" data-modal-toggle="refund-policy">Refund Policy</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="cookie-policy" data-modal-toggle="cookie-policy">Cookie Policy</button></li>
+                <li><button class="font-bold hover:text-primary-two" data-modal-target="customer-terms-and-conditions" data-modal-toggle="customer-terms-and-conditions">Terms and Conditions</button></li>
                 <li><button class="font-bold hover:text-primary-two" data-modal-target="modern-slavery-statement" data-modal-toggle="modern-slavery-statement">Modern Day Slavery Statement</button></li>
             </ul>
         </div>
