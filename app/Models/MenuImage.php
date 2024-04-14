@@ -56,9 +56,9 @@ class MenuImage extends Model implements UrlRoutable
 
     public function getImageUrlAttribute($value)
     {
-        if (config('app.env') == 'production') {
-            return 'https://moboeats.com/storage/menus/images/' .$value;
-        }
+        // if (config('app.env') == 'production') {
+        //     return 'https://moboeats.com/storage/menus/images/' .$value;
+        // }
         return config('app.url').'/storage/menus/images/' .$value;
     }
 
