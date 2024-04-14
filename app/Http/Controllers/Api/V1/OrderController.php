@@ -593,8 +593,16 @@ class OrderController extends Controller
             'user_id' => $rider->id
         ]);
 
-        info(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
-        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
+        $order_items = [];
+        foreach ($order->orderItems as $order_item) {
+            $order_items['id'] = $order_item->uuid;
+            $order_items['quantity'] = $order_item->quantity;
+            $order_items['price'] = $order_item->menu->menuPrices->where('status', 2)->first()->price;
+            $order_items['image'] = $order_item->menu->menuImages->where('status', 2)->first()->image_url;
+        }
+
+        info(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
+        SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
     }
