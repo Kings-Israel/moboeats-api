@@ -37,7 +37,7 @@ class AssignOrder
             ]);
 
             // Send Notification
-            SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => $order]);
+            SendNotification::dispatchSync(User::find($rider->id), 'You have been assigned delivery.', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'orderer' => ['id' => $order->user->uuid, 'name' => $order->user->name, 'phone_number' => $order->user->phone_number], 'order_details' => ['id' => $order->uuid, 'order_items' => $order->orderItems->load('menu.menuPrices')], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
 
             return $success;
         } else {
