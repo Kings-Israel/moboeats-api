@@ -376,6 +376,8 @@ class AuthController extends Controller
                 ]
             );
 
+            info($user);
+
             if($user->status == 1) {
                 return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
             }
@@ -388,8 +390,6 @@ class AuthController extends Controller
                 'phone_number' => $user->phone_number,
                 'code' => $code,
             ]);
-
-            info($code);
 
             SendSMS::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
 
