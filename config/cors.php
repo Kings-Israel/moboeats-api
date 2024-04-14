@@ -19,9 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', '*.moboeats.test:*', '*.moboeats.com', '*.moboeats.co.uk')],
+    // 'allowed_origins' => [env('FRONTEND_URL', '*.moboeats.test:*', '*.moboeats.com', '*.moboeats.co.uk')],
 
-    // 'allowed_origins' => ['*'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
