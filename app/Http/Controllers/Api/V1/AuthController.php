@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Jobs\SendCommunication;
+use App\Jobs\SendSMS;
 use App\Helpers\NumberGenerator;
 
 /**
@@ -388,7 +389,7 @@ class AuthController extends Controller
                 'code' => $code,
             ]);
 
-            SendCommunication::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
+            SendSMS::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
 
             DB::commit();
 
