@@ -40,19 +40,19 @@
                 <div class="lg:my-auto md:max-w-lg flex flex-col justify-center md:block">
                     <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col mt-4 md:mt-0">
-                            <h3 class="font-bold text-xl text-primary-one underline">Increased Visibility:</h3>
+                            <h3 class="font-bold text-xl text-primary-one">Increased Visibility:</h3>
                             <span class="font-bold">
                                 Joining us allows you to showcase your restaurant to a wider audience of food enthusiasts. Benefit from increased visibility and exposure in your local community and beyond.
                             </span>
                         </li>
                         <li class="flex flex-col">
-                            <h3 class="font-bold text-xl text-primary-one underline">Expand Your Customer Base:</h3>
+                            <h3 class="font-bold text-xl text-primary-one">Expand Your Customer Base:</h3>
                             <span class="font-bold">
                                 Tap into a diverse customer base seeking a variety of dining options. Whether you specialize in fine dining, casual eats, or quick bites, Moboeats provides a platform to attract new customers and grow your business.
                             </span>
                         </li>
                         <li class="flex flex-col">
-                            <h3 class="font-bold text-xl text-primary-one underline">Seamless Integration:</h3>
+                            <h3 class="font-bold text-xl text-primary-one">Seamless Integration:</h3>
                             <span class="font-bold">
                                 Our dedicated team will work closely with you to ensure a smooth onboarding process and provide ongoing support to maximize your success.
                             </span>
@@ -66,19 +66,19 @@
                 <div class="lg:my-8 md:max-w-lg flex flex-col justify-center md:block">
                     <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col">
-                            <h3 class="font-bold text-xl text-primary-one underline">Flexible Ordering Options:</h3>
+                            <h3 class="font-bold text-xl text-primary-one">Flexible Ordering Options:</h3>
                             <span class="font-bold">
                                 Offer customers the convenience of ordering from your restaurant. Whether they prefer dine-in, takeout, or scheduled/ instant delivery, our platform accommodates various ordering preferences, providing flexibility for both you and your customers.
                             </span>
                         </li>
                         <li class="flex flex-col">
-                            <h3 class="font-bold text-xl text-primary-one underline">Marketing Support:</h3>
+                            <h3 class="font-bold text-xl text-primary-one">Marketing Support:</h3>
                             <span class="font-bold">
                                 Take advantage of our marketing initiatives to promote your restaurant and attract more diners. Benefit from targeted promotions, featured listings, and other marketing opportunities to drive traffic and boost sales
                             </span>
                         </li>
                         <li class="flex flex-col">
-                            <h3 class="font-bold text-xl text-primary-one underline">Multichannel Management:</h3>
+                            <h3 class="font-bold text-xl text-primary-one">Multichannel Management:</h3>
                             <span class="font-bold">
                                 Access various platforms seamlessly, from our Merchant app to a web-based management system. Streamline operations, update menus, and analyze performance easily with Moboeats' integrated approach.
                             </span>
