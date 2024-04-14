@@ -601,7 +601,7 @@ class OrderController extends Controller
             $order_items['image'] = $order_item->menu->images->where('status', 2)->first()->image_url;
         }
 
-        info(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
+        info(json_encode(['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]));
         SendNotification::dispatchAfterResponse($rider, 'You have been assigned to deliver an order', ['pickup_address' => $pickup_address, 'delivery_address' => $delivery_address, 'order_code' => $order->id, 'order_details' => ['id' => $order->uuid, 'order_items' => $order_items], 'restaurant' => ['name' => $order->restaurant->name, 'logo' => $order->restaurant->logo, 'id' => $order->restaurant->uuid]]);
 
         return $this->success('', 'Delivery request sent successfully', 200);
