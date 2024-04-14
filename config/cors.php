@@ -21,7 +21,7 @@ return [
 
     // 'allowed_origins' => [env('FRONTEND_URL', '*.moboeats.test:*', '*.moboeats.com', '*.moboeats.co.uk')],
 
-    'allowed_origins' => ['*', 'moboeats.co.uk', '*.moboeats.co.uk', '*.moboeats.com'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
