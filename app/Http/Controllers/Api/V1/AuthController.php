@@ -389,6 +389,8 @@ class AuthController extends Controller
                 'code' => $code,
             ]);
 
+            info($code);
+
             SendSMS::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
 
             DB::commit();
