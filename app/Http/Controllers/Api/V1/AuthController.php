@@ -391,7 +391,7 @@ class AuthController extends Controller
                 'code' => $code,
             ]);
 
-            SendSMS::dispatchAfterResponse('sms', 'SendSMS', $user->phone_number, ['code' => $code]);
+            SendSMS::dispatchAfterResponse($user->phone_number, 'Your verification code is: '.$code);
 
             DB::commit();
 
