@@ -122,7 +122,7 @@
                                 <span class="font-bold">Receive and manage orders seamlessly through our user-friendly platform. Stay organized with real-time notifications, order tracking, and communication tools to ensure smooth operations.</span>
                             </div>
                         </div>
-                        <div class="flex flex-row-reverse lg:flex-row gap-2 lg:gap-36">
+                        {{-- <div class="flex flex-row-reverse lg:flex-row gap-2 lg:gap-36">
                             <div class="flex flex-col my-auto md:basis-1/2 lg:basis-2/5">
                                 <span class="font-bold text-2xl">Multibranch Management</span>
                                 <span class="font-bold">Monitor and analyse performance of different branches as well as a centralised earning management for multiple shops.</span>
@@ -130,14 +130,14 @@
                             <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
                                 <img src="{{ asset('assets/img/merchant-home.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
                             </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
-                                <img src="{{ asset('assets/img/merchant-partner.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
-                            </div>
+                        </div> --}}
+                        <div class="flex flex-row-reverse lg:flex-row gap-2 lg:gap-36">
                             <div class="flex flex-col my-auto md:basis-1/2 lg:basis-2/5">
                                 <span class="font-bold text-2xl">Grow Your Business</span>
                                 <span class="font-bold">Reach new heights by monitoring your performance, gather valuable insights, and adapt your strategy to meet the evolving needs of your customers.</span>
+                            </div>
+                            <div class="hidden md:block md:basis-1/2 lg:basis-3/5">
+                                <img src="{{ asset('assets/img/merchant-partner.png') }}" alt="" class="w-[24rem] lg:w-[44rem] object-cover rounded-lg">
                             </div>
                         </div>
                     </div>
