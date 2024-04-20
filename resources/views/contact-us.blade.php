@@ -82,6 +82,7 @@
             @include('layouts.footer')
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         @if (config('app.env') == 'production')
             <!--Start of Tawk.to Script-->
             <script type="text/javascript">
@@ -96,5 +97,19 @@
                 })();
             </script>
         @endif
+        <script>
+            $(window).scroll(function () {
+                const scroll = $(window).scrollTop();
+
+                let scrollThreshold = 0.5;
+
+                if (scroll > scrollThreshold) {
+                    // Apply the background color to the body element
+                    $('#main-header').css('border-bottom', '4px solid #F7C410');
+                } else {
+                    $('#main-header').css('border-bottom', 'none');
+                }
+            });
+        </script>
     </body>
 </html>

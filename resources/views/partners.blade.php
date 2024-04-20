@@ -17,7 +17,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased font-comfortaa">
-        <div class="bg-white">
+        <div class="bg-primary-one">
             @include('layouts.navigation')
 
             <section
@@ -32,12 +32,12 @@
                 </div>
             </section>
 
-            <h1 class="text-3xl text-center my-3 py-2 font-semibold underline">Why you should partner with us</h1>
+            <h1 class="text-3xl text-center my-3 py-2 font-semibold underline text-white">Why you should partner with us</h1>
             <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
                     <img src="{{ asset('assets/img/partners1.png') }}" alt="" class="w-72 lg:w-[28rem] mx-auto object-cover rounded-lg">
                 </div>
-                <div class="lg:my-auto md:max-w-lg flex flex-col justify-center md:block">
+                <div class="lg:my-auto md:max-w-lg flex flex-col justify-center md:block text-white">
                     <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col mt-4 md:mt-0">
                             <h3 class="font-bold text-xl text-primary-one">Increased Visibility:</h3>
@@ -58,12 +58,12 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="https://restaurant.moboeats.com/signup" class="hidden md:block md:w-fit bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
+                    <a href="https://restaurant.moboeats.com/signup" class="hidden md:block md:w-fit bg-primary-two text-slate-900 hover:bg-black transition duration-300 ease-in-out hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
                 </div>
             </div>
 
             <div class="mt-0 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
-                <div class="lg:my-8 md:max-w-lg flex flex-col justify-center md:block">
+                <div class="lg:my-8 md:max-w-lg flex flex-col justify-center md:block text-white">
                     <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col">
                             <h3 class="font-bold text-xl text-primary-one">Flexible Ordering Options:</h3>
@@ -84,14 +84,14 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="https://restaurant.moboeats.com/signup" class="my-2 bg-primary-two text-slate-900 hover:bg-primary-one hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
+                    <a href="https://restaurant.moboeats.com/signup" class="my-2 bg-primary-two text-slate-900 hover:bg-black transition duration-300 ease-in-out hover:text-white px-6 py-4 rounded-lg text-center mt-2 lg:mt-20 font-semibold">Create you account here</a>
                 </div>
                 <div class="">
                     <img src="{{ asset('assets/img/partners2.png') }}" alt="" class="w-72 lg:w-[28rem] mx-auto object-cover rounded-lg">
                 </div>
             </div>
 
-            <div class="bg-[#eae1e1bf] px-4 lg:px-24 pb-4">
+            <div class="bg-white px-4 lg:px-24 pb-4">
                 <h1 class="text-3xl text-center my-3 py-2 font-semibold underline">Partner Dashboard</h1>
                 <div class="flex gap-4">
                     <div class="space-y-4 grid grid-col-2 gap-2">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="flex flex-col my-auto md:basis-1/2 lg:basis-2/5">
                                 <span class="font-bold text-2xl">Sign Up</span>
-                                <span class="font-bold">Joining Moboeats is quick and easy. Simply <a href="https://restaurant.moboeats.com/signup" class="text-primary-one hover:p-1 hover:rounded-lg hover:bg-primary-two hover:text-slate-900 underline">Sign up</a> your business and provide necessary business documents needed.</span>
+                                <span class="font-bold">Joining Moboeats is quick and easy. Simply <a href="https://restaurant.moboeats.com/signup" class="text-primary-one hover:text-primary-two transition duration-300 ease-linear underline">Sign up</a> your business and provide necessary business documents needed.</span>
                             </div>
                         </div>
                         <div class="flex flex-row-reverse lg:flex-row gap-2 lg:gap-36">
@@ -174,19 +174,34 @@
             @include('layouts.footer')
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         @if (config('app.env') == 'production')
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/6612d15e1ec1082f04dfc429/1hqso3mv2';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-            })();
+            <!--Start of Tawk.to Script-->
+            <script type="text/javascript">
+                var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='https://embed.tawk.to/6612d15e1ec1082f04dfc429/1hqso3mv2';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+                })();
+            </script>
+        @endif
+        <script>
+            $(window).scroll(function () {
+                const scroll = $(window).scrollTop();
+
+                let scrollThreshold = 0.5;
+
+                if (scroll > scrollThreshold) {
+                    // Apply the background color to the body element
+                    $('#main-header').css('border-bottom', '4px solid #F7C410');
+                } else {
+                    $('#main-header').css('border-bottom', 'none');
+                }
+            });
         </script>
-    @endif
     </body>
 </html>
