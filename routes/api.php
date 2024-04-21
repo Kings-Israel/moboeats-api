@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\MenuBookmarkController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\MenuPriceController;
+use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\OrdererController;
@@ -87,6 +88,18 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
 
     Route::get('/seating-areas', [RestaurantController::class, 'seatingAreas']);
+
+    // Chat
+    Route::get('/conversations', [MessageController::class, 'index']);
+    Route::get('/conversations/{id}', [MessageController::class, 'show']);
+    Route::post('/message/send', [MessageController::class, 'store']);
+    Route::post('/conversation/{id}/reply', [MessageController::class, 'update']);
+    Route::get('/conversations/{id}/read', [MessageController::class, 'markConversationAsRead']);
+    Route::get('/message/{id}/read', [MessageController::class, 'markMessageAsRead']);
+    Route::get('/conversations/{id}/unread/count', [MessageController::class, 'getCoversationUnreadMessagesCount']);
+    Route::get('/messages/unread/count', [MessageController::class, 'getUnreadMessagesCount']);
+    Route::delete('/message/{id}/delete', [MessageController::class, 'deleteMessage']);
+    Route::delete('/conversation/{id}/delete', [MessageController::class, 'deleteConversation']);
 });
 
 /**Basically a customer who will be ordering food/drinks */

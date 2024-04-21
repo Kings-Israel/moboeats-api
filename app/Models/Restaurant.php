@@ -19,10 +19,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Musonza\Chat\Traits\Messageable;
 
 class Restaurant extends Model implements UrlRoutable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Messageable;
     // protected $primaryKey = 'uuid';
     // protected $guarded = [];
     protected $keyType = 'int';

@@ -17,10 +17,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
 use Laravel\Cashier\Billable;
+use Musonza\Chat\Traits\Messageable;
 
 class User extends Authenticatable implements LaratrustUser
 {
-    use HasRolesAndPermissions;
+    use HasRolesAndPermissions, Messageable;
 
     use HasApiTokens, HasFactory, Notifiable, Billable;
 
@@ -251,5 +252,10 @@ class User extends Authenticatable implements LaratrustUser
     public function referralCode(): HasOne
     {
         return $this->hasOne(ReferralCode::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->email == 'admin@moboeats.com' ? true : false;
     }
 }
