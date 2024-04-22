@@ -954,6 +954,9 @@ class RestaurantController extends Controller
 
     public function restaurantTables(Request $request, Restaurant $restaurant)
     {
+        if (!$restaurant) {
+            return $this->error('Restaurant Not Found', 'Restaurant Not Found', 404);
+        }
         $search = $request->query('search');
 
         $tables = RestaurantTable::with('seatingArea')->where('restaurant_id', $restaurant->id)->paginate(10);

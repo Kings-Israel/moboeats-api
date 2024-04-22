@@ -103,10 +103,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
 });
 
 /**Basically a customer who will be ordering food/drinks */
-Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], function() {
+Route::group(['prefix' => 'v1/orderer'], function() {
     Route::get('/groceries', [MenuController::class, 'groceries']);
-
-    Route::apiResource('orderers', OrdererController::class);
 
     Route::get('/orderer-restaurants/rated', [RestaurantController::class, 'rating']);
     Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
@@ -118,27 +116,32 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1/orderer'], functio
 
     Route::apiResource('orderer-menu', MenuController::class);
 
-    Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
-    Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
-    Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
-
-    Route::apiResource('cart', CartController::class)->except(['update']);
-    Route::apiResource('cart-items', CartItemController::class);
-
-    Route::apiResource('orders', OrderController::class)->except(['update']);
-
-    // Route::apiResource('payment', PaymentController::class)->except(['update']);
-    Route::get('/stripe/checkout/{order_id}', [PaymentController::class, 'stripeCheckout']);
-    Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
-
     // Tables
     Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
 
-    // Reviews
-    Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
-    Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
-    Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
-    Route::post('/menu/reviews/store', [MenuController::class, 'storeReview']);
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::apiResource('orderers', OrdererController::class);
+
+        Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
+        Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+        Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
+
+        Route::apiResource('cart', CartController::class)->except(['update']);
+        Route::apiResource('cart-items', CartItemController::class);
+
+        Route::apiResource('orders', OrderController::class)->except(['update']);
+
+        // Route::apiResource('payment', PaymentController::class)->except(['update']);
+        Route::get('/stripe/checkout/{order_id}', [PaymentController::class, 'stripeCheckout']);
+        Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
+
+
+        // Reviews
+        Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
+        Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
+        Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
+        Route::post('/menu/reviews/store', [MenuController::class, 'storeReview']);
+    });
 });
 
 Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
