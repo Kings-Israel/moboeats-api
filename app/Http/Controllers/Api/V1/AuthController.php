@@ -81,7 +81,7 @@ class AuthController extends Controller
                 }
 
                 if ($rider->status == 1) {
-                    return $this->success(['Rider profile awaiting approval']);
+                    return $this->success(['Rider profile awaiting approval'], 403);
                 }
             }
 
@@ -458,7 +458,7 @@ class AuthController extends Controller
             }
 
             if ($rider->status == 1) {
-                return $this->success(['Rider profile awaiting approval']);
+                return $this->success(['Rider profile awaiting approval'], 403);
             }
         }
 
