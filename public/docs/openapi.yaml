@@ -26,15 +26,15 @@ paths:
                 email:
                   type: string
                   description: 'The email of the user'
-                  example: chet.wiza@example.org
+                  example: huel.lazaro@example.net
                 password:
                   type: string
                   description: 'The password of the user'
-                  example: e9x(j(plrHpjGicwu=
+                  example: '_Dw^(&\OxWGuF8.a8g'
                 userType:
                   type: string
                   description: 'The type of user'
-                  example: aut
+                  example: aliquid
               required:
                 - email
                 - password
@@ -59,19 +59,19 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ofwx
+                  example: pbgdzoagigcajokldnzohyft
                 email:
                   type: string
                   description: 'The email of the user'
-                  example: rowe.ernestine@example.net
+                  example: ihaley@example.net
                 password:
                   type: string
                   description: 'The password of the user'
-                  example: 'v{tk(MY6f'
+                  example: '-2:lwwnC4s4DRWCZ;.5'
                 userType:
                   type: string
                   description: 'The type of user'
-                  example: voluptatum
+                  example: repellat
                 otp:
                   type: string
                   description: ''
@@ -83,7 +83,7 @@ paths:
                 phone:
                   type: string
                   description: 'The type of user'
-                  example: aut
+                  example: vel
               required:
                 - name
                 - email
@@ -110,11 +110,11 @@ paths:
                 email:
                   type: The
                   description: 'email of the user'
-                  example: arolfson@example.org
+                  example: stefanie70@example.org
                 phone_number:
                   type: The
                   description: 'phone number of the user'
-                  example: est
+                  example: et
       security: []
   /api/v1/reset-password:
     post:
@@ -135,15 +135,15 @@ paths:
                 code:
                   type: The
                   description: 'Verification OTP code'
-                  example: velit
+                  example: expedita
                 password:
                   type: The
                   description: 'new password to be set'
-                  example: '~p$OF)N>R<kV\{=6V3'
+                  example: '[Tf\{1~<JBOM9(wS'
                 password_confirmation:
                   type: The
                   description: 'new password confirmation'
-                  example: omnis
+                  example: et
       security: []
   /api/v2/login:
     post:
@@ -164,7 +164,7 @@ paths:
                 phone_number:
                   type: string
                   description: 'The phone number of the user. Example 44374673827'
-                  example: qui
+                  example: est
               required:
                 - phone_number
       security: []
@@ -187,11 +187,11 @@ paths:
                 code:
                   type: string
                   description: 'The phone number of the user'
-                  example: possimus
+                  example: id
                 userType:
                   type: string
                   description: 'The type of user logging in'
-                  example: voluptatem
+                  example: maxime
               required:
                 - code
                 - userType
@@ -268,7 +268,7 @@ paths:
                 userId:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 3
               required:
                 - userId
       security: []
@@ -352,15 +352,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 5
                 quantity:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 17
                 status:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 1
               required:
                 - menuId
                 - quantity
@@ -405,15 +405,15 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 12
                 quantity:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 7
                 status:
                   type: integer
                   description: ''
-                  example: 15
+                  example: 7
               required:
                 - menuId
                 - quantity
@@ -476,15 +476,15 @@ paths:
                 cartId:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 13
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 6
                 delivery:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 delivery_address:
                   type: string
                   description: 'This field is required when <code>delivery</code> is <code>true</code>.'
@@ -499,8 +499,8 @@ paths:
                   example: null
                 booking_time:
                   type: string
-                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-04-22 13:14:09</code>.'
-                  example: '2114-01-15'
+                  description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-04-22 13:32:15</code>.'
+                  example: '2070-01-22'
               required:
                 - restaurantId
                 - delivery
@@ -564,23 +564,23 @@ paths:
                 order_id:
                   type: integer
                   description: 'The id of the order'
-                  example: 5
+                  example: 6
                 restaurant_rating:
                   type: integer
                   description: 'The rating of the restaurant from 1 - 5'
-                  example: 18
+                  example: 17
                 restaurant_review:
                   type: string
                   description: 'A review of the restaurant'
-                  example: repellat
+                  example: at
                 rider_rating:
                   type: integer
                   description: 'The rating of the rider from 1 - 5'
-                  example: 17
+                  example: 3
                 rider_review:
                   type: string
                   description: 'A review of the rider'
-                  example: aliquam
+                  example: nesciunt
       security: []
   '/api/v1/restaurant/orders/{uuid}':
     get:
@@ -622,7 +622,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: ea
+                  example: quam
               required:
                 - status
       security: []
@@ -682,7 +682,7 @@ paths:
                 status:
                   type: string
                   description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
-                  example: cancelled
+                  example: 'in progress'
               required:
                 - status
       security: []
@@ -780,7 +780,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: harum
+                  example: ipsa
               required:
                 - status
       security: []
@@ -812,11 +812,11 @@ paths:
                 order_id:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: est
                 rider_id:
                   type: string
                   description: ''
-                  example: assumenda
+                  example: qui
               required:
                 - order_id
                 - rider_id
@@ -883,7 +883,7 @@ paths:
                 restaurantId:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 9
               required:
                 - restaurantId
       security: []
@@ -954,7 +954,7 @@ paths:
         in: path
         name: menuId
         description: ''
-        example: mollitia
+        example: voluptatibus
         required: true
         schema:
           type: string
@@ -998,7 +998,7 @@ paths:
                 menuId:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 15
               required:
                 - menuId
       security: []
@@ -1038,7 +1038,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the menu bookmark.'
-        example: non
+        example: minima
         required: true
         schema:
           type: string
@@ -1253,15 +1253,15 @@ paths:
                 section:
                   type: string
                   description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
-                  example: customer
+                  example: partner
                 question:
                   type: string
                   description: ''
-                  example: quibusdam
+                  example: occaecati
                 answer:
                   type: string
                   description: ''
-                  example: quos
+                  example: ab
               required:
                 - section
                 - question
@@ -1290,11 +1290,11 @@ paths:
                 question:
                   type: string
                   description: ''
-                  example: dolore
+                  example: assumenda
                 answer:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: est
               required:
                 - section
                 - question
@@ -1477,7 +1477,7 @@ paths:
         in: path
         name: notification
         description: 'The notification.'
-        example: accusantium
+        example: minima
         required: true
         schema:
           type: string
@@ -1553,7 +1553,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: porro
+            value: sint
   /api/v1/message/send:
     post:
       summary: 'Send a message'
@@ -1581,11 +1581,11 @@ paths:
                 receiver_id:
                   type: integer
                   description: "The receiver's id"
-                  example: 13
+                  example: 14
                 message:
                   type: string
                   description: 'The message to send'
-                  example: quo
+                  example: quam
               required:
                 - receiver_id
                 - message
@@ -1617,7 +1617,7 @@ paths:
                 message:
                   type: string
                   description: ''
-                  example: sit
+                  example: velit
               required:
                 - message
       security: []
@@ -1635,7 +1635,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: nam
+            value: eum
   '/api/v1/conversations/{id}/read':
     get:
       summary: 'Mark a conversation as read'
@@ -1668,7 +1668,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: itaque
+            value: consequatur
   '/api/v1/message/{id}/read':
     get:
       summary: 'Mark a message as read'
@@ -1701,7 +1701,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: amet
+            value: ut
   '/api/v1/conversations/{id}/unread/count':
     get:
       summary: 'Get the unread messages in a conversation count'
@@ -1725,7 +1725,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the conversation.'
-        example: impedit
+        example: porro
         required: true
         schema:
           type: string
@@ -1779,7 +1779,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: eveniet
+            value: sint
   '/api/v1/conversation/{id}/delete':
     delete:
       summary: 'Delete a conversation'
@@ -1812,7 +1812,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: dolorem
+            value: doloribus
   '/api/v1/restaurant/{id}/operating-hours':
     get:
       summary: ''
@@ -1882,19 +1882,19 @@ paths:
                 days:
                   type: string
                   description: ''
-                  example: molestias
+                  example: eaque
                 opening_times:
                   type: array
                   description: 'Must be a valid date in the format <code>H:i</code>.'
                   example:
-                    - '13:14'
+                    - '13:32'
                   items:
                     type: string
                 closing_times:
                   type: array
                   description: 'Must be a valid date in the format <code>H:i</code>.'
                   example:
-                    - '13:14'
+                    - '13:32'
                   items:
                     type: string
               required:
@@ -1962,7 +1962,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - et
+                    - ipsam
                   items:
                     type: string
                 files:
@@ -2001,7 +2001,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - sed
+                    - provident
                   items:
                     type: string
                 files:
@@ -2047,7 +2047,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the document.'
-        example: voluptates
+        example: vitae
         required: true
         schema:
           type: string
@@ -2114,19 +2114,19 @@ paths:
                 restaurant_ids:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: sed
                 code:
                   type: string
                   description: ''
-                  example: est
+                  example: dolor
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-04-22T13:14:12'
+                  example: '2024-04-22T13:32:17'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-04-22T13:14:12'
+                  example: '2024-04-22T13:32:17'
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
@@ -2138,7 +2138,7 @@ paths:
                 status:
                   type: string
                   description: 'Must be one of <code>active</code> or <code>inactive</code>.'
-                  example: active
+                  example: inactive
               required:
                 - restaurant_ids
                 - code
@@ -2167,23 +2167,23 @@ paths:
                 code:
                   type: string
                   description: ''
-                  example: iusto
+                  example: sequi
                 start_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-04-22T13:14:12'
+                  example: '2024-04-22T13:32:17'
                 end_date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2024-04-22T13:14:12'
+                  example: '2024-04-22T13:32:17'
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
-                  example: percentage
+                  example: amount
                 value:
                   type: integer
                   description: ''
-                  example: 9
+                  example: 10
                 status:
                   type: string
                   description: 'Must be one of <code>active</code> or <code>inactive</code>.'
@@ -2201,7 +2201,7 @@ paths:
         in: path
         name: promo_code_id
         description: 'The ID of the promo code.'
-        example: 12
+        example: 7
         required: true
         schema:
           type: integer
@@ -2246,7 +2246,7 @@ paths:
                 menu_ids:
                   type: string
                   description: ''
-                  example: ipsam
+                  example: quia
                 type:
                   type: string
                   description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
@@ -2254,7 +2254,7 @@ paths:
                 value:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 14
               required:
                 - menu_ids
                 - type
@@ -2283,7 +2283,7 @@ paths:
                 value:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 20
               required:
                 - type
                 - value
@@ -2443,11 +2443,11 @@ paths:
                 title:
                   type: string
                   description: "'category_id' => ['required'],."
-                  example: architecto
+                  example: fugit
                 status:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 14
               required:
                 - title
                 - status
@@ -2471,7 +2471,7 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: et
+                  example: consequatur
               required:
                 - title
       security: []
@@ -2480,7 +2480,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: vel
+        example: eum
         required: true
         schema:
           type: string
@@ -2542,7 +2542,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the customer.'
-        example: mollitia
+        example: ipsum
         required: true
         schema:
           type: string
@@ -2573,7 +2573,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the restaurant admin.'
-        example: at
+        example: officiis
         required: true
         schema:
           type: string
@@ -2604,7 +2604,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the rider.'
-        example: rerum
+        example: labore
         required: true
         schema:
           type: string
@@ -2627,7 +2627,7 @@ paths:
                 status:
                   type: string
                   description: 'Must be one of <code>approved</code> or <code>denied</code>.'
-                  example: denied
+                  example: approved
               required:
                 - status
       security: []
@@ -2800,7 +2800,7 @@ paths:
                 reason:
                   type: string
                   description: 'This field is required when <code>status</code> is <code>3</code>.'
-                  example: beatae
+                  example: animi
               required:
                 - status
       security: []
@@ -3072,11 +3072,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: quidem
                 poster:
                   type: string
                   description: 'Must not be greater than 10000 characters.'
-                  example: cboqeoftmfsqkyrhoaxtoaid
+                  example: medrzrlmmsquyzzheat
               required:
                 - title
                 - poster
@@ -3100,11 +3100,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: tempora
+                  example: magni
                 poster:
                   type: string
                   description: 'Must not be greater than 10000 characters.'
-                  example: xcvutd
+                  example: byuzmrkdazjyxeidjcx
               required:
                 - title
       security: []
@@ -3113,7 +3113,7 @@ paths:
         in: path
         name: advert_poster_id
         description: 'The ID of the advert poster.'
-        example: 6
+        example: 13
         required: true
         schema:
           type: integer
@@ -3132,7 +3132,7 @@ paths:
         in: path
         name: advert_poster_id
         description: 'The ID of the advert poster.'
-        example: 7
+        example: 8
         required: true
         schema:
           type: integer
@@ -3544,11 +3544,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ex
+                  example: quo
                 description:
                   type: string
                   description: ''
-                  example: at
+                  example: sed
                 status:
                   type: string
                   description: ''
@@ -4375,11 +4375,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: provident
+                  example: doloremque
                 description:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: quasi
               required:
                 - title
                 - description
@@ -4398,7 +4398,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the category.'
-        example: aliquam
+        example: omnis
         required: true
         schema:
           type: string
@@ -4717,11 +4717,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sint
+                  example: incidunt
                 description:
                   type: string
                   description: ''
-                  example: vitae
+                  example: quia
                 status:
                   type: string
                   description: ''
@@ -4810,11 +4810,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: nobis
                 description:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: quisquam
               required:
                 - title
                 - description
@@ -4833,7 +4833,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food category.'
-        example: sapiente
+        example: non
         required: true
         schema:
           type: string
@@ -4877,11 +4877,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: animi
+                  example: error
                 description:
                   type: string
                   description: ''
-                  example: repellat
+                  example: facere
                 status:
                   type: string
                   description: ''
@@ -4930,11 +4930,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: neque
+                  example: sed
                 description:
                   type: string
                   description: ''
-                  example: magnam
+                  example: illum
               required:
                 - title
                 - description
@@ -4953,7 +4953,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food category.'
-        example: vero
+        example: qui
         required: true
         schema:
           type: string
@@ -4976,11 +4976,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sunt
+                  example: iure
                 description:
                   type: string
                   description: ''
-                  example: non
+                  example: et
                 status:
                   type: string
                   description: ''
@@ -5008,11 +5008,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: quia
                 description:
                   type: string
                   description: ''
-                  example: sunt
+                  example: eum
               required:
                 - title
                 - description
@@ -5022,7 +5022,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the update.'
-        example: et
+        example: sequi
         required: true
         schema:
           type: string
@@ -5630,19 +5630,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: assumenda
+                  example: sit
                 description:
                   type: string
                   description: ''
-                  example: dolores
+                  example: dignissimos
                 status:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 15
                 createdBy:
                   type: string
                   description: ''
-                  example: rerum
+                  example: facilis
                 categoryIds:
                   type: object
                   description: ''
@@ -5651,7 +5651,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: enmivrywdwrhlwg
+                  example: bdtuor
               required:
                 - title
                 - description
@@ -6476,11 +6476,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quia
+                  example: aut
                 description:
                   type: string
                   description: ''
-                  example: ea
+                  example: dignissimos
                 status:
                   type: string
                   description: ''
@@ -6488,7 +6488,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: maiores
+                  example: iste
                 categoryIds:
                   type: object
                   description: ''
@@ -6497,7 +6497,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: ogwgwvsnpygghetblifdtemj
+                  example: ndgfxiuhkcybjacsskuyjnt
               required:
                 - title
                 - description
@@ -6518,7 +6518,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the sub category.'
-        example: autem
+        example: sit
         required: true
         schema:
           type: string
@@ -6699,19 +6699,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sit
+                  example: similique
                 description:
                   type: string
                   description: ''
-                  example: neque
+                  example: quis
                 status:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 16
                 createdBy:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: neque
                 categoryIds:
                   type: object
                   description: ''
@@ -6720,7 +6720,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: yjwjmlt
+                  example: gwxj
               required:
                 - title
                 - description
@@ -6803,11 +6803,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: quam
+                  example: sed
                 description:
                   type: string
                   description: ''
-                  example: molestias
+                  example: veritatis
                 status:
                   type: string
                   description: ''
@@ -6815,7 +6815,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: aut
+                  example: qui
                 categoryIds:
                   type: object
                   description: ''
@@ -6824,7 +6824,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: kdsz
+                  example: vpz
               required:
                 - title
                 - description
@@ -6845,7 +6845,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer food sub category.'
-        example: id
+        example: quam
         required: true
         schema:
           type: string
@@ -6889,19 +6889,19 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ut
+                  example: quis
                 description:
                   type: string
                   description: ''
-                  example: consequuntur
+                  example: et
                 status:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 15
                 createdBy:
                   type: string
                   description: ''
-                  example: amet
+                  example: corrupti
                 categoryIds:
                   type: object
                   description: ''
@@ -6910,7 +6910,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: x
+                  example: sdj
               required:
                 - title
                 - description
@@ -6957,11 +6957,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: est
+                  example: dolorem
                 description:
                   type: string
                   description: ''
-                  example: sequi
+                  example: voluptatem
                 status:
                   type: string
                   description: ''
@@ -6969,7 +6969,7 @@ paths:
                 updatedBy:
                   type: string
                   description: ''
-                  example: in
+                  example: qui
                 categoryIds:
                   type: object
                   description: ''
@@ -6978,7 +6978,7 @@ paths:
                 image:
                   type: string
                   description: 'Must not be greater than 3000 characters.'
-                  example: vztm
+                  example: zfzgrbglkytshntna
               required:
                 - title
                 - description
@@ -6999,7 +6999,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the food sub category.'
-        example: maiores
+        example: sapiente
         required: true
         schema:
           type: string
@@ -8976,43 +8976,43 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: enim
+            value: rerum
   /api/v1/menu:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: 'Display a listing of the menus.'
+      operationId: displayAListingOfTheMenus
       description: ''
       parameters:
         -
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: molestias
+          example: impedit
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: molestias
+            example: impedit
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: amet
+          example: ut
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: amet
+            example: ut
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: consequatur
+          example: consectetur
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: consequatur
+            example: consectetur
       responses:
         200:
           description: ''
@@ -14436,7 +14436,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: eum
+            value: et
   '/api/v1/orderer/orderer-restaurants/{restaurant}/menu':
     get:
       summary: 'Get Menu Restaurant Menu Items'
@@ -15634,43 +15634,43 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: hic
+            value: modi
   /api/v1/orderer/orderer-menu:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: 'Display a listing of the menus.'
+      operationId: displayAListingOfTheMenus
       description: ''
       parameters:
         -
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: sit
+          example: dignissimos
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: sit
+            example: dignissimos
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: sint
+          example: ut
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: sint
+            example: ut
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: sunt
+          example: sed
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: sunt
+            example: sed
       responses:
         200:
           description: ''
@@ -19140,8 +19140,8 @@ paths:
         - 'Menu Management'
       security: []
     post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1OrdererOrdererMenu
       description: ''
       parameters: []
       responses: {  }
@@ -19157,20 +19157,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: nemo
+                  example: tenetur
                 description:
                   type: string
                   description: ''
-                  example: quisquam
+                  example: minima
                 status:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 18
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 20
+                    - 3
                   items:
                     type: integer
               required:
@@ -19179,849 +19179,107 @@ paths:
       security: []
   '/api/v1/orderer/orderer-menu/{id}':
     get:
-      summary: ''
-      operationId: getApiV1OrdererOrdererMenuId
+      summary: 'Show Menu Details'
+      operationId: showMenuDetails
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: 'Call to a member function hasRole() on null'
-                  exception: Error
-                  file: 'C:\xampp\htdocs\projects\laravel\moboeats\app\Http\Controllers\Api\V1\MenuController.php'
-                  line: 526
-                  trace:
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                      line: 54
-                      function: show
-                      class: App\Http\Controllers\Api\V1\MenuController
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
-                      line: 43
-                      function: callAction
-                      class: Illuminate\Routing\Controller
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                      line: 259
-                      function: dispatch
-                      class: Illuminate\Routing\ControllerDispatcher
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                      line: 205
-                      function: runController
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 798
-                      function: run
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 141
-                      function: 'Illuminate\Routing\{closure}'
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
-                      line: 50
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Routing\Middleware\SubstituteBindings
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 152
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 118
-                      function: handleRequest
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 80
-                      function: handleRequestUsingNamedLimiter
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
-                      line: 25
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 141
-                      function: 'Laravel\Sanctum\Http\Middleware\{closure}'
-                      class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
-                      line: 24
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 797
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 776
-                      function: runRouteWithinStack
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 740
-                      function: runRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 729
-                      function: dispatchToRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 200
-                      function: dispatch
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 141
-                      function: 'Illuminate\Foundation\Http\{closure}'
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                      line: 31
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                      line: 40
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                      line: 27
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                      line: 86
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
-                      line: 62
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Http\Middleware\HandleCors
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
-                      line: 39
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 180
-                      function: handle
-                      class: Illuminate\Http\Middleware\TrustProxies
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 175
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 144
-                      function: sendRequestThroughRouter
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 299
-                      function: handle
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 287
-                      function: callLaravelOrLumenRoute
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 92
-                      function: makeApiCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 45
-                      function: makeResponseCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 35
-                      function: makeResponseCallIfConditionsPass
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 209
-                      function: __invoke
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 163
-                      function: iterateThroughStrategies
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 95
-                      function: fetchResponses
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 124
-                      function: processRoute
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 71
-                      function: extractEndpointsInfoFromLaravelApp
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 49
-                      function: extractEndpointsInfoAndWriteToDisk
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                      line: 51
-                      function: get
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 36
-                      function: handle
-                      class: Knuckles\Scribe\Commands\GenerateDocumentation
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                      line: 41
-                      function: 'Illuminate\Container\{closure}'
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 93
-                      function: unwrapIfClosure
-                      class: Illuminate\Container\Util
-                      type: '::'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 35
-                      function: callBoundMethod
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                      line: 662
-                      function: call
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 194
-                      function: call
-                      class: Illuminate\Container\Container
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Command\Command.php'
-                      line: 312
-                      function: execute
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 163
-                      function: run
-                      class: Symfony\Component\Console\Command\Command
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Application.php'
-                      line: 1040
-                      function: run
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Application.php'
-                      line: 314
-                      function: doRunCommand
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Application.php'
-                      line: 168
-                      function: doRun
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                      line: 200
-                      function: run
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\xampp\htdocs\projects\laravel\moboeats\artisan'
-                      line: 35
-                      function: handle
-                      class: Illuminate\Foundation\Console\Kernel
-                      type: '->'
+                  menu:
+                    id: null
+                    uuid: null
+                    attributes:
+                      title: null
+                      description: null
+                      createdBy: null
+                      updatedBy: null
+                      status: ''
+                      preparation_time: null
+                      average_rating: 0
+                    relationships:
+                      categories: []
+                      subCategories: []
+                      images: []
+                      menuPrices: []
+                      restaurant: null
+                      discount: null
+                      orderItems: []
+                      orders_count: 0
+                      total_orders_value: 0
+                      reviews: []
                 properties:
-                  message:
-                    type: string
-                    example: 'Call to a member function hasRole() on null'
-                  exception:
-                    type: string
-                    example: Error
-                  file:
-                    type: string
-                    example: 'C:\xampp\htdocs\projects\laravel\moboeats\app\Http\Controllers\Api\V1\MenuController.php'
-                  line:
-                    type: integer
-                    example: 526
-                  trace:
-                    type: array
-                    example:
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                        line: 54
-                        function: show
-                        class: App\Http\Controllers\Api\V1\MenuController
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
-                        line: 43
-                        function: callAction
-                        class: Illuminate\Routing\Controller
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                        line: 259
-                        function: dispatch
-                        class: Illuminate\Routing\ControllerDispatcher
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                        line: 205
-                        function: runController
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 798
-                        function: run
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 141
-                        function: 'Illuminate\Routing\{closure}'
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
-                        line: 50
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Routing\Middleware\SubstituteBindings
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 152
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 118
-                        function: handleRequest
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 80
-                        function: handleRequestUsingNamedLimiter
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
-                        line: 25
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 141
-                        function: 'Laravel\Sanctum\Http\Middleware\{closure}'
-                        class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
-                        line: 24
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 797
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 776
-                        function: runRouteWithinStack
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 740
-                        function: runRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 729
-                        function: dispatchToRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 200
-                        function: dispatch
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 141
-                        function: 'Illuminate\Foundation\Http\{closure}'
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                        line: 31
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                        line: 40
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                        line: 27
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                        line: 86
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
-                        line: 62
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Http\Middleware\HandleCors
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
-                        line: 39
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 180
-                        function: handle
-                        class: Illuminate\Http\Middleware\TrustProxies
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 175
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 144
-                        function: sendRequestThroughRouter
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 299
-                        function: handle
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 287
-                        function: callLaravelOrLumenRoute
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 92
-                        function: makeApiCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 45
-                        function: makeResponseCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 35
-                        function: makeResponseCallIfConditionsPass
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 209
-                        function: __invoke
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 163
-                        function: iterateThroughStrategies
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 95
-                        function: fetchResponses
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 124
-                        function: processRoute
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 71
-                        function: extractEndpointsInfoFromLaravelApp
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 49
-                        function: extractEndpointsInfoAndWriteToDisk
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                        line: 51
-                        function: get
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 36
-                        function: handle
-                        class: Knuckles\Scribe\Commands\GenerateDocumentation
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                        line: 41
-                        function: 'Illuminate\Container\{closure}'
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 93
-                        function: unwrapIfClosure
-                        class: Illuminate\Container\Util
-                        type: '::'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 35
-                        function: callBoundMethod
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                        line: 662
-                        function: call
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 194
-                        function: call
-                        class: Illuminate\Container\Container
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Command\Command.php'
-                        line: 312
-                        function: execute
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 163
-                        function: run
-                        class: Symfony\Component\Console\Command\Command
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Application.php'
-                        line: 1040
-                        function: run
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Application.php'
-                        line: 314
-                        function: doRunCommand
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\symfony\console\Application.php'
-                        line: 168
-                        function: doRun
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                        line: 200
-                        function: run
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\xampp\htdocs\projects\laravel\moboeats\artisan'
-                        line: 35
-                        function: handle
-                        class: Illuminate\Foundation\Console\Kernel
-                        type: '->'
-                    items:
-                      type: object
-                      properties:
-                        file:
-                          type: string
-                          example: 'C:\xampp\htdocs\projects\laravel\moboeats\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                        line:
-                          type: integer
-                          example: 54
-                        function:
-                          type: string
-                          example: show
-                        class:
-                          type: string
-                          example: App\Http\Controllers\Api\V1\MenuController
-                        type:
-                          type: string
-                          example: '->'
+                  menu:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      uuid:
+                        type: string
+                        example: null
+                      attributes:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: null
+                          description:
+                            type: string
+                            example: null
+                          createdBy:
+                            type: string
+                            example: null
+                          updatedBy:
+                            type: string
+                            example: null
+                          status:
+                            type: string
+                            example: ''
+                          preparation_time:
+                            type: string
+                            example: null
+                          average_rating:
+                            type: integer
+                            example: 0
+                      relationships:
+                        type: object
+                        properties:
+                          categories:
+                            type: array
+                            example: []
+                          subCategories:
+                            type: array
+                            example: []
+                          images:
+                            type: array
+                            example: []
+                          menuPrices:
+                            type: array
+                            example: []
+                          restaurant:
+                            type: string
+                            example: null
+                          discount:
+                            type: string
+                            example: null
+                          orderItems:
+                            type: array
+                            example: []
+                          orders_count:
+                            type: integer
+                            example: 0
+                          total_orders_value:
+                            type: integer
+                            example: 0
+                          reviews:
+                            type: array
+                            example: []
       tags:
         - 'Menu Management'
       security: []
@@ -20043,20 +19301,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: est
+                  example: cum
                 description:
                   type: string
                   description: ''
-                  example: molestias
+                  example: voluptates
                 status:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 10
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 6
+                    - 11
                   items:
                     type: integer
               required:
@@ -20068,10 +19326,24 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer menu.'
-        example: asperiores
+        example: laborum
         required: true
         schema:
           type: string
+      -
+        in: path
+        name: uuid
+        description: 'Optional parameter. The uuid of the menu'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 32b038cf-669a-3871-95ab-d868bafd43c9
   /api/v1/orderer/menu/reviews/store:
     post:
       summary: 'Store review for an menu item'
@@ -20091,59 +19363,59 @@ paths:
                 menu_id:
                   type: integer
                   description: 'The id of the menu item'
-                  example: 13
+                  example: 10
                 menu_rating:
                   type: integer
                   description: 'The rating of the menu from 1 - 5'
-                  example: 1
+                  example: 4
                 menu_review:
                   type: string
                   description: 'A review of the menu'
-                  example: id
+                  example: qui
                 order_id:
                   type: integer
                   description: 'The id of the order'
-                  example: 19
+                  example: 13
               required:
                 - menu_id
                 - menu_rating
       security: []
   /api/v1/restaurant/menu:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: 'Display a listing of the menus.'
+      operationId: displayAListingOfTheMenus
       description: ''
       parameters:
         -
           in: query
           name: categories
           description: 'to fetch categories associated with Menu'
-          example: et
+          example: sequi
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: et
+            example: sequi
         -
           in: query
           name: subCategories
           description: 'to fetch categories associated with Menu'
-          example: magni
+          example: cum
           required: false
           schema:
             type: string
             description: 'to fetch categories associated with Menu'
-            example: magni
+            example: cum
         -
           in: query
           name: restaurant
           description: 'to fetch restaurant that owns with Menu'
-          example: beatae
+          example: maiores
           required: false
           schema:
             type: string
             description: 'to fetch restaurant that owns with Menu'
-            example: beatae
+            example: maiores
       responses:
         401:
           description: ''
@@ -20161,8 +19433,8 @@ paths:
         - 'Menu Management'
       security: []
     post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1RestaurantMenu
       description: ''
       parameters: []
       responses: {  }
@@ -20178,20 +19450,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sint
+                  example: occaecati
                 description:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: necessitatibus
                 status:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 19
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 4
+                    - 9
                   items:
                     type: integer
               required:
@@ -20200,8 +19472,8 @@ paths:
       security: []
   '/api/v1/restaurant/menu/{uuid}':
     get:
-      summary: ''
-      operationId: getApiV1RestaurantMenuUuid
+      summary: 'Show Menu Details'
+      operationId: showMenuDetails
       description: ''
       parameters: []
       responses:
@@ -20238,20 +19510,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: natus
                 description:
                   type: string
                   description: ''
-                  example: maxime
+                  example: eius
                 status:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 19
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 16
+                    - 15
                   items:
                     type: integer
               required:
@@ -20262,11 +19534,17 @@ paths:
       -
         in: path
         name: uuid
-        description: ''
-        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+        description: 'Optional parameter. The uuid of the menu'
         required: true
         schema:
           type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 2bd6802e-43af-3378-b15f-8e97dba841d1
   '/api/v1/restaurant/menu/{menu_uuid}/reviews':
     get:
       summary: 'Get Restaurant Reviews'
@@ -20375,8 +19653,8 @@ paths:
           type: string
   '/api/v1/restaurant/{id}/menu/add':
     post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1RestaurantIdMenuAdd
       description: ''
       parameters: []
       responses: {  }
@@ -20392,20 +19670,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: repellendus
                 description:
                   type: string
                   description: ''
-                  example: commodi
+                  example: fugiat
                 status:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 3
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 11
+                    - 5
                   items:
                     type: integer
               required:
@@ -20440,20 +19718,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: omnis
                 description:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: et
                 status:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 1
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 18
+                    - 16
                   items:
                     type: integer
               required:
@@ -20551,23 +19829,23 @@ paths:
                 restaurant_ids:
                   type: string
                   description: ''
-                  example: qui
+                  example: sit
                 title:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: consequatur
                 description:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: perferendis
                 status:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 20
                 categoryIds:
                   type: string
                   description: ''
-                  example: sunt
+                  example: ullam
               required:
                 - restaurant_ids
                 - title
@@ -20600,20 +19878,20 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: nemo
+                  example: provident
                 description:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: cum
                 status:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 1
                 categoryIds:
                   type: array
                   description: ''
                   example:
-                    - 12
+                    - 15
                   items:
                     type: integer
               required:
@@ -20704,15 +19982,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: omnis
+                  example: suscipit
                 status:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 16
                 menu_id:
                   type: string
                   description: ''
-                  example: fugiat
+                  example: voluptates
               required:
                 - price
                 - description
@@ -20758,15 +20036,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: nemo
+                  example: molestiae
                 status:
                   type: string
                   description: ''
-                  example: dicta
+                  example: quia
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
-                  example: 0
+                  example: 1
               required:
                 - description
                 - status
@@ -20808,15 +20086,15 @@ paths:
                 description:
                   type: string
                   description: ''
-                  example: dolores
+                  example: atque
                 status:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: tempora
                 price:
                   type: number
                   description: 'Must be between 0 and 9999999999.99.'
-                  example: 1
+                  example: 0
               required:
                 - description
                 - status
@@ -20889,11 +20167,11 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: aut
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: osborne87@example.org
+                  example: shanahan.merle@example.net
                 phoneNo:
                   type: string
                   description: ''
@@ -20962,35 +20240,35 @@ paths:
                 uuid:
                   type: string
                   description: 'Must be a valid UUID.'
-                  example: ebae6a52-f087-3875-bec4-681b21082180
+                  example: 8bdf93f7-8c5a-35bb-b834-3a328ad0ab42
                 name:
                   type: string
                   description: ''
-                  example: et
+                  example: voluptatem
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: qdickinson@example.org
+                  example: estelle92@example.com
                 phoneNo:
                   type: string
                   description: ''
-                  example: rerum
+                  example: dolor
                 address:
                   type: string
                   description: ''
-                  example: eius
+                  example: iste
                 city:
                   type: string
                   description: ''
-                  example: impedit
+                  example: quasi
                 state:
                   type: string
                   description: ''
-                  example: enim
+                  example: minus
                 mapLocation:
                   type: string
                   description: ''
-                  example: quis
+                  example: dolor
                 image:
                   type: string
                   description: ''
@@ -21069,7 +20347,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 15
+            value: 9
   '/api/v1/orderer/stripe/checkout/{order_id}/{amount}':
     get:
       summary: 'Stripe Tip checkout'
@@ -21106,7 +20384,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 9
+            value: 18
       -
         in: path
         name: amount
@@ -21120,7 +20398,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 13
+            value: 8
   '/api/v1/orderer/payment/{user_id}/{order_id}':
     get:
       summary: ''
@@ -21156,7 +20434,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: molestiae
+        example: aut
         required: true
         schema:
           type: string
@@ -21164,7 +20442,7 @@ paths:
         in: path
         name: order_id
         description: 'The ID of the order.'
-        example: magni
+        example: ea
         required: true
         schema:
           type: string
@@ -23079,7 +22357,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: iste
+            value: iure
   /api/v1/seating-areas:
     get:
       summary: ''
@@ -24198,7 +23476,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: enim
+            value: voluptates
   /api/v1/orderer/orderer-grocery-shops:
     get:
       summary: 'Get Grocery SHops'
@@ -25933,23 +25211,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: error
+                  example: cumque
                 name_short:
                   type: string
                   description: ''
-                  example: ullam
+                  example: eum
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: brunolfsdottir@example.com
+                  example: alberto.rempel@example.net
                 about:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: rerum
                 about_short:
                   type: string
                   description: ''
-                  example: et
+                  example: alias
                 phone_no:
                   type: string
                   description: ''
@@ -25969,15 +25247,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: vel
                 latitude:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: omnis
                 longitude:
                   type: string
                   description: ''
-                  example: odio
+                  example: assumenda
                 url:
                   type: string
                   description: ''
@@ -25985,7 +25263,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: in
+                  example: aut
                 map_location:
                   type: string
                   description: ''
@@ -25993,11 +25271,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 18
+                  example: 19
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: nolan09@example.org
+                  example: alvera.conroy@example.com
               required:
                 - name
                 - name_short
@@ -26059,39 +25337,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: omnis
+                  example: vel
                 name_short:
                   type: string
                   description: ''
-                  example: nisi
+                  example: facere
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ferry.charlie@example.net
+                  example: holly.hansen@example.org
                 about:
                   type: string
                   description: ''
-                  example: aut
+                  example: cumque
                 about_short:
                   type: string
                   description: ''
-                  example: deleniti
+                  example: labore
                 phone_no:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: mollitia
                 address:
                   type: string
                   description: ''
-                  example: temporibus
+                  example: reiciendis
                 state:
                   type: string
                   description: ''
-                  example: nesciunt
+                  example: ex
                 postal_code:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: sed
                 map_location:
                   type: string
                   description: ''
@@ -26107,15 +25385,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: consequuntur
+                  example: nihil
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: dolorem
+                  example: sequi
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: madisen52@example.org
+                  example: jstoltenberg@example.net
               required:
                 - name
                 - name_short
@@ -26144,7 +25422,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the orderer restaurant.'
-        example: facere
+        example: a
         required: true
         schema:
           type: string
@@ -26161,7 +25439,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: error
+            value: sint
   '/api/v1/orderer/orderer-restaurants/{restaurant_uuid}/tables':
     get:
       summary: ''
@@ -26308,15 +25586,15 @@ paths:
                 restaurant_id:
                   type: integer
                   description: 'The id of the restaurant'
-                  example: 6
+                  example: 12
                 rating:
                   type: integer
                   description: 'The rating from 1 - 5'
-                  example: 15
+                  example: 9
                 review:
                   type: string
                   description: 'A review of the restaurant'
-                  example: necessitatibus
+                  example: alias
       security: []
   /api/v1/rider/restaurants:
     get:
@@ -26358,23 +25636,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: animi
+                  example: nihil
                 name_short:
                   type: string
                   description: ''
-                  example: delectus
+                  example: quo
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: marie05@example.net
+                  example: ofarrell@example.org
                 about:
                   type: string
                   description: ''
-                  example: vero
+                  example: sed
                 about_short:
                   type: string
                   description: ''
-                  example: est
+                  example: odio
                 phone_no:
                   type: string
                   description: ''
@@ -26394,15 +25672,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: facilis
+                  example: sunt
                 latitude:
                   type: string
                   description: ''
-                  example: vel
+                  example: cum
                 longitude:
                   type: string
                   description: ''
-                  example: nisi
+                  example: eos
                 url:
                   type: string
                   description: ''
@@ -26410,7 +25688,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: sit
+                  example: nam
                 map_location:
                   type: string
                   description: ''
@@ -26418,11 +25696,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 3
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gerda.anderson@example.org
+                  example: svolkman@example.net
               required:
                 - name
                 - name_short
@@ -26476,39 +25754,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: autem
+                  example: reprehenderit
                 name_short:
                   type: string
                   description: ''
-                  example: eum
+                  example: et
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: nmiller@example.net
+                  example: harmon73@example.net
                 about:
                   type: string
                   description: ''
-                  example: dolores
+                  example: repellat
                 about_short:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: minima
                 phone_no:
                   type: string
                   description: ''
-                  example: ea
+                  example: omnis
                 address:
                   type: string
                   description: ''
-                  example: nesciunt
+                  example: architecto
                 state:
                   type: string
                   description: ''
-                  example: adipisci
+                  example: omnis
                 postal_code:
                   type: string
                   description: ''
-                  example: sunt
+                  example: aspernatur
                 map_location:
                   type: string
                   description: ''
@@ -26524,15 +25802,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: alias
+                  example: consequatur
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: pariatur
+                  example: rerum
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: mollie34@example.org
+                  example: willms.earlene@example.org
               required:
                 - name
                 - name_short
@@ -26578,7 +25856,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: aut
+            value: id
   /api/v1/restaurant/restaurant:
     post:
       summary: ''
@@ -26598,23 +25876,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: ipsam
+                  example: non
                 name_short:
                   type: string
                   description: ''
-                  example: a
+                  example: amet
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: marion.towne@example.net
+                  example: muriel25@example.org
                 about:
                   type: string
                   description: ''
-                  example: tempora
+                  example: nihil
                 about_short:
                   type: string
                   description: ''
-                  example: doloremque
+                  example: sit
                 phone_no:
                   type: string
                   description: ''
@@ -26634,15 +25912,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: dicta
+                  example: aut
                 latitude:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: eum
                 longitude:
                   type: string
                   description: ''
-                  example: totam
+                  example: dignissimos
                 url:
                   type: string
                   description: ''
@@ -26650,7 +25928,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: quibusdam
                 map_location:
                   type: string
                   description: ''
@@ -26658,11 +25936,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 17
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: casper.muriel@example.net
+                  example: kendall79@example.net
               required:
                 - name
                 - name_short
@@ -26738,27 +26016,27 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: et
+                  example: est
                 name_short:
                   type: string
                   description: ''
-                  example: exercitationem
+                  example: aut
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lind.keon@example.net
+                  example: paucek.rusty@example.net
                 about:
                   type: string
                   description: ''
-                  example: nulla
+                  example: quia
                 about_short:
                   type: string
                   description: ''
-                  example: ab
+                  example: illum
                 phone_no:
                   type: string
                   description: ''
-                  example: pariatur
+                  example: quis
                 address:
                   type: string
                   description: ''
@@ -26766,11 +26044,11 @@ paths:
                 state:
                   type: string
                   description: ''
-                  example: qui
+                  example: et
                 postal_code:
                   type: string
                   description: ''
-                  example: soluta
+                  example: rerum
                 map_location:
                   type: string
                   description: ''
@@ -26786,15 +26064,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: rerum
+                  example: vel
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: cupiditate
+                  example: fuga
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: veum.irwin@example.org
+                  example: assunta56@example.com
               required:
                 - name
                 - name_short
@@ -26840,7 +26118,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: non
+            value: et
   '/api/v1/restaurant/restaurants/{restaurant_uuid}/reviews':
     get:
       summary: 'Get Restaurant Reviews'
@@ -26912,23 +26190,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: molestias
                 name_short:
                   type: string
                   description: ''
-                  example: et
+                  example: ducimus
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: dklocko@example.com
+                  example: jast.madisyn@example.net
                 about:
                   type: string
                   description: ''
-                  example: est
+                  example: quam
                 about_short:
                   type: string
                   description: ''
-                  example: quae
+                  example: reiciendis
                 phone_no:
                   type: string
                   description: ''
@@ -26948,15 +26226,15 @@ paths:
                 place_id:
                   type: string
                   description: ''
-                  example: in
+                  example: qui
                 latitude:
                   type: string
                   description: ''
-                  example: deleniti
+                  example: consequatur
                 longitude:
                   type: string
                   description: ''
-                  example: voluptates
+                  example: sint
                 url:
                   type: string
                   description: ''
@@ -26964,7 +26242,7 @@ paths:
                 logo:
                   type: string
                   description: ''
-                  example: cum
+                  example: fugiat
                 map_location:
                   type: string
                   description: ''
@@ -26972,11 +26250,11 @@ paths:
                 sitting_capacity:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 14
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: fidel.harvey@example.org
+                  example: griffin.wuckert@example.com
               required:
                 - name
                 - name_short
@@ -27031,39 +26309,39 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: est
+                  example: id
                 name_short:
                   type: string
                   description: ''
-                  example: eum
+                  example: deserunt
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: uritchie@example.org
+                  example: franz.rath@example.net
                 about:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: consequuntur
                 about_short:
                   type: string
                   description: ''
-                  example: commodi
+                  example: fugit
                 phone_no:
                   type: string
                   description: ''
-                  example: excepturi
+                  example: eius
                 address:
                   type: string
                   description: ''
-                  example: pariatur
+                  example: qui
                 state:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: praesentium
                 postal_code:
                   type: string
                   description: ''
-                  example: quia
+                  example: ea
                 map_location:
                   type: string
                   description: ''
@@ -27079,15 +26357,15 @@ paths:
                 latitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: nihil
+                  example: ut
                 longitude:
                   type: string
                   description: 'Must not be one of <code>null</code>.'
-                  example: ad
+                  example: nesciunt
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: schamberger.rosetta@example.net
+                  example: casimer07@example.com
               required:
                 - name
                 - name_short
@@ -27138,7 +26416,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the rider.'
-        example: sunt
+        example: saepe
         required: true
         schema:
           type: string
@@ -27280,15 +26558,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: aspernatur
+                  example: temporibus
                 seating_area_id:
                   type: string
                   description: ''
-                  example: ut
+                  example: est
                 seat_number:
                   type: string
                   description: ''
-                  example: quisquam
+                  example: est
               required:
                 - name
                 - seating_area_id
@@ -27322,15 +26600,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: et
                 seating_area_id:
                   type: string
                   description: ''
-                  example: nam
+                  example: beatae
                 seat_number:
                   type: string
                   description: ''
-                  example: debitis
+                  example: ea
               required:
                 - name
                 - seating_area_id
@@ -27358,7 +26636,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: ipsam
+            value: quia
       -
         in: path
         name: uuid
@@ -27372,7 +26650,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: f9bb7b5e-c233-31ab-8418-47d40f22fdfe
+            value: f103e3f7-e30b-3a39-8e5c-cc882f67e9cf
   '/api/v1/restaurant/restaurant/{restaurant_uuid}/payments':
     get:
       summary: ''
@@ -27448,7 +26726,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: omnis
+            value: aut
   '/api/v1/restaurant/restaurant/{restaurant_uuid}/reservations':
     get:
       summary: ''
@@ -27586,7 +26864,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: aut
+            value: quia
   '/api/v1/restaurant/{restaurant_uuid}/categories/add':
     post:
       summary: 'Add a new category for the specified restaurant'
@@ -27606,11 +26884,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: numquam
+                  example: sint
                 description:
                   type: string
                   description: ''
-                  example: rerum
+                  example: itaque
               required:
                 - title
                 - description
@@ -27643,11 +26921,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: provident
                 description:
                   type: string
                   description: ''
-                  example: iure
+                  example: fugiat
               required:
                 - title
                 - description
@@ -27674,7 +26952,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: reiciendis
+            value: nihil
       -
         in: path
         name: uuid
@@ -27688,7 +26966,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: 683b1234-e871-30a6-a7a5-9e5f09c637ef
+            value: 606a10d8-0d18-3e35-8ad5-c0aef8cab7dd
   /api/v1/restaurant/employees:
     get:
       summary: ''
@@ -27761,23 +27039,23 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: quis
                 last_name:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: modi
                 email:
                   type: string
                   description: ''
-                  example: architecto
+                  example: vel
                 phone_number:
                   type: string
                   description: ''
-                  example: nisi
+                  example: quo
                 avatar:
                   type: string
                   description: 'Must not be greater than 9000 characters.'
-                  example: fw
+                  example: tjswar
               required:
                 - first_name
                 - last_name
@@ -27812,27 +27090,27 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: repellat
+                  example: aut
                 last_name:
                   type: string
                   description: ''
-                  example: aut
+                  example: quia
                 email:
                   type: string
                   description: ''
-                  example: minus
+                  example: optio
                 phone_number:
                   type: string
                   description: ''
-                  example: et
+                  example: iste
                 avatar:
                   type: string
                   description: 'Must not be greater than 9000 characters.'
-                  example: fpsn
+                  example: xndzkhsxxogn
                 suspend:
                   type: string
                   description: 'Must be one of <code>1</code> or <code>2</code>.'
-                  example: '2'
+                  example: '1'
               required:
                 - first_name
                 - last_name
@@ -27889,15 +27167,15 @@ paths:
                 restaurantUuid:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: dolorum
                 delivery:
                   type: string
                   description: ''
-                  example: omnis
+                  example: enim
                 booking:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: est
               required:
                 - restaurantUuid
                 - delivery
@@ -27948,7 +27226,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the more info.'
-        example: repudiandae
+        example: alias
         required: true
         schema:
           type: string
@@ -27971,15 +27249,15 @@ paths:
                 rider_id:
                   type: integer
                   description: 'The id of the rider'
-                  example: 10
+                  example: 18
                 rating:
                   type: integer
                   description: 'The rating from 1 - 5'
-                  example: 13
+                  example: 14
                 review:
                   type: string
                   description: 'A review of the rider'
-                  example: voluptatibus
+                  example: sit
   /api/v1/rider/profile/create:
     post:
       summary: 'Create Rider Profile'
@@ -28007,11 +27285,11 @@ paths:
                 vehicle_type:
                   type: string
                   description: 'The vehicle type of the rider'
-                  example: velit
+                  example: eum
                 vehicle_license_plate:
                   type: string
                   description: ''
-                  example: maxime
+                  example: facere
                 profile_picture:
                   type: string
                   format: binary
@@ -28019,19 +27297,19 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: becker.hollie@example.com
+                  example: tomasa.hoppe@example.net
                 vehicle_licesne_plate:
                   type: sring
                   description: "The license plate of the rider's vehicle"
-                  example: aut
+                  example: et
                 city:
                   type: string
                   description: 'The city where the rider is located'
-                  example: dolor
+                  example: aut
                 state:
                   type: string
                   description: 'The state of where the rider is located'
-                  example: voluptas
+                  example: praesentium
                 postal_code:
                   type: string
                   description: 'The postal code of the rider'
@@ -28073,15 +27351,15 @@ paths:
                 paypal_email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: dmraz@example.org
+                  example: szulauf@example.org
                 vehicle_type:
                   type: string
                   description: 'The vehicle type of the rider'
-                  example: id
+                  example: qui
                 vehicle_licesne_plate:
                   type: sring
                   description: "The license plate of the rider's vehicle"
-                  example: eum
+                  example: voluptates
                 profile_picture:
                   type: string
                   format: binary
@@ -28089,15 +27367,15 @@ paths:
                 city:
                   type: string
                   description: 'The city where the rider is located'
-                  example: architecto
+                  example: qui
                 state:
                   type: string
                   description: 'The state of where the rider is located'
-                  example: et
+                  example: consequatur
                 postal_code:
                   type: string
                   description: 'The postal code of the rider'
-                  example: magnam
+                  example: voluptatibus
               required:
                 - paypal_email
   /api/v1/rider/profile:
@@ -28153,11 +27431,11 @@ paths:
                 order_id:
                   type: string
                   description: ''
-                  example: nulla
+                  example: eos
                 status:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: sit
               required:
                 - order_id
                 - status
@@ -28180,11 +27458,11 @@ paths:
                 longitude:
                   type: string
                   description: ''
-                  example: magnam
+                  example: cumque
                 latitude:
                   type: string
                   description: ''
-                  example: illo
+                  example: velit
               required:
                 - longitude
                 - latitude
@@ -28216,11 +27494,11 @@ paths:
                 longitude:
                   type: string
                   description: ''
-                  example: totam
+                  example: rerum
                 latitude:
                   type: string
                   description: ''
-                  example: quidem
+                  example: nihil
               required:
                 - longitude
                 - latitude

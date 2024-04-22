@@ -26,11 +26,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: mollitia
+        example: voluptatibus
         type: string
         custom: []
     cleanUrlParameters:
-      menuId: mollitia
+      menuId: voluptatibus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -120,11 +120,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 9
+        example: 15
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 9
+      menuId: 15
     fileParameters: []
     responses: []
     responseFields: []
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: non
+        example: minima
         type: string
         custom: []
     cleanUrlParameters:
-      id: non
+      id: minima
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -205,11 +205,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: sapiente
+        example: voluptate
         type: string
         custom: []
     cleanUrlParameters:
-      id: sapiente
+      id: voluptate
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

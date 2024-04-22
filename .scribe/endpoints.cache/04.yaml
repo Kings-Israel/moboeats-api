@@ -126,14 +126,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ex
+        example: quo
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: at
+        example: sed
         type: string
         custom: []
       status:
@@ -144,8 +144,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: ex
-      description: at
+      title: quo
+      description: sed
     fileParameters: []
     responses: []
     responseFields: []
@@ -177,11 +177,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: aliquam
+        example: omnis
         type: string
         custom: []
     cleanUrlParameters:
-      id: aliquam
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -671,11 +671,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: ea
+        example: quos
         type: string
         custom: []
     cleanUrlParameters:
-      id: ea
+      id: quos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -683,19 +683,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: provident
+        example: doloremque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: molestiae
+        example: quasi
         type: string
         custom: []
     cleanBodyParameters:
-      title: provident
-      description: molestiae
+      title: doloremque
+      description: quasi
     fileParameters: []
     responses: []
     responseFields: []
@@ -727,11 +727,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: doloremque
+        example: dignissimos
         type: string
         custom: []
     cleanUrlParameters:
-      id: doloremque
+      id: dignissimos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -814,14 +814,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: sint
+        example: incidunt
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: vitae
+        example: quia
         type: string
         custom: []
       status:
@@ -832,8 +832,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: sint
-      description: vitae
+      title: incidunt
+      description: quia
     fileParameters: []
     responses: []
     responseFields: []
@@ -865,11 +865,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: sapiente
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: sapiente
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -917,11 +917,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: dolorem
+        example: recusandae
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: recusandae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -929,19 +929,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: molestiae
+        example: nobis
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: aliquam
+        example: quisquam
         type: string
         custom: []
     cleanBodyParameters:
-      title: molestiae
-      description: aliquam
+      title: nobis
+      description: quisquam
     fileParameters: []
     responses: []
     responseFields: []
@@ -973,11 +973,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: praesentium
+        example: nesciunt
         type: string
         custom: []
     cleanUrlParameters:
-      id: praesentium
+      id: nesciunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1058,14 +1058,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: animi
+        example: error
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: repellat
+        example: facere
         type: string
         custom: []
       status:
@@ -1076,8 +1076,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: animi
-      description: repellat
+      title: error
+      description: facere
     fileParameters: []
     responses: []
     responseFields: []
@@ -1109,11 +1109,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: vero
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: vero
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1159,11 +1159,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: impedit
+        example: fugit
         type: string
         custom: []
     cleanUrlParameters:
-      id: impedit
+      id: fugit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1171,19 +1171,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: neque
+        example: sed
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: magnam
+        example: illum
         type: string
         custom: []
     cleanBodyParameters:
-      title: neque
-      description: magnam
+      title: sed
+      description: illum
     fileParameters: []
     responses: []
     responseFields: []
@@ -1215,11 +1215,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: possimus
+        example: molestiae
         type: string
         custom: []
     cleanUrlParameters:
-      id: possimus
+      id: molestiae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1259,14 +1259,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: sunt
+        example: iure
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: non
+        example: et
         type: string
         custom: []
       status:
@@ -1277,8 +1277,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: sunt
-      description: non
+      title: iure
+      description: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -1310,11 +1310,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: et
+        example: sequi
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: sequi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1322,19 +1322,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: voluptatem
+        example: quia
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: sunt
+        example: eum
         type: string
         custom: []
     cleanBodyParameters:
-      title: voluptatem
-      description: sunt
+      title: quia
+      description: eum
     fileParameters: []
     responses: []
     responseFields: []

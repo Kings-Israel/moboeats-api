@@ -53,7 +53,7 @@ class MenuController extends Controller
     ];
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the menus.
      *
      * @queryParam categories to fetch categories associated with Menu
      * @queryParam subCategories to fetch categories associated with Menu
@@ -95,9 +95,6 @@ class MenuController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreMenuRequest $request, $id)
     {
         $restaurant = Restaurant::where('uuid', $id)->first();
@@ -521,18 +518,29 @@ class MenuController extends Controller
         return $this->success('', 'Menu images updated successfully');
     }
 
+    /**
+     * Show Menu Details
+     * @urlParam uuid The uuid of the menu
+     */
     public function show(Menu $menu)
     {
-        if (auth()->user()->hasRole('restaurant')) {
-            $restaurant_ids = auth()->user()->restaurants->pluck('id');
-        } else {
-            $restaurant_ids = UserRestaurant::where('user_id', auth()->id())->first()->pluck('restaurant_id');
+        if (auth()->check()) {
+            if (auth()->user()->hasRole('restaurant')) {
+                $restaurant_ids = auth()->user()->restaurants->pluck('id');
+            } else {
+                $restaurant_ids = UserRestaurant::where('user_id', auth()->id())->first()->pluck('restaurant_id');
+            }
+
+            $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
+
+            return [
+                'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews', 'subCategories')),
+                'categories' => new FoodCommonCategoryCollection($categories),
+            ];
         }
 
-        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
         return [
             'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews', 'subCategories')),
-            'categories' => new FoodCommonCategoryCollection($categories),
         ];
     }
 

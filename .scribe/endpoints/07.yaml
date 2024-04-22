@@ -71,14 +71,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: reprehenderit
+        example: aut
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: osborne87@example.org
+        example: shanahan.merle@example.net
         type: string
         custom: []
       phoneNo:
@@ -124,8 +124,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: reprehenderit
-      email: osborne87@example.org
+      name: aut
+      email: shanahan.merle@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -219,56 +219,56 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: ebae6a52-f087-3875-bec4-681b21082180
+        example: 8bdf93f7-8c5a-35bb-b834-3a328ad0ab42
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: et
+        example: voluptatem
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: qdickinson@example.org
+        example: estelle92@example.com
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: rerum
+        example: dolor
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: eius
+        example: iste
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: impedit
+        example: quasi
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: enim
+        example: minus
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: quis
+        example: dolor
         type: string
         custom: []
       image:
@@ -279,14 +279,14 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: ebae6a52-f087-3875-bec4-681b21082180
-      name: et
-      email: qdickinson@example.org
-      phoneNo: rerum
-      address: eius
-      city: impedit
-      state: enim
-      mapLocation: quis
+      uuid: 8bdf93f7-8c5a-35bb-b834-3a328ad0ab42
+      name: voluptatem
+      email: estelle92@example.com
+      phoneNo: dolor
+      address: iste
+      city: quasi
+      state: minus
+      mapLocation: dolor
     fileParameters: []
     responses: []
     responseFields: []

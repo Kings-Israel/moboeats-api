@@ -78,12 +78,12 @@ endpoints:
         name: ID
         description: 'The ID of the Subcategory'
         required: false
-        example: enim
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
       foo_sub_category_uuid: b01545ac-aa5d-48bd-a1eb-04bfff75e0d3
-      ID: enim
+      ID: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -118,7 +118,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Display a listing of the menus.'
       description: ''
       authenticated: false
       custom: []
@@ -132,27 +132,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: molestias
+        example: impedit
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: amet
+        example: ut
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: consequatur
+        example: consectetur
         type: string
         custom: []
     cleanQueryParameters:
-      categories: molestias
-      subCategories: amet
-      restaurant: consequatur
+      categories: impedit
+      subCategories: ut
+      restaurant: consectetur
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -240,11 +240,11 @@ endpoints:
         name: ID
         description: 'The ID of the Subcategory'
         required: false
-        example: eum
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      ID: eum
+      ID: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -298,12 +298,12 @@ endpoints:
         name: id
         description: 'The ID of the restaurant'
         required: false
-        example: hic
+        example: modi
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: hic
+      id: modi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -338,7 +338,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Display a listing of the menus.'
       description: ''
       authenticated: false
       custom: []
@@ -352,27 +352,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: sit
+        example: dignissimos
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: sint
+        example: ut
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: sunt
+        example: sed
         type: string
         custom: []
     cleanQueryParameters:
-      categories: sit
-      subCategories: sint
-      restaurant: sunt
+      categories: dignissimos
+      subCategories: ut
+      restaurant: sed
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -405,7 +405,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -421,21 +421,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: nemo
+        example: tenetur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quisquam
+        example: minima
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 8
+        example: 18
         type: integer
         custom: []
       categoryIds:
@@ -443,15 +443,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 20
+          - 3
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: nemo
-      description: quisquam
-      status: 8
+      title: tenetur
+      description: minima
+      status: 18
       categoryIds:
-        - 20
+        - 3
     fileParameters: []
     responses: []
     responseFields: []
@@ -471,7 +471,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Show Menu Details'
       description: ''
       authenticated: false
       custom: []
@@ -483,11 +483,19 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: asperiores
+        example: laborum
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The uuid of the menu'
+        required: false
+        example: 32b038cf-669a-3871-95ab-d868bafd43c9
         type: string
         custom: []
     cleanUrlParameters:
-      id: asperiores
+      id: laborum
+      uuid: 32b038cf-669a-3871-95ab-d868bafd43c9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -495,478 +503,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 500
-        content: |-
-          {
-              "message": "Call to a member function hasRole() on null",
-              "exception": "Error",
-              "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\app\\Http\\Controllers\\Api\\V1\\MenuController.php",
-              "line": 526,
-              "trace": [
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
-                      "line": 54,
-                      "function": "show",
-                      "class": "App\\Http\\Controllers\\Api\\V1\\MenuController",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
-                      "line": 43,
-                      "function": "callAction",
-                      "class": "Illuminate\\Routing\\Controller",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-                      "line": 259,
-                      "function": "dispatch",
-                      "class": "Illuminate\\Routing\\ControllerDispatcher",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
-                      "line": 205,
-                      "function": "runController",
-                      "class": "Illuminate\\Routing\\Route",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 798,
-                      "function": "run",
-                      "class": "Illuminate\\Routing\\Route",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
-                      "function": "Illuminate\\Routing\\{closure}",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
-                      "line": 50,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 152,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 118,
-                      "function": "handleRequest",
-                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 80,
-                      "function": "handleRequestUsingNamedLimiter",
-                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php",
-                      "line": 25,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
-                      "function": "Laravel\\Sanctum\\Http\\Middleware\\{closure}",
-                      "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php",
-                      "line": 24,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 797,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 776,
-                      "function": "runRouteWithinStack",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 740,
-                      "function": "runRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 729,
-                      "function": "dispatchToRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-                      "line": 200,
-                      "function": "dispatch",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
-                      "function": "Illuminate\\Foundation\\Http\\{closure}",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php",
-                      "line": 31,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php",
-                      "line": 40,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
-                      "line": 27,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
-                      "line": 86,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php",
-                      "line": 62,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\HandleCors",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php",
-                      "line": 39,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\TrustProxies",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-                      "line": 175,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
-                      "line": 144,
-                      "function": "sendRequestThroughRouter",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 299,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 287,
-                      "function": "callLaravelOrLumenRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 92,
-                      "function": "makeApiCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 45,
-                      "function": "makeResponseCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
-                      "line": 35,
-                      "function": "makeResponseCallIfConditionsPass",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
-                      "line": 209,
-                      "function": "__invoke",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
-                      "line": 163,
-                      "function": "iterateThroughStrategies",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
-                      "line": 95,
-                      "function": "fetchResponses",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
-                      "line": 124,
-                      "function": "processRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
-                      "line": 71,
-                      "function": "extractEndpointsInfoFromLaravelApp",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
-                      "line": 49,
-                      "function": "extractEndpointsInfoAndWriteToDisk",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
-                      "line": 51,
-                      "function": "get",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-                      "line": 36,
-                      "function": "handle",
-                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
-                      "line": 41,
-                      "function": "Illuminate\\Container\\{closure}",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-                      "line": 93,
-                      "function": "unwrapIfClosure",
-                      "class": "Illuminate\\Container\\Util",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
-                      "line": 35,
-                      "function": "callBoundMethod",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
-                      "line": 662,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 194,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\Container",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Command\\Command.php",
-                      "line": 312,
-                      "function": "execute",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 163,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Command\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 1040,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 314,
-                      "function": "doRunCommand",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 168,
-                      "function": "doRun",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-                      "line": 200,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\artisan",
-                      "line": 35,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Console\\Kernel",
-                      "type": "->"
-                  }
-              ]
-          }
+        status: 200
+        content: '{"menu":{"id":null,"uuid":null,"attributes":{"title":null,"description":null,"createdBy":null,"updatedBy":null,"status":"","preparation_time":null,"average_rating":0},"relationships":{"categories":[],"subCategories":[],"images":[],"menuPrices":[],"restaurant":null,"discount":null,"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1005,11 +543,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: id
+        example: nemo
         type: string
         custom: []
     cleanUrlParameters:
-      id: id
+      id: nemo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1017,21 +555,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: est
+        example: cum
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: molestias
+        example: voluptates
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 17
+        example: 10
         type: integer
         custom: []
       categoryIds:
@@ -1039,15 +577,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 6
+          - 11
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: est
-      description: molestias
-      status: 17
+      title: cum
+      description: voluptates
+      status: 10
       categoryIds:
-        - 6
+        - 11
     fileParameters: []
     responses: []
     responseFields: []
@@ -1083,35 +621,35 @@ endpoints:
         name: menu_id
         description: 'The id of the menu item'
         required: true
-        example: 13
+        example: 10
         type: integer
         custom: []
       menu_rating:
         name: menu_rating
         description: 'The rating of the menu from 1 - 5'
         required: true
-        example: 1
+        example: 4
         type: integer
         custom: []
       menu_review:
         name: menu_review
         description: 'A review of the menu'
         required: false
-        example: id
+        example: qui
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 19
+        example: 13
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_id: 13
-      menu_rating: 1
-      menu_review: id
-      order_id: 19
+      menu_id: 10
+      menu_rating: 4
+      menu_review: qui
+      order_id: 13
     fileParameters: []
     responses: []
     responseFields: []
@@ -1131,7 +669,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Display a listing of the menus.'
       description: ''
       authenticated: false
       custom: []
@@ -1145,27 +683,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: et
+        example: sequi
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: magni
+        example: cum
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: beatae
+        example: maiores
         type: string
         custom: []
     cleanQueryParameters:
-      categories: et
-      subCategories: magni
-      restaurant: beatae
+      categories: sequi
+      subCategories: cum
+      restaurant: maiores
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -1196,7 +734,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -1212,21 +750,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: sint
+        example: occaecati
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: nostrum
+        example: necessitatibus
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 2
+        example: 19
         type: integer
         custom: []
       categoryIds:
@@ -1234,15 +772,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 4
+          - 9
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: sint
-      description: nostrum
-      status: 2
+      title: occaecati
+      description: necessitatibus
+      status: 19
       categoryIds:
-        - 4
+        - 9
     fileParameters: []
     responses: []
     responseFields: []
@@ -1262,7 +800,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Show Menu Details'
       description: ''
       authenticated: false
       custom: []
@@ -1272,13 +810,13 @@ endpoints:
     urlParameters:
       uuid:
         name: uuid
-        description: ''
-        required: true
-        example: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+        description: 'The uuid of the menu'
+        required: false
+        example: 2bd6802e-43af-3378-b15f-8e97dba841d1
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: e86aa007-66ba-4a51-88c9-53f0c21f0e3b
+      uuid: 2bd6802e-43af-3378-b15f-8e97dba841d1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1336,21 +874,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: nostrum
+        example: natus
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: maxime
+        example: eius
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 18
+        example: 19
         type: integer
         custom: []
       categoryIds:
@@ -1358,15 +896,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 16
+          - 15
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: nostrum
-      description: maxime
-      status: 18
+      title: natus
+      description: eius
+      status: 19
       categoryIds:
-        - 16
+        - 15
     fileParameters: []
     responses: []
     responseFields: []
@@ -1566,7 +1104,7 @@ endpoints:
         Menu API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -1590,21 +1128,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: sapiente
+        example: repellendus
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: commodi
+        example: fugiat
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 14
+        example: 3
         type: integer
         custom: []
       categoryIds:
@@ -1612,15 +1150,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 11
+          - 5
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: sapiente
-      description: commodi
-      status: 14
+      title: repellendus
+      description: fugiat
+      status: 3
       categoryIds:
-        - 11
+        - 5
     fileParameters: []
     responses: []
     responseFields: []
@@ -1664,21 +1202,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: voluptas
+        example: omnis
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: dolorem
+        example: et
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 1
         type: integer
         custom: []
       categoryIds:
@@ -1686,15 +1224,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 18
+          - 16
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: voluptas
-      description: dolorem
-      status: 19
+      title: omnis
+      description: et
+      status: 1
       categoryIds:
-        - 18
+        - 16
     fileParameters: []
     responses: []
     responseFields: []
@@ -1852,43 +1390,43 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: qui
+        example: sit
         type: string
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: voluptatem
+        example: consequatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: voluptatem
+        example: perferendis
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 20
         type: integer
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
         required: true
-        example: sunt
+        example: ullam
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: qui
-      title: voluptatem
-      description: voluptatem
-      status: 19
-      categoryIds: sunt
+      restaurant_ids: sit
+      title: consequatur
+      description: perferendis
+      status: 20
+      categoryIds: ullam
     fileParameters: []
     responses: []
     responseFields: []
@@ -1940,21 +1478,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: nemo
+        example: provident
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: laudantium
+        example: cum
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 18
+        example: 1
         type: integer
         custom: []
       categoryIds:
@@ -1962,17 +1500,17 @@ endpoints:
         description: ''
         required: false
         example:
-          - 12
+          - 15
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
       restaurant_ids:
         - 9
-      title: nemo
-      description: laudantium
-      status: 18
+      title: provident
+      description: cum
+      status: 1
       categoryIds:
-        - 12
+        - 15
     fileParameters: []
     responses: []
     responseFields: []

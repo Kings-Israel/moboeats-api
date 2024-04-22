@@ -58,11 +58,11 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 15
+        example: 9
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 15
+      order_id: 9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -107,19 +107,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 9
+        example: 18
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 13
+        example: 8
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 9
-      amount: 13
+      order_id: 18
+      amount: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -164,19 +164,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: molestiae
+        example: aut
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: magni
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: molestiae
-      order_id: magni
+      user_id: aut
+      order_id: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
