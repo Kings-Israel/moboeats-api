@@ -731,7 +731,7 @@ class MenuController extends Controller
 
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
-                return new FooSubCategoryResource(
+                return FooSubCategoryResource::collection(
                     $foo_sub_category->load(['menus' => function ($query) {
                         $query->where('status', 2)
                             ->whereHas('menuPrices', function ($query) {
