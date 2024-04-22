@@ -105,6 +105,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
 /**Basically a customer who will be ordering food/drinks */
 Route::group(['prefix' => 'v1/orderer'], function() {
     Route::get('/groceries', [MenuController::class, 'groceries']);
+    Route::get('/groceries/categories', [MenuController::class, 'grocerySubcategories']);
 
     Route::get('/orderer-restaurants/rated', [RestaurantController::class, 'rating']);
     Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);

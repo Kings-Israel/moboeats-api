@@ -716,12 +716,19 @@ class MenuController extends Controller
     }
 
     /**
-     * Get Groceries Subcategory Details
+     * Get Groceries Categories Details
      *
      * @urlParam ID The ID of the Subcategory
      */
     public function grocerySubcategories(FooSubCategory $foo_sub_category)
     {
+        $grocery = FoodCommonCategory::where('title', 'grocery')->orWhere('title', 'groceries')->orWhere('title', 'Groceries')->first();
+
+        $foo_sub_category = FooSubCategory::whereHas('foodCategories', function ($query) use ($grocery) {
+            $query->where('category_id', $grocery->id);
+        })
+        ->get();
+
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
                 return new FooSubCategoryResource(
@@ -786,7 +793,7 @@ class MenuController extends Controller
                 ]);
             }
         } else {
-            return new FooSubCategoryResource(
+            return FooSubCategoryResource::collection(
                 $foo_sub_category->load(['menus' => function ($query) {
                     $query->where('status', 2)
                         ->whereHas('menuPrices', function ($query) {

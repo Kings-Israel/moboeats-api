@@ -82,7 +82,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":1,"uuid":"552b8c9b-13fa-4e71-a2be-60f8cc2d3fab","title":"Menu Sections","description":"such as appetizers, entrees, sides, desserts, and beverages.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":2,"uuid":"3aded658-c624-4be1-9f91-85470140cba4","title":"Meal Type","description":"such as breakfast, lunch, dinner, or brunch.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":3,"uuid":"94e83f01-c611-4621-bf85-ef4e02dbc116","title":"Cuisine","description":"such as Italian, Mexican, or Chinese, may categorize their menu items by cuisine.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":4,"uuid":"2e166da1-4eda-4d10-86eb-5d87ce5ec583","title":"Dietary Restrictions","description":"such as vegetarian, vegan, gluten-free, or dairy-free","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[{"id":1,"uuid":"e86aa007-66ba-4a51-88c9-53f0c21f0e3b","attributes":{"title":"Chicken wings","description":"chicken wings","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"1","preparation_time":2,"average_rating":0},"relationships":{"menuPrices":[{"id":1,"uuid":"41bc46ea-b95f-448f-8d1c-18f20f91ee7d","attributes":{"price":5,"description":"standard","status":"2"},"relationships":{"menu":{"id":1,"uuid":"e86aa007-66ba-4a51-88c9-53f0c21f0e3b","title":"Chicken wings"}}}],"restaurant":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4,"is_open":true},"relationships":{"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}},"orderItems":{"4":[{"id":1,"uuid":"9a702219-4aaf-488c-b0be-01a35c453b40","order_id":4,"menu_id":1,"quantity":1,"subtotal":"500.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-02-25T10:43:26.000000Z","updated_at":"2024-02-25T10:43:26.000000Z","order":{"id":4,"uuid":"196650f8-0165-4a5b-aa49-cba63700ff42","user_id":2,"restaurant_id":1,"total_amount":"562.14","delivery":true,"status":"In Progress","created_by":"Test User","updated_by":null,"created_at":"2024-02-25T10:43:26.000000Z","updated_at":"2024-03-10T16:16:13.000000Z","delivery_fee":"62.14","delivery_address":"Deveint Ltd, Westlands Office park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.248743,"delivery_location_lng":36.558948,"service_charge":25,"discount":0}}],"6":[{"id":3,"uuid":"2e874d67-9fac-4aa2-8beb-1c50dd9d890f","order_id":6,"menu_id":1,"quantity":1,"subtotal":"5.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-03-17T06:45:26.000000Z","updated_at":"2024-03-17T06:45:26.000000Z","order":{"id":6,"uuid":"5e9b7a83-b3e2-414f-b3ca-f2a12c632e88","user_id":2,"restaurant_id":1,"total_amount":"102.14","delivery":true,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2024-03-17T06:45:26.000000Z","updated_at":"2024-03-17T06:45:26.000000Z","delivery_fee":"62.14","delivery_address":"Deveint Ltd, Westlands Office park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.237637,"delivery_location_lng":36.458948,"service_charge":2,"discount":12}}]},"orders_count":0,"total_orders_value":0,"reviews":[]}}]},{"id":6,"uuid":"3e78b049-79cd-4b09-b323-a9ad70be5802","title":"Seasonal or Promotional","description":"such as holiday specials or limited-time menu items","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[{"id":2,"uuid":"5418d780-fb80-4818-ae4f-548c86eeb9d3","attributes":{"title":"Delicious Chicken wings","description":"chicken wings2","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2","preparation_time":0,"average_rating":5},"relationships":{"menuPrices":[{"id":2,"uuid":"3fa329d5-c060-42db-9aa5-23e50ee73164","attributes":{"price":35,"description":"standard","status":"2"},"relationships":{"menu":{"id":2,"uuid":"5418d780-fb80-4818-ae4f-548c86eeb9d3","title":"Delicious Chicken wings"}}}],"restaurant":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4,"is_open":true},"relationships":{"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}},"orderItems":{"5":[{"id":2,"uuid":"87bf0b9b-d49e-4cef-8728-c2e61301ef8f","order_id":5,"menu_id":2,"quantity":1,"subtotal":"35.00","status":1,"created_by":"Referred Test","updated_by":null,"created_at":"2024-03-06T16:13:28.000000Z","updated_at":"2024-03-06T16:13:28.000000Z","order":{"id":5,"uuid":"adf184c8-30f0-4f83-b7e4-d41372fb1191","user_id":15,"restaurant_id":1,"total_amount":"97.14","delivery":true,"status":"Pending","created_by":"Referred Test","updated_by":null,"created_at":"2024-03-06T16:13:28.000000Z","updated_at":"2024-03-06T16:13:28.000000Z","delivery_fee":"62.14","delivery_address":"Deveint Ltd, Westlands Office park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.247637,"delivery_location_lng":36.468948,"service_charge":2,"discount":0}}],"6":[{"id":4,"uuid":"a245c277-c365-4054-a38e-a6802bcb5943","order_id":6,"menu_id":2,"quantity":1,"subtotal":"35.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-03-17T06:45:26.000000Z","updated_at":"2024-03-17T06:45:26.000000Z","order":{"id":6,"uuid":"5e9b7a83-b3e2-414f-b3ca-f2a12c632e88","user_id":2,"restaurant_id":1,"total_amount":"102.14","delivery":true,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2024-03-17T06:45:26.000000Z","updated_at":"2024-03-17T06:45:26.000000Z","delivery_fee":"62.14","delivery_address":"Deveint Ltd, Westlands Office park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.237637,"delivery_location_lng":36.458948,"service_charge":2,"discount":12}}],"7":[{"id":5,"uuid":"a51489ea-99a2-4d68-8900-e06a56203e2d","order_id":7,"menu_id":2,"quantity":1,"subtotal":"35.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-03-24T17:11:41.000000Z","updated_at":"2024-03-24T17:11:41.000000Z","order":{"id":7,"uuid":"d2a04f5e-e1cc-4db0-acba-1af3977aaf3c","user_id":2,"restaurant_id":1,"total_amount":"97.14","delivery":true,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2024-03-24T17:11:41.000000Z","updated_at":"2024-03-24T17:11:42.000000Z","delivery_fee":"62.14","delivery_address":"Deveint Ltd, Westlands Office park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.237637,"delivery_location_lng":36.458948,"service_charge":2,"discount":0}}],"8":[{"id":6,"uuid":"c4a6769e-941a-442b-83b5-aa535cc0feed","order_id":8,"menu_id":2,"quantity":1,"subtotal":"35.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-03-25T14:40:30.000000Z","updated_at":"2024-03-25T14:40:30.000000Z","order":{"id":8,"uuid":"56e0c6a9-b0b5-41ba-b15c-792ebe628599","user_id":2,"restaurant_id":1,"total_amount":"97.14","delivery":true,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2024-03-25T14:40:30.000000Z","updated_at":"2024-03-25T14:40:30.000000Z","delivery_fee":"62.14","delivery_address":"Westlands Office Park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.237637,"delivery_location_lng":36.458948,"service_charge":2,"discount":0}}]},"orders_count":0,"total_orders_value":0,"reviews":[{"id":3,"user_id":2,"order_id":null,"reviewable_id":2,"reviewable_type":"App\\Models\\Menu","rating":5,"review":null,"created_at":"2024-02-27T18:29:26.000000Z","updated_at":"2024-02-27T18:29:26.000000Z"}]}}]},{"id":7,"uuid":"0d256427-4432-40d9-8dc9-3f7ea9ec8d82","title":"Groceries","description":"All Groceries","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/storage\/category\/images\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png","subCategories":[{"id":1,"uuid":"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3","title":"Dairy","image":"http:\/\/moboeats.test\/storage\/category\/subcategory\/omAUQzbQfLXF8IUvstHLtzysovleYWbiO6OZJuAy.png","description":"dairy description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"}],"menus":[{"id":14,"uuid":"b37bad6c-d29f-449a-83c2-e73adaa6b8ea","attributes":{"title":"Onions","description":"Tasty Onions","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2","preparation_time":7,"average_rating":0},"relationships":{"menuPrices":[{"id":10,"uuid":"a2687d02-ce69-4071-88cf-5ea46f1da638","attributes":{"price":15,"description":"Description","status":"2"},"relationships":{"menu":{"id":14,"uuid":"b37bad6c-d29f-449a-83c2-e73adaa6b8ea","title":"Onions"}}}],"restaurant":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4,"is_open":true},"relationships":{"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}},{"id":3,"uuid":"926fa3ed-3251-44d1-bcc1-3ff12caa480b","attributes":{"title":"Chicken wings4","description":"chicken wings4","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2","preparation_time":0,"average_rating":0},"relationships":{"menuPrices":[{"id":3,"uuid":"a6643f0b-88d8-40f6-a1fb-e0f52ee01d6d","attributes":{"price":15,"description":"standard","status":"2"},"relationships":{"menu":{"id":3,"uuid":"926fa3ed-3251-44d1-bcc1-3ff12caa480b","title":"Chicken wings4"}}}],"restaurant":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4,"is_open":true},"relationships":{"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":5,"menus_count":9,"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}]}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/categories?page=1","last":"http:\/\/moboeats.test\/api\/v1\/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/categories","per_page":15,"to":6,"total":6}}'
+        content: '{"data":[{"id":1,"uuid":"552b8c9b-13fa-4e71-a2be-60f8cc2d3fab","title":"Menu Sections","description":"such as appetizers, entrees, sides, desserts, and beverages.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":2,"uuid":"3aded658-c624-4be1-9f91-85470140cba4","title":"Meal Type","description":"such as breakfast, lunch, dinner, or brunch.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":3,"uuid":"94e83f01-c611-4621-bf85-ef4e02dbc116","title":"Cuisine","description":"such as Italian, Mexican, or Chinese, may categorize their menu items by cuisine.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":4,"uuid":"2e166da1-4eda-4d10-86eb-5d87ce5ec583","title":"Dietary Restrictions","description":"such as vegetarian, vegan, gluten-free, or dairy-free","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":6,"uuid":"3e78b049-79cd-4b09-b323-a9ad70be5802","title":"Seasonal or Promotional","description":"such as holiday specials or limited-time menu items","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":7,"uuid":"0d256427-4432-40d9-8dc9-3f7ea9ec8d82","title":"Groceries","description":"All Groceries","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/storage\/category\/images\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png","subCategories":[{"id":1,"uuid":"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3","title":"Dairy","image":"http:\/\/moboeats.test\/storage\/category\/subcategory\/omAUQzbQfLXF8IUvstHLtzysovleYWbiO6OZJuAy.png","description":"dairy description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"}],"menus":[]}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/categories?page=1","last":"http:\/\/moboeats.test\/api\/v1\/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/categories","per_page":15,"to":6,"total":6}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -124,14 +124,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: minus
+        example: ex
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: qui
+        example: at
         type: string
         custom: []
       status:
@@ -142,8 +142,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: minus
-      description: qui
+      title: ex
+      description: at
     fileParameters: []
     responses: []
     responseFields: []
@@ -175,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: eum
+        example: aliquam
         type: string
         custom: []
     cleanUrlParameters:
-      id: eum
+      id: aliquam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -669,11 +669,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: recusandae
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      id: recusandae
+      id: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -681,19 +681,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: officia
+        example: provident
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: iste
+        example: molestiae
         type: string
         custom: []
     cleanBodyParameters:
-      title: officia
-      description: iste
+      title: provident
+      description: molestiae
     fileParameters: []
     responses: []
     responseFields: []
@@ -725,11 +725,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: sit
+        example: doloremque
         type: string
         custom: []
     cleanUrlParameters:
-      id: sit
+      id: doloremque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -769,11 +769,13 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        status: 200
+        content: '{"data":[{"id":1,"uuid":"552b8c9b-13fa-4e71-a2be-60f8cc2d3fab","title":"Menu Sections","description":"such as appetizers, entrees, sides, desserts, and beverages.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":2,"uuid":"3aded658-c624-4be1-9f91-85470140cba4","title":"Meal Type","description":"such as breakfast, lunch, dinner, or brunch.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":3,"uuid":"94e83f01-c611-4621-bf85-ef4e02dbc116","title":"Cuisine","description":"such as Italian, Mexican, or Chinese, may categorize their menu items by cuisine.","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":4,"uuid":"2e166da1-4eda-4d10-86eb-5d87ce5ec583","title":"Dietary Restrictions","description":"such as vegetarian, vegan, gluten-free, or dairy-free","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":6,"uuid":"3e78b049-79cd-4b09-b323-a9ad70be5802","title":"Seasonal or Promotional","description":"such as holiday specials or limited-time menu items","status":2,"createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]},{"id":7,"uuid":"0d256427-4432-40d9-8dc9-3f7ea9ec8d82","title":"Groceries","description":"All Groceries","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/moboeats.test\/storage\/category\/images\/BcPvTJnO6wjhOVStaN6SgEf3i3uKjEauj970APZA.png","subCategories":[{"id":1,"uuid":"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3","title":"Dairy","image":"http:\/\/moboeats.test\/storage\/category\/subcategory\/omAUQzbQfLXF8IUvstHLtzysovleYWbiO6OZJuAy.png","description":"dairy description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"}],"menus":[]}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-categories","per_page":15,"to":6,"total":6}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '278'
           vary: Origin
         description: null
         custom: []
@@ -810,14 +812,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: assumenda
+        example: sint
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: maiores
+        example: vitae
         type: string
         custom: []
       status:
@@ -828,8 +830,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: assumenda
-      description: maiores
+      title: sint
+      description: vitae
     fileParameters: []
     responses: []
     responseFields: []
@@ -850,6 +852,114 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Show category details'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orderer food category.'
+        required: true
+        example: sapiente
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: sapiente
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":null,"uuid":null,"title":null,"description":null,"status":null,"createdBy":null,"updatedBy":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png","subCategories":[],"menus":[]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '277'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/orderer/orderer-food-categories/{id}'
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orderer food category.'
+        required: true
+        example: dolorem
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: dolorem
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: molestiae
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: aliquam
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: molestiae
+      description: aliquam
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orderer-food-categories/{id}'
+    metadata:
+      groupName: 'Food Categories Management'
+      groupDescription: |-
+
+        Food Category API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
       description: ''
       authenticated: false
       custom: []
@@ -871,112 +981,6 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/orderer-food-categories/{id}'
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer food category.'
-        required: true
-        example: quibusdam
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: quibusdam
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: et
-        type: string
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: dolores
-        type: string
-        custom: []
-    cleanBodyParameters:
-      title: et
-      description: dolores
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/orderer-food-categories/{id}'
-    metadata:
-      groupName: 'Food Categories Management'
-      groupDescription: |-
-
-        Food Category API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer food category.'
-        required: true
-        example: in
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: in
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
     responses: []
     responseFields: []
     auth: []
@@ -1052,14 +1056,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: soluta
+        example: animi
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: tempora
+        example: repellat
         type: string
         custom: []
       status:
@@ -1070,8 +1074,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: soluta
-      description: tempora
+      title: animi
+      description: repellat
     fileParameters: []
     responses: []
     responseFields: []
@@ -1103,11 +1107,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: quidem
+        example: vero
         type: string
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: vero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1153,11 +1157,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: vitae
+        example: impedit
         type: string
         custom: []
     cleanUrlParameters:
-      id: vitae
+      id: impedit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1165,19 +1169,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: enim
+        example: neque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: et
+        example: magnam
         type: string
         custom: []
     cleanBodyParameters:
-      title: enim
-      description: et
+      title: neque
+      description: magnam
     fileParameters: []
     responses: []
     responseFields: []
@@ -1209,11 +1213,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: dolorem
+        example: possimus
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: possimus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1253,14 +1257,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: amet
+        example: sunt
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: est
+        example: non
         type: string
         custom: []
       status:
@@ -1271,8 +1275,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: amet
-      description: est
+      title: sunt
+      description: non
     fileParameters: []
     responses: []
     responseFields: []
@@ -1304,11 +1308,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: inventore
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: inventore
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1316,19 +1320,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ut
+        example: voluptatem
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quia
+        example: sunt
         type: string
         custom: []
     cleanBodyParameters:
-      title: ut
-      description: quia
+      title: voluptatem
+      description: sunt
     fileParameters: []
     responses: []
     responseFields: []

@@ -30,27 +30,27 @@ endpoints:
         name: email
         description: 'The email of the user'
         required: true
-        example: christian.leffler@example.org
+        example: chet.wiza@example.org
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: 'cg"S__c=NFvUG`~r'
+        example: e9x(j(plrHpjGicwu=
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user'
         required: true
-        example: similique
+        example: aut
         type: string
         custom: []
     cleanBodyParameters:
-      email: christian.leffler@example.org
-      password: 'cg"S__c=NFvUG`~r'
-      userType: similique
+      email: chet.wiza@example.org
+      password: e9x(j(plrHpjGicwu=
+      userType: aut
     fileParameters: []
     responses: []
     responseFields: []
@@ -86,28 +86,28 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: dafzogtsf
+        example: ofwx
         type: string
         custom: []
       email:
         name: email
         description: 'The email of the user'
         required: true
-        example: rryan@example.net
+        example: rowe.ernestine@example.net
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: 85M0/1HZ
+        example: 'v{tk(MY6f'
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user'
         required: true
-        example: sint
+        example: voluptatum
         type: string
         custom: []
       otp:
@@ -128,15 +128,15 @@ endpoints:
         name: phone
         description: 'The type of user'
         required: true
-        example: vitae
+        example: aut
         type: string
         custom: []
     cleanBodyParameters:
-      name: dafzogtsf
-      email: rryan@example.net
-      password: 85M0/1HZ
-      userType: sint
-      phone: vitae
+      name: ofwx
+      email: rowe.ernestine@example.net
+      password: 'v{tk(MY6f'
+      userType: voluptatum
+      phone: aut
     fileParameters: []
     responses: []
     responseFields: []
@@ -172,19 +172,19 @@ endpoints:
         name: email
         description: 'email of the user'
         required: false
-        example: carson75@example.com
+        example: arolfson@example.org
         type: The
         custom: []
       phone_number:
         name: phone_number
         description: 'phone number of the user'
         required: false
-        example: ut
+        example: est
         type: The
         custom: []
     cleanBodyParameters:
-      email: carson75@example.com
-      phone_number: ut
+      email: arolfson@example.org
+      phone_number: est
     fileParameters: []
     responses: []
     responseFields: []
@@ -220,27 +220,27 @@ endpoints:
         name: code
         description: 'Verification OTP code'
         required: false
-        example: laboriosam
+        example: velit
         type: The
         custom: []
       password:
         name: password
         description: 'new password to be set'
         required: false
-        example: 'nDG[\&^sU|l''%OxB6'
+        example: '~p$OF)N>R<kV\{=6V3'
         type: The
         custom: []
       password_confirmation:
         name: password_confirmation
         description: 'new password confirmation'
         required: false
-        example: illum
+        example: omnis
         type: The
         custom: []
     cleanBodyParameters:
-      code: laboriosam
-      password: 'nDG[\&^sU|l''%OxB6'
-      password_confirmation: illum
+      code: velit
+      password: '~p$OF)N>R<kV\{=6V3'
+      password_confirmation: omnis
     fileParameters: []
     responses: []
     responseFields: []
@@ -276,11 +276,11 @@ endpoints:
         name: phone_number
         description: 'The phone number of the user. Example 44374673827'
         required: true
-        example: dolores
+        example: qui
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: dolores
+      phone_number: qui
     fileParameters: []
     responses: []
     responseFields: []
@@ -316,19 +316,19 @@ endpoints:
         name: code
         description: 'The phone number of the user'
         required: true
-        example: dolores
+        example: possimus
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user logging in'
         required: true
-        example: nihil
+        example: voluptatem
         type: string
         custom: []
     cleanBodyParameters:
-      code: dolores
-      userType: nihil
+      code: possimus
+      userType: voluptatem
     fileParameters: []
     responses: []
     responseFields: []

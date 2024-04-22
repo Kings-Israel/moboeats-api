@@ -108,27 +108,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: rider
+        example: customer
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: eos
+        example: quibusdam
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: voluptatem
+        example: quos
         type: string
         custom: []
     cleanBodyParameters:
-      section: rider
-      question: eos
-      answer: voluptatem
+      section: customer
+      question: quibusdam
+      answer: quos
     fileParameters: []
     responses: []
     responseFields: []
@@ -171,27 +171,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: rider
+        example: customer
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: voluptatibus
+        example: dolore
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: id
+        example: eveniet
         type: string
         custom: []
     cleanBodyParameters:
-      section: rider
-      question: voluptatibus
-      answer: id
+      section: customer
+      question: dolore
+      answer: eveniet
     fileParameters: []
     responses: []
     responseFields: []
@@ -339,11 +339,11 @@ endpoints:
         name: notification
         description: 'The notification.'
         required: true
-        example: asperiores
+        example: accusantium
         type: string
         custom: []
     cleanUrlParameters:
-      notification: asperiores
+      notification: accusantium
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -397,6 +397,523 @@ endpoints:
           content-type: application/json
           vary: Origin
         description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/conversations
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Get all user's conversations"
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/conversations/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the messages in a conversation.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The Id of the conversation'
+        required: false
+        example: porro
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: porro
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: 'The messages that are in the conversation'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/message/send
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Send a message'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      receiver_id:
+        name: receiver_id
+        description: "The receiver's id"
+        required: true
+        example: 13
+        type: integer
+        custom: []
+      message:
+        name: message
+        description: 'The message to send'
+        required: true
+        example: quo
+        type: string
+        custom: []
+    cleanBodyParameters:
+      receiver_id: 13
+      message: quo
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/conversation/{id}/reply'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reply to a message.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the conversation'
+        required: false
+        example: nam
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: nam
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      message:
+        name: message
+        description: ''
+        required: true
+        example: sit
+        type: string
+        custom: []
+    cleanBodyParameters:
+      message: sit
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      message:
+        name: message
+        description: 'Whether the message was sent or not'
+        required: false
+        example: null
+        type: ''
+        custom: []
+      data:
+        name: data
+        description: 'The message that was sent'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/conversations/{id}/read'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark a conversation as read'
+      description: 'This marks all the messages in a conversation as read'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The id of the conversation'
+        required: false
+        example: itaque
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: itaque
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      message:
+        name: message
+        description: 'Whether the action was successfull'
+        required: false
+        example: null
+        type: ''
+        custom: []
+      data:
+        name: data
+        description: 'The conversation'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/message/{id}/read'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark a message as read'
+      description: 'Marks a specific message as read'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The id of the conversation'
+        required: false
+        example: amet
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: amet
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      message:
+        name: message
+        description: 'Whether the action was successful'
+        required: false
+        example: null
+        type: ''
+        custom: []
+      data:
+        name: data
+        description: 'The message that was marked as read'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/conversations/{id}/unread/count'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the unread messages in a conversation count'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the conversation.'
+        required: true
+        example: impedit
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: impedit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: 'The unread messages count'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/messages/unread/count
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Get the count of the user's unread messages"
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: 'Unread messages count'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/message/{id}/delete'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a specific message'
+      description: 'Deletes a specific message in a conversation'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The id of the conversation'
+        required: false
+        example: eveniet
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: eveniet
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      message:
+        name: message
+        description: 'The status of the action'
+        required: false
+        example: null
+        type: ''
+        custom: []
+      data:
+        name: data
+        description: 'The message that has been deleted'
+        required: false
+        example: null
+        type: ''
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/conversation/{id}/delete'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a conversation'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the conversation'
+        required: false
+        example: dolorem
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: dolorem
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -522,7 +1039,7 @@ endpoints:
         name: days
         description: ''
         required: true
-        example: incidunt
+        example: molestias
         type: string
         custom: []
       opening_times:
@@ -530,7 +1047,7 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '17:02'
+          - '13:14'
         type: 'string[]'
         custom: []
       closing_times:
@@ -538,15 +1055,15 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '17:02'
+          - '13:14'
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      days: incidunt
+      days: molestias
       opening_times:
-        - '17:02'
+        - '13:14'
       closing_times:
-        - '17:02'
+        - '13:14'
     fileParameters: []
     responses: []
     responseFields: []
@@ -636,7 +1153,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - voluptas
+          - et
         type: 'string[]'
         custom: []
       files:
@@ -648,7 +1165,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - voluptas
+        - et
     fileParameters: []
     responses: []
     responseFields: []
@@ -691,7 +1208,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - praesentium
+          - sed
         type: 'string[]'
         custom: []
       files:
@@ -703,7 +1220,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - praesentium
+        - sed
     fileParameters: []
     responses: []
     responseFields: []
@@ -733,11 +1250,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: neque
+        example: voluptates
         type: string
         custom: []
     cleanUrlParameters:
-      id: neque
+      id: voluptates
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -862,59 +1379,59 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: voluptatem
+        example: necessitatibus
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: true
-        example: id
+        example: est
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-31T17:02:10'
+        example: '2024-04-22T13:14:12'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-31T17:02:10'
+        example: '2024-04-22T13:14:12'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 9
+        example: 16
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: inactive
+        example: active
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: voluptatem
-      code: id
-      start_date: '2024-03-31T17:02:10'
-      end_date: '2024-03-31T17:02:10'
-      type: percentage
-      value: 9
-      status: inactive
+      restaurant_ids: necessitatibus
+      code: est
+      start_date: '2024-04-22T13:14:12'
+      end_date: '2024-04-22T13:14:12'
+      type: amount
+      value: 16
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -944,11 +1461,11 @@ endpoints:
         name: promo_code_id
         description: 'The ID of the promo code.'
         required: true
-        example: 13
+        example: 12
         type: integer
         custom: []
     cleanUrlParameters:
-      promo_code_id: 13
+      promo_code_id: 12
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -956,21 +1473,21 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: aliquid
+        example: iusto
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-31T17:02:10'
+        example: '2024-04-22T13:14:12'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-03-31T17:02:10'
+        example: '2024-04-22T13:14:12'
         type: string
         custom: []
       type:
@@ -984,23 +1501,23 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 11
+        example: 9
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: inactive
+        example: active
         type: string
         custom: []
     cleanBodyParameters:
-      code: aliquid
-      start_date: '2024-03-31T17:02:10'
-      end_date: '2024-03-31T17:02:10'
+      code: iusto
+      start_date: '2024-04-22T13:14:12'
+      end_date: '2024-04-22T13:14:12'
       type: percentage
-      value: 11
-      status: inactive
+      value: 9
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -1073,27 +1590,27 @@ endpoints:
         name: menu_ids
         description: ''
         required: true
-        example: ipsa
+        example: ipsam
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 11
+        example: 17
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_ids: ipsa
-      type: percentage
-      value: 11
+      menu_ids: ipsam
+      type: amount
+      value: 17
     fileParameters: []
     responses: []
     responseFields: []
@@ -1135,19 +1652,19 @@ endpoints:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 18
+        example: 11
         type: integer
         custom: []
     cleanBodyParameters:
-      type: amount
-      value: 18
+      type: percentage
+      value: 11
     fileParameters: []
     responses: []
     responseFields: []
@@ -1435,19 +1952,19 @@ endpoints:
         name: title
         description: "'category_id' => ['required'],."
         required: true
-        example: quo
+        example: architecto
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: 15
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      title: quo
-      status: 15
+      title: architecto
+      status: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -1477,11 +1994,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: nam
+        example: vel
         type: string
         custom: []
     cleanUrlParameters:
-      id: nam
+      id: vel
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1489,11 +2006,11 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: non
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      title: non
+      title: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -1570,11 +2087,11 @@ endpoints:
         name: id
         description: 'The ID of the customer.'
         required: true
-        example: magni
+        example: mollitia
         type: string
         custom: []
     cleanUrlParameters:
-      id: magni
+      id: mollitia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1617,11 +2134,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant admin.'
         required: true
-        example: aut
+        example: at
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: at
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1664,11 +2181,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: est
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      id: est
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1988,19 +2505,19 @@ endpoints:
         name: status
         description: 'Must be one of <code>2</code> or <code>3</code>.'
         required: true
-        example: '2'
+        example: '3'
         type: string
         custom: []
       reason:
         name: reason
         description: 'This field is required when <code>status</code> is <code>3</code>.'
         required: false
-        example: ipsa
+        example: beatae
         type: string
         custom: []
     cleanBodyParameters:
-      status: '2'
-      reason: ipsa
+      status: '3'
+      reason: beatae
     fileParameters: []
     responses: []
     responseFields: []
@@ -2424,19 +2941,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: aliquid
+        example: doloribus
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: true
-        example: mxy
+        example: cboqeoftmfsqkyrhoaxtoaid
         type: string
         custom: []
     cleanBodyParameters:
-      title: aliquid
-      poster: mxy
+      title: doloribus
+      poster: cboqeoftmfsqkyrhoaxtoaid
     fileParameters: []
     responses: []
     responseFields: []
@@ -2466,11 +2983,11 @@ endpoints:
         name: advert_poster_id
         description: 'The ID of the advert poster.'
         required: true
-        example: 19
+        example: 6
         type: integer
         custom: []
     cleanUrlParameters:
-      advert_poster_id: 19
+      advert_poster_id: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2478,19 +2995,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: id
+        example: tempora
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: false
-        example: esqjrhiwafflskxujxlpoi
+        example: xcvutd
         type: string
         custom: []
     cleanBodyParameters:
-      title: id
-      poster: esqjrhiwafflskxujxlpoi
+      title: tempora
+      poster: xcvutd
     fileParameters: []
     responses: []
     responseFields: []
@@ -2520,11 +3037,11 @@ endpoints:
         name: advert_poster_id
         description: 'The ID of the advert poster.'
         required: true
-        example: 20
+        example: 7
         type: integer
         custom: []
     cleanUrlParameters:
-      advert_poster_id: 20
+      advert_poster_id: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

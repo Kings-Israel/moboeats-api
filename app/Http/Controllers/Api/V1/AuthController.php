@@ -419,11 +419,11 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'code' => ['required'],
-            'userType' => ['required']
+            'userType' => ['required', 'in:orderer,restaurant,rider']
         ]);
 
         if ($validator->fails()) {
-            return $this->error('Authentication', 'Verification code is required', 400);
+            return $this->error('Authentication', [$validator->messages()->toArray()], 400);
         }
 
         $code = Otp::where('code', $request->code)->first();
