@@ -302,7 +302,11 @@ class AuthController extends Controller
                 ]);
         }
 
-        SendCommunication::dispatchAfterResponse('mail', $request->email, 'ResetPassword', ['code' => $token]);
+        if ($request->has('email') && !empty($request->email)) {
+            SendCommunication::dispatchAfterResponse('mail', $request->email, 'ResetPassword', ['code' => $token]);
+        } else {
+            SendSMS::dispatchAfterResponse($request->phone_number, 'Your password reset token is: '.$token);
+        }
 
         return $this->success('', 'Password reset code sent successfully');
     }
