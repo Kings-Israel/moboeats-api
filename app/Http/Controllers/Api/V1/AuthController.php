@@ -138,14 +138,17 @@ class AuthController extends Controller
             );
 
             if ($request->userType === 'orderer') {
-                $orderer = Orderer::create([
-                    'user_id' => $user->id,
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone_no' => $request->phone ?? NULL,
-                    'address' => '',
-                    'status' => 2,
-                ]);
+                $orderer = Orderer::firstOrCreate(
+                    [
+                        'phone_no' => $request->phone,
+                    ],
+                    [
+                        'user_id' => $user->id,
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'address' => '',
+                        'status' => 2,
+                    ]);
                 $role = Role::where('name', $request->userType)->first();
                 if (!$role) {
                     return $this->error('', 'Unknown user type: ' .$request->userType, 401);
@@ -177,20 +180,23 @@ class AuthController extends Controller
             }
 
             if ($request->userType === 'rider') {
-                $rider = Rider::create([
-                    'user_id' => $user->id,
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone_no' => $request->phone_no ?? NULL,
-                    'status' => 2,
-                    'address' => $request->address ?? NULL,
-                    'city' => $request->city ?? NULL,
-                    'state' => $request->state ?? NULL,
-                    'postal_code' => $request->postal_code ?? NULL,
-                    'vehicle_type' => $request->hicle_type ?? NULL,
-                    'vehicle_license_plate' => $request->vehicle_license_plate ?? NULL,
-                    'paypal_email' => $request->paypal_email ?? NULL,
-                ]);
+                $rider = Rider::firstOrCreate(
+                    [
+                        'phone_no' => $request->phone,
+                    ],
+                    [
+                        'user_id' => $user->id,
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'status' => 2,
+                        'address' => $request->address ?? NULL,
+                        'city' => $request->city ?? NULL,
+                        'state' => $request->state ?? NULL,
+                        'postal_code' => $request->postal_code ?? NULL,
+                        'vehicle_type' => $request->hicle_type ?? NULL,
+                        'vehicle_license_plate' => $request->vehicle_license_plate ?? NULL,
+                        'paypal_email' => $request->paypal_email ?? NULL,
+                    ]);
 
                 $role = Role::where('name', $request->userType)->first();
 
