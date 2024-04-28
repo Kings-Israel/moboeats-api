@@ -567,6 +567,7 @@ class RestaurantController extends Controller
             $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
             $restaurant_ids = Restaurant::where('id', $user_restaurant->restaurant_id)->get()->pluck('id');
         }
+        info($restaurant_ids);
 
         $total_amount = 0;
         $paid_amount = 0;
@@ -587,7 +588,6 @@ class RestaurantController extends Controller
         $search = $request->query('search');
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
-        info($orders->pluck('id'));
         $payments = Payment::with('order.user', 'order.restaurant')
                             ->whereIn('order_id', $orders->pluck('id'))
                             ->where('transaction_id', '!=', NULL)
