@@ -35,7 +35,8 @@ class Order extends Model
         'rider_id',
         'booking_time',
         'service_charge',
-        'discount'
+        'discount',
+        'promo_code_id',
     ];
 
     protected $keyType = 'int';
@@ -196,6 +197,14 @@ class Order extends Model
     public function orderTables(): HasMany
     {
         return $this->hasMany(OrderTable::class);
+    }
+
+    /**
+     * Get the promoCode that owns the Order
+     */
+    public function promoCode(): BelongsTo
+    {
+        return $this->belongsTo(PromoCode::class);
     }
 
     public function getTotalPreparationTime(): int

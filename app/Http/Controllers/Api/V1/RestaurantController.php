@@ -40,6 +40,8 @@ use App\Models\Payout;
 use App\Models\SeatingArea;
 use App\Models\RestaurantTable;
 use App\Models\Review;
+use App\Models\PromoCode;
+use App\Models\Discount;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Query\JoinClause;
 
@@ -430,6 +432,7 @@ class RestaurantController extends Controller
             array_push($months_formatted, Carbon::parse($month)->format('m-Y'));
         }
 
+
         $restaurants_count = Restaurant::where('user_id', auth()->id())->count();
         $restaurant_ids = auth()->user()->restaurants->pluck('id');
         $orders_count = Order::whereIn('restaurant_id', $restaurant_ids)->count();
@@ -539,6 +542,8 @@ class RestaurantController extends Controller
                             ->get()
                             ->take(10);
 
+        $latest_discounts = PromoCode::withCount('orders')->whereIn('restaurant_id', $restaurant_ids)->orderBy('created_at', 'DESC')->get()->take(5);
+
         return $this->success([
             'months' => $months_formatted,
             'restaurants_count' => $restaurants_count,
@@ -556,6 +561,7 @@ class RestaurantController extends Controller
             'booking_payment_series' => $bookings_payments_series,
             'deliveries' => $deliveries,
             'dineins' => $dineins,
+            'latest_discounts' => $latest_discounts,
         ]);
     }
 
@@ -726,7 +732,11 @@ class RestaurantController extends Controller
 
         $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', $restaurant->id)->paginate(8);
 
-        return $this->success(['categories' => $categories]);
+        $menu_ids = $restaurant->menus->pluck('id');
+
+        $discounts = Discount::with('menu')->whereIn('menu_id', $menu_ids)->get();
+
+        return $this->success(['categories' => $categories, 'discounts' => $discounts]);
     }
 
     /**

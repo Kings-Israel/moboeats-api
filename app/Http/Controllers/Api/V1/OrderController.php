@@ -38,6 +38,7 @@ use App\Models\RestaurantTable;
 use App\Models\Rider;
 use App\Models\Menu;
 use App\Models\OrderTable;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -257,7 +258,7 @@ class OrderController extends Controller
 
                     $distance = explode(' ', $distance)[0];
 
-                    $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) config('services.delivery_rate'));
+                    $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) Setting::where('name', 'Delivery Rate')->first()->variable);
                 }
 
                 //create Order object
@@ -310,12 +311,19 @@ class OrderController extends Controller
 
                 // Get Promo Code discount before adding service charge
                 if ($request->has('promo_code') && $request->promo_code != '' && $request->promo_code != null && $request->promo_code != 'null') {
-                    if ($promo_code->type == 'amount') {
-                        $totalSubtotal = $totalSubtotal - $promo_code->value;
-                        $discount += $promo_code->value;
-                    } else {
-                        $discount += ($promo_code->value / 100) * $totalSubtotal;
-                        $totalSubtotal = $totalSubtotal - $discount;
+                    $promo_code = PromoCode::active()->where('code', $request->promo_code)->first();
+                    if ($promo_code) {
+                        $order->update([
+                            'promo_code_id' => $promo_code->id
+                        ]);
+
+                        if ($promo_code->type == 'amount') {
+                            $totalSubtotal = $totalSubtotal - $promo_code->value;
+                            $discount += $promo_code->value;
+                        } else {
+                            $discount += ($promo_code->value / 100) * $totalSubtotal;
+                            $totalSubtotal = $totalSubtotal - $discount;
+                        }
                     }
                 }
 
@@ -325,10 +333,10 @@ class OrderController extends Controller
 
                 if ($items_are_groceries) {
                     // Service Charge
-                    $service_charge = $restaurant->groceries_service_charge_agreement ? ((int) $restaurant->groceries_service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
+                    $service_charge = $restaurant->groceries_service_charge_agreement ? ((int) $restaurant->groceries_service_charge_agreement / 100) * $totalSubtotal : ((double) Setting::where('name', 'Base Groceries Service Charge Rate')->first()->variable / 100) * $totalSubtotal;
                 } else {
                     // Service Charge
-                    $service_charge = $restaurant->service_charge_agreement ? ((int) $restaurant->service_charge_agreement / 100) * $totalSubtotal : ((int) config('services.default_service_charge') / 100) * $totalSubtotal;
+                    $service_charge = $restaurant->service_charge_agreement ? ((int) $restaurant->service_charge_agreement / 100) * $totalSubtotal : ((double) Setting::where('name', 'Base Service Charge Rate')->first()->variable / 100) * $totalSubtotal;
                 }
 
                 // add delivery fee if customer needs

@@ -33,6 +33,7 @@ class PromoCodesController extends Controller
             $restaurants_ids = auth()->user()->restaurants->pluck('id');
 
             $codes = PromoCode::with('restaurant')
+                                ->withCount('orders')
                                 ->whereIn('restaurant_id', $restaurants_ids)
                                 ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
                                     $query->where(function ($query) use ($from_created_at) {
@@ -57,13 +58,13 @@ class PromoCodesController extends Controller
                                     });
                                 })
                                 ->paginate(10);
-            $restaurants = Restaurant::whereIn('id', $restaurants_ids)->get();
+            $restaurants = Restaurant::whereIn('id', $restaurants_ids)->orderBy('name', 'ASC')->get();
         } else if (auth()->user()->hasRole('restaurant employee')) {
             $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
 
-            $codes = PromoCode::whereIn('restaurant_id', $user_restaurant->restaurant_id)->paginate(10);
+            $codes = PromoCode::withCount('orders')->whereIn('restaurant_id', $user_restaurant->restaurant_id)->paginate(10);
         } else {
-            $codes = PromoCode::with('restaurant')->paginate(10);
+            $codes = PromoCode::with('restaurant')->withCount('orders')->paginate(10);
         }
 
         return $this->success([
