@@ -587,7 +587,7 @@ class RestaurantController extends Controller
         $search = $request->query('search');
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
-
+        info($orders->pluck('id'));
         $payments = Payment::with('order.user', 'order.restaurant')
                             ->whereIn('order_id', $orders->pluck('id'))
                             ->where('transaction_id', '!=', NULL)
