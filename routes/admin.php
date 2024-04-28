@@ -30,6 +30,11 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/payments/{payment}/details', [PaymentController::class, 'show']);
         Route::get('/payments', [AdminController::class, 'payments']);
 
+        // Update Settings
+        Route::post('/delivery-rate/update', [AdminController::class, 'updateDeliveryRate']);
+        Route::post('/base-rate/update', [AdminController::class, 'updateBaseRate']);
+        Route::post('/base-rate/grocery/update', [AdminController::class, 'updateGroceryBaseRate']);
+
         Route::group(['prefix' => 'restaurant/{restaurant}/'], function () {
             Route::get('/', [AdminController::class, 'restaurant']);
             Route::get('/payments', [AdminController::class, 'restaurantPayments']);

@@ -18,6 +18,7 @@ use App\Models\Restaurant;
 use App\Models\Review;
 use App\Models\Rider;
 use App\Models\User;
+use App\Models\Setting;
 use App\Traits\HttpResponses;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\UpdatedRestaurantStatus;
 use Spatie\Activitylog\Models\Activity;
 use App\Jobs\SendNotification;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -193,6 +195,8 @@ class AdminController extends Controller
             'top_menu_items_series' => $top_menu_items_series
         ];
 
+        $settings = Setting::all();
+
         return $this->success([
             'users' => $users,
             'restaurants' => $restaurants,
@@ -202,6 +206,7 @@ class AdminController extends Controller
             'payments_series' => $payments_made_monthly,
             'top_restaurants' => $top_restaurants,
             'top_menu_series' => $top_menu_series,
+            'settings' => $settings,
         ]);
     }
 
@@ -603,5 +608,62 @@ class AdminController extends Controller
         return $this->success([
             'discounts' => $menu,
         ]);
+    }
+
+    public function updateDeliveryRate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rate' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', 'Rate is required', 400);
+        }
+
+        $setting = Setting::where('name', 'Delivery Rate')->first();
+
+        $setting->update([
+            'variable' => $request->rate
+        ]);
+
+        return $this->success('', 'Rate updated successfully');
+    }
+
+    public function updateBaseRate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rate' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', 'Rate is required', 400);
+        }
+
+        $setting = Setting::where('name', 'Base Service Charge Rate')->first();
+
+        $setting->update([
+            'variable' => $request->rate
+        ]);
+
+        return $this->success('', 'Rate updated successfully');
+    }
+
+    public function updateGroceryBaseRate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rate' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', 'Rate is required', 400);
+        }
+
+        $setting = Setting::where('name', 'Base Groceries Service Charge Rate')->first();
+
+        $setting->update([
+            'variable' => $request->rate
+        ]);
+
+        return $this->success('', 'Rate updated successfully');
     }
 }
