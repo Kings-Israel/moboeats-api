@@ -590,7 +590,7 @@ class RestaurantController extends Controller
 
         $payments = Payment::with('order.user', 'order.restaurant')
                             ->whereIn('order_id', $orders->pluck('id'))
-                            ->where('status', '2')
+                            ->where('transaction_id', '!=', NULL)
                             ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
                                 $query->whereDate('created_at', '>=', Carbon::parse($from_created_at));
                             })
