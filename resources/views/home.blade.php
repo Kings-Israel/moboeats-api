@@ -131,7 +131,7 @@
             </div>
 
             <div class="px-8 mt-14 lg:px-28 lg:flex lg:gap-10">
-                <div class="my-auto">
+                <div class="my-auto hidden lg:block">
                     <?xml version="1.0" encoding="utf-8"?>
 
                     <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
@@ -146,12 +146,12 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-3xl my-2 py-2 font-semibold">Have any Complaint?</h1>
+                    <h1 class="text-3xl my-2 py-2 font-semibold text-center lg:text-left">Have any Complaint?</h1>
                     <div class="flex justify-center">
                         {{-- <video class="h-96 rounded-lg" controls>
                                 <source src="">
                             </video> --}}
-                        <span class="font-bold text-xl">
+                        <span class="font-bold text-xl text-center lg:text-left">
                             If you encounter any issues or have feedback regarding your shopping experience, we're here to
                             help. To make a complaint, please visit our website and navigate to the <a
                                 href="{{ route('contact-us') }}" class="text-primary-one underline">Contact Us</a>
