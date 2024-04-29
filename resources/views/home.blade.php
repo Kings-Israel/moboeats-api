@@ -25,9 +25,9 @@
         <section class="relative">
             <img src="{{ asset('assets/img/Moboeats Company Profile.jpg') }}" class="w-full object-cover" alt="">
             <div class="absolute inset-0">
-                <div class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[820px] lg:items-center">
-                    <div class="max-w-2xl text-white text-center md:text-left">
-                        <h1 class="text-3xl font-bold sm:text-5xl">
+                <div class="relative lg:px-24 4xl:px-48 px-4 lg:pb-32 sm:px-6 lg:flex lg:h-[820px] lg:items-center">
+                    <div class="max-w-[160px] md:max-w-md lg:max-w-2xl text-white text-left">
+                        <h1 class="text-md font-bold md:text-5xl mt-20 lg:mt-0">
                             Your one stop app for variety, quality and affordability.
                         </h1>
                     </div>
