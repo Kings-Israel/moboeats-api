@@ -28,7 +28,7 @@
                 <div class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[820px] lg:items-center">
                     <div class="max-w-2xl text-white text-center md:text-left">
                         <h1 class="text-3xl font-bold sm:text-5xl">
-                            One stop app for variety, quality and affordability.
+                            Your one stop app for variety, quality and affordability.
                         </h1>
                     </div>
                 </div>
