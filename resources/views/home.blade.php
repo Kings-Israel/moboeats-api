@@ -96,34 +96,42 @@
         <div class="bg-white pb-8">
             <h1 class="text-3xl text-center my-5 pt-6 font-semibold">How it works</h1>
             <div class="flex flex-nowrap gap-4 overflow-x-auto px-4 md:px-24 4xl:px-72 no-scrollbar">
-                <div class="flex-shrink-0 my-4">
-                    <img src="{{ asset('assets/img/How it works images (3).jpg') }}" class="h-96 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
-                    <div class="text-center text-black max-w-xs">
-                        <h5 class="text-3xl font-black">Browse & Select</h5>
+                <div class="flex-shrink-0 my-4 relative">
+                    <div class="w-28 relative top-8 left-24 text-center z-10">
+                        <h5 class="text-3xl font-black text-black">Browse & Select</h5>
+                    </div>
+                    <img src="{{ asset('assets/img/How it works images (3).jpg') }}" class="h-96 absolute top-0 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
+                    <div class="text-center text-black max-w-xs mt-[20rem]">
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2">Easily find what you need by
                             browsing and adding items to your cart with just a few taps.</p>
                     </div>
                 </div>
-                <div class="flex-shrink-0 my-4">
-                    <img src="{{ asset('assets/img/How it works images (4).jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt="">
-                    <div class="text-center text-black max-w-xs">
-                        <h5 class="text-3xl font-black">Secure Checkout</h5>
+                <div class="flex-shrink-0 my-4 relative">
+                    <div class="w-60 relative top-8 left-9 text-center z-10">
+                        <h5 class="text-3xl font-black text-black">Secure Checkout</h5>
+                    </div>
+                    <img src="{{ asset('assets/img/How it works images (4).jpg') }}" class="h-96 absolute top-0 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
+                    <div class="text-center text-black max-w-xs mt-[22rem]">
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2">Review your order, choose your
                             delivery time, and securely check out using our encrypted payment gateway</p>
                     </div>
                 </div>
-                <div class="flex-shrink-0 my-4">
-                    <img src="{{ asset('assets/img/How it works images (5).jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt="">
-                    <div class="text-center text-black max-w-xs">
-                        <h5 class="text-3xl font-black">Track Your Delivery</h5>
+                <div class="flex-shrink-0 my-4 relative">
+                    <div class="w-32 relative top-8 left-24 text-center z-10">
+                        <h5 class="text-3xl font-black text-black">Track Your Delivery</h5>
+                    </div>
+                    <img src="{{ asset('assets/img/How it works images (5).jpg') }}" class="h-96 absolute top-0 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
+                    <div class="text-center text-black max-w-xs mt-[20rem]">
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2">Track the status of your delivery
                             in real-time and receive updates every step of the way.</p>
                     </div>
                 </div>
-                <div class="flex-shrink-0 my-4">
-                    <img src="{{ asset('assets/img/How it works images (6).jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt="">
-                    <div class="text-center text-black max-w-xs">
+                <div class="flex-shrink-0 my-4 relative">
+                    <div class="w-52 relative top-8 left-16 text-center z-10">
                         <h5 class="text-3xl font-black">Enjoy Freshness</h5>
+                    </div>
+                    <img src="{{ asset('assets/img/How it works images (6).jpg') }}" class="h-96 absolute top-0 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
+                    <div class="text-center text-black max-w-xs mt-[22rem]">
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2"> Receive your meals and groceries
                             fresh and ready to use. </p>
                     </div>
@@ -148,9 +156,6 @@
                 <div>
                     <h1 class="text-3xl my-2 py-2 font-semibold text-center lg:text-left">Have any Complaint?</h1>
                     <div class="flex justify-center">
-                        {{-- <video class="h-96 rounded-lg" controls>
-                                <source src="">
-                            </video> --}}
                         <span class="font-bold text-xl text-center lg:text-left">
                             If you encounter any issues or have feedback regarding your shopping experience, we're here to
                             help. To make a complaint, please visit our website and navigate to the <a

@@ -32,12 +32,12 @@
                 </div>
             </section>
 
-            <h1 class="text-3xl text-center my-3 py-2 font-semibold underline text-white">Why you should partner with us</h1>
-            <div class="mt-4 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
+            <div class="mt-4 md:mt-8 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="">
                     <img src="{{ asset('assets/img/partners1.png') }}" alt="" class="w-72 lg:w-[28rem] mx-auto object-cover rounded-lg">
                 </div>
                 <div class="lg:my-auto md:max-w-lg flex flex-col justify-center md:block text-white">
+                    <h1 class="text-3xl text-center mt-4 lg:pt-14 font-semibold uppercase text-white">Why you should partner with us</h1>
                     <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col mt-4 md:mt-0">
                             <h3 class="font-bold text-xl text-primary-one">Increased Visibility:</h3>
@@ -64,6 +64,7 @@
 
             <div class="mt-0 md:mt-24 px-4 lg:px-24 md:grid md:grid-cols-2 md:gap-2">
                 <div class="lg:my-8 md:max-w-lg flex flex-col justify-center md:block text-white">
+                    <h1 class="text-3xl text-center mt-4 lg:pt-14 font-semibold uppercase text-white">Why you should partner with us</h1>
                     <ul class="list-desc mb-8 space-y-4 text-center md:text-left">
                         <li class="flex flex-col">
                             <h3 class="font-bold text-xl text-primary-one">Flexible Ordering Options:</h3>
