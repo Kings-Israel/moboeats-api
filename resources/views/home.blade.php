@@ -22,9 +22,17 @@
     <div class="bg-primary-one">
         @include('layouts.navigation')
 
-        <section class="">
-            <img src="{{ asset('assets/img/Moboeats Company Profile (1).jpeg') }}" class="w-full object-cover"
-                alt="">
+        <section class="relative">
+            <img src="{{ asset('assets/img/Moboeats Company Profile.jpg') }}" class="w-full object-cover" alt="">
+            <div class="absolute inset-0">
+                <div class="relative lg:px-24 4xl:px-48 px-4 pb-32 sm:px-6 lg:flex lg:h-[820px] lg:items-center">
+                    <div class="max-w-2xl text-white text-center md:text-left">
+                        <h1 class="text-3xl font-bold sm:text-5xl">
+                            One stop app for variety, quality and affordability.
+                        </h1>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <div class="mt-4 md:mt-24 px-4 lg:px-32 flex flex-col-reverse md:grid md:grid-cols-2 md:gap-4">
@@ -89,24 +97,7 @@
             <h1 class="text-3xl text-center my-5 pt-6 font-semibold">How it works</h1>
             <div class="flex flex-nowrap gap-4 overflow-x-auto px-4 md:px-24 4xl:px-72 no-scrollbar">
                 <div class="flex-shrink-0 my-4">
-                    {{-- <img src="{{ asset('assets/img/app-img.jpg') }}" class="h-96 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt=""> --}}
-                    <?xml version="1.0" encoding="utf-8"?>
-                    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                    <svg class="mx-auto" width="140px" height="140px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_429_10987)">
-                            <path
-                                d="M4 4.00104H20V18.001C20 19.1056 19.1046 20.001 18 20.001H6C4.89543 20.001 4 19.1056 4 18.001V4.00104Z"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M12.5 17V7L10.5 9" stroke="#292929" stroke-width="2.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_429_10987">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <img src="{{ asset('assets/img/How it works images (3).jpg') }}" class="h-96 w-[20rem] 4xl:w-[20rem] object-cover my-4 rounded-lg" alt="">
                     <div class="text-center text-black max-w-xs">
                         <h5 class="text-3xl font-black">Browse & Select</h5>
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2">Easily find what you need by
@@ -114,25 +105,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 my-4">
-                    {{-- <img src="{{ asset('assets/img/app-img.jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt=""> --}}
-                    <?xml version="1.0" encoding="utf-8"?>
-                    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                    <svg class="mx-auto" width="140px" height="140px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_429_11264)">
-                            <path
-                                d="M4 4.00104H20V18.001C20 19.1056 19.1046 20.001 18 20.001H6C4.89543 20.001 4 19.1056 4 18.001V4.00104Z"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M9.50012 9.49997C9.50013 8.86017 9.7442 8.22037 10.2324 7.73221C11.2087 6.7559 12.7916 6.7559 13.7679 7.73221C14.7442 8.70852 14.7442 10.2914 13.7679 11.2677L9.93946 15.0962C9.65816 15.3775 9.50012 15.759 9.50012 16.1568L9.50012 17H14.5001"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_429_11264">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <img src="{{ asset('assets/img/How it works images (4).jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt="">
                     <div class="text-center text-black max-w-xs">
                         <h5 class="text-3xl font-black">Secure Checkout</h5>
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2">Review your order, choose your
@@ -140,28 +113,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 my-4">
-                    {{-- <img src="{{ asset('assets/img/app-img.jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt=""> --}}
-                    <?xml version="1.0" encoding="utf-8"?>
-
-                    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                    <svg class="mx-auto" width="140px" height="140px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_429_11144)">
-                            <path
-                                d="M4 4.00104H20V18.001C20 19.1056 19.1046 20.001 18 20.001H6C4.89543 20.001 4 19.1056 4 18.001V4.00104Z"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path
-                                d="M10 16.2361C10.5308 16.7111 11.2316 17 12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 11 12 11L15 7H10"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_429_11144">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <img src="{{ asset('assets/img/How it works images (5).jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt="">
                     <div class="text-center text-black max-w-xs">
                         <h5 class="text-3xl font-black">Track Your Delivery</h5>
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2">Track the status of your delivery
@@ -169,27 +121,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 my-4">
-                    {{-- <img src="{{ asset('assets/img/app-img.jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt=""> --}}
-                    <?xml version="1.0" encoding="utf-8"?>
-                    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                    <svg class="mx-auto" width="140px" height="140px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_429_10985)">
-                            <path
-                                d="M4 4.00104H20V18.001C20 19.1056 19.1046 20.001 18 20.001H6C4.89543 20.001 4 19.1056 4 18.001V4.00104Z"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path
-                                d="M10.5 7L9.22841 11.4506C8.86337 12.7282 9.8227 14 11.1515 14H14.5M14.5 14V10M14.5 14V17"
-                                stroke="#292929" stroke-width="2.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_429_10985">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                    <img src="{{ asset('assets/img/How it works images (6).jpg') }}" class="w-[20rem] 4xl:w-[20rem] h-96 object-cover my-4 rounded-lg" alt="">
                     <div class="text-center text-black max-w-xs">
                         <h5 class="text-3xl font-black">Enjoy Freshness</h5>
                         <p class="mb-6 text-sm whitespace-normal font-semibold px-2"> Receive your meals and groceries
