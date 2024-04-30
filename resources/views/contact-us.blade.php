@@ -39,7 +39,7 @@
                         <h5 class="font-bold">For assistance with orders, deliveries, or any other inquiries, our dedicated customer support is here to help.</h5>
                         <div class="flex flex-col">
                             <span class="font-bold">Email: <a href="mailto:support@moboeats.com" class="underline">support@moboeats.com</a></span>
-                            <span class="font-bold">Phone: <a href="mailto:support@moboeats.com" class="">+44 345 454 5565</a></span>
+                            {{-- <span class="font-bold">Phone: <a href="mailto:support@moboeats.com" class="">+44 345 454 5565</a></span> --}}
                         </div>
                     </div>
                     <div class="border-2 border-primary-one p-2 rounded-md">
@@ -47,7 +47,7 @@
                         <h5 class="font-bold">Interested in partnering with us or have questions about our services for restaurants? Get in touch with our business development team</h5>
                         <div class="flex flex-col">
                             <span class="font-bold">Email: <a href="mailto:support@moboeats.com" class="underline">sales@moboeats.com</a></span>
-                            <span class="font-bold">Phone: <a href="mailto:support@moboeats.com" class="">+44 345 454 5565</a></span>
+                            {{-- <span class="font-bold">Phone: <a href="mailto:support@moboeats.com" class="">+44 345 454 5565</a></span> --}}
                         </div>
                     </div>
                 </div>
