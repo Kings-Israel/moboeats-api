@@ -33,11 +33,11 @@
             </section> --}}
             <div id="default-carousel" class="relative w-full lg:-mt-8" data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div class="relative h-56 overflow-hidden rounded-lg md:h-96 lg:h-[820px]">
+                <div class="relative overflow-hidden rounded-lg md:h-96 lg:h-[820px]">
                     <div class="hidden duration-700 ease-in-out relative" data-carousel-item>
-                        <img src="{{ asset('assets/img/Ad-copy.jpg') }}" class="object-cover absolute block w-full -translate-x-1/2 -translate-y-1/2 top-60 left-1/2" alt="...">
-                        {{-- <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                            <div class="inset-0">
+                        <img src="{{ asset('assets/img/Ad-copy.jpg') }}" class="object-contain" alt="...">
+                        <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                            <div class="inset-0 hidden">
                                 <div class="relative lg:px-24 4xl:px-48 px-4 lg:pb-32 sm:px-6 lg:flex lg:items-center">
                                     <div class="max-w-[160px] md:max-w-md lg:max-w-2xl text-white text-left">
                                         <h1 class="text-md font-bold md:text-5xl mt-20 lg:mt-0">
@@ -46,10 +46,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('assets/img/Homeslider photos (3).png') }}" class="object-cover" alt="...">
+                        <img src="{{ asset('assets/img/Homeslider photos (3).png') }}" class="object-contain h-full" alt="...">
                         <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                             <div class="inset-0">
                                 <div class="relative lg:px-24 4xl:px-48 px-4 lg:pb-32 sm:px-6 lg:flex lg:items-center">

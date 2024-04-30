@@ -36,7 +36,7 @@
         </section> --}}
         <div id="default-carousel" class="relative w-full lg:-mt-8" data-carousel="slide">
             <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden rounded-lg md:h-96 lg:h-[820px]">
+            <div class="relative h-48 overflow-hidden rounded-lg md:h-96 lg:h-[820px]">
                 <div class="hidden duration-700 ease-in-out relative" data-carousel-item>
                     <img src="{{ asset('assets/img/Homeslider photos (1).png') }}" class="object-cover" alt="...">
                     <div class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
