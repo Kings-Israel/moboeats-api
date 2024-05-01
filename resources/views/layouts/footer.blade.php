@@ -21,17 +21,17 @@
         <div class="">
             <ul class="py-2 flex gap-4 justify-center">
                 <li class="px-0.5">
-                    <a href="https://www.instagram.com/officialmoboeats?igsh=MWtjdjhtbGZ1NTM3bQ%3D%3D&utm_source=qr" class="">
+                    <a href="https://www.instagram.com/officialmoboeats?igsh=MWtjdjhtbGZ1NTM3bQ%3D%3D&utm_source=qr" target="_blank" class="">
                         <img src="{{ asset('assets/img/instagram-color.png') }}" alt="" class="w-10 h-10">
                     </a>
                 </li>
                 <li class="">
-                    <a href="https://www.linkedin.com/company/mobo-eats/?viewAsMember=true" class="">
+                    <a href="https://www.linkedin.com/company/mobo-eats" target="_blank" class="">
                         <img src="{{ asset('assets/img/linkedin-color.png') }}" alt="" class="w-9 h-9">
                     </a>
                 </li>
                 <li class="px-1">
-                    <a href="https://www.facebook.com/profile.php?id=61557389856966" class="">
+                    <a href="https://www.facebook.com/profile.php?id=61557389856966" target="_blank" class="">
                         <img src="{{ asset('assets/img/facebook-color.png') }}" alt="" class="w-9 h-9">
                     </a>
                 </li>
@@ -41,7 +41,7 @@
                     </a>
                 </li> --}}
                 <li class="mt-1">
-                    <a href="https://twitter.com/moboeats" class="">
+                    <a href="https://twitter.com/moboeats" target="_blank" class="">
                         <img src="{{ asset('assets/img/x-color.png') }}" alt="" class="w-7 h-7">
                     </a>
                 </li>
