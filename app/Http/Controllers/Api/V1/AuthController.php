@@ -81,7 +81,7 @@ class AuthController extends Controller
                 }
 
                 if ($rider->status == 1) {
-                    return $this->success(['Rider profile awaiting approval'], 403);
+                    return $this->error('Rider Profile', 'Rider profile awaiting approval', 403);
                 }
             }
 
@@ -385,8 +385,6 @@ class AuthController extends Controller
                     'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
                 ]
             );
-
-            info($user);
 
             if($user->status == 1) {
                 return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
