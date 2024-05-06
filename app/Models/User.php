@@ -306,6 +306,6 @@ class User extends Authenticatable implements LaratrustUser
      */
     public function getTotalRiderDeliveriesAttribute()
     {
-        return $this->rider->deliveries?->count();
+        return $this->rider ? $this->rider->deliveries?->count() : 0;
     }
 }
