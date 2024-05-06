@@ -42,7 +42,11 @@ class Rider extends Model
     public function getProfilePictureAttribute($value)
     {
         if ($value) {
-            return config('app.url').'/storage/rider/avatar/'.$value;
+            if (env('APP_ENV') == 'production') {
+                return 'https://moboeats.com/storage/rider/avatar/'.$value;
+            } else {
+                return config('app.url').'/storage/rider/avatar/'.$value;
+            }
         }
 
         return null;
