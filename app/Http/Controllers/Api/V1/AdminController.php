@@ -283,7 +283,7 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
 
-        $users = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users', 'rider.tips', 'deliveries')
+        $users = User::with('orders', 'restaurants.orders', 'restaurants.menus', 'restaurants.users')
                         ->whereHas('roles', function ($query) use ($role) { $query->where('name', $role); })
                         ->when($search && $search != '', function($query) use ($search) {
                             $query->where(function ($query) use ($search) {
