@@ -132,8 +132,6 @@ class RiderController extends Controller
             'vehicle_type' => ['required']
         ]);
 
-        info($request->all());
-
         $rider = Rider::where('user_id', auth()->id())->first();
 
         if (!$rider) {
@@ -154,6 +152,7 @@ class RiderController extends Controller
         ]);
 
         if ($request->hasFile('profile')) {
+            info('Uploading profile');
             $rider->update([
                 'profile_picture' => 'rider/'.pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
             ]);
