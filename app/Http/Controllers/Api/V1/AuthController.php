@@ -81,7 +81,7 @@ class AuthController extends Controller
                 }
 
                 if ($rider->status == 1) {
-                    return $this->error('Rider Profile', 'Rider profile awaiting approval', 403);
+                    return $this->error('Rider Profile', 'Rider profile awaiting approval. Contact Admin for Assistance.', 403);
                 }
             }
 

@@ -132,6 +132,8 @@ class RiderController extends Controller
             'vehicle_type' => ['required']
         ]);
 
+        info($request->all());
+
         $rider = Rider::where('user_id', auth()->id())->first();
 
         if (!$rider) {
@@ -162,7 +164,6 @@ class RiderController extends Controller
 
     public function updateOrder(Request $request)
     {
-        info($request->all());
         $validator = Validator::make($request->all(), [
             'order_id' => 'required',
             'status' => ['required', Rule::in(['accept', 'reject', 'on_delivery', 'delivered'])]
