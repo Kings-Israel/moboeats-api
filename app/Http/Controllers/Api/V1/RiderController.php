@@ -148,17 +148,17 @@ class RiderController extends Controller
             'state' => $request->has('state') ? $request->get('state') : $rider->state,
             'postal_code' => $request->has('postal_code') ? $request->get('postal_code') : $rider->postal_code,
             'vehicle_type' => $request->has('vehicle_type') ? $request->vehicle_type : $rider->vehicle_type,
-            'vehicle_license_plate' => $request->has('vehicle_license_plate') ? $request->vehicle_license_plate : $rider->vehicle_license_plate,
+            'vehicle_license_plate' => $request->has('vehicle_licesne_plate') ? $request->vehicle_licesne_plate : $rider->vehicle_license_plate,
             'status' => 1,
             'paypal_email' => $request->paypal_email,
         ]);
 
-        if ($request->hasFile('profile_picture')) {
+        if ($request->hasFile('profile')) {
             $rider->update([
-                'profile_picture' => pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME)
+                'profile_picture' => 'rider/'.pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
             ]);
             auth()->user()->update([
-                'image' => 'rider/'.pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME)
+                'image' => 'rider/'.pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
             ]);
         }
 
