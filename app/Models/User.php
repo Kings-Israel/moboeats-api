@@ -98,6 +98,13 @@ class User extends Authenticatable implements LaratrustUser
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries'];
+
     public function receivesBroadcastNotificationOn(): string
     {
         return 'users.'.$this->email;
@@ -257,5 +264,48 @@ class User extends Authenticatable implements LaratrustUser
     public function isAdmin(): bool
     {
         return $this->email == 'admin@moboeats.com' ? true : false;
+    }
+
+    /**
+     * Get the riderTips
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getTotalRiderTipsAttribute()
+    {
+        $amount = 0;
+        if ($this->hasRole('rider') && $this->rider) {
+            foreach ($this->rider->tips as $tip) {
+                $amount += $tip->amount;
+            }
+        }
+        return $amount;
+    }
+
+    /**
+     * Get the riderLastDelivery
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getRiderLastDeliveryAttribute()
+    {
+        $value = NULL;
+        if ($this->hasRole('rider') && $this->rider) {
+            $value = $this->rider->deliveries?->sortDesc()->first();
+        }
+        return $value;
+    }
+
+    /**
+     * Get the totalRiderDeliveries
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getTotalRiderDeliveriesAttribute()
+    {
+        return $this->rider->deliveries?->count();
     }
 }
