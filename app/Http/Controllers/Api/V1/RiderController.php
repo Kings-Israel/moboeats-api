@@ -157,6 +157,9 @@ class RiderController extends Controller
             $rider->update([
                 'profile_picture' => pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME)
             ]);
+            auth()->user()->update([
+                'image' => 'rider/'.pathinfo($request->profile_picture->store('avatar', 'rider'), PATHINFO_BASENAME)
+            ]);
         }
 
         return $this->success(new RiderResource($rider), 'Profile updated successfully');
