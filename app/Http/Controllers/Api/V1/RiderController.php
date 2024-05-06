@@ -154,10 +154,10 @@ class RiderController extends Controller
         if ($request->hasFile('profile')) {
             info('Uploading profile');
             $rider->update([
-                'profile_picture' => 'rider/'.pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
+                'profile_picture' => pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
             ]);
             auth()->user()->update([
-                'image' => 'rider/'.pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
+                'image' => pathinfo($request->profile->store('avatar', 'rider'), PATHINFO_BASENAME)
             ]);
         }
 
