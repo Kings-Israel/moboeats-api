@@ -25,19 +25,21 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'userType' => ['required'],
             'otp' => ['nullable'],
             'image' => ['nullable'],
-            'phone' => ['required'],
+            'phone' => ['required', 'unique:users,phone_number'],
         ];
     }
 
     public function messages()
     {
         return [
-            'phone.required' => 'Please enter your phone number'
+            'phone.required' => 'Please enter your phone number',
+            'email.unique' => 'An account with the same email already exists',
+            'phone.unique' => 'An account with the same phone number already exists',
         ];
     }
 }
