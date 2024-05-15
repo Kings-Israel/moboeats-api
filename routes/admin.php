@@ -57,6 +57,8 @@ Route::group(['prefix' => 'v1/admin'], function() {
         });
 
         Route::get('/logs', [AdminController::class, 'logs']);
+
+        Route::post('/qr-code', [AdminController::class, 'qrCode']);
     });
 });
 

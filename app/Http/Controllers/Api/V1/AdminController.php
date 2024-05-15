@@ -671,16 +671,17 @@ class AdminController extends Controller
         return $this->success('', 'Rate updated successfully');
     }
 
-    public function qrCode(string $string = '')
+    public function qrCode(Request $request)
     {
-        if ($string === '') {
-            $string = 'https://partner.moboeats.co.uk/signup';
+        $string = 'https://partner.moboeats.co.uk/signup';
+        if ($request->has('string') && $request->string === '') {
+            $string = $request->string;
         }
-
+        info($string);
         $barcode = new DNS2D;
 
-        Storage::disk('public')->put('SignupQR.png',base64_decode($barcode->getBarcodePNG($string, "QRCODE", 10, 10)));
+        Storage::disk('public')->put('QR.png',base64_decode($barcode->getBarcodePNG($string, "QRCODE", 10, 10)));
 
-        return Storage::disk('public')->download('SignupQR.png');
+        return Storage::disk('public')->download('QR.png');
     }
 }
