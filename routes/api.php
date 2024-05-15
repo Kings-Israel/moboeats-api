@@ -283,4 +283,31 @@ Route::post('/sms/test/callback', function(Request $request) {
     info($request->all());
 });
 
+
+// Route::get('/test', function () {
+//     $case = [[1,2,3,4],[5,6,7,8],[9,10,11,12]];
+//     $result = [];
+//     foreach ($case as $key => $item) {
+//         if ($key == 0) {
+//             for ($i=0; $i < count($case); $i++) {
+//                 array_push($result, $case[$i][0]);
+//             }
+//         }
+//         for ($i=1; $i < count($case[count($case) - 1]); $i++) {
+//             array_push($result, $case[count($case) - 1][$i]);
+//         }
+//         // if ($key == count($case) - 1) {
+//         // }
+//         for ($i=count($case); $i > 0; $i--) {
+//             array_push($result, $case[count($case) - 2][$i]);
+//         }
+//         // if ($key == count($case) - 2) {
+//         // }
+//     }
+
+//     $result = array_unique($result);
+
+//     return $result;
+// });
+
 require __DIR__.'/admin.php';

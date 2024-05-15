@@ -27,6 +27,10 @@ use App\Notifications\UpdatedRestaurantStatus;
 use Spatie\Activitylog\Models\Activity;
 use App\Jobs\SendNotification;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+use Milon\Barcode\DNS2D;
+use Milon\Barcode\DNS1D;
 
 class AdminController extends Controller
 {
@@ -665,5 +669,18 @@ class AdminController extends Controller
         ]);
 
         return $this->success('', 'Rate updated successfully');
+    }
+
+    public function qrCode(string $string = '')
+    {
+        if ($string === '') {
+            $string = 'https://partner.moboeats.co.uk/signup';
+        }
+
+        $barcode = new DNS2D;
+
+        Storage::disk('public')->put('SignupQR.png',base64_decode($barcode->getBarcodePNG($string, "QRCODE", 10, 10)));
+
+        return Storage::disk('public')->download('SignupQR.png');
     }
 }

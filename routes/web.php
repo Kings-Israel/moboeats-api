@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
@@ -46,6 +47,8 @@ Route::get('/v1/orderer/tip/payment/{order_id}/{amount}', [PaymentController::cl
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
 });
+
+Route::get('/qr-code/{string?}', [AdminController::class, 'qrCode']);
 
 require __DIR__.'/auth.php';
 
