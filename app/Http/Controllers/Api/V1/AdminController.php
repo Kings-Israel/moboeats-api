@@ -677,7 +677,7 @@ class AdminController extends Controller
         if ($request->has('string') && $request->string === '') {
             $string = $request->string;
         }
-        info($string);
+
         $barcode = new DNS2D;
 
         Storage::disk('public')->put('QR.png',base64_decode($barcode->getBarcodePNG($string, "QRCODE", 10, 10)));

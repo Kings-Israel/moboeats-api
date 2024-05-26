@@ -30,24 +30,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Jobs\SendSMS;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/**
- *Auth
- */
 Route::group(['prefix' => 'v1'], function() {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
@@ -86,7 +72,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/notifications', [NotificationController::class, 'index']);
     Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
     Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
-
     Route::get('/seating-areas', [RestaurantController::class, 'seatingAreas']);
 
     // Chat
@@ -102,7 +87,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::delete('/conversation/{id}/delete', [MessageController::class, 'deleteConversation']);
 });
 
-/**Basically a customer who will be ordering food/drinks */
 Route::group(['prefix' => 'v1/orderer'], function() {
     Route::get('/groceries', [MenuController::class, 'groceries']);
     Route::get('/groceries/categories', [MenuController::class, 'grocerySubcategories']);
@@ -135,7 +119,6 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         // Route::apiResource('payment', PaymentController::class)->except(['update']);
         Route::get('/stripe/checkout/{order_id}', [PaymentController::class, 'stripeCheckout']);
         Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
-
 
         // Reviews
         Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
@@ -239,7 +222,6 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::get('/{id}/documents', [RestaurantDocumentsController::class, 'index']);
         Route::post('/{uuid}/documents/store', [RestaurantDocumentsController::class, 'store']);
         Route::post('/{uuid}/documents/update', [RestaurantDocumentsController::class, 'update']);
-
         Route::get('/documents/{id}/download', [RestaurantDocumentsController::class, 'download']);
 
         // Promo codes
@@ -255,7 +237,6 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
             Route::post('/{discount}/update', [DiscountController::class, 'update']);
             Route::get('/{discount}/delete', [DiscountController::class, 'destroy']);
         });
-
     });
 });
 
@@ -283,7 +264,6 @@ Route::post('/sms/test/callback', function(Request $request) {
     info($request->all());
 });
 
-
 // Route::get('/test', function () {
 //     $case = [[1,2,3,4],[5,6,7,8],[9,10,11,12]];
 //     $result = [];
@@ -304,9 +284,7 @@ Route::post('/sms/test/callback', function(Request $request) {
 //         // if ($key == count($case) - 2) {
 //         // }
 //     }
-
 //     $result = array_unique($result);
-
 //     return $result;
 // });
 
