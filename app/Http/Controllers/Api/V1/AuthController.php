@@ -483,16 +483,22 @@ class AuthController extends Controller
     /**
      * Delete account
      */
-    public function delete()
+    public function delete($user_id)
     {
-        Auth::user()->tokens->each(function($token, $key) {
-            $token->delete();
-        });
+        $user = User::find($user_id);
+        if (!$user) {
+            return $this->error('User not found', 'User Not Found', 404);
+        }
 
-        auth()->user()->delete();
+        return view('delete', ['user' => $user]);
+    }
 
-        return $this->success([
-            'message' => 'Account deleted successfully.'
-        ]);
+    public function confirmDelete(Request $request)
+    {
+        $user = User::find($request->user_id);
+
+        $user->delete();
+
+        return view('deleted');
     }
 }

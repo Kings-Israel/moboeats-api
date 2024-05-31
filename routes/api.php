@@ -68,7 +68,7 @@ Route::group(['prefix' => 'v2'], function() {
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('user', [AuthController::class, 'authUser']);
-    
+
     // Delete Account
     Route::get('delete', [AuthController::class, 'delete']);
 

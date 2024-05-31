@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AdminController;
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
@@ -49,6 +50,9 @@ Route::get('/privacy-policy', function () {
 });
 
 Route::get('/qr-code/{string?}', [AdminController::class, 'qrCode']);
+
+Route::get('/account/{user_id}/delete', [AuthController::class, 'delete']);
+Route::post('delete', [AuthController::class, 'confirmDelete'])->name('delete.confirmation');
 
 require __DIR__.'/auth.php';
 
