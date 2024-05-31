@@ -479,4 +479,20 @@ class AuthController extends Controller
             'restaurant' => $request->userType == 'restaurant employee' ? $restaurant : NULL,
         ]);
     }
+
+    /**
+     * Delete account
+     */
+    public function delete()
+    {
+        Auth::user()->tokens->each(function($token, $key) {
+            $token->delete();
+        });
+
+        auth()->user()->delete();
+
+        return $this->success([
+            'message' => 'Account deleted successfully.'
+        ]);
+    }
 }

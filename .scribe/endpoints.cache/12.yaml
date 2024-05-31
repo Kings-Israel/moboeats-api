@@ -73,21 +73,21 @@ endpoints:
         name: cartId
         description: ''
         required: false
-        example: 13
+        example: 8
         type: integer
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: 6
+        example: 20
         type: integer
         custom: []
       delivery:
         name: delivery
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
       delivery_address:
@@ -113,16 +113,16 @@ endpoints:
         custom: []
       booking_time:
         name: booking_time
-        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-04-22 13:32:15</code>.'
+        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-05-31 15:38:22</code>.'
         required: false
-        example: '2070-01-22'
+        example: '2076-07-05'
         type: string
         custom: []
     cleanBodyParameters:
-      cartId: 13
-      restaurantId: 6
-      delivery: true
-      booking_time: '2070-01-22'
+      cartId: 8
+      restaurantId: 20
+      delivery: false
+      booking_time: '2076-07-05'
     fileParameters: []
     responses: []
     responseFields: []
@@ -247,43 +247,43 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 6
+        example: 13
         type: integer
         custom: []
       restaurant_rating:
         name: restaurant_rating
         description: 'The rating of the restaurant from 1 - 5'
         required: false
-        example: 17
+        example: 14
         type: integer
         custom: []
       restaurant_review:
         name: restaurant_review
         description: 'A review of the restaurant'
         required: false
-        example: at
+        example: mollitia
         type: string
         custom: []
       rider_rating:
         name: rider_rating
         description: 'The rating of the rider from 1 - 5'
         required: false
-        example: 3
+        example: 17
         type: integer
         custom: []
       rider_review:
         name: rider_review
         description: 'A review of the rider'
         required: false
-        example: nesciunt
+        example: est
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: 6
-      restaurant_rating: 17
-      restaurant_review: at
-      rider_rating: 3
-      rider_review: nesciunt
+      order_id: 13
+      restaurant_rating: 14
+      restaurant_review: mollitia
+      rider_rating: 17
+      rider_review: est
     fileParameters: []
     responses: []
     responseFields: []
@@ -416,11 +416,11 @@ endpoints:
         name: status
         description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
         required: true
-        example: 'in progress'
+        example: 'no show'
         type: string
         custom: []
     cleanBodyParameters:
-      status: 'in progress'
+      status: 'no show'
     fileParameters: []
     responses: []
     responseFields: []
@@ -588,11 +588,11 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: quam
+        example: rerum
         type: string
         custom: []
     cleanBodyParameters:
-      status: quam
+      status: rerum
     fileParameters: []
     responses: []
     responseFields: []
@@ -676,11 +676,11 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: ipsa
+        example: perferendis
         type: string
         custom: []
     cleanBodyParameters:
-      status: ipsa
+      status: perferendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -716,7 +716,7 @@ endpoints:
         name: order_id
         description: ''
         required: true
-        example: est
+        example: minima
         type: string
         custom: []
       rider_id:
@@ -727,7 +727,7 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: est
+      order_id: minima
       rider_id: qui
     fileParameters: []
     responses: []

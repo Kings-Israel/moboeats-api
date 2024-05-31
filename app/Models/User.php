@@ -14,6 +14,7 @@ use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
 use Laravel\Cashier\Billable;
@@ -21,7 +22,7 @@ use Musonza\Chat\Traits\Messageable;
 
 class User extends Authenticatable implements LaratrustUser
 {
-    use HasRolesAndPermissions, Messageable;
+    use HasRolesAndPermissions, Messageable, SoftDeletes;
 
     use HasApiTokens, HasFactory, Notifiable, Billable;
 

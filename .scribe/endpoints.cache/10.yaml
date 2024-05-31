@@ -73,11 +73,11 @@ endpoints:
         name: userId
         description: ''
         required: true
-        example: 3
+        example: 8
         type: integer
         custom: []
     cleanBodyParameters:
-      userId: 3
+      userId: 8
     fileParameters: []
     responses: []
     responseFields: []

@@ -30,27 +30,27 @@ endpoints:
         name: email
         description: 'The email of the user'
         required: true
-        example: huel.lazaro@example.net
+        example: may38@example.com
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: '_Dw^(&\OxWGuF8.a8g'
+        example: 'xl`*m|=;5^|"R.}w^/'
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user'
         required: true
-        example: aliquid
+        example: architecto
         type: string
         custom: []
     cleanBodyParameters:
-      email: huel.lazaro@example.net
-      password: '_Dw^(&\OxWGuF8.a8g'
-      userType: aliquid
+      email: may38@example.com
+      password: 'xl`*m|=;5^|"R.}w^/'
+      userType: architecto
     fileParameters: []
     responses: []
     responseFields: []
@@ -86,28 +86,28 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: pbgdzoagigcajokldnzohyft
+        example: yakdjsenndcsnox
         type: string
         custom: []
       email:
         name: email
         description: 'The email of the user'
         required: true
-        example: ihaley@example.net
+        example: jamil69@example.net
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: '-2:lwwnC4s4DRWCZ;.5'
+        example: ')rq78p{i10(C'
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user'
         required: true
-        example: repellat
+        example: est
         type: string
         custom: []
       otp:
@@ -128,15 +128,15 @@ endpoints:
         name: phone
         description: 'The type of user'
         required: true
-        example: vel
+        example: molestiae
         type: string
         custom: []
     cleanBodyParameters:
-      name: pbgdzoagigcajokldnzohyft
-      email: ihaley@example.net
-      password: '-2:lwwnC4s4DRWCZ;.5'
-      userType: repellat
-      phone: vel
+      name: yakdjsenndcsnox
+      email: jamil69@example.net
+      password: ')rq78p{i10(C'
+      userType: est
+      phone: molestiae
     fileParameters: []
     responses: []
     responseFields: []
@@ -172,19 +172,19 @@ endpoints:
         name: email
         description: 'email of the user'
         required: false
-        example: stefanie70@example.org
+        example: dawson.haag@example.org
         type: The
         custom: []
       phone_number:
         name: phone_number
         description: 'phone number of the user'
         required: false
-        example: et
+        example: minima
         type: The
         custom: []
     cleanBodyParameters:
-      email: stefanie70@example.org
-      phone_number: et
+      email: dawson.haag@example.org
+      phone_number: minima
     fileParameters: []
     responses: []
     responseFields: []
@@ -220,27 +220,27 @@ endpoints:
         name: code
         description: 'Verification OTP code'
         required: false
-        example: expedita
+        example: aut
         type: The
         custom: []
       password:
         name: password
         description: 'new password to be set'
         required: false
-        example: '[Tf\{1~<JBOM9(wS'
+        example: '31+W[HC''F"<BkA'
         type: The
         custom: []
       password_confirmation:
         name: password_confirmation
         description: 'new password confirmation'
         required: false
-        example: et
+        example: vel
         type: The
         custom: []
     cleanBodyParameters:
-      code: expedita
-      password: '[Tf\{1~<JBOM9(wS'
-      password_confirmation: et
+      code: aut
+      password: '31+W[HC''F"<BkA'
+      password_confirmation: vel
     fileParameters: []
     responses: []
     responseFields: []
@@ -276,11 +276,11 @@ endpoints:
         name: phone_number
         description: 'The phone number of the user. Example 44374673827'
         required: true
-        example: est
+        example: ut
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: est
+      phone_number: ut
     fileParameters: []
     responses: []
     responseFields: []
@@ -316,19 +316,19 @@ endpoints:
         name: code
         description: 'The phone number of the user'
         required: true
-        example: id
+        example: pariatur
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user logging in'
         required: true
-        example: maxime
+        example: minima
         type: string
         custom: []
     cleanBodyParameters:
-      code: id
-      userType: maxime
+      code: pariatur
+      userType: minima
     fileParameters: []
     responses: []
     responseFields: []
@@ -381,6 +381,47 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Get the authenticated user'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/delete
+    metadata:
+      groupName: 'Authentication Management'
+      groupDescription: |-
+
+        User API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete account'
       description: ''
       authenticated: false
       custom: []
