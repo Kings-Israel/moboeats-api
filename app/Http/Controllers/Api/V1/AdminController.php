@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\UpdatedRestaurantStatus;
 use Spatie\Activitylog\Models\Activity;
 use App\Jobs\SendNotification;
+use App\Models\Supplement;
+use App\Models\SupplementOrder;
+use App\Models\SupplementSupplier;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
@@ -201,6 +204,17 @@ class AdminController extends Controller
 
         $settings = Setting::all();
 
+        // Supplements and Suppliers
+        $suppliers_count = SupplementSupplier::count();
+        $supplements_count = Supplement::count();
+        $supplement_orders_count = SupplementOrder::count();
+
+        $supplements = [
+            'suppliers_count' => $suppliers_count,
+            'supplements_count' => $supplements_count,
+            'supplement_orders_count' => $supplement_orders_count
+        ];
+
         return $this->success([
             'users' => $users,
             'restaurants' => $restaurants,
@@ -211,6 +225,7 @@ class AdminController extends Controller
             'top_restaurants' => $top_restaurants,
             'top_menu_series' => $top_menu_series,
             'settings' => $settings,
+            'supplements' => $supplements
         ]);
     }
 

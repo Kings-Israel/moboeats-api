@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\Api\V1\RestaurantDocumentsController;
 use App\Http\Controllers\Api\V1\RestaurantOperatingHoursController;
 use App\Http\Controllers\Api\V1\RiderController;
+use App\Http\Controllers\Api\V1\SupplementController;
 use App\Http\Controllers\FrequentlyAskedQuestionController;
 use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
@@ -104,6 +105,11 @@ Route::group(['prefix' => 'v1/orderer'], function() {
 
     Route::apiResource('orderer-menu', MenuController::class);
 
+    Route::group(['prefix' => '/supplements'], function () {
+        Route::get('/', [SupplementController::class, 'index']);
+        Route::get('/suppliers', [SupplementController::class, 'suppliers']);
+    });
+
     // Tables
     Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
 
@@ -118,6 +124,12 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::apiResource('cart-items', CartItemController::class);
 
         Route::apiResource('orders', OrderController::class)->except(['update']);
+
+        Route::group(['prefix' => '/supplements'], function () {
+            Route::get('/orders', [SupplementController::class, 'orders']);
+            Route::post('/orders', [SupplementController::class, 'storeOrder']);
+            Route::get('/orders/{id}/pay', [PaymentController::class, 'stripeSupplementCheckout']);
+        });
 
         // Route::apiResource('payment', PaymentController::class)->except(['update']);
         Route::get('/stripe/checkout/{order_id}', [PaymentController::class, 'stripeCheckout']);

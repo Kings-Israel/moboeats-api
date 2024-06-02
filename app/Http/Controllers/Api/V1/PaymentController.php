@@ -15,6 +15,7 @@ use App\Models\RestaurantTable;
 use App\Models\Rider;
 use App\Models\RiderTip;
 use App\Models\StripePayment;
+use App\Models\SupplementOrder;
 use App\Models\User;
 use App\Models\UserRestaurant;
 use App\Notifications\NewOrder as NotificationsNewOrder;
@@ -365,9 +366,81 @@ class PaymentController extends Controller
         );
     }
 
+    /**
+     * Stripe Supplement payment checkout request
+     * @urlParam order_id int The id of the order
+     */
+    public function stripeSupplementCheckout($order_id)
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->error('Order Payment', 'User not found', 403);
+        }
+
+        $order = SupplementOrder::with('supplement.supplier')
+                        ->where(function ($query) use ($order_id) {
+                            $query->where('id', $order_id);
+                        })
+                        ->first();
+
+        if (!$order) {
+            return $this->error('Order Payment', 'Order not found', 404);
+        }
+
+        if ($order->status !== 'pending') {
+            return $this->error('Order Payment', 'Order already paid', 422);
+        }
+
+        if ($order->user_id != $user->id) {
+            return $this->error('Order Payment', 'Cannot make payment for order.', 403);
+        }
+
+        $amount = $order->amount;
+        // if ((int)($amount) > 30) {
+        //     $amount = ceil((double)($order->amount));
+        // } else {
+        //     $amount = $amount.'.30';
+        // }
+
+        // Make request to stripe to store menu item
+        $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+        // Use an existing Customer ID if this is a returning customer.
+        $customer = $stripe->customers->create();
+        $ephemeralKey = $stripe->ephemeralKeys->create([
+                            'customer' => $customer->id,
+                        ], [
+                            'stripe_version' => '2023-10-16',
+                        ]);
+
+        $paymentIntent = $stripe->paymentIntents->create([
+            'amount' => $amount * 100,
+            'currency' => 'kes',
+            'customer' => $customer->id,
+        ]);
+
+        StripePayment::create([
+            'user_id' => $user->id,
+            'payment_intent' => $paymentIntent->id,
+            'payable_type' => SupplementOrder::class,
+            'payable_id' => $order->id,
+            'amount' => $amount,
+        ]);
+
+        return response()->json(
+            [
+              'paymentIntent' => $paymentIntent->client_secret,
+              'ephemeralKey' => $ephemeralKey->secret,
+              'customer' => $customer->id,
+              'publishableKey' => config('services.stripe.KEY')
+            ]
+        );
+    }
+
     public function stripeWebhookCallback(Request $request)
     {
-        info($request->all());
+        // info($request->all());
         // Get the payment details
         if ($request->all()['data']['object']['object'] == 'charge') {
             // Check if payment is successful
@@ -433,7 +506,33 @@ class PaymentController extends Controller
                                 ], 200);
                             }
                             break;
+                        case 'App\\Models\\SupplementOrder':
+                            // Get and update order details and send notification to user
+                            $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
 
+                            if ($order) {
+                                $order->update([
+                                    'status' => 2
+                                ]);
+
+                                Payment::create([
+                                    'transaction_id' => $request->all()['data']['object']['id'],
+                                    'order_id' => $order->id,
+                                    'payment_method' => 'Stripe',
+                                    'amount' => $order->total_amount,
+                                    'status' => 2,
+                                    'created_by' => $order->user->name,
+                                ]);
+
+                                SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Order has started being prepared for delivery', ['order' => $order]);
+
+                                activity()->causedBy($order->user)->performedOn($order)->log('paid for the supplement order');
+
+                                return response()->json([
+                                    'message' => 'Successful Payment',
+                                ], 200);
+                            }
+                            break;
                         default:
                             # code...
                             break;

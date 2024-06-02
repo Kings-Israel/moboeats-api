@@ -1,22 +1,18 @@
-name: 'Restaurant Questionnaire'
-description: |-
-
-  Questionnaire API resource
+name: 'Rider Profile APIs'
+description: ''
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/v1/restaurant/more-info
+      - POST
+    uri: api/v1/orderer/rider/reviews/store
     metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Store review for a rider'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -25,18 +21,133 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      rider_id:
+        name: rider_id
+        description: 'The id of the rider'
+        required: false
+        example: 15
+        type: integer
+        custom: []
+      rating:
+        name: rating
+        description: 'The rating from 1 - 5'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      review:
+        name: review
+        description: 'A review of the rider'
+        required: false
+        example: doloribus
+        type: string
+        custom: []
+    cleanBodyParameters:
+      rider_id: 15
+      rating: 2
+      review: doloribus
     fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/rider/profile/create
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create Rider Profile'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_type:
+        name: vehicle_type
+        description: 'The vehicle type of the rider'
+        required: true
+        example: distinctio
+        type: string
+        custom: []
+      vehicle_license_plate:
+        name: vehicle_license_plate
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      profile_picture:
+        name: profile_picture
+        description: 'The profile picture of the rider'
+        required: true
+        example: null
+        type: file
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: zgleason@example.net
+        type: string
+        custom: []
+      vehicle_licesne_plate:
+        name: vehicle_licesne_plate
+        description: "The license plate of the rider's vehicle"
+        required: true
+        example: porro
+        type: sring
+        custom: []
+      city:
+        name: city
+        description: 'The city where the rider is located'
+        required: false
+        example: necessitatibus
+        type: string
+        custom: []
+      state:
+        name: state
+        description: 'The state of where the rider is located'
+        required: false
+        example: voluptatem
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: 'The postal code of the rider'
+        required: false
+        example: sequi
+        type: string
+        custom: []
+    cleanBodyParameters:
+      vehicle_type: distinctio
+      vehicle_license_plate: ut
+      paypal_email: zgleason@example.net
+      vehicle_licesne_plate: porro
+      city: necessitatibus
+      state: voluptatem
+      postal_code: sequi
+    fileParameters:
+      profile_picture: null
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -47,17 +158,186 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/restaurant/more-info
+    uri: api/v1/rider/profile/update
     metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: 'Update Rider Prodile'
       description: ''
-      authenticated: false
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      paypal_email:
+        name: paypal_email
+        description: 'Must be a valid email address.'
+        required: true
+        example: skassulke@example.com
+        type: string
+        custom: []
+      vehicle_type:
+        name: vehicle_type
+        description: 'The vehicle type of the rider'
+        required: false
+        example: quos
+        type: string
+        custom: []
+      vehicle_licesne_plate:
+        name: vehicle_licesne_plate
+        description: "The license plate of the rider's vehicle"
+        required: false
+        example: veritatis
+        type: sring
+        custom: []
+      profile_picture:
+        name: profile_picture
+        description: 'The profile picture of the rider'
+        required: false
+        example: null
+        type: file
+        custom: []
+      city:
+        name: city
+        description: 'The city where the rider is located'
+        required: false
+        example: quia
+        type: string
+        custom: []
+      state:
+        name: state
+        description: 'The state of where the rider is located'
+        required: false
+        example: amet
+        type: string
+        custom: []
+      postal_code:
+        name: postal_code
+        description: 'The postal code of the rider'
+        required: false
+        example: voluptas
+        type: string
+        custom: []
+    cleanBodyParameters:
+      paypal_email: skassulke@example.com
+      vehicle_type: quos
+      vehicle_licesne_plate: veritatis
+      city: quia
+      state: amet
+      postal_code: voluptas
+    fileParameters:
+      profile_picture: null
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/rider/profile
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Rider Profile'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/rider/orders
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Orders and Assigned Orders'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/rider/orders/update
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -67,31 +347,123 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      restaurantUuid:
-        name: restaurantUuid
+      order_id:
+        name: order_id
         description: ''
         required: true
-        example: illum
+        example: dignissimos
         type: string
         custom: []
-      delivery:
-        name: delivery
+      status:
+        name: status
         description: ''
         required: true
-        example: tempore
-        type: string
-        custom: []
-      booking:
-        name: booking
-        description: ''
-        required: true
-        example: quia
+        example: quas
         type: string
         custom: []
     cleanBodyParameters:
-      restaurantUuid: illum
-      delivery: tempore
-      booking: quia
+      order_id: dignissimos
+      status: quas
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/rider/orders/{order_id}/delivery/location/update'
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_id:
+        name: order_id
+        description: 'The ID of the order.'
+        required: true
+        example: f3b9c89a-029e-4f50-9325-5414c7dc6c65
+        type: string
+        custom: []
+    cleanUrlParameters:
+      order_id: f3b9c89a-029e-4f50-9325-5414c7dc6c65
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: eligendi
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: voluptates
+        type: string
+        custom: []
+    cleanBodyParameters:
+      longitude: eligendi
+      latitude: voluptates
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/rider/location/update
+    metadata:
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: quibusdam
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: deleniti
+        type: string
+        custom: []
+    cleanBodyParameters:
+      longitude: quibusdam
+      latitude: deleniti
     fileParameters: []
     responses: []
     responseFields: []
@@ -103,31 +475,21 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/restaurant/more-info/{id}'
+    uri: api/v1/rider/tips
     metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
+      groupName: 'Rider Profile APIs'
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: 'Get Tips paid to the rider'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the more info.'
-        required: true
-        example: repellat
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: repellat
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -143,87 +505,6 @@ endpoints:
           vary: Origin
         description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/restaurant/more-info/{id}'
-    metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the more info.'
-        required: true
-        example: voluptatum
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: voluptatum
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/restaurant/more-info/{id}'
-    metadata:
-      groupName: 'Restaurant Questionnaire'
-      groupDescription: |-
-
-        Questionnaire API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the more info.'
-        required: true
-        example: voluptates
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: voluptates
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null

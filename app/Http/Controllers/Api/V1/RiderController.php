@@ -354,9 +354,7 @@ class RiderController extends Controller
     }
 
     public function withdraw(Request $request)
-    {
-
-    }
+    {}
 
     /**
      * Store review for a rider

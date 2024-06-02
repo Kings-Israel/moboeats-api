@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\SupplementController;
 use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\MarketingController;
@@ -29,6 +30,18 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::post('/restaurants/{restaurant}/status/update', [AdminController::class, 'updateRestaurantStatus']);
         Route::get('/payments/{payment}/details', [PaymentController::class, 'show']);
         Route::get('/payments', [AdminController::class, 'payments']);
+
+        // Supplements and Suppliers
+        Route::group(['prefix' => '/supplements'], function () {
+            Route::get('/', [SupplementController::class, 'index']);
+            Route::post('/store', [SupplementController::class, 'store']);
+            Route::get('/suppliers', [SupplementController::class, 'suppliers']);
+            Route::post('/suppliers/store', [SupplementController::class, 'storeSupplier']);
+            Route::get('/{supplement}/status/update', [SupplementController::class, 'updateSupplementStatus']);
+            Route::get('/suppliers/{supplier}/status/update', [SupplementController::class, 'updateSupplierStatus']);
+            Route::get('/orders', [SupplementController::class, 'orders']);
+            Route::post('/order/{id}/status/update', [SupplementController::class, 'updateOrderStatus']);
+        });
 
         // Update Settings
         Route::post('/delivery-rate/update', [AdminController::class, 'updateDeliveryRate']);
