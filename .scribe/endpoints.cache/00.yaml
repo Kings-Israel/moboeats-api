@@ -108,27 +108,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: partner
+        example: rider
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: occaecati
+        example: velit
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: qui
+        example: ipsum
         type: string
         custom: []
     cleanBodyParameters:
-      section: partner
-      question: occaecati
-      answer: qui
+      section: rider
+      question: velit
+      answer: ipsum
     fileParameters: []
     responses: []
     responseFields: []
@@ -178,20 +178,20 @@ endpoints:
         name: question
         description: ''
         required: true
-        example: et
+        example: harum
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: et
+        example: quidem
         type: string
         custom: []
     cleanBodyParameters:
       section: customer
-      question: et
-      answer: et
+      question: harum
+      answer: quidem
     fileParameters: []
     responses: []
     responseFields: []
@@ -339,11 +339,11 @@ endpoints:
         name: notification
         description: 'The notification.'
         required: true
-        example: harum
+        example: deleniti
         type: string
         custom: []
     cleanUrlParameters:
-      notification: harum
+      notification: deleniti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -461,11 +461,11 @@ endpoints:
         name: id
         description: 'The Id of the conversation'
         required: false
-        example: laudantium
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: laudantium
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -516,19 +516,19 @@ endpoints:
         name: receiver_id
         description: "The receiver's id"
         required: true
-        example: 17
+        example: 19
         type: integer
         custom: []
       message:
         name: message
         description: 'The message to send'
         required: true
-        example: animi
+        example: perferendis
         type: string
         custom: []
     cleanBodyParameters:
-      receiver_id: 17
-      message: animi
+      receiver_id: 19
+      message: perferendis
     fileParameters: []
     responses:
       -
@@ -564,11 +564,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: deserunt
+        example: consectetur
         type: string
         custom: []
     cleanUrlParameters:
-      id: deserunt
+      id: consectetur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -576,11 +576,11 @@ endpoints:
         name: message
         description: ''
         required: true
-        example: ut
+        example: soluta
         type: string
         custom: []
     cleanBodyParameters:
-      message: ut
+      message: soluta
     fileParameters: []
     responses:
       -
@@ -630,11 +630,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: et
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -688,11 +688,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: eum
+        example: corrupti
         type: string
         custom: []
     cleanUrlParameters:
-      id: eum
+      id: corrupti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -746,11 +746,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation.'
         required: true
-        example: pariatur
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: pariatur
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -840,11 +840,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: sed
+        example: earum
         type: string
         custom: []
     cleanUrlParameters:
-      id: sed
+      id: earum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -898,11 +898,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: doloribus
+        example: repellat
         type: string
         custom: []
     cleanUrlParameters:
-      id: doloribus
+      id: repellat
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1039,7 +1039,7 @@ endpoints:
         name: days
         description: ''
         required: true
-        example: voluptas
+        example: adipisci
         type: string
         custom: []
       opening_times:
@@ -1047,7 +1047,7 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '14:26'
+          - '09:58'
         type: 'string[]'
         custom: []
       closing_times:
@@ -1055,15 +1055,15 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '14:26'
+          - '09:58'
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      days: voluptas
+      days: adipisci
       opening_times:
-        - '14:26'
+        - '09:58'
       closing_times:
-        - '14:26'
+        - '09:58'
     fileParameters: []
     responses: []
     responseFields: []
@@ -1153,7 +1153,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - non
+          - et
         type: 'string[]'
         custom: []
       files:
@@ -1165,7 +1165,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - non
+        - et
     fileParameters: []
     responses: []
     responseFields: []
@@ -1208,7 +1208,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - et
+          - vitae
         type: 'string[]'
         custom: []
       files:
@@ -1220,7 +1220,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - et
+        - vitae
     fileParameters: []
     responses: []
     responseFields: []
@@ -1250,11 +1250,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: reprehenderit
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      id: reprehenderit
+      id: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1379,28 +1379,28 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: et
+        example: nobis
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: true
-        example: ut
+        example: asperiores
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-02T14:26:59'
+        example: '2024-06-05T09:58:56'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-02T14:26:59'
+        example: '2024-06-05T09:58:56'
         type: string
         custom: []
       type:
@@ -1414,24 +1414,24 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 3
+        example: 1
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: active
+        example: inactive
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: et
-      code: ut
-      start_date: '2024-06-02T14:26:59'
-      end_date: '2024-06-02T14:26:59'
+      restaurant_ids: nobis
+      code: asperiores
+      start_date: '2024-06-05T09:58:56'
+      end_date: '2024-06-05T09:58:56'
       type: amount
-      value: 3
-      status: active
+      value: 1
+      status: inactive
     fileParameters: []
     responses: []
     responseFields: []
@@ -1473,35 +1473,35 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: eius
+        example: eos
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-02T14:26:59'
+        example: '2024-06-05T09:58:56'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-02T14:26:59'
+        example: '2024-06-05T09:58:56'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 3
+        example: 1
         type: integer
         custom: []
       status:
@@ -1512,11 +1512,11 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      code: eius
-      start_date: '2024-06-02T14:26:59'
-      end_date: '2024-06-02T14:26:59'
-      type: amount
-      value: 3
+      code: eos
+      start_date: '2024-06-05T09:58:56'
+      end_date: '2024-06-05T09:58:56'
+      type: percentage
+      value: 1
       status: active
     fileParameters: []
     responses: []
@@ -1590,27 +1590,27 @@ endpoints:
         name: menu_ids
         description: ''
         required: true
-        example: saepe
+        example: sequi
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 8
+        example: 16
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_ids: saepe
-      type: amount
-      value: 8
+      menu_ids: sequi
+      type: percentage
+      value: 16
     fileParameters: []
     responses: []
     responseFields: []
@@ -1652,19 +1652,19 @@ endpoints:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 10
+        example: 17
         type: integer
         custom: []
     cleanBodyParameters:
-      type: amount
-      value: 10
+      type: percentage
+      value: 17
     fileParameters: []
     responses: []
     responseFields: []
@@ -1952,19 +1952,19 @@ endpoints:
         name: title
         description: "'category_id' => ['required'],."
         required: true
-        example: quis
+        example: quidem
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: 14
+        example: 3
         type: integer
         custom: []
     cleanBodyParameters:
-      title: quis
-      status: 14
+      title: quidem
+      status: 3
     fileParameters: []
     responses: []
     responseFields: []
@@ -1994,11 +1994,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: non
+        example: enim
         type: string
         custom: []
     cleanUrlParameters:
-      id: non
+      id: enim
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2006,11 +2006,11 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: quasi
         type: string
         custom: []
     cleanBodyParameters:
-      title: quia
+      title: quasi
     fileParameters: []
     responses: []
     responseFields: []
@@ -2087,11 +2087,11 @@ endpoints:
         name: id
         description: 'The ID of the customer.'
         required: true
-        example: hic
+        example: omnis
         type: string
         custom: []
     cleanUrlParameters:
-      id: hic
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2134,11 +2134,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant admin.'
         required: true
-        example: et
+        example: accusamus
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: accusamus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2181,11 +2181,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: aut
+        example: asperiores
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: asperiores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2505,19 +2505,19 @@ endpoints:
         name: status
         description: 'Must be one of <code>2</code> or <code>3</code>.'
         required: true
-        example: '3'
+        example: '2'
         type: string
         custom: []
       reason:
         name: reason
         description: 'This field is required when <code>status</code> is <code>3</code>.'
         required: false
-        example: vel
+        example: illo
         type: string
         custom: []
     cleanBodyParameters:
-      status: '3'
-      reason: vel
+      status: '2'
+      reason: illo
     fileParameters: []
     responses: []
     responseFields: []
@@ -2590,11 +2590,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: exercitationem
+        example: quisquam
         type: string
         custom: []
     cleanBodyParameters:
-      rate: exercitationem
+      rate: quisquam
     fileParameters: []
     responses: []
     responseFields: []
@@ -2628,11 +2628,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: nisi
+        example: iure
         type: string
         custom: []
     cleanBodyParameters:
-      rate: nisi
+      rate: iure
     fileParameters: []
     responses: []
     responseFields: []
@@ -2666,11 +2666,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: excepturi
+        example: quis
         type: string
         custom: []
     cleanBodyParameters:
-      rate: excepturi
+      rate: quis
     fileParameters: []
     responses: []
     responseFields: []
@@ -3055,19 +3055,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: voluptas
+        example: est
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: true
-        example: rq
+        example: ghpvarxbyrvydedupgbr
         type: string
         custom: []
     cleanBodyParameters:
-      title: voluptas
-      poster: rq
+      title: est
+      poster: ghpvarxbyrvydedupgbr
     fileParameters: []
     responses: []
     responseFields: []
@@ -3109,19 +3109,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: hic
+        example: officia
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: false
-        example: aebodubhjjhxiars
+        example: leatmwqwq
         type: string
         custom: []
     cleanBodyParameters:
-      title: hic
-      poster: aebodubhjjhxiars
+      title: officia
+      poster: leatmwqwq
     fileParameters: []
     responses: []
     responseFields: []

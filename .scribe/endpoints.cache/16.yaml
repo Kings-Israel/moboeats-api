@@ -73,35 +73,35 @@ endpoints:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: true
-        example: 0
+        example: 1
         type: number
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: qui
+        example: porro
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 16
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: doloribus
+        example: odit
         type: string
         custom: []
     cleanBodyParameters:
-      price: 0
-      description: qui
-      status: 19
-      menu_id: doloribus
+      price: 1
+      description: porro
+      status: 16
+      menu_id: odit
     fileParameters: []
     responses: []
     responseFields: []
@@ -195,14 +195,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: explicabo
+        example: blanditiis
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: voluptatibus
+        example: quos
         type: string
         custom: []
       price:
@@ -213,8 +213,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: explicabo
-      status: voluptatibus
+      description: blanditiis
+      status: quos
       price: 0
     fileParameters: []
     responses: []
@@ -299,14 +299,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: repellat
+        example: maxime
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: sint
+        example: reiciendis
         type: string
         custom: []
       price:
@@ -317,8 +317,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: repellat
-      status: sint
+      description: maxime
+      status: reiciendis
       price: 0
     fileParameters: []
     responses: []

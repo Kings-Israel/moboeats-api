@@ -159,19 +159,19 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 13
+        example: 18
         type: integer
         custom: []
       quantity:
         name: quantity
         description: 'The quantity of the order'
         required: false
-        example: 15
+        example: 14
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 13
-      quantity: 15
+      supplement_id: 18
+      quantity: 14
     fileParameters: []
     responses: []
     responseFields: []
@@ -248,35 +248,35 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: adipisci
+        example: quis
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: deleniti
+        example: sint
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: quasi
+        example: consectetur
         type: string
         custom: []
       measuring_unit:
         name: measuring_unit
         description: 'Must be one of <code>kilograms</code>, <code>pounds</code>, or <code>litres</code>.'
         required: true
-        example: kilograms
+        example: pounds
         type: string
         custom: []
     cleanBodyParameters:
-      supplier_id: adipisci
-      name: deleniti
-      price: quasi
-      measuring_unit: kilograms
+      supplier_id: quis
+      name: sint
+      price: consectetur
+      measuring_unit: pounds
     fileParameters: []
     responses: []
     responseFields: []
@@ -353,11 +353,11 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: explicabo
+        example: iste
         type: string
         custom: []
     cleanBodyParameters:
-      name: explicabo
+      name: iste
     fileParameters: []
     responses: []
     responseFields: []
@@ -528,11 +528,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: et
+        example: iusto
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: iusto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -540,11 +540,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: mollitia
+        example: repellendus
         type: string
         custom: []
     cleanBodyParameters:
-      status: mollitia
+      status: repellendus
     fileParameters: []
     responses: []
     responseFields: []

@@ -482,10 +482,28 @@ class AuthController extends Controller
 
     /**
      * Delete account
+     * @bodyParam email string The email of the account
+     * @bodyParam phone_number string The phone number of the account
      */
-    public function delete($user_id)
+    public function delete(Request $request)
     {
-        $user = User::find($user_id);
+        $validator = Validator::make($request->all(), [
+            'phone_number' => ['required_without:email'],
+            'email' => ['required_without:phone_number']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Invalid details', 400);
+        }
+
+        if ($request->has('email') && $request->email != '' && !empty($request->email)) {
+            $user = User::where('email', $request->email)->first();
+        }
+
+        if ($request->has('phone_number') && $request->phone_number != '' && !empty($request->phone_number)) {
+            $user = User::where('phone_number', $request->phone_number)->first();
+        }
+
         if (!$user) {
             return $this->error('User not found', 'User Not Found', 404);
         }
