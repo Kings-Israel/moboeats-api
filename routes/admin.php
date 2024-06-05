@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/users/restaurant-admin/{id}/details', [AdminController::class, 'restaurantAdmin']);
         Route::get('/users/rider/{id}/details', [AdminController::class, 'rider']);
         Route::post('/users/rider/{rider}/status/update', [AdminController::class, 'updateRiderStatus']);
+        Route::post('/users/store', [AdminController::class, 'addUser']);
         Route::get('/orders', [AdminController::class, 'orders']);
         Route::get('/orders/{order}/details', [AdminController::class, 'order']);
         Route::get('/restaurants', [AdminController::class, 'restaurants']);

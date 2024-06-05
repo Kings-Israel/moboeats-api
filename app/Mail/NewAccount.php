@@ -17,7 +17,7 @@ class NewAccount extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public User $user, public string $password)
+    public function __construct(public User $user, public string $password, public string $platform = '')
     {
         //
     }
@@ -37,10 +37,17 @@ class NewAccount extends Mailable
      */
     public function content(): Content
     {
+        $link = '';
+        if ($this->platform == '' || $this->platform == 'restaurant') {
+            $link = config('app.env') == 'production' ? 'https://restaurant.moboeats.co.uk' : 'http://admin.moboeats.test';
+        } else {
+            $link = config('app.env') == 'production' ? 'https://admin.moboeats.co.uk' : 'http://admin.moboeats.test';
+        }
+        
         return new Content(
             markdown: 'email.new-account',
             with: [
-                'url' => config('app.env') == 'production' ? 'https://restaurant.moboeats.com' : 'http://restaurant.moboeats.test',
+                'url' => $link,
                 'message' => 'Your account has been created. Click on the link below to access your account. Your credentials are:',
                 'name' => $this->user->first_name,
                 'email' => $this->user->email,

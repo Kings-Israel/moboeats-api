@@ -1022,7 +1022,7 @@ class RestaurantController extends Controller
 
         $user->addRole('restaurant employee');
 
-        Mail::to($request->email)->send(new NewAccount($user, $generate_password));
+        Mail::to($request->email)->send(new NewAccount($user, $generate_password, 'restaurant'));
 
         return $this->success($user, 'User created successfully');
     }

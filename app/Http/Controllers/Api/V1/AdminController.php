@@ -14,6 +14,7 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Payout;
+use App\Models\Role;
 use App\Models\Restaurant;
 use App\Models\Review;
 use App\Models\Rider;
@@ -26,14 +27,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\UpdatedRestaurantStatus;
 use Spatie\Activitylog\Models\Activity;
 use App\Jobs\SendNotification;
+use App\Mail\NewAccount;
 use App\Models\Supplement;
 use App\Models\SupplementOrder;
 use App\Models\SupplementSupplier;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Milon\Barcode\DNS2D;
-use Milon\Barcode\DNS1D;
+use App\Jobs\SendCommunication;
 
 class AdminController extends Controller
 {
@@ -53,7 +57,7 @@ class AdminController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            if (!$user->hasRole('admin')) {
+            if (!$user->hasRole('admin') && !$user->hasRole('supplements-admin')) {
                 return $this->error(['email' => 'You do not have permission to login.'], 'You do not have permission to login.', 401);
             }
 
@@ -64,12 +68,44 @@ class AdminController extends Controller
             return $this->success([
                 'user' => $user,
                 'token' => $token->plainTextToken,
+                'role' => $user->roles->first()->name,
 
             ]);
         } catch (\Throwable $th) {
             info($th->getMessage());
             return $this->error('', $th->getMessage(), 403);
         }
+    }
+
+    public function addUser(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required'],
+            'phone_number' => ['required'],
+            'role' => ['required'],
+        ]);
+
+        $role = Role::firstOrCreate(['name' => $request->role]);
+
+        $password = Str::random(8);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => bcrypt($password)
+        ]);
+
+        if ($user && $role) {
+            $user->addRole($role->name);
+        }
+
+        if ($user->email) {
+            SendCommunication::dispatchAfterResponse('mail', $user->email, 'NewAccount', ['user' => $user, 'password' => $password]);
+        }
+
+        return $this->success(['user' => $user, 'User added successfully']);
     }
 
     public function dashboard()

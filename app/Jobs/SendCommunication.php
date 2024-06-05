@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\NewAccount;
 use App\Mail\ResetPassword;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -32,6 +33,9 @@ class SendCommunication implements ShouldQueue
             case 'mail':
                 if ($this->sender == 'ResetPassword') {
                     Mail::to($this->receipient)->send(new ResetPassword($this->content['code']));
+                }
+                if ($this->sender == 'NewAccount') {
+                    Mail::to($this->receipient)->send(new NewAccount($this->content['user'], $this->content['password'], 'admin'));
                 }
                 break;
             case 'sms':
