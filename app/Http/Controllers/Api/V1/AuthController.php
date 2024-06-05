@@ -482,41 +482,50 @@ class AuthController extends Controller
 
     /**
      * Delete account
-     * @bodyParam email string The email of the account
-     * @bodyParam phone_number string The phone number of the account
      */
-    public function delete(Request $request)
+    public function delete()
     {
-        $validator = Validator::make($request->all(), [
-            'phone_number' => ['required_without:email'],
-            'email' => ['required_without:phone_number']
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'phone_number' => ['required_without:email'],
+        //     'email' => ['required_without:phone_number']
+        // ]);
 
-        if ($validator->fails()) {
-            return $this->error($validator->messages(), 'Invalid details', 400);
-        }
+        // if ($validator->fails()) {
+        //     return $this->error($validator->messages(), 'Invalid details', 400);
+        // }
 
-        if ($request->has('email') && $request->email != '' && !empty($request->email)) {
-            $user = User::where('email', $request->email)->first();
-        }
+        // if ($request->has('email') && $request->email != '' && !empty($request->email)) {
+        //     $user = User::where('email', $request->email)->first();
+        // }
 
-        if ($request->has('phone_number') && $request->phone_number != '' && !empty($request->phone_number)) {
-            $user = User::where('phone_number', $request->phone_number)->first();
-        }
+        // if ($request->has('phone_number') && $request->phone_number != '' && !empty($request->phone_number)) {
+        //     $user = User::where('phone_number', $request->phone_number)->first();
+        // }
 
-        if (!$user) {
-            return $this->error('User not found', 'User Not Found', 404);
-        }
+        // if (!$user) {
+        //     return $this->error('User not found', 'User Not Found', 404);
+        // }
 
-        return view('delete', ['user' => $user]);
+        // return view('delete', ['user' => $user]);
+        return view('delete');
     }
 
     public function confirmDelete(Request $request)
     {
-        $user = User::find($request->user_id);
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required_without:phone_number', 'email'],
+            'phone_number' => ['required_without:email']
+        ]);
 
-        $user->delete();
+        $user = User::where('email', $request->email)->orWhere('phone_number', $request->phone_number)->first();
 
-        return view('deleted');
+        if ($user) {
+            $user->delete();
+
+            return view('deleted');
+        }
+
+        return back()->withErrors(['email' => 'Invalid user details']);
     }
 }

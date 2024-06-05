@@ -51,7 +51,7 @@ Route::get('/privacy-policy', function () {
 
 Route::get('/qr-code/{string?}', [AdminController::class, 'qrCode']);
 
-Route::post('/account/delete', [AuthController::class, 'delete']);
+Route::get('/account/delete', [AuthController::class, 'delete']);
 Route::post('delete', [AuthController::class, 'confirmDelete'])->name('delete.confirmation');
 
 require __DIR__.'/auth.php';
