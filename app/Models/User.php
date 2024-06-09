@@ -45,6 +45,11 @@ class User extends Authenticatable implements LaratrustUser
         'image',
         'phone_number',
         'type',
+        'height',
+        'height_units',
+        'weight',
+        'weight_units',
+        'body_mass_index',
     ];
 
     protected $keyType = 'int';
@@ -123,6 +128,19 @@ class User extends Authenticatable implements LaratrustUser
             return config('app.url').'/storage/user/avatar/'.$value;
         }
         return config('app.url').'/assets/user/default.png';
+    }
+
+    /**
+     * Scope a query to only include activeDietSubscribtions
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActiveDietSubscription($query)
+    {
+        return $query->whereHas('dietSubscriptions', function ($query) {
+            $query->whereDate('end_date', '>=', now()->format('Y-m-d'));
+        });
     }
 
     /**
@@ -210,6 +228,22 @@ class User extends Authenticatable implements LaratrustUser
     public function stripePayments(): HasMany
     {
         return $this->hasMany(StripePayment::class);
+    }
+
+    /**
+     * Get all of the dietPlans for the User
+     */
+    public function dietPlans(): HasMany
+    {
+        return $this->hasMany(DietPlan::class);
+    }
+
+    /**
+     * Get all of the dietSubscriptions for the User
+     */
+    public function dietSubscriptions(): HasMany
+    {
+        return $this->hasMany(DietSubscription::class);
     }
 
     public static function options($column)

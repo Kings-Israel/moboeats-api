@@ -73,14 +73,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: voluptates
+        example: blanditiis
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: weldon.pfeffer@example.org
+        example: dooley.luisa@example.net
         type: string
         custom: []
       phoneNo:
@@ -126,8 +126,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: voluptates
-      email: weldon.pfeffer@example.org
+      name: blanditiis
+      email: dooley.luisa@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -221,56 +221,56 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 82f68e42-cc8d-3063-98ef-a163e3084fa6
+        example: 236b79a0-20e0-3f6d-b70e-9447dabe8303
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: eius
+        example: non
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: nick.dooley@example.net
+        example: gleason.melyssa@example.net
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: nam
+        example: eligendi
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: voluptatem
+        example: praesentium
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: sed
+        example: et
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: ea
+        example: dolores
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: est
+        example: mollitia
         type: string
         custom: []
       image:
@@ -281,14 +281,14 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 82f68e42-cc8d-3063-98ef-a163e3084fa6
-      name: eius
-      email: nick.dooley@example.net
-      phoneNo: nam
-      address: voluptatem
-      city: sed
-      state: ea
-      mapLocation: est
+      uuid: 236b79a0-20e0-3f6d-b70e-9447dabe8303
+      name: non
+      email: gleason.melyssa@example.net
+      phoneNo: eligendi
+      address: praesentium
+      city: et
+      state: dolores
+      mapLocation: mollitia
     fileParameters: []
     responses: []
     responseFields: []
@@ -329,6 +329,78 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/orderer/diet/data/store
+    metadata:
+      groupName: 'Orderer/Customer Management'
+      groupDescription: |-
+
+        Orderer/Customer API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store user data for diet planning'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      height:
+        name: height
+        description: 'The height of the user'
+        required: true
+        example: 3
+        type: integer
+        custom: []
+      height_units:
+        name: height_units
+        description: 'The measurement units for height. E.g inches, feet'
+        required: true
+        example: 20
+        type: integer
+        custom: []
+      weight:
+        name: weight
+        description: 'The weight of the user'
+        required: true
+        example: 6
+        type: integer
+        custom: []
+      weight_units:
+        name: weight_units
+        description: 'The measurement units for weight. E.g kilograms, pounds'
+        required: true
+        example: 17
+        type: integer
+        custom: []
+      body_mass_index:
+        name: body_mass_index
+        description: 'The mass index of the user'
+        required: true
+        example: 10
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      height: 3
+      height_units: 20
+      weight: 6
+      weight_units: 17
+      body_mass_index: 10
     fileParameters: []
     responses: []
     responseFields: []

@@ -16,11 +16,12 @@ use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 /**
  * @group Orderer/Customer Management
- * 
+ *
  * Orderer/Customer API resource
  */
 
@@ -28,7 +29,7 @@ class OrdererController extends Controller
 {
     use UploadFileTrait;
     use HttpResponses;
-    
+
     public $settings = [
         'model' =>  '\\App\\Models\\Orderer',
         'caption' =>  "Orderer",
@@ -50,7 +51,7 @@ class OrdererController extends Controller
         return new OrdererCollection($orderers->paginate()->appends($request->query()));
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -90,7 +91,7 @@ class OrdererController extends Controller
             DB::rollBack();
             return $this->error('', $th->getMessage(), 403);
         }
-        
+
     }
 
     /**
@@ -101,7 +102,7 @@ class OrdererController extends Controller
         return $this->isNotAuthorized($orderer) ?  $this->isNotAuthorized($orderer) : new OrdererResource($orderer);
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -159,6 +160,39 @@ class OrdererController extends Controller
             DB::rollBack();
             return $this->error('', $th->getMessage(), 403);
         }
+    }
+
+    /**
+     * Store user data for diet planning
+     * @bodyParam height integer required The height of the user
+     * @bodyParam height_units integer required The measurement units for height. E.g inches, feet
+     * @bodyParam weight integer required The weight of the user
+     * @bodyParam weight_units integer required The measurement units for weight. E.g kilograms, pounds
+     * @bodyParam body_mass_index integer required The mass index of the user
+     */
+    public function storeDietPlanUserData(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'height' => ['required'],
+            'height_units' => ['required_with:height'],
+            'weight' => ['required'],
+            'weight_units' => ['required_with:weight'],
+            'body_mass_index' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Diet plan data', 400);
+        }
+
+        auth()->user()->update([
+            'height' => $request->height,
+            'height_units' => $request->height_units,
+            'weight' => $request->weight,
+            'weight_units' => $request->weight_units,
+            'body_mass_index' => $request->body_mass_index,
+        ]);
+
+        return $this->success(auth()->user(), 'Data updated successfully');
     }
 
     public function isNotAuthorized($orderer)

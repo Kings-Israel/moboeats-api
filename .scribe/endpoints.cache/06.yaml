@@ -67,12 +67,53 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 10
+        example: 6
         type: integer
         custom: []
     cleanUrlParameters:
       id: f3b9c89a-029e-4f50-9325-5414c7dc6c65
-      order_id: 10
+      order_id: 6
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/orderer/diet/subscribe
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -117,11 +158,11 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 3
+        example: 8
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 3
+      order_id: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -166,19 +207,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 18
+        example: 12
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 1
+        example: 8
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 18
-      amount: 1
+      order_id: 12
+      amount: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -223,19 +264,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: est
+        example: asperiores
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: soluta
+        example: nobis
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: est
-      order_id: soluta
+      user_id: asperiores
+      order_id: nobis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

@@ -44,6 +44,13 @@ Route::group(['prefix' => 'v1/admin'], function() {
             Route::post('/order/{id}/status/update', [SupplementController::class, 'updateOrderStatus']);
         });
 
+        Route::group(['prefix' => '/diet'], function () {
+            Route::get('/plans', [AdminController::class, 'plans']);
+            Route::get('/plans/subscribers', [AdminController::class, 'dietPlanSubscribers']);
+            Route::get('/plans/subscribers/{id}/details', [AdminController::class, 'dietPlanSubscriber']);
+            Route::post('/plans/store', [AdminController::class, 'storeDietPlan']);
+        });
+
         // Update Settings
         Route::post('/delivery-rate/update', [AdminController::class, 'updateDeliveryRate']);
         Route::post('/base-rate/update', [AdminController::class, 'updateBaseRate']);

@@ -84,6 +84,8 @@ class SupplementController extends Controller
             'price_per_quantity' => $request->price,
             'measuring_unit' => $request->measuring_unit,
             'description' => $request->has('description') && !empty($request->description) ? $request->description : NULL,
+            'prescription' => $request->has('prescription') && !empty($request->prescription) ? $request->prescription : NULL,
+            'category' => $request->has('category') && !empty($request->category) ? $request->category : NULL,
         ]);
 
         foreach ($request->images as $image) {

@@ -38,6 +38,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Milon\Barcode\DNS2D;
 use App\Jobs\SendCommunication;
+use App\Models\DietPlan;
+use App\Models\DietSubscription;
 
 class AdminController extends Controller
 {
@@ -734,5 +736,87 @@ class AdminController extends Controller
         Storage::disk('public')->put('QR.png',base64_decode($barcode->getBarcodePNG($string, "QRCODE", 10, 10)));
 
         return Storage::disk('public')->download('QR.png');
+    }
+
+    public function plans(Request $request)
+    {
+        $date = $request->query('date');
+        $user = $request->query('user');
+
+        $plans = DietPlan::with('user')
+                        ->when($user && $user != '', function ($query) use ($user) {
+                            $query->whereHas('user', function ($query) use ($user) {
+                                $query->where('id', $user);
+                            });
+                        })
+                        ->paginate(10);
+
+        return $this->success($plans);
+    }
+
+    public function dietPlanSubscribers(Request $request)
+    {
+        $user = $request->query('user');
+
+        $subscribers = User::with([
+                                'dietPlans',
+                                'dietSubscriptions' => function ($query) {
+                                    $query->latest()->first();
+                                }
+                            ])
+                            ->whereHas('dietSubscriptions')
+                            ->when($user && $user != '', function ($query) use ($user) {
+                                $query->where('name', 'LIKE', '%'.$user.'%');
+                            })
+                            ->paginate(10);
+
+        return $this->success($subscribers);
+    }
+
+    public function dietPlanSubscriber($id)
+    {
+        $subscriber = User::with([
+                'dietPlans' => function ($query) {
+                    $query->orderBy('date', 'DESC');
+                },
+                'dietSubscriptions' => function ($query) {
+                    $query->latest()->first();
+                }
+            ])
+            ->where('uuid', $id)
+            ->first();
+
+        if ($subscriber->dietPlans) {
+            $subscriber->dietPlans = $subscriber->dietPlans->groupBy('date');
+        }
+
+        return $this->success($subscriber);
+    }
+
+    public function storeDietPlan(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => ['required', 'exists:users,id'],
+            'date' => ['required', 'date'],
+            'meals' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Diet plan validation', 400);
+        }
+
+        foreach ($request->meals as $key => $meal) {
+            DietPlan::create([
+                'user_id' => $request->user_id,
+                'date' => Carbon::parse($request->date)->format('Y-m-d'),
+                'meal' => $meal,
+                'type' => $key,
+            ]);
+        }
+
+        // Notify user of new meal plan
+        SendNotification::dispatchAfterResponse(User::find($request->user_id), 'A new meal plan has been created for you.');
+
+        return $this->success('Meal plan created successfully');
     }
 }

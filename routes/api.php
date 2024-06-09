@@ -125,10 +125,18 @@ Route::group(['prefix' => 'v1/orderer'], function() {
 
         Route::apiResource('orders', OrderController::class)->except(['update']);
 
+        // Supplements
         Route::group(['prefix' => '/supplements'], function () {
             Route::get('/orders', [SupplementController::class, 'orders']);
             Route::post('/orders', [SupplementController::class, 'storeOrder']);
             Route::get('/orders/{id}/pay', [PaymentController::class, 'stripeSupplementCheckout']);
+        });
+
+        // Diet Plans
+        Route::group(['prefix' => '/diet'], function () {
+            Route::post('/data/store', [OrdererController::class, 'storeDietPlanUserData']);
+            Route::get('/plans', [AdminController::class, 'plans']);
+            Route::get('/subscribe', [PaymentController::class, 'stripeDietPlanCheckout']);
         });
 
         // Route::apiResource('payment', PaymentController::class)->except(['update']);

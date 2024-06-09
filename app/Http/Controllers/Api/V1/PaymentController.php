@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\UpdatePaymentRequest;
 use App\Jobs\SendNotification;
 use App\Models\AssignedOrder;
+use App\Models\DietSubscription;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Restaurant;
@@ -438,9 +439,69 @@ class PaymentController extends Controller
         );
     }
 
+    public function stripeDietPlanCheckout()
+    {
+        if (!auth()->user()->height && !auth()->user()->weight) {
+            return $this->error('Enter your height and weight before proceeding.', 'Diet plan subscription', 400);
+        }
+        
+        // Check if user has an active subscription
+        $subscription = DietSubscription::where(['user_id' => auth()->id(), 'status' => 'paid'])->whereDate('end_date', '>=', now()->format('Y-m-d'))->first();
+
+        if ($subscription) {
+            return $this->error('You already have a subscription', 'Diet Plans Checkout', 400);
+        }
+
+        $subscription = DietSubscription::where(['user_id' => auth()->id(), 'status' => 'pending'])->whereDate('end_date', '>=', now()->format('Y-m-d'))->first();
+
+        if (!$subscription) {
+            $subscription = DietSubscription::create([
+                'user_id' => auth()->id(),
+                'start_date' => now()->format('Y-m-d'),
+                'end_date' => now()->addMonth()->format('Y-m-d'),
+                'status' => 'pending'
+            ]);
+        }
+
+        $amount = 50;
+
+        // Make request to stripe to store menu item
+        $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+        // Use an existing Customer ID if this is a returning customer.
+        $customer = $stripe->customers->create();
+        $ephemeralKey = $stripe->ephemeralKeys->create([
+                            'customer' => $customer->id,
+                        ], [
+                            'stripe_version' => '2023-10-16',
+                        ]);
+
+        $paymentIntent = $stripe->paymentIntents->create([
+            'amount' => $amount * 100,
+            'currency' => 'kes',
+            'customer' => $customer->id,
+        ]);
+
+        StripePayment::create([
+            'user_id' => auth()->id(),
+            'payment_intent' => $paymentIntent->id,
+            'payable_type' => DietSubscription::class,
+            'payable_id' => $subscription->id,
+            'amount' => $amount,
+        ]);
+
+        return response()->json(
+            [
+              'paymentIntent' => $paymentIntent->client_secret,
+              'ephemeralKey' => $ephemeralKey->secret,
+              'customer' => $customer->id,
+              'publishableKey' => config('services.stripe.KEY')
+            ]
+        );
+    }
+
     public function stripeWebhookCallback(Request $request)
     {
-        // info($request->all());
         // Get the payment details
         if ($request->all()['data']['object']['object'] == 'charge') {
             // Check if payment is successful
@@ -515,18 +576,45 @@ class PaymentController extends Controller
                                     'status' => 2
                                 ]);
 
-                                Payment::create([
-                                    'transaction_id' => $request->all()['data']['object']['id'],
-                                    'order_id' => $order->id,
-                                    'payment_method' => 'Stripe',
-                                    'amount' => $order->total_amount,
-                                    'status' => 2,
-                                    'created_by' => $order->user->name,
-                                ]);
+                                // Payment::create([
+                                //     'transaction_id' => $request->all()['data']['object']['id'],
+                                //     'order_id' => $order->id,
+                                //     'payment_method' => 'Stripe',
+                                //     'amount' => $order->total_amount,
+                                //     'status' => 2,
+                                //     'created_by' => $order->user->name,
+                                // ]);
 
                                 SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Order has started being prepared for delivery', ['order' => $order]);
 
                                 activity()->causedBy($order->user)->performedOn($order)->log('paid for the supplement order');
+
+                                return response()->json([
+                                    'message' => 'Successful Payment',
+                                ], 200);
+                            }
+                            break;
+                        case 'App\\Models\\DietSubscription':
+                            // Get and update order details and send notification to user
+                            $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+
+                            if ($order) {
+                                $order->update([
+                                    'status' => 'paid'
+                                ]);
+
+                                // Payment::create([
+                                //     'transaction_id' => $request->all()['data']['object']['id'],
+                                //     'order_id' => $order->id,
+                                //     'payment_method' => 'Stripe',
+                                //     'amount' => 50,
+                                //     'status' => 2,
+                                //     'created_by' => $order->user->name,
+                                // ]);
+
+                                SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful and diet plan has started being prepared', ['order' => $order]);
+
+                                activity()->causedBy($order->user)->performedOn($order)->log('paid for diet plan subscription');
 
                                 return response()->json([
                                     'message' => 'Successful Payment',

@@ -33,7 +33,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"supplements":{"data":[{"id":1,"supplier":{"id":1,"name":"Test Supplier","location":"Development House, Nairobi, Kenya","description":null},"name":"Test Supp","currency":"KSH","price":10,"measuring_unit":"kilograms","description":"Test description"}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements","per_page":15,"to":1,"total":1}}}}'
+        content: '{"status":"Request was succesful","message":null,"data":{"supplements":{"data":[{"id":1,"supplier":{"id":1,"name":"Test Supplier","location":"Development House, Nairobi, Kenya","description":null,"image":null},"name":"Test Supp","currency":"KSH","price":10,"measuring_unit":"kilograms","description":"Test description","images":[]}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements","per_page":15,"to":1,"total":1}}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -76,7 +76,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"data":[{"id":1,"name":"Test Supplier","location":"Development House, Nairobi, Kenya","description":null,"supplements":[{"id":1,"name":"Test Supp","currency":"KSH","price":10,"measuring_unit":"kilograms","description":"Test description"}]}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers","per_page":15,"to":1,"total":1}}}'
+        content: '{"status":"Request was succesful","message":null,"data":{"data":[{"id":1,"name":"Test Supplier","location":"Development House, Nairobi, Kenya","description":null,"supplements":[{"id":1,"name":"Test Supp","currency":"KSH","price":10,"measuring_unit":"kilograms","description":"Test description"},{"id":2,"name":"Inventore duis earum","currency":"KSH","price":93,"measuring_unit":"kilograms","description":"Ea deserunt in adipi"}],"image":null},{"id":2,"name":"Dignissimos debitis","location":null,"description":null,"supplements":[],"image":"http:\/\/moboeats.test\/storage\/supplements\/suppliers\/gU3inJsCcmdU9hVxRNWMIEqB3RIlgk4Lg8rQsSbP.png"}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/supplements\/suppliers","per_page":15,"to":2,"total":2}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -159,19 +159,19 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 18
+        example: 12
         type: integer
         custom: []
       quantity:
         name: quantity
         description: 'The quantity of the order'
         required: false
-        example: 14
+        example: 15
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 18
-      quantity: 14
+      supplement_id: 12
+      quantity: 15
     fileParameters: []
     responses: []
     responseFields: []
@@ -248,35 +248,42 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: quis
+        example: omnis
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: sint
+        example: cum
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: consectetur
+        example: ut
         type: string
         custom: []
       measuring_unit:
         name: measuring_unit
         description: 'Must be one of <code>kilograms</code>, <code>pounds</code>, or <code>litres</code>.'
         required: true
-        example: pounds
+        example: litres
         type: string
         custom: []
+      images:
+        name: images
+        description: ''
+        required: false
+        example: null
+        type: 'string[]'
+        custom: []
     cleanBodyParameters:
-      supplier_id: quis
-      name: sint
-      price: consectetur
-      measuring_unit: pounds
+      supplier_id: omnis
+      name: cum
+      price: ut
+      measuring_unit: litres
     fileParameters: []
     responses: []
     responseFields: []
@@ -353,11 +360,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: iste
+        example: sequi
+        type: string
+        custom: []
+      image:
+        name: image
+        description: ''
+        required: true
+        example: ducimus
         type: string
         custom: []
     cleanBodyParameters:
-      name: iste
+      name: sequi
+      image: ducimus
     fileParameters: []
     responses: []
     responseFields: []
@@ -528,11 +543,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: iusto
+        example: dolores
         type: string
         custom: []
     cleanUrlParameters:
-      id: iusto
+      id: dolores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -540,11 +555,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: repellendus
+        example: explicabo
         type: string
         custom: []
     cleanBodyParameters:
-      status: repellendus
+      status: explicabo
     fileParameters: []
     responses: []
     responseFields: []
