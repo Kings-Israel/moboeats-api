@@ -120,11 +120,7 @@ class User extends Authenticatable implements LaratrustUser
     public function getImageAttribute($value)
     {
         if ($value) {
-            if (env('APP_ENV') == 'production') {
-                return 'https://moboeats.com/storage/user/avatar/'.$value;
-            } else {
-                return config('app.url').'/storage/user/avatar/'.$value;
-            }
+            return config('app.url').'/storage/user/avatar/'.$value;
         }
         return config('app.url').'/assets/user/default.png';
     }
