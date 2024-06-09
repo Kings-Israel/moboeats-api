@@ -29,21 +29,35 @@ class SupplementController extends Controller
     public function index(Request $request)
     {
         $per_page = $request->query('per_page');
+        $search = $request->query('search');
+        $supplier = $request->query('supplier');
 
         if (auth()->check()) {
             if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('supplements admin')) {
-                $supplements = SupplementResource::collection(Supplement::with('supplier')->withCount('orders')->paginate($per_page))->response()->getData(true);
+                $supplements = SupplementResource::collection(
+                        Supplement::with('supplier', 'images')
+                                    ->withCount('orders')
+                                    ->when($search && $search != '', function ($query) use ($search) {
+                                        $query->where('name', 'LIKE', '%'.$search.'%');
+                                    })
+                                    ->when($supplier && $supplier != '', function ($query) use ($supplier) {
+                                        $query->whereHas('supplier', function ($query) use ($supplier) {
+                                            $query->where('id', $supplier);
+                                        });
+                                    })
+                                    ->paginate($per_page)
+                    )->response()->getData(true);
 
                 $suppliers = SupplementSupplierResource::collection(SupplementSupplier::all());
 
                 return $this->success(['supplements' => $supplements, 'suppliers' => $suppliers]);
             } else {
-                $supplements = SupplementResource::collection(Supplement::available()->with('supplier')->paginate($per_page))->response()->getData(true);
+                $supplements = SupplementResource::collection(Supplement::available()->with('supplier', 'images')->paginate($per_page))->response()->getData(true);
 
                 return $this->success(['supplements' => $supplements]);
             }
         } else {
-            $supplements = SupplementResource::collection(Supplement::available()->with('supplier')->paginate($per_page))->response()->getData(true);
+            $supplements = SupplementResource::collection(Supplement::available()->with('supplier', 'images')->paginate($per_page))->response()->getData(true);
 
             return $this->success(['supplements' => $supplements]);
         }
@@ -55,7 +69,9 @@ class SupplementController extends Controller
             'supplier_id' => ['required', 'exists:supplement_suppliers,id'],
             'name' => ['required'],
             'price' => ['required'],
-            'measuring_unit' => ['required', 'in:kilograms,pounds,litres']
+            'measuring_unit' => ['required', 'in:kilograms,pounds,litres'],
+            'images' => ['required', 'array', 'min:1'],
+            'images.*' => ['mimes:jpg,png']
         ]);
 
         if ($validator->fails()) {
@@ -69,6 +85,12 @@ class SupplementController extends Controller
             'measuring_unit' => $request->measuring_unit,
             'description' => $request->has('description') && !empty($request->description) ? $request->description : NULL,
         ]);
+
+        foreach ($request->images as $image) {
+            $supplement->images()->create([
+                'image' => pathinfo($image->store('', 'supplements'), PATHINFO_BASENAME)
+            ]);
+        }
 
         activity()->causedBy(auth()->user())->performedOn($supplement)->log('registered a new supplement');
 
@@ -129,6 +151,7 @@ class SupplementController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required'],
+            'image' => ['required']
         ]);
 
         if ($validator->fails()) {
@@ -138,6 +161,7 @@ class SupplementController extends Controller
         $supplier = SupplementSupplier::create([
             'name' => $request->name,
             'location' => $request->has('location') && !empty($request->location) ? $request->location : NULL,
+            'image' => pathinfo($request->image->store('suppliers', 'supplements'), PATHINFO_BASENAME)
         ]);
 
         activity()->causedBy(auth()->user())->performedOn($supplier)->log('registered a new supplement supplier');

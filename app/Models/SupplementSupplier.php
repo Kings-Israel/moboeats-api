@@ -16,7 +16,22 @@ class SupplementSupplier extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'location', 'status'];
+    protected $fillable = ['name', 'description', 'location', 'status', 'image'];
+
+    /**
+     * Get the image
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getImageAttribute($value)
+    {
+        if ($value) {
+            return config('app.url').'/storage/supplements/suppliers/'.$value;
+        }
+
+        return NULL;
+    }
 
     /**
      * Get all of the supplements for the SupplementSupplier

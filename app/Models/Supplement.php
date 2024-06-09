@@ -54,4 +54,12 @@ class Supplement extends Model
     {
         return $this->hasMany(SupplementOrder::class);
     }
+
+    /**
+     * Get all of the images for the Supplement
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(SupplementImage::class);
+    }
 }

@@ -22,6 +22,7 @@ class SupplementSupplierResource extends JsonResource
             'supplements' => SupplementResource::collection($this->whenLoaded('supplements')),
             'status' => $this->when(auth()->check() && auth()->user()->hasRole('admin'), $this->status),
             'orders_count' => $this->when(auth()->check() && auth()->user()->hasRole('admin'), $this->orders_count),
+            'image' => $this->image,
         ];
     }
 }

@@ -24,6 +24,7 @@ class SupplementResource extends JsonResource
             'description' => $this->description,
             'is_available' => $this->when(auth()->check() && auth()->user()->hasRole('admin'), $this->is_available),
             'orders_count' => $this->when(auth()->check() && auth()->user()->hasRole('admin'), $this->orders_count),
+            'images' => $this->whenLoaded('images')
         ];
     }
 }

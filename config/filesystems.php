@@ -104,6 +104,14 @@ return [
             'throw' => false,
         ],
 
+        'supplements' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/supplements'),
+            'url' => env('APP_URL').'/storage/supplements',
+            'visibility' => 'public',
+            'throw' => false,
+        ]
+
     ],
 
     /*
