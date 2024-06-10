@@ -32,7 +32,7 @@ class SendSMS implements ShouldQueue
         $msg = json_encode(
             [
                 'to' => $this->receiver,
-                'from' => "VoodooSMS",
+                'from' => "Mobo Eats",
                 'msg' => $this->message,
             ]
         );
