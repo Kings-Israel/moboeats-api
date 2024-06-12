@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
 class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['transaction_id','order_id', 'payment_method', 'amount', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['transaction_id', 'orderable_id', 'orderable_type', 'payment_method', 'amount', 'status', 'created_by', 'updated_by'];
 
     protected $keyType = 'int';
     public $incrementing = true;
@@ -63,8 +64,8 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function order()
+    public function orderable(): MorphTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->morphTo('orderable');
     }
 }
