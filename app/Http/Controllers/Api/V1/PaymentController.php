@@ -444,7 +444,7 @@ class PaymentController extends Controller
         if (!auth()->user()->height && !auth()->user()->weight) {
             return $this->error('Enter your height and weight before proceeding.', 'Diet plan subscription', 400);
         }
-        
+
         // Check if user has an active subscription
         $subscription = DietSubscription::where(['user_id' => auth()->id(), 'status' => 'paid'])->whereDate('end_date', '>=', now()->format('Y-m-d'))->first();
 
@@ -534,7 +534,8 @@ class PaymentController extends Controller
 
                                 Payment::create([
                                     'transaction_id' => $request->all()['data']['object']['id'],
-                                    'order_id' => $order->id,
+                                    'orderable_id' => $order->id,
+                                    'orderable_type' => Order::class,
                                     'payment_method' => 'Stripe',
                                     'amount' => $order->total_amount,
                                     'status' => 2,
@@ -558,6 +559,16 @@ class PaymentController extends Controller
                                     'status' => 'paid',
                                 ]);
 
+                                Payment::create([
+                                    'transaction_id' => $request->all()['data']['object']['id'],
+                                    'orderable_id' => $rider_tip->id,
+                                    'orderable_type' => RiderTip::class,
+                                    'payment_method' => 'Stripe',
+                                    'amount' => $stripe_payment->amount,
+                                    'status' => 2,
+                                    'created_by' => $stripe_payment->user->name,
+                                ]);
+
                                 SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Rider hhas been tipped');
 
                                 activity()->causedBy($rider_tip->order->user)->performedOn($rider_tip->order)->log('tipped '.$rider_tip->order.' the rider');
@@ -576,14 +587,14 @@ class PaymentController extends Controller
                                     'status' => 2
                                 ]);
 
-                                // Payment::create([
-                                //     'transaction_id' => $request->all()['data']['object']['id'],
-                                //     'order_id' => $order->id,
-                                //     'payment_method' => 'Stripe',
-                                //     'amount' => $order->total_amount,
-                                //     'status' => 2,
-                                //     'created_by' => $order->user->name,
-                                // ]);
+                                Payment::create([
+                                    'transaction_id' => $request->all()['data']['object']['id'],
+                                    'order_id' => $order->id,
+                                    'payment_method' => 'Stripe',
+                                    'amount' => $stripe_payment->amount,
+                                    'status' => 2,
+                                    'created_by' => $stripe_payment->user->name,
+                                ]);
 
                                 SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Order has started being prepared for delivery', ['order' => $order]);
 
