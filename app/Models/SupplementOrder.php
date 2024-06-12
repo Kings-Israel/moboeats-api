@@ -50,4 +50,9 @@ class SupplementOrder extends Model
     {
         return $this->belongsTo(Supplement::class);
     }
+
+    public function payment()
+    {
+        return $this->morphOne(Payment::class, 'orderable');
+    }
 }

@@ -19,4 +19,12 @@ class DietSubscription extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the package that owns the DietSubscription
+     */
+    public function package(): BelongsTo
+    {
+        return $this->belongsTo(DietSubscriptionPackage::class);
+    }
 }

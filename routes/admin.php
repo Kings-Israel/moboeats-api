@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\SupplementController;
 use App\Http\Controllers\Api\V1\AdminController;
+use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\PaymentController;
@@ -45,10 +46,13 @@ Route::group(['prefix' => 'v1/admin'], function() {
         });
 
         Route::group(['prefix' => '/diet'], function () {
+            Route::get('/packages', [DietController::class, 'packages']);
             Route::get('/plans', [AdminController::class, 'plans']);
             Route::get('/plans/subscribers', [AdminController::class, 'dietPlanSubscribers']);
             Route::get('/plans/subscribers/{id}/details', [AdminController::class, 'dietPlanSubscriber']);
             Route::post('/plans/store', [AdminController::class, 'storeDietPlan']);
+            Route::get('/packages', [DietController::class, 'packages']);
+            Route::post('/packages/store', [AdminController::class, 'storeDietPackage']);
         });
 
         // Update Settings

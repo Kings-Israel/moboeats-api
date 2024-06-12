@@ -1,17 +1,66 @@
-name: 'Customer Restaurants Bookmark Management'
+name: 'Customer menu Bookmark Management'
 description: |-
 
-  RestaurantBookmark API resource
+  MenuBookmark API resource
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/orderer/restaurant-bookmark
+    uri: 'api/v1/orderer/menu-bookmark/{menuId}/delete'
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      groupName: 'Customer menu Bookmark Management'
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        MenuBookmark API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      menuId:
+        name: menuId
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+    cleanUrlParameters:
+      menuId: quia
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/orderer/menu-bookmark
+    metadata:
+      groupName: 'Customer menu Bookmark Management'
+      groupDescription: |-
+
+        MenuBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -47,12 +96,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/orderer/restaurant-bookmark
+    uri: api/v1/orderer/menu-bookmark
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      groupName: 'Customer menu Bookmark Management'
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        MenuBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -67,15 +116,15 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      restaurantId:
-        name: restaurantId
+      menuId:
+        name: menuId
         description: ''
         required: true
-        example: 16
+        example: 9
         type: integer
         custom: []
     cleanBodyParameters:
-      restaurantId: 16
+      menuId: 9
     fileParameters: []
     responses: []
     responseFields: []
@@ -87,12 +136,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/restaurant-bookmark/{id}'
+    uri: 'api/v1/orderer/menu-bookmark/{id}'
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      groupName: 'Customer menu Bookmark Management'
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        MenuBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -105,13 +154,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the restaurant bookmark.'
+        description: 'The ID of the menu bookmark.'
         required: true
-        example: ff963853-1928-4ab4-96a6-3117f5e5b7e0
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      id: ff963853-1928-4ab4-96a6-3117f5e5b7e0
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -136,12 +185,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/restaurant-bookmark/{id}'
+    uri: 'api/v1/orderer/menu-bookmark/{id}'
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      groupName: 'Customer menu Bookmark Management'
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        MenuBookmark API resource
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -154,13 +203,13 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the restaurant bookmark.'
+        description: 'The ID of the menu bookmark.'
         required: true
-        example: ff963853-1928-4ab4-96a6-3117f5e5b7e0
+        example: ab
         type: string
         custom: []
     cleanUrlParameters:
-      id: ff963853-1928-4ab4-96a6-3117f5e5b7e0
+      id: ab
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

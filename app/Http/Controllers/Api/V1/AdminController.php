@@ -40,6 +40,7 @@ use Milon\Barcode\DNS2D;
 use App\Jobs\SendCommunication;
 use App\Models\DietPlan;
 use App\Models\DietSubscription;
+use App\Models\DietSubscriptionPackage;
 
 class AdminController extends Controller
 {
@@ -736,6 +737,39 @@ class AdminController extends Controller
         Storage::disk('public')->put('QR.png',base64_decode($barcode->getBarcodePNG($string, "QRCODE", 10, 10)));
 
         return Storage::disk('public')->download('QR.png');
+    }
+
+    public function storeDietPackage(Request $request)
+    {
+        if (!auth()->user()->hasRole('admin')) {
+            return $this->error('', 'You are not allowed to perform this action', 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'price' => ['required'],
+            'currency' => ['required'],
+            'duration' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Invalid data', 400);
+        }
+
+        $package = DietSubscriptionPackage::create([
+            'name' => $request->name,
+            'currency' => $request->currency,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'tag_line' => $request->has('tag_line') && $request->tag_line != '' ? $request->tag_line : NULL,
+            'description' => $request->has('description') && $request->description != '' ? $request->description : NULL,
+        ]);
+
+        if ($package) {
+            return $this->success($package, 'Package created successfully');
+        }
+
+        return $this->error('', 'Package creation failed', 500);
     }
 
     public function plans(Request $request)

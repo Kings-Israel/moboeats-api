@@ -33,4 +33,9 @@ class RiderTip extends Model
     {
         return $this->belongsTo(Rider::class);
     }
+
+    public function payment()
+    {
+        return $this->morphOne(Payment::class, 'orderable');
+    }
 }

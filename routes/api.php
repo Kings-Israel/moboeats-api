@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\V1\RestaurantDocumentsController;
 use App\Http\Controllers\Api\V1\RestaurantOperatingHoursController;
 use App\Http\Controllers\Api\V1\RiderController;
 use App\Http\Controllers\Api\V1\SupplementController;
+use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\FrequentlyAskedQuestionController;
 use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
@@ -110,6 +111,12 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::get('/suppliers', [SupplementController::class, 'suppliers']);
     });
 
+    // Diet and Diet planning
+    Route::group(['prefix' => '/diet'], function () {
+        Route::get('/packages', [DietController::class, 'packages']);
+        Route::get('/subscription', [DietController::class, 'subscription']);
+    });
+
     // Tables
     Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
 
@@ -136,7 +143,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::group(['prefix' => '/diet'], function () {
             Route::post('/data/store', [OrdererController::class, 'storeDietPlanUserData']);
             Route::get('/plans', [AdminController::class, 'plans']);
-            Route::get('/subscribe', [PaymentController::class, 'stripeDietPlanCheckout']);
+            Route::get('/subscribe/{diet_subscription_package}', [PaymentController::class, 'stripeDietPlanCheckout']);
         });
 
         // Route::apiResource('payment', PaymentController::class)->except(['update']);
@@ -286,29 +293,5 @@ Route::post('/sms/test', function(Request $request) {
 Route::post('/sms/test/callback', function(Request $request) {
     info($request->all());
 });
-
-// Route::get('/test', function () {
-//     $case = [[1,2,3,4],[5,6,7,8],[9,10,11,12]];
-//     $result = [];
-//     foreach ($case as $key => $item) {
-//         if ($key == 0) {
-//             for ($i=0; $i < count($case); $i++) {
-//                 array_push($result, $case[$i][0]);
-//             }
-//         }
-//         for ($i=1; $i < count($case[count($case) - 1]); $i++) {
-//             array_push($result, $case[count($case) - 1][$i]);
-//         }
-//         // if ($key == count($case) - 1) {
-//         // }
-//         for ($i=count($case); $i > 0; $i--) {
-//             array_push($result, $case[count($case) - 2][$i]);
-//         }
-//         // if ($key == count($case) - 2) {
-//         // }
-//     }
-//     $result = array_unique($result);
-//     return $result;
-// });
 
 require __DIR__.'/admin.php';

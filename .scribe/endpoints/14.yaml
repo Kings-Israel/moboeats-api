@@ -1,18 +1,63 @@
-name: 'Rider Profile APIs'
-description: ''
+name: 'Customer Order Management'
+description: |-
+
+  Customer Order API resource
 endpoints:
   -
     httpMethods:
-      - POST
-    uri: api/v1/orderer/rider/reviews/store
+      - GET
+    uri: api/v1/orderer/orders
     metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store review for a rider'
+      title: ''
       description: ''
-      authenticated: true
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/orderer/orders
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
@@ -22,31 +67,60 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      rider_id:
-        name: rider_id
-        description: 'The id of the rider'
-        required: false
-        example: 16
-        type: integer
-        custom: []
-      rating:
-        name: rating
-        description: 'The rating from 1 - 5'
+      cartId:
+        name: cartId
+        description: ''
         required: false
         example: 1
         type: integer
         custom: []
-      review:
-        name: review
-        description: 'A review of the rider'
+      restaurantId:
+        name: restaurantId
+        description: ''
+        required: true
+        example: 8
+        type: integer
+        custom: []
+      delivery:
+        name: delivery
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        custom: []
+      delivery_address:
+        name: delivery_address
+        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
         required: false
-        example: dolorum
+        example: null
+        type: string
+        custom: []
+      delivery_location_lat:
+        name: delivery_location_lat
+        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      delivery_location_lng:
+        name: delivery_location_lng
+        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      booking_time:
+        name: booking_time
+        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-06-12 14:04:10</code>.'
+        required: false
+        example: '2036-06-23'
         type: string
         custom: []
     cleanBodyParameters:
-      rider_id: 16
-      rating: 1
-      review: dolorum
+      cartId: 1
+      restaurantId: 8
+      delivery: true
+      booking_time: '2036-06-23'
     fileParameters: []
     responses: []
     responseFields: []
@@ -57,367 +131,85 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
-    uri: api/v1/rider/profile/create
-    metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Create Rider Profile'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      vehicle_type:
-        name: vehicle_type
-        description: 'The vehicle type of the rider'
-        required: true
-        example: porro
-        type: string
-        custom: []
-      vehicle_license_plate:
-        name: vehicle_license_plate
-        description: ''
-        required: true
-        example: pariatur
-        type: string
-        custom: []
-      profile_picture:
-        name: profile_picture
-        description: 'The profile picture of the rider'
-        required: true
-        example: null
-        type: file
-        custom: []
-      paypal_email:
-        name: paypal_email
-        description: 'Must be a valid email address.'
-        required: true
-        example: vlang@example.com
-        type: string
-        custom: []
-      vehicle_licesne_plate:
-        name: vehicle_licesne_plate
-        description: "The license plate of the rider's vehicle"
-        required: true
-        example: itaque
-        type: sring
-        custom: []
-      city:
-        name: city
-        description: 'The city where the rider is located'
-        required: false
-        example: et
-        type: string
-        custom: []
-      state:
-        name: state
-        description: 'The state of where the rider is located'
-        required: false
-        example: explicabo
-        type: string
-        custom: []
-      postal_code:
-        name: postal_code
-        description: 'The postal code of the rider'
-        required: false
-        example: nobis
-        type: string
-        custom: []
-    cleanBodyParameters:
-      vehicle_type: porro
-      vehicle_license_plate: pariatur
-      paypal_email: vlang@example.com
-      vehicle_licesne_plate: itaque
-      city: et
-      state: explicabo
-      postal_code: nobis
-    fileParameters:
-      profile_picture: null
-    responses:
-      -
-        status: 200
-        content: '{}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/rider/profile/update
-    metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update Rider Prodile'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      paypal_email:
-        name: paypal_email
-        description: 'Must be a valid email address.'
-        required: true
-        example: williamson.ashleigh@example.org
-        type: string
-        custom: []
-      vehicle_type:
-        name: vehicle_type
-        description: 'The vehicle type of the rider'
-        required: false
-        example: numquam
-        type: string
-        custom: []
-      vehicle_licesne_plate:
-        name: vehicle_licesne_plate
-        description: "The license plate of the rider's vehicle"
-        required: false
-        example: voluptates
-        type: sring
-        custom: []
-      profile_picture:
-        name: profile_picture
-        description: 'The profile picture of the rider'
-        required: false
-        example: null
-        type: file
-        custom: []
-      city:
-        name: city
-        description: 'The city where the rider is located'
-        required: false
-        example: a
-        type: string
-        custom: []
-      state:
-        name: state
-        description: 'The state of where the rider is located'
-        required: false
-        example: id
-        type: string
-        custom: []
-      postal_code:
-        name: postal_code
-        description: 'The postal code of the rider'
-        required: false
-        example: accusamus
-        type: string
-        custom: []
-    cleanBodyParameters:
-      paypal_email: williamson.ashleigh@example.org
-      vehicle_type: numquam
-      vehicle_licesne_plate: voluptates
-      city: a
-      state: id
-      postal_code: accusamus
-    fileParameters:
-      profile_picture: null
-    responses:
-      -
-        status: 200
-        content: '{}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - GET
-    uri: api/v1/rider/profile
+    uri: 'api/v1/orderer/orders/{uuid}'
     metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Get Rider Profile'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '{}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/rider/orders
-    metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Get Orders and Assigned Orders'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '{}'
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/rider/orders/update
-    metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      order_id:
-        name: order_id
-        description: ''
-        required: true
-        example: quidem
-        type: string
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: true
-        example: quibusdam
-        type: string
-        custom: []
-    cleanBodyParameters:
-      order_id: quidem
-      status: quibusdam
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/v1/rider/orders/{order_id}/delivery/location/update'
-    metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: true
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      order_id:
-        name: order_id
-        description: 'The ID of the order.'
+      uuid:
+        name: uuid
+        description: ''
         required: true
-        example: f3b9c89a-029e-4f50-9325-5414c7dc6c65
+        example: b087fe6e-c16d-3b1e-8a80-8874fdb9b59d
         type: string
         custom: []
     cleanUrlParameters:
-      order_id: f3b9c89a-029e-4f50-9325-5414c7dc6c65
+      uuid: b087fe6e-c16d-3b1e-8a80-8874fdb9b59d
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      longitude:
-        name: longitude
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orders/{uuid}'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
         description: ''
         required: true
-        example: distinctio
+        example: a291d65f-d72f-3a94-ae65-f578ffcca392
         type: string
         custom: []
-      latitude:
-        name: latitude
-        description: ''
-        required: true
-        example: quae
-        type: string
-        custom: []
-    cleanBodyParameters:
-      longitude: distinctio
-      latitude: quae
+    cleanUrlParameters:
+      uuid: a291d65f-d72f-3a94-ae65-f578ffcca392
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
@@ -429,15 +221,17 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/rider/location/update
+    uri: api/v1/orderer/order/reviews/store
     metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Store review for an order'
       description: ''
-      authenticated: true
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
@@ -447,23 +241,47 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      longitude:
-        name: longitude
-        description: ''
-        required: true
-        example: iure
+      order_id:
+        name: order_id
+        description: 'The id of the order'
+        required: false
+        example: 17
+        type: integer
+        custom: []
+      restaurant_rating:
+        name: restaurant_rating
+        description: 'The rating of the restaurant from 1 - 5'
+        required: false
+        example: 4
+        type: integer
+        custom: []
+      restaurant_review:
+        name: restaurant_review
+        description: 'A review of the restaurant'
+        required: false
+        example: autem
         type: string
         custom: []
-      latitude:
-        name: latitude
-        description: ''
-        required: true
-        example: qui
+      rider_rating:
+        name: rider_rating
+        description: 'The rating of the rider from 1 - 5'
+        required: false
+        example: 11
+        type: integer
+        custom: []
+      rider_review:
+        name: rider_review
+        description: 'A review of the rider'
+        required: false
+        example: aut
         type: string
         custom: []
     cleanBodyParameters:
-      longitude: iure
-      latitude: qui
+      order_id: 17
+      restaurant_rating: 4
+      restaurant_review: autem
+      rider_rating: 11
+      rider_review: aut
     fileParameters: []
     responses: []
     responseFields: []
@@ -475,15 +293,462 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/rider/tips
+    uri: 'api/v1/restaurant/orders/{uuid}'
     metadata:
-      groupName: 'Rider Profile APIs'
-      groupDescription: ''
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get Tips paid to the rider'
+      title: ''
       description: ''
-      authenticated: true
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 94804475-dcbd-3e03-8865-2e23fa0de97e
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 94804475-dcbd-3e03-8865-2e23fa0de97e
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/orders/reservation/{order_uuid}/assign'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_uuid:
+        name: order_uuid
+        description: ''
+        required: true
+        example: a5b9079d-dd83-307f-94d3-c6f69a561926
+        type: string
+        custom: []
+    cleanUrlParameters:
+      order_uuid: a5b9079d-dd83-307f-94d3-c6f69a561926
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/orders/reservation/{order_uuid}/status/update'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_uuid:
+        name: order_uuid
+        description: ''
+        required: true
+        example: d86768fe-4adc-3f1c-bc8c-d1b5934001b3
+        type: string
+        custom: []
+    cleanUrlParameters:
+      order_uuid: d86768fe-4adc-3f1c-bc8c-d1b5934001b3
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
+        required: true
+        example: cancelled
+        type: string
+        custom: []
+    cleanBodyParameters:
+      status: cancelled
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/pending-orders
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/pending-dineins
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/orders
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/orders/{uuid}'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: 8795cfab-9994-3481-867d-4f07ee209d64
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: 8795cfab-9994-3481-867d-4f07ee209d64
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: ''
+        required: true
+        example: inventore
+        type: string
+        custom: []
+    cleanBodyParameters:
+      status: inventore
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/orders/{uuid}'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      uuid:
+        name: uuid
+        description: ''
+        required: true
+        example: ebc0c555-13a1-3632-b42b-27463cac5240
+        type: string
+        custom: []
+    cleanUrlParameters:
+      uuid: ebc0c555-13a1-3632-b42b-27463cac5240
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/restaurant/orders/{order_uuid}/update'
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_uuid:
+        name: order_uuid
+        description: ''
+        required: true
+        example: 30727410-af45-3901-84fe-3aa0338e857b
+        type: string
+        custom: []
+    cleanUrlParameters:
+      order_uuid: 30727410-af45-3901-84fe-3aa0338e857b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: ''
+        required: true
+        example: expedita
+        type: string
+        custom: []
+    cleanBodyParameters:
+      status: expedita
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/orders/assign
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: true
+        example: quibusdam
+        type: string
+        custom: []
+      rider_id:
+        name: rider_id
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      order_id: quibusdam
+      rider_id: ut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/orders/export/data
+    metadata:
+      groupName: 'Customer Order Management'
+      groupDescription: |-
+
+        Customer Order API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json

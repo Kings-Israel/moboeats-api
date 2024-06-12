@@ -11,6 +11,7 @@ use App\Models\AssignedOrder;
 use App\Models\DietSubscription;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\DietSubscriptionPackage;
 use App\Models\Restaurant;
 use App\Models\RestaurantTable;
 use App\Models\Rider;
@@ -439,7 +440,11 @@ class PaymentController extends Controller
         );
     }
 
-    public function stripeDietPlanCheckout()
+    /**
+     * Stripe Diet Subscription payment checkout request
+     * @urlParam diet_subscription_package int The id of the diet subscription package
+     */
+    public function stripeDietPlanCheckout(DietSubscriptionPackage $diet_subscription_package)
     {
         if (!auth()->user()->height && !auth()->user()->weight) {
             return $this->error('Enter your height and weight before proceeding.', 'Diet plan subscription', 400);
@@ -455,49 +460,75 @@ class PaymentController extends Controller
         $subscription = DietSubscription::where(['user_id' => auth()->id(), 'status' => 'pending'])->whereDate('end_date', '>=', now()->format('Y-m-d'))->first();
 
         if (!$subscription) {
+            $start_date = now()->format('Y-m-d');
+            switch ($diet_subscription_package->duration) {
+                case 'daily':
+                    $end_date = now()->addDay()->format('Y-m-d');
+                    break;
+                case 'weekly':
+                    $end_date = now()->addWeek()->format('Y-m-d');
+                    break;
+                case 'monthly':
+                    $end_date = now()->addMonth()->format('Y-m-d');
+                    break;
+                case 'quarterly':
+                    $end_date = now()->addMonths(3)->format('Y-m-d');
+                    break;
+                case 'half annually':
+                    $end_date = now()->addMonths(6)->format('Y-m-d');
+                    break;
+                case 'annually':
+                    $end_date = now()->addYear()->format('Y-m-d');
+                    break;
+                default:
+                    return $this->error('', 'Invalid subscription package', 400);
+                    break;
+            }
+
             $subscription = DietSubscription::create([
                 'user_id' => auth()->id(),
-                'start_date' => now()->format('Y-m-d'),
-                'end_date' => now()->addMonth()->format('Y-m-d'),
+                'diet_subscription_id' => $diet_subscription_package->id,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
                 'status' => 'pending'
             ]);
+
+            $amount = $diet_subscription_package->price;
+
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            // Use an existing Customer ID if this is a returning customer.
+            $customer = $stripe->customers->create();
+            $ephemeralKey = $stripe->ephemeralKeys->create([
+                                'customer' => $customer->id,
+                            ], [
+                                'stripe_version' => '2023-10-16',
+                            ]);
+
+            $paymentIntent = $stripe->paymentIntents->create([
+                'amount' => $amount * 100,
+                'currency' => $diet_subscription_package->currency,
+                'customer' => $customer->id,
+            ]);
+
+            StripePayment::create([
+                'user_id' => auth()->id(),
+                'payment_intent' => $paymentIntent->id,
+                'payable_type' => DietSubscription::class,
+                'payable_id' => $subscription->id,
+                'amount' => $amount,
+            ]);
+
+            return response()->json(
+                [
+                'paymentIntent' => $paymentIntent->client_secret,
+                'ephemeralKey' => $ephemeralKey->secret,
+                'customer' => $customer->id,
+                'publishableKey' => config('services.stripe.KEY')
+                ]
+            );
         }
-
-        $amount = 50;
-
-        // Make request to stripe to store menu item
-        $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
-
-        // Use an existing Customer ID if this is a returning customer.
-        $customer = $stripe->customers->create();
-        $ephemeralKey = $stripe->ephemeralKeys->create([
-                            'customer' => $customer->id,
-                        ], [
-                            'stripe_version' => '2023-10-16',
-                        ]);
-
-        $paymentIntent = $stripe->paymentIntents->create([
-            'amount' => $amount * 100,
-            'currency' => 'kes',
-            'customer' => $customer->id,
-        ]);
-
-        StripePayment::create([
-            'user_id' => auth()->id(),
-            'payment_intent' => $paymentIntent->id,
-            'payable_type' => DietSubscription::class,
-            'payable_id' => $subscription->id,
-            'amount' => $amount,
-        ]);
-
-        return response()->json(
-            [
-              'paymentIntent' => $paymentIntent->client_secret,
-              'ephemeralKey' => $ephemeralKey->secret,
-              'customer' => $customer->id,
-              'publishableKey' => config('services.stripe.KEY')
-            ]
-        );
     }
 
     public function stripeWebhookCallback(Request $request)
@@ -589,7 +620,8 @@ class PaymentController extends Controller
 
                                 Payment::create([
                                     'transaction_id' => $request->all()['data']['object']['id'],
-                                    'order_id' => $order->id,
+                                    'orderable_id' => $order->id,
+                                    'orderable_type' => SupplementOrder::class,
                                     'payment_method' => 'Stripe',
                                     'amount' => $stripe_payment->amount,
                                     'status' => 2,
@@ -623,7 +655,7 @@ class PaymentController extends Controller
                                 //     'created_by' => $order->user->name,
                                 // ]);
 
-                                SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful and diet plan has started being prepared', ['order' => $order]);
+                                SendNotification::dispatchAfterResponse($stripe_payment->user, 'Subscription to package completed sucessfully', ['order' => $order]);
 
                                 activity()->causedBy($order->user)->performedOn($order)->log('paid for diet plan subscription');
 
