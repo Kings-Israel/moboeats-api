@@ -493,7 +493,7 @@ class PaymentController extends Controller
 
             $subscription = DietSubscription::create([
                 'user_id' => auth()->id(),
-                'diet_subscription_id' => $diet_subscription_package->id,
+                'diet_subscription_package_id' => $diet_subscription_package->id,
                 'start_date' => $start_date,
                 'end_date' => $end_date,
                 'status' => 'pending'
