@@ -26,6 +26,7 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 /**
@@ -444,10 +445,20 @@ class PaymentController extends Controller
      * Stripe Diet Subscription payment checkout request
      * @urlParam diet_subscription_package int The id of the diet subscription package
      */
-    public function stripeDietPlanCheckout(DietSubscriptionPackage $diet_subscription_package)
+    public function stripeDietPlanCheckout(Request $request, DietSubscriptionPackage $diet_subscription_package)
     {
         if (!auth()->user()->height && !auth()->user()->weight) {
-            return $this->error('Enter your height and weight before proceeding.', 'Diet plan subscription', 400);
+            $validator = Validator::make($request->all(), [
+                'height' => ['required'],
+                'height_units' => ['required_with:height'],
+                'weight' => ['required'],
+                'weight_units' => ['required_with:weight'],
+                'body_mass_index' => ['required'],
+            ]);
+
+            if ($validator->fails()) {
+                return $this->error($validator->messages(), 'Diet plan data', 400);
+            }
         }
 
         // Check if user has an active subscription

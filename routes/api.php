@@ -143,7 +143,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::group(['prefix' => '/diet'], function () {
             Route::post('/data/store', [OrdererController::class, 'storeDietPlanUserData']);
             Route::get('/plans', [AdminController::class, 'plans']);
-            Route::get('/subscribe/{diet_subscription_package}', [PaymentController::class, 'stripeDietPlanCheckout']);
+            Route::post('/subscribe/{diet_subscription_package}', [PaymentController::class, 'stripeDietPlanCheckout']);
         });
 
         // Route::apiResource('payment', PaymentController::class)->except(['update']);
