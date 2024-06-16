@@ -504,7 +504,7 @@ class PaymentController extends Controller
                 'status' => 'pending'
             ]);
 
-            $amount = $diet_subscription_package->price;
+            $amount = $diet_subscription_package->currency == 'kes' ? (double) $diet_subscription_package->price * 1000 : (double) $diet_subscription_package->price + 0.30;
 
             // Make request to stripe to store menu item
             $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
@@ -531,14 +531,45 @@ class PaymentController extends Controller
                 'amount' => $amount,
             ]);
 
-            return response()->json(
-                [
+            return response()->json([
                 'paymentIntent' => $paymentIntent->client_secret,
                 'ephemeralKey' => $ephemeralKey->secret,
                 'customer' => $customer->id,
                 'publishableKey' => config('services.stripe.KEY')
-                ]
-            );
+            ]);
+        } else {
+            $amount = $diet_subscription_package->currency == 'kes' ? (double) $diet_subscription_package->price * 1000 : (double) $diet_subscription_package->price + 0.30;
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            // Use an existing Customer ID if this is a returning customer.
+            $customer = $stripe->customers->create();
+            $ephemeralKey = $stripe->ephemeralKeys->create([
+                                'customer' => $customer->id,
+                            ], [
+                                'stripe_version' => '2023-10-16',
+                            ]);
+
+            $paymentIntent = $stripe->paymentIntents->create([
+                'amount' => $amount,
+                'currency' => $diet_subscription_package->currency,
+                'customer' => $customer->id,
+            ]);
+
+            StripePayment::create([
+                'user_id' => auth()->id(),
+                'payment_intent' => $paymentIntent->id,
+                'payable_type' => DietSubscription::class,
+                'payable_id' => $subscription->id,
+                'amount' => $amount,
+            ]);
+
+            return response()->json([
+                'paymentIntent' => $paymentIntent->client_secret,
+                'ephemeralKey' => $ephemeralKey->secret,
+                'customer' => $customer->id,
+                'publishableKey' => config('services.stripe.KEY')
+            ]);
         }
     }
 

@@ -452,7 +452,7 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
 
-        $payments = Payment::with('order.restaurant', 'order.user')
+        $payments = Payment::with('orderable.restaurant', 'orderable.user')
                             ->where('transaction_id', '!=', NULL)
                             ->whereHas('order', function ($query) use ($restaurant) {
                                 $query->whereHas('restaurant', function ($query) use ($restaurant) {
