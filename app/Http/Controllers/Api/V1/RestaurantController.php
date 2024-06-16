@@ -64,7 +64,7 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
-        $radius = 40;
+        $radius = 100;
         $latitude = $request->query('lat');
         $longitude = $request->query('lng');
 
@@ -92,7 +92,7 @@ class RestaurantController extends Controller
             }
 
             if (auth()->user()->hasRole('rider')) {
-                $radius = 10;
+                $radius = 100;
                 $latitude = $request->latitude;
                 $longitude = $request->longitude;
                 $filter =  new RestaurantFilter();
