@@ -400,11 +400,6 @@ class PaymentController extends Controller
         }
 
         $amount = $order->amount;
-        // if ((int)($amount) > 30) {
-        //     $amount = ceil((double)($order->amount));
-        // } else {
-        //     $amount = $amount.'.30';
-        // }
 
         // Make request to stripe to store menu item
         $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
@@ -418,7 +413,7 @@ class PaymentController extends Controller
                         ]);
 
         $paymentIntent = $stripe->paymentIntents->create([
-            'amount' => $amount * 100,
+            'amount' => $amount * 1000,
             'currency' => 'kes',
             'customer' => $customer->id,
         ]);
