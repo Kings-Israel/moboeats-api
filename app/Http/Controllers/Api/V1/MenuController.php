@@ -170,7 +170,7 @@ class MenuController extends Controller
                 }
             }
 
-            $restaurant = Restaurant::find($restaurant);
+            // $restaurant = Restaurant::find($restaurant);
 
             // Make request to stripe to store menu item
             $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
