@@ -64,27 +64,29 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
-        $radius = 10;
-        $latitude = $request->latitude;
-        $longitude = $request->longitude;
+        $radius = 40;
+        $latitude = $request->query('lat');
+        $longitude = $request->query('lng');
 
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
                 $filter =  new RestaurantFilter();
                 $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+                if ($latitude && $longitude) {
+                    $restaurants = Restaurant::Approved()->hasMenu()->select(DB::raw("*,
+                                (6371 * acos(cos(radians($latitude))
+                                * cos(radians(latitude))
+                                * cos(radians(longitude)
+                                - radians($longitude))
+                                + sin(radians($latitude))
+                                * sin(radians(latitude))))
+                                AS distance"))
+                        ->having('distance', '<=', $radius)
+                        ->orderBy('distance');
+                } else {
+                    $restaurants = Restaurant::Approved()->hasMenu()->where($filterItems);
+                }
 
-                $restaurants = Restaurant::Approved()->hasMenu()->where($filterItems);
-
-                // $restaurants = Restaurant::select(DB::raw("*,
-                //             (6371 * acos(cos(radians($request->latitude))
-                //             * cos(radians(latitude))
-                //             * cos(radians(longitude)
-                //             - radians($request->longitude))
-                //             + sin(radians($request->latitude))
-                //             * sin(radians(latitude))))
-                //             AS distance"))
-                //     ->having('distance', '<=', $radius)
-                //     ->orderBy('distance');
 
                 return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
             }
@@ -159,18 +161,21 @@ class RestaurantController extends Controller
                 return new RestaurantCollection($restaurants);
             }
         } else {
-            $restaurants = Restaurant::Approved()->hasMenu();
-
-            // $restaurants = Restaurant::select(DB::raw("*,
-            //             (6371 * acos(cos(radians($request->latitude))
-            //             * cos(radians(latitude))
-            //             * cos(radians(longitude)
-            //             - radians($request->longitude))
-            //             + sin(radians($request->latitude))
-            //             * sin(radians(latitude))))
-            //             AS distance"))
-            //     ->having('distance', '<=', $radius)
-            //     ->orderBy('distance');
+            if ($latitude && $longitude) {
+                $restaurants = Restaurant::Approved()->hasMenu()
+                    ->select(DB::raw("*,
+                            (6371 * acos(cos(radians($latitude))
+                            * cos(radians(latitude))
+                            * cos(radians(longitude)
+                            - radians($longitude))
+                            + sin(radians($latitude))
+                            * sin(radians(latitude))))
+                            AS distance"))
+                    ->having('distance', '<=', $radius)
+                    ->orderBy('distance');
+            } else {
+                $restaurants = Restaurant::Approved()->hasMenu();
+            }
 
             return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
         }
