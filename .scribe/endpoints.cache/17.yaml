@@ -80,28 +80,28 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: accusamus
+        example: minus
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 12
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: sunt
+        example: distinctio
         type: string
         custom: []
     cleanBodyParameters:
       price: 1
-      description: accusamus
-      status: 19
-      menu_id: sunt
+      description: minus
+      status: 12
+      menu_id: distinctio
     fileParameters: []
     responses: []
     responseFields: []
@@ -195,27 +195,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: nulla
+        example: recusandae
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: ut
+        example: dignissimos
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 0
+        example: 1
         type: number
         custom: []
     cleanBodyParameters:
-      description: nulla
-      status: ut
-      price: 0
+      description: recusandae
+      status: dignissimos
+      price: 1
     fileParameters: []
     responses: []
     responseFields: []
@@ -299,27 +299,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: doloremque
+        example: error
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: libero
+        example: maxime
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 1
+        example: 0
         type: number
         custom: []
     cleanBodyParameters:
-      description: doloremque
-      status: libero
-      price: 1
+      description: error
+      status: maxime
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []

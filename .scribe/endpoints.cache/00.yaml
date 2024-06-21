@@ -108,27 +108,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: general
+        example: customer
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: est
+        example: qui
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: esse
+        example: quaerat
         type: string
         custom: []
     cleanBodyParameters:
-      section: general
-      question: est
-      answer: esse
+      section: customer
+      question: qui
+      answer: quaerat
     fileParameters: []
     responses: []
     responseFields: []
@@ -171,27 +171,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: customer
+        example: general
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: placeat
+        example: modi
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: omnis
+        example: minus
         type: string
         custom: []
     cleanBodyParameters:
-      section: customer
-      question: placeat
-      answer: omnis
+      section: general
+      question: modi
+      answer: minus
     fileParameters: []
     responses: []
     responseFields: []
@@ -282,6 +282,571 @@ endpoints:
   -
     httpMethods:
       - GET
+    uri: 'api/v1/geocode/{lat}/{long}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Geocode
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      lat:
+        name: lat
+        description: ''
+        required: true
+        example: aliquid
+        type: string
+        custom: []
+      long:
+        name: long
+        description: ''
+        required: true
+        example: iure
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: 'The latitude'
+        required: true
+        example: ullam
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'The longitude'
+        required: true
+        example: cumque
+        type: string
+        custom: []
+    cleanUrlParameters:
+      lat: aliquid
+      long: iure
+      latitude: ullam
+      longitude: cumque
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "error_message" : "Invalid request. Invalid 'latlng' parameter.",
+             "results" : [],
+             "status" : "INVALID_REQUEST"
+          }
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '286'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/directions/{origin_lat}/{origin_long}/{dest_lat}/{dest_long}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Directions
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      origin_lat:
+        name: origin_lat
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      origin_long:
+        name: origin_long
+        description: ''
+        required: true
+        example: explicabo
+        type: string
+        custom: []
+      dest_lat:
+        name: dest_lat
+        description: ''
+        required: true
+        example: cumque
+        type: string
+        custom: []
+      dest_long:
+        name: dest_long
+        description: ''
+        required: true
+        example: nisi
+        type: string
+        custom: []
+      origin_latitude:
+        name: origin_latitude
+        description: 'string The origin latitude'
+        required: true
+        example: quod
+        type: string
+        custom: []
+      origin_longitude:
+        name: origin_longitude
+        description: 'string The origin longitude'
+        required: true
+        example: sed
+        type: string
+        custom: []
+      dest_latitude:
+        name: dest_latitude
+        description: 'string The destination latitude'
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      dest_longitude:
+        name: dest_longitude
+        description: 'string The destination longitude'
+        required: true
+        example: in
+        type: string
+        custom: []
+    cleanUrlParameters:
+      origin_lat: est
+      origin_long: explicabo
+      dest_lat: cumque
+      dest_long: nisi
+      origin_latitude: quod
+      origin_longitude: sed
+      dest_latitude: voluptatem
+      dest_longitude: in
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "destination_addresses" : 
+             [
+                ""
+             ],
+             "origin_addresses" : 
+             [
+                ""
+             ],
+             "rows" : 
+             [
+                {
+                   "elements" : 
+                   [
+                      {
+                         "status" : "NOT_FOUND"
+                      }
+                   ]
+                }
+             ],
+             "status" : "OK"
+          }
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '285'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/autocomplete/{text}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: Autocomplete
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      text:
+        name: text
+        description: 'The text to be autocompleted'
+        required: true
+        example: eius
+        type: string
+        custom: []
+    cleanUrlParameters:
+      text: eius
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "predictions" : 
+             [
+                {
+                   "description" : "EIUS, Vrtna ulica, Ljubljana, Slovenia",
+                   "matched_substrings" : 
+                   [
+                      {
+                         "length" : 4,
+                         "offset" : 0
+                      }
+                   ],
+                   "place_id" : "ChIJKdSFYWUtZUcRsXq3yuOhXwU",
+                   "reference" : "ChIJKdSFYWUtZUcRsXq3yuOhXwU",
+                   "structured_formatting" : 
+                   {
+                      "main_text" : "EIUS",
+                      "main_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 4,
+                            "offset" : 0
+                         }
+                      ],
+                      "secondary_text" : "Vrtna ulica, Ljubljana, Slovenia"
+                   },
+                   "terms" : 
+                   [
+                      {
+                         "offset" : 0,
+                         "value" : "EIUS"
+                      },
+                      {
+                         "offset" : 6,
+                         "value" : "Vrtna ulica"
+                      },
+                      {
+                         "offset" : 19,
+                         "value" : "Ljubljana"
+                      },
+                      {
+                         "offset" : 30,
+                         "value" : "Slovenia"
+                      }
+                   ],
+                   "types" : 
+                   [
+                      "establishment",
+                      "point_of_interest"
+                   ]
+                },
+                {
+                   "description" : "E.I.U.S., Via San Rocco, Favria, Metropolitan City of Turin, Italy",
+                   "matched_substrings" : 
+                   [
+                      {
+                         "length" : 8,
+                         "offset" : 0
+                      }
+                   ],
+                   "place_id" : "ChIJPQXEEIRjiEcR_b2yInc9Taw",
+                   "reference" : "ChIJPQXEEIRjiEcR_b2yInc9Taw",
+                   "structured_formatting" : 
+                   {
+                      "main_text" : "E.I.U.S.",
+                      "main_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 8,
+                            "offset" : 0
+                         }
+                      ],
+                      "secondary_text" : "Via San Rocco, Favria, Metropolitan City of Turin, Italy"
+                   },
+                   "terms" : 
+                   [
+                      {
+                         "offset" : 0,
+                         "value" : "E.I.U.S."
+                      },
+                      {
+                         "offset" : 10,
+                         "value" : "Via San Rocco"
+                      },
+                      {
+                         "offset" : 25,
+                         "value" : "Favria"
+                      },
+                      {
+                         "offset" : 33,
+                         "value" : "Metropolitan City of Turin"
+                      },
+                      {
+                         "offset" : 61,
+                         "value" : "Italy"
+                      }
+                   ],
+                   "types" : 
+                   [
+                      "point_of_interest",
+                      "establishment",
+                      "store"
+                   ]
+                },
+                {
+                   "description" : "eiu student rentals, Castle Drive, Charleston, IL, USA",
+                   "matched_substrings" : 
+                   [
+                      {
+                         "length" : 19,
+                         "offset" : 0
+                      }
+                   ],
+                   "place_id" : "ChIJ6bBa0RMdc4gR3O60fZJ7Sgk",
+                   "reference" : "ChIJ6bBa0RMdc4gR3O60fZJ7Sgk",
+                   "structured_formatting" : 
+                   {
+                      "main_text" : "eiu student rentals",
+                      "main_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 19,
+                            "offset" : 0
+                         }
+                      ],
+                      "secondary_text" : "Castle Drive, Charleston, IL, USA"
+                   },
+                   "terms" : 
+                   [
+                      {
+                         "offset" : 0,
+                         "value" : "eiu student rentals"
+                      },
+                      {
+                         "offset" : 21,
+                         "value" : "Castle Drive"
+                      },
+                      {
+                         "offset" : 35,
+                         "value" : "Charleston"
+                      },
+                      {
+                         "offset" : 47,
+                         "value" : "IL"
+                      },
+                      {
+                         "offset" : 51,
+                         "value" : "USA"
+                      }
+                   ],
+                   "types" : 
+                   [
+                      "establishment",
+                      "point_of_interest"
+                   ]
+                },
+                {
+                   "description" : "Eius, zavulak Kazlova, Minsk, Belarus",
+                   "matched_substrings" : 
+                   [
+                      {
+                         "length" : 4,
+                         "offset" : 0
+                      }
+                   ],
+                   "place_id" : "ChIJ67FRQkrO20YRUYJrjJpH4Mo",
+                   "reference" : "ChIJ67FRQkrO20YRUYJrjJpH4Mo",
+                   "structured_formatting" : 
+                   {
+                      "main_text" : "Eius",
+                      "main_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 4,
+                            "offset" : 0
+                         }
+                      ],
+                      "secondary_text" : "zavulak Kazlova, Minsk, Belarus"
+                   },
+                   "terms" : 
+                   [
+                      {
+                         "offset" : 0,
+                         "value" : "Eius"
+                      },
+                      {
+                         "offset" : 6,
+                         "value" : "zavulak Kazlova"
+                      },
+                      {
+                         "offset" : 23,
+                         "value" : "Minsk"
+                      },
+                      {
+                         "offset" : 30,
+                         "value" : "Belarus"
+                      }
+                   ],
+                   "types" : 
+                   [
+                      "establishment",
+                      "point_of_interest"
+                   ]
+                },
+                {
+                   "description" : "Ekonomska i upravna škola Osijek, Trg Svetog Trojstva, Osijek, Croatia",
+                   "matched_substrings" : 
+                   [
+                      {
+                         "length" : 32,
+                         "offset" : 0
+                      }
+                   ],
+                   "place_id" : "ChIJZ0p3BLznXEcRNfGHb_axBIc",
+                   "reference" : "ChIJZ0p3BLznXEcRNfGHb_axBIc",
+                   "structured_formatting" : 
+                   {
+                      "main_text" : "Ekonomska i upravna škola Osijek",
+                      "main_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 32,
+                            "offset" : 0
+                         }
+                      ],
+                      "secondary_text" : "Trg Svetog Trojstva, Osijek, Croatia"
+                   },
+                   "terms" : 
+                   [
+                      {
+                         "offset" : 0,
+                         "value" : "Ekonomska i upravna škola Osijek"
+                      },
+                      {
+                         "offset" : 34,
+                         "value" : "Trg Svetog Trojstva"
+                      },
+                      {
+                         "offset" : 55,
+                         "value" : "Osijek"
+                      },
+                      {
+                         "offset" : 63,
+                         "value" : "Croatia"
+                      }
+                   ],
+                   "types" : 
+                   [
+                      "secondary_school",
+                      "school",
+                      "point_of_interest",
+                      "establishment"
+                   ]
+                }
+             ],
+             "status" : "OK"
+          }
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '284'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/place/{place_id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Place Details'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      place_id:
+        name: place_id
+        description: 'The Place ID to retrieve'
+        required: true
+        example: ad
+        type: string
+        custom: []
+    cleanUrlParameters:
+      place_id: ad
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "error_message" : "Invalid request. Invalid 'placeid' parameter.",
+             "html_attributions" : [],
+             "status" : "INVALID_REQUEST"
+          }
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '283'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
     uri: api/v1/notifications
     metadata:
       groupName: Endpoints
@@ -339,11 +904,11 @@ endpoints:
         name: notification
         description: 'The notification.'
         required: true
-        example: ex
+        example: doloremque
         type: string
         custom: []
     cleanUrlParameters:
-      notification: ex
+      notification: doloremque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -461,11 +1026,11 @@ endpoints:
         name: id
         description: 'The Id of the conversation'
         required: false
-        example: delectus
+        example: nisi
         type: string
         custom: []
     cleanUrlParameters:
-      id: delectus
+      id: nisi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -516,19 +1081,19 @@ endpoints:
         name: receiver_id
         description: "The receiver's id"
         required: true
-        example: 10
+        example: 12
         type: integer
         custom: []
       message:
         name: message
         description: 'The message to send'
         required: true
-        example: esse
+        example: aut
         type: string
         custom: []
     cleanBodyParameters:
-      receiver_id: 10
-      message: esse
+      receiver_id: 12
+      message: aut
     fileParameters: []
     responses:
       -
@@ -564,11 +1129,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: neque
+        example: magnam
         type: string
         custom: []
     cleanUrlParameters:
-      id: neque
+      id: magnam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -576,11 +1141,11 @@ endpoints:
         name: message
         description: ''
         required: true
-        example: harum
+        example: voluptas
         type: string
         custom: []
     cleanBodyParameters:
-      message: harum
+      message: voluptas
     fileParameters: []
     responses:
       -
@@ -630,11 +1195,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: debitis
+        example: molestiae
         type: string
         custom: []
     cleanUrlParameters:
-      id: debitis
+      id: molestiae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -688,11 +1253,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: architecto
+        example: expedita
         type: string
         custom: []
     cleanUrlParameters:
-      id: architecto
+      id: expedita
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -746,11 +1311,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation.'
         required: true
-        example: officiis
+        example: architecto
         type: string
         custom: []
     cleanUrlParameters:
-      id: officiis
+      id: architecto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -840,11 +1405,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: et
+        example: consectetur
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: consectetur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -898,11 +1463,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: dolore
+        example: neque
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolore
+      id: neque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1078,7 +1643,7 @@ endpoints:
         name: days
         description: ''
         required: true
-        example: earum
+        example: aut
         type: string
         custom: []
       opening_times:
@@ -1086,7 +1651,7 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '14:04'
+          - '14:26'
         type: 'string[]'
         custom: []
       closing_times:
@@ -1094,15 +1659,15 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '14:04'
+          - '14:26'
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      days: earum
+      days: aut
       opening_times:
-        - '14:04'
+        - '14:26'
       closing_times:
-        - '14:04'
+        - '14:26'
     fileParameters: []
     responses: []
     responseFields: []
@@ -1192,7 +1757,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - sint
+          - aliquam
         type: 'string[]'
         custom: []
       files:
@@ -1204,7 +1769,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - sint
+        - aliquam
     fileParameters: []
     responses: []
     responseFields: []
@@ -1247,7 +1812,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - assumenda
+          - cumque
         type: 'string[]'
         custom: []
       files:
@@ -1259,7 +1824,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - assumenda
+        - cumque
     fileParameters: []
     responses: []
     responseFields: []
@@ -1289,11 +1854,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: atque
+        example: fugiat
         type: string
         custom: []
     cleanUrlParameters:
-      id: atque
+      id: fugiat
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1418,42 +1983,42 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: quo
+        example: voluptatem
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: true
-        example: delectus
+        example: minus
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-12T14:04:12'
+        example: '2024-06-21T14:26:20'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-12T14:04:12'
+        example: '2024-06-21T14:26:20'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 14
+        example: 11
         type: integer
         custom: []
       status:
@@ -1464,12 +2029,12 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: quo
-      code: delectus
-      start_date: '2024-06-12T14:04:12'
-      end_date: '2024-06-12T14:04:12'
-      type: percentage
-      value: 14
+      restaurant_ids: voluptatem
+      code: minus
+      start_date: '2024-06-21T14:26:20'
+      end_date: '2024-06-21T14:26:20'
+      type: amount
+      value: 11
       status: inactive
     fileParameters: []
     responses: []
@@ -1512,51 +2077,51 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: delectus
+        example: aut
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-12T14:04:12'
+        example: '2024-06-21T14:26:20'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-12T14:04:12'
+        example: '2024-06-21T14:26:20'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 19
+        example: 18
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: inactive
+        example: active
         type: string
         custom: []
     cleanBodyParameters:
-      code: delectus
-      start_date: '2024-06-12T14:04:12'
-      end_date: '2024-06-12T14:04:12'
-      type: amount
-      value: 19
-      status: inactive
+      code: aut
+      start_date: '2024-06-21T14:26:20'
+      end_date: '2024-06-21T14:26:20'
+      type: percentage
+      value: 18
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -1629,27 +2194,27 @@ endpoints:
         name: menu_ids
         description: ''
         required: true
-        example: illum
+        example: omnis
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 8
+        example: 3
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_ids: illum
-      type: percentage
-      value: 8
+      menu_ids: omnis
+      type: amount
+      value: 3
     fileParameters: []
     responses: []
     responseFields: []
@@ -1698,12 +2263,12 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 19
+        example: 3
         type: integer
         custom: []
     cleanBodyParameters:
       type: amount
-      value: 19
+      value: 3
     fileParameters: []
     responses: []
     responseFields: []
@@ -1991,19 +2556,19 @@ endpoints:
         name: title
         description: "'category_id' => ['required'],."
         required: true
-        example: pariatur
+        example: totam
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: 2
+        example: 7
         type: integer
         custom: []
     cleanBodyParameters:
-      title: pariatur
-      status: 2
+      title: totam
+      status: 7
     fileParameters: []
     responses: []
     responseFields: []
@@ -2033,11 +2598,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: facere
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      id: facere
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2045,11 +2610,11 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: vel
+        example: temporibus
         type: string
         custom: []
     cleanBodyParameters:
-      title: vel
+      title: temporibus
     fileParameters: []
     responses: []
     responseFields: []
@@ -2126,11 +2691,11 @@ endpoints:
         name: id
         description: 'The ID of the customer.'
         required: true
-        example: quis
+        example: dolores
         type: string
         custom: []
     cleanUrlParameters:
-      id: quis
+      id: dolores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2173,11 +2738,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant admin.'
         required: true
-        example: a
+        example: quod
         type: string
         custom: []
     cleanUrlParameters:
-      id: a
+      id: quod
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2220,11 +2785,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: magnam
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: magnam
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2279,11 +2844,11 @@ endpoints:
         name: status
         description: 'Must be one of <code>approved</code> or <code>denied</code>.'
         required: true
-        example: denied
+        example: approved
         type: string
         custom: []
     cleanBodyParameters:
-      status: denied
+      status: approved
     fileParameters: []
     responses: []
     responseFields: []
@@ -2317,35 +2882,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: sequi
+        example: culpa
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: totam
+        example: quibusdam
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: recusandae
+        example: modi
         type: string
         custom: []
       role:
         name: role
         description: ''
         required: true
-        example: deleniti
+        example: ipsum
         type: string
         custom: []
     cleanBodyParameters:
-      name: sequi
-      email: totam
-      phone_number: recusandae
-      role: deleniti
+      name: culpa
+      email: quibusdam
+      phone_number: modi
+      role: ipsum
     fileParameters: []
     responses: []
     responseFields: []
@@ -2414,11 +2979,11 @@ endpoints:
         name: order_uuid
         description: ''
         required: true
-        example: 63c1dd78-cd6f-333e-ad2a-d80165d286e6
+        example: 7e28f9c3-7c22-3a7a-8016-7e5ed831236d
         type: string
         custom: []
     cleanUrlParameters:
-      order_uuid: 63c1dd78-cd6f-333e-ad2a-d80165d286e6
+      order_uuid: 7e28f9c3-7c22-3a7a-8016-7e5ed831236d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2606,19 +3171,19 @@ endpoints:
         name: status
         description: 'Must be one of <code>2</code> or <code>3</code>.'
         required: true
-        example: '2'
+        example: '3'
         type: string
         custom: []
       reason:
         name: reason
         description: 'This field is required when <code>status</code> is <code>3</code>.'
         required: false
-        example: amet
+        example: cumque
         type: string
         custom: []
     cleanBodyParameters:
-      status: '2'
-      reason: amet
+      status: '3'
+      reason: cumque
     fileParameters: []
     responses: []
     responseFields: []
@@ -2765,11 +3330,11 @@ endpoints:
         name: id
         description: 'The ID of the subscriber.'
         required: true
-        example: aliquam
+        example: officia
         type: string
         custom: []
     cleanUrlParameters:
-      id: aliquam
+      id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2816,27 +3381,27 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: deleniti
+        example: vero
         type: string
         custom: []
       date:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-12T14:04:13'
+        example: '2024-06-21T14:26:20'
         type: string
         custom: []
       meals:
         name: meals
         description: ''
         required: true
-        example: cupiditate
+        example: aut
         type: string
         custom: []
     cleanBodyParameters:
-      user_id: deleniti
-      date: '2024-06-12T14:04:13'
-      meals: cupiditate
+      user_id: vero
+      date: '2024-06-21T14:26:20'
+      meals: aut
     fileParameters: []
     responses: []
     responseFields: []
@@ -2870,35 +3435,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: molestiae
+        example: aliquam
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: cupiditate
+        example: velit
         type: string
         custom: []
       currency:
         name: currency
         description: ''
         required: true
-        example: itaque
+        example: corrupti
         type: string
         custom: []
       duration:
         name: duration
         description: ''
         required: true
-        example: odit
+        example: reiciendis
         type: string
         custom: []
     cleanBodyParameters:
-      name: molestiae
-      price: cupiditate
-      currency: itaque
-      duration: odit
+      name: aliquam
+      price: velit
+      currency: corrupti
+      duration: reiciendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -2932,11 +3497,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: consequatur
+        example: eum
         type: string
         custom: []
     cleanBodyParameters:
-      rate: consequatur
+      rate: eum
     fileParameters: []
     responses: []
     responseFields: []
@@ -2970,11 +3535,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: quo
+        example: omnis
         type: string
         custom: []
     cleanBodyParameters:
-      rate: quo
+      rate: omnis
     fileParameters: []
     responses: []
     responseFields: []
@@ -3008,11 +3573,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: suscipit
+        example: neque
         type: string
         custom: []
     cleanBodyParameters:
-      rate: suscipit
+      rate: neque
     fileParameters: []
     responses: []
     responseFields: []
@@ -3397,19 +3962,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: est
+        example: sequi
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: true
-        example: fvipjpdhwlunud
+        example: iisxgwuwxaf
         type: string
         custom: []
     cleanBodyParameters:
-      title: est
-      poster: fvipjpdhwlunud
+      title: sequi
+      poster: iisxgwuwxaf
     fileParameters: []
     responses: []
     responseFields: []
@@ -3451,19 +4016,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quo
+        example: a
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: false
-        example: ywnnovctkousjl
+        example: ce
         type: string
         custom: []
     cleanBodyParameters:
-      title: quo
-      poster: ywnnovctkousjl
+      title: a
+      poster: ce
     fileParameters: []
     responses: []
     responseFields: []

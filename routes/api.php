@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\V1\RiderController;
 use App\Http\Controllers\Api\V1\SupplementController;
 use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\FrequentlyAskedQuestionController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,11 @@ Route::group(['prefix' => 'v1'], function() {
     // Frequently Asked Questions
     Route::resource('/frequently-asked-questions', FrequentlyAskedQuestionController::class)->except('create', 'show', 'edit');
     Route::get('/ads', [MarketingController::class, 'index']);
+
+    Route::get('/geocode/{lat}/{long}', [HomeController::class, 'geocode']);
+    Route::get('/directions/{origin_lat}/{origin_long}/{dest_lat}/{dest_long}', [HomeController::class, 'directions']);
+    Route::get('/autocomplete/{text}', [HomeController::class, 'autocomplete']);
+    Route::get('/place/{place_id}', [HomeController::class, 'place']);
 });
 
 Route::group(['prefix' => 'v2'], function() {

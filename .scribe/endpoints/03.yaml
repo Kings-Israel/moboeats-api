@@ -76,12 +76,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: eius
+        example: sunt
         type: string
         custom: []
     cleanUrlParameters:
       restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: eius
+      restaurant: sunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -179,7 +179,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '284'
+          x-ratelimit-remaining: '280'
           vary: Origin
         description: null
         custom: []
@@ -219,12 +219,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: recusandae
+        example: impedit
         type: string
         custom: []
     cleanUrlParameters:
       restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: recusandae
+      restaurant: impedit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -238,7 +238,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '283'
+          x-ratelimit-remaining: '279'
           vary: Origin
         description: null
         custom: []
@@ -281,7 +281,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '281'
+          x-ratelimit-remaining: '277'
           vary: Origin
         description: null
         custom: []
@@ -324,7 +324,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '280'
+          x-ratelimit-remaining: '276'
           vary: Origin
         description: null
         custom: []
@@ -361,35 +361,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: suscipit
+        example: eius
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: in
+        example: tempore
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: phoebe13@example.com
+        example: zbednar@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: ut
+        example: doloremque
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: assumenda
+        example: dicta
         type: string
         custom: []
       phone_no:
@@ -424,21 +424,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: atque
+        example: labore
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: rem
+        example: harum
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: eos
+        example: corporis
         type: string
         custom: []
       url:
@@ -452,7 +452,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: ipsum
+        example: eos
         type: string
         custom: []
       map_location:
@@ -466,28 +466,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 20
+        example: 15
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: nbotsford@example.net
+        example: trent98@example.com
         type: string
         custom: []
     cleanBodyParameters:
-      name: suscipit
-      name_short: in
-      email: phoebe13@example.com
-      about: ut
-      about_short: assumenda
-      place_id: atque
-      latitude: rem
-      longitude: eos
-      logo: ipsum
-      sitting_capacity: 20
-      paypal_email: nbotsford@example.net
+      name: eius
+      name_short: tempore
+      email: zbednar@example.org
+      about: doloremque
+      about_short: dicta
+      place_id: labore
+      latitude: harum
+      longitude: corporis
+      logo: eos
+      sitting_capacity: 15
+      paypal_email: trent98@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -519,19 +519,19 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: cumque
+        example: dolor
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: et
+        example: maxime
         type: string
         custom: []
     cleanUrlParameters:
-      id: cumque
-      restaurant: et
+      id: dolor
+      restaurant: maxime
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -545,7 +545,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '279'
+          x-ratelimit-remaining: '275'
           vary: Origin
         description: null
         custom: []
@@ -579,11 +579,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: unde
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: unde
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -591,63 +591,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: eos
+        example: corporis
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: quis
+        example: quod
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: marilou.heathcote@example.net
+        example: nabbott@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: veniam
+        example: nihil
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: atque
+        example: praesentium
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: qui
+        example: unde
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: praesentium
+        example: sunt
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: et
+        example: molestiae
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: eius
+        example: consequatur
         type: string
         custom: []
       map_location:
@@ -675,36 +675,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: quod
+        example: molestiae
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: eligendi
+        example: placeat
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: luciano.cremin@example.com
+        example: isai.bernier@example.org
         type: string
         custom: []
     cleanBodyParameters:
-      name: eos
-      name_short: quis
-      email: marilou.heathcote@example.net
-      about: veniam
-      about_short: atque
-      phone_no: qui
-      address: praesentium
-      state: et
-      postal_code: eius
-      latitude: quod
-      longitude: eligendi
-      paypal_email: luciano.cremin@example.com
+      name: corporis
+      name_short: quod
+      email: nabbott@example.org
+      about: nihil
+      about_short: praesentium
+      phone_no: unde
+      address: sunt
+      state: molestiae
+      postal_code: consequatur
+      latitude: molestiae
+      longitude: placeat
+      paypal_email: isai.bernier@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -736,11 +736,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer restaurant.'
         required: true
-        example: cupiditate
+        example: itaque
         type: string
         custom: []
     cleanUrlParameters:
-      id: cupiditate
+      id: itaque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -794,7 +794,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '268'
+          x-ratelimit-remaining: '264'
           vary: Origin
         description: null
         custom: []
@@ -831,27 +831,27 @@ endpoints:
         name: restaurant_id
         description: 'The id of the restaurant'
         required: false
-        example: 2
+        example: 4
         type: integer
         custom: []
       rating:
         name: rating
         description: 'The rating from 1 - 5'
         required: false
-        example: 7
+        example: 5
         type: integer
         custom: []
       review:
         name: review
         description: 'A review of the restaurant'
         required: false
-        example: molestias
+        example: consequatur
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_id: 2
-      rating: 7
-      review: molestias
+      restaurant_id: 4
+      rating: 5
+      review: consequatur
     fileParameters: []
     responses: []
     responseFields: []
@@ -928,35 +928,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: veritatis
+        example: reiciendis
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: quia
+        example: vitae
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: buck.hudson@example.net
+        example: dustin57@example.com
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: dolor
+        example: sequi
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: iusto
+        example: aperiam
         type: string
         custom: []
       phone_no:
@@ -991,21 +991,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: non
+        example: corrupti
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: doloremque
+        example: magnam
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: magni
+        example: cum
         type: string
         custom: []
       url:
@@ -1019,7 +1019,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: suscipit
+        example: enim
         type: string
         custom: []
       map_location:
@@ -1033,28 +1033,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 16
+        example: 11
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: zrippin@example.net
+        example: leone70@example.org
         type: string
         custom: []
     cleanBodyParameters:
-      name: veritatis
-      name_short: quia
-      email: buck.hudson@example.net
-      about: dolor
-      about_short: iusto
-      place_id: non
-      latitude: doloremque
-      longitude: magni
-      logo: suscipit
-      sitting_capacity: 16
-      paypal_email: zrippin@example.net
+      name: reiciendis
+      name_short: vitae
+      email: dustin57@example.com
+      about: sequi
+      about_short: aperiam
+      place_id: corrupti
+      latitude: magnam
+      longitude: cum
+      logo: enim
+      sitting_capacity: 11
+      paypal_email: leone70@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -1093,12 +1093,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: laborum
+        example: voluptate
         type: string
         custom: []
     cleanUrlParameters:
       uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: laborum
+      restaurant: voluptate
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1156,63 +1156,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: et
+        example: nostrum
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: repellat
+        example: aliquid
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: augustus.baumbach@example.org
+        example: vhuel@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: repellendus
+        example: eum
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: ipsam
+        example: dolorum
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: quibusdam
+        example: qui
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: ullam
+        example: quisquam
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: ut
+        example: perferendis
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: esse
+        example: ipsam
         type: string
         custom: []
       map_location:
@@ -1240,36 +1240,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: expedita
+        example: ea
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: natus
+        example: voluptas
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: parisian.joanny@example.com
+        example: bernice28@example.com
         type: string
         custom: []
     cleanBodyParameters:
-      name: et
-      name_short: repellat
-      email: augustus.baumbach@example.org
-      about: repellendus
-      about_short: ipsam
-      phone_no: quibusdam
-      address: ullam
-      state: ut
-      postal_code: esse
-      latitude: expedita
-      longitude: natus
-      paypal_email: parisian.joanny@example.com
+      name: nostrum
+      name_short: aliquid
+      email: vhuel@example.org
+      about: eum
+      about_short: dolorum
+      phone_no: qui
+      address: quisquam
+      state: perferendis
+      postal_code: ipsam
+      latitude: ea
+      longitude: voluptas
+      paypal_email: bernice28@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -1345,35 +1345,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: dolorem
+        example: unde
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: sed
+        example: fugiat
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: phyllis74@example.net
+        example: pconroy@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: qui
+        example: asperiores
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: quis
+        example: et
         type: string
         custom: []
       phone_no:
@@ -1408,21 +1408,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: omnis
+        example: nulla
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: sequi
+        example: repudiandae
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: consectetur
+        example: perferendis
         type: string
         custom: []
       url:
@@ -1436,7 +1436,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: sed
+        example: eligendi
         type: string
         custom: []
       map_location:
@@ -1450,28 +1450,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 20
+        example: 15
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: brown.kaia@example.net
+        example: satterfield.izabella@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: dolorem
-      name_short: sed
-      email: phyllis74@example.net
-      about: qui
-      about_short: quis
-      place_id: omnis
-      latitude: sequi
-      longitude: consectetur
-      logo: sed
-      sitting_capacity: 20
-      paypal_email: brown.kaia@example.net
+      name: unde
+      name_short: fugiat
+      email: pconroy@example.org
+      about: asperiores
+      about_short: et
+      place_id: nulla
+      latitude: repudiandae
+      longitude: perferendis
+      logo: eligendi
+      sitting_capacity: 15
+      paypal_email: satterfield.izabella@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -1551,12 +1551,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: rerum
+        example: necessitatibus
         type: string
         custom: []
     cleanUrlParameters:
       uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: rerum
+      restaurant: necessitatibus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1695,35 +1695,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: aspernatur
+        example: eaque
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: unde
+        example: expedita
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: linnie.johnson@example.com
+        example: qthiel@example.net
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: totam
+        example: exercitationem
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: beatae
+        example: et
         type: string
         custom: []
       phone_no:
@@ -1758,21 +1758,21 @@ endpoints:
         name: place_id
         description: ''
         required: true
-        example: aut
+        example: optio
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: true
-        example: praesentium
+        example: recusandae
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: true
-        example: tenetur
+        example: sint
         type: string
         custom: []
       url:
@@ -1786,7 +1786,7 @@ endpoints:
         name: logo
         description: ''
         required: true
-        example: mollitia
+        example: consequatur
         type: string
         custom: []
       map_location:
@@ -1800,28 +1800,28 @@ endpoints:
         name: sitting_capacity
         description: ''
         required: true
-        example: 14
+        example: 16
         type: integer
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: garrick.christiansen@example.org
+        example: twila.stoltenberg@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: aspernatur
-      name_short: unde
-      email: linnie.johnson@example.com
-      about: totam
-      about_short: beatae
-      place_id: aut
-      latitude: praesentium
-      longitude: tenetur
-      logo: mollitia
-      sitting_capacity: 14
-      paypal_email: garrick.christiansen@example.org
+      name: eaque
+      name_short: expedita
+      email: qthiel@example.net
+      about: exercitationem
+      about_short: et
+      place_id: optio
+      latitude: recusandae
+      longitude: sint
+      logo: consequatur
+      sitting_capacity: 16
+      paypal_email: twila.stoltenberg@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -1866,63 +1866,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: veritatis
+        example: laborum
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: quo
+        example: tenetur
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: berneice.schmidt@example.org
+        example: nwhite@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: eius
+        example: molestiae
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: maiores
+        example: cupiditate
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: non
+        example: pariatur
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: iste
+        example: consequatur
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: consequatur
+        example: mollitia
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: id
+        example: distinctio
         type: string
         custom: []
       map_location:
@@ -1950,36 +1950,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: dolorem
+        example: debitis
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: sapiente
+        example: cupiditate
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: zohara@example.net
+        example: verona58@example.com
         type: string
         custom: []
     cleanBodyParameters:
-      name: veritatis
-      name_short: quo
-      email: berneice.schmidt@example.org
-      about: eius
-      about_short: maiores
-      phone_no: non
-      address: iste
-      state: consequatur
-      postal_code: id
-      latitude: dolorem
-      longitude: sapiente
-      paypal_email: zohara@example.net
+      name: laborum
+      name_short: tenetur
+      email: nwhite@example.org
+      about: molestiae
+      about_short: cupiditate
+      phone_no: pariatur
+      address: consequatur
+      state: mollitia
+      postal_code: distinctio
+      latitude: debitis
+      longitude: cupiditate
+      paypal_email: verona58@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -2104,63 +2104,63 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: impedit
+        example: et
         type: string
         custom: []
       name_short:
         name: name_short
         description: ''
         required: true
-        example: quia
+        example: architecto
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: juana07@example.org
+        example: goodwin.andrew@example.org
         type: string
         custom: []
       about:
         name: about
         description: ''
         required: true
-        example: quia
+        example: est
         type: string
         custom: []
       about_short:
         name: about_short
         description: ''
         required: true
-        example: vitae
+        example: quae
         type: string
         custom: []
       phone_no:
         name: phone_no
         description: ''
         required: true
-        example: ducimus
+        example: eum
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: ut
+        example: fugit
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: quam
+        example: qui
         type: string
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: eos
+        example: laboriosam
         type: string
         custom: []
       map_location:
@@ -2188,36 +2188,36 @@ endpoints:
         name: latitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: quam
+        example: est
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'Must not be one of <code>null</code>.'
         required: true
-        example: hic
+        example: sit
         type: string
         custom: []
       paypal_email:
         name: paypal_email
         description: 'Must be a valid email address.'
         required: true
-        example: lonzo08@example.net
+        example: stroman.selina@example.net
         type: string
         custom: []
     cleanBodyParameters:
-      name: impedit
-      name_short: quia
-      email: juana07@example.org
-      about: quia
-      about_short: vitae
-      phone_no: ducimus
-      address: ut
-      state: quam
-      postal_code: eos
-      latitude: quam
-      longitude: hic
-      paypal_email: lonzo08@example.net
+      name: et
+      name_short: architecto
+      email: goodwin.andrew@example.org
+      about: est
+      about_short: quae
+      phone_no: eum
+      address: fugit
+      state: qui
+      postal_code: laboriosam
+      latitude: est
+      longitude: sit
+      paypal_email: stroman.selina@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -2249,11 +2249,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: quia
+        example: veniam
         type: string
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: veniam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2523,14 +2523,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: est
+        example: corporis
         type: string
         custom: []
       seating_area_id:
         name: seating_area_id
         description: ''
         required: true
-        example: necessitatibus
+        example: in
         type: string
         custom: []
       seat_number:
@@ -2541,8 +2541,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: est
-      seating_area_id: necessitatibus
+      name: corporis
+      seating_area_id: in
       seat_number: enim
     fileParameters: []
     responses: []
@@ -2582,20 +2582,20 @@ endpoints:
         name: id
         description: 'The id of the category'
         required: false
-        example: odio
+        example: voluptatem
         type: string
         custom: []
       uuid:
         name: uuid
         description: 'The uuid of the restaurant'
         required: false
-        example: fa09ed55-f1c6-325c-a7d4-ed79542768f1
+        example: 36617def-8e11-3450-ac03-e3b5d23d1891
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: odio
-      uuid: fa09ed55-f1c6-325c-a7d4-ed79542768f1
+      id: voluptatem
+      uuid: 36617def-8e11-3450-ac03-e3b5d23d1891
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2603,27 +2603,27 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: culpa
+        example: unde
         type: string
         custom: []
       seating_area_id:
         name: seating_area_id
         description: ''
         required: true
-        example: quis
+        example: exercitationem
         type: string
         custom: []
       seat_number:
         name: seat_number
         description: ''
         required: true
-        example: hic
+        example: corporis
         type: string
         custom: []
     cleanBodyParameters:
-      name: culpa
-      seating_area_id: quis
-      seat_number: hic
+      name: unde
+      seating_area_id: exercitationem
+      seat_number: corporis
     fileParameters: []
     responses: []
     responseFields: []
@@ -2711,12 +2711,12 @@ endpoints:
         name: restaurant
         description: 'The ID of the restaurant'
         required: false
-        example: aperiam
+        example: saepe
         type: string
         custom: []
     cleanUrlParameters:
       restaurant_uuid: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      restaurant: aperiam
+      restaurant: saepe
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2915,12 +2915,12 @@ endpoints:
         name: id
         description: 'The ID or the UUID of the restaurant'
         required: false
-        example: beatae
+        example: dolorem
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: beatae
+      id: dolorem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2977,19 +2977,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: laboriosam
+        example: quo
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: ut
+        example: magnam
         type: string
         custom: []
     cleanBodyParameters:
-      title: laboriosam
-      description: ut
+      title: quo
+      description: magnam
     fileParameters: []
     responses: []
     responseFields: []
@@ -3028,20 +3028,20 @@ endpoints:
         name: id
         description: 'The id of the category'
         required: false
-        example: velit
+        example: sint
         type: string
         custom: []
       uuid:
         name: uuid
         description: 'The uuid of the restaurant'
         required: false
-        example: 09d61805-d7e2-36df-99ff-fc356ee8ecdf
+        example: 74dc1125-65b3-35ac-8918-46ae656f5a30
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: 4a9e2363-67d1-4661-84e4-e3f4815ef30b
-      id: velit
-      uuid: 09d61805-d7e2-36df-99ff-fc356ee8ecdf
+      id: sint
+      uuid: 74dc1125-65b3-35ac-8918-46ae656f5a30
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -3049,19 +3049,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: officia
+        example: voluptatem
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: voluptatem
+        example: nemo
         type: string
         custom: []
     cleanBodyParameters:
-      title: officia
-      description: voluptatem
+      title: voluptatem
+      description: nemo
     fileParameters: []
     responses: []
     responseFields: []
@@ -3195,43 +3195,43 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: laboriosam
+        example: aut
         type: string
         custom: []
       last_name:
         name: last_name
         description: ''
         required: true
-        example: sequi
+        example: consectetur
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: et
+        example: recusandae
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: quis
+        example: tenetur
         type: string
         custom: []
       avatar:
         name: avatar
         description: 'Must not be greater than 9000 characters.'
         required: false
-        example: lfwomaisejqn
+        example: xhuwhpl
         type: string
         custom: []
     cleanBodyParameters:
-      first_name: laboriosam
-      last_name: sequi
-      email: et
-      phone_number: quis
-      avatar: lfwomaisejqn
+      first_name: aut
+      last_name: consectetur
+      email: recusandae
+      phone_number: tenetur
+      avatar: xhuwhpl
     fileParameters: []
     responses: []
     responseFields: []
@@ -3275,35 +3275,35 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: commodi
+        example: ab
         type: string
         custom: []
       last_name:
         name: last_name
         description: ''
         required: true
-        example: qui
+        example: exercitationem
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: voluptatem
+        example: ad
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: sint
+        example: assumenda
         type: string
         custom: []
       avatar:
         name: avatar
         description: 'Must not be greater than 9000 characters.'
         required: false
-        example: gsqupimmymoxvpqx
+        example: fdygsdsviqjordpdmrjevzjaa
         type: string
         custom: []
       suspend:
@@ -3314,11 +3314,11 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      first_name: commodi
-      last_name: qui
-      email: voluptatem
-      phone_number: sint
-      avatar: gsqupimmymoxvpqx
+      first_name: ab
+      last_name: exercitationem
+      email: ad
+      phone_number: assumenda
+      avatar: fdygsdsviqjordpdmrjevzjaa
       suspend: '2'
     fileParameters: []
     responses: []

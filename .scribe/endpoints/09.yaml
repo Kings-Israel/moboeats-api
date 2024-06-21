@@ -71,14 +71,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: reprehenderit
+        example: explicabo
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gerlach.nicola@example.net
+        example: dbode@example.org
         type: string
         custom: []
       phoneNo:
@@ -124,8 +124,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: reprehenderit
-      email: gerlach.nicola@example.net
+      name: explicabo
+      email: dbode@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -219,56 +219,56 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 88770c07-5e95-3809-8882-ba5d6d44681d
+        example: ff6e43fc-dc30-321b-8221-6faa0b4eef0a
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: tempora
+        example: repellat
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: natalia.spinka@example.net
+        example: kshlerin.kameron@example.com
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: aut
+        example: ratione
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: aut
+        example: dolores
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: repellat
+        example: ea
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: veniam
+        example: animi
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: illo
+        example: dignissimos
         type: string
         custom: []
       image:
@@ -279,14 +279,14 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 88770c07-5e95-3809-8882-ba5d6d44681d
-      name: tempora
-      email: natalia.spinka@example.net
-      phoneNo: aut
-      address: aut
-      city: repellat
-      state: veniam
-      mapLocation: illo
+      uuid: ff6e43fc-dc30-321b-8221-6faa0b4eef0a
+      name: repellat
+      email: kshlerin.kameron@example.com
+      phoneNo: ratione
+      address: dolores
+      city: ea
+      state: animi
+      mapLocation: dignissimos
     fileParameters: []
     responses: []
     responseFields: []
@@ -362,43 +362,43 @@ endpoints:
         name: height
         description: 'The height of the user'
         required: true
-        example: 15
+        example: 8
         type: integer
         custom: []
       height_units:
         name: height_units
         description: 'The measurement units for height. E.g inches, feet'
         required: true
-        example: 14
+        example: 12
         type: integer
         custom: []
       weight:
         name: weight
         description: 'The weight of the user'
         required: true
-        example: 4
+        example: 2
         type: integer
         custom: []
       weight_units:
         name: weight_units
         description: 'The measurement units for weight. E.g kilograms, pounds'
         required: true
-        example: 6
+        example: 3
         type: integer
         custom: []
       body_mass_index:
         name: body_mass_index
         description: 'The mass index of the user'
         required: true
-        example: 16
+        example: 2
         type: integer
         custom: []
     cleanBodyParameters:
-      height: 15
-      height_units: 14
-      weight: 4
-      weight_units: 6
-      body_mass_index: 16
+      height: 8
+      height_units: 12
+      weight: 2
+      weight_units: 3
+      body_mass_index: 2
     fileParameters: []
     responses: []
     responseFields: []

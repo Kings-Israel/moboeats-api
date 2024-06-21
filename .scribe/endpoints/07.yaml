@@ -36,7 +36,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '272'
+          x-ratelimit-remaining: '268'
           vary: Origin
         description: null
         custom: []
@@ -79,7 +79,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '271'
+          x-ratelimit-remaining: '267'
           vary: Origin
         description: null
         custom: []
@@ -157,19 +157,19 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 19
+        example: 3
         type: integer
         custom: []
       quantity:
         name: quantity
         description: 'The quantity of the order'
         required: false
-        example: 6
+        example: 8
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 19
-      quantity: 6
+      supplement_id: 3
+      quantity: 8
     fileParameters: []
     responses: []
     responseFields: []
@@ -246,28 +246,28 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: reiciendis
+        example: ipsa
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: nihil
+        example: consectetur
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: voluptatem
+        example: alias
         type: string
         custom: []
       measuring_unit:
         name: measuring_unit
         description: 'Must be one of <code>kilograms</code>, <code>pounds</code>, or <code>litres</code>.'
         required: true
-        example: kilograms
+        example: litres
         type: string
         custom: []
       images:
@@ -278,10 +278,10 @@ endpoints:
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      supplier_id: reiciendis
-      name: nihil
-      price: voluptatem
-      measuring_unit: kilograms
+      supplier_id: ipsa
+      name: consectetur
+      price: alias
+      measuring_unit: litres
     fileParameters: []
     responses: []
     responseFields: []
@@ -358,19 +358,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: voluptas
+        example: esse
         type: string
         custom: []
       image:
         name: image
         description: ''
         required: true
-        example: labore
+        example: inventore
         type: string
         custom: []
     cleanBodyParameters:
-      name: voluptas
-      image: labore
+      name: esse
+      image: inventore
     fileParameters: []
     responses: []
     responseFields: []
@@ -541,11 +541,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: eius
+        example: corporis
         type: string
         custom: []
     cleanUrlParameters:
-      id: eius
+      id: corporis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -553,11 +553,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: sunt
+        example: amet
         type: string
         custom: []
     cleanBodyParameters:
-      status: sunt
+      status: amet
     fileParameters: []
     responses: []
     responseFields: []

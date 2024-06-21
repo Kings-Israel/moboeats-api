@@ -73,27 +73,27 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 7
+        example: 16
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 7
+        example: 2
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 9
+        example: 16
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 7
-      quantity: 7
-      status: 9
+      menuId: 16
+      quantity: 2
+      status: 16
     fileParameters: []
     responses: []
     responseFields: []
@@ -187,27 +187,27 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 3
+        example: 12
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 1
+        example: 19
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 17
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 3
-      quantity: 1
-      status: 19
+      menuId: 12
+      quantity: 19
+      status: 17
     fileParameters: []
     responses: []
     responseFields: []
