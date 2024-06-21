@@ -588,8 +588,9 @@ class RestaurantController extends Controller
                             ->get();
 
         $total_amount = $orders->sum('total_amount');
+        $delivery_fees = $orders->sum('delivery_fee');
         $service_charges = $orders->sum('service_charge');
-        $total_amount = $total_amount - $service_charges;
+        $total_amount = $total_amount - $delivery_fees - $service_charges;
 
         $paid_amount = Payout::whereIn('payable_id', $restaurant_ids)->where('payable_type', Restaurant::class)->sum('amount');
 
@@ -598,8 +599,9 @@ class RestaurantController extends Controller
         $search = $request->query('search');
         $from_created_at = $request->query('from_created_at');
         $to_created_at = $request->query('to_created_at');
-        $payments = Payment::with('order.user', 'order.restaurant')
-                            ->whereIn('order_id', $orders->pluck('id'))
+        $payments = Payment::with('orderable.user', 'orderable.restaurant')
+                            ->where('orderable_type', Order::class)
+                            ->whereIn('orderable_id', $orders->pluck('id'))
                             ->where('transaction_id', '!=', NULL)
                             ->when($from_created_at && $from_created_at != '', function ($query) use ($from_created_at) {
                                 $query->whereDate('created_at', '>=', Carbon::parse($from_created_at));
@@ -610,7 +612,7 @@ class RestaurantController extends Controller
                             ->when($search && $search != '', function ($query) use ($search) {
                                 $query->where(function($query) use ($search) {
                                     $query->where('transaction_id', 'LIKE', '%' . $search . '%')
-                                        ->orWhereHas('order', function ($query) use ($search) {
+                                        ->orWhereHas('orderable', function ($query) use ($search) {
                                             $query->where('uuid', 'LIKE', '%' . $search . '%')
                                                 ->whereHas('restaurant', function ($query) use ($search) {
                                                     $query->where('name', 'LIKE', '%' . $search . '%')->orWhere('name_short', 'LIKE', '%' . $search . '%');
@@ -629,6 +631,7 @@ class RestaurantController extends Controller
             'total_amount' => $total_amount,
             'paid_amount' => $paid_amount,
             'unpaid_amount' => $unpaid_amount,
+            'country' => $orders->count() ? $orders->first()->country : 'United Kingdom',
         ]);
     }
 
@@ -902,15 +905,15 @@ class RestaurantController extends Controller
     {
         $search = $request->query('search');
 
-        $payments = Payment::with('order.restaurant', 'order.user')
+        $payments = Payment::with('orderable.restaurant', 'orderable.user')
                             ->where('transaction_id', '!=', NULL)
-                            ->whereHas('order', function ($query) use ($restaurant) {
+                            ->whereHas('orderable', function ($query) use ($restaurant) {
                                 $query->whereHas('restaurant', function ($query) use ($restaurant) {
                                     $query->where('id', '=', $restaurant->id);
                                 });
                             })
                             ->when($search && $search != '', function ($query) use ($search) {
-                                $query->whereHas('order', function ($query) use ($search) {
+                                $query->whereHas('orderable', function ($query) use ($search) {
                                     $query->where(function ($query) use ($search) {
                                         $query->where('uuid', 'LIKE', '%'.$search.'%')
                                             ->orWhereHas('user', function ($query) use ($search) {

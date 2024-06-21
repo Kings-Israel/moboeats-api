@@ -168,14 +168,17 @@ class RiderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'order_id' => 'required',
-            'status' => ['required', Rule::in(['accept', 'reject', 'on_delivery', 'delivered'])]
+            'status' => ['required', Rule::in(['accept', 'reject', 'on_delivery', 'on delivery', 'delivered'])]
         ]);
 
         if ($validator->fails()) {
             return $this->error('Please select an order', $validator->messages(), 422);
         }
 
-        $order = Order::with('user', 'restaurant')->where('uuid', $request->order_id)->first();
+        $order = Order::with('user', 'restaurant')
+                        ->where(function ($query) use ($request) {
+                            $query->where('uuid', $request->order_id)->orWhere('id', $request->order_id);
+                        })->first();
 
         if (!$order) {
             return $this->error('Order not found', 'The selected order was not found', 422);
@@ -228,7 +231,7 @@ class RiderController extends Controller
             return $this->success($order, 'Order updated successfully', 200);
         }
 
-        if ($request->status == 'on_delivery') {
+        if ($request->status == 'on_delivery' || $request->status == 'on delivery') {
             $order->update([
                 'status' => 4,
                 'delivery_status' => 'On Delivery'

@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
 use Laravel\Cashier\Billable;
@@ -109,7 +112,7 @@ class User extends Authenticatable implements LaratrustUser
      *
      * @var array
      */
-    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries'];
+    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries', 'country'];
 
     public function receivesBroadcastNotificationOn(): string
     {
@@ -191,16 +194,6 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(RestaurantBookmark::class, 'user_id', 'id');
     }
-
-    // /**
-    //  * Get all of the carts for the User
-    //  *
-    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    //  */
-    // public function carts(): HasMany
-    // {
-    //     return $this->hasMany(Cart::class, 'user_id', 'id');
-    // }
 
     /**
      * Get the cart associated with the User
@@ -342,5 +335,40 @@ class User extends Authenticatable implements LaratrustUser
     public function getTotalRiderDeliveriesAttribute()
     {
         return $this->rider ? $this->rider->deliveries?->count() : 0;
+    }
+
+    /**
+     * Get the default country
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCountryAttribute()
+    {
+        if ($this->latitude && $this->longitude) {
+            $user_country = Cache::get($this->uuid.'-country');
+            if (!$user_country) {
+                try {
+                    $user_location = Http::withOptions(['verify' => false])
+                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->latitude.','.$this->longitude.'&key='.config('services.map.key'));
+                } catch (ConnectionException $e) {
+                    $user_country = 'Kenya';
+                }
+
+                if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+                    $user_country = 'Kenya';
+                }
+
+                foreach ($user_location['results'][0]['address_components'] as $place) {
+                    if (collect($place['types'])->contains('country')) {
+                        $user_country = $place['long_name'];
+                    }
+                }
+
+                Cache::add($this->uuid.'-country', $user_country);
+            }
+
+            return ($user_country);
+        }
     }
 }

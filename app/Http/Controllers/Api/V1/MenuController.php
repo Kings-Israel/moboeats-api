@@ -61,6 +61,10 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
+        $radius = 100;
+        $latitude = $request->query('lat');
+        $longitude = $request->query('lng');
+
         if (auth()->check()) {
             $filter =  new MenuFilter();
             $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
@@ -74,10 +78,23 @@ class MenuController extends Controller
 
                 $menu = Menu::where('restaurant_id', $restaurant->resturant_id);
             } else {
+                $user_latitude = $latitude ? $latitude : auth()->user()->latitude;
+                $user_longitude = $longitude ? $longitude : auth()->user()->longitude;
                 $menu = Menu::active()
                             ->hasActivePrices()
-                            ->whereHas('menuPrices', function ($query) {
-                                $query->where('status', '2');
+                            ->whereHas('restaurant', function ($query) use ($user_latitude, $user_longitude, $radius) {
+                                $query->where('status', '2')
+                                    ->when($user_latitude && $user_longitude && $user_latitude != '' && $user_longitude != '', function ($query) use ($user_latitude, $user_longitude, $radius) {
+                                        $query->select(DB::raw("*,
+                                                (6371 * acos(cos(radians($user_latitude))
+                                                * cos(radians(latitude))
+                                                * cos(radians(longitude)
+                                                - radians($user_longitude))
+                                                + sin(radians($user_latitude))
+                                                * sin(radians(latitude))))
+                                                AS distance"))
+                                        ->having('distance', '<=', $radius);
+                                    });
                             })
                             ->whereHas('images');
             }
@@ -85,11 +102,22 @@ class MenuController extends Controller
             return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate(6)->appends($request->query()));
         } else {
             $menu = Menu::active()
-                            ->hasActivePrices()
-                            ->whereHas('menuPrices', function ($query) {
-                                $query->where('status', '2');
-                            })
-                            ->whereHas('images');
+                        ->hasActivePrices()
+                        ->whereHas('restaurant', function ($query) use ($latitude, $longitude, $radius) {
+                            $query->where('status', '2')
+                                ->when($latitude && $longitude && $latitude != '' && $longitude != '', function ($query) use ($latitude, $longitude, $radius) {
+                                    $query->select(DB::raw("*,
+                                            (6371 * acos(cos(radians($latitude))
+                                            * cos(radians(latitude))
+                                            * cos(radians(longitude)
+                                            - radians($longitude))
+                                            + sin(radians($latitude))
+                                            * sin(radians(latitude))))
+                                            AS distance"))
+                                    ->having('distance', '<=', $radius);
+                                });
+                        })
+                        ->whereHas('images');
 
             return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate());
         }

@@ -76,11 +76,11 @@ class AuthController extends Controller
 
             if ($request->userType == 'rider') {
                 $rider = $user->rider;
-                if (!$rider) {
-                    return $this->error('Rider profile not complete', 'Complete your rider profile.', 400);
-                }
+                // if (!$rider) {
+                //     return $this->error('Rider profile not complete', 'Complete your rider profile.', 400);
+                // }
 
-                if ($rider->status == 1) {
+                if ($rider && $rider->status == 1) {
                     return $this->error('Rider Profile', 'Rider profile awaiting approval. Contact Admin for Assistance.', 403);
                 }
             }
@@ -115,6 +115,8 @@ class AuthController extends Controller
      * @bodyParam password string required The password of the user
      * @bodyParam userType string required The type of user
      * @bodyParam phone string required The type of user
+     * @bodyParam latitude string optional The latitude of the user. Example -1.2847473
+     * @bodyParam longitude string optional The longitude of the user. Example 36.3878745
      */
     public function register(StoreUserRequest $request)
     {
@@ -148,6 +150,8 @@ class AuthController extends Controller
                         'email' => $request->email,
                         'address' => '',
                         'status' => 2,
+                        'latitude' => $request->latitude ?? NULL,
+                        'longitude' => $request->longitude ?? NULL,
                     ]);
                 $role = Role::where('name', $request->userType)->first();
                 if (!$role) {
@@ -360,6 +364,9 @@ class AuthController extends Controller
      * Login through OTP
      *
      * @bodyParam phone_number string required The phone number of the user. Example 44374673827
+     * @bodyParam device_token string optional The device token
+     * @bodyParam latitude string optional The latitude of the user. Example -1.2847473
+     * @bodyParam longitude string optional The longitude of the user. Example 36.3878745
      */
     public function otpLogin(Request $request)
     {
@@ -383,6 +390,8 @@ class AuthController extends Controller
                     'user_type' => $request->userType,
                     'status' => 2,
                     'device_token' => $request->has('device_token') && $request->device_token != '' ? $request->device_token : NULL,
+                    'latitude' => $request->latitude ?? NULL,
+                    'longitude' => $request->longitude ?? NULL,
                 ]
             );
 
@@ -485,28 +494,6 @@ class AuthController extends Controller
      */
     public function delete()
     {
-        // $validator = Validator::make($request->all(), [
-        //     'phone_number' => ['required_without:email'],
-        //     'email' => ['required_without:phone_number']
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return $this->error($validator->messages(), 'Invalid details', 400);
-        // }
-
-        // if ($request->has('email') && $request->email != '' && !empty($request->email)) {
-        //     $user = User::where('email', $request->email)->first();
-        // }
-
-        // if ($request->has('phone_number') && $request->phone_number != '' && !empty($request->phone_number)) {
-        //     $user = User::where('phone_number', $request->phone_number)->first();
-        // }
-
-        // if (!$user) {
-        //     return $this->error('User not found', 'User Not Found', 404);
-        // }
-
-        // return view('delete', ['user' => $user]);
         return view('delete');
     }
 

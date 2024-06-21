@@ -124,7 +124,8 @@ class PaymentController extends Controller
 
         Payment::create([
             'transaction_id' => $request->transaction_id,
-            'order_id' => $order->id,
+            'orderable_id' => $order->id,
+            'orderable_type' => Order::class,
             'payment_method' => 'Paypal',
             'amount' => $order->total_amount,
             'status' => 2,

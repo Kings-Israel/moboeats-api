@@ -17,8 +17,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Musonza\Chat\Traits\Messageable;
 
 class Restaurant extends Model implements UrlRoutable
@@ -65,6 +68,13 @@ class Restaurant extends Model implements UrlRoutable
         'groceries_service_charge_agreement',
         'paypal_email',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['country'];
 
     public function getRouteKeyName()
     {
@@ -123,7 +133,7 @@ class Restaurant extends Model implements UrlRoutable
         if ($value) {
             return config('app.url').'/storage/'.$value;
         }
-        
+
         return config('app.url').'/assets/user/default.png';
     }
 
@@ -331,5 +341,40 @@ class Restaurant extends Model implements UrlRoutable
         }
 
         return false;
+    }
+
+    /**
+     * Get the default country
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCountryAttribute()
+    {
+        if ($this->latitude && $this->longitude) {
+            $user_country = Cache::get($this->uuid.'-restaurant-country');
+            if (!$user_country) {
+                try {
+                    $user_location = Http::withOptions(['verify' => false])
+                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->latitude.','.$this->longitude.'&key='.config('services.map.key'));
+                } catch (ConnectionException $e) {
+                    $user_country = 'Kenya';
+                }
+
+                if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+                    $user_country = 'Kenya';
+                }
+
+                foreach ($user_location['results'][0]['address_components'] as $place) {
+                    if (collect($place['types'])->contains('country')) {
+                        $user_country = $place['long_name'];
+                    }
+                }
+
+                Cache::add($this->uuid.'-restaurant-country', $user_country, now()->addMonths(3));
+            }
+
+            return ($user_country);
+        }
     }
 }

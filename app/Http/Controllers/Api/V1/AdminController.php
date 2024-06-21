@@ -386,7 +386,11 @@ class AdminController extends Controller
 
         $deliveries = Order::where('rider_id', $id)->orderBy('created_at', 'DESC')->paginate(5);
 
-        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile]);
+        $earnings = Order::where('rider_id', $id)->where('delivery_status', 'delivered')->sum('delivery_fee');
+
+        // TODO: Add disbursed
+
+        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings' => $earnings]);
     }
 
     public function updateRiderStatus(Request $request, Rider $rider)

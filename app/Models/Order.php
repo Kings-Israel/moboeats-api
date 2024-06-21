@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Malhal\Geographical\Geographical;
 
@@ -74,6 +77,13 @@ class Order extends Model
         'delivery_location_lng' => 'double',
         'delivery' => 'bool'
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['country'];
 
     public static function options($column)
     {
@@ -216,5 +226,40 @@ class Order extends Model
         }
 
         return $total_preparation_time;
+    }
+
+    /**
+     * Get the default country
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCountryAttribute()
+    {
+        if ($this->delivery_location_lat && $this->delivery_location_lng) {
+            $order_country = Cache::get($this->uuid.'-order-country');
+            if (!$order_country) {
+                try {
+                    $user_location = Http::withOptions(['verify' => false])
+                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->delivery_location_lat.','.$this->delivery_location_lng.'&key='.config('services.map.key'));
+                } catch (ConnectionException $e) {
+                    $order_country = 'Kenya';
+                }
+
+                if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+                    $order_country = 'Kenya';
+                }
+
+                foreach ($user_location['results'][0]['address_components'] as $place) {
+                    if (collect($place['types'])->contains('country')) {
+                        $order_country = $place['long_name'];
+                    }
+                }
+
+                Cache::add($this->uuid.'-order-country', $order_country, now()->addWeek());
+            }
+
+            return ($order_country);
+        }
     }
 }
