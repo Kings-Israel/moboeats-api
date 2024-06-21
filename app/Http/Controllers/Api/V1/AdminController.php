@@ -388,7 +388,7 @@ class AdminController extends Controller
 
         $earnings = Order::where('rider_id', $id)->where('delivery_status', 'delivered')->sum('delivery_fee');
 
-        // TODO: Add disbursed
+        // TODO: Add disbursed amount
 
         return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings' => $earnings]);
     }

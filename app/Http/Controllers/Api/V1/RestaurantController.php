@@ -460,7 +460,7 @@ class RestaurantController extends Controller
             $dineins = Order::whereIn('restaurant_id', $restaurant_ids)->where('delivery', false)->get();
         }
 
-        $revenue = Payment::whereIn('order_id', $orders->pluck('id'))->where('status', '2')->sum('amount');
+        $revenue = Payment::where('orderable_type', Order::class)->whereIn('orderable_id', $orders->pluck('id'))->where('status', '2')->sum('amount');
         $service_charges = $orders->where('delivery_status', 'delivered')->sum('service_charge');
         $revenue = (float) $revenue - (float) $service_charges;
 
@@ -490,8 +490,10 @@ class RestaurantController extends Controller
                 $order_ids = $restaurant->orders->pluck('id');
 
                 foreach ($months as $month) {
-                    $sum = Payment::whereIn('order_id', $order_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
-                    array_push($payment['payments']['amounts'], $sum);
+                    $sum = Payment::where('orderable_type', Order::class)->whereIn('orderable_id', $order_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                    $delivery_fees = Order::whereIn('id', $order_ids)->where('delivery_status', 'Delivered')->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('delivery_fee');
+                    $amount = $sum - $delivery_fees;
+                    array_push($payment['payments']['amounts'], $amount);
                 }
 
                 $restaurant = array_merge($restaurant->toArray(), $payment);
@@ -508,10 +510,11 @@ class RestaurantController extends Controller
             $orders_ids = Order::whereIn('restaurant_id', $restaurants_ids)->get()->pluck('id');
 
             foreach ($months as $month) {
-                $payments = Payment::whereIn('order_id', $orders_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                $payments = Payment::where('orderable_type', Order::class)->whereIn('orderable_id', $orders_ids)->where('status', 2)->whereBetween('updated_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
                 array_push($payments_series, $payments);
-                $delivery_payments = Payment::whereIn('order_id', $orders_ids)
-                                        ->whereHas('order', function ($query) {
+                $delivery_payments = Payment::where('orderable_type', Order::class)
+                                        ->whereIn('orderable_id', $orders_ids)
+                                        ->whereHas('orderable', function ($query) {
                                             $query->where('delivery', true);
                                         })
                                         ->where('status', 2)
@@ -519,8 +522,9 @@ class RestaurantController extends Controller
                                         ->sum('amount');
 
                 array_push($delivery_payment_series, $delivery_payments);
-                $booking_payments = Payment::whereIn('order_id', $orders_ids)
-                                            ->whereHas('order', function ($query) {
+                $booking_payments = Payment::where('orderable_type', Order::class)
+                                            ->whereIn('orderable_id', $orders_ids)
+                                            ->whereHas('orderable', function ($query) {
                                                 $query->where('delivery', false);
                                             })
                                             ->where('status', 2)
