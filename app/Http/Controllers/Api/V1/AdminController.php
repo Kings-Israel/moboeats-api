@@ -116,7 +116,7 @@ class AdminController extends Controller
         $users = User::whereHasRole('orderer')->count();
         $restaurants = User::whereHasRole('restaurant')->count();
         $riders = User::whereHasRole('rider')->count();
-        $orders = Order::where('status', 2)->count();
+        $orders = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->count();
 
         $months = [];
         // Get past 12 months
@@ -137,18 +137,18 @@ class AdminController extends Controller
 
         $index = 0;
         foreach ($months as $month) {
-            $order = Order::where('status', 2)->whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
+            $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
             array_push($total_monthly_orders, $order);
             $total_orders += $order;
             $index++;
         }
 
         // Get current months earning
-        $current_month_orders = Order::where('status', 2)->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->count();
+        $current_month_orders = Order::where('delivery_status', 'Delivered')->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->count();
 
         // Previous months orders
         $prev_month = now()->subMonths(1);
-        $prev_month_orders = Order::where('status', 2)->whereBetween('created_at', [Carbon::parse($prev_month)->startOfMonth(), Carbon::parse($prev_month)->endOfMonth()])->count();
+        $prev_month_orders = Order::where('delivery_status', 'Delivered')->whereBetween('created_at', [Carbon::parse($prev_month)->startOfMonth(), Carbon::parse($prev_month)->endOfMonth()])->count();
 
         // Compare current months orders to previous month
         if ($prev_month_orders != 0) {
@@ -254,6 +254,29 @@ class AdminController extends Controller
             'supplement_orders_count' => $supplement_orders_count
         ];
 
+        $region_data = array();
+
+        $regions = Order::where('delivery_status', 'Delivered')->get()->pluck('country');
+
+        $region_data_orders = Order::where('delivery_status', 'Delivered')->get();
+
+        $paid_amount = Payout::with('payable')->get();
+
+        $payment_data = Payment::with('orderable.user')->where('transaction_id', '!=', NULL)->get();
+
+        foreach ($regions as $region) {
+            $region_data[$region]['total_amount'] = $payment_data->where('orderable.user.country', $region)->sum('amount');
+            $region_data[$region]['total_service_charges'] = $region_data_orders->where('country', $region)->sum('service_charge');
+            $region_data[$region]['rider_earnings'] = $region_data_orders->where('delivery', true)->where('country', $region)->sum('delivery_fee');
+            $region_data[$region]['restaurant_earnings'] = $region_data[$region]['total_amount'] - $region_data[$region]['total_service_charges'] - $region_data[$region]['rider_earnings'];
+
+            $region_data[$region]['paid_amount'] = $paid_amount->where('payable.country', $region)->sum('amount');
+            $region_data[$region]['restaurant_amount_paid_out'] = $paid_amount->where('payable_type', Restaurant::class)->where('payable.country', $region)->sum('amount');
+            $region_data[$region]['rider_amount_paid_out'] = $paid_amount->where('payable_type', User::class)->where('payable.country', $region)->sum('amount');
+
+            $region_data[$region]['unpaid_amount'] = (double) $region_data[$region]['total_amount'] - ((double) $region_data[$region]['paid_amount']);
+        }
+
         return $this->success([
             'users' => $users,
             'restaurants' => $restaurants,
@@ -264,7 +287,8 @@ class AdminController extends Controller
             'top_restaurants' => $top_restaurants,
             'top_menu_series' => $top_menu_series,
             'settings' => $settings,
-            'supplements' => $supplements
+            'supplements' => $supplements,
+            'region_data' => $region_data,
         ]);
     }
 
@@ -388,9 +412,15 @@ class AdminController extends Controller
 
         $earnings = Order::where('rider_id', $id)->where('delivery_status', 'delivered')->sum('delivery_fee');
 
-        // TODO: Add disbursed amount
+        // Add disbursed amount
+        $paid_amount = Payout::with('payable')
+                            ->where('payable_type', User::class)
+                            ->where('payable_id', $user->id)
+                            ->sum('amount');
 
-        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings' => $earnings]);
+        $pending_payment = $earnings - $paid_amount;
+
+        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings_data' => ['total_earnings' => $earnings, 'paid_amount' => $paid_amount, 'unpaid_amount' => $pending_payment]]);
     }
 
     public function updateRiderStatus(Request $request, Rider $rider)
@@ -442,7 +472,34 @@ class AdminController extends Controller
                             ->orWhere('uuid', $id)
                             ->first();
 
-        return $this->success(['restaurant' => $restaurant, 'average_rating' => $restaurant->averageRating()]);
+        $orders = Order::where('restaurant_id', $restaurant->id)
+                        ->where('delivery_status', 'Delivered')
+                        ->get();
+
+        $total_service_charges = $orders->sum('service_charge');
+        $rider_earnings = $orders->where('delivery', true)->sum('delivery_fee');
+
+        $paid_amount = Payout::with('payable')
+                            ->where('payable_type', Restaurant::class)
+                            ->where('payable_id', $restaurant->id)
+                            ->sum('amount');
+
+        $payment_data = Payment::with('orderable.restaurant')
+                        ->whereHas('orderable', function ($query) use ($orders) {
+                            $query->where('orderable_type', Order::class)
+                                    ->whereIn('orderable_id', $orders->pluck('id'));
+                        })
+                        ->where('transaction_id', '!=', NULL)
+                        ->sum('amount');
+
+        $restaurant_payment_data = array();
+
+        $restaurant_payment_data['total_earnings'] = $payment_data - $rider_earnings - $total_service_charges;
+        $restaurant_payment_data['paid_amount'] = $paid_amount;
+        $restaurant_payment_data['unpaid_amount'] = $restaurant_payment_data['total_earnings'] - $paid_amount;
+        $restaurant_payment_data['service_charges'] = $total_service_charges;
+
+        return $this->success(['restaurant' => $restaurant, 'average_rating' => $restaurant->averageRating(), 'restaurant_payment_data' => $restaurant_payment_data]);
     }
 
     public function restaurantReviews(Restaurant $restaurant)
@@ -458,13 +515,13 @@ class AdminController extends Controller
 
         $payments = Payment::with('orderable.restaurant', 'orderable.user')
                             ->where('transaction_id', '!=', NULL)
-                            ->whereHas('order', function ($query) use ($restaurant) {
+                            ->whereHas('orderable', function ($query) use ($restaurant) {
                                 $query->whereHas('restaurant', function ($query) use ($restaurant) {
                                     $query->where('id', '=', $restaurant->id);
                                 });
                             })
                             ->when($search && $search != '', function ($query) use ($search) {
-                                $query->whereHas('order', function ($query) use ($search) {
+                                $query->whereHas('orderable', function ($query) use ($search) {
                                     $query->where(function ($query) use ($search) {
                                         $query->where('uuid', 'LIKE', '%'.$search.'%')
                                             ->orWhereHas('user', function ($query) use ($search) {
@@ -601,30 +658,52 @@ class AdminController extends Controller
         $rider_earnings = 0;
         $restaurant_amount_paid_out = 0;
         $rider_amount_paid_out = 0;
+        $region_data = array();
 
-        $orders = Order::where('delivery_status', 'delivered')->get();
+        $regions = Order::where('delivery_status', 'Delivered')->get()->pluck('country');
 
-        $total_amount = Payment::where('transaction_id', '!=', NULL)->sum('amount');
-        $total_service_charges = $orders->where('delivery_status', 'delivered')->sum('service_charge');
+        $orders = Order::where('delivery_status', 'Delivered')->get();
+
+        $paid_amount = Payout::with('payable')->get();
+
+        $payment_data = Payment::with('orderable.user')->where('transaction_id', '!=', NULL)->get();
+
+        foreach ($regions as $region) {
+            $region_data[$region]['total_amount'] = $payment_data->where('orderable.user.country', $region)->sum('amount');
+            $region_data[$region]['total_service_charges'] = $orders->where('country', $region)->sum('service_charge');
+            $region_data[$region]['rider_earnings'] = $orders->where('delivery', true)->where('country', $region)->sum('delivery_fee');
+            $region_data[$region]['restaurant_earnings'] = $region_data[$region]['total_amount'] - $region_data[$region]['total_service_charges'] - $region_data[$region]['rider_earnings'];
+
+            $region_data[$region]['paid_amount'] = $paid_amount->where('payable.country', $region)->sum('amount');
+            $region_data[$region]['restaurant_amount_paid_out'] = $paid_amount->where('payable_type', Restaurant::class)->where('payable.country', $region)->sum('amount');
+            $region_data[$region]['rider_amount_paid_out'] = $paid_amount->where('payable_type', User::class)->where('payable.country', $region)->sum('amount');
+
+            $region_data[$region]['unpaid_amount'] = (double) $region_data[$region]['total_amount'] - ((double) $region_data[$region]['paid_amount']);
+        }
+
+        $total_amount = $payment_data->sum('amount');
+        $total_service_charges = $orders->sum('service_charge');
         $total_amount = $total_amount - $total_service_charges;
         $restaurant_earnings = $total_amount;
-        $rider_earnings = $orders->where('delivery_status', 'delivered')->where('delivery', true)->sum('total_amount');
+        $rider_earnings = $orders->where('delivery', true)->sum('delivery_fee');
+        $restaurant_earnings = $restaurant_earnings - $rider_earnings;
 
-        $paid_amount = Payout::sum('amount');
+        $paid_amount = $paid_amount->sum('amount');
         $restaurant_amount_paid_out = Payout::where('payable_type', Restaurant::class)->sum('amount');
         $rider_amount_paid_out = Payout::where('payable_type', User::class)->sum('amount');
 
         $unpaid_amount = (int) $total_amount - (int) $paid_amount;
 
-        $payments = Payment::with('order.user', 'order.restaurant')
+
+        $payments = Payment::with('orderable.user', 'orderable.restaurant')
                             ->where('transaction_id', '!=', NULL)
                             ->when($search && $search != null, function ($query) use ($search) {
-                                $query->whereHas('order', function ($query) use ($search) {
+                                $query->whereHas('orderable', function ($query) use ($search) {
                                     $query->whereHas('user', function ($query) use ($search) {
                                         $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('email', 'LIKE', '%'.$search.'%');
                                     });
                                 })
-                                ->orWhereHas('order', function ($query) use ($search) {
+                                ->orWhereHas('orderable', function ($query) use ($search) {
                                     $query->whereHas('restaurant', function ($query) use ($search) {
                                         $query->where('amount', 'LIKE', '%'.$search.'%')->orWhere('about', 'LIKE', '%'.$search.'%');
                                     });
@@ -643,6 +722,7 @@ class AdminController extends Controller
             'total_service_charges' => $total_service_charges,
             'restaurant_amount_paid_out' => $restaurant_amount_paid_out,
             'rider_amount_paid_out' => $rider_amount_paid_out,
+            'region_data' => $region_data,
         ]);
     }
 

@@ -174,6 +174,7 @@ Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function(
     Route::post('/orders/{order_id}/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
     Route::post('/location/update', [RiderController::class, 'updateLocation']);
     Route::get('/tips', [RiderController::class, 'getTips']);
+    Route::get('/earnings', [RiderController::class, 'earnings']);
 });
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);

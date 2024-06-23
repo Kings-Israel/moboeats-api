@@ -371,10 +371,12 @@ class Restaurant extends Model implements UrlRoutable
                     }
                 }
 
-                Cache::add($this->uuid.'-restaurant-country', $user_country, now()->addMonths(3));
+                Cache::put($this->uuid.'-restaurant-country', $user_country, now()->addMonths(3));
             }
 
-            return ($user_country);
+            return $user_country;
         }
+
+        return 'Kenya';
     }
 }

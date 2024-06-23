@@ -365,10 +365,12 @@ class User extends Authenticatable implements LaratrustUser
                     }
                 }
 
-                Cache::add($this->uuid.'-country', $user_country);
+                Cache::put($this->uuid.'-country', $user_country);
             }
 
-            return ($user_country);
+            return $user_country;
         }
+
+        return 'Kenya';
     }
 }

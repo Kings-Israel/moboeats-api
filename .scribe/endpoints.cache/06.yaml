@@ -60,19 +60,19 @@ endpoints:
         name: id
         description: 'The ID of the order.'
         required: true
-        example: necessitatibus
+        example: af8a7a33-e71e-448c-914f-1012cc8055b2
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 10
+        example: 6
         type: integer
         custom: []
     cleanUrlParameters:
-      id: necessitatibus
-      order_id: 10
+      id: af8a7a33-e71e-448c-914f-1012cc8055b2
+      order_id: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -165,11 +165,11 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 8
+        example: 10
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 8
+      order_id: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -214,19 +214,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 1
+        example: 13
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 15
+        example: 17
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 1
-      amount: 15
+      order_id: 13
+      amount: 17
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -271,19 +271,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: et
+        example: quia
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: nobis
+        example: exercitationem
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: et
-      order_id: nobis
+      user_id: quia
+      order_id: exercitationem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -458,11 +458,11 @@ endpoints:
         name: payment_uuid
         description: ''
         required: true
-        example: e4fca3a6-6618-3b49-a094-219bbb25ce00
+        example: 0556f13a-736e-4d61-b30e-b37c658372f1
         type: string
         custom: []
     cleanUrlParameters:
-      payment_uuid: e4fca3a6-6618-3b49-a094-219bbb25ce00
+      payment_uuid: 0556f13a-736e-4d61-b30e-b37c658372f1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

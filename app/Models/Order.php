@@ -256,10 +256,12 @@ class Order extends Model
                     }
                 }
 
-                Cache::add($this->uuid.'-order-country', $order_country, now()->addWeek());
+                Cache::put($this->uuid.'-order-country', $order_country, now()->addWeek());
             }
 
-            return ($order_country);
+            return $order_country;
         }
+
+        return 'Kenya';
     }
 }

@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Events\OrderDeliveryLocationUpdate;
-use App\Events\UpdateOrder;
-use App\Helpers\AssignOrder;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\RiderResource;
-use App\Models\AssignedOrder;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Rider;
-use App\Models\User;
-use App\Notifications\OrderUpdate;
-use App\Traits\HttpResponses;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
+use App\Models\Payout;
 use App\Models\RiderTip;
+use App\Events\UpdateOrder;
+use App\Helpers\AssignOrder;
+use Illuminate\Http\Request;
+use App\Models\AssignedOrder;
+use App\Traits\HttpResponses;
+use Illuminate\Validation\Rule;
+use App\Notifications\OrderUpdate;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
+use App\Http\Resources\V1\RiderResource;
+use Illuminate\Support\Facades\Validator;
+use App\Events\OrderDeliveryLocationUpdate;
 
 /**
  * @group Rider Profile APIs
@@ -284,6 +285,11 @@ class RiderController extends Controller
         return $this->success('', 'Order updated successfully', 200);
     }
 
+    /**
+     * Update the location of the rider when not delivering
+     * @bodyParam latitude string required The latitude
+     * @bodyParam longitude string required The longitude
+     */
     public function updateLocation(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -309,6 +315,12 @@ class RiderController extends Controller
         return $this->success('Location update', 'Location updated successfully', 200);
     }
 
+    /**
+     * Update the location of the rider dueing delivery
+     * @urlParam order_id string required The Id of order
+     * @bodyParam latitude string required The latitude of the rider
+     * @bodyParam longitude string required The longitude of the rider
+     */
     public function updateDeliveryLocation(Request $request, $order_id)
     {
         $validator = Validator::make($request->all(), [
@@ -344,14 +356,27 @@ class RiderController extends Controller
         return $this->success('Location update', 'Location updated successfully', 200);
     }
 
+    /**
+     * Get Rider Earninggs
+     */
     public function earnings()
     {
-        $earnings = Order::where('rider_id', auth()->id())->where('status', 5)->sum('delivery_fee');
+        $earnings = Order::where('rider_id', auth()->id())->where('delivery_status', 'Delivered')->sum('delivery_fee');
 
-        $earnings_in_past_week = Order::whereBewteen('created_at', [now()->startOfWeek(), now()->endOfWeek()])->where('status', 5)->sum('delivery_fee');
+        $earnings_in_past_week = Order::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->where('delivery_status', 'Delivered')->sum('delivery_fee');
+
+        // Add disbursed amount
+        $paid_amount = Payout::with('payable')
+                            ->where('payable_type', User::class)
+                            ->where('payable_id', auth()->id())
+                            ->sum('amount');
+
+        $pending_payment = $earnings - $paid_amount;
 
         return $this->success([
             'earnings' => $earnings,
+            'paid_amount' => $paid_amount,
+            'pending_payment_amount' => $pending_payment,
             'earnings_in_past_week' => $earnings_in_past_week
         ]);
     }

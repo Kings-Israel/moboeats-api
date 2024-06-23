@@ -73,27 +73,27 @@ endpoints:
         name: restaurantUuid
         description: ''
         required: true
-        example: voluptatem
+        example: ut
         type: string
         custom: []
       delivery:
         name: delivery
         description: ''
         required: true
-        example: a
+        example: ipsa
         type: string
         custom: []
       booking:
         name: booking
         description: ''
         required: true
-        example: dolores
+        example: temporibus
         type: string
         custom: []
     cleanBodyParameters:
-      restaurantUuid: voluptatem
-      delivery: a
-      booking: dolores
+      restaurantUuid: ut
+      delivery: ipsa
+      booking: temporibus
     fileParameters: []
     responses: []
     responseFields: []
@@ -125,11 +125,11 @@ endpoints:
         name: id
         description: 'The ID of the more info.'
         required: true
-        example: illo
+        example: omnis
         type: string
         custom: []
     cleanUrlParameters:
-      id: illo
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -175,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the more info.'
         required: true
-        example: ex
+        example: consequatur
         type: string
         custom: []
     cleanUrlParameters:
-      id: ex
+      id: consequatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -215,11 +215,11 @@ endpoints:
         name: id
         description: 'The ID of the more info.'
         required: true
-        example: et
+        example: laborum
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: laborum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
