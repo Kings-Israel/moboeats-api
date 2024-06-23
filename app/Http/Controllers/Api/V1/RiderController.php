@@ -365,6 +365,11 @@ class RiderController extends Controller
 
         $earnings_in_past_week = Order::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->where('delivery_status', 'Delivered')->sum('delivery_fee');
 
+        $tips = 0;
+        if (auth()->user()->rider) {
+            $tips = RiderTip::where('rider_id', auth()->user()->rider->id)->where('transaction_id', '!=', NULL)->sum('amount');
+        }
+
         // Add disbursed amount
         $paid_amount = Payout::with('payable')
                             ->where('payable_type', User::class)
@@ -374,7 +379,9 @@ class RiderController extends Controller
         $pending_payment = $earnings - $paid_amount;
 
         return $this->success([
-            'earnings' => $earnings,
+            'total_earnings' => $earnings + $tips,
+            'delivery_earnings' => $earnings,
+            'tip_earnings' => $tips,
             'paid_amount' => $paid_amount,
             'pending_payment_amount' => $pending_payment,
             'earnings_in_past_week' => $earnings_in_past_week

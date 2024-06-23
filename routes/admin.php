@@ -81,6 +81,12 @@ Route::group(['prefix' => 'v1/admin'], function() {
             Route::delete('/{advert_poster}/delete', [MarketingController::class, 'delete']);
         });
 
+        Route::group(['prefix' => '/payouts'], function () {
+            Route::get('/riders', [AdminController::class, 'ridersPayouts']);
+            Route::get('/partners', [AdminController::class, 'partnersPayouts']);
+            Route::post('/upload', [AdminController::class, 'uploadPayouts']);
+        });
+
         Route::get('/logs', [AdminController::class, 'logs']);
 
         Route::post('/qr-code', [AdminController::class, 'qrCode']);

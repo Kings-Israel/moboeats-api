@@ -2,45 +2,48 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\FoodCommonCategoryCollection;
-use App\Http\Resources\V1\ReviewResource;
-use App\Http\Resources\V1\RiderResource;
-use App\Http\Resources\V1\UserResource;
-use App\Models\FCategorySubCategory;
-use App\Models\FoodCommonCategory;
-use App\Models\FooSubCategory;
-use App\Models\Menu;
-use App\Models\Order;
-use App\Models\Payment;
-use App\Models\Payout;
-use App\Models\Role;
-use App\Models\Restaurant;
-use App\Models\Review;
-use App\Models\Rider;
-use App\Models\User;
-use App\Models\Setting;
-use App\Traits\HttpResponses;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Notifications\UpdatedRestaurantStatus;
-use Spatie\Activitylog\Models\Activity;
-use App\Jobs\SendNotification;
+use App\Models\Menu;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Rider;
+use App\Models\Payout;
+use App\Models\Review;
+use App\Models\Payment;
+use App\Models\Setting;
+use App\Imports\Payouts;
 use App\Mail\NewAccount;
-use App\Models\Supplement;
-use App\Models\SupplementOrder;
-use App\Models\SupplementSupplier;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
-use Milon\Barcode\DNS2D;
-use App\Jobs\SendCommunication;
 use App\Models\DietPlan;
+use App\Models\RiderTip;
+use Milon\Barcode\DNS2D;
+use App\Models\Restaurant;
+use App\Models\Supplement;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Traits\HttpResponses;
+use App\Jobs\SendNotification;
+use App\Models\FooSubCategory;
+use App\Jobs\SendCommunication;
+use App\Models\SupplementOrder;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\DietSubscription;
+use App\Models\FoodCommonCategory;
+use App\Models\SupplementSupplier;
+use App\Http\Controllers\Controller;
+use App\Models\FCategorySubCategory;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Resources\V1\UserResource;
 use App\Models\DietSubscriptionPackage;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Activitylog\Models\Activity;
+use App\Http\Resources\V1\RiderResource;
+use App\Http\Resources\V1\ReviewResource;
+use Illuminate\Support\Facades\Validator;
+use App\Notifications\UpdatedRestaurantStatus;
+use App\Http\Resources\V1\FoodCommonCategoryCollection;
 
 class AdminController extends Controller
 {
@@ -412,15 +415,20 @@ class AdminController extends Controller
 
         $earnings = Order::where('rider_id', $id)->where('delivery_status', 'delivered')->sum('delivery_fee');
 
+        $tips = 0;
+        if ($user->rider) {
+            $tips = RiderTip::where('rider_id', $user->rider->id)->where('transaction_id', '!=', NULL)->sum('amount');
+        }
+
         // Add disbursed amount
         $paid_amount = Payout::with('payable')
                             ->where('payable_type', User::class)
                             ->where('payable_id', $user->id)
                             ->sum('amount');
 
-        $pending_payment = $earnings - $paid_amount;
+        $pending_payment = $earnings + $tips - $paid_amount;
 
-        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings_data' => ['total_earnings' => $earnings, 'paid_amount' => $paid_amount, 'unpaid_amount' => $pending_payment]]);
+        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings_data' => ['total_earnings' => $earnings + $tips, 'order_earnings' => $earnings, 'tip_earnings' => $tips, 'paid_amount' => $paid_amount, 'unpaid_amount' => $pending_payment]]);
     }
 
     public function updateRiderStatus(Request $request, Rider $rider)
@@ -936,5 +944,38 @@ class AdminController extends Controller
         SendNotification::dispatchAfterResponse(User::find($request->user_id), 'A new meal plan has been created for you.');
 
         return $this->success('Meal plan created successfully');
+    }
+
+    public function ridersPayouts(Request $request)
+    {
+        $search = $request->query('search');
+
+        $payouts = Payout::with('payable')->where('payable_type', User::class)->latest()->paginate(10);
+
+        return $this->success(['payouts' => $payouts]);
+    }
+
+    public function partnersPayouts(Request $request)
+    {
+        $search = $request->query('search');
+
+        $payouts = Payout::with('payable')->where('payable_type', Restaurant::class)->latest()->paginate(10);
+
+        return $this->success(['payouts' => $payouts]);
+    }
+
+    public function uploadPayouts(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => ['required', 'mimes:xlsx']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Upload error', 422);
+        }
+
+        Excel::import(new Payouts, $request->file('file')->store('public'));
+
+        return $this->success('Upload successful');
     }
 }

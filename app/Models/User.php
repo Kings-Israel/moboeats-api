@@ -320,8 +320,8 @@ class User extends Authenticatable implements LaratrustUser
     public function getRiderLastDeliveryAttribute()
     {
         $value = NULL;
-        if ($this->hasRole('rider') && $this->rider) {
-            $value = $this->rider->deliveries?->sortDesc()->first();
+        if ($this->hasRole('rider')) {
+            $value = $this->deliveries?->sortDesc()->first();
         }
         return $value;
     }
@@ -334,7 +334,7 @@ class User extends Authenticatable implements LaratrustUser
      */
     public function getTotalRiderDeliveriesAttribute()
     {
-        return $this->rider ? $this->rider->deliveries?->count() : 0;
+        return $this->deliveries?->count();
     }
 
     /**

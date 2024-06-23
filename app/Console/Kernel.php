@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         // $schedule->command('sanctum:prune-expired --hours=24')->daily();
         $schedule->job(new ReassignOrder)->everyMinute();
-        $schedule->job(new Payouts)->weeklyOn(7, '08:00');
+        // $schedule->job(new Payouts)->weeklyOn(7, '08:00');
     }
 
     /**
