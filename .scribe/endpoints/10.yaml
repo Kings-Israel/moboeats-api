@@ -26,11 +26,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: et
+        example: ab
         type: string
         custom: []
     cleanUrlParameters:
-      menuId: et
+      menuId: ab
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -120,11 +120,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 7
+        example: 10
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 7
+      menuId: 10
     fileParameters: []
     responses: []
     responseFields: []
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: minus
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: minus
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -205,11 +205,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: quia
+        example: aperiam
         type: string
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: aperiam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

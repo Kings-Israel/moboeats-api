@@ -115,20 +115,20 @@ endpoints:
         name: question
         description: ''
         required: true
-        example: ut
+        example: consequuntur
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: id
+        example: sit
         type: string
         custom: []
     cleanBodyParameters:
       section: rider
-      question: ut
-      answer: id
+      question: consequuntur
+      answer: sit
     fileParameters: []
     responses: []
     responseFields: []
@@ -171,27 +171,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: general
+        example: partner
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: sed
+        example: alias
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: odit
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      section: general
-      question: sed
-      answer: odit
+      section: partner
+      question: alias
+      answer: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -300,35 +300,35 @@ endpoints:
         name: lat
         description: ''
         required: true
-        example: omnis
+        example: unde
         type: string
         custom: []
       long:
         name: long
         description: ''
         required: true
-        example: labore
+        example: ut
         type: string
         custom: []
       latitude:
         name: latitude
         description: 'The latitude'
         required: true
-        example: deleniti
+        example: possimus
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'The longitude'
         required: true
-        example: sit
+        example: maiores
         type: string
         custom: []
     cleanUrlParameters:
-      lat: omnis
-      long: labore
-      latitude: deleniti
-      longitude: sit
+      lat: unde
+      long: ut
+      latitude: possimus
+      longitude: maiores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -378,67 +378,67 @@ endpoints:
         name: origin_lat
         description: ''
         required: true
-        example: ut
+        example: qui
         type: string
         custom: []
       origin_long:
         name: origin_long
         description: ''
         required: true
-        example: eum
+        example: dolorem
         type: string
         custom: []
       dest_lat:
         name: dest_lat
         description: ''
         required: true
-        example: esse
+        example: at
         type: string
         custom: []
       dest_long:
         name: dest_long
         description: ''
         required: true
-        example: dolorem
+        example: error
         type: string
         custom: []
       origin_latitude:
         name: origin_latitude
         description: 'string The origin latitude'
         required: true
-        example: fugit
+        example: tempore
         type: string
         custom: []
       origin_longitude:
         name: origin_longitude
         description: 'string The origin longitude'
         required: true
-        example: facere
+        example: voluptatem
         type: string
         custom: []
       dest_latitude:
         name: dest_latitude
         description: 'string The destination latitude'
         required: true
-        example: dolor
+        example: accusantium
         type: string
         custom: []
       dest_longitude:
         name: dest_longitude
         description: 'string The destination longitude'
         required: true
-        example: iure
+        example: veniam
         type: string
         custom: []
     cleanUrlParameters:
-      origin_lat: ut
-      origin_long: eum
-      dest_lat: esse
-      dest_long: dolorem
-      origin_latitude: fugit
-      origin_longitude: facere
-      dest_latitude: dolor
-      dest_longitude: iure
+      origin_lat: qui
+      origin_long: dolorem
+      dest_lat: at
+      dest_long: error
+      origin_latitude: tempore
+      origin_longitude: voluptatem
+      dest_latitude: accusantium
+      dest_longitude: veniam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -455,7 +455,7 @@ endpoints:
              ],
              "origin_addresses" : 
              [
-                "2515 Speedway, Austin, TX 78712, USA"
+                ""
              ],
              "rows" : 
              [
@@ -505,11 +505,11 @@ endpoints:
         name: text
         description: 'The text to be autocompleted'
         required: true
-        example: rerum
+        example: autem
         type: string
         custom: []
     cleanUrlParameters:
-      text: rerum
+      text: autem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -523,7 +523,7 @@ endpoints:
              "predictions" : 
              [
                 {
-                   "description" : "Rerum-Novarumplein, Ghent, Belgium",
+                   "description" : "Autem Milano, Via Serviliano Lattuada, Milan, Metropolitan City of Milan, Italy",
                    "matched_substrings" : 
                    [
                       {
@@ -531,11 +531,11 @@ endpoints:
                          "offset" : 0
                       }
                    ],
-                   "place_id" : "EiJSZXJ1bS1Ob3ZhcnVtcGxlaW4sIEdoZW50LCBCZWxnaXVtIi4qLAoUChIJ4el8_O5zw0cRDBXPxMkudYsSFAoSCa1DlDPhcMNHEUBRTS-rmQAE",
-                   "reference" : "EiJSZXJ1bS1Ob3ZhcnVtcGxlaW4sIEdoZW50LCBCZWxnaXVtIi4qLAoUChIJ4el8_O5zw0cRDBXPxMkudYsSFAoSCa1DlDPhcMNHEUBRTS-rmQAE",
+                   "place_id" : "ChIJAQAQ3yHEhkcRt5QwkqxDA9c",
+                   "reference" : "ChIJAQAQ3yHEhkcRt5QwkqxDA9c",
                    "structured_formatting" : 
                    {
-                      "main_text" : "Rerum-Novarumplein",
+                      "main_text" : "Autem Milano",
                       "main_text_matched_substrings" : 
                       [
                          {
@@ -543,31 +543,41 @@ endpoints:
                             "offset" : 0
                          }
                       ],
-                      "secondary_text" : "Ghent, Belgium"
+                      "secondary_text" : "Via Serviliano Lattuada, Milan, Metropolitan City of Milan, Italy"
                    },
                    "terms" : 
                    [
                       {
                          "offset" : 0,
-                         "value" : "Rerum-Novarumplein"
+                         "value" : "Autem Milano"
                       },
                       {
-                         "offset" : 20,
-                         "value" : "Ghent"
+                         "offset" : 14,
+                         "value" : "Via Serviliano Lattuada"
                       },
                       {
-                         "offset" : 27,
-                         "value" : "Belgium"
+                         "offset" : 39,
+                         "value" : "Milan"
+                      },
+                      {
+                         "offset" : 46,
+                         "value" : "Metropolitan City of Milan"
+                      },
+                      {
+                         "offset" : 74,
+                         "value" : "Italy"
                       }
                    ],
                    "types" : 
                    [
-                      "route",
-                      "geocode"
+                      "establishment",
+                      "point_of_interest",
+                      "restaurant",
+                      "food"
                    ]
                 },
                 {
-                   "description" : "Rerum Novarumlaan, Antwerp, Belgium",
+                   "description" : "Autem Engenharia - Jurucê, Jardinópolis - State of São Paulo, Brazil",
                    "matched_substrings" : 
                    [
                       {
@@ -575,11 +585,11 @@ endpoints:
                          "offset" : 0
                       }
                    ],
-                   "place_id" : "EiNSZXJ1bSBOb3ZhcnVtbGFhbiwgQW50d2VycCwgQmVsZ2l1bSIuKiwKFAoSCavR9x3m98NHEXx45RNhWxaiEhQKEgl9iMO_jvbDRxG4iqiChESvPg",
-                   "reference" : "EiNSZXJ1bSBOb3ZhcnVtbGFhbiwgQW50d2VycCwgQmVsZ2l1bSIuKiwKFAoSCavR9x3m98NHEXx45RNhWxaiEhQKEgl9iMO_jvbDRxG4iqiChESvPg",
+                   "place_id" : "ChIJd3vkoR_ruZQRyhdgXD_7vVc",
+                   "reference" : "ChIJd3vkoR_ruZQRyhdgXD_7vVc",
                    "structured_formatting" : 
                    {
-                      "main_text" : "Rerum Novarumlaan",
+                      "main_text" : "Autem Engenharia",
                       "main_text_matched_substrings" : 
                       [
                          {
@@ -587,31 +597,113 @@ endpoints:
                             "offset" : 0
                          }
                       ],
-                      "secondary_text" : "Antwerp, Belgium"
+                      "secondary_text" : "Jurucê, Jardinópolis - State of São Paulo, Brazil"
                    },
                    "terms" : 
                    [
                       {
                          "offset" : 0,
-                         "value" : "Rerum Novarumlaan"
+                         "value" : "Autem Engenharia"
                       },
                       {
                          "offset" : 19,
-                         "value" : "Antwerp"
+                         "value" : "Jurucê"
+                      },
+                      {
+                         "offset" : 27,
+                         "value" : "Jardinópolis"
+                      },
+                      {
+                         "offset" : 42,
+                         "value" : "State of São Paulo"
+                      },
+                      {
+                         "offset" : 62,
+                         "value" : "Brazil"
+                      }
+                   ],
+                   "types" : 
+                   [
+                      "point_of_interest",
+                      "establishment"
+                   ]
+                },
+                {
+                   "description" : "Au Temps Jadis, 1 Chome-5-4 Jinnan, Shibuya City, Tokyo, Japan",
+                   "matched_substrings" : 
+                   [
+                      {
+                         "length" : 14,
+                         "offset" : 0
+                      },
+                      {
+                         "length" : 3,
+                         "offset" : 24
+                      }
+                   ],
+                   "place_id" : "ChIJza_9Rq-MGGARwmzDRYj-ljg",
+                   "reference" : "ChIJza_9Rq-MGGARwmzDRYj-ljg",
+                   "structured_formatting" : 
+                   {
+                      "main_text" : "Au Temps Jadis",
+                      "main_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 14,
+                            "offset" : 0
+                         }
+                      ],
+                      "secondary_text" : "1 Chome-5-4 Jinnan, Shibuya City, Tokyo, Japan",
+                      "secondary_text_matched_substrings" : 
+                      [
+                         {
+                            "length" : 3,
+                            "offset" : 8
+                         }
+                      ]
+                   },
+                   "terms" : 
+                   [
+                      {
+                         "offset" : 0,
+                         "value" : "Au Temps Jadis"
+                      },
+                      {
+                         "offset" : 16,
+                         "value" : "1 Chome"
+                      },
+                      {
+                         "offset" : 24,
+                         "value" : "5-4"
                       },
                       {
                          "offset" : 28,
-                         "value" : "Belgium"
+                         "value" : "Jinnan"
+                      },
+                      {
+                         "offset" : 36,
+                         "value" : "Shibuya City"
+                      },
+                      {
+                         "offset" : 50,
+                         "value" : "Tokyo"
+                      },
+                      {
+                         "offset" : 57,
+                         "value" : "Japan"
                       }
                    ],
                    "types" : 
                    [
-                      "geocode",
-                      "route"
+                      "store",
+                      "restaurant",
+                      "establishment",
+                      "point_of_interest",
+                      "food"
                    ]
                 },
                 {
-                   "description" : "Rerum Novarumlaan, Leuven, Belgium",
+                   "description" : "Autem - Idea!Zarvos - Rua da Consolação - Cerqueira César, São Paulo - State of São Paulo, Brazil",
                    "matched_substrings" : 
                    [
                       {
@@ -619,11 +711,11 @@ endpoints:
                          "offset" : 0
                       }
                    ],
-                   "place_id" : "EiJSZXJ1bSBOb3ZhcnVtbGFhbiwgTGV1dmVuLCBCZWxnaXVtIi4qLAoUChIJMUdoECNnwUcRv_52YESDWcESFAoSCYXfu17QYMFHEZBWTS-rmQAE",
-                   "reference" : "EiJSZXJ1bSBOb3ZhcnVtbGFhbiwgTGV1dmVuLCBCZWxnaXVtIi4qLAoUChIJMUdoECNnwUcRv_52YESDWcESFAoSCYXfu17QYMFHEZBWTS-rmQAE",
+                   "place_id" : "ChIJxYxYWLBZzpQR3jYBr_H6NGw",
+                   "reference" : "ChIJxYxYWLBZzpQR3jYBr_H6NGw",
                    "structured_formatting" : 
                    {
-                      "main_text" : "Rerum Novarumlaan",
+                      "main_text" : "Autem - Idea!Zarvos",
                       "main_text_matched_substrings" : 
                       [
                          {
@@ -631,31 +723,43 @@ endpoints:
                             "offset" : 0
                          }
                       ],
-                      "secondary_text" : "Leuven, Belgium"
+                      "secondary_text" : "Rua da Consolação - Cerqueira César, São Paulo - State of São Paulo, Brazil"
                    },
                    "terms" : 
                    [
                       {
                          "offset" : 0,
-                         "value" : "Rerum Novarumlaan"
+                         "value" : "Autem - Idea!Zarvos"
                       },
                       {
-                         "offset" : 19,
-                         "value" : "Leuven"
+                         "offset" : 22,
+                         "value" : "Rua da Consolação"
                       },
                       {
-                         "offset" : 27,
-                         "value" : "Belgium"
+                         "offset" : 42,
+                         "value" : "Cerqueira César"
+                      },
+                      {
+                         "offset" : 59,
+                         "value" : "São Paulo"
+                      },
+                      {
+                         "offset" : 71,
+                         "value" : "State of São Paulo"
+                      },
+                      {
+                         "offset" : 91,
+                         "value" : "Brazil"
                       }
                    ],
                    "types" : 
                    [
-                      "route",
-                      "geocode"
+                      "establishment",
+                      "point_of_interest"
                    ]
                 },
                 {
-                   "description" : "Rerum Novarumlei, Brasschaat, Belgium",
+                   "description" : "AUTEM AUTOMOTRIZ, Avenida Fidel Velazquez, Independencia, Guadalajara, Jalisco, Mexico",
                    "matched_substrings" : 
                    [
                       {
@@ -663,11 +767,11 @@ endpoints:
                          "offset" : 0
                       }
                    ],
-                   "place_id" : "EiVSZXJ1bSBOb3ZhcnVtbGVpLCBCcmFzc2NoYWF0LCBCZWxnaXVtIi4qLAoUChIJ-7pOWzUGxEcR6ZsLna0Sm6wSFAoSCY2XchgxBsRHEcBOTS-rmQAE",
-                   "reference" : "EiVSZXJ1bSBOb3ZhcnVtbGVpLCBCcmFzc2NoYWF0LCBCZWxnaXVtIi4qLAoUChIJ-7pOWzUGxEcR6ZsLna0Sm6wSFAoSCY2XchgxBsRHEcBOTS-rmQAE",
+                   "place_id" : "ChIJ4ecfs7axKIQRi9ir_HU6_4s",
+                   "reference" : "ChIJ4ecfs7axKIQRi9ir_HU6_4s",
                    "structured_formatting" : 
                    {
-                      "main_text" : "Rerum Novarumlei",
+                      "main_text" : "AUTEM AUTOMOTRIZ",
                       "main_text_matched_substrings" : 
                       [
                          {
@@ -675,71 +779,41 @@ endpoints:
                             "offset" : 0
                          }
                       ],
-                      "secondary_text" : "Brasschaat, Belgium"
+                      "secondary_text" : "Avenida Fidel Velazquez, Independencia, Guadalajara, Jalisco, Mexico"
                    },
                    "terms" : 
                    [
                       {
                          "offset" : 0,
-                         "value" : "Rerum Novarumlei"
+                         "value" : "AUTEM AUTOMOTRIZ"
                       },
                       {
                          "offset" : 18,
-                         "value" : "Brasschaat"
+                         "value" : "Avenida Fidel Velazquez"
                       },
                       {
-                         "offset" : 30,
-                         "value" : "Belgium"
+                         "offset" : 43,
+                         "value" : "Independencia"
+                      },
+                      {
+                         "offset" : 58,
+                         "value" : "Guadalajara"
+                      },
+                      {
+                         "offset" : 71,
+                         "value" : "Jalisco"
+                      },
+                      {
+                         "offset" : 80,
+                         "value" : "Mexico"
                       }
                    ],
                    "types" : 
                    [
-                      "geocode",
-                      "route"
-                   ]
-                },
-                {
-                   "description" : "Rerum Novarumstraat, Aalst, Belgium",
-                   "matched_substrings" : 
-                   [
-                      {
-                         "length" : 5,
-                         "offset" : 0
-                      }
-                   ],
-                   "place_id" : "EiNSZXJ1bSBOb3ZhcnVtc3RyYWF0LCBBYWxzdCwgQmVsZ2l1bSIuKiwKFAoSCSU3zcx3vcNHEdRrMvW_zz-XEhQKEglJScRT05fDRxEgTE0vq5kABA",
-                   "reference" : "EiNSZXJ1bSBOb3ZhcnVtc3RyYWF0LCBBYWxzdCwgQmVsZ2l1bSIuKiwKFAoSCSU3zcx3vcNHEdRrMvW_zz-XEhQKEglJScRT05fDRxEgTE0vq5kABA",
-                   "structured_formatting" : 
-                   {
-                      "main_text" : "Rerum Novarumstraat",
-                      "main_text_matched_substrings" : 
-                      [
-                         {
-                            "length" : 5,
-                            "offset" : 0
-                         }
-                      ],
-                      "secondary_text" : "Aalst, Belgium"
-                   },
-                   "terms" : 
-                   [
-                      {
-                         "offset" : 0,
-                         "value" : "Rerum Novarumstraat"
-                      },
-                      {
-                         "offset" : 21,
-                         "value" : "Aalst"
-                      },
-                      {
-                         "offset" : 28,
-                         "value" : "Belgium"
-                      }
-                   ],
-                   "types" : 
-                   [
-                      "route",
-                      "geocode"
+                      "establishment",
+                      "point_of_interest",
+                      "store",
+                      "car_dealer"
                    ]
                 }
              ],
@@ -780,11 +854,11 @@ endpoints:
         name: place_id
         description: 'The Place ID to retrieve'
         required: true
-        example: voluptatibus
+        example: eius
         type: string
         custom: []
     cleanUrlParameters:
-      place_id: voluptatibus
+      place_id: eius
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -873,11 +947,11 @@ endpoints:
         name: notification
         description: 'The notification.'
         required: true
-        example: laborum
+        example: facere
         type: string
         custom: []
     cleanUrlParameters:
-      notification: laborum
+      notification: facere
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -995,11 +1069,11 @@ endpoints:
         name: id
         description: 'The Id of the conversation'
         required: false
-        example: odio
+        example: fuga
         type: string
         custom: []
     cleanUrlParameters:
-      id: odio
+      id: fuga
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1050,19 +1124,19 @@ endpoints:
         name: receiver_id
         description: "The receiver's id"
         required: true
-        example: 20
+        example: 11
         type: integer
         custom: []
       message:
         name: message
         description: 'The message to send'
         required: true
-        example: rem
+        example: inventore
         type: string
         custom: []
     cleanBodyParameters:
-      receiver_id: 20
-      message: rem
+      receiver_id: 11
+      message: inventore
     fileParameters: []
     responses:
       -
@@ -1098,11 +1172,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: amet
+        example: vitae
         type: string
         custom: []
     cleanUrlParameters:
-      id: amet
+      id: vitae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1110,11 +1184,11 @@ endpoints:
         name: message
         description: ''
         required: true
-        example: ducimus
+        example: esse
         type: string
         custom: []
     cleanBodyParameters:
-      message: ducimus
+      message: esse
     fileParameters: []
     responses:
       -
@@ -1164,11 +1238,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: ullam
+        example: natus
         type: string
         custom: []
     cleanUrlParameters:
-      id: ullam
+      id: natus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1222,11 +1296,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: molestiae
+        example: nostrum
         type: string
         custom: []
     cleanUrlParameters:
-      id: molestiae
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1280,11 +1354,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation.'
         required: true
-        example: quia
+        example: cupiditate
         type: string
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: cupiditate
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1374,11 +1448,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: quae
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: quae
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1432,11 +1506,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: distinctio
+        example: placeat
         type: string
         custom: []
     cleanUrlParameters:
-      id: distinctio
+      id: placeat
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1612,7 +1686,7 @@ endpoints:
         name: days
         description: ''
         required: true
-        example: nulla
+        example: corporis
         type: string
         custom: []
       opening_times:
@@ -1620,7 +1694,7 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '13:18'
+          - '10:34'
         type: 'string[]'
         custom: []
       closing_times:
@@ -1628,15 +1702,15 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '13:18'
+          - '10:34'
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      days: nulla
+      days: corporis
       opening_times:
-        - '13:18'
+        - '10:34'
       closing_times:
-        - '13:18'
+        - '10:34'
     fileParameters: []
     responses: []
     responseFields: []
@@ -1726,7 +1800,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - possimus
+          - quae
         type: 'string[]'
         custom: []
       files:
@@ -1738,7 +1812,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - possimus
+        - quae
     fileParameters: []
     responses: []
     responseFields: []
@@ -1781,7 +1855,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - consequatur
+          - amet
         type: 'string[]'
         custom: []
       files:
@@ -1793,7 +1867,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - consequatur
+        - amet
     fileParameters: []
     responses: []
     responseFields: []
@@ -1823,11 +1897,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: blanditiis
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      id: blanditiis
+      id: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1952,59 +2026,59 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: voluptas
+        example: est
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: true
-        example: accusamus
+        example: reiciendis
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-23T13:18:42'
+        example: '2024-07-06T10:34:15'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-23T13:18:42'
+        example: '2024-07-06T10:34:15'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 14
+        example: 20
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: inactive
+        example: active
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: voluptas
-      code: accusamus
-      start_date: '2024-06-23T13:18:42'
-      end_date: '2024-06-23T13:18:42'
-      type: amount
-      value: 14
-      status: inactive
+      restaurant_ids: est
+      code: reiciendis
+      start_date: '2024-07-06T10:34:15'
+      end_date: '2024-07-06T10:34:15'
+      type: percentage
+      value: 20
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -2046,35 +2120,35 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: vel
+        example: eaque
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-23T13:18:42'
+        example: '2024-07-06T10:34:15'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-23T13:18:42'
+        example: '2024-07-06T10:34:15'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 6
+        example: 1
         type: integer
         custom: []
       status:
@@ -2085,11 +2159,11 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      code: vel
-      start_date: '2024-06-23T13:18:42'
-      end_date: '2024-06-23T13:18:42'
-      type: amount
-      value: 6
+      code: eaque
+      start_date: '2024-07-06T10:34:15'
+      end_date: '2024-07-06T10:34:15'
+      type: percentage
+      value: 1
       status: inactive
     fileParameters: []
     responses: []
@@ -2163,27 +2237,27 @@ endpoints:
         name: menu_ids
         description: ''
         required: true
-        example: nulla
+        example: facere
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 2
+        example: 6
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_ids: nulla
-      type: amount
-      value: 2
+      menu_ids: facere
+      type: percentage
+      value: 6
     fileParameters: []
     responses: []
     responseFields: []
@@ -2232,12 +2306,12 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 20
+        example: 19
         type: integer
         custom: []
     cleanBodyParameters:
       type: percentage
-      value: 20
+      value: 19
     fileParameters: []
     responses: []
     responseFields: []
@@ -2525,19 +2599,19 @@ endpoints:
         name: title
         description: "'category_id' => ['required'],."
         required: true
-        example: veniam
+        example: cum
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: 3
+        example: 16
         type: integer
         custom: []
     cleanBodyParameters:
-      title: veniam
-      status: 3
+      title: cum
+      status: 16
     fileParameters: []
     responses: []
     responseFields: []
@@ -2567,11 +2641,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: quia
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2579,11 +2653,11 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: recusandae
+        example: atque
         type: string
         custom: []
     cleanBodyParameters:
-      title: recusandae
+      title: atque
     fileParameters: []
     responses: []
     responseFields: []
@@ -2660,11 +2734,11 @@ endpoints:
         name: id
         description: 'The ID of the customer.'
         required: true
-        example: numquam
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: numquam
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2707,11 +2781,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant admin.'
         required: true
-        example: ducimus
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      id: ducimus
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2754,11 +2828,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: eius
+        example: quasi
         type: string
         custom: []
     cleanUrlParameters:
-      id: eius
+      id: quasi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2813,11 +2887,11 @@ endpoints:
         name: status
         description: 'Must be one of <code>approved</code> or <code>denied</code>.'
         required: true
-        example: denied
+        example: approved
         type: string
         custom: []
     cleanBodyParameters:
-      status: denied
+      status: approved
     fileParameters: []
     responses: []
     responseFields: []
@@ -2851,35 +2925,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: quo
+        example: enim
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: recusandae
+        example: ut
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: ut
+        example: occaecati
         type: string
         custom: []
       role:
         name: role
         description: ''
         required: true
-        example: numquam
+        example: suscipit
         type: string
         custom: []
     cleanBodyParameters:
-      name: quo
-      email: recusandae
-      phone_number: ut
-      role: numquam
+      name: enim
+      email: ut
+      phone_number: occaecati
+      role: suscipit
     fileParameters: []
     responses: []
     responseFields: []
@@ -3140,19 +3214,19 @@ endpoints:
         name: status
         description: 'Must be one of <code>2</code> or <code>3</code>.'
         required: true
-        example: '2'
+        example: '3'
         type: string
         custom: []
       reason:
         name: reason
         description: 'This field is required when <code>status</code> is <code>3</code>.'
         required: false
-        example: quia
+        example: est
         type: string
         custom: []
     cleanBodyParameters:
-      status: '2'
-      reason: quia
+      status: '3'
+      reason: est
     fileParameters: []
     responses: []
     responseFields: []
@@ -3299,11 +3373,11 @@ endpoints:
         name: id
         description: 'The ID of the subscriber.'
         required: true
-        example: suscipit
+        example: ipsam
         type: string
         custom: []
     cleanUrlParameters:
-      id: suscipit
+      id: ipsam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3350,27 +3424,27 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: placeat
+        example: ipsa
         type: string
         custom: []
       date:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-06-23T13:18:42'
+        example: '2024-07-06T10:34:16'
         type: string
         custom: []
       meals:
         name: meals
         description: ''
         required: true
-        example: aspernatur
+        example: odio
         type: string
         custom: []
     cleanBodyParameters:
-      user_id: placeat
-      date: '2024-06-23T13:18:42'
-      meals: aspernatur
+      user_id: ipsa
+      date: '2024-07-06T10:34:16'
+      meals: odio
     fileParameters: []
     responses: []
     responseFields: []
@@ -3404,35 +3478,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: nostrum
+        example: delectus
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: amet
+        example: soluta
         type: string
         custom: []
       currency:
         name: currency
         description: ''
         required: true
-        example: laudantium
+        example: et
         type: string
         custom: []
       duration:
         name: duration
         description: ''
         required: true
-        example: corrupti
+        example: nihil
         type: string
         custom: []
     cleanBodyParameters:
-      name: nostrum
-      price: amet
-      currency: laudantium
-      duration: corrupti
+      name: delectus
+      price: soluta
+      currency: et
+      duration: nihil
     fileParameters: []
     responses: []
     responseFields: []
@@ -3466,11 +3540,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: natus
+        example: voluptas
         type: string
         custom: []
     cleanBodyParameters:
-      rate: natus
+      rate: voluptas
     fileParameters: []
     responses: []
     responseFields: []
@@ -3504,11 +3578,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: repudiandae
+        example: voluptatem
         type: string
         custom: []
     cleanBodyParameters:
-      rate: repudiandae
+      rate: voluptatem
     fileParameters: []
     responses: []
     responseFields: []
@@ -3542,11 +3616,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: ut
+        example: perferendis
         type: string
         custom: []
     cleanBodyParameters:
-      rate: ut
+      rate: perferendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -3931,19 +4005,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: non
+        example: totam
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: true
-        example: apm
+        example: eqzx
         type: string
         custom: []
     cleanBodyParameters:
-      title: non
-      poster: apm
+      title: totam
+      poster: eqzx
     fileParameters: []
     responses: []
     responseFields: []
@@ -3985,19 +4059,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: dolores
+        example: corrupti
         type: string
         custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: false
-        example: rlkbwxkaz
+        example: thrfbfhvzivdtrtsbeopuzl
         type: string
         custom: []
     cleanBodyParameters:
-      title: dolores
-      poster: rlkbwxkaz
+      title: corrupti
+      poster: thrfbfhvzivdtrtsbeopuzl
     fileParameters: []
     responses: []
     responseFields: []
@@ -4036,6 +4110,122 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/admin/payouts/riders
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/admin/payouts/partners
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/admin/payouts/upload
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      file:
+        name: file
+        description: ''
+        required: true
+        example: a
+        type: string
+        custom: []
+    cleanBodyParameters:
+      file: a
     fileParameters: []
     responses: []
     responseFields: []

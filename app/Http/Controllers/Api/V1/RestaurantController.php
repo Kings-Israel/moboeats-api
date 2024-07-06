@@ -291,7 +291,8 @@ class RestaurantController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @authenticated
+     * Update the restaurant details.
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
@@ -338,9 +339,6 @@ class RestaurantController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Restaurant $restaurant)
     {
         $user = User::where('id',Auth::user()->id)->first();
@@ -380,6 +378,10 @@ class RestaurantController extends Controller
         return '';
     }
 
+    /**
+     * @authenticated
+     * Get Riders
+     */
     public function riders($restaurant_id)
     {
         $restaurant = Restaurant::find($restaurant_id);
@@ -420,6 +422,10 @@ class RestaurantController extends Controller
         return $this->success(UserResource::collection($riders));
     }
 
+    /**
+     * @authenticated
+     * Restaurant Dashboard Data
+     */
     public function dashboard()
     {
         $months = [];
@@ -574,6 +580,10 @@ class RestaurantController extends Controller
         ]);
     }
 
+    /**
+     * @authenticated
+     * Get Restaurant Payments and Earnings
+     */
     public function payments(Request $request)
     {
         if (auth()->user()->hasRole('restaurant')) {
@@ -639,6 +649,10 @@ class RestaurantController extends Controller
         ]);
     }
 
+    /**
+     * @authenticated
+     * Get Restaurant's Tables
+     */
     public function tables(Request $request)
     {
         if (auth()->user()->hasRole('restaurant')) {
@@ -655,6 +669,10 @@ class RestaurantController extends Controller
         return $this->success($tables);
     }
 
+    /**
+     * @authenticated
+     * Get Restaurant Reserved Tables
+     */
     public function reservations(Request $request)
     {
         if (auth()->user()->hasRole('restaurant')) {
@@ -711,6 +729,11 @@ class RestaurantController extends Controller
         return Storage::disk('exports')->download('payments'.$unique.'.xlsx');
     }
 
+    /**
+     * Restaurant's Menu
+     *
+     * @urlParam restaurant_id The id of the restaurant
+     */
     public function restaurantMenu(Request $request, Restaurant $restaurant)
     {
         $search = $request->query('search');

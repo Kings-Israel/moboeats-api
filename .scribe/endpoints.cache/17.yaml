@@ -73,35 +73,35 @@ endpoints:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: true
-        example: 0
+        example: 1
         type: number
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: veritatis
+        example: impedit
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 4
+        example: 1
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: veniam
+        example: totam
         type: string
         custom: []
     cleanBodyParameters:
-      price: 0
-      description: veritatis
-      status: 4
-      menu_id: veniam
+      price: 1
+      description: impedit
+      status: 1
+      menu_id: totam
     fileParameters: []
     responses: []
     responseFields: []
@@ -195,14 +195,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: omnis
+        example: sit
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: quibusdam
+        example: quia
         type: string
         custom: []
       price:
@@ -213,8 +213,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: omnis
-      status: quibusdam
+      description: sit
+      status: quia
       price: 0
     fileParameters: []
     responses: []
@@ -299,27 +299,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: saepe
+        example: harum
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: mollitia
+        example: occaecati
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 0
+        example: 1
         type: number
         custom: []
     cleanBodyParameters:
-      description: saepe
-      status: mollitia
-      price: 0
+      description: harum
+      status: occaecati
+      price: 1
     fileParameters: []
     responses: []
     responseFields: []

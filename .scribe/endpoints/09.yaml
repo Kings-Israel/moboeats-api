@@ -71,14 +71,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: suscipit
+        example: non
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: alexys.tromp@example.com
+        example: dspencer@example.net
         type: string
         custom: []
       phoneNo:
@@ -124,8 +124,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: suscipit
-      email: alexys.tromp@example.com
+      name: non
+      email: dspencer@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -219,49 +219,49 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 4248aab8-d5c4-39be-a9af-74ad0b6b63c2
+        example: 555988b1-d699-31fc-a015-349cc54afdc6
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: quae
+        example: et
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: flittel@example.com
+        example: whodkiewicz@example.net
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: voluptates
+        example: placeat
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: iusto
+        example: sed
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: minima
+        example: quis
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: deleniti
+        example: ipsa
         type: string
         custom: []
       mapLocation:
@@ -279,13 +279,13 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 4248aab8-d5c4-39be-a9af-74ad0b6b63c2
-      name: quae
-      email: flittel@example.com
-      phoneNo: voluptates
-      address: iusto
-      city: minima
-      state: deleniti
+      uuid: 555988b1-d699-31fc-a015-349cc54afdc6
+      name: et
+      email: whodkiewicz@example.net
+      phoneNo: placeat
+      address: sed
+      city: quis
+      state: ipsa
       mapLocation: quia
     fileParameters: []
     responses: []
@@ -362,43 +362,43 @@ endpoints:
         name: height
         description: 'The height of the user'
         required: true
-        example: 9
+        example: 12
         type: integer
         custom: []
       height_units:
         name: height_units
         description: 'The measurement units for height. E.g inches, feet'
         required: true
-        example: 17
+        example: 10
         type: integer
         custom: []
       weight:
         name: weight
         description: 'The weight of the user'
         required: true
-        example: 14
+        example: 7
         type: integer
         custom: []
       weight_units:
         name: weight_units
         description: 'The measurement units for weight. E.g kilograms, pounds'
         required: true
-        example: 8
+        example: 3
         type: integer
         custom: []
       body_mass_index:
         name: body_mass_index
         description: 'The mass index of the user'
         required: true
-        example: 13
+        example: 15
         type: integer
         custom: []
     cleanBodyParameters:
-      height: 9
-      height_units: 17
-      weight: 14
-      weight_units: 8
-      body_mass_index: 13
+      height: 12
+      height_units: 10
+      weight: 7
+      weight_units: 3
+      body_mass_index: 15
     fileParameters: []
     responses: []
     responseFields: []

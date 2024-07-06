@@ -157,19 +157,19 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 12
+        example: 11
         type: integer
         custom: []
       quantity:
         name: quantity
         description: 'The quantity of the order'
         required: false
-        example: 10
+        example: 4
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 12
-      quantity: 10
+      supplement_id: 11
+      quantity: 4
     fileParameters: []
     responses: []
     responseFields: []
@@ -246,28 +246,28 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: rerum
+        example: voluptatem
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: inventore
+        example: est
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: architecto
+        example: eveniet
         type: string
         custom: []
       measuring_unit:
         name: measuring_unit
         description: 'Must be one of <code>kilograms</code>, <code>pounds</code>, or <code>litres</code>.'
         required: true
-        example: kilograms
+        example: litres
         type: string
         custom: []
       images:
@@ -278,10 +278,10 @@ endpoints:
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      supplier_id: rerum
-      name: inventore
-      price: architecto
-      measuring_unit: kilograms
+      supplier_id: voluptatem
+      name: est
+      price: eveniet
+      measuring_unit: litres
     fileParameters: []
     responses: []
     responseFields: []
@@ -358,19 +358,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: sunt
+        example: et
         type: string
         custom: []
       image:
         name: image
         description: ''
         required: true
-        example: iste
+        example: ipsa
         type: string
         custom: []
     cleanBodyParameters:
-      name: sunt
-      image: iste
+      name: et
+      image: ipsa
     fileParameters: []
     responses: []
     responseFields: []
@@ -541,11 +541,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: ut
+        example: facilis
         type: string
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: facilis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -553,11 +553,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: et
+        example: asperiores
         type: string
         custom: []
     cleanBodyParameters:
-      status: et
+      status: asperiores
     fileParameters: []
     responses: []
     responseFields: []

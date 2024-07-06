@@ -67,12 +67,12 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 6
+        example: 18
         type: integer
         custom: []
     cleanUrlParameters:
       id: af8a7a33-e71e-448c-914f-1012cc8055b2
-      order_id: 6
+      order_id: 18
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -124,12 +124,12 @@ endpoints:
         name: diet_subscription_package
         description: 'The id of the diet subscription package'
         required: false
-        example: 13
+        example: 12
         type: integer
         custom: []
     cleanUrlParameters:
       diet_subscription_package_id: 1
-      diet_subscription_package: 13
+      diet_subscription_package: 12
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -165,11 +165,11 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 10
+        example: 16
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 10
+      order_id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -214,19 +214,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 13
+        example: 3
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 17
+        example: 6
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 13
-      amount: 17
+      order_id: 3
+      amount: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -271,19 +271,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: quia
+        example: voluptas
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: exercitationem
+        example: ducimus
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: quia
-      order_id: exercitationem
+      user_id: voluptas
+      order_id: ducimus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
