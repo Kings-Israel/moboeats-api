@@ -112,7 +112,7 @@ class User extends Authenticatable implements LaratrustUser
      *
      * @var array
      */
-    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries', 'country'];
+    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries', 'amount_spent', 'latest_order', 'country'];
 
     public function receivesBroadcastNotificationOn(): string
     {
@@ -335,6 +335,35 @@ class User extends Authenticatable implements LaratrustUser
     public function getTotalRiderDeliveriesAttribute()
     {
         return $this->deliveries?->count();
+    }
+
+    /**
+     * Get the latestOrder
+     *
+     * @param  string  $value
+     */
+    public function getLatestOrderAttribute(): Order|NULL
+    {
+        if ($this->hasRole('orderer')) {
+            return $this->orders->sortByDesc('id')->first();
+        }
+
+        return NULL;
+    }
+
+    /**
+     * Get the amount spent
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getAmountSpentAttribute():float
+    {
+        if ($this->hasRole('orderer')) {
+            return $this->orders->sum('total_amount');
+        }
+
+        return 0;
     }
 
     /**
