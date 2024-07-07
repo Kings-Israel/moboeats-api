@@ -106,9 +106,10 @@ class AdminController extends Controller
 
         $password = Str::random(8);
 
-        $user = User::create([
-            'name' => $request->name,
+        $user = User::firstOrCreate([
             'email' => $request->email,
+        ],[
+            'name' => $request->name,
             'phone_number' => $request->phone_number,
             'password' => bcrypt($password)
         ]);
