@@ -91,9 +91,9 @@ class AssignOrder
                                                 ->distance($order->delivery_location_lat, $order->delivery_location_lng)
                                                 ->get();
 
-                            // Filter to couriers distances less than 5 MILES
+                            // Filter to couriers distances less than 6 MILES
                             $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                return (int) ($delivery->distance) <= 5;
+                                return (int) ($delivery->distance) <= 6;
                             })->pluck('rider_id')->values()->all();
 
                             // Check if rider rejected the delivery request

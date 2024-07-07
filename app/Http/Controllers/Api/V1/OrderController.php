@@ -397,44 +397,56 @@ class OrderController extends Controller
             }
 
             if ($order->delivery) {
-                $latitude = $order->delivery_location_lat ? $order->delivery_location_lat : $order->user->latitude;
-                $longitude = $order->delivery_location_lng ? $order->delivery_location_lng : $order->user->longitude;
-                $riders = User::whereHas('roles', function($query) {
+                $riders = User::where('device_token', '!=', NULL)
+                                ->whereHas('roles', function($query) {
                                     $query->where('name', 'rider');
                                 })
-                                ->where(function($query) use ($restaurant, $order, $user, $latitude, $longitude) {
-                                    $orders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
-                                    $delivered_orders = Order::where('rider_id', '!=', NULL)->where('status', 5)->get()->pluck('rider_id');
-
-                                    // Get riders who have been assigned delivery to the restaurant
+                                ->whereHas('rider')
+                                ->where('status', 2)
+                                ->where(function($query) use ($order) {
+                                    $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                                    // Get couriers who have been assigned delivery to the restaurant
                                     // and are going close to another order from the same restaurant
-                                    $deliveries = DB::table("orders")
-                                                    ->where('rider_id', '!=', NULL)
-                                                    ->where('restaurant_id', $order->restaurant_id)
-                                                    ->whereIn('status', [1, 2, 3])
-                                                    ->select("*",
-                                                        DB::raw("6371 * acos(cos(radians(".$latitude."))
-                                                        * cos(radians(".$latitude."))
-                                                        * cos(radians(".$longitude.")
-                                                        - radians(".$longitude."))
-                                                        + sin(radians(".$latitude."))
-                                                        * sin(radians(".$latitude."))) AS distance"))
-                                                    ->get();
+                                    // $deliveries = DB::table("orders")
+                                    //                     ->where('id', '!=', $order->id)
+                                    //                     ->where('delivery', 1)
+                                    //                     ->where('rider_id', '!=', NULL)
+                                    //                     ->where('restaurant_id', $order->restaurant_id)
+                                    //                     ->where('delivery_status', '!=', 'Delivered')
+                                    //                     ->where('delivery_status', '!=', 'On Delivery')
+                                    //                     ->where('delivery_location_lat', '!=', '')
+                                    //                     ->select(
+                                    //                         DB::raw("3961 * acos(cos(radians(" . $order->delivery_location_lat . "))
+                                    //                         * cos(radians(orders.delivery_location_lat))
+                                    //                         * cos(radians(orders.delivery_location_lng)
+                                    //                         - radians(" . $order->delivery_location_lng . "))
+                                    //                         + sin(radians(" . $order->delivery_location_lat. "))
+                                    //                         * sin(radians(orders.delivery_location_lat))) AS distance"))
+                                    //                     ->get();
 
-                                    // // Filter to riders distances less than 5 Kms
-                                    // $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                    //     return (int) $delivery->distance <= 25;
-                                    // })->pluck('rider_id')->values()->all();
+                                    $deliveries = Order::where('id', '!=', $order->id)
+                                                        ->where('delivery', 1)
+                                                        ->where('rider_id', '!=', NULL)
+                                                        ->where('restaurant_id', $order->restaurant_id)
+                                                        ->where('delivery_status', '!=', 'Delivered')
+                                                        ->where('delivery_status', '!=', 'On Delivery')
+                                                        ->distance($order->delivery_location_lat, $order->delivery_location_lng)
+                                                        ->get();
 
-                                    // $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->get()->pluck('user_id');
+                                    // Filter to couriers distances less than 6 MILES
+                                    $nearby_deliveries = $deliveries->filter(function($delivery) {
+                                        return (int) ($delivery->distance) <= 6;
+                                    })->pluck('rider_id')->values()->all();
 
-                                    // $query->whereNotIn('id', $rejected_orders)
-                                    //         ->where(function($query) use ($nearby_deliveries, $orders, $delivered_orders) {
-                                    //             $query->whereIn('id', $nearby_deliveries)
-                                    //                 ->orWhereIn('id', $delivered_orders)
-                                    //                 ->orWhereNotIn('id', $orders);
-                                    //         });
+                                    // Check if rider rejected the delivery request
+                                    $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->pluck('user_id');
 
+                                    $query->whereNotIn('id', $rejected_orders)
+                                            ->when(count($assigned_riders) > 0 && count($nearby_deliveries) > 0, function ($query) use ($assigned_riders, $nearby_deliveries) {
+                                                $query->where(function ($query) use ($assigned_riders, $nearby_deliveries) {
+                                                    $query->orWhereIn('id', $assigned_riders)->orWhereIn('id', $nearby_deliveries);
+                                                });
+                                            });
                                 })
                                 ->get()
                                 ->each(function($rider, $key) use ($restaurant) {

@@ -21,6 +21,7 @@ use App\Models\Restaurant;
 use App\Models\Supplement;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\AssignedOrder;
 use App\Traits\HttpResponses;
 use App\Jobs\SendNotification;
 use App\Models\FooSubCategory;
@@ -32,9 +33,11 @@ use Illuminate\Validation\Rule;
 use App\Models\DietSubscription;
 use App\Models\FoodCommonCategory;
 use App\Models\SupplementSupplier;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\FCategorySubCategory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Resources\V1\UserResource;
@@ -657,6 +660,85 @@ class AdminController extends Controller
     public function order(Order $order)
     {
         $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'user');
+        if ($order->delivery && !$order->rider) {
+            $restaurant = $order->restaurant;
+            $riders = User::where('device_token', '!=', NULL)
+                            ->whereHas('roles', function($query) {
+                                $query->where('name', 'rider');
+                            })
+                            ->whereHas('rider')
+                            ->where('status', 2)
+                            ->where(function($query) use ($order) {
+                                $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                                // Get couriers who have been assigned delivery to the restaurant
+                                // and are going close to another order from the same restaurant
+                                // $deliveries = DB::table("orders")
+                                //                     ->where('id', '!=', $order->id)
+                                //                     ->where('delivery', 1)
+                                //                     ->where('rider_id', '!=', NULL)
+                                //                     ->where('restaurant_id', $order->restaurant_id)
+                                //                     ->where('delivery_status', '!=', 'Delivered')
+                                //                     ->where('delivery_status', '!=', 'On Delivery')
+                                //                     ->where('delivery_location_lat', '!=', '')
+                                //                     ->select(
+                                //                         DB::raw("3961 * acos(cos(radians(" . $order->delivery_location_lat . "))
+                                //                         * cos(radians(orders.delivery_location_lat))
+                                //                         * cos(radians(orders.delivery_location_lng)
+                                //                         - radians(" . $order->delivery_location_lng . "))
+                                //                         + sin(radians(" . $order->delivery_location_lat. "))
+                                //                         * sin(radians(orders.delivery_location_lat))) AS distance"))
+                                //                     ->get();
+
+                                $deliveries = Order::where('id', '!=', $order->id)
+                                                    ->where('delivery', 1)
+                                                    ->where('rider_id', '!=', NULL)
+                                                    ->where('restaurant_id', $order->restaurant_id)
+                                                    ->where('delivery_status', '!=', 'Delivered')
+                                                    ->where('delivery_status', '!=', 'On Delivery')
+                                                    ->distance($order->delivery_location_lat, $order->delivery_location_lng)
+                                                    ->get();
+
+                                // Filter to couriers distances less than 6 MILES
+                                $nearby_deliveries = $deliveries->filter(function($delivery) {
+                                    return (int) ($delivery->distance) <= 6;
+                                })->pluck('rider_id')->values()->all();
+
+                                // Check if rider rejected the delivery request
+                                $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->pluck('user_id');
+
+                                $query->whereNotIn('id', $rejected_orders)
+                                        ->when(count($assigned_riders) > 0 && count($nearby_deliveries) > 0, function ($query) use ($assigned_riders, $nearby_deliveries) {
+                                            $query->where(function ($query) use ($assigned_riders, $nearby_deliveries) {
+                                                $query->orWhereIn('id', $assigned_riders)->orWhereIn('id', $nearby_deliveries);
+                                            });
+                                        });
+                            })
+                            ->get()
+                            ->each(function($rider, $key) use ($restaurant) {
+                                if ($rider->latitude != NULL && $rider->longitude != NULL && $restaurant->latitude != NULL && $restaurant->longitude != NULL) {
+                                    $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+                                    if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
+                                        $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
+                                        $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
+                                        $rider['distance'] = $distance;
+                                        $rider['time_away'] = $time;
+                                    } else {
+                                        $rider['distance'] = NULL;
+                                        $rider['time_away'] = NULL;
+                                    }
+                                } else {
+                                   $rider['distance'] = NULL;
+                                   $rider['time_away'] = NULL;
+                                }
+                                })->sortBy([
+                                    fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
+                                ]);
+
+            $order['riders'] = $riders;
+        } else {
+            $order['riders'] = [];
+        }
+
 
         return $this->success($order);
     }
