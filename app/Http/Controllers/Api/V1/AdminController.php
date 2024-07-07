@@ -68,10 +68,6 @@ class AdminController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            if (!$user->hasRole('admin') && !$user->hasRole('supplements-admin')) {
-                return $this->error(['email' => 'You do not have permission to login.'], 'You do not have permission to login.', 401);
-            }
-
             $token = $user->createToken($request->email);
 
             $user = new UserResource($user);
