@@ -99,6 +99,7 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::post('/roles/assign', [AdminController::class, 'assignRole']);
 
         Route::get('/admins', [AdminController::class, 'admins']);
+        Route::post('/admins/update', [AdminController::class, 'assignRole']);
     });
 });
 
