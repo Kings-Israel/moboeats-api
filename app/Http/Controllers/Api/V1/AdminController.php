@@ -1052,7 +1052,8 @@ class AdminController extends Controller
 
     public function admins(Request $request)
     {
-        $users = User::with('roles')->whereHas('roles', function ($query) {
+        $users = User::whereNotIn('email', ['admin@moboeats.com', 'admin@moboeats.co.uk'])
+        ->with('roles')->whereHas('roles', function ($query) {
             $query->whereNotIn('name', ['orderer', 'restaurant', 'restaurant employee', 'rider']);
         })
         ->paginate($request->query('per_page'));
