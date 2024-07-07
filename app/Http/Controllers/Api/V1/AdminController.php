@@ -995,7 +995,7 @@ class AdminController extends Controller
 
     public function roles(Request $request)
     {
-        $roles = Role::with('permissions')->whereNotIn('name', ['admin', 'restaurant', 'restaurant employee', 'rider'])->paginate($request->query('per_page'));
+        $roles = Role::with('permissions')->whereNotIn('name', ['admin', 'orderer', 'restaurant', 'restaurant employee', 'rider'])->paginate($request->query('per_page'));
 
         $permissions = PermissionGroup::where('type', 'admin')->with('permissions')->get();
 
