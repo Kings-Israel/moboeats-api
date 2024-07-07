@@ -90,6 +90,15 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/logs', [AdminController::class, 'logs']);
 
         Route::post('/qr-code', [AdminController::class, 'qrCode']);
+
+        // Roles and Permissions
+        Route::get('/permissions', [AdminController::class, 'permissions']);
+        Route::get('/roles', [AdminController::class, 'roles']);
+        Route::post('/roles', [AdminController::class, 'storeRole']);
+        Route::post('/roles/update', [AdminController::class, 'updateRole']);
+        Route::post('/roles/assign', [AdminController::class, 'assignRole']);
+
+        Route::get('/admins', [AdminController::class, 'admins']);
     });
 });
 

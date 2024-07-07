@@ -25,8 +25,10 @@ use App\Traits\HttpResponses;
 use App\Jobs\SendNotification;
 use App\Models\FooSubCategory;
 use App\Jobs\SendCommunication;
+use App\Models\PermissionGroup;
 use App\Models\SupplementOrder;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Validation\Rule;
 use App\Models\DietSubscription;
 use App\Models\FoodCommonCategory;
 use App\Models\SupplementSupplier;
@@ -75,6 +77,7 @@ class AdminController extends Controller
                 'user' => $user,
                 'token' => $token->plainTextToken,
                 'role' => $user->roles->first()->name,
+                'permissions' => auth()->user()->allPermissions()->pluck('name'),
 
             ]);
         } catch (\Throwable $th) {
@@ -92,7 +95,11 @@ class AdminController extends Controller
             'role' => ['required'],
         ]);
 
-        $role = Role::firstOrCreate(['name' => $request->role]);
+        $role = Role::find($request->role);
+
+        if (!$role) {
+            return $this->error('Invalid role', 'Add User', 404);
+        }
 
         $password = Str::random(8);
 
@@ -977,5 +984,99 @@ class AdminController extends Controller
         Excel::import(new Payouts, $request->file('file')->store('public'));
 
         return $this->success('Upload successful');
+    }
+
+    public function permissions(Request $request)
+    {
+        $permissions = PermissionGroup::where('type', 'admin')->with('permissions')->get();
+
+        return $this->success($permissions);
+    }
+
+    public function roles(Request $request)
+    {
+        $roles = Role::with('permissions')->paginate($request->query('per_page'));
+
+        $permissions = PermissionGroup::where('type', 'admin')->with('permissions')->get();
+
+        return $this->success(['roles' => $roles, 'permissions' => $permissions]);
+    }
+
+    public function storeRole(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'unique:roles,name'],
+            'permissions' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Role Creation', 400);
+        }
+
+        $role = Role::create([
+            'name' => $request->name,
+            'description' => $request->has('description') && $request->description != 'null' ? $request->description : NULL,
+        ]);
+
+        $role->syncPermissions($request->permissions);
+
+        return $this->success($role);
+    }
+
+    public function updateRole(Request $request)
+    {
+        $role = Role::find($request->role_id);
+        if ($role) {
+            $rule = Rule::unique('roles')->ignore($role->id, 'id');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'role_id' => ['required', 'exists:roles,id'],
+            'name' => ['required', $rule],
+            'permissions' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Role Updated', 400);
+        }
+
+        $role->update([
+            'name' => $request->name,
+            'description' => $request->has('description') && $request->description != 'null' ? $request->description : NULL,
+        ]);
+
+        $role->syncPermissions($request->permissions);
+
+        return $this->success($role);
+    }
+
+    public function admins(Request $request)
+    {
+        $users = User::with('roles')->whereHas('roles', function ($query) {
+            $query->whereNotIn('name', ['orderer', 'restaurant', 'restaurant employee', 'rider']);
+        })
+        ->paginate($request->query('per_page'));
+
+        $roles = Role::whereNotIn('name', ['orderer', 'restaurant', 'restaurant employee', 'rider'])->get();
+
+        return $this->success(['users' => $users, 'roles' => $roles]);
+    }
+
+    public function assignRole(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'role_id' => ['required', 'exists:roles,id'],
+            'user_id' => ['required', 'exists:users,id']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error($validator->messages(), 'Assign Role', 400);
+        }
+
+        $user = User::find($request->user_id);
+
+        $user->syncRoles([$request->role_id]);
+
+        return $this->success($user);
     }
 }
