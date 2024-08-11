@@ -12,6 +12,6 @@ Hello, {{ $name }}
 Login
 </x-mail::button>
 
-Thanks,<br>
+Regards,<br>
 {{ config('app.name') }}
 </x-mail::message>

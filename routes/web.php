@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\V1\AdminController;
-use App\Http\Controllers\Api\V1\AuthController;
-use App\Http\Controllers\Api\V1\PaymentController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Artisan;
+use App\Models\User;
+use App\Mail\NewAccount;
+use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\AdminController;
+use App\Http\Controllers\Api\V1\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +38,11 @@ Route::post('/contact-us/submit', [HomeController::class, 'contactSubmit'])->nam
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 
-Route::get('/paypal/checkout/success', function() {
+Route::get('/paypal/checkout/success', function () {
     return view('paypal.success');
 })->name('paypal.checkout.success');
 
-Route::get('/paypal/checkout/failed', function() {
+Route::get('/paypal/checkout/failed', function () {
     return view('paypal.error', ['message' => NULL]);
 })->name('paypal.checkout.failed');
 
@@ -54,5 +57,8 @@ Route::get('/qr-code/{string?}', [AdminController::class, 'qrCode']);
 Route::get('/account/delete', [AuthController::class, 'delete']);
 Route::post('delete', [AuthController::class, 'confirmDelete'])->name('delete.confirmation');
 
-require __DIR__.'/auth.php';
+Route::get('/mail/test', function () {
+    return (new NewAccount(User::first(), '12345'))->render();
+});
 
+require __DIR__ . '/auth.php';

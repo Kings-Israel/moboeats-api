@@ -67,7 +67,7 @@ class MenuController extends Controller
 
         if (auth()->check()) {
             $filter =  new MenuFilter();
-            $filterItems = $filter->transform($request); //[['column, 'operator', 'value']]
+            $filterItems = $filter->transform($request);
 
             if (auth()->user()->hasRole('restaurant')) {
                 $menu = Menu::whereIn('restaurant_id', auth()->user()->restaurants->pluck('id'));
