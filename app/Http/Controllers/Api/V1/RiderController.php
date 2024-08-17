@@ -169,7 +169,7 @@ class RiderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'order_id' => 'required',
-            'status' => ['required', Rule::in(['accept', 'reject', 'on_delivery', 'on delivery', 'delivered'])]
+            'status' => ['required', Rule::in(['accept', 'reject', 'awaiting_pick_up', 'on_delivery', 'on delivery', 'delivered'])]
         ]);
 
         if ($validator->fails()) {
@@ -206,7 +206,7 @@ class RiderController extends Controller
             $order->update([
                 'rider_id' => auth()->id(),
                 'status' => 2,
-                'delivery_status' => 'Awaiting Pick Up'
+                'delivery_status' => 'In Progress'
             ]);
 
             $assignment->update([
@@ -228,6 +228,32 @@ class RiderController extends Controller
             event(new UpdateOrder($order->restaurant, $order, 'accepted'));
 
             activity()->causedBy(auth()->user())->performedOn($order)->log('accepted order delivery');
+
+            return $this->success($order, 'Order updated successfully', 200);
+        }
+
+        if ($request->status == 'awaiting_pick_up' || $request->status == 'awaiting pick up') {
+            $order->update([
+                'rider_id' => auth()->id(),
+                'status' => 3,
+                'delivery_status' => 'Awaiting Pick Up'
+            ]);
+
+            Http::withHeaders([
+                'Authorization' => 'key='.config('services.firebase.key'),
+                'Content-Type' => 'application/json'
+            ])->post('https://fcm.googleapis.com/fcm/send', [
+                'registration_id' => $order->user->device_token,
+                'notification' => 'Your order is awaiting pick up by '. auth()->user()->name,
+                'data' => [
+                    'rider_id' => auth()->id(),
+                ]
+            ]);
+
+            // $order->restaurant->notify(new OrderUpdate($order, 'accepted'));
+            // event(new UpdateOrder($order->restaurant, $order, 'accepted'));
+
+            activity()->causedBy(auth()->user())->performedOn($order)->log('awaiting pick up');
 
             return $this->success($order, 'Order updated successfully', 200);
         }
