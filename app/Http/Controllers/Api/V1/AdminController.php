@@ -121,8 +121,10 @@ class AdminController extends Controller
         return $this->success(['user' => $user, 'User added successfully']);
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
+        $orders_timeline = $request->query('orders_timeline');
+        $payments_timeline = $request->query('payments_timeline');
         $users = User::whereHasRole('orderer')->count();
         $restaurants = User::whereHasRole('restaurant')->count();
         $riders = User::whereHasRole('rider')->count();
@@ -151,6 +153,153 @@ class AdminController extends Controller
             array_push($total_monthly_orders, $order);
             $total_orders += $order;
             $index++;
+        }
+
+        if ($orders_timeline && $orders_timeline != '') {
+            switch ($orders_timeline) {
+                case 'past_ten_years':
+                    $months = [];
+                    for ($i = 9; $i >= 0; $i--) {
+                    $month = Carbon::today()->startOfYear()->subYear($i);
+                    array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                    array_push($months_formatted, Carbon::parse($month)->format('Y'));
+                    }
+
+                    $index = 0;
+                    $total_monthly_orders = [];
+                    $total_orders = 0;
+                    foreach ($months as $month) {
+                        $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfYear(), Carbon::parse($month)->endOfYear()])->count();
+                        array_push($total_monthly_orders, $order);
+                        $total_orders += $order;
+                        $index++;
+                    }
+                    break;
+                case 'past_five_years':
+                    $months = [];
+                    for ($i = 4; $i >= 0; $i--) {
+                      $month = Carbon::today()->startOfYear()->subYear($i);
+                      array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                      array_push($months_formatted, Carbon::parse($month)->format('Y'));
+                    }
+
+                    $index = 0;
+                    $total_monthly_orders = [];
+                    $total_orders = 0;
+                    foreach ($months as $month) {
+                        $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfYear(), Carbon::parse($month)->endOfYear()])->count();
+                        array_push($total_monthly_orders, $order);
+                        $total_orders += $order;
+                        $index++;
+                    }
+                    break;
+                case 'past_three_years':
+                    $months = [];
+                    for ($i = 2; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfYear()->subYear($i);
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('Y'));
+                    }
+
+                    $index = 0;
+                    $total_monthly_orders = [];
+                    $total_orders = 0;
+                    foreach ($months as $month) {
+                        $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfYear(), Carbon::parse($month)->endOfYear()])->count();
+                        array_push($total_monthly_orders, $order);
+                        $total_orders += $order;
+                        $index++;
+                    }
+                    break;
+                case 'past_six_months':
+                    $months = [];
+                    for ($i = 5; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfMonth()->subMonth($i);
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('M'));
+                    }
+
+                    $index = 0;
+                    $total_monthly_orders = [];
+                    $total_orders = 0;
+                    foreach ($months as $month) {
+                        $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
+                        array_push($total_monthly_orders, $order);
+                        $total_orders += $order;
+                        $index++;
+                    }
+                    break;
+                case 'past_three_months':
+                    $months = [];
+                    for ($i = 2; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfMonth()->subMonth($i);
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('M'));
+                    }
+
+                    $index = 0;
+                    $total_monthly_orders = [];
+                    $total_orders = 0;
+                    foreach ($months as $month) {
+                        $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
+                        array_push($total_monthly_orders, $order);
+                        $total_orders += $order;
+                        $index++;
+                    }
+                    break;
+
+                default:
+                    $months = [];
+                    // Get past 12 months
+                    for ($i = 12; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfMonth()->subMonth($i);
+                        $year = Carbon::today()->startOfMonth()->subMonth($i)->format('Y');
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('M'));
+                    }
+                    $total_monthly_orders = [];
+                    $total_orders = 0;
+
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $order = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
+                        array_push($total_monthly_orders, $order);
+                        $total_orders += $order;
+                        $index++;
+                    }
+                    break;
+
+            }
         }
 
         // Get current months earning
@@ -191,10 +340,156 @@ class AdminController extends Controller
 
         $index = 0;
         foreach ($months as $month) {
-            $order = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->count();
-            array_push($total_monthly_payments, $order);
-            $total_payments += $order;
+            $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+            array_push($total_monthly_payments, $payment);
+            $total_payments += $payment;
             $index++;
+        }
+
+        if ($payments_timeline && $payments_timeline != '') {
+            switch ($payments_timeline) {
+                case 'past_ten_years':
+                    $months = [];
+                    for ($i = 9; $i >= 0; $i--) {
+                    $month = Carbon::today()->startOfYear()->subYear($i);
+                    array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                    array_push($months_formatted, Carbon::parse($month)->format('Y'));
+                    }
+
+                    $total_monthly_payments = [];
+                    $total_payments = 0;
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfYear(), Carbon::parse($month)->endOfYear()])->sum('amount');
+                        array_push($total_monthly_payments, $payment);
+                        $total_payments += $payment;
+                        $index++;
+                    }
+                    break;
+                case 'past_five_years':
+                    $months = [];
+                    for ($i = 4; $i >= 0; $i--) {
+                      $month = Carbon::today()->startOfYear()->subYear($i);
+                      array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                      array_push($months_formatted, Carbon::parse($month)->format('Y'));
+                    }
+
+                    $total_monthly_payments = [];
+                    $total_payments = 0;
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfYear(), Carbon::parse($month)->endOfYear()])->sum('amount');
+                        array_push($total_monthly_payments, $payment);
+                        $total_payments += $payment;
+                        $index++;
+                    }
+                    break;
+                case 'past_three_years':
+                    $months = [];
+                    for ($i = 2; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfYear()->subYear($i);
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('Y'));
+                    }
+
+                    $total_monthly_payments = [];
+                    $total_payments = 0;
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfYear(), Carbon::parse($month)->endOfYear()])->sum('amount');
+                        array_push($total_monthly_payments, $payment);
+                        $total_payments += $payment;
+                        $index++;
+                    }
+                    break;
+                case 'past_six_months':
+                    $months = [];
+                    for ($i = 5; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfMonth()->subMonth($i);
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('M'));
+                    }
+
+                    $total_monthly_payments = [];
+                    $total_payments = 0;
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                        array_push($total_monthly_payments, $payment);
+                        $total_payments += $payment;
+                        $index++;
+                    }
+                    break;
+                case 'past_three_months':
+                    $months = [];
+                    for ($i = 2; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfMonth()->subMonth($i);
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('M'));
+                    }
+
+                    $total_monthly_payments = [];
+                    $total_payments = 0;
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                        array_push($total_monthly_payments, $payment);
+                        $total_payments += $payment;
+                        $index++;
+                    }
+                    break;
+
+                default:
+                    $months = [];
+                    // Get past 12 months
+                    for ($i = 12; $i >= 0; $i--) {
+                        $month = Carbon::today()->startOfMonth()->subMonth($i);
+                        $year = Carbon::today()->startOfMonth()->subMonth($i)->format('Y');
+                        array_push($months, $month);
+                    }
+
+                    // Format months
+                    $months_formatted = [];
+                    foreach ($months as $key => $month) {
+                        array_push($months_formatted, Carbon::parse($month)->format('M'));
+                    }
+                    $total_monthly_payments = [];
+                    $total_payments = 0;
+                    $index = 0;
+                    foreach ($months as $month) {
+                        $payment = Payment::whereBetween('created_at', [Carbon::parse($month)->startOfMonth(), Carbon::parse($month)->endOfMonth()])->sum('amount');
+                        array_push($total_monthly_payments, $payment);
+                        $total_payments += $payment;
+                        $index++;
+                    }
+                    break;
+
+            }
         }
 
         // Get current months payments
@@ -299,6 +594,8 @@ class AdminController extends Controller
             'settings' => $settings,
             'supplements' => $supplements,
             'region_data' => $region_data,
+            'orders_timeline' => $orders_timeline,
+            'payments_timeline' => $payments_timeline,
         ]);
     }
 
