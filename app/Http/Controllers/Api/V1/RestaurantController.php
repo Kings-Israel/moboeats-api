@@ -386,38 +386,74 @@ class RestaurantController extends Controller
     {
         $restaurant = Restaurant::find($restaurant_id);
 
-        // Get Unassigned Couriers and order by closest
         $riders = User::where('device_token', '!=', NULL)
-                        ->whereHas('roles', function($query) {
-                            $query->where('name', 'rider');
-                        })
-                        ->whereHas('rider')
-                        // ->where('status', 'Active')
-                        ->where(function($query) {
-                            $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
-                            $query->whereNotIn('id', $assigned_riders);
-                        })
-                        ->get()
-                        // Filter by distance to restaurant
-                        ->each(function($rider, $key) use ($restaurant) {
-                            if ($rider->latitude != NULL && $rider->lognitude != NULL) {
-                                $business_location = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+                                ->whereHas('roles', function($query) {
+                                    $query->where('name', 'rider');
+                                })
+                                ->whereHas('rider')
+                                ->where('status', 2)
+                                ->where(function($query) {
+                                    $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
 
-                                if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
-                                    $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
-                                    $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
-                                    $rider['distance'] = $distance;
-                                    $rider['time_away'] = $time;
-                                }
-                            } else {
-                                $rider['distance'] = NULL;
-                                $rider['time_away'] = NULL;
-                            }
-                        })
-                        // Order by distance and time
-                        ->sortBy([
-                            fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
-                        ]);
+                                    $query->when(count($assigned_riders) > 0, function ($query) use ($assigned_riders) {
+                                                $query->where(function ($query) use ($assigned_riders) {
+                                                    $query->orWhereIn('id', $assigned_riders)->orWhereIn('id');
+                                                });
+                                            });
+                                })
+                                ->get()
+                                ->each(function($rider, $key) use ($restaurant) {
+                                    if ($rider->latitude != NULL && $rider->longitude != NULL && $restaurant->latitude != NULL && $restaurant->longitude != NULL) {
+                                        $business_location = Http::timeout(10)->get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+                                        if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
+                                            $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
+                                            $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
+                                            $rider['distance'] = $distance;
+                                            $rider['time_away'] = $time;
+                                        } else {
+                                            $rider['distance'] = NULL;
+                                            $rider['time_away'] = NULL;
+                                        }
+                                    } else {
+                                       $rider['distance'] = NULL;
+                                       $rider['time_away'] = NULL;
+                                    }
+                                    })->sortBy([
+                                        fn($a, $b) => (double) explode(' ', $a['distance'])[0] <= (double) explode(' ',$b['distance'])[0],
+                                    ]);
+
+        // // Get Unassigned Couriers and order by closest
+        // $riders = User::where('device_token', '!=', NULL)
+        //                 ->whereHas('roles', function($query) {
+        //                     $query->where('name', 'rider');
+        //                 })
+        //                 ->whereHas('rider')
+        //                 // ->where('status', 'Active')
+        //                 ->where(function($query) {
+        //                     $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+        //                     $query->whereNotIn('id', $assigned_riders);
+        //                 })
+        //                 ->get()
+        //                 // Filter by distance to restaurant
+        //                 ->each(function($rider, $key) use ($restaurant) {
+        //                     if ($rider->latitude != NULL && $rider->lognitude != NULL) {
+        //                         $business_location = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$rider->latitude.','.$rider->longitude.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+
+        //                         if (json_decode($business_location)->rows[0]->elements[0]->status != "NOT_FOUND" && json_decode($business_location)->rows[0]->elements[0]->status != "ZERO_RESULTS") {
+        //                             $distance = json_decode($business_location)->rows[0]->elements[0]->distance->text;
+        //                             $time = json_decode($business_location)->rows[0]->elements[0]->duration->text;
+        //                             $rider['distance'] = $distance;
+        //                             $rider['time_away'] = $time;
+        //                         }
+        //                     } else {
+        //                         $rider['distance'] = NULL;
+        //                         $rider['time_away'] = NULL;
+        //                     }
+        //                 })
+        //                 // Order by distance and time
+        //                 ->sortBy([
+        //                     fn($a, $b) => (double) explode(' ', $a['distance'])[0] >= (double) explode(' ',$b['distance'])[0],
+        //                 ]);
 
         return $this->success(UserResource::collection($riders));
     }

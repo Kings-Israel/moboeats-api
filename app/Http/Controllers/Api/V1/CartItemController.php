@@ -85,11 +85,11 @@ class CartItemController extends Controller
                 $menu_item = Menu::find($request->menu_id);
 
                 if (!$menu_item || $menu_item->status == 1) {
-                    return $this->error('Menu Item', 'The selected item is not available', 402);
+                    return $this->error('Menu Item', 'The selected item is not available', 403);
                 }
 
                 if (CartItem::where('menu_id', $request->menu_id)->where('cart_id', $cart->id)->exists()) {
-                    return $this->error('Cart', 'Item already exists in the cart', 402);
+                    return $this->error('Cart', 'Item already exists in the cart', 403);
                 }
 
                 $request->merge([
