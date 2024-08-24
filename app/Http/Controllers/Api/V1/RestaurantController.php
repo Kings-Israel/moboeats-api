@@ -397,7 +397,7 @@ class RestaurantController extends Controller
 
                                     $query->when(count($assigned_riders) > 0, function ($query) use ($assigned_riders) {
                                                 $query->where(function ($query) use ($assigned_riders) {
-                                                    $query->orWhereIn('id', $assigned_riders)->orWhereIn('id');
+                                                    $query->orWhereIn('id', $assigned_riders);
                                                 });
                                             });
                                 })
