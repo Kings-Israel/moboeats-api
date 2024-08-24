@@ -70,13 +70,6 @@ class CartController extends Controller
                     return $this->error('Cart', 'You have active cart', 402);
                 }
 
-                // Check if menu item is available
-                $menu_item = Menu::find($request->menuId);
-
-                if (!$menu_item || $menu_item->status == 1) {
-                    return $this->error('Menu Item', 'The selected item is not available', 404);
-                }
-
                 $request->merge([
                     'status' => 2,
                 ]);

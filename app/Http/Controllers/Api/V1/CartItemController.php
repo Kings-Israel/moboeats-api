@@ -80,6 +80,13 @@ class CartItemController extends Controller
                     $cart = Cart::create(['user_id' => $user->id, 'status' => 2]);
                 }
 
+                // Check if menu item is available
+                $menu_item = Menu::find($request->menu_id);
+
+                if (!$menu_item || $menu_item->status == 1) {
+                    return $this->error('Menu Item', 'The selected item is not available', 404);
+                }
+
                 if (CartItem::where('menu_id', $request->menu_id)->where('cart_id', $cart->id)->exists()) {
                     return $this->error('Cart', 'Item already exists in the cart', 402);
                 }
