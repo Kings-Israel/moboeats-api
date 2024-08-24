@@ -394,6 +394,7 @@ class RestaurantController extends Controller
                                 ->where('status', 2)
                                 ->where(function($query) use ($restaurant_id) {
                                     $assigned_riders = Order::where('rider_id', '!=', NULL)->where('status', 'On Delivery')->pluck('rider_id');
+                                    info($assigned_riders);
 
                                     $query->when(count($assigned_riders) > 0, function ($query) use ($assigned_riders) {
                                         $query->whereNotIn('id', $assigned_riders);
