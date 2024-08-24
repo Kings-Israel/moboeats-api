@@ -9,6 +9,7 @@ use App\Http\Requests\V1\StoreCartRequest;
 use App\Http\Requests\V1\UpdateCartRequest;
 use App\Http\Resources\V1\CartCollection;
 use App\Http\Resources\V1\CartResource;
+use App\Models\Menu;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -68,6 +69,14 @@ class CartController extends Controller
                 if (Cart::where('user_id', $user->id)->exists()) {
                     return $this->error('Cart', 'You have active cart', 402);
                 }
+
+                // Check if menu item is available
+                $menu_item = Menu::find($request->menuId);
+
+                if (!$menu_item || $menu_item->status == 1) {
+                    return $this->error('Menu Item', 'The selected item is not available', 404);
+                }
+
                 $request->merge([
                     'status' => 2,
                 ]);
