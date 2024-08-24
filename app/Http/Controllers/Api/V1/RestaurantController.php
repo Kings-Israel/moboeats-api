@@ -392,15 +392,15 @@ class RestaurantController extends Controller
                                 })
                                 ->whereHas('rider')
                                 ->where('status', 2)
-                                // ->where(function($query) {
-                                //     $assigned_riders = Order::where('rider_id', '!=', NULL)->get()->pluck('rider_id');
+                                ->where(function($query) use ($restaurant_id) {
+                                    $assigned_riders = Order::where('rider_id', '!=', NULL)->where('status', 'On Delivery')->get()->pluck('rider_id');
 
-                                //     $query->when(count($assigned_riders) > 0, function ($query) use ($assigned_riders) {
-                                //                 $query->where(function ($query) use ($assigned_riders) {
-                                //                     $query->orWhereIn('id', $assigned_riders);
-                                //                 });
-                                //             });
-                                // })
+                                    $query->when(count($assigned_riders) > 0, function ($query) use ($assigned_riders) {
+                                                $query->where(function ($query) use ($assigned_riders) {
+                                                    $query->orWhereNotIn('id', $assigned_riders);
+                                                });
+                                            });
+                                })
                                 ->get()
                                 ->each(function($rider, $key) use ($restaurant) {
                                     if ($rider->latitude != NULL && $rider->longitude != NULL && $restaurant->latitude != NULL && $restaurant->longitude != NULL) {
