@@ -9,7 +9,6 @@ use App\Http\Requests\V1\StoreCartRequest;
 use App\Http\Requests\V1\UpdateCartRequest;
 use App\Http\Resources\V1\CartCollection;
 use App\Http\Resources\V1\CartResource;
-use App\Models\Menu;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
