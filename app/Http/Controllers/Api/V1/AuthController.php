@@ -150,8 +150,8 @@ class AuthController extends Controller
                         'email' => $request->email,
                         'address' => '',
                         'status' => 2,
-                        'latitude' => $request->latitude ?? NULL,
-                        'longitude' => $request->longitude ?? NULL,
+                        // 'latitude' => $request->latitude ?? NULL,
+                        // 'longitude' => $request->longitude ?? NULL,
                     ]);
                 $role = Role::where('name', $request->userType)->first();
                 if (!$role) {
