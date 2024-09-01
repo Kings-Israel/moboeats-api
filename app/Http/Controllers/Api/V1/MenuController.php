@@ -61,7 +61,7 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
-        $radius = 100;
+        $radius = 1000;
         $latitude = $request->query('lat');
         $longitude = $request->query('lng');
 
