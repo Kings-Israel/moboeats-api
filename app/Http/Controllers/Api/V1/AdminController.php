@@ -1203,7 +1203,7 @@ class AdminController extends Controller
     public function qrCode(Request $request)
     {
         $string = 'https://partner.moboeats.co.uk/signup';
-        if ($request->has('string') && $request->string === '') {
+        if ($request->has('string') && $request->string != '') {
             $string = $request->string;
         }
 
