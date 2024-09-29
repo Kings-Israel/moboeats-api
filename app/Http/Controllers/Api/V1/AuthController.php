@@ -91,9 +91,19 @@ class AuthController extends Controller
 
             $user = new UserResource($user);
 
+            $country = '';
+            $country_code = '';
             if ($user->hasRole('restaurant employee')) {
                 $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
                 $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+                $country = $restaurant->country;
+                $country_code = $restaurant->country_code;
+            }
+
+            if ($user->hasRole('restaurant')) {
+                $restaurant = Restaurant::where('user_id', $user->id)->first();
+                $country = $restaurant->country;
+                $country_code = $restaurant->country_code;
             }
 
             return $this->success([
@@ -102,6 +112,8 @@ class AuthController extends Controller
                 'role' => $request->userType,
                 'restaurants' => $request->userType == 'restaurant' ? $user->restaurants : NULL,
                 'restaurant' => $request->userType == 'restaurant employee' ? $restaurant : NULL,
+                'country' => $country,
+                'country_code' => $country_code,
             ]);
         } catch (\Throwable $th) {
             info($th->getMessage());
@@ -475,9 +487,19 @@ class AuthController extends Controller
 
         $user = new UserResource($user);
 
+        $country = '';
+        $country_code = '';
         if ($user->hasRole('restaurant employee')) {
             $user_restaurant = UserRestaurant::where('user_id', $user->id)->first();
             $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
+            $country = $restaurant->country;
+            $country_code = $restaurant->country_code;
+        }
+
+        if ($user->hasRole('restaurant')) {
+            $restaurant = Restaurant::where('user_id', $user->id)->first();
+            $country = $restaurant->country;
+            $country_code = $restaurant->country_code;
         }
 
         return $this->success([
@@ -486,6 +508,8 @@ class AuthController extends Controller
             'role' => $request->userType,
             'restaurants' => $request->userType == 'restaurant' ? $user->restaurants : NULL,
             'restaurant' => $request->userType == 'restaurant employee' ? $restaurant : NULL,
+            'country' => $country,
+            'country_code' => $country_code,
         ]);
     }
 
