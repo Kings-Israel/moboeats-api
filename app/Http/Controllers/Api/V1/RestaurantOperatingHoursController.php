@@ -26,12 +26,12 @@ class RestaurantOperatingHoursController extends Controller
 
         if (gettype($request->days) == 'array') {
             foreach ($request->days as $key => $day) {
-                if (array_key_exists($key, json_decode($request->opening_times)) && json_decode($request->opening_times)[$key] != null  && array_key_exists($key, json_decode($request->closing_times)) && json_decode($request->closing_times)[$key] != null) {
+                if (array_key_exists($key, $request->opening_times) && $request->opening_times[$key] != null  && array_key_exists($key, $request->closing_times) && $request->closing_times[$key] != null) {
                     RestaurantOperatingHour::create([
                         'restaurant_id' => $restaurant->id,
                         'day' => $day,
-                        'opening_time' => json_decode($request->opening_times)[$key],
-                        'closing_time' => json_decode($request->closing_times)[$key]
+                        'opening_time' => $request->opening_times[$key],
+                        'closing_time' => $request->closing_times[$key]
                     ]);
                 }
             }
