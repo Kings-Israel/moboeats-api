@@ -21,7 +21,7 @@ class RestaurantOperatingHoursController extends Controller
 
     public function store(Request $request, $uuid)
     {
-        info(gettype($request->days) == 'array');
+        info(gettype($request->days));
         $restaurant = Restaurant::where('uuid', $uuid)->first();
 
         if (gettype($request->days) == 'array') {
