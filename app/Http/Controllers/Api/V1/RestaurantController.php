@@ -176,7 +176,7 @@ class RestaurantController extends Controller
             } else {
                 $restaurants = Restaurant::Approved()->hasMenu();
             }
-
+            info($restaurants);
             return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
         }
     }

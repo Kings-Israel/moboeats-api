@@ -45,8 +45,8 @@ class RestaurantResource extends JsonResource
                 'groceries_service_charge_agreement' => $this->when(auth()->check() && (auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('admin')), $this->groceries_service_charge_agreement),
                 'average_rating' => $this->averageRating(),
                 'is_open' => $this->isOpen() ? true : false,
-                'country' => $this->country,
-                'country_code' => $this->country_code
+                // 'country' => $this->country,
+                // 'country_code' => $this->country_code
             ],
             'relationships' => [
                 'questionnaire' => new QuestionnaireResource($this->whenLoaded('questionnaire')),
