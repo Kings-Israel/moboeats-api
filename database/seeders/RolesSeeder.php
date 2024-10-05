@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Laratrust\Models\Role;
@@ -47,7 +48,11 @@ class RolesSeeder extends Seeder
         ];
 
         collect($roles)->each(function ($role) {
-            Role::create($role);
+            $new_role = Role::create($role);
+            $permissions = Permission::all();
+            if ($new_role->name == 'admin' || $new_role->name == 'super') {
+                $new_role->syncPermissions($permissions);
+            }
         });
 
     }

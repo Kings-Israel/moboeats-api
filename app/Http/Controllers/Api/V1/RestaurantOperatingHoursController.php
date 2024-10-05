@@ -21,6 +21,7 @@ class RestaurantOperatingHoursController extends Controller
 
     public function store(Request $request, $uuid)
     {
+        info($request->all());
         $restaurant = Restaurant::where('uuid', $uuid)->first();
 
         foreach (json_decode($request->days) as $key => $day) {

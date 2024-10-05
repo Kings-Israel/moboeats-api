@@ -17,22 +17,14 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // $user = User::factory()->create([
-        //     'email' => 'admin@moboeats.com',
-        //     'password' => bcrypt('password'),
-        // ]);
-
-        // $user->addRole(Role::where('name', 'admin')->first());
-
         $admin = Role::where('name', 'admin')->first();
 
-        // $shift_users = User::where('id', '>', 1)->latest()->get();
+        $user = User::factory()->create([
+            'email' => 'admin@moboeats.com',
+            'password' => bcrypt('password'),
+        ]);
 
-        // foreach ($shift_users as $shift_user) {
-        //     $shift_user->update([
-        //         'id' => $shift_user->id + 5,
-        //     ]);
-        // }
+        $user->addRole($admin);
 
         $user = User::where('email', 'k.king@moboeats.co.uk')->first();
 
@@ -107,7 +99,6 @@ class AdminSeeder extends Seeder
             if (!$user->hasRole('admin')) {
                 $user->addRole($admin);
             }
-
         }
 
         $user->restaurants()->delete();
@@ -152,7 +143,7 @@ class AdminSeeder extends Seeder
         }
 
         // Mail::to($user->email)->send(new NewAccount($user, $password, 'admin'));
-        Mail::to('milimokings@gmail.com')->send(new NewAccount($user, $password, 'admin'));
+        // Mail::to('milimokings@gmail.com')->send(new NewAccount($user, $password, 'admin'));
 
         $user = User::where('email', 'j.mbugua@moboeats.co.uk')->first();
 
