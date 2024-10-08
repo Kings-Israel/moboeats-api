@@ -176,7 +176,7 @@ class RestaurantController extends Controller
             } else {
                 $restaurants = Restaurant::Approved()->hasMenu();
             }
-            
+
             return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
         }
     }
@@ -250,9 +250,9 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         if(auth()->check()) {
-            return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews', 'restaurantTables.seatingArea', 'menus'));
+            return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews', 'restaurantTables.seatingArea', 'menus.categories'));
         } else {
-            return new RestaurantResource($restaurant->load('operatingHours', 'reviews', 'restaurantTables.seatingArea', 'menus'));
+            return new RestaurantResource($restaurant->load('operatingHours', 'reviews', 'restaurantTables.seatingArea', 'menus.categories'));
         }
     }
 
