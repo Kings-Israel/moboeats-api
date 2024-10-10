@@ -39,8 +39,8 @@ class StoreRestaurantRequest extends FormRequest
             'url' => ['nullable'],
             'logo' => ['required'],
             'map_location' => ['nullable'],
-            'sitting_capacity' => ['required', 'integer'],
-            'paypal_email' => ['required', 'email'],
+            'sitting_capacity' => ['sometimes', 'integer'],
+            // 'paypal_email' => ['required', 'email'],
         ];
     }
 }
