@@ -130,6 +130,10 @@ class MenuController extends Controller
             $restaurant = Restaurant::where('id', $id)->first();
         }
 
+        if (!$restaurant) {
+            return $this->error('', 'Invalid restaurnt', 404);
+        }
+
         if (!auth()->user()->hasRole('restaurant')) {
             return $this->error('', 'Unauthorized', 401);
         }
