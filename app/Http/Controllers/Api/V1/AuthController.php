@@ -480,7 +480,7 @@ class AuthController extends Controller
                 return $this->success(['Rider profile awaiting approval'], 403);
             }
         }
-
+        info($user->roles);
         $token = $user->createToken($request->userType, ['create', 'read', 'update', 'delete']);
 
         $user->update(['role_id' => $request->userType]);
