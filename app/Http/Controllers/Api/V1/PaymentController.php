@@ -250,7 +250,9 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Order not found', 404);
         }
 
-        if ($order->status !== 'Pending') {
+        // Check if order is paid for
+        $payment = Payment::where('orderable_type', Order::class)->where('orderable_id', $order_id)->first();
+        if ($payment) {
             return $this->error('Order Payment', 'Order already paid', 422);
         }
 
@@ -283,7 +285,7 @@ class PaymentController extends Controller
 
         $paymentIntent = $stripe->paymentIntents->create([
             'amount' => $amount * 100,
-            'currency' => 'gbp',
+            'currency' => $order->country == 'Kenya' ? 'kes' : 'gbp',
             'customer' => $customer->id,
         ]);
 

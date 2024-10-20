@@ -166,6 +166,7 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
+        // return response()->json($request->all());
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
