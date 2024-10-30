@@ -396,6 +396,7 @@ class Restaurant extends Model implements UrlRoutable
                 if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
                     $user_country = 'KE';
                 }
+                info($user_location);
                 foreach ($user_location['results'][0]['address_components'] as $place) {
                     if (collect($place['types'])->contains('country')) {
                         $user_country = $place['short_name'];
