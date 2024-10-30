@@ -250,6 +250,10 @@ class Order extends Model
                     $order_country = 'Kenya';
                 }
 
+                if($user_location && array_key_exists('status', $user_location) && $user_location['status'] == "REQUEST_DENIED") {
+                    $order_country = 'Kenya';
+                }
+
                 foreach ($user_location['results'][0]['address_components'] as $place) {
                     if (collect($place['types'])->contains('country')) {
                         $order_country = $place['long_name'];
