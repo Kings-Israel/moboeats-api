@@ -389,20 +389,20 @@ class Restaurant extends Model implements UrlRoutable
                 try {
                     $user_location = Http::withOptions(['verify' => false])
                                         ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->latitude.','.$this->longitude.'&key='.config('services.map.key'));
+
+                    if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+                        $user_country = 'KE';
+                    } elseif ($user_location && array_key_exists('status', collect($user_location)->toArray()) && $user_location['status'] == "REQUEST_DENIED") {
+                        $user_country = 'KE';
+                    } else {
+                        foreach ($user_location['results'][0]['address_components'] as $place) {
+                            if (collect($place['types'])->contains('country')) {
+                                $user_country = $place['short_name'];
+                            }
+                        }
+                    }
                 } catch (ConnectionException $e) {
                     $user_country = 'KE';
-                }
-
-                if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
-                    $user_country = 'KE';
-                }
-                if($user_location && array_key_exists('status', collect($user_location)->toArray()) && $user_location['status'] == "REQUEST_DENIED") {
-                    $user_country = 'KE';
-                }
-                foreach ($user_location['results'][0]['address_components'] as $place) {
-                    if (collect($place['types'])->contains('country')) {
-                        $user_country = $place['short_name'];
-                    }
                 }
 
                 Cache::put($this->uuid.'-restaurant-country-code', $user_country, now()->addMonths(3));
