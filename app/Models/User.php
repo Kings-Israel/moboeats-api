@@ -388,7 +388,7 @@ class User extends Authenticatable implements LaratrustUser
                     $user_country = 'Kenya';
                 }
 
-                if($user_location && array_key_exists('status', $user_location) && $user_location['status'] == "REQUEST_DENIED") {
+                if($user_location && array_key_exists('status', collect($user_location)->toArray()) && $user_location['status'] == "REQUEST_DENIED") {
                     $user_country = 'Kenya';
                 }
 
