@@ -114,6 +114,8 @@ Route::group(['prefix' => 'v1/orderer'], function() {
 
     Route::group(['prefix' => '/supplements'], function () {
         Route::get('/', [SupplementController::class, 'index']);
+        Route::get('/categories', [SupplementController::class, 'categories']);
+        Route::get('/categories/{supplement_category}/details', [SupplementController::class, 'category']);
         Route::get('/suppliers', [SupplementController::class, 'suppliers']);
     });
 

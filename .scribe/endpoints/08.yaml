@@ -27,12 +27,12 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"data":[{"id":1,"name":"Aliquam maiores exce","tag_line":"Consequatur eos ex","description":"Aut nostrud amet es","price":"KES 20\/"},{"id":2,"name":"Explicabo Et eligen","tag_line":"Elit ut sapiente pa","description":"Commodi quidem moles","price":"GBP 69\/Quarterly"}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/diet\/packages?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/diet\/packages?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/diet\/packages?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/diet\/packages","per_page":15,"to":2,"total":2}}}'
+        content: '{"status":"Request was succesful","message":null,"data":{"data":[],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/diet\/packages?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/diet\/packages?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/diet\/packages?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/diet\/packages","per_page":15,"to":null,"total":0}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '266'
+          x-ratelimit-remaining: '264'
           vary: Origin
         description: null
         custom: []
@@ -73,7 +73,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '265'
+          x-ratelimit-remaining: '263'
           vary: Origin
         description: null
         custom: []

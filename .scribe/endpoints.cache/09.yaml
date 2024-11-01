@@ -73,14 +73,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: non
+        example: nemo
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: dspencer@example.net
+        example: emmerich.brigitte@example.org
         type: string
         custom: []
       phoneNo:
@@ -126,8 +126,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: non
-      email: dspencer@example.net
+      name: nemo
+      email: emmerich.brigitte@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -159,11 +159,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 90c43195-315a-428c-8820-bd8112e5d2fa
+        example: 9e58dd77-3e3c-3e1f-b629-08ddcad5f775
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
+      uuid: 9e58dd77-3e3c-3e1f-b629-08ddcad5f775
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -209,11 +209,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 90c43195-315a-428c-8820-bd8112e5d2fa
+        example: a3097b9d-3481-3199-953c-3bd4ac2e3ec3
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
+      uuid: a3097b9d-3481-3199-953c-3bd4ac2e3ec3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -221,56 +221,56 @@ endpoints:
         name: uuid
         description: 'Must be a valid UUID.'
         required: true
-        example: 555988b1-d699-31fc-a015-349cc54afdc6
+        example: e9992581-7bfb-3a16-a17d-a4e422bcdba3
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: et
+        example: accusamus
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: whodkiewicz@example.net
+        example: lila37@example.com
         type: string
         custom: []
       phoneNo:
         name: phoneNo
         description: ''
         required: true
-        example: placeat
+        example: harum
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: sed
+        example: molestiae
         type: string
         custom: []
       city:
         name: city
         description: ''
         required: true
-        example: quis
+        example: quam
         type: string
         custom: []
       state:
         name: state
         description: ''
         required: true
-        example: ipsa
+        example: accusantium
         type: string
         custom: []
       mapLocation:
         name: mapLocation
         description: ''
         required: true
-        example: quia
+        example: in
         type: string
         custom: []
       image:
@@ -281,14 +281,14 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 555988b1-d699-31fc-a015-349cc54afdc6
-      name: et
-      email: whodkiewicz@example.net
-      phoneNo: placeat
-      address: sed
-      city: quis
-      state: ipsa
-      mapLocation: quia
+      uuid: e9992581-7bfb-3a16-a17d-a4e422bcdba3
+      name: accusamus
+      email: lila37@example.com
+      phoneNo: harum
+      address: molestiae
+      city: quam
+      state: accusantium
+      mapLocation: in
     fileParameters: []
     responses: []
     responseFields: []
@@ -320,11 +320,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 90c43195-315a-428c-8820-bd8112e5d2fa
+        example: 81883136-a378-395c-8c24-4d662ac17e97
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 90c43195-315a-428c-8820-bd8112e5d2fa
+      uuid: 81883136-a378-395c-8c24-4d662ac17e97
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -364,43 +364,43 @@ endpoints:
         name: height
         description: 'The height of the user'
         required: true
-        example: 12
+        example: 10
         type: integer
         custom: []
       height_units:
         name: height_units
         description: 'The measurement units for height. E.g inches, feet'
         required: true
-        example: 10
+        example: 9
         type: integer
         custom: []
       weight:
         name: weight
         description: 'The weight of the user'
         required: true
-        example: 7
+        example: 17
         type: integer
         custom: []
       weight_units:
         name: weight_units
         description: 'The measurement units for weight. E.g kilograms, pounds'
         required: true
-        example: 3
+        example: 15
         type: integer
         custom: []
       body_mass_index:
         name: body_mass_index
         description: 'The mass index of the user'
         required: true
-        example: 15
+        example: 4
         type: integer
         custom: []
     cleanBodyParameters:
-      height: 12
-      height_units: 10
-      weight: 7
-      weight_units: 3
-      body_mass_index: 15
+      height: 10
+      height_units: 9
+      weight: 17
+      weight_units: 15
+      body_mass_index: 4
     fileParameters: []
     responses: []
     responseFields: []

@@ -71,14 +71,14 @@ endpoints:
         name: cartId
         description: ''
         required: false
-        example: 19
+        example: 20
         type: integer
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: 19
+        example: 20
         type: integer
         custom: []
       delivery:
@@ -111,16 +111,16 @@ endpoints:
         custom: []
       booking_time:
         name: booking_time
-        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-07-06 10:34:13</code>.'
+        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2024-11-01 05:33:35</code>.'
         required: false
-        example: '2054-07-19'
+        example: '2040-12-28'
         type: string
         custom: []
     cleanBodyParameters:
-      cartId: 19
-      restaurantId: 19
+      cartId: 20
+      restaurantId: 20
       delivery: true
-      booking_time: '2054-07-19'
+      booking_time: '2040-12-28'
     fileParameters: []
     responses: []
     responseFields: []
@@ -152,11 +152,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -201,11 +201,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -245,43 +245,43 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 15
+        example: 5
         type: integer
         custom: []
       restaurant_rating:
         name: restaurant_rating
         description: 'The rating of the restaurant from 1 - 5'
         required: false
-        example: 12
+        example: 14
         type: integer
         custom: []
       restaurant_review:
         name: restaurant_review
         description: 'A review of the restaurant'
         required: false
-        example: omnis
+        example: nobis
         type: string
         custom: []
       rider_rating:
         name: rider_rating
         description: 'The rating of the rider from 1 - 5'
         required: false
-        example: 14
+        example: 9
         type: integer
         custom: []
       rider_review:
         name: rider_review
         description: 'A review of the rider'
         required: false
-        example: voluptatem
+        example: blanditiis
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: 15
-      restaurant_rating: 12
-      restaurant_review: omnis
-      rider_rating: 14
-      rider_review: voluptatem
+      order_id: 5
+      restaurant_rating: 14
+      restaurant_review: nobis
+      rider_rating: 9
+      rider_review: blanditiis
     fileParameters: []
     responses: []
     responseFields: []
@@ -313,11 +313,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -362,11 +362,11 @@ endpoints:
         name: order_uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      order_uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      order_uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -402,11 +402,11 @@ endpoints:
         name: order_uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      order_uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      order_uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -414,11 +414,11 @@ endpoints:
         name: status
         description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
         required: true
-        example: cancelled
+        example: 'in progress'
         type: string
         custom: []
     cleanBodyParameters:
-      status: cancelled
+      status: 'in progress'
     fileParameters: []
     responses: []
     responseFields: []
@@ -574,11 +574,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -586,11 +586,11 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: vero
+        example: ut
         type: string
         custom: []
     cleanBodyParameters:
-      status: vero
+      status: ut
     fileParameters: []
     responses: []
     responseFields: []
@@ -622,11 +622,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -662,11 +662,11 @@ endpoints:
         name: order_uuid
         description: ''
         required: true
-        example: af8a7a33-e71e-448c-914f-1012cc8055b2
+        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
         type: string
         custom: []
     cleanUrlParameters:
-      order_uuid: af8a7a33-e71e-448c-914f-1012cc8055b2
+      order_uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -674,11 +674,11 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: magni
+        example: quos
         type: string
         custom: []
     cleanBodyParameters:
-      status: magni
+      status: quos
     fileParameters: []
     responses: []
     responseFields: []
@@ -714,19 +714,19 @@ endpoints:
         name: order_id
         description: ''
         required: true
-        example: dolore
+        example: nostrum
         type: string
         custom: []
       rider_id:
         name: rider_id
         description: ''
         required: true
-        example: omnis
+        example: occaecati
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: dolore
-      rider_id: omnis
+      order_id: nostrum
+      rider_id: occaecati
     fileParameters: []
     responses: []
     responseFields: []

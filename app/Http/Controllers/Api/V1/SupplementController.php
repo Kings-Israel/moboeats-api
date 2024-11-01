@@ -8,6 +8,7 @@ use App\Http\Resources\V1\SupplementResource;
 use App\Http\Resources\V1\SupplementSupplierResource;
 use App\Jobs\SendNotification;
 use App\Models\Supplement;
+use App\Models\SupplementCategory;
 use App\Models\SupplementOrder;
 use App\Models\SupplementSupplier;
 use App\Traits\HttpResponses;
@@ -35,7 +36,7 @@ class SupplementController extends Controller
         if (auth()->check()) {
             if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('supplements admin')) {
                 $supplements = SupplementResource::collection(
-                        Supplement::with('supplier', 'images')
+                        Supplement::with('supplier', 'images', 'supplementCategory')
                                     ->withCount('orders')
                                     ->when($search && $search != '', function ($query) use ($search) {
                                         $query->where('name', 'LIKE', '%'.$search.'%');
@@ -50,14 +51,16 @@ class SupplementController extends Controller
 
                 $suppliers = SupplementSupplierResource::collection(SupplementSupplier::all());
 
-                return $this->success(['supplements' => $supplements, 'suppliers' => $suppliers]);
+                $categories = SupplementCategory::all();
+
+                return $this->success(['supplements' => $supplements, 'suppliers' => $suppliers, 'categories' => $categories]);
             } else {
-                $supplements = SupplementResource::collection(Supplement::available()->with('supplier', 'images')->paginate($per_page))->response()->getData(true);
+                $supplements = SupplementResource::collection(Supplement::available()->with('supplier', 'images', 'supplementCategory')->paginate($per_page))->response()->getData(true);
 
                 return $this->success(['supplements' => $supplements]);
             }
         } else {
-            $supplements = SupplementResource::collection(Supplement::available()->with('supplier', 'images')->paginate($per_page))->response()->getData(true);
+            $supplements = SupplementResource::collection(Supplement::available()->with('supplier', 'images', 'supplementCategory')->paginate($per_page))->response()->getData(true);
 
             return $this->success(['supplements' => $supplements]);
         }
@@ -67,6 +70,7 @@ class SupplementController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'supplier_id' => ['required', 'exists:supplement_suppliers,id'],
+            'category_id' => ['required'],
             'name' => ['required'],
             'price' => ['required'],
             'measuring_unit' => ['required', 'in:kilograms,pounds,litres'],
@@ -80,6 +84,7 @@ class SupplementController extends Controller
 
         $supplement = Supplement::create([
             'supplement_supplier_id' => $request->supplier_id,
+            'supplement_category_id' => $request->category_id,
             'name' => $request->name,
             'price_per_quantity' => $request->price,
             'measuring_unit' => $request->measuring_unit,
@@ -273,5 +278,37 @@ class SupplementController extends Controller
         ]);
 
         return $this->success(new SupplementOrderResource($order->load('supplement.supplier')), 'Order Status updated successfully');
+    }
+
+    /**
+     * Display listing of supplement categories
+     *
+     * @queryParam search string Text to search categories
+     * @queryParam perPage int Number of items per page
+     */
+    public function categories(Request $request)
+    {
+        $search = $request->query('search');
+        $per_page = $request->query('perPage');
+
+        $categories = SupplementCategory::with('supplements')
+        ->when($search && $search != '', function ($query) use ($search) {
+            $query->where('name', 'LIKE', '%'.$search.'%');
+        })
+        ->paginate($per_page);
+
+        return $this->success($categories);
+    }
+
+    /**
+     * Show Details of a supplement category
+     *
+     * @urlParam ID int The ID of the category
+     */
+    public function category(SupplementCategory $supplement_category)
+    {
+        $supplement_category->load('supplements');
+
+        return $this->success($supplement_category);
     }
 }

@@ -62,4 +62,12 @@ class Supplement extends Model
     {
         return $this->hasMany(SupplementImage::class);
     }
+
+    /**
+     * Get the supplementCategory that owns the Supplement
+     */
+    public function supplementCategory(): BelongsTo
+    {
+        return $this->belongsTo(SupplementCategory::class);
+    }
 }

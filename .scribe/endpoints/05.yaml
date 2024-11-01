@@ -26,11 +26,11 @@ endpoints:
         name: food_sub_category_uuid
         description: ''
         required: true
-        example: b01545ac-aa5d-48bd-a1eb-04bfff75e0d3
+        example: d3a220da-b3b8-4462-ac36-35ef0343fd21
         type: string
         custom: []
     cleanUrlParameters:
-      food_sub_category_uuid: b01545ac-aa5d-48bd-a1eb-04bfff75e0d3
+      food_sub_category_uuid: d3a220da-b3b8-4462-ac36-35ef0343fd21
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -39,7 +39,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":1,"uuid":"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3","title":"Dairy","image":"http:\/\/moboeats.test\/storage\/category\/subcategory\/omAUQzbQfLXF8IUvstHLtzysovleYWbiO6OZJuAy.png","description":"dairy description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com","menus":[{"id":3,"uuid":"926fa3ed-3251-44d1-bcc1-3ff12caa480b","attributes":{"title":"Chicken wings4","description":"chicken wings4","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2","preparation_time":0,"average_rating":0},"relationships":{"menuPrices":[{"id":3,"uuid":"a6643f0b-88d8-40f6-a1fb-e0f52ee01d6d","attributes":{"price":15,"description":"standard","status":"2"},"relationships":{"menu":{"id":3,"uuid":"926fa3ed-3251-44d1-bcc1-3ff12caa480b","title":"Chicken wings4"}}}],"restaurant":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","attributes":{"name":"Price-Okuneva","nameShort":"et","email":"stephany76@example.com","about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","aboutShort":"Nihil voluptas ut ut nulla nihil consectetur.","phoneNo":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postalCode":"00100","latitude":"51.5072178","longitude":"-0.1275862","mapLocation":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","average_rating":4,"is_open":true},"relationships":{"orders_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":0,"menus_count":9,"country":"United Kingdom","reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"menus_count":{"id":1,"uuid":"4a9e2363-67d1-4661-84e4-e3f4815ef30b","name":"Price-Okuneva","name_short":"et","email":"stephany76@example.com","user_id":3,"about":"Sit dignissimos repellendus dolorem dolorum tempora. Sunt eos eum quia vitae nostrum.\r\n\r\nAdipisci ad veritatis quae atque autem. Blanditiis quo qui enim amet numquam. Et aut magnam tenetur sed.\r\n\r\nQuasi iure ut et sed optio laudantium praesentium. Velit unde ipsam eos aut praesentium repellat dignissimos. Ea assumenda alias autem autem et ipsa. Ipsa natus atque dicta velit fugit. Deleniti ut iste eos minima.","about_short":"Nihil voluptas ut ut nulla nihil consectetur.","phone_no":"413.890.1105","address":"London, UK","city":"North Hanshaven","state":"NAIROBI","postal_code":"00100","latitude":"51.5072178","longitude":"-0.1275862","map_location":"https:\/\/maps.google.com\/?q=London,+UK&ftid=0x47d8a00baf21de75:0x52963a5addd52a99","url":"https:\/\/lehner.com\/minima-est-cumque-ad-et-et-deleniti-alias.html","logo":"http:\/\/moboeats.test\/storage\/companyLogos\/logos\/ATsTWQbflrWy3wLCnxSm6PE4wE2bA0xFXbIPk13e.png","status":"Approved","created_by":"dale14@erdman.com","updated_by":null,"created_at":"2024-02-17T16:34:45.000000Z","updated_at":"2024-02-25T07:27:08.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":null,"groceries_service_charge_agreement":0,"paypal_email":"milimokings@gmail.com","orders_count":0,"menus_count":9,"country":"United Kingdom","reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]},"reviews":[{"id":1,"user_id":2,"order_id":null,"reviewable_id":1,"reviewable_type":"App\\Models\\Restaurant","rating":4,"review":null,"created_at":"2024-02-27T18:25:16.000000Z","updated_at":"2024-02-27T18:25:16.000000Z"}]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}]}}'
+        content: '{"data":{"id":1,"uuid":"d3a220da-b3b8-4462-ac36-35ef0343fd21","title":"Dairy Products","image":"http:\/\/api.moboeats.test\/storage\/category\/subcategory\/c6GDqoCYdKvvo4d7NcUIP5uCEzwEyatDCvju2yBm.jpg","description":"Dairy  products","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"menus":[]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -82,7 +82,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":1,"uuid":"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3","title":"Dairy","image":"http:\/\/moboeats.test\/storage\/category\/subcategory\/omAUQzbQfLXF8IUvstHLtzysovleYWbiO6OZJuAy.png","description":"dairy description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/sub-categories?page=1","last":"http:\/\/moboeats.test\/api\/v1\/sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/sub-categories","per_page":15,"to":1,"total":1}}'
+        content: '{"data":[],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/sub-categories?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/sub-categories","per_page":15,"to":null,"total":0}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -124,28 +124,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ipsam
+        example: illo
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: et
+        example: culpa
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 17
+        example: 6
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: maxime
+        example: qui
         type: string
         custom: []
       categoryIds:
@@ -159,16 +159,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: viebopm
+        example: f
         type: string
         custom: []
     cleanBodyParameters:
-      title: ipsam
-      description: et
-      status: 17
-      createdBy: maxime
+      title: illo
+      description: culpa
+      status: 6
+      createdBy: qui
       categoryIds: []
-      image: viebopm
+      image: f
     fileParameters: []
     responses: []
     responseFields: []
@@ -200,11 +200,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: doloremque
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: doloremque
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -694,11 +694,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: ex
+        example: suscipit
         type: string
         custom: []
     cleanUrlParameters:
-      id: ex
+      id: suscipit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -706,14 +706,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: sunt
+        example: asperiores
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: atque
+        example: et
         type: string
         custom: []
       status:
@@ -727,7 +727,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: dolores
+        example: voluptas
         type: string
         custom: []
       categoryIds:
@@ -741,15 +741,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: iijcskmunnue
+        example: shu
         type: string
         custom: []
     cleanBodyParameters:
-      title: sunt
-      description: atque
-      updatedBy: dolores
+      title: asperiores
+      description: et
+      updatedBy: voluptas
       categoryIds: []
-      image: iijcskmunnue
+      image: shu
     fileParameters: []
     responses: []
     responseFields: []
@@ -781,11 +781,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: magnam
+        example: quibusdam
         type: string
         custom: []
     cleanUrlParameters:
-      id: magnam
+      id: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -826,7 +826,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":1,"uuid":"b01545ac-aa5d-48bd-a1eb-04bfff75e0d3","title":"Dairy","image":"http:\/\/moboeats.test\/storage\/category\/subcategory\/omAUQzbQfLXF8IUvstHLtzysovleYWbiO6OZJuAy.png","description":"dairy description","status":2,"createdBy":"admin@moboeats.com","updatedBy":"admin@moboeats.com"}],"links":{"first":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories?page=1","last":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories","per_page":15,"to":1,"total":1}}'
+        content: '{"data":[],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-sub-categories","per_page":15,"to":null,"total":0}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -868,28 +868,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: cupiditate
+        example: quaerat
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eaque
+        example: voluptatem
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 13
+        example: 2
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: odit
+        example: aut
         type: string
         custom: []
       categoryIds:
@@ -903,16 +903,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: lrcqvegrbijfhvdsgjyfnk
+        example: hbw
         type: string
         custom: []
     cleanBodyParameters:
-      title: cupiditate
-      description: eaque
-      status: 13
-      createdBy: odit
+      title: quaerat
+      description: voluptatem
+      status: 2
+      createdBy: aut
       categoryIds: []
-      image: lrcqvegrbijfhvdsgjyfnk
+      image: hbw
     fileParameters: []
     responses: []
     responseFields: []
@@ -944,11 +944,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: sequi
+        example: beatae
         type: string
         custom: []
     cleanUrlParameters:
-      id: sequi
+      id: beatae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -957,7 +957,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":null,"uuid":null,"title":null,"image":"http:\/\/moboeats.test\/assets\/category\/default.png","description":null,"status":null,"createdBy":null,"updatedBy":null,"menus":[]}}'
+        content: '{"data":{"id":null,"uuid":null,"title":null,"image":"http:\/\/api.moboeats.test\/assets\/category\/default.png","description":null,"status":null,"createdBy":null,"updatedBy":null,"menus":[]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -996,11 +996,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: quo
+        example: praesentium
         type: string
         custom: []
     cleanUrlParameters:
-      id: quo
+      id: praesentium
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1008,14 +1008,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: officia
+        example: id
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quia
+        example: dolorum
         type: string
         custom: []
       status:
@@ -1029,7 +1029,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: beatae
+        example: sint
         type: string
         custom: []
       categoryIds:
@@ -1043,15 +1043,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: hxvqaafkgmd
+        example: lcdmcrxnbyovjcwt
         type: string
         custom: []
     cleanBodyParameters:
-      title: officia
-      description: quia
-      updatedBy: beatae
+      title: id
+      description: dolorum
+      updatedBy: sint
       categoryIds: []
-      image: hxvqaafkgmd
+      image: lcdmcrxnbyovjcwt
     fileParameters: []
     responses: []
     responseFields: []
@@ -1083,11 +1083,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: voluptatem
+        example: tempore
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptatem
+      id: tempore
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1168,28 +1168,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: culpa
+        example: atque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: voluptas
+        example: esse
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 10
+        example: 20
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: veniam
+        example: voluptatem
         type: string
         custom: []
       categoryIds:
@@ -1203,16 +1203,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: swaaz
+        example: ycsylxouoefiddes
         type: string
         custom: []
     cleanBodyParameters:
-      title: culpa
-      description: voluptas
-      status: 10
-      createdBy: veniam
+      title: atque
+      description: esse
+      status: 20
+      createdBy: voluptatem
       categoryIds: []
-      image: swaaz
+      image: ycsylxouoefiddes
     fileParameters: []
     responses: []
     responseFields: []
@@ -1244,11 +1244,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: explicabo
+        example: quasi
         type: string
         custom: []
     cleanUrlParameters:
-      id: explicabo
+      id: quasi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1294,11 +1294,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: quidem
+        example: nesciunt
         type: string
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: nesciunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1306,14 +1306,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: delectus
+        example: sed
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: porro
+        example: voluptatem
         type: string
         custom: []
       status:
@@ -1327,7 +1327,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: sit
+        example: suscipit
         type: string
         custom: []
       categoryIds:
@@ -1341,15 +1341,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: iccfwktxxcjhnmtlgd
+        example: alebzjamizvomlanwtywv
         type: string
         custom: []
     cleanBodyParameters:
-      title: delectus
-      description: porro
-      updatedBy: sit
+      title: sed
+      description: voluptatem
+      updatedBy: suscipit
       categoryIds: []
-      image: iccfwktxxcjhnmtlgd
+      image: alebzjamizvomlanwtywv
     fileParameters: []
     responses: []
     responseFields: []
@@ -1381,11 +1381,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: enim
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: enim
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

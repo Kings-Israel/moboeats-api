@@ -18,6 +18,7 @@ class SupplementResource extends JsonResource
             'id' => $this->id,
             'supplier' => new SupplementSupplierResource($this->whenLoaded('supplier')),
             'name' => $this->name,
+            'supplement_category' => $this->whenLoaded('supplementCategory'),
             'currency' => config('currency.Kenya'),
             'price' => $this->price_per_quantity,
             'measuring_unit' => $this->measuring_unit,

@@ -80,28 +80,28 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: impedit
+        example: aliquid
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 1
+        example: 19
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: totam
+        example: dicta
         type: string
         custom: []
     cleanBodyParameters:
       price: 1
-      description: impedit
-      status: 1
-      menu_id: totam
+      description: aliquid
+      status: 19
+      menu_id: dicta
     fileParameters: []
     responses: []
     responseFields: []
@@ -133,11 +133,11 @@ endpoints:
         name: id
         description: 'The ID of the menu price.'
         required: true
-        example: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+        example: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
         type: string
         custom: []
     cleanUrlParameters:
-      id: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+      id: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -183,11 +183,11 @@ endpoints:
         name: id
         description: 'The ID of the menu price.'
         required: true
-        example: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+        example: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
         type: string
         custom: []
     cleanUrlParameters:
-      id: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+      id: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -195,14 +195,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: sit
+        example: quia
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: quia
+        example: odio
         type: string
         custom: []
       price:
@@ -213,8 +213,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: sit
-      status: quia
+      description: quia
+      status: odio
       price: 0
     fileParameters: []
     responses: []
@@ -247,11 +247,11 @@ endpoints:
         name: id
         description: 'The ID of the menu price.'
         required: true
-        example: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+        example: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
         type: string
         custom: []
     cleanUrlParameters:
-      id: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+      id: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -287,11 +287,11 @@ endpoints:
         name: id
         description: 'The ID of the menu price.'
         required: true
-        example: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+        example: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
         type: string
         custom: []
     cleanUrlParameters:
-      id: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+      id: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -299,27 +299,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: harum
+        example: illo
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: occaecati
+        example: consequatur
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 1
+        example: 0
         type: number
         custom: []
     cleanBodyParameters:
-      description: harum
-      status: occaecati
-      price: 1
+      description: illo
+      status: consequatur
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []
@@ -351,11 +351,11 @@ endpoints:
         name: id
         description: 'The ID of the menu price.'
         required: true
-        example: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+        example: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
         type: string
         custom: []
     cleanUrlParameters:
-      id: 41bc46ea-b95f-448f-8d1c-18f20f91ee7d
+      id: 1a6f5f86-97d3-47b2-9f88-74391f14a8fc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
