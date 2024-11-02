@@ -22,7 +22,6 @@ class MarketingController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => ['required'],
             'poster' => ['required', 'max:10000', 'mimes:png,jpg'],
         ]);
 
@@ -31,7 +30,7 @@ class MarketingController extends Controller
         }
 
         AdvertPoster::create([
-            'title' => $request->title,
+            'title' => $request->has('title') ? $request->title : NULL,
             'description' => $request->has('description') && !empty($request->description) ? $request->description : NULL,
             'poster' => pathinfo($request->poster->store('poster', 'ad'), PATHINFO_BASENAME),
             'link' => $request->has('link') && !empty($request->link) ? $request->link : NULL
@@ -43,7 +42,6 @@ class MarketingController extends Controller
     public function update(Request $request, AdvertPoster $advert_poster)
     {
         $validator = Validator::make($request->all(), [
-            'title' => ['required'],
             'poster' => ['nullable', 'max:10000', 'mimes:png,jpg'],
         ]);
 
@@ -52,7 +50,7 @@ class MarketingController extends Controller
         }
 
         $advert_poster->update([
-            'title' => $request->title,
+            'title' => $request->has('title') ? $request->title : NULL,
             'description' => $request->has('description') && !empty($request->description) ? $request->description : $advert_poster->description,
             'link' => $request->has('link') && !empty($request->link) ? $request->link : $advert_poster->link,
         ]);
