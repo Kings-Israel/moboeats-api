@@ -32,6 +32,8 @@ use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Jobs\SendSMS;
+use App\Models\Restaurant;
+use App\Notifications\UpdatedRestaurantStatus;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -285,22 +287,10 @@ Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class,
 Route::post('/v1/order/tip/payment/create-tip-paypal-order', [PaymentController::class, 'createTipPaypalOrder']);
 Route::post('/v1/order/tip/payment/capture-tip-paypal-order', [PaymentController::class, 'captureTipPaypalPayment']);
 
-// Route::group(['prefix' => 'v1/customer', 'middleware' => 'auth:sanctum'], function() {
-//     // Define customer-specific routes here
-// });
-// Route::group(['prefix' => 'v1/driver', 'middleware' => 'auth:sanctum'], function() {
-//     // Define driver-specific routes here
-// });
-// Route::group(['prefix' => 'v1/admin', 'middleware' => 'auth:sanctum'], function() {
-//     // Define admin-specific routes here
-// });
-
-Route::post('/sms/test', function(Request $request) {
-    SendSMS::dispatchAfterResponse($request->phone_number, 'Test');
-});
-
-Route::post('/sms/test/callback', function(Request $request) {
-    info($request->all());
+Route::get('/email/test/{id}', function($id) {
+    // SendSMS::dispatchAfterResponse($request->phone_number, 'Test');
+    $restaurant = Restaurant::find($id);
+    $restaurant->notify(new UpdatedRestaurantStatus($restaurant->status, ''));
 });
 
 require __DIR__.'/admin.php';

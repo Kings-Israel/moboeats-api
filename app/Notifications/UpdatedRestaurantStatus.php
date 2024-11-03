@@ -39,7 +39,7 @@ class UpdatedRestaurantStatus extends Notification
                     ->line('Hello, '.$notifiable->user->name)
                     ->line('This email is to notify you that the status of the restaurant named above has been updated')
                     ->action('Login Here to view', url('https://partner.moboeats.co.uk'))
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for partnering with us!');
     }
 
     /**
