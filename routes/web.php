@@ -21,20 +21,20 @@ use App\Http\Controllers\Api\V1\PaymentController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-Route::get('/partners', function () {
-    return view('partners');
-})->name('partners');
-Route::get('/contact-us', function () {
-    return view('contact-us');
-})->name('contact-us');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('about');
+// Route::get('/partners', function () {
+//     return view('partners');
+// })->name('partners');
+// Route::get('/contact-us', function () {
+//     return view('contact-us');
+// })->name('contact-us');
 
-Route::post('/contact-us/submit', [HomeController::class, 'contactSubmit'])->name('submit.contact-us');
+// Route::post('/contact-us/submit', [HomeController::class, 'contactSubmit'])->name('submit.contact-us');
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
 
