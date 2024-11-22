@@ -293,4 +293,8 @@ Route::get('/email/test/{id}', function($id) {
     $restaurant->notify(new UpdatedRestaurantStatus($restaurant->status, ''));
 });
 
+Route::post('/sms/test', function(Request $request) {
+    SendSMS::dispatch($request->phone_number, $request->text, 'KE');
+});
+
 require __DIR__.'/admin.php';

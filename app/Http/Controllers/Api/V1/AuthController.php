@@ -420,7 +420,13 @@ class AuthController extends Controller
                 'code' => $code,
             ]);
 
-            SendSMS::dispatchAfterResponse($user->phone_number, 'Your verification code is: '.$code);
+            if (str_starts_with($user->phone_number, '+254') || str_starts_with($user->phone_number, '254')) {
+                $country = 'KE';
+            } else {
+                $country = 'GB';
+            }
+
+            SendSMS::dispatchAfterResponse($user->phone_number, 'Your verification code is: '.$code, $country);
 
             DB::commit();
 
@@ -480,7 +486,7 @@ class AuthController extends Controller
                 return $this->success(['Rider profile awaiting approval'], 403);
             }
         }
-        
+
         $token = $user->createToken($request->userType, ['create', 'read', 'update', 'delete']);
 
         $user->update(['role_id' => $request->userType]);

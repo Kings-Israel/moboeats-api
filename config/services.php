@@ -51,6 +51,14 @@ return [
         'API_KEY' => env('VOODOO_API_KEY'),
     ],
 
+    'bongasms' => [
+        'BONGA_BASE_URL' => env('BONGA_BASE_URL', 'http://167.172.14.50:4002/v1/send-sms'),
+        'BONGA_API_KEY' => env('BONGA_API_KEY'),
+        'BONGA_API_SECRET' => env('BONGA_API_SECRET'),
+        'BONGA_CLIENT_ID' => env('BONGA_CLIENT_ID'),
+        'BONGA_SERVICE_ID' => env('BONGA_SERVICE_ID'),
+    ],
+
     'stripe' => [
         // 'LIVE_KEY' => env('STRIPE_LIVE_KEY'),
         // 'LIVE_SECRET_KEY' => env('STRIPE_LIVE_SECRET_KEY'),

@@ -17,7 +17,7 @@ class SendSMS implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public string $receiver, public string $message)
+    public function __construct(public string $receiver, public string $message, public string $country)
     {
         //
     }
@@ -27,29 +27,51 @@ class SendSMS implements ShouldQueue
      */
     public function handle(): void
     {
-        $api_key = config('services.voodoo.API_KEY');
+        if ($this->country == 'GB') {
+            $api_key = config('services.voodoo.API_KEY');
 
-        $msg = json_encode(
-            [
-                'to' => $this->receiver,
-                'from' => "Mobo Eats",
-                'msg' => $this->message,
-            ]
-        );
+            $msg = json_encode(
+                [
+                    'to' => $this->receiver,
+                    'from' => "Mobo Eats",
+                    'msg' => $this->message,
+                ]
+            );
 
-        $ch = curl_init('https://api.voodoosms.com/sendsms');
+            $ch = curl_init('https://api.voodoosms.com/sendsms');
 
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: ' . $api_key
-        ]);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $msg);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: ' . $api_key
+            ]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $msg);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
+            $response = curl_exec($ch);
+
+            curl_close($ch);
+        } else {
+            $msg =
+                [
+                    'apiClientID' => config('services.bongasms.BONGA_CLIENT_ID'),
+                    'key' => config('services.bongasms.BONGA_API_KEY'),
+                    'secret' => config('services.bongasms.BONGA_API_SECRET'),
+                    'MSISDN' => $this->receiver,
+                    'txtMessage' => $this->message,
+                    'serviceID' => config('services.bongasms.BONGA_SERVICE_ID')
+                ];
+
+            // $ch = curl_init(config('services.bongasms.BONGA_BASE_URL'));
+
+            // curl_setopt($ch, CURLOPT_POST, true);
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, $msg);
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // $response = curl_exec($ch);
+
+            $response = Http::asForm()->post(config('services.bongasms.BONGA_BASE_URL'), $msg);
+        }
 
         info($response);
-
-        curl_close($ch);
     }
 }
