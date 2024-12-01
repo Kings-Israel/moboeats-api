@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\OrphanageController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1/admin'], function() {
@@ -100,6 +101,13 @@ Route::group(['prefix' => 'v1/admin'], function() {
 
         Route::get('/admins', [AdminController::class, 'admins']);
         Route::post('/admins/update', [AdminController::class, 'assignRole']);
+
+        Route::group(['prefix' => 'orphanages', 'as' => 'orphanages.'], function () {
+            Route::get('/', [OrphanageController::class, 'index'])->name('index');
+            Route::post('/store', [OrphanageController::class, 'store'])->name('store');
+            Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show');
+            Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update');
+        });
     });
 });
 

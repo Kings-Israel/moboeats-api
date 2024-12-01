@@ -110,6 +110,14 @@ return [
             'url' => env('APP_URL').'/storage/supplements',
             'visibility' => 'public',
             'throw' => false,
+        ],
+
+        'orphanages' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/orphanages'),
+            'url' => env('APP_URL').'/storage/orphanages',
+            'visibility' => 'public',
+            'throw' => false,
         ]
 
     ],

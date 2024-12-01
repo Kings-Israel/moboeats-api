@@ -35,7 +35,7 @@ class UpdatedRestaurantStatus extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Updated Status for Restaurant '.$notifiable->name)
+                    ->subject($notifiable->name . 'has been updated.')
                     ->line('Hello, '.$notifiable->user->name)
                     ->line('This email is to notify you that the status of the restaurant named above has been updated')
                     ->action('Login Here to view', url('https://partner.moboeats.co.uk'))

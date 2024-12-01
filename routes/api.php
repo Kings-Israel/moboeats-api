@@ -28,6 +28,7 @@ use App\Http\Controllers\Api\V1\SupplementController;
 use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\FrequentlyAskedQuestionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrphanageController;
 use App\Http\Middleware\HasRestaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -279,6 +280,13 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
             Route::get('/{discount}/delete', [DiscountController::class, 'destroy']);
         });
     });
+});
+
+Route::group(['prefix' => 'v1/orphanages', 'as' => 'orphanages.'], function () {
+    Route::get('/', [OrphanageController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    Route::post('/store', [OrphanageController::class, 'store'])->name('store')->middleware('auth:sanctum');
+    Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show')->middleware('auth:sanctum');
+    Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update')->middleware('auth:sanctum');
 });
 
 Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
