@@ -64,7 +64,11 @@ class OrphanageController extends Controller
             'created_by' => auth()->check() ? auth()->id() : NULL
         ]);
 
-        return $this->success($orphanage);
+        if ($request->wantsJson()) {
+            return $this->success($orphanage);
+        }
+
+        return view('orphanage-added', ['orpanage' => $orphanage]);
     }
 
     /**

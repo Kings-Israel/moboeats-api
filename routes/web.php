@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\OrphanageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,12 @@ Route::get('/v1/orderer/tip/payment/{order_id}/{amount}', [PaymentController::cl
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
 });
+
+Route::get('/orphanages/create', function () {
+    return view('add-orphanage');
+})->name('web.orphanage.create');
+
+Route::post('/orphanage/store', [OrphanageController::class, 'store'])->name('web.orphanage.store');
 
 Route::get('/qr-code/{string?}', [AdminController::class, 'qrCode']);
 

@@ -33,7 +33,8 @@ return [
 
     'map' => [
         'key' => env('MAPS_KEY'),
-        'alt_key' => env('MAPS_KEY_ALT')
+        'alt_key' => env('MAPS_KEY_ALT'),
+        'url' => env('MAPS_URL')
     ],
 
     'firebase' => [
