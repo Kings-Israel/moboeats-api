@@ -1373,7 +1373,14 @@ class AdminController extends Controller
     {
         $roles = Role::with('permissions')->whereNotIn('name', ['admin', 'orderer', 'restaurant', 'restaurant employee', 'rider'])->paginate($request->query('per_page'));
 
-        $permissions = PermissionGroup::where('type', 'admin')->with('permissions')->get();
+        // Make sure logged in user only sees the permission they have
+        $user_permissions = auth()->user()->allPermissions()->pluck('name');
+
+        $permissions = PermissionGroup::where('type', 'admin')
+        ->with(['permissions' => function ($query) use ($user_permissions) {
+            $query->whereIn('name', $user_permissions);
+        }])
+        ->get();
 
         return $this->success(['roles' => $roles, 'permissions' => $permissions]);
     }

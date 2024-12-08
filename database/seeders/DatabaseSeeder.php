@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionSeeder::class);
         $this->call(RolesSeeder::class);
+        $this->call(PermissionGroupSeeder::class);
+        $this->call(PermissionGroupingSeeder::class);
         $this->call(FoodCommonCategorySeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(SeatingAreaSeeder::class);

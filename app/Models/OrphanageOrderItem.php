@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orphanage extends Model
+class OrphanageOrderItem extends Model
 {
     use HasFactory;
 
@@ -17,10 +17,10 @@ class Orphanage extends Model
     protected $guarded = [];
 
     /**
-     * Get all of the order for the Orphanage
+     * Get the orphanageOrder that owns the OrphanageOrderItem
      */
-    public function order(): HasMany
+    public function orphanageOrder(): BelongsTo
     {
-        return $this->hasMany(OrphanageOrder::class);
+        return $this->belongsTo(OrphanageOrder::class);
     }
 }

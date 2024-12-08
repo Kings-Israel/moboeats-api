@@ -150,6 +150,26 @@ class PermissionSeeder extends Seeder
                 "name" => "view messages",
                 "display_name" => "View Messages",
             ],
+            [
+                'name' => 'create orphanages',
+                'display_name' => "Create Orphanages",
+            ],
+            [
+                "name" => 'view orphanages',
+                "display_name" => "View Orphanages",
+            ],
+            [
+                "name" => 'edit orphanages',
+                "display_name" => "Edit Orphanages",
+            ],
+            [
+                "name" => 'view orphanages orders',
+                "display_name" => "View Orphanages Orders",
+            ],
+            [
+                "name" => 'edit orphanages orders',
+                "display_name" => "Edit Orphanages Orders"
+            ]
         ];
 
         collect($permissions)->each(function ($permission) {

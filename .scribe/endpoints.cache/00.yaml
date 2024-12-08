@@ -115,20 +115,20 @@ endpoints:
         name: question
         description: ''
         required: true
-        example: excepturi
+        example: sequi
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: dolores
+        example: laboriosam
         type: string
         custom: []
     cleanBodyParameters:
       section: partner
-      question: excepturi
-      answer: dolores
+      question: sequi
+      answer: laboriosam
     fileParameters: []
     responses: []
     responseFields: []
@@ -171,27 +171,27 @@ endpoints:
         name: section
         description: 'Must be one of <code>general</code>, <code>customer</code>, <code>partner</code>, or <code>rider</code>.'
         required: true
-        example: rider
+        example: general
         type: string
         custom: []
       question:
         name: question
         description: ''
         required: true
-        example: voluptas
+        example: vitae
         type: string
         custom: []
       answer:
         name: answer
         description: ''
         required: true
-        example: velit
+        example: sint
         type: string
         custom: []
     cleanBodyParameters:
-      section: rider
-      question: voluptas
-      answer: velit
+      section: general
+      question: vitae
+      answer: sint
     fileParameters: []
     responses: []
     responseFields: []
@@ -221,11 +221,11 @@ endpoints:
         name: id
         description: 'The ID of the frequently asked question.'
         required: true
-        example: 15
+        example: 18
         type: integer
         custom: []
     cleanUrlParameters:
-      id: 15
+      id: 18
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -300,35 +300,35 @@ endpoints:
         name: lat
         description: ''
         required: true
-        example: numquam
+        example: corporis
         type: string
         custom: []
       long:
         name: long
         description: ''
         required: true
-        example: laboriosam
+        example: asperiores
         type: string
         custom: []
       latitude:
         name: latitude
         description: 'The latitude'
         required: true
-        example: eaque
+        example: ea
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'The longitude'
         required: true
-        example: laboriosam
+        example: consequatur
         type: string
         custom: []
     cleanUrlParameters:
-      lat: numquam
-      long: laboriosam
-      latitude: eaque
-      longitude: laboriosam
+      lat: corporis
+      long: asperiores
+      latitude: ea
+      longitude: consequatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -378,67 +378,67 @@ endpoints:
         name: origin_lat
         description: ''
         required: true
-        example: occaecati
+        example: adipisci
         type: string
         custom: []
       origin_long:
         name: origin_long
         description: ''
         required: true
-        example: fugiat
+        example: expedita
         type: string
         custom: []
       dest_lat:
         name: dest_lat
         description: ''
         required: true
-        example: nostrum
+        example: perferendis
         type: string
         custom: []
       dest_long:
         name: dest_long
         description: ''
         required: true
-        example: nostrum
+        example: vitae
         type: string
         custom: []
       origin_latitude:
         name: origin_latitude
         description: 'string The origin latitude'
         required: true
-        example: nemo
+        example: ab
         type: string
         custom: []
       origin_longitude:
         name: origin_longitude
         description: 'string The origin longitude'
         required: true
-        example: atque
+        example: ad
         type: string
         custom: []
       dest_latitude:
         name: dest_latitude
         description: 'string The destination latitude'
         required: true
-        example: quae
+        example: non
         type: string
         custom: []
       dest_longitude:
         name: dest_longitude
         description: 'string The destination longitude'
         required: true
-        example: quas
+        example: aperiam
         type: string
         custom: []
     cleanUrlParameters:
-      origin_lat: occaecati
-      origin_long: fugiat
-      dest_lat: nostrum
-      dest_long: nostrum
-      origin_latitude: nemo
-      origin_longitude: atque
-      dest_latitude: quae
-      dest_longitude: quas
+      origin_lat: adipisci
+      origin_long: expedita
+      dest_lat: perferendis
+      dest_long: vitae
+      origin_latitude: ab
+      origin_longitude: ad
+      dest_latitude: non
+      dest_longitude: aperiam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -505,11 +505,11 @@ endpoints:
         name: text
         description: 'The text to be autocompleted'
         required: true
-        example: qui
+        example: pariatur
         type: string
         custom: []
     cleanUrlParameters:
-      text: qui
+      text: pariatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -520,219 +520,8 @@ endpoints:
         status: 200
         content: |-
           {
-             "predictions" : 
-             [
-                {
-                   "description" : "Quito, Ecuador",
-                   "matched_substrings" : 
-                   [
-                      {
-                         "length" : 3,
-                         "offset" : 0
-                      }
-                   ],
-                   "place_id" : "ChIJn3xCAkCa1ZERclXvWOGRuUQ",
-                   "reference" : "ChIJn3xCAkCa1ZERclXvWOGRuUQ",
-                   "structured_formatting" : 
-                   {
-                      "main_text" : "Quito",
-                      "main_text_matched_substrings" : 
-                      [
-                         {
-                            "length" : 3,
-                            "offset" : 0
-                         }
-                      ],
-                      "secondary_text" : "Ecuador"
-                   },
-                   "terms" : 
-                   [
-                      {
-                         "offset" : 0,
-                         "value" : "Quito"
-                      },
-                      {
-                         "offset" : 7,
-                         "value" : "Ecuador"
-                      }
-                   ],
-                   "types" : 
-                   [
-                      "locality",
-                      "geocode",
-                      "political"
-                   ]
-                },
-                {
-                   "description" : "Quimper, France",
-                   "matched_substrings" : 
-                   [
-                      {
-                         "length" : 3,
-                         "offset" : 0
-                      }
-                   ],
-                   "place_id" : "ChIJr64TLpfVEEgR0M2iyu-FLdM",
-                   "reference" : "ChIJr64TLpfVEEgR0M2iyu-FLdM",
-                   "structured_formatting" : 
-                   {
-                      "main_text" : "Quimper",
-                      "main_text_matched_substrings" : 
-                      [
-                         {
-                            "length" : 3,
-                            "offset" : 0
-                         }
-                      ],
-                      "secondary_text" : "France"
-                   },
-                   "terms" : 
-                   [
-                      {
-                         "offset" : 0,
-                         "value" : "Quimper"
-                      },
-                      {
-                         "offset" : 9,
-                         "value" : "France"
-                      }
-                   ],
-                   "types" : 
-                   [
-                      "geocode",
-                      "locality",
-                      "political"
-                   ]
-                },
-                {
-                   "description" : "Quilmes, Buenos Aires Province, Argentina",
-                   "matched_substrings" : 
-                   [
-                      {
-                         "length" : 3,
-                         "offset" : 0
-                      }
-                   ],
-                   "place_id" : "ChIJd1df5Dguo5URT1I0E8Lahmo",
-                   "reference" : "ChIJd1df5Dguo5URT1I0E8Lahmo",
-                   "structured_formatting" : 
-                   {
-                      "main_text" : "Quilmes",
-                      "main_text_matched_substrings" : 
-                      [
-                         {
-                            "length" : 3,
-                            "offset" : 0
-                         }
-                      ],
-                      "secondary_text" : "Buenos Aires Province, Argentina"
-                   },
-                   "terms" : 
-                   [
-                      {
-                         "offset" : 0,
-                         "value" : "Quilmes"
-                      },
-                      {
-                         "offset" : 9,
-                         "value" : "Buenos Aires Province"
-                      },
-                      {
-                         "offset" : 32,
-                         "value" : "Argentina"
-                      }
-                   ],
-                   "types" : 
-                   [
-                      "locality",
-                      "geocode",
-                      "political"
-                   ]
-                },
-                {
-                   "description" : "Quintana Roo, Mexico",
-                   "matched_substrings" : 
-                   [
-                      {
-                         "length" : 3,
-                         "offset" : 0
-                      }
-                   ],
-                   "place_id" : "ChIJlSbD6vD8T48RnI1MSCrF8MQ",
-                   "reference" : "ChIJlSbD6vD8T48RnI1MSCrF8MQ",
-                   "structured_formatting" : 
-                   {
-                      "main_text" : "Quintana Roo",
-                      "main_text_matched_substrings" : 
-                      [
-                         {
-                            "length" : 3,
-                            "offset" : 0
-                         }
-                      ],
-                      "secondary_text" : "Mexico"
-                   },
-                   "terms" : 
-                   [
-                      {
-                         "offset" : 0,
-                         "value" : "Quintana Roo"
-                      },
-                      {
-                         "offset" : 14,
-                         "value" : "Mexico"
-                      }
-                   ],
-                   "types" : 
-                   [
-                      "geocode",
-                      "administrative_area_level_1",
-                      "political"
-                   ]
-                },
-                {
-                   "description" : "Quiberon, France",
-                   "matched_substrings" : 
-                   [
-                      {
-                         "length" : 3,
-                         "offset" : 0
-                      }
-                   ],
-                   "place_id" : "ChIJ8ZT-yvhzEEgRgL7iNs2lDAQ",
-                   "reference" : "ChIJ8ZT-yvhzEEgRgL7iNs2lDAQ",
-                   "structured_formatting" : 
-                   {
-                      "main_text" : "Quiberon",
-                      "main_text_matched_substrings" : 
-                      [
-                         {
-                            "length" : 3,
-                            "offset" : 0
-                         }
-                      ],
-                      "secondary_text" : "France"
-                   },
-                   "terms" : 
-                   [
-                      {
-                         "offset" : 0,
-                         "value" : "Quiberon"
-                      },
-                      {
-                         "offset" : 10,
-                         "value" : "France"
-                      }
-                   ],
-                   "types" : 
-                   [
-                      "locality",
-                      "geocode",
-                      "political"
-                   ]
-                }
-             ],
-             "status" : "OK"
+             "predictions" : [],
+             "status" : "ZERO_RESULTS"
           }
         headers:
           content-type: 'text/html; charset=UTF-8'
@@ -769,11 +558,11 @@ endpoints:
         name: place_id
         description: 'The Place ID to retrieve'
         required: true
-        example: repellat
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      place_id: repellat
+      place_id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -862,11 +651,11 @@ endpoints:
         name: notification
         description: 'The notification.'
         required: true
-        example: vero
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      notification: vero
+      notification: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -984,11 +773,11 @@ endpoints:
         name: id
         description: 'The Id of the conversation'
         required: false
-        example: commodi
+        example: veniam
         type: string
         custom: []
     cleanUrlParameters:
-      id: commodi
+      id: veniam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1039,19 +828,19 @@ endpoints:
         name: receiver_id
         description: "The receiver's id"
         required: true
-        example: 9
+        example: 6
         type: integer
         custom: []
       message:
         name: message
         description: 'The message to send'
         required: true
-        example: quis
+        example: quia
         type: string
         custom: []
     cleanBodyParameters:
-      receiver_id: 9
-      message: quis
+      receiver_id: 6
+      message: quia
     fileParameters: []
     responses:
       -
@@ -1087,11 +876,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: sit
+        example: quibusdam
         type: string
         custom: []
     cleanUrlParameters:
-      id: sit
+      id: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1099,11 +888,11 @@ endpoints:
         name: message
         description: ''
         required: true
-        example: consequatur
+        example: eos
         type: string
         custom: []
     cleanBodyParameters:
-      message: consequatur
+      message: eos
     fileParameters: []
     responses:
       -
@@ -1153,11 +942,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: officia
+        example: a
         type: string
         custom: []
     cleanUrlParameters:
-      id: officia
+      id: a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1211,11 +1000,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: ea
+        example: molestiae
         type: string
         custom: []
     cleanUrlParameters:
-      id: ea
+      id: molestiae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1269,11 +1058,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation.'
         required: true
-        example: est
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: est
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1363,11 +1152,11 @@ endpoints:
         name: id
         description: 'The id of the conversation'
         required: false
-        example: sed
+        example: eaque
         type: string
         custom: []
     cleanUrlParameters:
-      id: sed
+      id: eaque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1421,11 +1210,11 @@ endpoints:
         name: id
         description: 'The ID of the conversation'
         required: false
-        example: aut
+        example: molestias
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: molestias
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1601,7 +1390,7 @@ endpoints:
         name: days
         description: ''
         required: true
-        example: ipsum
+        example: molestiae
         type: string
         custom: []
       opening_times:
@@ -1609,7 +1398,7 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '05:33'
+          - '12:58'
         type: 'string[]'
         custom: []
       closing_times:
@@ -1617,15 +1406,15 @@ endpoints:
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: true
         example:
-          - '05:33'
+          - '12:58'
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      days: ipsum
+      days: molestiae
       opening_times:
-        - '05:33'
+        - '12:58'
       closing_times:
-        - '05:33'
+        - '12:58'
     fileParameters: []
     responses: []
     responseFields: []
@@ -1715,7 +1504,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - ut
+          - veniam
         type: 'string[]'
         custom: []
       files:
@@ -1727,7 +1516,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - ut
+        - veniam
     fileParameters: []
     responses: []
     responseFields: []
@@ -1770,7 +1559,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - beatae
+          - dolorem
         type: 'string[]'
         custom: []
       files:
@@ -1782,7 +1571,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       names:
-        - beatae
+        - dolorem
     fileParameters: []
     responses: []
     responseFields: []
@@ -1812,11 +1601,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: minima
+        example: reiciendis
         type: string
         custom: []
     cleanUrlParameters:
-      id: minima
+      id: reiciendis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1941,42 +1730,42 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: velit
+        example: sint
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: true
-        example: nostrum
+        example: corporis
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-11-01T05:33:36'
+        example: '2024-12-08T12:58:11'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-11-01T05:33:36'
+        example: '2024-12-08T12:58:11'
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: percentage
+        example: amount
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 13
+        example: 20
         type: integer
         custom: []
       status:
@@ -1987,12 +1776,12 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: velit
-      code: nostrum
-      start_date: '2024-11-01T05:33:36'
-      end_date: '2024-11-01T05:33:36'
-      type: percentage
-      value: 13
+      restaurant_ids: sint
+      code: corporis
+      start_date: '2024-12-08T12:58:11'
+      end_date: '2024-12-08T12:58:11'
+      type: amount
+      value: 20
       status: inactive
     fileParameters: []
     responses: []
@@ -2023,11 +1812,11 @@ endpoints:
         name: promo_code_id
         description: 'The ID of the promo code.'
         required: true
-        example: 10
+        example: 9
         type: integer
         custom: []
     cleanUrlParameters:
-      promo_code_id: 10
+      promo_code_id: 9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2035,21 +1824,21 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: quia
+        example: ut
         type: string
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-11-01T05:33:36'
+        example: '2024-12-08T12:58:11'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-11-01T05:33:36'
+        example: '2024-12-08T12:58:11'
         type: string
         custom: []
       type:
@@ -2063,23 +1852,23 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 14
+        example: 10
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>active</code> or <code>inactive</code>.'
         required: true
-        example: inactive
+        example: active
         type: string
         custom: []
     cleanBodyParameters:
-      code: quia
-      start_date: '2024-11-01T05:33:36'
-      end_date: '2024-11-01T05:33:36'
+      code: ut
+      start_date: '2024-12-08T12:58:11'
+      end_date: '2024-12-08T12:58:11'
       type: percentage
-      value: 14
-      status: inactive
+      value: 10
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -2152,27 +1941,27 @@ endpoints:
         name: menu_ids
         description: ''
         required: true
-        example: magni
+        example: quas
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>amount</code> or <code>percentage</code>.'
         required: true
-        example: amount
+        example: percentage
         type: string
         custom: []
       value:
         name: value
         description: ''
         required: true
-        example: 12
+        example: 2
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_ids: magni
-      type: amount
-      value: 12
+      menu_ids: quas
+      type: percentage
+      value: 2
     fileParameters: []
     responses: []
     responseFields: []
@@ -2202,11 +1991,11 @@ endpoints:
         name: discount_id
         description: 'The ID of the discount.'
         required: true
-        example: 5
+        example: 18
         type: integer
         custom: []
     cleanUrlParameters:
-      discount_id: 5
+      discount_id: 18
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2221,12 +2010,12 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 12
+        example: 9
         type: integer
         custom: []
     cleanBodyParameters:
       type: amount
-      value: 12
+      value: 9
     fileParameters: []
     responses: []
     responseFields: []
@@ -2256,11 +2045,50 @@ endpoints:
         name: discount_id
         description: 'The ID of the discount.'
         required: true
-        example: 3
+        example: 12
         type: integer
         custom: []
     cleanUrlParameters:
-      discount_id: 3
+      discount_id: 12
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/orphanages
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listing of the orphanages.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2285,7 +2113,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/sms/test
+    uri: api/v1/orphanages/store
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -2302,8 +2130,85 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: est
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'This field is required when <code>phone_number</code> is not present.  Must be a valid email address.'
+        required: false
+        example: bernadine40@example.org
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: 'This field is required when <code>email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_name:
+        name: contact_name
+        description: ''
+        required: true
+        example: ratione
+        type: string
+        custom: []
+      contact_email:
+        name: contact_email
+        description: 'This field is required when <code>contact_phone_number</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone_number:
+        name: contact_phone_number
+        description: 'This field is required when <code>contact_email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      location:
+        name: location
+        description: ''
+        required: true
+        example: quibusdam
+        type: string
+        custom: []
+      location_lat:
+        name: location_lat
+        description: ''
+        required: true
+        example: veniam
+        type: string
+        custom: []
+      location_long:
+        name: location_long
+        description: ''
+        required: true
+        example: dolor
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: 'Must not be greater than 5000 characters.'
+        required: true
+        example: drwmmlxqcawuur
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: est
+      email: bernadine40@example.org
+      contact_name: ratione
+      location: quibusdam
+      location_lat: veniam
+      location_long: dolor
+      logo: drwmmlxqcawuur
     fileParameters: []
     responses: []
     responseFields: []
@@ -2314,8 +2219,666 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - GET
+    uri: 'api/v1/orphanages/{id}/show'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show an Orphanage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orphanage.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/orphanages/{id}/update'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orphanage.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: nostrum
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'This field is required when <code>phone_number</code> is not present.  Must be a valid email address.'
+        required: false
+        example: schultz.jerome@example.org
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: 'This field is required when <code>email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_email:
+        name: contact_email
+        description: 'This field is required when <code>contact_phone_number</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone_number:
+        name: contact_phone_number
+        description: 'This field is required when <code>contact_email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      location:
+        name: location
+        description: ''
+        required: true
+        example: quo
+        type: string
+        custom: []
+      location_lat:
+        name: location_lat
+        description: ''
+        required: true
+        example: dolore
+        type: string
+        custom: []
+      location_long:
+        name: location_long
+        description: ''
+        required: true
+        example: quo
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: nostrum
+      email: schultz.jerome@example.org
+      location: quo
+      location_lat: dolore
+      location_long: quo
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/email/test/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the test.'
+        required: true
+        example: et
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "Call to a member function notify() on null",
+              "exception": "Error",
+              "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\routes\\api.php",
+              "line": 301,
+              "trace": [
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\CallableDispatcher.php",
+                      "line": 40,
+                      "function": "{closure}",
+                      "class": "Illuminate\\Routing\\RouteFileRegistrar",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 237,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\CallableDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 208,
+                      "function": "runCallable",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 798,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 141,
+                      "function": "Illuminate\\Routing\\{closure}",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
+                      "line": 50,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 152,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 118,
+                      "function": "handleRequest",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 80,
+                      "function": "handleRequestUsingNamedLimiter",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php",
+                      "line": 25,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 141,
+                      "function": "Laravel\\Sanctum\\Http\\Middleware\\{closure}",
+                      "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 116,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php",
+                      "line": 24,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 116,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 797,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 776,
+                      "function": "runRouteWithinStack",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 740,
+                      "function": "runRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 729,
+                      "function": "dispatchToRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 200,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 141,
+                      "function": "Illuminate\\Foundation\\Http\\{closure}",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php",
+                      "line": 31,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php",
+                      "line": 40,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
+                      "line": 27,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
+                      "line": 86,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php",
+                      "line": 62,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Http\\Middleware\\HandleCors",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php",
+                      "line": 39,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 180,
+                      "function": "handle",
+                      "class": "Illuminate\\Http\\Middleware\\TrustProxies",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 116,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 175,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 144,
+                      "function": "sendRequestThroughRouter",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 299,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 287,
+                      "function": "callLaravelOrLumenRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 92,
+                      "function": "makeApiCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 45,
+                      "function": "makeResponseCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 35,
+                      "function": "makeResponseCallIfConditionsPass",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 209,
+                      "function": "__invoke",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 163,
+                      "function": "iterateThroughStrategies",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 95,
+                      "function": "fetchResponses",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 124,
+                      "function": "processRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 71,
+                      "function": "extractEndpointsInfoFromLaravelApp",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 49,
+                      "function": "extractEndpointsInfoAndWriteToDisk",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
+                      "line": 51,
+                      "function": "get",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 36,
+                      "function": "handle",
+                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
+                      "line": 41,
+                      "function": "Illuminate\\Container\\{closure}",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 93,
+                      "function": "unwrapIfClosure",
+                      "class": "Illuminate\\Container\\Util",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 35,
+                      "function": "callBoundMethod",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
+                      "line": 662,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 194,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\Container",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Command\\Command.php",
+                      "line": 312,
+                      "function": "execute",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 163,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Command\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
+                      "line": 1040,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
+                      "line": 314,
+                      "function": "doRunCommand",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
+                      "line": 168,
+                      "function": "doRun",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
+                      "line": 200,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\artisan",
+                      "line": 35,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Console\\Kernel",
+                      "type": "->"
+                  }
+              ]
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '300'
+          x-ratelimit-remaining: '260'
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - POST
-    uri: api/sms/test/callback
+    uri: api/sms/test
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -2514,19 +3077,19 @@ endpoints:
         name: title
         description: "'category_id' => ['required'],."
         required: true
-        example: recusandae
+        example: et
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: 9
+        example: 5
         type: integer
         custom: []
     cleanBodyParameters:
-      title: recusandae
-      status: 9
+      title: et
+      status: 5
     fileParameters: []
     responses: []
     responseFields: []
@@ -2556,11 +3119,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: sed
+        example: incidunt
         type: string
         custom: []
     cleanUrlParameters:
-      id: sed
+      id: incidunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2568,11 +3131,11 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: nam
         type: string
         custom: []
     cleanBodyParameters:
-      title: quia
+      title: nam
     fileParameters: []
     responses: []
     responseFields: []
@@ -2649,11 +3212,11 @@ endpoints:
         name: id
         description: 'The ID of the customer.'
         required: true
-        example: libero
+        example: eaque
         type: string
         custom: []
     cleanUrlParameters:
-      id: libero
+      id: eaque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2696,11 +3259,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant admin.'
         required: true
-        example: quo
+        example: nulla
         type: string
         custom: []
     cleanUrlParameters:
-      id: quo
+      id: nulla
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2743,11 +3306,11 @@ endpoints:
         name: id
         description: 'The ID of the rider.'
         required: true
-        example: autem
+        example: unde
         type: string
         custom: []
     cleanUrlParameters:
-      id: autem
+      id: unde
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2840,35 +3403,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: maxime
+        example: labore
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: true
-        example: sint
+        example: vero
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: porro
+        example: sequi
         type: string
         custom: []
       role:
         name: role
         description: ''
         required: true
-        example: atque
+        example: doloremque
         type: string
         custom: []
     cleanBodyParameters:
-      name: maxime
-      email: sint
-      phone_number: porro
-      role: atque
+      name: labore
+      email: vero
+      phone_number: sequi
+      role: doloremque
     fileParameters: []
     responses: []
     responseFields: []
@@ -3129,19 +3692,19 @@ endpoints:
         name: status
         description: 'Must be one of <code>2</code> or <code>3</code>.'
         required: true
-        example: '2'
+        example: '3'
         type: string
         custom: []
       reason:
         name: reason
         description: 'This field is required when <code>status</code> is <code>3</code>.'
         required: false
-        example: assumenda
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      status: '2'
-      reason: assumenda
+      status: '3'
+      reason: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -3288,11 +3851,11 @@ endpoints:
         name: id
         description: 'The ID of the subscriber.'
         required: true
-        example: iure
+        example: enim
         type: string
         custom: []
     cleanUrlParameters:
-      id: iure
+      id: enim
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3339,27 +3902,27 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: voluptates
+        example: ut
         type: string
         custom: []
       date:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2024-11-01T05:33:36'
+        example: '2024-12-08T12:58:11'
         type: string
         custom: []
       meals:
         name: meals
         description: ''
         required: true
-        example: sed
+        example: nihil
         type: string
         custom: []
     cleanBodyParameters:
-      user_id: voluptates
-      date: '2024-11-01T05:33:36'
-      meals: sed
+      user_id: ut
+      date: '2024-12-08T12:58:11'
+      meals: nihil
     fileParameters: []
     responses: []
     responseFields: []
@@ -3393,35 +3956,35 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: sunt
+        example: accusantium
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: et
+        example: ipsa
         type: string
         custom: []
       currency:
         name: currency
         description: ''
         required: true
-        example: voluptatem
+        example: id
         type: string
         custom: []
       duration:
         name: duration
         description: ''
         required: true
-        example: dignissimos
+        example: adipisci
         type: string
         custom: []
     cleanBodyParameters:
-      name: sunt
-      price: et
-      currency: voluptatem
-      duration: dignissimos
+      name: accusantium
+      price: ipsa
+      currency: id
+      duration: adipisci
     fileParameters: []
     responses: []
     responseFields: []
@@ -3455,11 +4018,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: eveniet
+        example: quae
         type: string
         custom: []
     cleanBodyParameters:
-      rate: eveniet
+      rate: quae
     fileParameters: []
     responses: []
     responseFields: []
@@ -3493,11 +4056,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: a
+        example: vel
         type: string
         custom: []
     cleanBodyParameters:
-      rate: a
+      rate: vel
     fileParameters: []
     responses: []
     responseFields: []
@@ -3531,11 +4094,11 @@ endpoints:
         name: rate
         description: ''
         required: true
-        example: vel
+        example: unde
         type: string
         custom: []
     cleanBodyParameters:
-      rate: vel
+      rate: unde
     fileParameters: []
     responses: []
     responseFields: []
@@ -3916,23 +4479,15 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: autem
-        type: string
-        custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: true
-        example: zujrbodkuuutsv
+        example: ynt
         type: string
         custom: []
     cleanBodyParameters:
-      title: autem
-      poster: zujrbodkuuutsv
+      poster: ynt
     fileParameters: []
     responses: []
     responseFields: []
@@ -3970,23 +4525,15 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: omnis
-        type: string
-        custom: []
       poster:
         name: poster
         description: 'Must not be greater than 10000 characters.'
         required: false
-        example: qzwsxxqsntllefrjshxmebifn
+        example: vuhmihfwcvhrgbvtskqnyy
         type: string
         custom: []
     cleanBodyParameters:
-      title: omnis
-      poster: qzwsxxqsntllefrjshxmebifn
+      poster: vuhmihfwcvhrgbvtskqnyy
     fileParameters: []
     responses: []
     responseFields: []
@@ -4136,11 +4683,11 @@ endpoints:
         name: file
         description: ''
         required: true
-        example: consequatur
+        example: corporis
         type: string
         custom: []
     cleanBodyParameters:
-      file: consequatur
+      file: corporis
     fileParameters: []
     responses: []
     responseFields: []
@@ -4321,19 +4868,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: consequuntur
+        example: nihil
         type: string
         custom: []
       permissions:
         name: permissions
         description: ''
         required: true
-        example: at
+        example: ullam
         type: string
         custom: []
     cleanBodyParameters:
-      name: consequuntur
-      permissions: at
+      name: nihil
+      permissions: ullam
     fileParameters: []
     responses: []
     responseFields: []
@@ -4367,27 +4914,27 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: eligendi
+        example: facere
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: sint
+        example: ex
         type: string
         custom: []
       permissions:
         name: permissions
         description: ''
         required: true
-        example: perferendis
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      role_id: eligendi
-      name: sint
-      permissions: perferendis
+      role_id: facere
+      name: ex
+      permissions: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -4421,19 +4968,19 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: reprehenderit
+        example: reiciendis
         type: string
         custom: []
       user_id:
         name: user_id
         description: ''
         required: true
-        example: vero
+        example: fugit
         type: string
         custom: []
     cleanBodyParameters:
-      role_id: reprehenderit
-      user_id: vero
+      role_id: reiciendis
+      user_id: fugit
     fileParameters: []
     responses: []
     responseFields: []
@@ -4506,19 +5053,349 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: exercitationem
+        example: suscipit
         type: string
         custom: []
       user_id:
         name: user_id
         description: ''
         required: true
-        example: est
+        example: nihil
         type: string
         custom: []
     cleanBodyParameters:
-      role_id: exercitationem
-      user_id: est
+      role_id: suscipit
+      user_id: nihil
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/admin/orphanages
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listing of the orphanages.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/admin/orphanages/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: fugiat
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'This field is required when <code>phone_number</code> is not present.  Must be a valid email address.'
+        required: false
+        example: ygraham@example.com
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: 'This field is required when <code>email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_name:
+        name: contact_name
+        description: ''
+        required: true
+        example: quod
+        type: string
+        custom: []
+      contact_email:
+        name: contact_email
+        description: 'This field is required when <code>contact_phone_number</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone_number:
+        name: contact_phone_number
+        description: 'This field is required when <code>contact_email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      location:
+        name: location
+        description: ''
+        required: true
+        example: incidunt
+        type: string
+        custom: []
+      location_lat:
+        name: location_lat
+        description: ''
+        required: true
+        example: adipisci
+        type: string
+        custom: []
+      location_long:
+        name: location_long
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+      logo:
+        name: logo
+        description: 'Must not be greater than 5000 characters.'
+        required: true
+        example: xpbewebujpubiamca
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: fugiat
+      email: ygraham@example.com
+      contact_name: quod
+      location: incidunt
+      location_lat: adipisci
+      location_long: consequatur
+      logo: xpbewebujpubiamca
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/orphanages/{id}/show'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show an Orphanage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orphanage.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/admin/orphanages/{id}/update'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orphanage.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: dolor
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'This field is required when <code>phone_number</code> is not present.  Must be a valid email address.'
+        required: false
+        example: breitenberg.carolyne@example.com
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: 'This field is required when <code>email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_email:
+        name: contact_email
+        description: 'This field is required when <code>contact_phone_number</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      contact_phone_number:
+        name: contact_phone_number
+        description: 'This field is required when <code>contact_email</code> is not present.'
+        required: false
+        example: null
+        type: string
+        custom: []
+      location:
+        name: location
+        description: ''
+        required: true
+        example: quam
+        type: string
+        custom: []
+      location_lat:
+        name: location_lat
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      location_long:
+        name: location_long
+        description: ''
+        required: true
+        example: accusamus
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: dolor
+      email: breitenberg.carolyne@example.com
+      location: quam
+      location_lat: et
+      location_long: accusamus
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/orphanages/{orphanage_id}/status/update'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orphanage_id:
+        name: orphanage_id
+        description: 'The ID of the orphanage.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      orphanage_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []

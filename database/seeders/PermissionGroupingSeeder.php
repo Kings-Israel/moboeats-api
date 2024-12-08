@@ -84,6 +84,13 @@ class PermissionGroupingSeeder extends Seeder
             ],
             'messages' => [
                 'view messages',
+            ],
+            'orphanages' => [
+                'create orphanages',
+                'view orphanages',
+                'edit orphanages',
+                'view orphanages orders',
+                'edit orphanages orders',
             ]
         ];
 

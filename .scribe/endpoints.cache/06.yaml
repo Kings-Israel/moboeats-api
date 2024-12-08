@@ -67,12 +67,12 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 15
+        example: 14
         type: integer
         custom: []
     cleanUrlParameters:
       id: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-      order_id: 15
+      order_id: 14
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -117,19 +117,19 @@ endpoints:
         name: diet_subscription_package_id
         description: 'The ID of the diet subscription package.'
         required: true
-        example: 1
+        example: 15
         type: integer
         custom: []
       diet_subscription_package:
         name: diet_subscription_package
         description: 'The id of the diet subscription package'
         required: false
-        example: 6
+        example: 17
         type: integer
         custom: []
     cleanUrlParameters:
-      diet_subscription_package_id: 1
-      diet_subscription_package: 6
+      diet_subscription_package_id: 15
+      diet_subscription_package: 17
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -165,11 +165,11 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 1
+        example: 14
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 1
+      order_id: 14
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -214,19 +214,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 14
+        example: 13
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 3
+        example: 6
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 14
-      amount: 3
+      order_id: 13
+      amount: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -271,19 +271,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: qui
+        example: veritatis
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: quia
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: qui
-      order_id: quia
+      user_id: veritatis
+      order_id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -458,11 +458,11 @@ endpoints:
         name: payment_uuid
         description: ''
         required: true
-        example: 3ef295a9-2a98-3773-8583-21c9eebe07ad
+        example: 86f596ee-3e98-3794-85e7-387ddd224bda
         type: string
         custom: []
     cleanUrlParameters:
-      payment_uuid: 3ef295a9-2a98-3773-8583-21c9eebe07ad
+      payment_uuid: 86f596ee-3e98-3794-85e7-387ddd224bda
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

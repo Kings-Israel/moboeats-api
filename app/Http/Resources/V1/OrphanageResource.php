@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +26,9 @@ class OrphanageResource extends JsonResource
             'logo' => config('app.url').'/storage/orphanages/logo/'.$this->logo,
             'status' => Str::title($this->status),
             'created_by' => User::find($this->created_by),
-            'location' => $this->location
+            'location' => $this->location,
+            'latitude' => (double) $this->location_lat,
+            'longitude' => (double) $this->location_long,
         ];
     }
 }

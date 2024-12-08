@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\OrphanageResource;
+use App\Http\Resources\V1\OrphanageResource;
 use App\Models\Orphanage;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -26,10 +26,6 @@ class OrphanageController extends Controller
         return $this->success($data);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -60,7 +56,7 @@ class OrphanageController extends Controller
             'location_lat' => $request->location_lat,
             'location_long' => $request->location_long,
             'logo' => $request->hasFile('logo') ? pathinfo($request->logo->store('logo', 'orphanages'), PATHINFO_BASENAME) : NULL,
-            'status' => auth()->check() && auth()->user()->hasRole('admin') ? 'approved' : 'pending',
+            'status' => auth()->check() && auth()->user()->hasPermission('create orphanages') ? 'approved' : 'pending',
             'created_by' => auth()->check() ? auth()->id() : NULL
         ]);
 
@@ -72,18 +68,19 @@ class OrphanageController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show an Orphanage.
      */
     public function show(Orphanage $orphanage)
     {
         return $this->success(new OrphanageResource($orphanage));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Orphanage $orphanage)
     {
+        if (!auth()->user()->hasPermission('edit orphanages')) {
+            return $this->error('', 'You are not authorized to perform this action', 401);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'email' => ['required_without:phone_number', 'email'],
@@ -121,8 +118,26 @@ class OrphanageController extends Controller
      */
     public function destroy(Orphanage $orphanage)
     {
-        // TODO: check if orphanage has orders
+        if ($orphanage->orders->count() > 0) {
+            return $this->error('', 'Orphanage has orders', 401);
+        }
 
         $orphanage->delete();
+
+        return $this->success('', 'Orphanage Deleted Successfully');
+    }
+
+    public function updateStatus(Orphanage $orphanage, Request $request)
+    {
+        if (!auth()->user()->hasPermission('edit orphanages')) {
+            return $this->error('', 'You cannot perform this action', 401);
+        }
+
+        $orphanage->update([
+            'status' => $request->status,
+            'rejection_reason' => $request->rejection_reason
+        ]);
+
+        return $this->success($orphanage, 'Updated Orhpanage successfully');
     }
 }
