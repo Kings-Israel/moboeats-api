@@ -30,11 +30,15 @@ use App\Http\Controllers\FrequentlyAskedQuestionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrphanageController;
 use App\Http\Middleware\HasRestaurant;
+use App\Jobs\SendCommunication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Jobs\SendSMS;
+use App\Mail\ResetPassword;
 use App\Models\Restaurant;
+use App\Models\User;
 use App\Notifications\UpdatedRestaurantStatus;
+use Illuminate\Support\Facades\Mail;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -303,6 +307,10 @@ Route::get('/email/test/{id}', function($id) {
 
 Route::post('/sms/test', function(Request $request) {
     SendSMS::dispatch($request->phone_number, $request->text, 'KE');
+});
+
+Route::get('/mail/test', function () {
+    Mail::to('k.milimo@moboeats.co.uk')->send(new ResetPassword('123456'));
 });
 
 require __DIR__.'/admin.php';
