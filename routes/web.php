@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\OrphanageController;
+use App\Mail\OrderDetailsReceipt;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,11 @@ Route::post('delete', [AuthController::class, 'confirmDelete'])->name('delete.co
 
 Route::get('/mail/test', function () {
     return (new NewAccount(User::first(), '12345'))->render();
+});
+
+Route::get('/order/receipt/test', function () {
+    $order = Order::find(1);
+    return (new OrderDetailsReceipt($order))->render();
 });
 
 require __DIR__ . '/auth.php';

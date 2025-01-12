@@ -404,4 +404,19 @@ class User extends Authenticatable implements LaratrustUser
 
         return 'Kenya';
     }
+
+    /**
+     * Get the users currency
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCurrencyAttribute()
+    {
+        if (str_starts_with($this->phone_number, '+254') || str_starts_with($this->phone_number, '254')) {
+            return 'KES';
+        } else {
+            return 'GBP';
+        }
+    }
 }

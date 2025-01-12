@@ -266,4 +266,20 @@ class Order extends Model
 
         return 'Kenya';
     }
+
+    /**
+     * Get the menu total
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getMenuTotalAttribute()
+    {
+        $total = 0;
+        foreach ($this->orderItems as $order_item) {
+            $total += $order_item->subtotal;
+        }
+
+        return $total;
+    }
 }

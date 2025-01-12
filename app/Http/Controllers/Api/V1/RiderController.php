@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Resources\V1\RiderResource;
 use Illuminate\Support\Facades\Validator;
 use App\Events\OrderDeliveryLocationUpdate;
+use App\Jobs\SendCommunication;
 
 /**
  * @group Rider Profile APIs
@@ -291,6 +292,9 @@ class RiderController extends Controller
 
             $order->restaurant->notify(new OrderUpdate($order, 'delivered'));
             event(new UpdateOrder($order->restaurant, $order, 'delivered'));
+            if ($order->user->email) {
+                SendCommunication::dispatchAfterResponse('mail', $order->user->email, 'OrderDetailsReceipt', ['order' => $order->id]);
+            }
 
             activity()->causedBy(auth()->user())->performedOn($order)->log('delivered the order');
 
