@@ -40,6 +40,7 @@ class Order extends Model
         'service_charge',
         'discount',
         'promo_code_id',
+        'orphanage_id'
     ];
 
     protected $keyType = 'int';
@@ -215,6 +216,16 @@ class Order extends Model
     public function promoCode(): BelongsTo
     {
         return $this->belongsTo(PromoCode::class);
+    }
+
+    /**
+     * Get the orphanage that owns the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function orphanage(): BelongsTo
+    {
+        return $this->belongsTo(Orphanage::class);
     }
 
     public function getTotalPreparationTime(): int

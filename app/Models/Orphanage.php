@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Orphanage extends Model
 {
@@ -17,10 +18,21 @@ class Orphanage extends Model
     protected $guarded = [];
 
     /**
+     * Scope a query to only include approved
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('status', 'approved');
+    }
+
+    /**
      * Get all of the order for the Orphanage
      */
-    public function order(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(OrphanageOrder::class);
+        return $this->hasMany(Order::class);
     }
 }

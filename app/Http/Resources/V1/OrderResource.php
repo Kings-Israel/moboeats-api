@@ -30,13 +30,16 @@ class OrderResource extends JsonResource
                 'service_charge' => $this->service_charge,
                 'booking_time' => $this->booking_time ? Carbon::parse($this->booking_time)->format('D, M j, Y g:i A') : NULL,
                 'discount' => $this->discount,
-                'preparation_time' => $this->getTotalPreparationTime()
+                'preparation_time' => $this->getTotalPreparationTime(),
+                'restaurant_name' => $this->restaurant->name,
+                'user_name' => $this->user->name,
             ],
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),
                 'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
                 'orderItems' => OrderItemResource::collection($this->whenLoaded('orderItems')),
-                'reservation' => $this->whenLoaded('reservation')
+                'reservation' => $this->whenLoaded('reservation'),
+                'orphanage' => new OrphanageResource($this->whenLoaded('orphanage')),
             ]
         ];
     }

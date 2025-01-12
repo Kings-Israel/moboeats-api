@@ -19,7 +19,15 @@ class OrphanageController extends Controller
     {
         $per_page = $request->query('per_page');
 
-        $data = Orphanage::paginate($per_page);
+        if (!auth()->check()) {
+            $data = Orphanage::approved()->paginate($per_page);
+        } else {
+            if (auth()->user()->hasRole('orderer') || auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee')) {
+                $data = Orphanage::approved()->paginate($per_page);
+            } else {
+                $data = Orphanage::paginate($per_page);
+            }
+        }
 
         $data = OrphanageResource::collection($data)->response()->getData();
 
@@ -72,6 +80,8 @@ class OrphanageController extends Controller
      */
     public function show(Orphanage $orphanage)
     {
+        $orphanage->load('orders.user');
+
         return $this->success(new OrphanageResource($orphanage));
     }
 

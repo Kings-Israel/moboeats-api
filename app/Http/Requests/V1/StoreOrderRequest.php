@@ -24,7 +24,7 @@ class StoreOrderRequest extends FormRequest
         return [
             'cartId' => ['nullable','integer'],
             'restaurantId' => ['required','integer'],
-            'delivery' => ['required','boolean'],
+            'delivery' => ['required_without:orphanage_id','boolean'],
             'delivery_address' => ['required_if:delivery,true'],
             'delivery_location_lat' => ['required_if:delivery,true'],
             'delivery_location_lng' => ['required_if:delivery,true'],
@@ -43,7 +43,7 @@ class StoreOrderRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'delivery_address.required_if' => 'The delivery address is required if order is a delivery',
+            'delivery_address.required_without' => 'The delivery address is required if order is a delivery',
             'delivery_location_lat.required_if' => 'The latitude is required if order is a delivery',
             'delivery_location_lng.required_if' => 'The longitude is required if order is a delivery',
             'booking_time.required_if' => 'Select dining time for non-delivered orders',

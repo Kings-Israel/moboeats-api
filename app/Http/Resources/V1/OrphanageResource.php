@@ -29,6 +29,7 @@ class OrphanageResource extends JsonResource
             'location' => $this->location,
             'latitude' => (double) $this->location_lat,
             'longitude' => (double) $this->location_long,
+            'orders' => OrderResource::collection($this->whenLoaded('orders'))
         ];
     }
 }

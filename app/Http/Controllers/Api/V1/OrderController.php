@@ -38,6 +38,7 @@ use App\Models\RestaurantTable;
 use App\Models\Rider;
 use App\Models\Menu;
 use App\Models\OrderTable;
+use App\Models\Orphanage;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -166,7 +167,6 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        // return response()->json($request->all());
         $user = User::where('id',Auth::user()->id)->first();
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
@@ -210,7 +210,8 @@ class OrderController extends Controller
                         'delivery' => 0,
                         'total_amount' => 0,
                         'created_by' => $user->name,
-                        'booking_time' => $request->booking_time
+                        'booking_time' => $request->booking_time,
+                        'orphanage_id' => $request->orphanage_id,
                     ]);
 
                     // Create reservation
@@ -243,6 +244,12 @@ class OrderController extends Controller
                     }
                 }
 
+                // If Delivery is for orphanage, find the orphanage
+                $orphanage = NULL;
+                if ($request->has('orphanage_id') && !empty($request->orphanage_id)) {
+                    $orphanage = Orphanage::find($request->orphanage_id);
+                }
+
                 $delivery_fee = 0;
 
                 if ($request->delivery) {
@@ -262,6 +269,23 @@ class OrderController extends Controller
                     $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) Setting::where('name', 'Delivery Rate')->first()->variable);
                 }
 
+                if ($orphanage) {
+                    $customer_restaurant_distance = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$orphanage->location_lat.','.$orphanage->location_long.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
+
+                    if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'NOT_FOUND') {
+                        return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
+                    }
+                    if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'ZERO_RESULTS') {
+                        return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
+                    }
+
+                    $distance = json_decode($customer_restaurant_distance)->rows[0]->elements[0]->distance->text;
+
+                    $distance = explode(' ', $distance)[0];
+
+                    $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) Setting::where('name', 'Delivery Rate')->first()->variable);
+                }
+
                 //create Order object
                 $order = Order::create([
                     'user_id' => $user->id,
@@ -269,6 +293,7 @@ class OrderController extends Controller
                     'delivery' => ($request->delivery) ? 1 : 0,
                     'total_amount' => 0,
                     'created_by' => $user->name,
+                    'orphanage_id' => $orphanage?->id,
                 ]);
 
                 $items_are_groceries = true;
@@ -352,6 +377,17 @@ class OrderController extends Controller
                         'delivery_location_lng' => $request->delivery_location_lng,
                         'service_charge' => $service_charge,
                     ]);
+                } else if ($orphanage) {
+                    $totalSubtotal = $totalSubtotal + $delivery_fee;
+                    $totalSubtotal = $totalSubtotal <= 0 ? 0 : $totalSubtotal;
+                    $order->update([
+                        'total_amount' => $totalSubtotal,
+                        'delivery_fee' => $delivery_fee,
+                        'delivery_address' => $orphanage->location,
+                        'delivery_location_lat' => $orphanage->location_lat,
+                        'delivery_location_lng' => $orphanage->location_long,
+                        'service_charge' => $service_charge,
+                    ]);
                 } else {
                     $order->update([
                         'total_amount' => $totalSubtotal,
@@ -369,7 +405,7 @@ class OrderController extends Controller
 
                 activity()->causedBy(auth()->user())->performedOn($order)->log('made a new order in restaurant'. $order->restaurant->name);
 
-                return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images']));
+                return new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images', 'orphanage']));
             } catch (\Throwable $th) {
                 info($th);
                 DB::rollBack();
@@ -382,9 +418,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable', 'payment');
+        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable', 'payment', 'orphanage');
         $order->preparation_time = $order->getTotalPreparationTime();
-        $user = $order->user;
         $restaurant = $order->restaurant;
         $riders = [];
         $restaurant_tables = [];
