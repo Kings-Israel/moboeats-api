@@ -287,9 +287,9 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
 });
 
 Route::group(['prefix' => 'v1/orphanages', 'as' => 'orphanages.'], function () {
-    Route::get('/', [OrphanageController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    Route::get('/', [OrphanageController::class, 'index'])->name('index');
     Route::post('/store', [OrphanageController::class, 'store'])->name('store')->middleware('auth:sanctum');
-    Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show')->middleware('auth:sanctum');
+    Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show');
     Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update')->middleware('auth:sanctum');
 });
 
