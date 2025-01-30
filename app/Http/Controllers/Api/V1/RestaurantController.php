@@ -230,6 +230,11 @@ class RestaurantController extends Controller
                         'logo' => $request->logo->store('companyLogos/logos', 'public')
                     ]);
                 }
+
+                $restaurant->update([
+                    'status' => '2'
+                ]);
+
                 activity()->causedBy(auth()->user())->performedOn($restaurant)->log('registered a new restaurant');
                 DB::commit();
                 return new RestaurantResource($restaurant);
