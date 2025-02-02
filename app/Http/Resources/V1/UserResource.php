@@ -30,6 +30,7 @@ class UserResource extends JsonResource
             ],
             'type' => $this->type,
             'referral_code' => $this->referralCode()->exists() ? $this->referralCode->referral_code : NULL,
+            'is_guided' => $this->is_guided
         ];
     }
 }

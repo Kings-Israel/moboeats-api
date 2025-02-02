@@ -103,6 +103,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('/messages/unread/count', [MessageController::class, 'getUnreadMessagesCount']);
     Route::delete('/message/{id}/delete', [MessageController::class, 'deleteMessage']);
     Route::delete('/conversation/{id}/delete', [MessageController::class, 'deleteConversation']);
+
+    Route::get('/user/guide/update', function () {
+        request()->user()->update([
+            'is_guided' => true
+        ]);
+
+        return response()->json('Updated Successfully', 200);
+    });
 });
 
 Route::group(['prefix' => 'v1/orderer'], function() {

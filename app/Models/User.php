@@ -53,6 +53,7 @@ class User extends Authenticatable implements LaratrustUser
         'weight',
         'weight_units',
         'body_mass_index',
+        'is_guided'
     ];
 
     protected $keyType = 'int';
@@ -105,6 +106,7 @@ class User extends Authenticatable implements LaratrustUser
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_guided' => 'bool',
     ];
 
     /**
