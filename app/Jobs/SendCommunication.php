@@ -4,8 +4,10 @@ namespace App\Jobs;
 
 use App\Mail\NewAccount;
 use App\Mail\OrderDetailsReceipt;
+use App\Mail\PartnerAccountCreated;
 use App\Mail\ResetPassword;
 use App\Models\Order;
+use App\Models\Restaurant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,6 +44,10 @@ class SendCommunication implements ShouldQueue
                 if ($this->sender == 'OrderDetailsReceipt') {
                     $order = Order::find($this->content['order']);
                     Mail::to($this->receipient)->send(new OrderDetailsReceipt($order));
+                }
+                if ($this->sender == 'PartnerAccountCreated') {
+                    $restaurant = Restaurant::find($this->content['restaurant']);
+                    Mail::to($this->receipient)->send(new PartnerAccountCreated($restaurant));
                 }
                 break;
             case 'sms':

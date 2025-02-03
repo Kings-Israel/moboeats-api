@@ -83,6 +83,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'partner_dashboard_url' => env('PARTNER_DASHBOARD_URL', 'https://partner.moboeats.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -30,6 +30,7 @@ use App\Http\Controllers\FrequentlyAskedQuestionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrphanageController;
 use App\Http\Middleware\HasRestaurant;
+use App\Http\Resources\V1\UserResource;
 use App\Jobs\SendCommunication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -109,7 +110,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
             'is_guided' => true
         ]);
 
-        return response()->json('Updated Successfully', 200);
+        return response()->json(['data' => new UserResource(request()->user())], 200);
     });
 });
 

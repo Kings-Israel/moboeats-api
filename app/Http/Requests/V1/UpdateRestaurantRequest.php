@@ -37,7 +37,7 @@ class UpdateRestaurantRequest extends FormRequest
             // 'sitting_capacity' => ['required', 'integer'],
             'latitude' => ['required', 'string', 'not_in:null'],
             'longitude' => ['required', 'string', 'not_in:null'],
-            'paypal_email' => ['required', 'email']
+            // 'paypal_email' => ['required', 'email']
         ];
     }
 
@@ -47,8 +47,8 @@ class UpdateRestaurantRequest extends FormRequest
             'latitude.required' => 'Please select restaurant location',
             'longitude.required' => 'Please select restaurant location',
             'sitting_capacity.required' => 'Enter Sitting Capacity. (0 if doesn\'t apply)',
-            'paypal_email.required' => 'Please enter your paypal or venmo email address',
-            'paypal_email.email' => 'Please enter a valid paypal or venmo email address',
+            // 'paypal_email.required' => 'Please enter your paypal or venmo email address',
+            // 'paypal_email.email' => 'Please enter a valid paypal or venmo email address',
         ];
     }
 }

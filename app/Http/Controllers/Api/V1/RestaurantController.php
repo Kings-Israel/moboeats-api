@@ -36,6 +36,8 @@ use App\Notifications\UpdatedRestaurant;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RestaurantExport;
 use App\Exports\PaymentExport;
+use App\Jobs\SendCommunication;
+use App\Jobs\SendNotification;
 use App\Models\Payout;
 use App\Models\SeatingArea;
 use App\Models\RestaurantTable;
@@ -64,7 +66,7 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
-        $radius = 100;
+        $radius = 2000;
         $latitude = $request->query('lat');
         $longitude = $request->query('lng');
 
@@ -236,7 +238,11 @@ class RestaurantController extends Controller
                 ]);
 
                 activity()->causedBy(auth()->user())->performedOn($restaurant)->log('registered a new restaurant');
+
                 DB::commit();
+
+                SendCommunication::dispatchAfterResponse('mail', $restaurant->user->email, 'PartnerAccountCreated', ['restaurant' => $restaurant->id]);
+
                 return new RestaurantResource($restaurant);
             } catch (\Throwable $th) {
                 info($th);
