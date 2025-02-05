@@ -214,43 +214,39 @@ class RestaurantController extends Controller
 
     public function store(StoreRestaurantRequest $request)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role === 'orderer') {
-                return $this->error('', 'Unauthorized', 401);
-            }
-
-            try {
-                DB::beginTransaction();
-                $request->merge([
-                    'user_id' => Auth::user()->id,
-                ]);
-                $restaurant = Restaurant::create($request->all());
-                if($request->hasFile('logo')){
-                    $restaurant->update([
-                        'logo' => $request->logo->store('companyLogos/logos', 'public')
-                    ]);
-                }
-
-                $restaurant->update([
-                    'status' => '2'
-                ]);
-
-                activity()->causedBy(auth()->user())->performedOn($restaurant)->log('registered a new restaurant');
-
-                DB::commit();
-
-                SendCommunication::dispatchAfterResponse('mail', $restaurant->user->email, 'PartnerAccountCreated', ['restaurant' => $restaurant->id]);
-
-                return new RestaurantResource($restaurant);
-            } catch (\Throwable $th) {
-                info($th);
-                DB::rollBack();
-                return $this->error('', $th->getMessage(), 403);
-            }
+        $role = Role::where('name', 'restaurant')->first();
+        if (!auth()->user()->hasRole($role->name)) {
+            auth()->user()->addRole($role->name);
         }
 
+        try {
+            DB::beginTransaction();
+            $request->merge([
+                'user_id' => Auth::user()->id,
+            ]);
+            $restaurant = Restaurant::create($request->all());
+            if($request->hasFile('logo')){
+                $restaurant->update([
+                    'logo' => $request->logo->store('companyLogos/logos', 'public')
+                ]);
+            }
+
+            $restaurant->update([
+                'status' => '2'
+            ]);
+
+            activity()->causedBy(auth()->user())->performedOn($restaurant)->log('registered a new restaurant');
+
+            DB::commit();
+
+            SendCommunication::dispatchAfterResponse('mail', $restaurant->user->email, 'PartnerAccountCreated', ['restaurant' => $restaurant->id]);
+
+            return new RestaurantResource($restaurant);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
     }
 
     /**
