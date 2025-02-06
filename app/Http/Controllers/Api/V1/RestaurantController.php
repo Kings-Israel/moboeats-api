@@ -44,6 +44,7 @@ use App\Models\RestaurantTable;
 use App\Models\Review;
 use App\Models\PromoCode;
 use App\Models\Discount;
+use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Query\JoinClause;
 
