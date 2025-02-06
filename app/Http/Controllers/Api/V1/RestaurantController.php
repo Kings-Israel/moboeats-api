@@ -66,7 +66,7 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
-        $radius = 2000;
+        $radius = 200000;
         $latitude = $request->query('lat');
         $longitude = $request->query('lng');
 
