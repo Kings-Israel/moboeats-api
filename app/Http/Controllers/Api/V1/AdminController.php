@@ -758,6 +758,7 @@ class AdminController extends Controller
     {
         $search = $request->query('search');
         $status = $request->query('status');
+        $type = $request->query('type');
 
         $restaurants = Restaurant::with('user', 'orders', 'menus')
                                 ->when($search && $search != '', function($query) use ($search) {
@@ -769,6 +770,11 @@ class AdminController extends Controller
                                 ->when($status && $status != '', function ($query) use ($status) {
                                     $query->where(function ($query) use ($status) {
                                         $query->where('status', $status);
+                                    });
+                                })
+                                ->when($type && $type != '', function ($query) use ($type) {
+                                    $query->whereHas('user', function ($query) use ($type) {
+                                        $query->where('type', $type);
                                     });
                                 })
                                 ->orderBy('created_at', 'DESC')
