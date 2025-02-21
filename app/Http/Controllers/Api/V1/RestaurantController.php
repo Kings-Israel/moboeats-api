@@ -91,7 +91,7 @@ class RestaurantController extends Controller
                 }
 
 
-                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
+                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate(30));
             }
 
             if (auth()->user()->hasRole('rider')) {
@@ -180,7 +180,7 @@ class RestaurantController extends Controller
                 $restaurants = Restaurant::Approved();
             }
 
-            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
+            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate(30));
         }
     }
 
