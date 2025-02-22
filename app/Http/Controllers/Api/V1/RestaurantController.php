@@ -70,6 +70,7 @@ class RestaurantController extends Controller
         $radius = 200000;
         $latitude = $request->query('lat');
         $longitude = $request->query('lng');
+        $per_page = $request->query('per_page');
 
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
@@ -91,7 +92,7 @@ class RestaurantController extends Controller
                 }
 
 
-                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate(50));
+                return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate($per_page));
             }
 
             if (auth()->user()->hasRole('rider')) {
@@ -180,7 +181,7 @@ class RestaurantController extends Controller
                 $restaurants = Restaurant::Approved();
             }
 
-            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate(50));
+            return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate($per_page));
         }
     }
 
