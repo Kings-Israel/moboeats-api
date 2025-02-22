@@ -72,6 +72,9 @@ class RestaurantController extends Controller
         $longitude = $request->query('lng');
         $per_page = $request->query('per_page');
 
+
+        if(!$per_page || $per_page == '') $per_page = 100;
+
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
                 $filter =  new RestaurantFilter();
