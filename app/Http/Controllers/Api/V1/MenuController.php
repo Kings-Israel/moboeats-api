@@ -65,6 +65,12 @@ class MenuController extends Controller
         $latitude = $request->query('lat');
         $longitude = $request->query('lng');
 
+        $per_page = $request->query('per_page');
+
+        if (!$per_page || $per_page == '') {
+            $per_page = 100;
+        }
+
         if (auth()->check()) {
             $filter =  new MenuFilter();
             $filterItems = $filter->transform($request);
@@ -99,7 +105,7 @@ class MenuController extends Controller
                             ->whereHas('images');
             }
 
-            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate(6)->appends($request->query()));
+            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate($per_page)->appends($request->query()));
         } else {
             $menu = Menu::active()
                         ->hasActivePrices()
@@ -119,7 +125,7 @@ class MenuController extends Controller
                         })
                         ->whereHas('images');
 
-            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate());
+            return new MenuCollection($menu->with(['restaurant', 'menuPrices', 'categories.food_sub_categories', 'images', 'discount'])->paginate($per_page));
         }
     }
 
