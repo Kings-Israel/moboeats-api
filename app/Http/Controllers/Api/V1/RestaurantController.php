@@ -359,7 +359,7 @@ class RestaurantController extends Controller
             if ($request->latitude && $request->longitude) {
                 try {
                     $user_location = Http::withOptions(['verify' => false])
-                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->latitude.','.$this->longitude.'&key='.config('services.map.key'));
+                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->latitude.','.$request->longitude.'&key='.config('services.map.key'));
                 } catch (ConnectionException $e) {
                     $user_country = 'Kenya';
                     $user_short_country_name = 'KE';

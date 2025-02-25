@@ -407,6 +407,36 @@ class AuthController extends Controller
                 ]
             );
 
+            if ($request->latitude && $request->longitude) {
+                try {
+                    $user_location = Http::withOptions(['verify' => false])
+                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->latitude.','.$request->longitude.'&key='.config('services.map.key'));
+                } catch (ConnectionException $e) {
+                    $user_country = 'Kenya';
+                    $user_short_country_name = 'KE';
+                }
+
+                if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+                    $user_country = 'Kenya';
+                    $user_short_country_name = 'KE';
+                }
+
+                foreach ($user_location['results'][0]['address_components'] as $place) {
+                    if (collect($place['types'])->contains('country')) {
+                        $user_country = $place['long_name'];
+                    }
+
+                    if (collect($place['types'])->contains('country')) {
+                        $user_short_country_name = $place['short_name'];
+                    }
+                }
+
+                $user->update([
+                    'country' => $user_country,
+                    'country_code' => $user_short_country_name
+                ]);
+            }
+
             if($user->status == 1) {
                 return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
             }
