@@ -309,46 +309,49 @@ class RestaurantController extends Controller
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
         $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role === 'orderer') {
-                return $this->error('', 'Unauthorized', 401);
-            }
-
-            try {
-                DB::beginTransaction();
-                if ($this->isNotAuthorized($restaurant)) {
-                    return $this->isNotAuthorized($restaurant);
-                }
-                $restaurant_logo = explode('/', $restaurant->logo);
-                $restaurant->update(collect($request->all())->except('sitting_capacity')->toArray());
-                if($request->hasFile('logo')) {
-                    Storage::disk('public')->delete('/companyLogos/logos/'.end($restaurant_logo));
-                    $restaurant->update([
-                        'logo' => $request->logo->store('companyLogos/logos', 'public')
-                    ]);
-                }
-                if ($restaurant->status == 'Pending' || $restaurant->status == 'Denied') {
-                    // Update restaurant status to pending
-                    if ($restaurant->status == 'Denied') {
-                        $restaurant->update([
-                            'status' => '1'
-                        ]);
-                    }
-                    // Notify admin to review the restaurant
-                    $admin = User::where('email', 'admin@moboeats.com')->first();
-                    $admin->notify(new UpdatedRestaurant($restaurant));
-                }
-                activity()->causedBy(auth()->user())->performedOn($restaurant)->log('update the restaurant');
-                DB::commit();
-                return new RestaurantResource($restaurant);
-            } catch (\Throwable $th) {
-                info($th);
-                DB::rollBack();
-                return $this->error('', $th->getMessage(), 403);
-            }
+        if (auth()->user()->hasRole('orderer')) {
+            return $this->error('', 'Unauthorized', 401);
         }
 
+        try {
+            DB::beginTransaction();
+
+            $restaurant->update(collect($request->all())->except('sitting_capacity', 'logo')->toArray());
+
+            if($request->hasFile('logo')) {
+                $restaurant_logo = explode('/', $restaurant->logo);
+                Storage::disk('public')->delete('/companyLogos/logos/'.end($restaurant_logo));
+                $restaurant->update([
+                    'logo' => $request->logo->store('companyLogos/logos', 'public')
+                ]);
+            }
+
+            if ((auth()->user()->hasRole('restaurant') || auth()->user()->hasRole('restaurant employee')) && $restaurant->status == 'Pending' || $restaurant->status == 'Denied') {
+                // Update restaurant status to pending
+                if ($restaurant->status == 'Denied') {
+                    $restaurant->update([
+                        'status' => '1'
+                    ]);
+                }
+                // Notify admin to review the restaurant
+                $admin = User::where('email', 'info@moboeats.co.uk')->first();
+                $admin->notify(new UpdatedRestaurant($restaurant));
+            } elseif (auth()->user()->hasRole('admin')) {
+                $restaurant->update([
+                    'status' => '2'
+                ]);
+            }
+
+            activity()->causedBy(auth()->user())->performedOn($restaurant)->log('update the restaurant');
+
+            DB::commit();
+
+            return new RestaurantResource($restaurant);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
+        }
     }
 
     public function destroy(Restaurant $restaurant)
@@ -378,7 +381,7 @@ class RestaurantController extends Controller
         if ($user->hasRole(Auth::user()->role_id)) {
             $role = $user->role_id;
             if ($role === 'orderer') {
-                return '';
+                return $this->error('', 'You are not authorized to make this request', 401);
             } else {
                 if (Auth::user()->id !== $restaurant->user_id) {
                     return $this->error('', 'You are not authorized to make this request', 401);

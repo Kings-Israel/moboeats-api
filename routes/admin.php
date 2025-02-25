@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\PaymentController;
+use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\OrphanageController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/restaurants', [AdminController::class, 'restaurants']);
         Route::get('/restaurants/{id}', [AdminController::class, 'restaurant']);
         Route::get('/restaurants/{id}/reviews', [AdminController::class, 'restaurantReviews']);
+        Route::post('/restaurants/{restaurant}/update', [RestaurantController::class, 'update']);
         Route::post('/restaurants/{restaurant}/status/update', [AdminController::class, 'updateRestaurantStatus']);
         Route::get('/payments/{payment}/details', [PaymentController::class, 'show']);
         Route::get('/payments', [AdminController::class, 'payments']);
