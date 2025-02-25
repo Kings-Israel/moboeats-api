@@ -67,6 +67,8 @@ class Restaurant extends Model implements UrlRoutable
         'denied_reason',
         'groceries_service_charge_agreement',
         'paypal_email',
+        'country',
+        'country_code',
     ];
 
     /**
@@ -74,7 +76,7 @@ class Restaurant extends Model implements UrlRoutable
      *
      * @var array
      */
-    protected $appends = ['country', 'country_code'];
+    protected $appends = ['county', 'county_code'];
 
     public function getRouteKeyName()
     {
@@ -349,8 +351,12 @@ class Restaurant extends Model implements UrlRoutable
      * @param  string  $value
      * @return string
      */
-    public function getCountryAttribute()
+    public function getCountyAttribute()
     {
+        if ($this->country) {
+            return $this->country;
+        }
+
         if ($this->latitude && $this->longitude) {
             $user_country = Cache::get($this->uuid.'-restaurant-country');
             if (!$user_country) {
@@ -374,14 +380,22 @@ class Restaurant extends Model implements UrlRoutable
                 Cache::put($this->uuid.'-restaurant-country', $user_country, now()->addMonths(3));
             }
 
+            $this->update([
+                'country' => $user_country
+            ]);
+
             return $user_country;
         }
 
         return 'Kenya';
     }
 
-    public function getCountryCodeAttribute()
+    public function getCountyCodeAttribute()
     {
+        if ($this->country_code) {
+            return $this->country_code;
+        }
+
         if ($this->latitude && $this->longitude) {
             $user_country = Cache::get($this->uuid.'-restaurant-country-code');
             $user_country = NULL;
@@ -407,6 +421,11 @@ class Restaurant extends Model implements UrlRoutable
 
                 Cache::put($this->uuid.'-restaurant-country-code', $user_country, now()->addMonths(3));
             }
+
+            $this->update([
+                'country_code' => $user_country
+            ]);
+
             return $user_country;
         }
 
