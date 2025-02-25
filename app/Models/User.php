@@ -53,7 +53,9 @@ class User extends Authenticatable implements LaratrustUser
         'weight',
         'weight_units',
         'body_mass_index',
-        'is_guided'
+        'is_guided',
+        'country',
+        'country_code',
     ];
 
     protected $keyType = 'int';
@@ -114,7 +116,7 @@ class User extends Authenticatable implements LaratrustUser
      *
      * @var array
      */
-    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries', 'amount_spent', 'latest_order', 'country'];
+    protected $appends = ['total_rider_tips', 'rider_last_delivery', 'total_rider_deliveries', 'amount_spent', 'latest_order', 'county'];
 
     public function receivesBroadcastNotificationOn(): string
     {
@@ -374,8 +376,12 @@ class User extends Authenticatable implements LaratrustUser
      * @param  string  $value
      * @return string
      */
-    public function getCountryAttribute()
+    public function getCountyAttribute()
     {
+        if ($this->country) {
+            return $this->country;
+        }
+
         if ($this->latitude && $this->longitude) {
             $user_country = Cache::get($this->uuid.'-country');
             if (!$user_country) {
@@ -385,12 +391,18 @@ class User extends Authenticatable implements LaratrustUser
 
                     if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
                         $user_country = 'Kenya';
+                        $user_short_country = 'KE';
                     } elseif ($user_location && array_key_exists('status', collect($user_location)->toArray()) && $user_location['status'] == "REQUEST_DENIED") {
                         $user_country = 'Kenya';
+                        $user_short_country = 'KE';
                     } else {
                         foreach ($user_location['results'][0]['address_components'] as $place) {
                             if (collect($place['types'])->contains('country')) {
                                 $user_country = $place['long_name'];
+                            }
+
+                            if (collect($place['types'])->contains('country')) {
+                                $user_short_country = $place['short_name'];
                             }
                         }
                     }
@@ -399,6 +411,11 @@ class User extends Authenticatable implements LaratrustUser
                 }
 
                 Cache::put($this->uuid.'-country', $user_country);
+
+                $this->update([
+                    'country' => $user_country,
+                    'country_code' => $user_short_country
+                ]);
             }
 
             return $user_country;
