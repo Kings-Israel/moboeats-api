@@ -133,6 +133,6 @@
                 });
             }
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCisnVFSnc5QVfU2Jm2W3oRLqMDrKwOEoM&libraries=places&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.map.key') }}&libraries=places&callback=initMap" async defer></script>
     </body>
 </html>
