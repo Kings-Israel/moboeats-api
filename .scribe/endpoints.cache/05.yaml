@@ -126,28 +126,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: atque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: ullam
+        example: ea
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 8
+        example: 5
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: eveniet
+        example: sunt
         type: string
         custom: []
       categoryIds:
@@ -161,16 +161,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: mkepqxb
+        example: jmziqvzpanyorperlu
         type: string
         custom: []
     cleanBodyParameters:
-      title: quia
-      description: ullam
-      status: 8
-      createdBy: eveniet
+      title: atque
+      description: ea
+      status: 5
+      createdBy: sunt
       categoryIds: []
-      image: mkepqxb
+      image: jmziqvzpanyorperlu
     fileParameters: []
     responses: []
     responseFields: []
@@ -202,11 +202,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: alias
+        example: quis
         type: string
         custom: []
     cleanUrlParameters:
-      id: alias
+      id: quis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -696,11 +696,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: libero
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: libero
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -708,14 +708,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: velit
+        example: magnam
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: est
+        example: quia
         type: string
         custom: []
       status:
@@ -729,7 +729,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: soluta
+        example: amet
         type: string
         custom: []
       categoryIds:
@@ -743,15 +743,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: laoushtgtptnrwbig
+        example: rcnatbsvjfdgwbyne
         type: string
         custom: []
     cleanBodyParameters:
-      title: velit
-      description: est
-      updatedBy: soluta
+      title: magnam
+      description: quia
+      updatedBy: amet
       categoryIds: []
-      image: laoushtgtptnrwbig
+      image: rcnatbsvjfdgwbyne
     fileParameters: []
     responses: []
     responseFields: []
@@ -783,11 +783,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: fugiat
+        example: nostrum
         type: string
         custom: []
     cleanUrlParameters:
-      id: fugiat
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -870,28 +870,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: magnam
+        example: similique
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: sapiente
+        example: aspernatur
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 9
+        example: 2
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: non
+        example: debitis
         type: string
         custom: []
       categoryIds:
@@ -905,16 +905,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: rmtuewuqvebtjxmvyfcf
+        example: ijinziiggsayaojc
         type: string
         custom: []
     cleanBodyParameters:
-      title: magnam
-      description: sapiente
-      status: 9
-      createdBy: non
+      title: similique
+      description: aspernatur
+      status: 2
+      createdBy: debitis
       categoryIds: []
-      image: rmtuewuqvebtjxmvyfcf
+      image: ijinziiggsayaojc
     fileParameters: []
     responses: []
     responseFields: []
@@ -946,11 +946,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: itaque
+        example: vero
         type: string
         custom: []
     cleanUrlParameters:
-      id: itaque
+      id: vero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -998,11 +998,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: dolorem
+        example: voluptas
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: voluptas
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1010,14 +1010,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: assumenda
+        example: cumque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: voluptas
+        example: error
         type: string
         custom: []
       status:
@@ -1031,7 +1031,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: possimus
+        example: sapiente
         type: string
         custom: []
       categoryIds:
@@ -1045,15 +1045,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: lpwlsske
+        example: zb
         type: string
         custom: []
     cleanBodyParameters:
-      title: assumenda
-      description: voluptas
-      updatedBy: possimus
+      title: cumque
+      description: error
+      updatedBy: sapiente
       categoryIds: []
-      image: lpwlsske
+      image: zb
     fileParameters: []
     responses: []
     responseFields: []
@@ -1085,11 +1085,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: nobis
+        example: in
         type: string
         custom: []
     cleanUrlParameters:
-      id: nobis
+      id: in
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1170,28 +1170,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: consequatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: est
+        example: quasi
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 2
+        example: 20
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: dolores
+        example: velit
         type: string
         custom: []
       categoryIds:
@@ -1205,16 +1205,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: rmpwfbjesc
+        example: wbgzgsx
         type: string
         custom: []
     cleanBodyParameters:
-      title: quia
-      description: est
-      status: 2
-      createdBy: dolores
+      title: consequatur
+      description: quasi
+      status: 20
+      createdBy: velit
       categoryIds: []
-      image: rmpwfbjesc
+      image: wbgzgsx
     fileParameters: []
     responses: []
     responseFields: []
@@ -1246,11 +1246,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: aliquid
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: aliquid
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1296,11 +1296,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: eos
+        example: nostrum
         type: string
         custom: []
     cleanUrlParameters:
-      id: eos
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1308,14 +1308,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: et
+        example: quaerat
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: laudantium
+        example: aliquid
         type: string
         custom: []
       status:
@@ -1329,7 +1329,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: unde
+        example: eos
         type: string
         custom: []
       categoryIds:
@@ -1343,15 +1343,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: rgvwtjdhtyfhmscee
+        example: gdk
         type: string
         custom: []
     cleanBodyParameters:
-      title: et
-      description: laudantium
-      updatedBy: unde
+      title: quaerat
+      description: aliquid
+      updatedBy: eos
       categoryIds: []
-      image: rgvwtjdhtyfhmscee
+      image: gdk
     fileParameters: []
     responses: []
     responseFields: []
@@ -1383,11 +1383,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: quae
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: quae
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

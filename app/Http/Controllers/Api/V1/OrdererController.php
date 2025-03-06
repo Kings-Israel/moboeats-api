@@ -116,7 +116,6 @@ class OrdererController extends Controller
      * @bodyParam location string The location of the user
      * @bodyParam latitude string The latitudinal location of the user
      * @bodyParam longitude string The longitudinal location of the user
-     * @bodyParam image string The updated avatar of the user
      */
     public function update(Request $request, $ordererId)
     {

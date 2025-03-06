@@ -73,7 +73,7 @@ endpoints:
         name: search
         description: 'Text to search categories'
         required: false
-        example: magni
+        example: perferendis
         type: string
         custom: []
       perPage:
@@ -84,7 +84,7 @@ endpoints:
         type: integer
         custom: []
     cleanQueryParameters:
-      search: magni
+      search: perferendis
       perPage: 15
     bodyParameters: []
     cleanBodyParameters: []
@@ -137,12 +137,12 @@ endpoints:
         name: ID
         description: 'The ID of the category'
         required: false
-        example: 10
+        example: 11
         type: integer
         custom: []
     cleanUrlParameters:
       supplement_category_id: 1
-      ID: 10
+      ID: 11
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -277,19 +277,19 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 6
+        example: 14
         type: integer
         custom: []
       quantity:
         name: quantity
         description: 'The quantity of the order'
         required: false
-        example: 11
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 6
-      quantity: 11
+      supplement_id: 14
+      quantity: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -366,28 +366,28 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: architecto
+        example: quae
         type: string
         custom: []
       category_id:
         name: category_id
         description: ''
         required: true
-        example: autem
+        example: ipsum
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: culpa
+        example: quaerat
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: in
+        example: assumenda
         type: string
         custom: []
       measuring_unit:
@@ -405,10 +405,10 @@ endpoints:
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      supplier_id: architecto
-      category_id: autem
-      name: culpa
-      price: in
+      supplier_id: quae
+      category_id: ipsum
+      name: quaerat
+      price: assumenda
       measuring_unit: kilograms
     fileParameters: []
     responses: []
@@ -486,19 +486,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: repudiandae
+        example: velit
         type: string
         custom: []
       image:
         name: image
         description: ''
         required: true
-        example: iure
+        example: officiis
         type: string
         custom: []
     cleanBodyParameters:
-      name: repudiandae
-      image: iure
+      name: velit
+      image: officiis
     fileParameters: []
     responses: []
     responseFields: []
@@ -669,11 +669,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: tenetur
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: tenetur
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -681,11 +681,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: et
+        example: libero
         type: string
         custom: []
     cleanBodyParameters:
-      status: et
+      status: libero
     fileParameters: []
     responses: []
     responseFields: []

@@ -78,12 +78,12 @@ endpoints:
         name: ID
         description: 'The ID of the Subcategory'
         required: false
-        example: ex
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
       foo_sub_category_uuid: d3a220da-b3b8-4462-ac36-35ef0343fd21
-      ID: ex
+      ID: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -132,27 +132,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: et
+        example: debitis
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: molestiae
+        example: consequuntur
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: velit
+        example: corrupti
         type: string
         custom: []
     cleanQueryParameters:
-      categories: et
-      subCategories: molestiae
-      restaurant: velit
+      categories: debitis
+      subCategories: consequuntur
+      restaurant: corrupti
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -240,11 +240,11 @@ endpoints:
         name: ID
         description: 'The ID of the Subcategory'
         required: false
-        example: dicta
+        example: pariatur
         type: string
         custom: []
     cleanUrlParameters:
-      ID: dicta
+      ID: pariatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -298,12 +298,12 @@ endpoints:
         name: id
         description: 'The ID of the restaurant'
         required: false
-        example: vel
+        example: a
         type: string
         custom: []
     cleanUrlParameters:
       restaurant: b08d4686-a0e7-47f6-88fd-1409c5aac00d
-      id: vel
+      id: a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -352,27 +352,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: eum
+        example: quia
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: exercitationem
+        example: perspiciatis
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: ut
+        example: non
         type: string
         custom: []
     cleanQueryParameters:
-      categories: eum
-      subCategories: exercitationem
-      restaurant: ut
+      categories: quia
+      subCategories: perspiciatis
+      restaurant: non
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -421,21 +421,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: libero
+        example: amet
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: mollitia
+        example: nobis
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 8
+        example: 7
         type: integer
         custom: []
       categoryIds:
@@ -443,15 +443,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 20
+          - 14
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: libero
-      description: mollitia
-      status: 8
+      title: amet
+      description: nobis
+      status: 7
       categoryIds:
-        - 20
+        - 14
     fileParameters: []
     responses: []
     responseFields: []
@@ -483,19 +483,19 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: similique
+        example: a
         type: string
         custom: []
       uuid:
         name: uuid
         description: 'The uuid of the menu'
         required: false
-        example: 97205569-f31c-3f09-b83d-5d2688f670e0
+        example: 164dea8b-8dd5-3057-a1b5-a9e679237e73
         type: string
         custom: []
     cleanUrlParameters:
-      id: similique
-      uuid: 97205569-f31c-3f09-b83d-5d2688f670e0
+      id: a
+      uuid: 164dea8b-8dd5-3057-a1b5-a9e679237e73
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -543,11 +543,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer menu.'
         required: true
-        example: sunt
+        example: eos
         type: string
         custom: []
     cleanUrlParameters:
-      id: sunt
+      id: eos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -555,21 +555,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: error
+        example: praesentium
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: nulla
+        example: nostrum
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 8
+        example: 2
         type: integer
         custom: []
       categoryIds:
@@ -577,15 +577,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 3
+          - 5
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: error
-      description: nulla
-      status: 8
+      title: praesentium
+      description: nostrum
+      status: 2
       categoryIds:
-        - 3
+        - 5
     fileParameters: []
     responses: []
     responseFields: []
@@ -621,35 +621,35 @@ endpoints:
         name: menu_id
         description: 'The id of the menu item'
         required: true
-        example: 5
+        example: 2
         type: integer
         custom: []
       menu_rating:
         name: menu_rating
         description: 'The rating of the menu from 1 - 5'
         required: true
-        example: 17
+        example: 7
         type: integer
         custom: []
       menu_review:
         name: menu_review
         description: 'A review of the menu'
         required: false
-        example: accusamus
+        example: dolores
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 17
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      menu_id: 5
-      menu_rating: 17
-      menu_review: accusamus
-      order_id: 17
+      menu_id: 2
+      menu_rating: 7
+      menu_review: dolores
+      order_id: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -683,27 +683,27 @@ endpoints:
         name: categories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: odit
+        example: autem
         type: string
         custom: []
       subCategories:
         name: subCategories
         description: 'to fetch categories associated with Menu'
         required: false
-        example: esse
+        example: delectus
         type: string
         custom: []
       restaurant:
         name: restaurant
         description: 'to fetch restaurant that owns with Menu'
         required: false
-        example: aut
+        example: reprehenderit
         type: string
         custom: []
     cleanQueryParameters:
-      categories: odit
-      subCategories: esse
-      restaurant: aut
+      categories: autem
+      subCategories: delectus
+      restaurant: reprehenderit
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -750,21 +750,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ea
+        example: cumque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: sint
+        example: eveniet
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 20
+        example: 1
         type: integer
         custom: []
       categoryIds:
@@ -772,15 +772,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 12
+          - 8
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: ea
-      description: sint
-      status: 20
+      title: cumque
+      description: eveniet
+      status: 1
       categoryIds:
-        - 12
+        - 8
     fileParameters: []
     responses: []
     responseFields: []
@@ -819,12 +819,12 @@ endpoints:
         name: uuid
         description: 'The uuid of the menu'
         required: false
-        example: 10975dbb-85fc-3436-8732-9ff3cac6554a
+        example: 5457fe67-986c-394e-8962-a90e76c50fb8
         type: string
         custom: []
     cleanUrlParameters:
       id: 1f012027-b440-408c-adf4-9b5a4c3505f3
-      uuid: 10975dbb-85fc-3436-8732-9ff3cac6554a
+      uuid: 5457fe67-986c-394e-8962-a90e76c50fb8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -882,21 +882,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: laudantium
+        example: non
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: velit
+        example: eum
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 6
+        example: 3
         type: integer
         custom: []
       categoryIds:
@@ -904,15 +904,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 5
+          - 4
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: laudantium
-      description: velit
-      status: 6
+      title: non
+      description: eum
+      status: 3
       categoryIds:
-        - 5
+        - 4
     fileParameters: []
     responses: []
     responseFields: []
@@ -1136,21 +1136,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ea
+        example: autem
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quia
+        example: repudiandae
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 19
+        example: 4
         type: integer
         custom: []
       categoryIds:
@@ -1158,15 +1158,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 9
+          - 15
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: ea
-      description: quia
-      status: 19
+      title: autem
+      description: repudiandae
+      status: 4
       categoryIds:
-        - 9
+        - 15
     fileParameters: []
     responses: []
     responseFields: []
@@ -1210,21 +1210,21 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: aspernatur
+        example: mollitia
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: sed
+        example: voluptas
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 11
+        example: 16
         type: integer
         custom: []
       categoryIds:
@@ -1232,15 +1232,15 @@ endpoints:
         description: ''
         required: false
         example:
-          - 9
+          - 10
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      title: aspernatur
-      description: sed
-      status: 11
+      title: mollitia
+      description: voluptas
+      status: 16
       categoryIds:
-        - 9
+        - 10
     fileParameters: []
     responses: []
     responseFields: []
@@ -1398,43 +1398,43 @@ endpoints:
         name: restaurant_ids
         description: ''
         required: true
-        example: tempora
+        example: aut
         type: string
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: error
+        example: numquam
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: tempora
+        example: consequatur
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 14
+        example: 20
         type: integer
         custom: []
       categoryIds:
         name: categoryIds
         description: ''
         required: true
-        example: eos
+        example: rerum
         type: string
         custom: []
     cleanBodyParameters:
-      restaurant_ids: tempora
-      title: error
-      description: tempora
-      status: 14
-      categoryIds: eos
+      restaurant_ids: aut
+      title: numquam
+      description: consequatur
+      status: 20
+      categoryIds: rerum
     fileParameters: []
     responses: []
     responseFields: []
@@ -1479,28 +1479,28 @@ endpoints:
         description: ''
         required: false
         example:
-          - 5
+          - 13
         type: 'integer[]'
         custom: []
       title:
         name: title
         description: ''
         required: true
-        example: cumque
+        example: minima
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eius
+        example: dolor
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 5
+        example: 19
         type: integer
         custom: []
       categoryIds:
@@ -1508,17 +1508,17 @@ endpoints:
         description: ''
         required: false
         example:
-          - 5
+          - 11
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
       restaurant_ids:
-        - 5
-      title: cumque
-      description: eius
-      status: 5
+        - 13
+      title: minima
+      description: dolor
+      status: 19
       categoryIds:
-        - 5
+        - 11
     fileParameters: []
     responses: []
     responseFields: []

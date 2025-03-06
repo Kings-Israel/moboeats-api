@@ -73,14 +73,14 @@ endpoints:
         name: cartId
         description: ''
         required: false
-        example: 20
+        example: 6
         type: integer
         custom: []
       restaurantId:
         name: restaurantId
         description: ''
         required: true
-        example: 12
+        example: 13
         type: integer
         custom: []
       delivery:
@@ -113,16 +113,16 @@ endpoints:
         custom: []
       booking_time:
         name: booking_time
-        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2025-03-06 07:20:52</code>.'
+        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2025-03-06 07:28:39</code>.'
         required: false
-        example: '2037-12-06'
+        example: '2084-06-27'
         type: string
         custom: []
     cleanBodyParameters:
-      cartId: 20
-      restaurantId: 12
+      cartId: 6
+      restaurantId: 13
       delivery: true
-      booking_time: '2037-12-06'
+      booking_time: '2084-06-27'
     fileParameters: []
     responses: []
     responseFields: []
@@ -254,36 +254,36 @@ endpoints:
         name: restaurant_rating
         description: 'The rating of the restaurant from 1 - 5'
         required: false
-        example: 17
+        example: 6
         type: integer
         custom: []
       restaurant_review:
         name: restaurant_review
         description: 'A review of the restaurant'
         required: false
-        example: asperiores
+        example: ea
         type: string
         custom: []
       rider_rating:
         name: rider_rating
         description: 'The rating of the rider from 1 - 5'
         required: false
-        example: 7
+        example: 15
         type: integer
         custom: []
       rider_review:
         name: rider_review
         description: 'A review of the rider'
         required: false
-        example: neque
+        example: perferendis
         type: string
         custom: []
     cleanBodyParameters:
       order_id: 10
-      restaurant_rating: 17
-      restaurant_review: asperiores
-      rider_rating: 7
-      rider_review: neque
+      restaurant_rating: 6
+      restaurant_review: ea
+      rider_rating: 15
+      rider_review: perferendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -416,11 +416,11 @@ endpoints:
         name: status
         description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
         required: true
-        example: 'in progress'
+        example: cancelled
         type: string
         custom: []
     cleanBodyParameters:
-      status: 'in progress'
+      status: cancelled
     fileParameters: []
     responses: []
     responseFields: []
@@ -588,11 +588,11 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: alias
+        example: laboriosam
         type: string
         custom: []
     cleanBodyParameters:
-      status: alias
+      status: laboriosam
     fileParameters: []
     responses: []
     responseFields: []
@@ -676,11 +676,11 @@ endpoints:
         name: status
         description: ''
         required: true
-        example: molestiae
+        example: ea
         type: string
         custom: []
     cleanBodyParameters:
-      status: molestiae
+      status: ea
     fileParameters: []
     responses: []
     responseFields: []
@@ -716,19 +716,19 @@ endpoints:
         name: order_id
         description: ''
         required: true
-        example: dolores
+        example: nisi
         type: string
         custom: []
       rider_id:
         name: rider_id
         description: ''
         required: true
-        example: occaecati
+        example: voluptatem
         type: string
         custom: []
     cleanBodyParameters:
-      order_id: dolores
-      rider_id: occaecati
+      order_id: nisi
+      rider_id: voluptatem
     fileParameters: []
     responses: []
     responseFields: []

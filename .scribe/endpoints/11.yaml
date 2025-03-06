@@ -107,11 +107,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: qui
+        example: quidem
         type: string
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: quidem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: aut
+        example: ex
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: ex
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

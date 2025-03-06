@@ -73,14 +73,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: in
+        example: laboriosam
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: rowena12@example.com
+        example: kelvin.torp@example.com
         type: string
         custom: []
       phoneNo:
@@ -126,8 +126,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: in
-      email: rowena12@example.com
+      name: laboriosam
+      email: kelvin.torp@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -159,11 +159,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer.'
         required: true
-        example: officia
+        example: eum
         type: string
         custom: []
     cleanUrlParameters:
-      id: officia
+      id: eum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -209,19 +209,19 @@ endpoints:
         name: id
         description: 'The ID of the orderer.'
         required: true
-        example: enim
+        example: voluptatibus
         type: string
         custom: []
       uuid:
         name: uuid
         description: 'The uuid of the user'
         required: false
-        example: a6cd9338-1279-3b6e-967f-b1719579525d
+        example: 24981f31-c674-355c-b680-4ddf85baa3be
         type: string
         custom: []
     cleanUrlParameters:
-      id: enim
-      uuid: a6cd9338-1279-3b6e-967f-b1719579525d
+      id: voluptatibus
+      uuid: 24981f31-c674-355c-b680-4ddf85baa3be
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -229,59 +229,51 @@ endpoints:
         name: name
         description: 'The name of the user'
         required: true
-        example: optio
+        example: doloremque
         type: string
         custom: []
       email:
         name: email
         description: 'The email of the user'
         required: false
-        example: katrine.kihn@example.com
+        example: alexane48@example.org
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: 'The phone number of the user'
         required: true
-        example: nam
+        example: alias
         type: string
         custom: []
       location:
         name: location
         description: 'The location of the user'
         required: false
-        example: et
+        example: amet
         type: string
         custom: []
       latitude:
         name: latitude
         description: 'The latitudinal location of the user'
         required: false
-        example: atque
+        example: minus
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'The longitudinal location of the user'
         required: false
-        example: architecto
-        type: string
-        custom: []
-      image:
-        name: image
-        description: 'The updated avatar of the user'
-        required: false
-        example: explicabo
+        example: id
         type: string
         custom: []
     cleanBodyParameters:
-      name: optio
-      email: katrine.kihn@example.com
-      phone_number: nam
-      location: et
-      latitude: atque
-      longitude: architecto
-      image: explicabo
+      name: doloremque
+      email: alexane48@example.org
+      phone_number: alias
+      location: amet
+      latitude: minus
+      longitude: id
     fileParameters: []
     responses: []
     responseFields: []
@@ -313,11 +305,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 040a5cdc-116d-3963-a5b1-bb931a3fa9ed
+        example: ee65b0d5-916e-36fe-9f91-b63a1c854615
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 040a5cdc-116d-3963-a5b1-bb931a3fa9ed
+      uuid: ee65b0d5-916e-36fe-9f91-b63a1c854615
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -357,43 +349,43 @@ endpoints:
         name: height
         description: 'The height of the user'
         required: true
-        example: 3
+        example: 12
         type: integer
         custom: []
       height_units:
         name: height_units
         description: 'The measurement units for height. E.g inches, feet'
         required: true
-        example: 18
+        example: 19
         type: integer
         custom: []
       weight:
         name: weight
         description: 'The weight of the user'
         required: true
-        example: 13
+        example: 10
         type: integer
         custom: []
       weight_units:
         name: weight_units
         description: 'The measurement units for weight. E.g kilograms, pounds'
         required: true
-        example: 19
+        example: 12
         type: integer
         custom: []
       body_mass_index:
         name: body_mass_index
         description: 'The mass index of the user'
         required: true
-        example: 7
+        example: 1
         type: integer
         custom: []
     cleanBodyParameters:
-      height: 3
-      height_units: 18
-      weight: 13
-      weight_units: 19
-      body_mass_index: 7
+      height: 12
+      height_units: 19
+      weight: 10
+      weight_units: 12
+      body_mass_index: 1
     fileParameters: []
     responses: []
     responseFields: []
