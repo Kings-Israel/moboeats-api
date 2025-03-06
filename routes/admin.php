@@ -35,6 +35,7 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::post('/restaurants/{restaurant}/status/update', [AdminController::class, 'updateRestaurantStatus']);
         Route::get('/payments/{payment}/details', [PaymentController::class, 'show']);
         Route::get('/payments', [AdminController::class, 'payments']);
+        Route::post('/users/update', [AdminController::class, 'updateUser']);
 
         // Supplements and Suppliers
         Route::group(['prefix' => '/supplements'], function () {

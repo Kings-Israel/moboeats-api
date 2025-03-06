@@ -706,6 +706,36 @@ class AdminController extends Controller
         return $this->success(['restaurants' => $restaurants, 'user' => $user]);
     }
 
+    public function updateUser(Request $request)
+    {
+        $request->validate([
+            'id' => ['required'],
+            'first_name' => 'required', 'string',
+            'last_name' => 'required', 'string',
+            'email' => 'required', 'email',
+            'phone_number' => 'required',
+            'avatar' => ['nullable', 'max:9000'],
+        ]);
+
+        $user = User::find($request->id);
+
+        $user->update([
+            'name' => $request->first_name.' '.$request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $image = explode('/', $user->image);
+            Storage::disk('user')->delete('/avatar/'.end($image));
+            $user->update([
+                'image' => pathinfo($request->avatar->store('avatar', 'user'), PATHINFO_BASENAME),
+            ]);
+        }
+
+        return response()->json(['message' => 'User updated successfully'], 200);
+    }
+
     public function rider($id)
     {
         $user = User::with('deliveries.restaurant', 'deliveries.user', 'roles')->find($id);
