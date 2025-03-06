@@ -65,12 +65,12 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 14
+        example: 15
         type: integer
         custom: []
     cleanUrlParameters:
       id: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-      order_id: 14
+      order_id: 15
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -115,19 +115,19 @@ endpoints:
         name: diet_subscription_package_id
         description: 'The ID of the diet subscription package.'
         required: true
-        example: 15
+        example: 11
         type: integer
         custom: []
       diet_subscription_package:
         name: diet_subscription_package
         description: 'The id of the diet subscription package'
         required: false
-        example: 17
+        example: 12
         type: integer
         custom: []
     cleanUrlParameters:
-      diet_subscription_package_id: 15
-      diet_subscription_package: 17
+      diet_subscription_package_id: 11
+      diet_subscription_package: 12
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -212,19 +212,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 13
+        example: 2
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 6
+        example: 1
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 13
-      amount: 6
+      order_id: 2
+      amount: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -269,19 +269,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: veritatis
+        example: et
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: aut
+        example: porro
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: veritatis
-      order_id: aut
+      user_id: et
+      order_id: porro
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -456,11 +456,11 @@ endpoints:
         name: payment_uuid
         description: ''
         required: true
-        example: 86f596ee-3e98-3794-85e7-387ddd224bda
+        example: 08493de4-0610-3a2b-8ea7-38ddeca05562
         type: string
         custom: []
     cleanUrlParameters:
-      payment_uuid: 86f596ee-3e98-3794-85e7-387ddd224bda
+      payment_uuid: 08493de4-0610-3a2b-8ea7-38ddeca05562
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

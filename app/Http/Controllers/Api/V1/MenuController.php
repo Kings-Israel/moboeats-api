@@ -560,26 +560,31 @@ class MenuController extends Controller
      * Show Menu Details
      * @urlParam uuid The uuid of the menu
      */
-    public function show(Menu $menu)
+    public function show($menuId)
     {
-        if (auth()->check()) {
-            if (auth()->user()->hasRole('restaurant')) {
-                $restaurant_ids = auth()->user()->restaurants->pluck('id');
-            } else {
-                $restaurant_ids = UserRestaurant::where('user_id', auth()->id())->first()->pluck('restaurant_id');
-            }
+        $menu = Menu::where('uuid', $menuId)->first();
+        if ($menu) {
+            if (auth()->check()) {
+                if (auth()->user()->hasRole('restaurant')) {
+                    $restaurant_ids = auth()->user()->restaurants->pluck('id');
+                } elseif (auth()->user()->hasRole('restaurant employee')) {
+                    $restaurant_ids = UserRestaurant::where('user_id', auth()->id())->first()->pluck('restaurant_id');
+                }
 
-            $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
+                $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhereIn('restaurant_id', $restaurant_ids)->get();
+
+                return [
+                    'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews', 'subCategories')),
+                    'categories' => new FoodCommonCategoryCollection($categories),
+                ];
+            }
 
             return [
                 'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews', 'subCategories')),
-                'categories' => new FoodCommonCategoryCollection($categories),
             ];
         }
 
-        return [
-            'menu' => new MenuResource($menu->loadMissing('menuPrices', 'categories.food_sub_categories', 'discount', 'images', 'orderItems.order', 'reviews', 'subCategories')),
-        ];
+        return response()->json(['message' => 'No Menu with the given ID was found'], 404);
     }
 
     /**

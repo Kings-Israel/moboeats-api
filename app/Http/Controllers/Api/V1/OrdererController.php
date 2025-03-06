@@ -9,6 +9,7 @@ use App\Http\Requests\V1\StoreOrdererRequest;
 use App\Http\Requests\V1\UpdateOrdererRequest;
 use App\Http\Resources\V1\OrdererCollection;
 use App\Http\Resources\V1\OrdererResource;
+use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\Admin\UploadFileTrait;
@@ -95,27 +96,50 @@ class OrdererController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Get User Details.
      */
-    public function show(Orderer $orderer)
+    public function show(User $user)
     {
-        return $this->isNotAuthorized($orderer) ?  $this->isNotAuthorized($orderer) : new OrdererResource($orderer);
+        return $this->isNotAuthorized($user) ?  $this->isNotAuthorized($user) : new UserResource($user);
     }
 
 
     /**
-     * Update the specified resource in storage.
+     * @authenticated
+     * Update User Details.
+     *
+     * @urlParam uuid string The uuid of the user
+     *
+     * @bodyParam name string required The name of the user
+     * @bodyParam email string The email of the user
+     * @bodyParam phone_number string required The phone number of the user
+     * @bodyParam location string The location of the user
+     * @bodyParam latitude string The latitudinal location of the user
+     * @bodyParam longitude string The longitudinal location of the user
+     * @bodyParam image string The updated avatar of the user
      */
-    public function update(UpdateOrdererRequest $request, Orderer $orderer)
+    public function update(Request $request, $ordererId)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['sometimes', 'email'],
+            'phone_number' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 400);
+        }
+
+        $user = User::where('uuid', $ordererId)->first();
+
         try {
             DB::beginTransaction();
-            if ($this->isNotAuthorized($orderer)) {
-                return $this->isNotAuthorized($orderer);
+            if ($this->isNotAuthorized($user)) {
+                return $this->isNotAuthorized($user);
             }
             if($request->hasFile('image')){
                 $fileName = $this->generateFileName2($request->file('image'));
-                $orderer->update($request->all(),['image' => $fileName]);
+                $user->update($request->all(),['image' => $fileName]);
                 if($request->hasFile('image')){
                     $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => null];
                     if(!$this->uploadFile($fileData)){
@@ -123,10 +147,10 @@ class OrdererController extends Controller
                     }
                 }
             } else {
-                $orderer->update($request->all());
+                $user->update($request->all());
             }
             DB::commit();
-            return new OrdererResource($orderer);
+            return new UserResource($user);
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();
@@ -197,7 +221,7 @@ class OrdererController extends Controller
 
     public function isNotAuthorized($orderer)
     {
-        if (Auth::user()->id !== $orderer->user_id) {
+        if (Auth::user()->id !== $orderer->id) {
             return $this->error('', 'You are not authorized to make this request', 403);
         }
     }

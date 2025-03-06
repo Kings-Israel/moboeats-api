@@ -71,26 +71,26 @@ endpoints:
         name: search
         description: 'Text to search categories'
         required: false
-        example: ut
+        example: magni
         type: string
         custom: []
       perPage:
         name: perPage
         description: 'Number of items per page'
         required: false
-        example: 18
+        example: 15
         type: integer
         custom: []
     cleanQueryParameters:
-      search: ut
-      perPage: 18
+      search: magni
+      perPage: 15
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[],"first_page_url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","from":null,"last_page":1,"last_page_url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories","per_page":18,"prev_page_url":null,"to":null,"total":0}}'
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[],"first_page_url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","from":null,"last_page":1,"last_page_url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories","per_page":15,"prev_page_url":null,"to":null,"total":0}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -135,12 +135,12 @@ endpoints:
         name: ID
         description: 'The ID of the category'
         required: false
-        example: 7
+        example: 10
         type: integer
         custom: []
     cleanUrlParameters:
       supplement_category_id: 1
-      ID: 7
+      ID: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -275,19 +275,19 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 16
+        example: 6
         type: integer
         custom: []
       quantity:
         name: quantity
         description: 'The quantity of the order'
         required: false
-        example: 5
+        example: 11
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 16
-      quantity: 5
+      supplement_id: 6
+      quantity: 11
     fileParameters: []
     responses: []
     responseFields: []
@@ -364,28 +364,28 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: sit
+        example: architecto
         type: string
         custom: []
       category_id:
         name: category_id
         description: ''
         required: true
-        example: excepturi
+        example: autem
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: et
+        example: culpa
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: consequatur
+        example: in
         type: string
         custom: []
       measuring_unit:
@@ -403,10 +403,10 @@ endpoints:
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      supplier_id: sit
-      category_id: excepturi
-      name: et
-      price: consequatur
+      supplier_id: architecto
+      category_id: autem
+      name: culpa
+      price: in
       measuring_unit: kilograms
     fileParameters: []
     responses: []
@@ -484,19 +484,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: modi
+        example: repudiandae
         type: string
         custom: []
       image:
         name: image
         description: ''
         required: true
-        example: voluptatem
+        example: iure
         type: string
         custom: []
     cleanBodyParameters:
-      name: modi
-      image: voluptatem
+      name: repudiandae
+      image: iure
     fileParameters: []
     responses: []
     responseFields: []
@@ -667,11 +667,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: dolore
+        example: tenetur
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolore
+      id: tenetur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -679,11 +679,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: molestiae
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      status: molestiae
+      status: et
     fileParameters: []
     responses: []
     responseFields: []

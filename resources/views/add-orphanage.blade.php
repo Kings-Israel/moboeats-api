@@ -60,10 +60,6 @@
                             <label class="text-black text-md font-bold">Contact Person's Phone Number</label>
                             <input type="tel" name="contact_phone_number" class="border-2 px-2 border-gray-300 dark:border-gray-300 dark:text-dark bg-slate-200 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-gray-400 dark:focus:ring-gray-400 rounded-md shadow-sm h-10" />
                         </div>
-                        <div class="flex flex-col">
-                            <label class="text-black text-md font-bold">Contact Person's Email</label>
-                            <input type="email" name="contact_email" class="border-2 px-2 border-gray-300 dark:border-gray-300 dark:text-dark bg-slate-200 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-gray-400 dark:focus:ring-gray-400 rounded-md shadow-sm h-10" />
-                        </div>
                     </div>
                     <div class="lg:basis-1/2 py-1">
                         <div class="flex flex-col">

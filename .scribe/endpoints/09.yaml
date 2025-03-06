@@ -71,14 +71,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: molestiae
+        example: in
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: alyson.balistreri@example.net
+        example: rowena12@example.com
         type: string
         custom: []
       phoneNo:
@@ -124,8 +124,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: molestiae
-      email: alyson.balistreri@example.net
+      name: in
+      email: rowena12@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -137,7 +137,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/orderer/orderers/{id}'
     metadata:
       groupName: 'Orderer/Customer Management'
       groupDescription: |-
@@ -145,7 +145,7 @@ endpoints:
         Orderer/Customer API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: 'Get User Details.'
       description: ''
       authenticated: false
       custom: []
@@ -153,15 +153,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the orderer.'
         required: true
-        example: 9c812755-4f9d-3401-973b-81d52842af2d
+        example: officia
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 9c812755-4f9d-3401-973b-81d52842af2d
+      id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -187,7 +187,7 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v1/orderer/orderers/{id}'
     metadata:
       groupName: 'Orderer/Customer Management'
       groupDescription: |-
@@ -195,98 +195,91 @@ endpoints:
         Orderer/Customer API resource
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
+      title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
+      id:
+        name: id
+        description: 'The ID of the orderer.'
+        required: true
+        example: enim
+        type: string
+        custom: []
       uuid:
         name: uuid
-        description: ''
-        required: true
-        example: ed9fb0fc-7190-3ec7-815d-588a28e32849
+        description: 'The uuid of the user'
+        required: false
+        example: a6cd9338-1279-3b6e-967f-b1719579525d
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: ed9fb0fc-7190-3ec7-815d-588a28e32849
+      id: enim
+      uuid: a6cd9338-1279-3b6e-967f-b1719579525d
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      uuid:
-        name: uuid
-        description: 'Must be a valid UUID.'
-        required: true
-        example: 33c70645-db15-3fb7-90c3-8fc7e7313bb7
-        type: string
-        custom: []
       name:
         name: name
-        description: ''
+        description: 'The name of the user'
         required: true
-        example: reprehenderit
+        example: optio
         type: string
         custom: []
       email:
         name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: fschamberger@example.com
+        description: 'The email of the user'
+        required: false
+        example: katrine.kihn@example.com
         type: string
         custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
+      phone_number:
+        name: phone_number
+        description: 'The phone number of the user'
         required: true
-        example: omnis
+        example: nam
         type: string
         custom: []
-      address:
-        name: address
-        description: ''
-        required: true
-        example: ipsa
+      location:
+        name: location
+        description: 'The location of the user'
+        required: false
+        example: et
         type: string
         custom: []
-      city:
-        name: city
-        description: ''
-        required: true
-        example: rerum
+      latitude:
+        name: latitude
+        description: 'The latitudinal location of the user'
+        required: false
+        example: atque
         type: string
         custom: []
-      state:
-        name: state
-        description: ''
-        required: true
-        example: omnis
-        type: string
-        custom: []
-      mapLocation:
-        name: mapLocation
-        description: ''
-        required: true
-        example: exercitationem
+      longitude:
+        name: longitude
+        description: 'The longitudinal location of the user'
+        required: false
+        example: architecto
         type: string
         custom: []
       image:
         name: image
-        description: ''
+        description: 'The updated avatar of the user'
         required: false
-        example: null
+        example: explicabo
         type: string
         custom: []
     cleanBodyParameters:
-      uuid: 33c70645-db15-3fb7-90c3-8fc7e7313bb7
-      name: reprehenderit
-      email: fschamberger@example.com
-      phoneNo: omnis
-      address: ipsa
-      city: rerum
-      state: omnis
-      mapLocation: exercitationem
+      name: optio
+      email: katrine.kihn@example.com
+      phone_number: nam
+      location: et
+      latitude: atque
+      longitude: architecto
+      image: explicabo
     fileParameters: []
     responses: []
     responseFields: []
@@ -318,11 +311,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 84457664-f565-368a-adc2-0d934731e28e
+        example: 040a5cdc-116d-3963-a5b1-bb931a3fa9ed
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 84457664-f565-368a-adc2-0d934731e28e
+      uuid: 040a5cdc-116d-3963-a5b1-bb931a3fa9ed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -362,43 +355,43 @@ endpoints:
         name: height
         description: 'The height of the user'
         required: true
-        example: 12
+        example: 3
         type: integer
         custom: []
       height_units:
         name: height_units
         description: 'The measurement units for height. E.g inches, feet'
         required: true
-        example: 2
+        example: 18
         type: integer
         custom: []
       weight:
         name: weight
         description: 'The weight of the user'
         required: true
-        example: 7
+        example: 13
         type: integer
         custom: []
       weight_units:
         name: weight_units
         description: 'The measurement units for weight. E.g kilograms, pounds'
         required: true
-        example: 18
+        example: 19
         type: integer
         custom: []
       body_mass_index:
         name: body_mass_index
         description: 'The mass index of the user'
         required: true
-        example: 6
+        example: 7
         type: integer
         custom: []
     cleanBodyParameters:
-      height: 12
-      height_units: 2
-      weight: 7
-      weight_units: 18
-      body_mass_index: 6
+      height: 3
+      height_units: 18
+      weight: 13
+      weight_units: 19
+      body_mass_index: 7
     fileParameters: []
     responses: []
     responseFields: []
