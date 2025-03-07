@@ -133,9 +133,6 @@ class OrdererController extends Controller
 
         try {
             DB::beginTransaction();
-            if ($this->isNotAuthorized($user)) {
-                return $this->isNotAuthorized($user);
-            }
             if($request->hasFile('image')){
                 $fileName = $this->generateFileName2($request->file('image'));
                 $user->update($request->all(),['image' => $fileName]);
