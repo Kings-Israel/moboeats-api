@@ -603,108 +603,98 @@ class MenuController extends Controller
             $menu = Menu::find($id);
         }
 
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role != 'restaurant') {
-                return $this->error('', 'Unauthorized', 401);
+        try {
+            DB::beginTransaction();
+
+            if($request->hasFile('image')){
+                $fileName = $this->generateFileName2($request->file('image'));
             }
 
-            try {
-                DB::beginTransaction();
+            $menu->update($request->all());
 
-                if($request->hasFile('image')){
-                    $fileName = $this->generateFileName2($request->file('image'));
+            if ($request->standardPrice) {
+                $standardPrice = MenuPrice::where('menu_id', $menu->id)->first();
+                $standardPrice->update(['price' => $request->standardPrice]);
+            }
+
+            if($request->hasFile('image')){
+                $image = MenuImage::where('menu_id', $menu->id)->where('sequence', 1)->first();
+                if($image) {
+                    $image->delete();
+                    //delete file from
+                    $prevFile = $image->image_url;
                 }
+                MenuImage::create([
+                    'uuid' => Str::uuid(),
+                    'menu_id' => $menu->id,
+                    'image_url' => $fileName,
+                    'sequence' => 1,
+                    'status' => 2,
+                    'created_by' => auth()->user()->email,
+                ]);
 
-                $menu->update($request->all());
-
-                if ($request->standardPrice) {
-                    $standardPrice = MenuPrice::where('menu_id', $menu->id)->first();
-                    $standardPrice->update(['price' => $request->standardPrice]);
+                $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => $prevFile];
+                if(!$this->uploadFile($fileData)){
+                    DB::rollBack();
                 }
+            }
 
-                if($request->hasFile('image')){
-                    $image = MenuImage::where('menu_id', $menu->id)->where('sequence', 1)->first();
-                    if($image) {
-                        $image->delete();
-                        //delete file from
-                        $prevFile = $image->image_url;
-                    }
-                    MenuImage::create([
+            $foodCategoryIds = $request->input('categoryIds');
+            $subcategoryIds = $request->input('subcategoryIds');
+
+            $syncData = [];
+            $syncData2 = [];
+            foreach ($foodCategoryIds as $foodCategoryId) {
+                $syncData[$foodCategoryId] = [
+                    'menu_id' => $menu->id,
+                    'uuid' => Str::uuid(),
+                    'created_by' => auth()->user()->email,
+                    'created_at' => now()->format('Y-m-d H:i:s'),
+                ];
+            }
+
+            $menu->categories()->sync($syncData);
+
+            if ($request->subcategoryIds) {
+                foreach ($subcategoryIds as $categoryId) {
+                    $syncData2[$categoryId] = [
                         'uuid' => Str::uuid(),
                         'menu_id' => $menu->id,
-                        'image_url' => $fileName,
-                        'sequence' => 1,
-                        'status' => 2,
                         'created_by' => auth()->user()->email,
-                    ]);
-
-                    $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => $prevFile];
-                    if(!$this->uploadFile($fileData)){
-                        DB::rollBack();
-                    }
-                }
-
-                $foodCategoryIds = $request->input('categoryIds');
-                $subcategoryIds = $request->input('subcategoryIds');
-
-                $syncData = [];
-                $syncData2 = [];
-                foreach ($foodCategoryIds as $foodCategoryId) {
-                    $syncData[$foodCategoryId] = [
-                        'menu_id' => $menu->id,
-                        'uuid' => Str::uuid(),
-                        'created_by' => auth()->user()->email,
-                        'created_at' => now()->format('Y-m-d H:i:s'),
                     ];
                 }
-
-                $menu->categories()->sync($syncData);
-
-                if ($request->subcategoryIds) {
-                    foreach ($subcategoryIds as $categoryId) {
-                        $syncData2[$categoryId] = [
-                            'uuid' => Str::uuid(),
-                            'menu_id' => $menu->id,
-                            'created_by' => auth()->user()->email,
-                        ];
-                    }
-                    $menu->subCategories()->sync($syncData2);
-                }
-
-                // Make request to stripe to store menu item
-                $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
-
-                if (!$menu->stripe_product_id) {
-                    $product = $stripe->products->create([
-                        'name' => $request->title,
-                        'description' => $request->description,
-                        'metadata' => [
-                            'restaurant_id' => $menu->restaurant->id,
-                            'restaurant_name' => $menu->restaurant->name,
-                        ]
-                    ]);
-
-                    $menu->update([
-                        'stripe_product_id' => $product->id,
-                    ]);
-                } else {
-                    $stripe->products->update($menu->stripe_product_id, [
-                        'name' => $request->title,
-                        'description' => $request->description,
-                    ]);
-                }
-
-
-                DB::commit();
-                return new MenuResource($menu);
-            } catch (\Throwable $th) {
-                info($th);
-                DB::rollBack();
-                return $this->error('', $th->getMessage(), 403);
-
+                $menu->subCategories()->sync($syncData2);
             }
+
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            if (!$menu->stripe_product_id) {
+                $product = $stripe->products->create([
+                    'name' => $request->title,
+                    'description' => $request->description,
+                    'metadata' => [
+                        'restaurant_id' => $menu->restaurant->id,
+                        'restaurant_name' => $menu->restaurant->name,
+                    ]
+                ]);
+
+                $menu->update([
+                    'stripe_product_id' => $product->id,
+                ]);
+            } else {
+                $stripe->products->update($menu->stripe_product_id, [
+                    'name' => $request->title,
+                    'description' => $request->description,
+                ]);
+            }
+
+            DB::commit();
+            return new MenuResource($menu);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
         }
     }
 
