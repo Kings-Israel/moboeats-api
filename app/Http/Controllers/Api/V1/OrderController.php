@@ -254,7 +254,7 @@ class OrderController extends Controller
 
                 if ($request->delivery) {
                     $customer_restaurant_distance = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$request->delivery_location_lat.','.$request->delivery_location_lng.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
-
+                    info($customer_restaurant_distance);
                     if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'NOT_FOUND') {
                        return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
                     }
