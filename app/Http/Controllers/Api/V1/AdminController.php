@@ -126,7 +126,7 @@ class AdminController extends Controller
         $orders_timeline = $request->query('orders_timeline');
         $payments_timeline = $request->query('payments_timeline');
         $users = User::whereHasRole('orderer')->count();
-        $restaurants = User::whereHasRole('restaurant')->count();
+        $restaurants = Restaurant::count();
         $riders = User::whereHasRole('rider')->count();
         $orders = Order::whereIn('delivery_status', ['On Delivery', 'Delivered', 'In Progress'])->count();
 
