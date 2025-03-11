@@ -140,7 +140,7 @@ class MenuController extends Controller
             return $this->error('', 'Invalid restaurnt', 404);
         }
 
-        if (!auth()->user()->hasRole('restaurant') || !auth()->user()->hasPermissionTo('Edit Partners')) {
+        if (!auth()->user()->hasRole('restaurant') || !auth()->user()->hasPermissionTo('edit partners')) {
             return $this->error('', 'Unauthorized', 401);
         }
 
