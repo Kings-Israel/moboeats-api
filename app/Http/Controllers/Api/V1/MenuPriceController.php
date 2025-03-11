@@ -46,78 +46,75 @@ class MenuPriceController extends Controller
      */
     public function store(StoreMenuPriceRequest $request)
     {
-        $user = User::where('id',Auth::user()->id)->first();
-        if ($user->hasRole(Auth::user()->role_id)) {
-            $role = $user->role_id;
-            if ($role != 'restaurant') {
-                return $this->error('', 'Unauthorized', 401);
-            }
-            try {
-                DB::beginTransaction();
+        if (!auth()->user()->hasRole('restaurant') && !auth()->user()->hasPermission('edit partners')) {
+            return $this->error('', 'Unauthorized', 401);
+        }
 
-                if ($request->status == 2) {
-                    $active_price = MenuPrice::where('menu_id', $request->menu_id)->get();
+        try {
+            DB::beginTransaction();
 
-                    if ($active_price->count() > 0) {
-                        // Make other prices inactive
-                        foreach($active_price as $price) {
-                            $price->update([
-                                'status' => 1
-                            ]);
-                        }
+            if ($request->status == 2) {
+                $active_price = MenuPrice::where('menu_id', $request->menu_id)->get();
+
+                if ($active_price->count() > 0) {
+                    // Make other prices inactive
+                    foreach($active_price as $price) {
+                        $price->update([
+                            'status' => 1
+                        ]);
                     }
                 }
+            }
 
-                $request->merge([
-                    'created_by' => auth()->user()->email
+            $request->merge([
+                'created_by' => auth()->user()->email
+            ]);
+
+            $menuPrice = MenuPrice::create($request->all());
+
+            $menu = Menu::with('restaurant')->find($request->menu_id);
+
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            if ($menu->stripe_product_id) {
+                $product = $stripe->products->retrieve($menu->stripe_product_id);
+            } else {
+                $product = $stripe->products->create([
+                    'name' => $menu->title,
+                    'description' => $menu->description,
+                    'metadata' => [
+                        'restaurant_id' => $menu->restaurant->id,
+                        'restaurant_name' => $menu->restaurant->name,
+                    ]
                 ]);
 
-                $menuPrice = MenuPrice::create($request->all());
-
-                $menu = Menu::with('restaurant')->find($request->menu_id);
-
-                // Make request to stripe to store menu item
-                $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
-
-                if ($menu->stripe_product_id) {
-                    $product = $stripe->products->retrieve($menu->stripe_product_id);
-                } else {
-                    $product = $stripe->products->create([
-                        'name' => $menu->title,
-                        'description' => $menu->description,
-                        'metadata' => [
-                            'restaurant_id' => $menu->restaurant->id,
-                            'restaurant_name' => $menu->restaurant->name,
-                        ]
-                    ]);
-
-                    $menu->update([
-                        'stripe_product_id' => $product->id,
-                    ]);
-                }
-
-                if ($request->has('standardPrice')) {
-                    $price = $stripe->prices->create([
-                        'unit_amount' => $request->standardPrice,
-                        'product' => $product['id']
-                    ]);
-
-                    $menuPrice->update([
-                        'stripe_price_id' => $price->id
-                    ]);
-                }
-
-                activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('added menu price at '.$request->price);
-
-                DB::commit();
-
-                return new MenuPriceResource($menuPrice);
-
-            } catch (\Throwable $th) {
-                info($th);
-                DB::rollBack();
-                return $this->error('', $th->getMessage(), 403);
+                $menu->update([
+                    'stripe_product_id' => $product->id,
+                ]);
             }
+
+            if ($request->has('standardPrice')) {
+                $price = $stripe->prices->create([
+                    'unit_amount' => $request->standardPrice,
+                    'product' => $product['id']
+                ]);
+
+                $menuPrice->update([
+                    'stripe_price_id' => $price->id
+                ]);
+            }
+
+            activity()->causedBy(auth()->user())->performedOn($menuPrice->menu)->log('added menu price at '.$request->price);
+
+            DB::commit();
+
+            return new MenuPriceResource($menuPrice);
+
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', $th->getMessage(), 403);
         }
     }
 
