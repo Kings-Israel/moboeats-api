@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\AdminController;
 use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\MarketingController;
+use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\OrphanageController;
@@ -36,6 +37,8 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::get('/payments/{payment}/details', [PaymentController::class, 'show']);
         Route::get('/payments', [AdminController::class, 'payments']);
         Route::post('/users/update', [AdminController::class, 'updateUser']);
+        Route::post('/restuarant/{id}/menu/add', [MenuController::class, 'store']);
+        Route::post('/restaurant/menu/{id}/update', [MenuController::class, 'update']);
 
         // Supplements and Suppliers
         Route::group(['prefix' => '/supplements'], function () {
