@@ -29,6 +29,7 @@ class OrderResource extends JsonResource
                 'deliveryLng' => $this->delivery_location_lng,
                 'createdAt' => $this->created_at->format('D, M j, Y g:i A'),
                 'status' => (string) $this->status,
+                'paymentStatus' => $this->payment && $this->payment->status == 2 ? 'Paid' : 'Pending',
                 'service_charge' => $this->service_charge,
                 'booking_time' => $this->booking_time ? Carbon::parse($this->booking_time)->format('D, M j, Y g:i A') : NULL,
                 'discount' => $this->discount,
