@@ -266,7 +266,7 @@ class OrderController extends Controller
 
                     // $distance = explode(' ', $distance)[0];
                     $distance = $this->point2point_distance($request->delivery_location_lat, $request->delivery_location_lng, $restaurant->latitude, $restaurant->longitude, 'K');
-                    
+
                     $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) Setting::where('name', 'Delivery Rate')->first()->variable);
                 }
 
@@ -541,7 +541,7 @@ class OrderController extends Controller
         } else {
             return request()->wantsJson() ?
                     $this->success([
-                        'order' => $order,
+                        'order' => new OrderResource($order->loadMissing(['user', 'restaurant', 'orderItems.menu.images', 'orphanage'])),
                     ], '', 200) : '';
         }
     }
