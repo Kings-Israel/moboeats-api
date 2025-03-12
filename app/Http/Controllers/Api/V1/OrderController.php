@@ -253,19 +253,20 @@ class OrderController extends Controller
                 $delivery_fee = 0;
 
                 if ($request->delivery) {
-                    $customer_restaurant_distance = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$request->delivery_location_lat.','.$request->delivery_location_lng.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
-                    info($customer_restaurant_distance);
-                    if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'NOT_FOUND') {
-                       return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
-                    }
-                    if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'ZERO_RESULTS') {
-                       return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
-                    }
+                    // $customer_restaurant_distance = Http::get('https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$request->delivery_location_lat.','.$request->delivery_location_lng.'&destinations='.$restaurant->latitude.','.$restaurant->longitude.'&key='.config('services.map.key'));
 
-                    $distance = json_decode($customer_restaurant_distance)->rows[0]->elements[0]->distance->text;
+                    // if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'NOT_FOUND') {
+                    //    return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
+                    // }
+                    // if (json_decode($customer_restaurant_distance)->rows[0]->elements[0]->status === 'ZERO_RESULTS') {
+                    //    return response()->json(['message' => 'Please provide a valid location(longitude and latitude)'], 422);
+                    // }
 
-                    $distance = explode(' ', $distance)[0];
+                    // $distance = json_decode($customer_restaurant_distance)->rows[0]->elements[0]->distance->text;
 
+                    // $distance = explode(' ', $distance)[0];
+                    $distance = $this->point2point_distance($request->delivery_location_lat, $request->delivery_location_lng, $restaurant->latitude, $restaurant->longitude, 'K');
+                    
                     $delivery_fee = (double) (((double) $distance * (double) config('services.kms_to_miles')) * (double) Setting::where('name', 'Delivery Rate')->first()->variable);
                 }
 
@@ -414,6 +415,29 @@ class OrderController extends Controller
         } else {
             return $this->error('', 'Unauthorized', 401);
         }
+    }
+
+    function point2point_distance($lat1, $lon1, $lat2, $lon2, $unit='K')
+    {
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $unit = strtoupper($unit);
+
+        if ($unit == "K")
+        {
+            return ($miles * 1.609344);
+        }
+        else if ($unit == "N")
+        {
+        return ($miles * 0.8684);
+        }
+        else
+        {
+        return $miles;
+      }
     }
 
     public function show(Order $order)
