@@ -69,6 +69,7 @@ class Restaurant extends Model implements UrlRoutable
         'paypal_email',
         'country',
         'country_code',
+        'average_rating'
     ];
 
     public function getRouteKeyName()
