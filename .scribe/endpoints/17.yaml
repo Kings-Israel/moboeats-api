@@ -78,28 +78,28 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: asperiores
+        example: inventore
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 1
+        example: 8
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: neque
+        example: enim
         type: string
         custom: []
     cleanBodyParameters:
       price: 1
-      description: asperiores
-      status: 1
-      menu_id: neque
+      description: inventore
+      status: 8
+      menu_id: enim
     fileParameters: []
     responses: []
     responseFields: []
@@ -193,27 +193,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: itaque
+        example: maxime
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: tempora
+        example: est
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 1
+        example: 0
         type: number
         custom: []
     cleanBodyParameters:
-      description: itaque
-      status: tempora
-      price: 1
+      description: maxime
+      status: est
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []
@@ -297,14 +297,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: quod
+        example: ut
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: sed
+        example: nihil
         type: string
         custom: []
       price:
@@ -315,8 +315,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: quod
-      status: sed
+      description: ut
+      status: nihil
       price: 1
     fileParameters: []
     responses: []

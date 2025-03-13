@@ -32,27 +32,27 @@ endpoints:
         name: email
         description: 'The email of the user'
         required: true
-        example: corwin.everardo@example.net
+        example: zbecker@example.net
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: 'Z7mh"7iXU?^2V4QI3Fc'
+        example: 'W!|t{lx>O"'
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user'
         required: true
-        example: ut
+        example: quo
         type: string
         custom: []
     cleanBodyParameters:
-      email: corwin.everardo@example.net
-      password: 'Z7mh"7iXU?^2V4QI3Fc'
-      userType: ut
+      email: zbecker@example.net
+      password: 'W!|t{lx>O"'
+      userType: quo
     fileParameters: []
     responses: []
     responseFields: []
@@ -88,28 +88,28 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: uqfarunxzranwvaojw
+        example: lefaarugpfpinotn
         type: string
         custom: []
       email:
         name: email
         description: 'The email of the user'
         required: true
-        example: bbeier@example.com
+        example: brent00@example.net
         type: string
         custom: []
       password:
         name: password
         description: 'The password of the user'
         required: true
-        example: 'he]`@gA{^;SSm|])+8'
+        example: '+Xf;A:;'
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user'
         required: true
-        example: aliquam
+        example: nihil
         type: string
         custom: []
       otp:
@@ -130,31 +130,31 @@ endpoints:
         name: phone
         description: 'The type of user'
         required: true
-        example: laudantium
+        example: ex
         type: string
         custom: []
       latitude:
         name: latitude
         description: 'optional The latitude of the user. Example -1.2847473'
         required: false
-        example: nostrum
+        example: hic
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'optional The longitude of the user. Example 36.3878745'
         required: false
-        example: aliquam
+        example: delectus
         type: string
         custom: []
     cleanBodyParameters:
-      name: uqfarunxzranwvaojw
-      email: bbeier@example.com
-      password: 'he]`@gA{^;SSm|])+8'
-      userType: aliquam
-      phone: laudantium
-      latitude: nostrum
-      longitude: aliquam
+      name: lefaarugpfpinotn
+      email: brent00@example.net
+      password: '+Xf;A:;'
+      userType: nihil
+      phone: ex
+      latitude: hic
+      longitude: delectus
     fileParameters: []
     responses: []
     responseFields: []
@@ -190,19 +190,19 @@ endpoints:
         name: email
         description: 'email of the user'
         required: false
-        example: crooks.felicita@example.net
+        example: marvin37@example.net
         type: The
         custom: []
       phone_number:
         name: phone_number
         description: 'phone number of the user'
         required: false
-        example: omnis
+        example: dicta
         type: The
         custom: []
     cleanBodyParameters:
-      email: crooks.felicita@example.net
-      phone_number: omnis
+      email: marvin37@example.net
+      phone_number: dicta
     fileParameters: []
     responses: []
     responseFields: []
@@ -238,27 +238,27 @@ endpoints:
         name: code
         description: 'Verification OTP code'
         required: false
-        example: aliquam
+        example: eum
         type: The
         custom: []
       password:
         name: password
         description: 'new password to be set'
         required: false
-        example: "=<OKF_=/D>(w].5'^6HH"
+        example: '+pnl92R3['
         type: The
         custom: []
       password_confirmation:
         name: password_confirmation
         description: 'new password confirmation'
         required: false
-        example: eveniet
+        example: rem
         type: The
         custom: []
     cleanBodyParameters:
-      code: aliquam
-      password: "=<OKF_=/D>(w].5'^6HH"
-      password_confirmation: eveniet
+      code: eum
+      password: '+pnl92R3['
+      password_confirmation: rem
     fileParameters: []
     responses: []
     responseFields: []
@@ -294,35 +294,35 @@ endpoints:
         name: phone_number
         description: 'The phone number of the user. Example 44374673827'
         required: true
-        example: et
+        example: ad
         type: string
         custom: []
       device_token:
         name: device_token
         description: 'optional The device token'
         required: false
-        example: non
+        example: sed
         type: string
         custom: []
       latitude:
         name: latitude
         description: 'optional The latitude of the user. Example -1.2847473'
         required: false
-        example: odio
+        example: voluptatem
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'optional The longitude of the user. Example 36.3878745'
         required: false
-        example: debitis
+        example: sint
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: et
-      device_token: non
-      latitude: odio
-      longitude: debitis
+      phone_number: ad
+      device_token: sed
+      latitude: voluptatem
+      longitude: sint
     fileParameters: []
     responses: []
     responseFields: []
@@ -358,19 +358,19 @@ endpoints:
         name: code
         description: 'The phone number of the user'
         required: true
-        example: et
+        example: omnis
         type: string
         custom: []
       userType:
         name: userType
         description: 'The type of user logging in'
         required: true
-        example: dicta
+        example: vel
         type: string
         custom: []
     cleanBodyParameters:
-      code: et
-      userType: dicta
+      code: omnis
+      userType: vel
     fileParameters: []
     responses: []
     responseFields: []

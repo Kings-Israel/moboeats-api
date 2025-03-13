@@ -71,27 +71,27 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 2
+        example: 18
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 16
+        example: 2
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 17
+        example: 13
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 2
-      quantity: 16
-      status: 17
+      menuId: 18
+      quantity: 2
+      status: 13
     fileParameters: []
     responses: []
     responseFields: []
@@ -123,11 +123,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: earum
+        example: dignissimos
         type: string
         custom: []
     cleanUrlParameters:
-      id: earum
+      id: dignissimos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -173,11 +173,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: perspiciatis
+        example: reprehenderit
         type: string
         custom: []
     cleanUrlParameters:
-      id: perspiciatis
+      id: reprehenderit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -185,27 +185,27 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 1
+        example: 5
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 2
+        example: 14
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 8
+        example: 19
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 1
-      quantity: 2
-      status: 8
+      menuId: 5
+      quantity: 14
+      status: 19
     fileParameters: []
     responses: []
     responseFields: []
@@ -237,11 +237,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: officiis
+        example: magni
         type: string
         custom: []
     cleanUrlParameters:
-      id: officiis
+      id: magni
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

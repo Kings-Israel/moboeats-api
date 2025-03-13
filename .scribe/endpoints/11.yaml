@@ -71,11 +71,11 @@ endpoints:
         name: restaurantId
         description: ''
         required: true
-        example: 12
+        example: 13
         type: integer
         custom: []
     cleanBodyParameters:
-      restaurantId: 12
+      restaurantId: 13
     fileParameters: []
     responses: []
     responseFields: []
@@ -107,11 +107,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: quidem
+        example: iure
         type: string
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the restaurant bookmark.'
         required: true
-        example: ex
+        example: modi
         type: string
         custom: []
     cleanUrlParameters:
-      id: ex
+      id: modi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

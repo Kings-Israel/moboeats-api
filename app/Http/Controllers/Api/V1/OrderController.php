@@ -757,6 +757,16 @@ class OrderController extends Controller
                     'rating' => $request->restaurant_rating,
                     'review' => $request->restaurant_review
                 ]);
+
+                // Update restaurant average rating
+                $total_reviews_count = $restaurant->reviews->count();
+                if ($total_reviews_count > 0) {
+                    $total_reviews = $restaurant->reviews->sum('rating');
+
+                    $restaurant->update([
+                        'average_rating' => round($total_reviews / $total_reviews_count, 2)
+                    ]);
+                }
             }
 
             $user = User::find($order->rider_id);

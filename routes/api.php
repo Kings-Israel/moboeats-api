@@ -56,6 +56,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('/groceries/subcategories/{foo_sub_category}', [MenuController::class, 'grocerySubcategories']);
     Route::get('/menu', [MenuController::class, 'index']);
     Route::get('/restaurants', [RestaurantController::class, 'index']);
+    Route::get('/rated/restaurants', [RestaurantController::class, 'topRated']);
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
     Route::get('/categories/{food_common_category}', [FoodCommonCategoryController::class, 'show']);

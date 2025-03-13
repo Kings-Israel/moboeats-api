@@ -285,6 +285,36 @@ class RestaurantController extends Controller
     }
 
     /**
+     * Get Restaurants ordered by rating.
+     */
+    public function topRated(Request $request)
+    {
+        $radius = 200000;
+        $latitude = $request->query('lat');
+        $longitude = $request->query('lng');
+        $per_page = $request->query('per_page');
+
+        if ($latitude && $longitude) {
+            $restaurants = Restaurant::Approved()
+                ->whereHas('reviews')
+                ->select(DB::raw("*,
+                        (6371 * acos(cos(radians($latitude))
+                        * cos(radians(latitude))
+                        * cos(radians(longitude)
+                        - radians($longitude))
+                        + sin(radians($latitude))
+                        * sin(radians(latitude))))
+                        AS distance"))
+                ->having('distance', '<=', $radius)
+                ->orderBy('average_rating');
+        } else {
+            $restaurants = Restaurant::Approved()->whereHas('reviews')->orderBy('average_rating');
+        }
+
+        return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate($per_page));
+    }
+
+    /**
      * Show Restaurant Details
      *
      * @urlParam restaurant The ID of the restaurant
@@ -1236,6 +1266,16 @@ class RestaurantController extends Controller
             'review' => $request->has('review') && !empty($request->review) ? $request->review : NULL,
             'rating' => $request->rating
         ]);
+
+        // Update restaurant average rating
+        $total_reviews_count = $restaurant->reviews->count();
+        if ($total_reviews_count > 0) {
+            $total_reviews = $restaurant->reviews->sum('rating');
+
+            $restaurant->update([
+                'average_rating' => round($total_reviews / $total_reviews_count, 2)
+            ]);
+        }
 
         return $this->success('Review created successfully');
     }
