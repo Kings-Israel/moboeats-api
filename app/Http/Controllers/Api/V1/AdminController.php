@@ -952,7 +952,7 @@ class AdminController extends Controller
                     ->orderBy('created_at', 'DESC')
                     ->paginate(9);
 
-        $categories = FoodCommonCategory::where('restaurant_id', NULL)->orWhere('restaurant_id', $restaurant->id)->get();
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', NULL)->orWhere('restaurant_id', $restaurant->id)->get();
 
         return $this->success(['menu' => $menu, 'categories' => new FoodCommonCategoryCollection($categories)]);
     }
@@ -961,7 +961,7 @@ class AdminController extends Controller
     {
         $restaurant = Restaurant::where('uuid', $id)->first();
 
-        $categories = FoodCommonCategory::where('restaurant_id', $restaurant->id)->paginate(8);
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('restaurant_id', $restaurant->id)->paginate(8);
 
         return $this->success(['categories' => $categories]);
     }
