@@ -172,7 +172,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         });
 
         // Route::apiResource('payment', PaymentController::class)->except(['update']);
-        Route::get('/stripe/checkout/{order_id}', [PaymentController::class, 'stripeCheckout']);
+        Route::get('/stripe/checkout/{order_id}/{mode}', [PaymentController::class, 'stripeCheckout']);
         Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
 
         // Reviews
@@ -308,6 +308,8 @@ Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class,
 
 Route::post('/v1/order/tip/payment/create-tip-paypal-order', [PaymentController::class, 'createTipPaypalOrder']);
 Route::post('/v1/order/tip/payment/capture-tip-paypal-order', [PaymentController::class, 'captureTipPaypalPayment']);
+
+Route::post('/v1/pochipay/callback', [PaymentController::class, 'pochipayCallback'])->name('pochipay.callback');
 
 Route::get('/email/test/{id}', function($id) {
     // SendSMS::dispatchAfterResponse($request->phone_number, 'Test');

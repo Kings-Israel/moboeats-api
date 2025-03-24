@@ -65,5 +65,11 @@ return [
         // 'LIVE_SECRET_KEY' => env('STRIPE_LIVE_SECRET_KEY'),
         'KEY' => env('STRIPE_KEY'),
         'SECRET_KEY' => env('STRIPE_SECRET'),
+    ],
+
+    'pochipay' => [
+        'BASE_URL' => env('POCHIPAY_BASE_URL'),
+        'EMAIL' => env('POCHIPAY_EMAIL'),
+        'PASSWORD' => env('POCHIPAY_PASSWORD')
     ]
 ];

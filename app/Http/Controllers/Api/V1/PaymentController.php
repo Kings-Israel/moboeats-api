@@ -24,6 +24,7 @@ use App\Notifications\NewOrder as NotificationsNewOrder;
 use App\Traits\Admin\UploadFileTrait;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
@@ -232,7 +233,7 @@ class PaymentController extends Controller
      * Stripe Order checkout
      * @urlParam order_id int The id of the order
      */
-    public function stripeCheckout($order_id)
+    public function stripeCheckout($order_id, $mode = 'pochipay')
     {
         $user = auth()->user();
 
@@ -260,51 +261,86 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Cannot make payment for order.', 403);
         }
 
-        // info((double)($order->total_amount));
-        $amount = explode('.', $order->total_amount);
-        if (count($amount) > 1) {
-            if ((int)(end($amount)) > 30) {
-                $amount = ceil((double)($order->total_amount));
+        if ($mode == 'stripe') {
+            $amount = explode('.', $order->total_amount);
+            if (count($amount) > 1) {
+                if ((int)(end($amount)) > 30) {
+                    $amount = ceil((double)($order->total_amount));
+                } else {
+                    $amount = $amount[0].'.30';
+                }
             } else {
-                $amount = $amount[0].'.30';
+                $amount = $order->total_amount;
             }
-        } else {
-            $amount = $order->total_amount;
+
+            // Make request to stripe to store menu item
+            $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
+
+            // Use an existing Customer ID if this is a returning customer.
+            $customer = $stripe->customers->create();
+            $ephemeralKey = $stripe->ephemeralKeys->create([
+                                'customer' => $customer->id,
+                            ], [
+                                'stripe_version' => '2023-10-16',
+                            ]);
+
+            $paymentIntent = $stripe->paymentIntents->create([
+                'amount' => $amount * 100,
+                'currency' => $order->country == 'Kenya' ? 'kes' : 'gbp',
+                'customer' => $customer->id,
+            ]);
+
+            StripePayment::create([
+                'user_id' => $user->id,
+                'payment_intent' => $paymentIntent->id,
+                'payable_type' => Order::class,
+                'payable_id' => $order->id,
+                'amount' => $amount,
+            ]);
+
+            return response()->json(
+                [
+                  'paymentIntent' => $paymentIntent->client_secret,
+                  'ephemeralKey' => $ephemeralKey->secret,
+                  'customer' => $customer->id,
+                  'publishableKey' => config('services.stripe.KEY')
+                ]
+            );
+        } elseif ($mode === 'pochipay') {
+            // Get token
+            $token = Cache::get('pochi_token');
+
+            if (!$token) {
+                $res = Http::post(config('services.pochipay.BASE_URL') . '/account/token', [
+                    'email' => config('services.pochipay.EMAIL'),
+                    'password' => config('services.pochipay.PASSWORD')
+                ]);
+
+                if ($res->successful()) {
+                    // Store token to cache
+                    Cache::add('pochi_token', $res['result']['accessToken'], now()->addSeconds($res['result']['expiresIn']));
+                    $token = $res['result']['accessToken'];
+                }
+            }
+
+            // Initiate transaction
+            $res = Http::withToken($token)
+                ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
+                    "orderId" => $order->uuid,
+                    "billRefNumber" => $order->uuid,
+                    "phoneNumber" => $order->user->phone_number,
+                    "amount" => $order->total_amount,
+                    "narration" => "Order Payment",
+                    // "callbackUrl" => route('pochipay.callback'),
+                    "callbackUrl" => 'https://api.moboeats.co.uk/api/v1/pochipay/callback',
+                ]);
+
+            if ($res->successful()) {
+                return $this->success('', 'Payment Request sent successful');
+            } else {
+                return $this->error('', $res['message'], 400);
+            }
         }
-
-        // Make request to stripe to store menu item
-        $stripe = new \Stripe\StripeClient(config('services.stripe.SECRET_KEY'));
-
-        // Use an existing Customer ID if this is a returning customer.
-        $customer = $stripe->customers->create();
-        $ephemeralKey = $stripe->ephemeralKeys->create([
-                            'customer' => $customer->id,
-                        ], [
-                            'stripe_version' => '2023-10-16',
-                        ]);
-
-        $paymentIntent = $stripe->paymentIntents->create([
-            'amount' => $amount * 100,
-            'currency' => $order->country == 'Kenya' ? 'kes' : 'gbp',
-            'customer' => $customer->id,
-        ]);
-
-        StripePayment::create([
-            'user_id' => $user->id,
-            'payment_intent' => $paymentIntent->id,
-            'payable_type' => Order::class,
-            'payable_id' => $order->id,
-            'amount' => $amount,
-        ]);
-
-        return response()->json(
-            [
-              'paymentIntent' => $paymentIntent->client_secret,
-              'ephemeralKey' => $ephemeralKey->secret,
-              'customer' => $customer->id,
-              'publishableKey' => config('services.stripe.KEY')
-            ]
-        );
     }
 
     /**
@@ -717,5 +753,12 @@ class PaymentController extends Controller
                 }
             }
         }
+    }
+
+    public function pochipayCallback(Request $request)
+    {
+        info($request->all());
+
+        return $this->success('', 'Payment received successfully');
     }
 }
