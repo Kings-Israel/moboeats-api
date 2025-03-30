@@ -649,9 +649,9 @@ class PaymentController extends Controller
                             $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
 
                             if ($order) {
-                                // $order->update([
-                                //     'status' => 2
-                                // ]);
+                                $order->update([
+                                    'status' => 2
+                                ]);
 
                                 // Assign Order to Rider
                                 AssignOrder::assignOrder($order->id);
@@ -778,13 +778,12 @@ class PaymentController extends Controller
 
     public function pochipayCallback(Request $request)
     {
-        info($request->all());
         $order = Order::where('uuid', 'LIKE', $request->billRefNumber . '%')->first();
 
         if ($order && $request->isSuccessful) {
-            // $order->update([
-            //     'status' => 2
-            // ]);
+            $order->update([
+                'status' => 2
+            ]);
 
             // Assign Order to Rider
             AssignOrder::assignOrder($order->id);
