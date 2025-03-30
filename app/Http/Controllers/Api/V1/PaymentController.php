@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Illuminate\Support\Str;
 
 /**
  * @group Payment Post Controller
@@ -326,16 +327,9 @@ class PaymentController extends Controller
             // Initiate transaction
             $res = Http::withToken($token)
                 ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
-                    // "orderId" => explode('-', $order->uuid)[0],
-                    // "billRefNumber" => explode('-', $order->uuid)[0],
-                    // "phoneNumber" => "+254707137687",
-                    // "amount" => 1,
-                    // "narration" => "test",
-                    // "callbackUrl" => "https://webhook.site/e5accb8e-ed9a-4268-8e08-e1898ac89db8"
-
                     "orderId" => explode('-', $order->uuid)[0],
                     "billRefNumber" => explode('-', $order->uuid)[0],
-                    "phoneNumber" => '+' . $order->user->phone_number,
+                    "phoneNumber" => Str::startsWith($order->user->phone_number, '+254') ? $order->user->phone_number : '+' . $order->user->phone_number,
                     "amount" => round($order->total_amount),
                     "narration" => "test",
                     "callbackUrl" => route('pochipay.callback'),
