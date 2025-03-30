@@ -261,7 +261,7 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Cannot make payment for order.', 403);
         }
 
-        if ($mode == 'stripe') {
+        if ($order->restaurant->country != 'Kenya') {
             $amount = explode('.', $order->total_amount);
             if (count($amount) > 1) {
                 if ((int)(end($amount)) > 30) {
@@ -306,7 +306,7 @@ class PaymentController extends Controller
                   'publishableKey' => config('services.stripe.KEY')
                 ]
             );
-        } elseif ($mode === 'pochipay') {
+        } else {
             // Get token
             $token = Cache::get('pochi_token');
 
@@ -326,13 +326,19 @@ class PaymentController extends Controller
             // Initiate transaction
             $res = Http::withToken($token)
                 ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
-                    "orderId" => $order->uuid,
-                    "billRefNumber" => $order->uuid,
-                    "phoneNumber" => $order->user->phone_number,
-                    "amount" => $order->total_amount,
-                    "narration" => "Order Payment",
-                    // "callbackUrl" => route('pochipay.callback'),
-                    "callbackUrl" => 'https://api.moboeats.co.uk/api/v1/pochipay/callback',
+                    // "orderId" => explode('-', $order->uuid)[0],
+                    // "billRefNumber" => explode('-', $order->uuid)[0],
+                    // "phoneNumber" => "+254707137687",
+                    // "amount" => 1,
+                    // "narration" => "test",
+                    // "callbackUrl" => "https://webhook.site/e5accb8e-ed9a-4268-8e08-e1898ac89db8"
+
+                    "orderId" => explode('-', $order->uuid)[0],
+                    "billRefNumber" => explode('-', $order->uuid)[0],
+                    "phoneNumber" => '+' . $order->user->phone_number,
+                    "amount" => round($order->total_amount),
+                    "narration" => "test",
+                    "callbackUrl" => route('pochipay.callback'),
                 ]);
 
             if ($res->successful()) {
@@ -341,6 +347,21 @@ class PaymentController extends Controller
                 return $this->error('', $res['message'], 400);
             }
         }
+
+        // Send to mobile
+        // {
+        //     "callbackUrl": "",//your callback url
+        //     "requestId": "",//unique reference to identify the disbursement batch
+        //     "disbursementTitle": "", // a title for the disbursement
+        //     "recipients": [
+        //       {
+        //         "amount": 0,
+        //         "remarks": "", // the narration
+        //         "trackingReference": "", //unique reference for the recipient
+        //         "phoneNumber": "" //valid phone number
+        //       }
+        //     ]
+        //   }
     }
 
     /**
@@ -758,7 +779,37 @@ class PaymentController extends Controller
     public function pochipayCallback(Request $request)
     {
         info($request->all());
+        $order = Order::where('uuid', 'LIKE', $request->billRefNumber . '%')->first();
 
-        return $this->success('', 'Payment received successfully');
+        if ($order && $request->isSuccessful) {
+            // $order->update([
+            //     'status' => 2
+            // ]);
+
+            // Assign Order to Rider
+            AssignOrder::assignOrder($order->id);
+
+            $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+
+            event(new NewOrder($order->restaurant, $order->load('user')));
+
+            Payment::create([
+                'transaction_id' => $request->thirdPartyReference,
+                'orderable_id' => $order->id,
+                'orderable_type' => Order::class,
+                'payment_method' => 'Mobile Money',
+                'amount' => $order->total_amount,
+                'status' => 2,
+                'created_by' => $order->user->name,
+            ]);
+
+            SendNotification::dispatchAfterResponse($order->user, 'Payment was successful. Order has started being prepared', ['order' => $order]);
+
+            activity()->causedBy($order->user)->performedOn($order)->log('paid for the order');
+
+            return $this->success('', 'Successful Payment');
+        }
+
+        return $this->error($request->failReason, 'Payment was not successful', 400);
     }
 }
