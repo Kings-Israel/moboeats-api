@@ -115,6 +115,13 @@ Route::group(['prefix' => 'v1/admin'], function() {
             Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update');
             Route::post('/{orphanage}/status/update', [OrphanageController::class, 'updateStatus'])->name('update.status');
         });
+
+        Route::group(['prefix' => 'v1/orphanages', 'as' => 'orphanages.'], function () {
+            Route::get('/', [OrphanageController::class, 'index'])->name('index');
+            Route::post('/store', [OrphanageController::class, 'store'])->name('store');
+            Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show');
+            Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update');
+        });
     });
 });
 
