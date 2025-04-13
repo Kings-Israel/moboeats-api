@@ -59,12 +59,16 @@ class AuthController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            if (!$user->hasRole($request->userType)) {
-                return $this->error('', 'Unknown user type', 401);
-            }
+            // if (!$user->hasRole($request->userType)) {
+            //     return $this->error('', 'Unknown user type', 401);
+            // }
 
             if($user->status == 1) {
                 return $this->error('', 'Oops! Your account has been deleted or deactivated', 401);
+            }
+
+            if ($request->userType == 'orderer' && !$user->hasRole('orderer')) {
+                $user->addRole($request->userType);
             }
 
             // Update device token
