@@ -770,6 +770,76 @@ class PaymentController extends Controller
         }
     }
 
+    /**
+     * Mpesa Checkout payment for order
+     * @urlParam order_id int The id of the order
+     */
+    public function mpesaCheckout($order_id)
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->error('Order Payment', 'User not found', 403);
+        }
+
+        $order = Order::with('restaurant')
+                        ->where(function ($query) use ($order_id) {
+                            $query->where('id', $order_id)->orWhere('uuid', $order_id);
+                        })
+                        ->first();
+
+        if (!$order) {
+            return $this->error('Order Payment', 'Order not found', 404);
+        }
+
+        // Check if order is paid for
+        $payment = Payment::where('orderable_type', Order::class)->where('orderable_id', $order_id)->first();
+        if ($payment) {
+            return $this->error('Order Payment', 'Order already paid', 422);
+        }
+
+        if ($order->user_id != $user->id) {
+            return $this->error('Order Payment', 'Cannot make payment for order.', 403);
+        }
+
+        if ($order->restaurant->country != 'Kenya') {
+            return $this->error('Order Payment', 'Cannot use mpesa for payments outside Kenya', 400);
+        }
+
+        // Get token
+        $token = Cache::get('pochi_token');
+
+        if (!$token) {
+            $res = Http::post(config('services.pochipay.BASE_URL') . '/account/token', [
+                'email' => config('services.pochipay.EMAIL'),
+                'password' => config('services.pochipay.PASSWORD')
+            ]);
+
+            if ($res->successful()) {
+                // Store token to cache
+                Cache::add('pochi_token', $res['result']['accessToken'], now()->addSeconds($res['result']['expiresIn']));
+                $token = $res['result']['accessToken'];
+            }
+        }
+
+        // Initiate transaction
+        $res = Http::withToken($token)
+            ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
+                "orderId" => explode('-', $order->uuid)[0],
+                "billRefNumber" => explode('-', $order->uuid)[0],
+                "phoneNumber" => Str::startsWith($order->user->phone_number, '+254') ? $order->user->phone_number : '+' . $order->user->phone_number,
+                "amount" => round($order->total_amount),
+                "narration" => "test",
+                "callbackUrl" => route('pochipay.callback'),
+            ]);
+
+        if ($res->successful()) {
+            return $this->success('', 'Payment Request sent successful');
+        } else {
+            return $this->error('', $res['message'], 400);
+        }
+    }
+
     public function pochipayCallback(Request $request)
     {
         $order = Order::where('uuid', 'LIKE', $request->billRefNumber . '%')->first();

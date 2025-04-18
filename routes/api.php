@@ -180,6 +180,8 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
         Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
         Route::post('/menu/reviews/store', [MenuController::class, 'storeReview']);
+
+        Route::geT('/order/{order_id}/mpesa/checkout', [PaymentController::class, 'mpesaCheckout']);
     });
 });
 

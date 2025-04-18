@@ -26,11 +26,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: nobis
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      menuId: nobis
+      menuId: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -120,11 +120,11 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 5
+        example: 17
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 5
+      menuId: 17
     fileParameters: []
     responses: []
     responseFields: []
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: ea
+        example: dolorum
         type: string
         custom: []
     cleanUrlParameters:
-      id: ea
+      id: dolorum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -205,11 +205,11 @@ endpoints:
         name: id
         description: 'The ID of the menu bookmark.'
         required: true
-        example: natus
+        example: error
         type: string
         custom: []
     cleanUrlParameters:
-      id: natus
+      id: error
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

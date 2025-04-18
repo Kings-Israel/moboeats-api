@@ -73,7 +73,7 @@ endpoints:
         name: search
         description: 'Text to search categories'
         required: false
-        example: dolorum
+        example: velit
         type: string
         custom: []
       perPage:
@@ -84,7 +84,7 @@ endpoints:
         type: integer
         custom: []
     cleanQueryParameters:
-      search: dolorum
+      search: velit
       perPage: 14
     bodyParameters: []
     cleanBodyParameters: []
@@ -137,12 +137,12 @@ endpoints:
         name: ID
         description: 'The ID of the category'
         required: false
-        example: 13
+        example: 14
         type: integer
         custom: []
     cleanUrlParameters:
       supplement_category_id: 1
-      ID: 13
+      ID: 14
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -277,7 +277,7 @@ endpoints:
         name: supplement_id
         description: 'The ID of the supplement'
         required: false
-        example: 17
+        example: 7
         type: integer
         custom: []
       quantity:
@@ -288,7 +288,7 @@ endpoints:
         type: integer
         custom: []
     cleanBodyParameters:
-      supplement_id: 17
+      supplement_id: 7
       quantity: 3
     fileParameters: []
     responses: []
@@ -366,35 +366,35 @@ endpoints:
         name: supplier_id
         description: ''
         required: true
-        example: facere
+        example: consequatur
         type: string
         custom: []
       category_id:
         name: category_id
         description: ''
         required: true
-        example: laudantium
+        example: inventore
         type: string
         custom: []
       name:
         name: name
         description: ''
         required: true
-        example: dolores
+        example: qui
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: true
-        example: eaque
+        example: quia
         type: string
         custom: []
       measuring_unit:
         name: measuring_unit
         description: 'Must be one of <code>kilograms</code>, <code>pounds</code>, or <code>litres</code>.'
         required: true
-        example: litres
+        example: kilograms
         type: string
         custom: []
       images:
@@ -405,11 +405,11 @@ endpoints:
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      supplier_id: facere
-      category_id: laudantium
-      name: dolores
-      price: eaque
-      measuring_unit: litres
+      supplier_id: consequatur
+      category_id: inventore
+      name: qui
+      price: quia
+      measuring_unit: kilograms
     fileParameters: []
     responses: []
     responseFields: []
@@ -486,19 +486,19 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: vitae
+        example: vero
         type: string
         custom: []
       image:
         name: image
         description: ''
         required: true
-        example: enim
+        example: dolores
         type: string
         custom: []
     cleanBodyParameters:
-      name: vitae
-      image: enim
+      name: vero
+      image: dolores
     fileParameters: []
     responses: []
     responseFields: []
@@ -669,11 +669,11 @@ endpoints:
         name: id
         description: 'The ID of the order'
         required: false
-        example: facilis
+        example: nostrum
         type: string
         custom: []
     cleanUrlParameters:
-      id: facilis
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -681,11 +681,11 @@ endpoints:
         name: status
         description: 'The status of the order(confirmed)'
         required: true
-        example: repudiandae
+        example: ea
         type: string
         custom: []
     cleanBodyParameters:
-      status: repudiandae
+      status: ea
     fileParameters: []
     responses: []
     responseFields: []

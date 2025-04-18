@@ -67,12 +67,12 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 10
+        example: 14
         type: integer
         custom: []
     cleanUrlParameters:
       id: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-      order_id: 10
+      order_id: 14
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -117,19 +117,19 @@ endpoints:
         name: diet_subscription_package_id
         description: 'The ID of the diet subscription package.'
         required: true
-        example: 7
+        example: 20
         type: integer
         custom: []
       diet_subscription_package:
         name: diet_subscription_package
         description: 'The id of the diet subscription package'
         required: false
-        example: 2
+        example: 6
         type: integer
         custom: []
     cleanUrlParameters:
-      diet_subscription_package_id: 7
-      diet_subscription_package: 2
+      diet_subscription_package_id: 20
+      diet_subscription_package: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -145,7 +145,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/stripe/checkout/{order_id}'
+    uri: 'api/v1/orderer/stripe/checkout/{order_id}/{mode}'
     metadata:
       groupName: 'Payment Post Controller'
       groupDescription: |-
@@ -165,11 +165,19 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 6
+        example: 1
         type: integer
         custom: []
+      mode:
+        name: mode
+        description: ''
+        required: true
+        example: qui
+        type: string
+        custom: []
     cleanUrlParameters:
-      order_id: 6
+      order_id: 1
+      mode: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -214,19 +222,68 @@ endpoints:
         name: order_id
         description: 'The id of the order'
         required: false
-        example: 11
+        example: 13
         type: integer
         custom: []
       amount:
         name: amount
         description: 'The amount to tip'
         required: false
-        example: 15
+        example: 18
         type: integer
         custom: []
     cleanUrlParameters:
-      order_id: 11
-      amount: 15
+      order_id: 13
+      amount: 18
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/order/{order_id}/mpesa/checkout'
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mpesa Checkout payment for order'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      order_id:
+        name: order_id
+        description: 'The id of the order'
+        required: false
+        example: 18
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      order_id: 18
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -271,19 +328,19 @@ endpoints:
         name: user_id
         description: 'The ID of the user.'
         required: true
-        example: omnis
+        example: rerum
         type: string
         custom: []
       order_id:
         name: order_id
         description: 'The ID of the order.'
         required: true
-        example: sunt
+        example: id
         type: string
         custom: []
     cleanUrlParameters:
-      user_id: omnis
-      order_id: sunt
+      user_id: rerum
+      order_id: id
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -437,6 +494,38 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - POST
+    uri: api/v1/pochipay/callback
+    metadata:
+      groupName: 'Payment Post Controller'
+      groupDescription: |-
+
+        Payment API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - GET
     uri: 'api/v1/admin/payments/{payment_uuid}/details'
     metadata:
@@ -458,11 +547,11 @@ endpoints:
         name: payment_uuid
         description: ''
         required: true
-        example: a82b0ac2-0245-363a-b1c9-59a075a8292f
+        example: 93b3b790-ba47-457c-b325-8a3f4844d6b6
         type: string
         custom: []
     cleanUrlParameters:
-      payment_uuid: a82b0ac2-0245-363a-b1c9-59a075a8292f
+      payment_uuid: 93b3b790-ba47-457c-b325-8a3f4844d6b6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
