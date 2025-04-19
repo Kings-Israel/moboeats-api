@@ -842,9 +842,6 @@ class PaymentController extends Controller
 
     public function pochipayCallback(Request $request)
     {
-        info($request->all());
-        return $this->success('', 'Payment successful');
-        
         $order = Order::where('uuid', 'LIKE', $request->billRefNumber . '%')->first();
 
         if ($order && $request->isSuccessful) {
