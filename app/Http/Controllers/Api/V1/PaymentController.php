@@ -806,6 +806,8 @@ class PaymentController extends Controller
             return $this->error('Order Payment', 'Cannot use mpesa for payments outside Kenya', 400);
         }
 
+        return response()->json(route('pochipay.callback'), 200);
+
         // Get token
         $token = Cache::get('pochi_token');
 
