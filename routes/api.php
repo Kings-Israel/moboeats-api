@@ -172,7 +172,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         });
 
         // Route::apiResource('payment', PaymentController::class)->except(['update']);
-        Route::get('/stripe/checkout/{order_id}/{mode}', [PaymentController::class, 'stripeCheckout']);
+        Route::get('/stripe/checkout/{order_id}/{mode?}', [PaymentController::class, 'stripeCheckout']);
         Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
 
         // Reviews
