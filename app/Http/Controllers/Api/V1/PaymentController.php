@@ -776,6 +776,7 @@ class PaymentController extends Controller
      */
     public function mpesaCheckout($order_id)
     {
+        return response()->json(route('pochipay.callback'), 200);
         $user = auth()->user();
 
         if (!$user) {
@@ -805,8 +806,6 @@ class PaymentController extends Controller
         if ($order->restaurant->country != 'Kenya') {
             return $this->error('Order Payment', 'Cannot use mpesa for payments outside Kenya', 400);
         }
-
-        return response()->json(route('pochipay.callback'), 200);
 
         // Get token
         $token = Cache::get('pochi_token');
