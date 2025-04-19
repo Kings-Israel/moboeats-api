@@ -842,6 +842,15 @@ class PaymentController extends Controller
 
     public function pochipayCallback(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'billRefNumber' => ['sometimes', 'nullable'],
+            'thirdPartyReference' => ['sometimes', 'nullable', 'unique:payments,transaction_id']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->messages()], 422);
+        }
+
         $order = Order::where('uuid', 'LIKE', $request->billRefNumber . '%')->first();
 
         if ($order && $request->isSuccessful) {
