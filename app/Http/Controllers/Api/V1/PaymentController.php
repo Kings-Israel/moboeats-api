@@ -776,7 +776,6 @@ class PaymentController extends Controller
      */
     public function mpesaCheckout($order_id)
     {
-        return response()->json(route('pochipay.callback'), 200);
         $user = auth()->user();
 
         if (!$user) {
