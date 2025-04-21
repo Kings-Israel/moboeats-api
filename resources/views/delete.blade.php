@@ -82,7 +82,7 @@
     <div class="success-text">
         <h3>Are you sure you want to delete your account?</h3>
     </div>
-    <form action="{{ route('delete.confirmation') }}" method="post" class="delete-form">
+    <form action="{{ route('delete.confirmation') }}" method="post" class="w-96 md:w-80 flex flex-col mx-auto">
         @csrf
         <div class="flex flex-col">
             <label class="text-slate-200 text-md font-bold">Full Name</label>
