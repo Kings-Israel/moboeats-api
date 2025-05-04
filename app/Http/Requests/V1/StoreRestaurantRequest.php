@@ -33,14 +33,23 @@ class StoreRestaurantRequest extends FormRequest
             'address' => ['nullable'],
             'state' => ['nullable'],
             'postal_code' => ['nullable'],
-            'place_id' => ['required'],
-            'latitude' => ['required'],
-            'longitude' => ['required'],
+            'place_id' => ['required_without_all:latitude,lognitude'],
+            'latitude' => ['required_without:place_id'],
+            'longitude' => ['required_without:place_id'],
             'url' => ['nullable'],
             'logo' => ['required'],
             'map_location' => ['nullable'],
             'sitting_capacity' => ['sometimes', 'integer'],
             // 'paypal_email' => ['required', 'email'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'place_id.required_without_all' => 'Enter your location to proceed',
+            'latitude.required_without' => 'Enter your current location',
+            'longitude.required_without' => 'Enter your current location'
         ];
     }
 }
