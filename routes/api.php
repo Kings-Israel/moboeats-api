@@ -232,6 +232,9 @@ Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], func
         Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
         Route::get('/menus/{menu}/orders', [MenuController::class, 'menuOrders']);
 
+        Route::get('/menu/template/download', [MenuController::class, 'downloadTemplate']);
+        Route::post('menu/upload', [MenuController::class, 'upload']);
+
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::post('/orders/reservation/{order}/assign', [OrderController::class, 'assignReservationToTables']);
         Route::post('/orders/reservation/{order}/status/update', [OrderController::class, 'updateReservedOrder']);

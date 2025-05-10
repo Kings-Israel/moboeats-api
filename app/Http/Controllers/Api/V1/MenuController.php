@@ -31,10 +31,12 @@ use App\Exports\GroceryExport;
 use App\Http\Resources\V1\FoodCommonCategoryResource;
 use App\Http\Resources\V1\FooSubCategoryResource;
 use App\Http\Resources\V1\ReviewResource;
+use App\Imports\MenuItemsImport;
 use App\Models\FooSubCategory;
 use App\Models\Order;
 use App\Models\Review;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 
 /**
  * @group Menu Management
@@ -1033,5 +1035,51 @@ class MenuController extends Controller
         ]);
 
         return $this->success(['menu' => $menu], 'Review successfully saved');
+    }
+
+    public function downloadTemplate()
+    {
+        if (request()->wantsJson()) {
+            return response()->download(public_path('Moboeats Menu Template.xlsx'), 'menu-template.xlsx');
+        }
+
+        return response()->download(public_path('Moboeats Menu Template.xlsx'), 'menu-template.xlsx');
+    }
+
+    public function upload(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => ['required', 'mimes:xlsx']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 422);
+        }
+
+        $import = new MenuItemsImport();
+
+        Excel::import($import, $request->file('file')->store('public'));
+
+        if ($request->wantsJson()) {
+            if ($import->data > 0) {
+                return response()->json(
+                [
+                    'message' => 'Menu items uploaded successfully',
+                    'uploaded' => $import->data,
+                    'total_rows' => collect($import->total_rows)->first() - 1,
+                ],
+                200
+                );
+            }
+
+            return response()->json(
+                [
+                'message' => 'No Menu Items were uploaded successfully',
+                'uploaded' => $import->data,
+                'total_rows' => collect($import->total_rows)->first() - 1,
+                ],
+                400
+            );
+        }
     }
 }
