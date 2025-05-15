@@ -247,33 +247,33 @@ class Order extends Model
      */
     public function getCountryAttribute()
     {
-        if ($this->delivery_location_lat && $this->delivery_location_lng) {
-            $order_country = Cache::get($this->uuid.'-order-country');
-            if (!$order_country) {
-                try {
-                    $user_location = Http::withOptions(['verify' => false])
-                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->delivery_location_lat.','.$this->delivery_location_lng.'&key='.config('services.map.key'));
+        // if ($this->delivery_location_lat && $this->delivery_location_lng) {
+        //     $order_country = Cache::get($this->uuid.'-order-country');
+        //     if (!$order_country) {
+        //         try {
+        //             $user_location = Http::withOptions(['verify' => false])
+        //                                     ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$this->delivery_location_lat.','.$this->delivery_location_lng.'&key='.config('services.map.key'));
 
-                    if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
-                        $order_country = 'Kenya';
-                    } elseif ($user_location && array_key_exists('status', collect($user_location)->toArray()) && $user_location['status'] == "REQUEST_DENIED") {
-                        $order_country = 'Kenya';
-                    } else {
-                        foreach ($user_location['results'][0]['address_components'] as $place) {
-                            if (collect($place['types'])->contains('country')) {
-                                $order_country = $place['long_name'];
-                            }
-                        }
-                    }
-                } catch (ConnectionException $e) {
-                    $order_country = 'Kenya';
-                }
+        //             if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+        //                 $order_country = 'Kenya';
+        //             } elseif ($user_location && array_key_exists('status', collect($user_location)->toArray()) && $user_location['status'] == "REQUEST_DENIED") {
+        //                 $order_country = 'Kenya';
+        //             } else {
+        //                 foreach ($user_location['results'][0]['address_components'] as $place) {
+        //                     if (collect($place['types'])->contains('country')) {
+        //                         $order_country = $place['long_name'];
+        //                     }
+        //                 }
+        //             }
+        //         } catch (ConnectionException $e) {
+        //             $order_country = 'Kenya';
+        //         }
 
-                Cache::put($this->uuid.'-order-country', $order_country, now()->addWeek());
-            }
+        //         Cache::put($this->uuid.'-order-country', $order_country, now()->addWeek());
+        //     }
 
-            return $order_country;
-        }
+        //     return $order_country;
+        // }
 
         return 'Kenya';
     }
