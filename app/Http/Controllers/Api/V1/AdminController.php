@@ -49,6 +49,8 @@ use App\Http\Resources\V1\ReviewResource;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\UpdatedRestaurantStatus;
 use App\Http\Resources\V1\FoodCommonCategoryCollection;
+use App\Models\Scopes\UserCountryScope;
+use App\Models\UserCountry;
 
 class AdminController extends Controller
 {
@@ -66,7 +68,7 @@ class AdminController extends Controller
                 return $this->error(['email' => 'Invalid Credentials'], 'Invalid Credentials', 422);
             }
 
-            $user = User::where('email', $request->email)->first();
+            $user = User::withoutGlobalScope(UserCountryScope::class)->where('email', $request->email)->first();
 
             $token = $user->createToken($request->email);
 
@@ -100,25 +102,44 @@ class AdminController extends Controller
             return $this->error('Invalid role', 'Add User', 404);
         }
 
-        $password = Str::random(8);
+        try {
+            $password = Str::random(8);
 
-        $user = User::firstOrCreate([
-            'email' => $request->email,
-        ],[
-            'name' => $request->name,
-            'phone_number' => $request->phone_number,
-            'password' => bcrypt($password)
-        ]);
+            DB::beginTransaction();
 
-        if ($user && $role) {
-            $user->addRole($role->name);
+            $user = User::firstOrCreate([
+                'email' => $request->email,
+            ],[
+                'name' => $request->name,
+                'phone_number' => $request->phone_number,
+                'password' => bcrypt($password)
+            ]);
+
+            if ($user && $role) {
+                $user->addRole($role->name);
+            }
+
+            if ($request->has('user_countries') && !empty($request->user_countries)) {
+                foreach ($request->user_countries as $user_country) {
+                    UserCountry::updateOrCreate([
+                        'user_id' => $user->id,
+                        'country_id' => $user_country
+                    ]);
+                };
+            }
+
+            DB::commit();
+
+            if ($user->email) {
+                SendCommunication::dispatchAfterResponse('mail', $user->email, 'NewAccount', ['user' => $user, 'password' => $password]);
+            }
+
+            return $this->success(['user' => $user, 'User added successfully']);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', 'Something went wrong', 500);
         }
-
-        if ($user->email) {
-            SendCommunication::dispatchAfterResponse('mail', $user->email, 'NewAccount', ['user' => $user, 'password' => $password]);
-        }
-
-        return $this->success(['user' => $user, 'User added successfully']);
     }
 
     public function dashboard(Request $request)
@@ -1471,7 +1492,7 @@ class AdminController extends Controller
 
     public function admins(Request $request)
     {
-        $users = User::whereNotIn('email', ['admin@moboeats.com', 'admin@moboeats.co.uk'])
+        $users = User::with('countries')->whereNotIn('email', ['admin@moboeats.com', 'admin@moboeats.co.uk'])
         ->with('roles')->whereHas('roles', function ($query) {
             $query->whereNotIn('name', ['orderer', 'restaurant', 'restaurant employee', 'rider']);
         })
@@ -1496,6 +1517,18 @@ class AdminController extends Controller
         $user = User::find($request->user_id);
 
         $user->syncRoles([$request->role_id]);
+
+        if ($request->has('user_countries') && !empty($request->user_countries)) {
+            // Delete Current User Countries
+            UserCountry::where('user_id', $user->id)->delete();
+
+            foreach ($request->user_countries as $user_country) {
+                UserCountry::create([
+                    'user_id' => $user->id,
+                    'country_id' => $user_country
+                ]);
+            };
+        }
 
         return $this->success($user);
     }

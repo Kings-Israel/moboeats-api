@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Helpers\NumberGenerator;
+use App\Models\Scopes\UserCountryScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,6 +14,7 @@ use Illuminate\Support\Str;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Client\ConnectionException;
@@ -76,6 +78,12 @@ class User extends Authenticatable implements LaratrustUser
             ]);
         });
     }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new UserCountryScope);
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';
@@ -148,6 +156,16 @@ class User extends Authenticatable implements LaratrustUser
         return $query->whereHas('dietSubscriptions', function ($query) {
             $query->whereDate('end_date', '>=', now()->format('Y-m-d'));
         });
+    }
+
+    /**
+     * Get all of the countries for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function countries(): HasManyThrough
+    {
+        return $this->hasManyThrough(Country::class, UserCountry::class, 'user_id', 'id', 'id', 'country_id');
     }
 
     /**

@@ -78,7 +78,7 @@ class PaymentController extends Controller
 
     public function show(Payment $payment)
     {
-        $order = $payment->order->load('user', 'restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable');
+        $order = $payment->orderable->load('user', 'restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable');
 
         $order->preparation_time = $order->getTotalPreparationTime();
 

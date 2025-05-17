@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\MenuController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\OrphanageController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,9 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::post('/users/update', [AdminController::class, 'updateUser']);
         Route::post('/restaurant/{id}/menu/add', [MenuController::class, 'store']);
         Route::post('/restaurant/menu/{id}/update', [MenuController::class, 'update']);
+
+        Route::resource('/countries', CountryController::class)->except('update');
+        Route::post('/countries/{country}/update', [CountryController::class, 'update']);
 
         // Supplements and Suppliers
         Route::group(['prefix' => '/supplements'], function () {

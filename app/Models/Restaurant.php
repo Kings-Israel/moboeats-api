@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\RestaurantStatus;
+use App\Models\Scopes\RetaurantUserCountryScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -39,6 +40,11 @@ class Restaurant extends Model implements UrlRoutable
             $model->uuid = (string) Str::uuid();
             $model->user_id = Auth::user()->id;
         });
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new RetaurantUserCountryScope);
     }
 
     protected $fillable = [

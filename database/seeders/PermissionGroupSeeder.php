@@ -68,6 +68,9 @@ class PermissionGroupSeeder extends Seeder
             [
                 'name' => 'orphanages',
             ],
+            [
+                'name' => 'countries',
+            ],
         ];
 
         collect($groups)->each(fn ($group) => PermissionGroup::create($group));

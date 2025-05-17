@@ -169,7 +169,19 @@ class PermissionSeeder extends Seeder
             [
                 "name" => 'edit orphanages orders',
                 "display_name" => "Edit Orphanages Orders"
-            ]
+            ],
+            [
+                "name" => 'view countries',
+                "display_name" => "View Countries",
+            ],
+            [
+                "name" => 'create countries',
+                "display_name" => "Create Countries",
+            ],
+            [
+                "name" => 'edit countries',
+                "display_name" => "Edit Countries",
+            ],
         ];
 
         collect($permissions)->each(function ($permission) {

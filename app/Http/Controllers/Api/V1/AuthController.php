@@ -25,6 +25,7 @@ use Illuminate\Validation\Rule;
 use App\Jobs\SendCommunication;
 use App\Jobs\SendSMS;
 use App\Helpers\NumberGenerator;
+use App\Models\Scopes\UserCountryScope;
 
 /**
  * @group Authentication Management
@@ -263,7 +264,7 @@ class AuthController extends Controller
             Auth::user()->tokens->each(function($token, $key) {
                 $token->delete();
             });
-            $user = User::where('id', Auth::user()->id)->first();
+            $user = User::withoutGlobalScope(UserCountryScope::class)->where('id', Auth::user()->id)->first();
             $user->update(['role_id' => '']);
             return $this->success([
                 'message' => 'Successfully logged out.'

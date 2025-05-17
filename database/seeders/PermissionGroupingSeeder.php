@@ -91,7 +91,12 @@ class PermissionGroupingSeeder extends Seeder
                 'edit orphanages',
                 'view orphanages orders',
                 'edit orphanages orders',
-            ]
+            ],
+            'countries' => [
+                'create countries',
+                'view countries',
+                'edit countries',
+            ],
         ];
 
         try {

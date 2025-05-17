@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\PaymentUserCountryScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,12 @@ class Payment extends Model
             $model->uuid = (string) Str::uuid();
         });
     }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new PaymentUserCountryScope);
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';
