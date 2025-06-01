@@ -698,7 +698,8 @@ class AdminController extends Controller
                         ->when($search && $search != '', function($query) use ($search) {
                             $query->where(function ($query) use ($search) {
                                 $query->where('name', 'LIKE', '%'.$search.'%')
-                                        ->orWhere('email', 'LIKE', '%'.$search.'%');
+                                        ->orWhere('email', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
                             });
                         })
                         ->orderBy('created_at', 'DESC')
@@ -744,6 +745,7 @@ class AdminController extends Controller
             'name' => $request->first_name.' '.$request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
+            'type' => $request->type
         ]);
 
         if ($request->hasFile('avatar')) {
