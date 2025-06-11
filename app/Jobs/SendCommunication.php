@@ -33,6 +33,10 @@ class SendCommunication implements ShouldQueue
      */
     public function handle(): void
     {
+        if (config('app.env') == 'local' || config('app.env') == 'development') {
+            return;
+        }
+
         switch ($this->type) {
             case 'mail':
                 if ($this->sender == 'ResetPassword') {

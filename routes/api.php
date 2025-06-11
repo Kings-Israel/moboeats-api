@@ -204,6 +204,8 @@ Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class
 Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
     Route::post('/restaurant', [RestaurantController::class, 'store']);
     Route::middleware(['has_restaurant'])->group(function () {
+        Route::get('/{restaurant}/registration/fee-payment', [RestaurantController::class, 'registrationFeePayment']);
+        Route::post('/{restaurant}/registration/fee-payment/complete', [RestaurantController::class, 'completeRegistrationFeePayment']);
         Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
         Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
         Route::get('/restaurants/{restaurant}/reviews', [RestaurantController::class, 'reviews']);

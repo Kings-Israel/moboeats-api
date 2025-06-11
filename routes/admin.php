@@ -70,6 +70,7 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::post('/delivery-rate/update', [AdminController::class, 'updateDeliveryRate']);
         Route::post('/base-rate/update', [AdminController::class, 'updateBaseRate']);
         Route::post('/base-rate/grocery/update', [AdminController::class, 'updateGroceryBaseRate']);
+        Route::post('/registration-fee/update', [AdminController::class, 'updateRegistrationFee']);
 
         Route::group(['prefix' => 'restaurant/{restaurant}/'], function () {
             Route::get('/', [AdminController::class, 'restaurant']);

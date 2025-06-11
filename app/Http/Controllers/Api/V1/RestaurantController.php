@@ -45,6 +45,7 @@ use App\Models\Review;
 use App\Models\PromoCode;
 use App\Models\Discount;
 use App\Models\Role;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Query\JoinClause;
 
@@ -228,7 +229,9 @@ class RestaurantController extends Controller
             DB::beginTransaction();
             $request->merge([
                 'user_id' => Auth::user()->id,
+                'map_location' => 'Nairobi'
             ]);
+
             $restaurant = Restaurant::create($request->all());
             if($request->hasFile('logo')){
                 $restaurant->update([
@@ -236,35 +239,40 @@ class RestaurantController extends Controller
                 ]);
             }
 
-            if ($request->latitude && $request->longitude) {
-                try {
-                    $user_location = Http::withOptions(['verify' => false])
-                                            ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->latitude.','.$request->longitude.'&key='.config('services.map.key'));
-                } catch (ConnectionException $e) {
-                    $user_country = 'Kenya';
-                    $user_short_country_name = 'KE';
-                }
+            // if ($request->latitude && $request->longitude) {
+            //     try {
+            //         $user_location = Http::withOptions(['verify' => false])
+            //                                 ->get('https://maps.googleapis.com/maps/api/geocode/json?latlng='.$request->latitude.','.$request->longitude.'&key='.config('services.map.key'));
+            //     } catch (ConnectionException $e) {
+            //         $user_country = 'Kenya';
+            //         $user_short_country_name = 'KE';
+            //     }
 
-                if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
-                    $user_country = 'Kenya';
-                    $user_short_country_name = 'KE';
-                }
+            //     if($user_location->failed() || $user_location->clientError() || $user_location->serverError()) {
+            //         $user_country = 'Kenya';
+            //         $user_short_country_name = 'KE';
+            //     }
 
-                foreach ($user_location['results'][0]['address_components'] as $place) {
-                    if (collect($place['types'])->contains('country')) {
-                        $user_country = $place['long_name'];
-                    }
+            //     foreach ($user_location['results'][0]['address_components'] as $place) {
+            //         if (collect($place['types'])->contains('country')) {
+            //             $user_country = $place['long_name'];
+            //         }
 
-                    if (collect($place['types'])->contains('country')) {
-                        $user_short_country_name = $place['short_name'];
-                    }
-                }
+            //         if (collect($place['types'])->contains('country')) {
+            //             $user_short_country_name = $place['short_name'];
+            //         }
+            //     }
 
-                $restaurant->update([
-                    'country' => $user_country,
-                    'country_code' => $user_short_country_name
-                ]);
-            }
+            //     $restaurant->update([
+            //         'country' => $user_country,
+            //         'country_code' => $user_short_country_name
+            //     ]);
+            // }
+
+            $restaurant->update([
+                'country' => 'Kenya',
+                'country_code' => 'Ke'
+            ]);
 
             $restaurant->update([
                 'status' => '2'
@@ -1393,5 +1401,30 @@ class RestaurantController extends Controller
 
             return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate());
         }
+    }
+
+    public function registrationFeePayment(Restaurant $restaurant)
+    {
+        // Check if registration fee is paid
+        $registration_fee = $restaurant->registration_fee;
+
+        if ($registration_fee) {
+            return $this->success(['message' => 'paid']);
+        }
+
+        $registration_fee = Setting::where('name', 'Registration Fee')->first();
+
+        return $this->success(['data' => $registration_fee->variable]);
+    }
+
+    public function completeRegistrationFeePayment(Restaurant $restaurant)
+    {
+        $registration_fee = Setting::where('name', 'Registration Fee')->first();
+
+        $restaurant->update([
+            $registration_fee->variable
+        ]);
+
+        return $this->success(['message' => 'Registration fee paid successfully']);
     }
 }

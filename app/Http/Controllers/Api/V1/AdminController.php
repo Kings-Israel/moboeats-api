@@ -568,6 +568,41 @@ class AdminController extends Controller
         ];
 
         $settings = Setting::all();
+        if (!$settings || count($settings) == 0) {
+            $settings = [
+                [
+                    'name' => 'Delivery Rate',
+                    'variable' => 0,
+                    'type' => 'percentage'
+                ],
+                [
+                    'name' => 'Base Service Charge Rate',
+                    'variable' => 0,
+                    'type' => 'percentage'
+                ],
+                [
+                    'name' => 'Base Groceries Service Charge Rate',
+                    'variable' => 0,
+                    'type' => 'percentage'
+                ],
+                [
+                    'name' => 'Registration Fee',
+                    'variable' => 0,
+                    'type' => 'amount'
+                ]
+            ];
+
+            foreach ($settings as $setting) {
+                Setting::firstOrCreate([
+                    'name' => $setting['name']
+                ], [
+                    'variable' => $setting['variable'],
+                    'type' => $setting['type']
+                ]);
+            }
+        }
+
+        $settings = Setting::all();
 
         // Supplements and Suppliers
         $suppliers_count = SupplementSupplier::count();
@@ -1214,9 +1249,17 @@ class AdminController extends Controller
 
         $setting = Setting::where('name', 'Delivery Rate')->first();
 
-        $setting->update([
-            'variable' => $request->rate
-        ]);
+        if (!$setting) {
+            $setting = Setting::create([
+                'name' => 'Delivery Rate',
+                'variable' => $request->rate,
+                'type' => 'percentage'
+            ]);
+        } else {
+            $setting->update([
+                'variable' => $request->rate
+            ]);
+        }
 
         return $this->success('', 'Rate updated successfully');
     }
@@ -1233,9 +1276,17 @@ class AdminController extends Controller
 
         $setting = Setting::where('name', 'Base Service Charge Rate')->first();
 
-        $setting->update([
-            'variable' => $request->rate
-        ]);
+        if (!$setting) {
+            $setting = Setting::create([
+                'name' => 'Base Service Charge Rate',
+                'variable' => $request->rate,
+                'type' => 'percentage'
+            ]);
+        } else {
+            $setting->update([
+                'variable' => $request->rate
+            ]);
+        }
 
         return $this->success('', 'Rate updated successfully');
     }
@@ -1252,11 +1303,46 @@ class AdminController extends Controller
 
         $setting = Setting::where('name', 'Base Groceries Service Charge Rate')->first();
 
-        $setting->update([
-            'variable' => $request->rate
-        ]);
+        if (!$setting) {
+            $setting = Setting::create([
+                'name' => 'Base Groceries Service Charge Rate',
+                'variable' => $request->rate,
+                'type' => 'percentage'
+            ]);
+        } else {
+            $setting->update([
+                'variable' => $request->rate
+            ]);
+        }
 
         return $this->success('', 'Rate updated successfully');
+    }
+
+    public function updateRegistrationFee(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rate' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', 'Rate is required', 400);
+        }
+
+        $setting = Setting::where('name', 'Registration Fee')->first();
+
+        if (!$setting) {
+            $setting = Setting::create([
+                'name' => 'Registration Fee',
+                'variable' => $request->rate,
+                'type' => 'amount'
+            ]);
+        } else {
+            $setting->update([
+                'variable' => $request->rate
+            ]);
+        }
+
+        return $this->success('', 'Registration Fee updated successfully');
     }
 
     public function qrCode(Request $request)
