@@ -567,39 +567,39 @@ class AdminController extends Controller
             'top_menu_items_series' => $top_menu_items_series
         ];
 
-        $settings = Setting::all();
-        if (!$settings || count($settings) == 0) {
-            $settings = [
-                [
-                    'name' => 'Delivery Rate',
-                    'variable' => 0,
-                    'type' => 'percentage'
-                ],
-                [
-                    'name' => 'Base Service Charge Rate',
-                    'variable' => 0,
-                    'type' => 'percentage'
-                ],
-                [
-                    'name' => 'Base Groceries Service Charge Rate',
-                    'variable' => 0,
-                    'type' => 'percentage'
-                ],
-                [
-                    'name' => 'Registration Fee',
-                    'variable' => 0,
-                    'type' => 'amount'
-                ]
-            ];
+        // $settings = Setting::all();
+        // if (!$settings || count($settings) == 0) {
+        // }
+        $settings = [
+            [
+                'name' => 'Delivery Rate',
+                'variable' => 0,
+                'type' => 'percentage'
+            ],
+            [
+                'name' => 'Base Service Charge Rate',
+                'variable' => 0,
+                'type' => 'percentage'
+            ],
+            [
+                'name' => 'Base Groceries Service Charge Rate',
+                'variable' => 0,
+                'type' => 'percentage'
+            ],
+            [
+                'name' => 'Registration Fee',
+                'variable' => 0,
+                'type' => 'amount'
+            ]
+        ];
 
-            foreach ($settings as $setting) {
-                Setting::firstOrCreate([
-                    'name' => $setting['name']
-                ], [
-                    'variable' => $setting['variable'],
-                    'type' => $setting['type']
-                ]);
-            }
+        foreach ($settings as $setting) {
+            Setting::firstOrCreate([
+                'name' => $setting['name']
+            ], [
+                'variable' => $setting['variable'],
+                'type' => $setting['type']
+            ]);
         }
 
         $settings = Setting::all();
