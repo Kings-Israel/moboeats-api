@@ -822,8 +822,6 @@ class PaymentController extends Controller
             }
         }
 
-        info($token);
-
         // Initiate transaction
         $res = Http::withToken($token)
             ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
@@ -834,7 +832,7 @@ class PaymentController extends Controller
                 "narration" => "test",
                 "callbackUrl" => route('pochipay.callback'),
             ]);
-        info($res);
+
         if ($res->successful()) {
             return $this->success('', 'Payment Request sent successful');
         } else {
