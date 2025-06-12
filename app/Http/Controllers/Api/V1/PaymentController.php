@@ -323,7 +323,7 @@ class PaymentController extends Controller
                     $token = $res['result']['accessToken'];
                 }
             }
-
+            info(route('pochipay.callback'));
             // Initiate transaction
             $res = Http::withToken($token)
                 ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
