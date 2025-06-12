@@ -93,7 +93,7 @@ trait UploadFileTrait
     //             // $c->upsize();
     //         });
     //     }
-       
+
 
     //     $prevFile = $data['prevFile'] != null? $data['prevFile']:null;
     //     //delete previous file

@@ -103,7 +103,6 @@ class OrdererController extends Controller
         return $this->isNotAuthorized($user) ?  $this->isNotAuthorized($user) : new UserResource($user);
     }
 
-
     /**
      * @authenticated
      * Update User Details.
@@ -134,17 +133,13 @@ class OrdererController extends Controller
         try {
             DB::beginTransaction();
             if($request->hasFile('image')){
-                $fileName = $this->generateFileName2($request->file('image'));
-                $user->update($request->all(),['image' => $fileName]);
-                if($request->hasFile('image')){
-                    $fileData = ['file' => $request->file('image'),'fileName' => $fileName, 'storageName' => $this->settings['storageName'].'\\images','prevFile' => null];
-                    if(!$this->uploadFile($fileData)){
-                        DB::rollBack();
-                    }
-                }
+                $filename = pathinfo($request->file('image')->store('public/user/avatar/'), PATHINFO_BASENAME);
+
+                $user->update(['image' => $filename]);
             } else {
-                $user->update($request->all());
             }
+            $user->update(collect($request->all())->except('image')->toArray());
+
             DB::commit();
             return new UserResource($user);
         } catch (\Throwable $th) {

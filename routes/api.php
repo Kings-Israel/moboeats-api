@@ -146,7 +146,8 @@ Route::group(['prefix' => 'v1/orderer'], function() {
     Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::apiResource('orderers', OrdererController::class);
+        Route::apiResource('orderers', OrdererController::class)->except('update');
+        Route::post('/orderers/{userId}', [OrdererController::class, 'update']);
 
         Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
         Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
