@@ -118,7 +118,6 @@ class OrdererController extends Controller
      */
     public function update(Request $request, $ordererId)
     {
-        info($request->all());
         $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'email' => ['sometimes', 'email'],
