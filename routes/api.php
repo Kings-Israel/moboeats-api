@@ -147,7 +147,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::apiResource('orderers', OrdererController::class)->except('update');
-        Route::put('/orderers/{userId}', [OrdererController::class, 'update']);
+        Route::post('/orderers/{userId}', [OrdererController::class, 'update']);
 
         Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
         Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
