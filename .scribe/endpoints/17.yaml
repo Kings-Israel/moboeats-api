@@ -71,35 +71,35 @@ endpoints:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: true
-        example: 0
+        example: 1
         type: number
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: et
+        example: aut
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 13
+        example: 2
         type: integer
         custom: []
       menu_id:
         name: menu_id
         description: ''
         required: true
-        example: reprehenderit
+        example: debitis
         type: string
         custom: []
     cleanBodyParameters:
-      price: 0
-      description: et
-      status: 13
-      menu_id: reprehenderit
+      price: 1
+      description: aut
+      status: 2
+      menu_id: debitis
     fileParameters: []
     responses: []
     responseFields: []
@@ -193,27 +193,27 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: laborum
+        example: unde
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: culpa
+        example: consequatur
         type: string
         custom: []
       price:
         name: price
         description: 'Must be between 0 and 9999999999.99.'
         required: false
-        example: 1
+        example: 0
         type: number
         custom: []
     cleanBodyParameters:
-      description: laborum
-      status: culpa
-      price: 1
+      description: unde
+      status: consequatur
+      price: 0
     fileParameters: []
     responses: []
     responseFields: []
@@ -297,14 +297,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: magni
+        example: deleniti
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: true
-        example: doloribus
+        example: quibusdam
         type: string
         custom: []
       price:
@@ -315,8 +315,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      description: magni
-      status: doloribus
+      description: deleniti
+      status: quibusdam
       price: 0
     fileParameters: []
     responses: []

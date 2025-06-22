@@ -46,11 +46,15 @@ class RestaurantResource extends JsonResource
                 'questionnaire' => new QuestionnaireResource($this->whenLoaded('questionnaire')),
                 'user' => new UserResource($this->whenLoaded('user')),
                 'orders' => $this->whenLoaded('orders'),
-                'menus' => $this->menus->load('categories'),
+                'menus' => $this->whenLoaded('menus.categories'),
                 'operating_hours' => $this->whenLoaded('operatingHours'),
                 'documents' => $this->when(auth()->check() && auth()->user()->hasRole('restaurant'), $this->whenLoaded('documents')),
-                'orders_count' => $this->loadCount('orders'),
-                'menus_count' => $this->loadCount('menus'),
+                'orders_count' => $this->whenLoaded('orders', function () {
+                    return $this->orders->count();
+                }),
+                'menus_count' => $this->whenLoaded('menus', function () {
+                    return $this->menus->count();
+                }),
                 'reviews' => $this->whenLoaded('reviews'),
                 'restaurantTables' => $this->whenLoaded('restaurantTables.seatingArea'),
             ]

@@ -886,7 +886,7 @@ class PaymentController extends Controller
     }
 
     /**
-     * Stripe Order checkout
+     * Paystack Order checkout
      * @urlParam order_id int The id of the order
      */
     public function paystackCheckout($order_id)
@@ -918,38 +918,50 @@ class PaymentController extends Controller
         }
 
         $amount = $order->total_amount;
-        $amount = explode('.', $order->total_amount);
-        if (count($amount) > 1) {
-            if ((int)(end($amount)) > 30) {
-                $amount = ceil((double)($order->total_amount));
-            } else {
-                $amount = $amount[0].'.30';
-            }
+
+        if ($order->restaurant->country == 'Kenya') {
+            $metadata = [
+                'email' => $order->user->email,
+                'amount' => $amount,
+                "currency" => "KES",
+                "mobile_money" => [
+                    "phone" => config('services.paystack.ENV') == 'test' ? '+254710000000' : $order->user->phone_number,
+                    "provider" => "mpesa"
+                ],
+            ];
         } else {
-            $amount = $order->total_amount;
+            // TODO: Create bank transfers for other countries
+            $metadata = [
+                'email' => $user->email,
+                'amount' => $amount,
+                "eft" => [
+                    "provider" => "ozow"
+                ],
+            ];
         }
 
         $response = Http::accept('application/json')
             ->withToken(config('services.paystack.SECRET_KEY'))
-            ->post(config('services.paystack.BASE_URL').'/charge', [
-                'email' => $user->email,
-                'amount' => $amount
+            ->post(config('services.paystack.BASE_URL').'/charge', $metadata);
+
+        if ($response['status']) {
+            StripePayment::create([
+                'user_id' => $user->id,
+                'payment_intent' => $response['data']['reference'],
+                'payable_type' => Order::class,
+                'payable_id' => $order->id,
+                'amount' => $amount,
             ]);
 
-        StripePayment::create([
-            'user_id' => $user->id,
-            'payment_intent' => $response->data->reference,
-            'payable_type' => Order::class,
-            'payable_id' => $order->id,
-            'amount' => $amount,
-        ]);
+            return response()->json(
+                [
+                  'reference' => $response['data']['reference'],
+                  'customer' => $user->id,
+                ]
+            );
+        }
 
-        return response()->json(
-            [
-              'reference' => $response->data->reference,
-              'customer' => $user->id,
-            ]
-        );
+        return $this->error($response['message'], 'An error occurred while making the request', 400);
     }
 
     public function paystackCallback(Request $request)
@@ -959,11 +971,10 @@ class PaymentController extends Controller
 
     public function paystackWebhookCallback(Request $request)
     {
-        info($request->all());
-        $stripe_payment = StripePayment::where('payment_intent', $request->all()['offline_reference'])->first();
+        $stripe_payment = StripePayment::where('payment_intent', $request->all()['data']['reference'])->first();
 
         if ($stripe_payment) {
-            if ($request->all()['event'] == 'paymentrequest.success') {
+            if ($request->all()['event'] == 'charge.success') {
                 $stripe_payment->update([
                     'status' => 'success'
                 ]);
@@ -986,7 +997,7 @@ class PaymentController extends Controller
                             event(new NewOrder($order->restaurant, $order->load('user')));
 
                             Payment::create([
-                                'transaction_id' => $request->all()['data']['request_code'],
+                                'transaction_id' => $request->all()['data']['id'],
                                 'orderable_id' => $order->id,
                                 'orderable_type' => Order::class,
                                 'payment_method' => 'Paystack',
@@ -1013,7 +1024,7 @@ class PaymentController extends Controller
                             ]);
 
                             Payment::create([
-                                'transaction_id' => $request->all()['data']['object']['id'],
+                                'transaction_id' => $request->all()['data']['id'],
                                 'orderable_id' => $rider_tip->id,
                                 'orderable_type' => RiderTip::class,
                                 'payment_method' => 'Paystack',
@@ -1041,7 +1052,7 @@ class PaymentController extends Controller
                             ]);
 
                             Payment::create([
-                                'transaction_id' => $request->all()['data']['object']['id'],
+                                'transaction_id' => $request->all()['data']['id'],
                                 'orderable_id' => $order->id,
                                 'orderable_type' => SupplementOrder::class,
                                 'payment_method' => 'Paystack',
@@ -1069,7 +1080,7 @@ class PaymentController extends Controller
                             ]);
 
                             // Payment::create([
-                            //     'transaction_id' => $request->all()['data']['object']['id'],
+                            //     'transaction_id' => $request->all()['data']['id'],
                             //     'order_id' => $order->id,
                             //     'payment_method' => 'Stripe',
                             //     'amount' => 50,

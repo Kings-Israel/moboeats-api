@@ -124,28 +124,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ullam
+        example: officiis
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: corporis
+        example: molestias
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 18
+        example: 15
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: cum
+        example: culpa
         type: string
         custom: []
       categoryIds:
@@ -159,16 +159,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: pmfhnkhsaytm
+        example: qcjzcocyshpjyfqwglgkmkr
         type: string
         custom: []
     cleanBodyParameters:
-      title: ullam
-      description: corporis
-      status: 18
-      createdBy: cum
+      title: officiis
+      description: molestias
+      status: 15
+      createdBy: culpa
       categoryIds: []
-      image: pmfhnkhsaytm
+      image: qcjzcocyshpjyfqwglgkmkr
     fileParameters: []
     responses: []
     responseFields: []
@@ -200,11 +200,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: voluptates
+        example: molestiae
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptates
+      id: molestiae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -218,11 +218,11 @@ endpoints:
               "message": "No query results for model [App\\Models\\FooSubCategory].",
               "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
               "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-              "line": 408,
+              "line": 487,
               "trace": [
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-                      "line": 384,
+                      "line": 463,
                       "function": "prepareException",
                       "class": "Illuminate\\Foundation\\Exceptions\\Handler",
                       "type": "->"
@@ -243,35 +243,35 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 185,
+                      "line": 188,
                       "function": "handleException",
                       "class": "Illuminate\\Routing\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 152,
+                      "line": 159,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 118,
+                      "line": 125,
                       "function": "handleRequest",
                       "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 80,
+                      "line": 87,
                       "function": "handleRequestUsingNamedLimiter",
                       "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
@@ -285,14 +285,14 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
+                      "line": 144,
                       "function": "Laravel\\Sanctum\\Http\\Middleware\\{closure}",
                       "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
+                      "line": 119,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
@@ -306,42 +306,42 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
+                      "line": 119,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 797,
+                      "line": 805,
                       "function": "then",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 776,
+                      "line": 784,
                       "function": "runRouteWithinStack",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 740,
+                      "line": 748,
                       "function": "runRoute",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 729,
+                      "line": 737,
                       "function": "dispatchToRoute",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
@@ -355,7 +355,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
+                      "line": 144,
                       "function": "Illuminate\\Foundation\\Http\\{closure}",
                       "class": "Illuminate\\Foundation\\Http\\Kernel",
                       "type": "->"
@@ -376,7 +376,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
                       "type": "->"
@@ -397,7 +397,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
                       "type": "->"
@@ -411,21 +411,21 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
-                      "line": 86,
+                      "line": 99,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
                       "type": "->"
@@ -439,7 +439,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Http\\Middleware\\HandleCors",
                       "type": "->"
@@ -453,14 +453,14 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Http\\Middleware\\TrustProxies",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
+                      "line": 119,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
@@ -600,49 +600,49 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 194,
+                      "line": 211,
                       "function": "call",
                       "class": "Illuminate\\Container\\Container",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Command\\Command.php",
-                      "line": 312,
+                      "line": 326,
                       "function": "execute",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 163,
+                      "line": 180,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Command\\Command",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 1040,
+                      "line": 1096,
                       "function": "run",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 314,
+                      "line": 324,
                       "function": "doRunCommand",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 168,
+                      "line": 175,
                       "function": "doRun",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-                      "line": 200,
+                      "line": 201,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
@@ -694,11 +694,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: est
+        example: nihil
         type: string
         custom: []
     cleanUrlParameters:
-      id: est
+      id: nihil
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -706,14 +706,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: consequuntur
+        example: aspernatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: vel
+        example: qui
         type: string
         custom: []
       status:
@@ -727,7 +727,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: ea
+        example: mollitia
         type: string
         custom: []
       categoryIds:
@@ -741,15 +741,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: gcbhaggatlkbajwvzxmfpdl
+        example: dzqlplrkppeaqybewzfe
         type: string
         custom: []
     cleanBodyParameters:
-      title: consequuntur
-      description: vel
-      updatedBy: ea
+      title: aspernatur
+      description: qui
+      updatedBy: mollitia
       categoryIds: []
-      image: gcbhaggatlkbajwvzxmfpdl
+      image: dzqlplrkppeaqybewzfe
     fileParameters: []
     responses: []
     responseFields: []
@@ -781,11 +781,11 @@ endpoints:
         name: id
         description: 'The ID of the sub category.'
         required: true
-        example: et
+        example: illo
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: illo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -868,28 +868,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: qui
+        example: consequatur
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: aliquid
+        example: amet
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 17
+        example: 4
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: totam
+        example: beatae
         type: string
         custom: []
       categoryIds:
@@ -903,16 +903,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: flopzuwizz
+        example: yaa
         type: string
         custom: []
     cleanBodyParameters:
-      title: qui
-      description: aliquid
-      status: 17
-      createdBy: totam
+      title: consequatur
+      description: amet
+      status: 4
+      createdBy: beatae
       categoryIds: []
-      image: flopzuwizz
+      image: yaa
     fileParameters: []
     responses: []
     responseFields: []
@@ -944,11 +944,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: occaecati
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      id: occaecati
+      id: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -996,11 +996,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: dolorum
+        example: vero
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorum
+      id: vero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1008,14 +1008,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: rerum
+        example: distinctio
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: qui
+        example: sunt
         type: string
         custom: []
       status:
@@ -1029,7 +1029,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: quaerat
+        example: atque
         type: string
         custom: []
       categoryIds:
@@ -1043,15 +1043,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: lllsxmmy
+        example: tov
         type: string
         custom: []
     cleanBodyParameters:
-      title: rerum
-      description: qui
-      updatedBy: quaerat
+      title: distinctio
+      description: sunt
+      updatedBy: atque
       categoryIds: []
-      image: lllsxmmy
+      image: tov
     fileParameters: []
     responses: []
     responseFields: []
@@ -1083,11 +1083,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food sub category.'
         required: true
-        example: sunt
+        example: quo
         type: string
         custom: []
     cleanUrlParameters:
-      id: sunt
+      id: quo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1168,28 +1168,28 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ut
+        example: minima
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: eum
+        example: commodi
         type: string
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 3
+        example: 6
         type: integer
         custom: []
       createdBy:
         name: createdBy
         description: ''
         required: true
-        example: totam
+        example: ut
         type: string
         custom: []
       categoryIds:
@@ -1203,16 +1203,16 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: stpzccmqnwwb
+        example: hxozeaapzeeqhshmpn
         type: string
         custom: []
     cleanBodyParameters:
-      title: ut
-      description: eum
-      status: 3
-      createdBy: totam
+      title: minima
+      description: commodi
+      status: 6
+      createdBy: ut
       categoryIds: []
-      image: stpzccmqnwwb
+      image: hxozeaapzeeqhshmpn
     fileParameters: []
     responses: []
     responseFields: []
@@ -1244,11 +1244,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: libero
+        example: sed
         type: string
         custom: []
     cleanUrlParameters:
-      id: libero
+      id: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1294,11 +1294,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: aut
+        example: amet
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: amet
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1306,14 +1306,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quae
+        example: porro
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: qui
+        example: quibusdam
         type: string
         custom: []
       status:
@@ -1327,7 +1327,7 @@ endpoints:
         name: updatedBy
         description: ''
         required: true
-        example: mollitia
+        example: quia
         type: string
         custom: []
       categoryIds:
@@ -1341,15 +1341,15 @@ endpoints:
         name: image
         description: 'Must not be greater than 3000 characters.'
         required: false
-        example: iwbpyadb
+        example: ikbzyuwjltagzsweoplgdu
         type: string
         custom: []
     cleanBodyParameters:
-      title: quae
-      description: qui
-      updatedBy: mollitia
+      title: porro
+      description: quibusdam
+      updatedBy: quia
       categoryIds: []
-      image: iwbpyadb
+      image: ikbzyuwjltagzsweoplgdu
     fileParameters: []
     responses: []
     responseFields: []
@@ -1381,11 +1381,11 @@ endpoints:
         name: id
         description: 'The ID of the food sub category.'
         required: true
-        example: a
+        example: odio
         type: string
         custom: []
     cleanUrlParameters:
-      id: a
+      id: odio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

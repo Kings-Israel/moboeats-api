@@ -80,20 +80,20 @@ endpoints:
         name: quantity
         description: ''
         required: true
-        example: 15
+        example: 5
         type: integer
         custom: []
       status:
         name: status
         description: ''
         required: false
-        example: 2
+        example: 16
         type: integer
         custom: []
     cleanBodyParameters:
       menuId: 14
-      quantity: 15
-      status: 2
+      quantity: 5
+      status: 16
     fileParameters: []
     responses: []
     responseFields: []
@@ -125,11 +125,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: sapiente
+        example: voluptate
         type: string
         custom: []
     cleanUrlParameters:
-      id: sapiente
+      id: voluptate
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -175,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: repudiandae
+        example: numquam
         type: string
         custom: []
     cleanUrlParameters:
-      id: repudiandae
+      id: numquam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -187,14 +187,14 @@ endpoints:
         name: menuId
         description: ''
         required: true
-        example: 16
+        example: 5
         type: integer
         custom: []
       quantity:
         name: quantity
         description: ''
         required: true
-        example: 13
+        example: 2
         type: integer
         custom: []
       status:
@@ -205,8 +205,8 @@ endpoints:
         type: integer
         custom: []
     cleanBodyParameters:
-      menuId: 16
-      quantity: 13
+      menuId: 5
+      quantity: 2
       status: 12
     fileParameters: []
     responses: []
@@ -239,11 +239,11 @@ endpoints:
         name: id
         description: 'The ID of the cart item.'
         required: true
-        example: iusto
+        example: ducimus
         type: string
         custom: []
     cleanUrlParameters:
-      id: iusto
+      id: ducimus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

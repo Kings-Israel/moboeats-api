@@ -82,7 +82,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","subCategories":[],"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","attributes":{"title":"Chicken wings","description":"chicken wings","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2","preparation_time":0,"average_rating":0},"relationships":{"menuPrices":[{"id":1,"uuid":"1a6f5f86-97d3-47b2-9f88-74391f14a8fc","attributes":{"price":100,"description":"standard","status":"2"},"relationships":{"menu":{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings"}}}],"restaurant":{"id":1,"uuid":"b08d4686-a0e7-47f6-88fd-1409c5aac00d","attributes":{"name":"Monahan Inc","nameShort":"dolorum","email":"johnson.rogers@example.org","about":"Qui velit quae cumque hic nostrum aut occaecati. Autem excepturi qui ipsam reiciendis nemo ea. Labore ad nihil hic enim non. Autem veniam ea occaecati veritatis.\n\nAt sit blanditiis esse et facilis velit. Dolor vel tempora qui placeat maiores sequi blanditiis. Nobis facere dolor eos ea quisquam cumque qui.\n\nMinima molestiae non quia debitis eveniet velit. Pariatur commodi voluptas et officia enim aliquam.","aboutShort":"Molestiae impedit cum voluptas voluptatum eaque error ut.","phoneNo":"+1-862-418-2339","address":"6310 Dickens Inlet Suite 398","city":"Cristalside","state":"Arizona","postalCode":"25235-3535","latitude":"-1.2920659","longitude":"36.8219462","mapLocation":"-1.252005,36.260963","url":"https:\/\/schoen.com\/adipisci-omnis-nulla-expedita-consequatur-ratione-aut-consequuntur.html","logo":"http:\/\/api.moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2025-02-25T07:08:35.000000Z","average_rating":0,"is_open":true,"country":"Kenya","country_code":"KE"},"relationships":{"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings","description":"chicken wings","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-08T10:35:31.000000Z","preparation_time":0,"stripe_product_id":"prod_QzZvdGeUmekz3X","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":1,"category_id":2}}]},{"id":2,"uuid":"a5829509-64cb-4523-a359-507d3f73a7f0","title":"Chicken wings2","description":"chicken wings2","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":3,"uuid":"d10b7bb9-1db0-4dbb-9432-042d972e9c7e","title":"Chicken wings4","description":"chicken wings4","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":4,"uuid":"37644265-a447-467d-bc5c-dc66cecc9d76","title":"Chicken wings6","description":"Chicken wings6","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":5,"uuid":"a19155ac-030e-47c9-87d5-0de4a7c26596","title":"Chicken wings7","description":"Chicken wings7","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":6,"uuid":"146dcd26-c302-43b0-80f3-23665b6980e9","title":"Chicken wings8","description":"Chicken wings8","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":7,"uuid":"fe5b4d17-b0fa-4892-9e02-b53497947d71","title":"Chicken wings9","description":"Chicken wings9","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":8,"uuid":"f95e96c3-71ff-4ef5-b3d8-92fc84df25c1","title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]}],"orders_count":{"id":1,"uuid":"b08d4686-a0e7-47f6-88fd-1409c5aac00d","name":"Monahan Inc","name_short":"dolorum","email":"johnson.rogers@example.org","user_id":8,"about":"Qui velit quae cumque hic nostrum aut occaecati. Autem excepturi qui ipsam reiciendis nemo ea. Labore ad nihil hic enim non. Autem veniam ea occaecati veritatis.\n\nAt sit blanditiis esse et facilis velit. Dolor vel tempora qui placeat maiores sequi blanditiis. Nobis facere dolor eos ea quisquam cumque qui.\n\nMinima molestiae non quia debitis eveniet velit. Pariatur commodi voluptas et officia enim aliquam.","about_short":"Molestiae impedit cum voluptas voluptatum eaque error ut.","phone_no":"+1-862-418-2339","address":"6310 Dickens Inlet Suite 398","city":"Cristalside","state":"Arizona","postal_code":"25235-3535","latitude":"-1.2920659","longitude":"36.8219462","map_location":"-1.252005,36.260963","url":"https:\/\/schoen.com\/adipisci-omnis-nulla-expedita-consequatur-ratione-aut-consequuntur.html","logo":"http:\/\/api.moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"hoppe.gerda@yahoo.com","updated_by":"kstiedemann@schaden.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2025-02-25T07:08:35.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":6,"menus_count":8,"reviews":[],"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings","description":"chicken wings","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-08T10:35:31.000000Z","preparation_time":0,"stripe_product_id":"prod_QzZvdGeUmekz3X","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":1,"category_id":2}}]},{"id":2,"uuid":"a5829509-64cb-4523-a359-507d3f73a7f0","title":"Chicken wings2","description":"chicken wings2","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":3,"uuid":"d10b7bb9-1db0-4dbb-9432-042d972e9c7e","title":"Chicken wings4","description":"chicken wings4","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":4,"uuid":"37644265-a447-467d-bc5c-dc66cecc9d76","title":"Chicken wings6","description":"Chicken wings6","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":5,"uuid":"a19155ac-030e-47c9-87d5-0de4a7c26596","title":"Chicken wings7","description":"Chicken wings7","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":6,"uuid":"146dcd26-c302-43b0-80f3-23665b6980e9","title":"Chicken wings8","description":"Chicken wings8","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":7,"uuid":"fe5b4d17-b0fa-4892-9e02-b53497947d71","title":"Chicken wings9","description":"Chicken wings9","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":8,"uuid":"f95e96c3-71ff-4ef5-b3d8-92fc84df25c1","title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]}]},"menus_count":{"id":1,"uuid":"b08d4686-a0e7-47f6-88fd-1409c5aac00d","name":"Monahan Inc","name_short":"dolorum","email":"johnson.rogers@example.org","user_id":8,"about":"Qui velit quae cumque hic nostrum aut occaecati. Autem excepturi qui ipsam reiciendis nemo ea. Labore ad nihil hic enim non. Autem veniam ea occaecati veritatis.\n\nAt sit blanditiis esse et facilis velit. Dolor vel tempora qui placeat maiores sequi blanditiis. Nobis facere dolor eos ea quisquam cumque qui.\n\nMinima molestiae non quia debitis eveniet velit. Pariatur commodi voluptas et officia enim aliquam.","about_short":"Molestiae impedit cum voluptas voluptatum eaque error ut.","phone_no":"+1-862-418-2339","address":"6310 Dickens Inlet Suite 398","city":"Cristalside","state":"Arizona","postal_code":"25235-3535","latitude":"-1.2920659","longitude":"36.8219462","map_location":"-1.252005,36.260963","url":"https:\/\/schoen.com\/adipisci-omnis-nulla-expedita-consequatur-ratione-aut-consequuntur.html","logo":"http:\/\/api.moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"hoppe.gerda@yahoo.com","updated_by":"kstiedemann@schaden.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2025-02-25T07:08:35.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":6,"menus_count":8,"reviews":[],"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings","description":"chicken wings","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-08T10:35:31.000000Z","preparation_time":0,"stripe_product_id":"prod_QzZvdGeUmekz3X","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":1,"category_id":2}}]},{"id":2,"uuid":"a5829509-64cb-4523-a359-507d3f73a7f0","title":"Chicken wings2","description":"chicken wings2","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":3,"uuid":"d10b7bb9-1db0-4dbb-9432-042d972e9c7e","title":"Chicken wings4","description":"chicken wings4","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":4,"uuid":"37644265-a447-467d-bc5c-dc66cecc9d76","title":"Chicken wings6","description":"Chicken wings6","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":5,"uuid":"a19155ac-030e-47c9-87d5-0de4a7c26596","title":"Chicken wings7","description":"Chicken wings7","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":6,"uuid":"146dcd26-c302-43b0-80f3-23665b6980e9","title":"Chicken wings8","description":"Chicken wings8","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":7,"uuid":"fe5b4d17-b0fa-4892-9e02-b53497947d71","title":"Chicken wings9","description":"Chicken wings9","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":8,"uuid":"f95e96c3-71ff-4ef5-b3d8-92fc84df25c1","title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]}]},"reviews":[]}},"orderItems":{"1":[{"id":1,"uuid":"ed35e1d5-4646-41a7-8fee-991997a0fba3","order_id":1,"menu_id":1,"quantity":2,"subtotal":"100.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-10-20T16:09:37.000000Z","updated_at":"2024-10-20T16:09:37.000000Z","order":{"id":1,"uuid":"2b718d9a-ef11-45f1-95db-a265bc554b7d","user_id":7,"restaurant_id":1,"total_amount":"100.00","delivery":true,"status":"In Progress","created_by":"Test User","updated_by":null,"created_at":"2024-10-20T16:09:37.000000Z","updated_at":"2024-10-20T16:10:58.000000Z","delivery_fee":"0.00","delivery_address":"Westlands Office Park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.2651596,"delivery_location_lng":36.7152787,"service_charge":2,"discount":0,"promo_code_id":null,"orphanage_id":null,"country":"Kenya"}}],"5":[{"id":5,"uuid":"870a92e6-b044-4765-9500-264165417861","order_id":5,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:51:35.000000Z","updated_at":"2025-01-12T12:51:35.000000Z","order":{"id":5,"uuid":"c4a019aa-3c04-4c7a-8264-02013195be1d","user_id":7,"restaurant_id":1,"total_amount":"150.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:51:35.000000Z","updated_at":"2025-01-12T12:51:35.000000Z","delivery_fee":null,"delivery_address":null,"delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":null,"delivery_location_lng":null,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"6":[{"id":6,"uuid":"1eda8c1a-b312-422b-939f-06e3446b215a","order_id":6,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:52:25.000000Z","updated_at":"2025-01-12T12:52:25.000000Z","order":{"id":6,"uuid":"788725aa-e5da-4231-9e4a-4cc3dc9c00e3","user_id":7,"restaurant_id":1,"total_amount":"150.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:52:25.000000Z","updated_at":"2025-01-12T12:52:25.000000Z","delivery_fee":null,"delivery_address":null,"delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":null,"delivery_location_lng":null,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"7":[{"id":7,"uuid":"ca81682e-470b-4f98-ab40-0648f14ee057","order_id":7,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:54:41.000000Z","updated_at":"2025-01-12T12:54:41.000000Z","order":{"id":7,"uuid":"a90dd565-05f9-4aee-8074-9b2dbdbc1e32","user_id":7,"restaurant_id":1,"total_amount":"150.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:54:41.000000Z","updated_at":"2025-01-12T12:54:41.000000Z","delivery_fee":"0.00","delivery_address":"Afya Centre, Nairobi, Kenya","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.2878412,"delivery_location_lng":36.828085,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"8":[{"id":8,"uuid":"593222ac-05e7-48e6-93d6-b106e811117e","order_id":8,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:56:39.000000Z","updated_at":"2025-01-12T12:56:39.000000Z","order":{"id":8,"uuid":"1bdd7a1d-815b-49d6-91a4-7ea3faf90ed5","user_id":7,"restaurant_id":1,"total_amount":"207.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:56:39.000000Z","updated_at":"2025-01-12T12:56:39.000000Z","delivery_fee":"57.00","delivery_address":"Afya Centre, Nairobi, Kenya","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.2878412,"delivery_location_lng":36.828085,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"9":[{"id":9,"uuid":"52eaa33a-445b-4eb2-8146-5f7b3116454e","order_id":9,"menu_id":1,"quantity":2,"subtotal":"200.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-03-12T06:29:21.000000Z","updated_at":"2025-03-12T06:29:21.000000Z","order":{"id":9,"uuid":"93923f66-b71a-4b89-8611-1e2ca4a646eb","user_id":7,"restaurant_id":1,"total_amount":"210.74","delivery":true,"status":"In Progress","created_by":"Test User","updated_by":null,"created_at":"2025-03-12T06:29:21.000000Z","updated_at":"2025-03-30T07:58:16.000000Z","delivery_fee":"10.74","delivery_address":"The 46 Residency","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.3649854,"delivery_location_lng":36.79493,"service_charge":4,"discount":0,"promo_code_id":null,"orphanage_id":null,"country":"Kenya"}}]},"orders_count":0,"total_orders_value":0,"reviews":[]}},{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","attributes":{"title":"Chips edit","description":"Delicious Chips","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2","preparation_time":4,"average_rating":0},"relationships":{"menuPrices":[{"id":9,"uuid":"f9539523-afcb-4f49-9f53-fdc9492519c1","attributes":{"price":200,"description":"standard","status":"2"},"relationships":{"menu":{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit"}}}],"restaurant":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","attributes":{"name":"Test","nameShort":"Test","email":"partner@test.com","about":"Test about","aboutShort":"Test about","phoneNo":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postalCode":"00100","latitude":"-1.2878412","longitude":"36.828085","mapLocation":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","sitting_capacity":0,"denied_reason":"","created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","average_rating":0,"is_open":true,"country":"Kenya","country_code":"KE"},"relationships":{"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit","description":"Delicious Chips","restaurant_id":21,"status":2,"created_by":"test@restaurant.com","updated_by":"test@restaurant.com","created_at":"2025-02-04T08:11:10.000000Z","updated_at":"2025-03-07T08:50:25.000000Z","preparation_time":4,"stripe_product_id":"prod_Ri7SSz815JPqky","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":9,"category_id":2}}]}],"orders_count":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","name":"Test","name_short":"Test","email":"partner@test.com","user_id":12,"about":"Test about","about_short":"Test about","phone_no":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postal_code":"00100","latitude":"-1.2878412","longitude":"36.828085","map_location":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","status":"Approved","created_by":null,"updated_by":null,"created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":3,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":0,"menus_count":1,"reviews":[],"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit","description":"Delicious Chips","restaurant_id":21,"status":2,"created_by":"test@restaurant.com","updated_by":"test@restaurant.com","created_at":"2025-02-04T08:11:10.000000Z","updated_at":"2025-03-07T08:50:25.000000Z","preparation_time":4,"stripe_product_id":"prod_Ri7SSz815JPqky","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":9,"category_id":2}}]}]},"menus_count":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","name":"Test","name_short":"Test","email":"partner@test.com","user_id":12,"about":"Test about","about_short":"Test about","phone_no":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postal_code":"00100","latitude":"-1.2878412","longitude":"36.828085","map_location":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","status":"Approved","created_by":null,"updated_by":null,"created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":3,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":0,"menus_count":1,"reviews":[],"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit","description":"Delicious Chips","restaurant_id":21,"status":2,"created_by":"test@restaurant.com","updated_by":"test@restaurant.com","created_at":"2025-02-04T08:11:10.000000Z","updated_at":"2025-03-07T08:50:25.000000Z","preparation_time":4,"stripe_product_id":"prod_Ri7SSz815JPqky","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":9,"category_id":2}}]}]},"reviews":[]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}]}],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/categories?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/categories","per_page":15,"to":1,"total":1}}'
+        content: '{"data":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","subCategories":[],"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","attributes":{"title":"Chips edit","description":"Delicious Chips","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2","preparation_time":4,"average_rating":0},"relationships":{"menuPrices":[{"id":9,"uuid":"f9539523-afcb-4f49-9f53-fdc9492519c1","attributes":{"price":200,"description":"standard","status":"2"},"relationships":{"menu":{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit"}}}],"restaurant":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","attributes":{"name":"Test","nameShort":"Test","email":"partner@test.com","about":"Test about","aboutShort":"Test about","phoneNo":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postalCode":"00100","latitude":"-1.2878412","longitude":"36.828085","mapLocation":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","sitting_capacity":0,"denied_reason":"","created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","average_rating":0,"is_open":true,"country":"Kenya","country_code":"KE"},"relationships":{"reviews":[]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}]}],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/categories?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/categories","per_page":15,"to":1,"total":1}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -124,14 +124,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: cumque
+        example: aut
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: reiciendis
+        example: voluptas
         type: string
         custom: []
       status:
@@ -142,8 +142,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: cumque
-      description: reiciendis
+      title: aut
+      description: voluptas
     fileParameters: []
     responses: []
     responseFields: []
@@ -175,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: est
+        example: omnis
         type: string
         custom: []
     cleanUrlParameters:
-      id: est
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -193,11 +193,11 @@ endpoints:
               "message": "No query results for model [App\\Models\\FoodCommonCategory].",
               "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
               "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-              "line": 408,
+              "line": 487,
               "trace": [
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
-                      "line": 384,
+                      "line": 463,
                       "function": "prepareException",
                       "class": "Illuminate\\Foundation\\Exceptions\\Handler",
                       "type": "->"
@@ -218,35 +218,35 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 185,
+                      "line": 188,
                       "function": "handleException",
                       "class": "Illuminate\\Routing\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 152,
+                      "line": 159,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 118,
+                      "line": 125,
                       "function": "handleRequest",
                       "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
-                      "line": 80,
+                      "line": 87,
                       "function": "handleRequestUsingNamedLimiter",
                       "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
@@ -260,14 +260,14 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
+                      "line": 144,
                       "function": "Laravel\\Sanctum\\Http\\Middleware\\{closure}",
                       "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
+                      "line": 119,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
@@ -281,42 +281,42 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
+                      "line": 119,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 797,
+                      "line": 805,
                       "function": "then",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 776,
+                      "line": 784,
                       "function": "runRouteWithinStack",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 740,
+                      "line": 748,
                       "function": "runRoute",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
-                      "line": 729,
+                      "line": 737,
                       "function": "dispatchToRoute",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
@@ -330,7 +330,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 141,
+                      "line": 144,
                       "function": "Illuminate\\Foundation\\Http\\{closure}",
                       "class": "Illuminate\\Foundation\\Http\\Kernel",
                       "type": "->"
@@ -351,7 +351,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
                       "type": "->"
@@ -372,7 +372,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
                       "type": "->"
@@ -386,21 +386,21 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
-                      "line": 86,
+                      "line": 99,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
                       "type": "->"
@@ -414,7 +414,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Http\\Middleware\\HandleCors",
                       "type": "->"
@@ -428,14 +428,14 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 180,
+                      "line": 183,
                       "function": "handle",
                       "class": "Illuminate\\Http\\Middleware\\TrustProxies",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
-                      "line": 116,
+                      "line": 119,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
@@ -575,49 +575,49 @@ endpoints:
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 194,
+                      "line": 211,
                       "function": "call",
                       "class": "Illuminate\\Container\\Container",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Command\\Command.php",
-                      "line": 312,
+                      "line": 326,
                       "function": "execute",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
-                      "line": 163,
+                      "line": 180,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Command\\Command",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 1040,
+                      "line": 1096,
                       "function": "run",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 314,
+                      "line": 324,
                       "function": "doRunCommand",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\symfony\\console\\Application.php",
-                      "line": 168,
+                      "line": 175,
                       "function": "doRun",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
                       "file": "C:\\xampp\\htdocs\\projects\\laravel\\moboeats\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
-                      "line": 200,
+                      "line": 201,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
@@ -669,11 +669,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: maxime
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      id: maxime
+      id: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -681,19 +681,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: voluptas
+        example: sit
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: excepturi
+        example: aperiam
         type: string
         custom: []
     cleanBodyParameters:
-      title: voluptas
-      description: excepturi
+      title: sit
+      description: aperiam
     fileParameters: []
     responses: []
     responseFields: []
@@ -725,11 +725,11 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: explicabo
+        example: tempore
         type: string
         custom: []
     cleanUrlParameters:
-      id: explicabo
+      id: tempore
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -770,7 +770,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","subCategories":[],"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","attributes":{"title":"Chicken wings","description":"chicken wings","createdBy":"info@moboeats.com","updatedBy":"info@moboeats.com","status":"2","preparation_time":0,"average_rating":0},"relationships":{"menuPrices":[{"id":1,"uuid":"1a6f5f86-97d3-47b2-9f88-74391f14a8fc","attributes":{"price":100,"description":"standard","status":"2"},"relationships":{"menu":{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings"}}}],"restaurant":{"id":1,"uuid":"b08d4686-a0e7-47f6-88fd-1409c5aac00d","attributes":{"name":"Monahan Inc","nameShort":"dolorum","email":"johnson.rogers@example.org","about":"Qui velit quae cumque hic nostrum aut occaecati. Autem excepturi qui ipsam reiciendis nemo ea. Labore ad nihil hic enim non. Autem veniam ea occaecati veritatis.\n\nAt sit blanditiis esse et facilis velit. Dolor vel tempora qui placeat maiores sequi blanditiis. Nobis facere dolor eos ea quisquam cumque qui.\n\nMinima molestiae non quia debitis eveniet velit. Pariatur commodi voluptas et officia enim aliquam.","aboutShort":"Molestiae impedit cum voluptas voluptatum eaque error ut.","phoneNo":"+1-862-418-2339","address":"6310 Dickens Inlet Suite 398","city":"Cristalside","state":"Arizona","postalCode":"25235-3535","latitude":"-1.2920659","longitude":"36.8219462","mapLocation":"-1.252005,36.260963","url":"https:\/\/schoen.com\/adipisci-omnis-nulla-expedita-consequatur-ratione-aut-consequuntur.html","logo":"http:\/\/api.moboeats.test\/assets\/user\/default.png","sitting_capacity":null,"denied_reason":"","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2025-02-25T07:08:35.000000Z","average_rating":0,"is_open":true,"country":"Kenya","country_code":"KE"},"relationships":{"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings","description":"chicken wings","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-08T10:35:31.000000Z","preparation_time":0,"stripe_product_id":"prod_QzZvdGeUmekz3X","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":1,"category_id":2}}]},{"id":2,"uuid":"a5829509-64cb-4523-a359-507d3f73a7f0","title":"Chicken wings2","description":"chicken wings2","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":3,"uuid":"d10b7bb9-1db0-4dbb-9432-042d972e9c7e","title":"Chicken wings4","description":"chicken wings4","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":4,"uuid":"37644265-a447-467d-bc5c-dc66cecc9d76","title":"Chicken wings6","description":"Chicken wings6","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":5,"uuid":"a19155ac-030e-47c9-87d5-0de4a7c26596","title":"Chicken wings7","description":"Chicken wings7","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":6,"uuid":"146dcd26-c302-43b0-80f3-23665b6980e9","title":"Chicken wings8","description":"Chicken wings8","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":7,"uuid":"fe5b4d17-b0fa-4892-9e02-b53497947d71","title":"Chicken wings9","description":"Chicken wings9","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":8,"uuid":"f95e96c3-71ff-4ef5-b3d8-92fc84df25c1","title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]}],"orders_count":{"id":1,"uuid":"b08d4686-a0e7-47f6-88fd-1409c5aac00d","name":"Monahan Inc","name_short":"dolorum","email":"johnson.rogers@example.org","user_id":8,"about":"Qui velit quae cumque hic nostrum aut occaecati. Autem excepturi qui ipsam reiciendis nemo ea. Labore ad nihil hic enim non. Autem veniam ea occaecati veritatis.\n\nAt sit blanditiis esse et facilis velit. Dolor vel tempora qui placeat maiores sequi blanditiis. Nobis facere dolor eos ea quisquam cumque qui.\n\nMinima molestiae non quia debitis eveniet velit. Pariatur commodi voluptas et officia enim aliquam.","about_short":"Molestiae impedit cum voluptas voluptatum eaque error ut.","phone_no":"+1-862-418-2339","address":"6310 Dickens Inlet Suite 398","city":"Cristalside","state":"Arizona","postal_code":"25235-3535","latitude":"-1.2920659","longitude":"36.8219462","map_location":"-1.252005,36.260963","url":"https:\/\/schoen.com\/adipisci-omnis-nulla-expedita-consequatur-ratione-aut-consequuntur.html","logo":"http:\/\/api.moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"hoppe.gerda@yahoo.com","updated_by":"kstiedemann@schaden.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2025-02-25T07:08:35.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":6,"menus_count":8,"reviews":[],"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings","description":"chicken wings","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-08T10:35:31.000000Z","preparation_time":0,"stripe_product_id":"prod_QzZvdGeUmekz3X","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":1,"category_id":2}}]},{"id":2,"uuid":"a5829509-64cb-4523-a359-507d3f73a7f0","title":"Chicken wings2","description":"chicken wings2","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":3,"uuid":"d10b7bb9-1db0-4dbb-9432-042d972e9c7e","title":"Chicken wings4","description":"chicken wings4","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":4,"uuid":"37644265-a447-467d-bc5c-dc66cecc9d76","title":"Chicken wings6","description":"Chicken wings6","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":5,"uuid":"a19155ac-030e-47c9-87d5-0de4a7c26596","title":"Chicken wings7","description":"Chicken wings7","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":6,"uuid":"146dcd26-c302-43b0-80f3-23665b6980e9","title":"Chicken wings8","description":"Chicken wings8","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":7,"uuid":"fe5b4d17-b0fa-4892-9e02-b53497947d71","title":"Chicken wings9","description":"Chicken wings9","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":8,"uuid":"f95e96c3-71ff-4ef5-b3d8-92fc84df25c1","title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]}]},"menus_count":{"id":1,"uuid":"b08d4686-a0e7-47f6-88fd-1409c5aac00d","name":"Monahan Inc","name_short":"dolorum","email":"johnson.rogers@example.org","user_id":8,"about":"Qui velit quae cumque hic nostrum aut occaecati. Autem excepturi qui ipsam reiciendis nemo ea. Labore ad nihil hic enim non. Autem veniam ea occaecati veritatis.\n\nAt sit blanditiis esse et facilis velit. Dolor vel tempora qui placeat maiores sequi blanditiis. Nobis facere dolor eos ea quisquam cumque qui.\n\nMinima molestiae non quia debitis eveniet velit. Pariatur commodi voluptas et officia enim aliquam.","about_short":"Molestiae impedit cum voluptas voluptatum eaque error ut.","phone_no":"+1-862-418-2339","address":"6310 Dickens Inlet Suite 398","city":"Cristalside","state":"Arizona","postal_code":"25235-3535","latitude":"-1.2920659","longitude":"36.8219462","map_location":"-1.252005,36.260963","url":"https:\/\/schoen.com\/adipisci-omnis-nulla-expedita-consequatur-ratione-aut-consequuntur.html","logo":"http:\/\/api.moboeats.test\/assets\/user\/default.png","status":"Approved","created_by":"hoppe.gerda@yahoo.com","updated_by":"kstiedemann@schaden.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2025-02-25T07:08:35.000000Z","sitting_capacity":null,"denied_reason":null,"service_charge_agreement":2,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":6,"menus_count":8,"reviews":[],"menus":[{"id":1,"uuid":"1f012027-b440-408c-adf4-9b5a4c3505f3","title":"Chicken wings","description":"chicken wings","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-08T10:35:31.000000Z","preparation_time":0,"stripe_product_id":"prod_QzZvdGeUmekz3X","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":1,"category_id":2}}]},{"id":2,"uuid":"a5829509-64cb-4523-a359-507d3f73a7f0","title":"Chicken wings2","description":"chicken wings2","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":3,"uuid":"d10b7bb9-1db0-4dbb-9432-042d972e9c7e","title":"Chicken wings4","description":"chicken wings4","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":4,"uuid":"37644265-a447-467d-bc5c-dc66cecc9d76","title":"Chicken wings6","description":"Chicken wings6","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":5,"uuid":"a19155ac-030e-47c9-87d5-0de4a7c26596","title":"Chicken wings7","description":"Chicken wings7","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":6,"uuid":"146dcd26-c302-43b0-80f3-23665b6980e9","title":"Chicken wings8","description":"Chicken wings8","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":7,"uuid":"fe5b4d17-b0fa-4892-9e02-b53497947d71","title":"Chicken wings9","description":"Chicken wings9","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]},{"id":8,"uuid":"f95e96c3-71ff-4ef5-b3d8-92fc84df25c1","title":"Canned Tuna","description":"Seafood is packed with protein, helping you feel full and satisfied","restaurant_id":1,"status":2,"created_by":"info@moboeats.com","updated_by":"info@moboeats.com","created_at":"2024-10-04T15:31:38.000000Z","updated_at":"2024-10-04T15:31:38.000000Z","preparation_time":0,"stripe_product_id":null,"categories":[]}]},"reviews":[]}},"orderItems":{"1":[{"id":1,"uuid":"ed35e1d5-4646-41a7-8fee-991997a0fba3","order_id":1,"menu_id":1,"quantity":2,"subtotal":"100.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2024-10-20T16:09:37.000000Z","updated_at":"2024-10-20T16:09:37.000000Z","order":{"id":1,"uuid":"2b718d9a-ef11-45f1-95db-a265bc554b7d","user_id":7,"restaurant_id":1,"total_amount":"100.00","delivery":true,"status":"In Progress","created_by":"Test User","updated_by":null,"created_at":"2024-10-20T16:09:37.000000Z","updated_at":"2024-10-20T16:10:58.000000Z","delivery_fee":"0.00","delivery_address":"Westlands Office Park","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.2651596,"delivery_location_lng":36.7152787,"service_charge":2,"discount":0,"promo_code_id":null,"orphanage_id":null,"country":"Kenya"}}],"5":[{"id":5,"uuid":"870a92e6-b044-4765-9500-264165417861","order_id":5,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:51:35.000000Z","updated_at":"2025-01-12T12:51:35.000000Z","order":{"id":5,"uuid":"c4a019aa-3c04-4c7a-8264-02013195be1d","user_id":7,"restaurant_id":1,"total_amount":"150.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:51:35.000000Z","updated_at":"2025-01-12T12:51:35.000000Z","delivery_fee":null,"delivery_address":null,"delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":null,"delivery_location_lng":null,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"6":[{"id":6,"uuid":"1eda8c1a-b312-422b-939f-06e3446b215a","order_id":6,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:52:25.000000Z","updated_at":"2025-01-12T12:52:25.000000Z","order":{"id":6,"uuid":"788725aa-e5da-4231-9e4a-4cc3dc9c00e3","user_id":7,"restaurant_id":1,"total_amount":"150.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:52:25.000000Z","updated_at":"2025-01-12T12:52:25.000000Z","delivery_fee":null,"delivery_address":null,"delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":null,"delivery_location_lng":null,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"7":[{"id":7,"uuid":"ca81682e-470b-4f98-ab40-0648f14ee057","order_id":7,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:54:41.000000Z","updated_at":"2025-01-12T12:54:41.000000Z","order":{"id":7,"uuid":"a90dd565-05f9-4aee-8074-9b2dbdbc1e32","user_id":7,"restaurant_id":1,"total_amount":"150.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:54:41.000000Z","updated_at":"2025-01-12T12:54:41.000000Z","delivery_fee":"0.00","delivery_address":"Afya Centre, Nairobi, Kenya","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.2878412,"delivery_location_lng":36.828085,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"8":[{"id":8,"uuid":"593222ac-05e7-48e6-93d6-b106e811117e","order_id":8,"menu_id":1,"quantity":3,"subtotal":"150.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:56:39.000000Z","updated_at":"2025-01-12T12:56:39.000000Z","order":{"id":8,"uuid":"1bdd7a1d-815b-49d6-91a4-7ea3faf90ed5","user_id":7,"restaurant_id":1,"total_amount":"207.00","delivery":false,"status":"Pending","created_by":"Test User","updated_by":null,"created_at":"2025-01-12T12:56:39.000000Z","updated_at":"2025-01-12T12:56:39.000000Z","delivery_fee":"57.00","delivery_address":"Afya Centre, Nairobi, Kenya","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.2878412,"delivery_location_lng":36.828085,"service_charge":3,"discount":0,"promo_code_id":null,"orphanage_id":1,"country":"Kenya"}}],"9":[{"id":9,"uuid":"52eaa33a-445b-4eb2-8146-5f7b3116454e","order_id":9,"menu_id":1,"quantity":2,"subtotal":"200.00","status":1,"created_by":"Test User","updated_by":null,"created_at":"2025-03-12T06:29:21.000000Z","updated_at":"2025-03-12T06:29:21.000000Z","order":{"id":9,"uuid":"93923f66-b71a-4b89-8611-1e2ca4a646eb","user_id":7,"restaurant_id":1,"total_amount":"210.74","delivery":true,"status":"In Progress","created_by":"Test User","updated_by":null,"created_at":"2025-03-12T06:29:21.000000Z","updated_at":"2025-03-30T07:58:16.000000Z","delivery_fee":"10.74","delivery_address":"The 46 Residency","delivery_status":"pending","rider_id":null,"booking_time":null,"delivery_location_lat":-1.3649854,"delivery_location_lng":36.79493,"service_charge":4,"discount":0,"promo_code_id":null,"orphanage_id":null,"country":"Kenya"}}]},"orders_count":0,"total_orders_value":0,"reviews":[]}},{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","attributes":{"title":"Chips edit","description":"Delicious Chips","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2","preparation_time":4,"average_rating":0},"relationships":{"menuPrices":[{"id":9,"uuid":"f9539523-afcb-4f49-9f53-fdc9492519c1","attributes":{"price":200,"description":"standard","status":"2"},"relationships":{"menu":{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit"}}}],"restaurant":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","attributes":{"name":"Test","nameShort":"Test","email":"partner@test.com","about":"Test about","aboutShort":"Test about","phoneNo":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postalCode":"00100","latitude":"-1.2878412","longitude":"36.828085","mapLocation":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","sitting_capacity":0,"denied_reason":"","created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","average_rating":0,"is_open":true,"country":"Kenya","country_code":"KE"},"relationships":{"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit","description":"Delicious Chips","restaurant_id":21,"status":2,"created_by":"test@restaurant.com","updated_by":"test@restaurant.com","created_at":"2025-02-04T08:11:10.000000Z","updated_at":"2025-03-07T08:50:25.000000Z","preparation_time":4,"stripe_product_id":"prod_Ri7SSz815JPqky","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":9,"category_id":2}}]}],"orders_count":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","name":"Test","name_short":"Test","email":"partner@test.com","user_id":12,"about":"Test about","about_short":"Test about","phone_no":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postal_code":"00100","latitude":"-1.2878412","longitude":"36.828085","map_location":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","status":"Approved","created_by":null,"updated_by":null,"created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":3,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":0,"menus_count":1,"reviews":[],"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit","description":"Delicious Chips","restaurant_id":21,"status":2,"created_by":"test@restaurant.com","updated_by":"test@restaurant.com","created_at":"2025-02-04T08:11:10.000000Z","updated_at":"2025-03-07T08:50:25.000000Z","preparation_time":4,"stripe_product_id":"prod_Ri7SSz815JPqky","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":9,"category_id":2}}]}]},"menus_count":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","name":"Test","name_short":"Test","email":"partner@test.com","user_id":12,"about":"Test about","about_short":"Test about","phone_no":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postal_code":"00100","latitude":"-1.2878412","longitude":"36.828085","map_location":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","status":"Approved","created_by":null,"updated_by":null,"created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","sitting_capacity":0,"denied_reason":null,"service_charge_agreement":3,"groceries_service_charge_agreement":2,"paypal_email":null,"country":"Kenya","country_code":"KE","average_rating":null,"orders_count":0,"menus_count":1,"reviews":[],"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit","description":"Delicious Chips","restaurant_id":21,"status":2,"created_by":"test@restaurant.com","updated_by":"test@restaurant.com","created_at":"2025-02-04T08:11:10.000000Z","updated_at":"2025-03-07T08:50:25.000000Z","preparation_time":4,"stripe_product_id":"prod_Ri7SSz815JPqky","categories":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"created_by":"admin@moboeats.com","updated_by":null,"created_at":"2024-10-04T15:32:47.000000Z","updated_at":"2024-10-04T15:32:47.000000Z","image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","restaurant_id":null,"pivot":{"menu_id":9,"category_id":2}}]}]},"reviews":[]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}]}],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories","per_page":15,"to":1,"total":1}}'
+        content: '{"data":[{"id":2,"uuid":"a33a7f30-5a30-493c-9179-809c7d80fb2b","title":"Snacks","description":"Delicious snacks","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"http:\/\/api.moboeats.test\/storage\/category\/images\/69CX3DGpI7GQwkFr5cWVsbmpQLEfBn2ZQxxXjW9H.jpg","subCategories":[],"menus":[{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","attributes":{"title":"Chips edit","description":"Delicious Chips","createdBy":"test@restaurant.com","updatedBy":"test@restaurant.com","status":"2","preparation_time":4,"average_rating":0},"relationships":{"menuPrices":[{"id":9,"uuid":"f9539523-afcb-4f49-9f53-fdc9492519c1","attributes":{"price":200,"description":"standard","status":"2"},"relationships":{"menu":{"id":9,"uuid":"2f819216-b99a-400a-baae-5cca3c99eb50","title":"Chips edit"}}}],"restaurant":{"id":21,"uuid":"f1ec41d5-6c68-43e5-bd21-0c5e25aad883","attributes":{"name":"Test","nameShort":"Test","email":"partner@test.com","about":"Test about","aboutShort":"Test about","phoneNo":"07073947384","address":"Afya Centre, Nairobi, Kenya","city":null,"state":"NAIROBI","postalCode":"00100","latitude":"-1.2878412","longitude":"36.828085","mapLocation":"https:\/\/maps.google.com\/?q=Afya+Centre&ftid=0x182f11262da332f5:0xa7ea505f9c803a15","url":"https:\/\/www.partner.moboeats.com","logo":"http:\/\/api.moboeats.test\/storage\/companyLogos\/logos\/WdamSPMY4AlMFXTZZ8cLqbtxhJjHYtNHOvNVBZks.jpg","sitting_capacity":0,"denied_reason":"","created_at":"2024-12-01T12:46:44.000000Z","updated_at":"2025-02-25T07:08:34.000000Z","average_rating":0,"is_open":true,"country":"Kenya","country_code":"KE"},"relationships":{"reviews":[]}},"orderItems":[],"orders_count":0,"total_orders_value":0,"reviews":[]}}]}],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/orderer-food-categories","per_page":15,"to":1,"total":1}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -812,14 +812,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: nam
+        example: deserunt
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: suscipit
+        example: rem
         type: string
         custom: []
       status:
@@ -830,8 +830,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: nam
-      description: suscipit
+      title: deserunt
+      description: rem
     fileParameters: []
     responses: []
     responseFields: []
@@ -863,11 +863,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: earum
+        example: iure
         type: string
         custom: []
     cleanUrlParameters:
-      id: earum
+      id: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -915,11 +915,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: iste
+        example: aliquid
         type: string
         custom: []
     cleanUrlParameters:
-      id: iste
+      id: aliquid
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -934,12 +934,12 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: corrupti
+        example: autem
         type: string
         custom: []
     cleanBodyParameters:
       title: et
-      description: corrupti
+      description: autem
     fileParameters: []
     responses: []
     responseFields: []
@@ -971,11 +971,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer food category.'
         required: true
-        example: illum
+        example: corrupti
         type: string
         custom: []
     cleanUrlParameters:
-      id: illum
+      id: corrupti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1056,14 +1056,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: vel
+        example: sed
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: inventore
+        example: rerum
         type: string
         custom: []
       status:
@@ -1074,8 +1074,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: vel
-      description: inventore
+      title: sed
+      description: rerum
     fileParameters: []
     responses: []
     responseFields: []
@@ -1107,11 +1107,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: ut
+        example: sed
         type: string
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1157,11 +1157,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: doloribus
+        example: at
         type: string
         custom: []
     cleanUrlParameters:
-      id: doloribus
+      id: at
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1169,19 +1169,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: quia
+        example: neque
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: velit
+        example: quidem
         type: string
         custom: []
     cleanBodyParameters:
-      title: quia
-      description: velit
+      title: neque
+      description: quidem
     fileParameters: []
     responses: []
     responseFields: []
@@ -1213,11 +1213,11 @@ endpoints:
         name: id
         description: 'The ID of the food category.'
         required: true
-        example: natus
+        example: vero
         type: string
         custom: []
     cleanUrlParameters:
-      id: natus
+      id: vero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1257,14 +1257,14 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: est
+        example: numquam
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: quia
+        example: voluptates
         type: string
         custom: []
       status:
@@ -1275,8 +1275,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      title: est
-      description: quia
+      title: numquam
+      description: voluptates
     fileParameters: []
     responses: []
     responseFields: []
@@ -1308,11 +1308,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: voluptate
+        example: at
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptate
+      id: at
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1320,19 +1320,19 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: dolorem
+        example: enim
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: consequatur
+        example: impedit
         type: string
         custom: []
     cleanBodyParameters:
-      title: dolorem
-      description: consequatur
+      title: enim
+      description: impedit
     fileParameters: []
     responses: []
     responseFields: []

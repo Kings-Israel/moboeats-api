@@ -73,14 +73,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: repellat
+        example: officiis
         type: string
         custom: []
       email:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ashlee68@example.org
+        example: barrett.nolan@example.net
         type: string
         custom: []
       phoneNo:
@@ -126,8 +126,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      name: repellat
-      email: ashlee68@example.org
+      name: officiis
+      email: barrett.nolan@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -159,11 +159,11 @@ endpoints:
         name: id
         description: 'The ID of the orderer.'
         required: true
-        example: et
+        example: reprehenderit
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: reprehenderit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -179,103 +179,6 @@ endpoints:
           vary: Origin
         description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/orderers/{id}'
-    metadata:
-      groupName: 'Orderer/Customer Management'
-      groupDescription: |-
-
-        Orderer/Customer API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the orderer.'
-        required: true
-        example: natus
-        type: string
-        custom: []
-      uuid:
-        name: uuid
-        description: 'The uuid of the user'
-        required: false
-        example: 6194eaf6-4957-3845-a0ce-5c19eed4d43c
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: natus
-      uuid: 6194eaf6-4957-3845-a0ce-5c19eed4d43c
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'The name of the user'
-        required: true
-        example: est
-        type: string
-        custom: []
-      email:
-        name: email
-        description: 'The email of the user'
-        required: false
-        example: verdie17@example.com
-        type: string
-        custom: []
-      phone_number:
-        name: phone_number
-        description: 'The phone number of the user'
-        required: true
-        example: quam
-        type: string
-        custom: []
-      location:
-        name: location
-        description: 'The location of the user'
-        required: false
-        example: dolores
-        type: string
-        custom: []
-      latitude:
-        name: latitude
-        description: 'The latitudinal location of the user'
-        required: false
-        example: consequatur
-        type: string
-        custom: []
-      longitude:
-        name: longitude
-        description: 'The longitudinal location of the user'
-        required: false
-        example: sit
-        type: string
-        custom: []
-    cleanBodyParameters:
-      name: est
-      email: verdie17@example.com
-      phone_number: quam
-      location: dolores
-      latitude: consequatur
-      longitude: sit
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -305,15 +208,111 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: ad60594a-5b3e-3f6f-86bb-08f39369fea7
+        example: a986915c-04ac-306b-bc53-5a61f6535cb9
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: ad60594a-5b3e-3f6f-86bb-08f39369fea7
+      uuid: a986915c-04ac-306b-bc53-5a61f6535cb9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/orderer/orderers/{userId}'
+    metadata:
+      groupName: 'Orderer/Customer Management'
+      groupDescription: |-
+
+        Orderer/Customer API resource
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      userId:
+        name: userId
+        description: ''
+        required: true
+        example: qui
+        type: string
+        custom: []
+      uuid:
+        name: uuid
+        description: 'The uuid of the user'
+        required: false
+        example: 3fde0107-c4e6-373c-94b4-6a7e438d52c2
+        type: string
+        custom: []
+    cleanUrlParameters:
+      userId: qui
+      uuid: 3fde0107-c4e6-373c-94b4-6a7e438d52c2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the user'
+        required: true
+        example: aut
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'The email of the user'
+        required: false
+        example: jgoodwin@example.com
+        type: string
+        custom: []
+      phone_number:
+        name: phone_number
+        description: 'The phone number of the user'
+        required: true
+        example: et
+        type: string
+        custom: []
+      location:
+        name: location
+        description: 'The location of the user'
+        required: false
+        example: quo
+        type: string
+        custom: []
+      latitude:
+        name: latitude
+        description: 'The latitudinal location of the user'
+        required: false
+        example: veritatis
+        type: string
+        custom: []
+      longitude:
+        name: longitude
+        description: 'The longitudinal location of the user'
+        required: false
+        example: cumque
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: aut
+      email: jgoodwin@example.com
+      phone_number: et
+      location: quo
+      latitude: veritatis
+      longitude: cumque
     fileParameters: []
     responses: []
     responseFields: []
@@ -349,43 +348,43 @@ endpoints:
         name: height
         description: 'The height of the user'
         required: true
-        example: 8
+        example: 2
         type: integer
         custom: []
       height_units:
         name: height_units
         description: 'The measurement units for height. E.g inches, feet'
         required: true
-        example: 12
+        example: 14
         type: integer
         custom: []
       weight:
         name: weight
         description: 'The weight of the user'
         required: true
-        example: 13
+        example: 12
         type: integer
         custom: []
       weight_units:
         name: weight_units
         description: 'The measurement units for weight. E.g kilograms, pounds'
         required: true
-        example: 10
+        example: 11
         type: integer
         custom: []
       body_mass_index:
         name: body_mass_index
         description: 'The mass index of the user'
         required: true
-        example: 6
+        example: 5
         type: integer
         custom: []
     cleanBodyParameters:
-      height: 8
-      height_units: 12
-      weight: 13
-      weight_units: 10
-      body_mass_index: 6
+      height: 2
+      height_units: 14
+      weight: 12
+      weight_units: 11
+      body_mass_index: 5
     fileParameters: []
     responses: []
     responseFields: []

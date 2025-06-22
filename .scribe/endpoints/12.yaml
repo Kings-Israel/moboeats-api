@@ -71,11 +71,11 @@ endpoints:
         name: userId
         description: ''
         required: true
-        example: 1
+        example: 15
         type: integer
         custom: []
     cleanBodyParameters:
-      userId: 1
+      userId: 15
     fileParameters: []
     responses: []
     responseFields: []
@@ -107,11 +107,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: cfb183d8-bbad-3796-b890-c343261f5c62
+        example: e65f1929-7d3d-3b44-8538-d271575b31ba
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: cfb183d8-bbad-3796-b890-c343261f5c62
+      uuid: e65f1929-7d3d-3b44-8538-d271575b31ba
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -156,11 +156,11 @@ endpoints:
         name: uuid
         description: ''
         required: true
-        example: 6e09e37f-5f18-3442-8071-75d1072f8572
+        example: d29a3963-a2dc-3bc6-a62b-19618577570a
         type: string
         custom: []
     cleanUrlParameters:
-      uuid: 6e09e37f-5f18-3442-8071-75d1072f8572
+      uuid: d29a3963-a2dc-3bc6-a62b-19618577570a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
