@@ -71,5 +71,12 @@ return [
         'BASE_URL' => env('POCHIPAY_BASE_URL'),
         'EMAIL' => env('POCHIPAY_EMAIL'),
         'PASSWORD' => env('POCHIPAY_PASSWORD')
+    ],
+
+    'paystack' => [
+        'ENV' => env('PAYSTACK_ENV'),
+        'BASE_URL' => env('PAYSTACK_URL', 'https://api.paystack.co'),
+        'SECRET_KEY' => env('PAYSTACK_ENV') == 'live' ? env('PAYSTACK_LIVE_SECRET_KEY') : env('PAYSTACK_TEST_SECRET_KEY'),
+        'PUBLIC_KEY' => env('PAYSTACK_ENV') == 'live' ? env('PAYSTACK_LIVE_PUBLIC_KEY') : env('PAYSTACK_TEST_PUBLIC_KEY'),
     ]
 ];

@@ -234,7 +234,7 @@ class PaymentController extends Controller
      * Stripe Order checkout
      * @urlParam order_id int The id of the order
      */
-    public function stripeCheckout($order_id, $mode = 'pochipay')
+    public function stripeCheckout($order_id)
     {
         $user = auth()->user();
 
@@ -821,7 +821,7 @@ class PaymentController extends Controller
                 $token = $res['result']['accessToken'];
             }
         }
-info(route('pochipay.callback'));
+
         // Initiate transaction
         $res = Http::withToken($token)
             ->post(config('services.pochipay.BASE_URL') . '/collections/mpesa', [
@@ -883,5 +883,220 @@ info(route('pochipay.callback'));
         }
 
         return $this->error($request->failReason, 'Payment was not successful', 400);
+    }
+
+    /**
+     * Stripe Order checkout
+     * @urlParam order_id int The id of the order
+     */
+    public function paystackCheckout($order_id)
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->error('Order Payment', 'User not found', 403);
+        }
+
+        $order = Order::with('restaurant')
+                        ->where(function ($query) use ($order_id) {
+                            $query->where('id', $order_id)->orWhere('uuid', $order_id);
+                        })
+                        ->first();
+
+        if (!$order) {
+            return $this->error('Order Payment', 'Order not found', 404);
+        }
+
+        // Check if order is paid for
+        $payment = Payment::where('orderable_type', Order::class)->where('orderable_id', $order_id)->first();
+        if ($payment) {
+            return $this->error('Order Payment', 'Order already paid', 422);
+        }
+
+        if ($order->user_id != $user->id) {
+            return $this->error('Order Payment', 'Cannot make payment for order.', 403);
+        }
+
+        $amount = $order->total_amount;
+        $amount = explode('.', $order->total_amount);
+        if (count($amount) > 1) {
+            if ((int)(end($amount)) > 30) {
+                $amount = ceil((double)($order->total_amount));
+            } else {
+                $amount = $amount[0].'.30';
+            }
+        } else {
+            $amount = $order->total_amount;
+        }
+
+        $response = Http::accept('application/json')
+            ->withToken(config('services.paystack.SECRET_KEY'))
+            ->post(config('services.paystack.BASE_URL').'/charge', [
+                'email' => $user->email,
+                'amount' => $amount
+            ]);
+
+        StripePayment::create([
+            'user_id' => $user->id,
+            'payment_intent' => $response->data->reference,
+            'payable_type' => Order::class,
+            'payable_id' => $order->id,
+            'amount' => $amount,
+        ]);
+
+        return response()->json(
+            [
+              'reference' => $response->data->reference,
+              'customer' => $user->id,
+            ]
+        );
+    }
+
+    public function paystackCallback(Request $request)
+    {
+        info($request->all());
+    }
+
+    public function paystackWebhookCallback(Request $request)
+    {
+        info($request->all());
+        $stripe_payment = StripePayment::where('payment_intent', $request->all()['offline_reference'])->first();
+
+        if ($stripe_payment) {
+            if ($request->all()['event'] == 'paymentrequest.success') {
+                $stripe_payment->update([
+                    'status' => 'success'
+                ]);
+
+                switch ($stripe_payment->payable_type) {
+                    case 'App\\Models\\Order':
+                        // Get and update order details and send notification to user
+                        $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+
+                        if ($order) {
+                            $order->update([
+                                'status' => 2
+                            ]);
+
+                            // Assign Order to Rider
+                            AssignOrder::assignOrder($order->id);
+
+                            $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+
+                            event(new NewOrder($order->restaurant, $order->load('user')));
+
+                            Payment::create([
+                                'transaction_id' => $request->all()['data']['request_code'],
+                                'orderable_id' => $order->id,
+                                'orderable_type' => Order::class,
+                                'payment_method' => 'Paystack',
+                                'amount' => $order->total_amount,
+                                'status' => 2,
+                                'created_by' => $order->user->name,
+                            ]);
+
+                            SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Order has started being prepared', ['order' => $order]);
+
+                            activity()->causedBy($order->user)->performedOn($order)->log('paid for the order');
+
+                            return response()->json([
+                                'message' => 'Successful Payment',
+                            ], 200);
+                        }
+                        break;
+                    case 'App\\Models\\RiderTip':
+                        // Update Tip
+                        $rider_tip = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+                        if ($rider_tip) {
+                            $rider_tip->update([
+                                'status' => 'paid',
+                            ]);
+
+                            Payment::create([
+                                'transaction_id' => $request->all()['data']['object']['id'],
+                                'orderable_id' => $rider_tip->id,
+                                'orderable_type' => RiderTip::class,
+                                'payment_method' => 'Paystack',
+                                'amount' => $stripe_payment->amount,
+                                'status' => 2,
+                                'created_by' => $stripe_payment->user->name,
+                            ]);
+
+                            SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Rider hhas been tipped');
+
+                            activity()->causedBy($rider_tip->order->user)->performedOn($rider_tip->order)->log('tipped '.$rider_tip->order.' the rider');
+
+                            return response()->json([
+                                'message' => 'Successful Payment',
+                            ], 200);
+                        }
+                        break;
+                    case 'App\\Models\\SupplementOrder':
+                        // Get and update order details and send notification to user
+                        $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+
+                        if ($order) {
+                            $order->update([
+                                'status' => 2
+                            ]);
+
+                            Payment::create([
+                                'transaction_id' => $request->all()['data']['object']['id'],
+                                'orderable_id' => $order->id,
+                                'orderable_type' => SupplementOrder::class,
+                                'payment_method' => 'Paystack',
+                                'amount' => $stripe_payment->amount,
+                                'status' => 2,
+                                'created_by' => $stripe_payment->user->name,
+                            ]);
+
+                            SendNotification::dispatchAfterResponse($stripe_payment->user, 'Payment was successful. Order has started being prepared for delivery', ['order' => $order]);
+
+                            activity()->causedBy($order->user)->performedOn($order)->log('paid for the supplement order');
+
+                            return response()->json([
+                                'message' => 'Successful Payment',
+                            ], 200);
+                        }
+                        break;
+                    case 'App\\Models\\DietSubscription':
+                        // Get and update order details and send notification to user
+                        $order = $stripe_payment->payable_type::find($stripe_payment->payable_id);
+
+                        if ($order) {
+                            $order->update([
+                                'status' => 'paid'
+                            ]);
+
+                            // Payment::create([
+                            //     'transaction_id' => $request->all()['data']['object']['id'],
+                            //     'order_id' => $order->id,
+                            //     'payment_method' => 'Stripe',
+                            //     'amount' => 50,
+                            //     'status' => 2,
+                            //     'created_by' => $order->user->name,
+                            // ]);
+
+                            SendNotification::dispatchAfterResponse($stripe_payment->user, 'Subscription to package completed sucessfully', ['order' => $order]);
+
+                            activity()->causedBy($order->user)->performedOn($order)->log('paid for diet plan subscription');
+
+                            return response()->json([
+                                'message' => 'Successful Payment',
+                            ], 200);
+                        }
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+
+            if ($request->all()['type'] == 'charge.payment_failed') {
+                if ($stripe_payment->user->device_token) {
+                    SendNotification::dispatchSync($stripe_payment->user, 'Payment was not successful');
+                }
+            }
+        }
     }
 }

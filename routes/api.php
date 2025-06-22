@@ -319,6 +319,9 @@ Route::post('/v1/order/tip/payment/capture-tip-paypal-order', [PaymentController
 
 Route::post('/v1/pochipay/callback', [PaymentController::class, 'pochipayCallback'])->name('pochipay.callback');
 
+Route::post('/v1/paystack/callback', [PaymentController::class, 'paystackCallback']);
+Route::post('/v1/paystack/webhook/callback', [PaymentController::class, 'paystackWebhookCallback']);
+
 Route::get('/email/test/{id}', function($id) {
     // SendSMS::dispatchAfterResponse($request->phone_number, 'Test');
     $restaurant = Restaurant::find($id);
