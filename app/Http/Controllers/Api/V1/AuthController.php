@@ -103,8 +103,8 @@ class AuthController extends Controller
 
             if ($user->hasRole('restaurant')) {
                 $restaurant = Restaurant::where('user_id', $user->id)->first();
-                $country = $restaurant->country;
-                $country_code = $restaurant->country_code;
+                $country = $restaurant?->country;
+                $country_code = $restaurant?->country_code;
             }
 
             return $this->success([
@@ -117,7 +117,7 @@ class AuthController extends Controller
                 'country_code' => $country_code,
             ]);
         } catch (\Throwable $th) {
-            info($th);
+            info($th->getMessage());
             return $this->error('', $th->getMessage(), 403);
         }
     }
