@@ -117,7 +117,7 @@ class AuthController extends Controller
                 'country_code' => $country_code,
             ]);
         } catch (\Throwable $th) {
-            info($th->getMessage());
+            info($th);
             return $this->error('', $th->getMessage(), 403);
         }
     }
