@@ -335,7 +335,9 @@ class RiderController extends Controller
                                 'latlng' => $request->latitude.','.$request->longitude,
                                 'key' => config('services.map.key')
                             ]);
+
         $location = json_decode($location);
+        
         auth()->user()->update([
             'location' => $location->results[0]->formatted_address,
             'latitude' => $request->latitude,
