@@ -49,6 +49,7 @@ use App\Http\Resources\V1\ReviewResource;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\UpdatedRestaurantStatus;
 use App\Http\Resources\V1\FoodCommonCategoryCollection;
+use App\Models\RiderDocument;
 use App\Models\Scopes\UserCountryScope;
 use App\Models\UserCountry;
 
@@ -135,6 +136,66 @@ class AdminController extends Controller
             }
 
             return $this->success(['user' => $user, 'User added successfully']);
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollBack();
+            return $this->error('', 'Something went wrong', 500);
+        }
+    }
+
+    public function addRider(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required'],
+            'phone_number' => ['required'],
+        ]);
+
+        try {
+            $password = Str::random(8);
+
+            DB::beginTransaction();
+
+            $user = User::firstOrCreate([
+                'email' => $request->email,
+            ],[
+                'name' => $request->name,
+                'phone_number' => $request->phone_number,
+                'password' => bcrypt($password)
+            ]);
+
+            $user->addRole('rider');
+
+            $rider = Rider::create([
+                'user_id' => $user->id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone_no' => $request->phone_number,
+                'vehicle_license_plate' => $request->license_plate,
+                'vehicle_type' => $request->vehicle_type,
+                'profile_picture',
+                'address' => $request->address ?? NULL,
+                'city' => $request->city ?? NULL,
+                'state' => $request->state ?? NULL,
+                'postal_code' => $request->postal_code ?? NULL,
+                'status' => 2
+            ]);
+
+            foreach ($request->file('files') as $file_name => $file) {
+                RiderDocument::create([
+                    'rider_id' => $rider->id,
+                    'name' => $file_name,
+                    'file' => pathinfo($file->store('documents', 'rider'), PATHINFO_BASENAME)
+                ]);
+            }
+
+            DB::commit();
+
+            // if ($user->email) {
+            //     SendCommunication::dispatchAfterResponse('mail', $user->email, 'NewAccount', ['user' => $user, 'password' => $password]);
+            // }
+
+            return $this->success($user, 'Rider added successfully');
         } catch (\Throwable $th) {
             info($th);
             DB::rollBack();

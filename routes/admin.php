@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\OrphanageController;
+use App\Http\Controllers\RequiredDocumentController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1/admin'], function() {
@@ -41,8 +42,12 @@ Route::group(['prefix' => 'v1/admin'], function() {
         Route::post('/restaurant/{id}/menu/add', [MenuController::class, 'store']);
         Route::post('/restaurant/menu/{id}/update', [MenuController::class, 'update']);
 
+        Route::post('/rider/store', [AdminController::class, 'addRider']);
+
         Route::resource('/countries', CountryController::class)->except('update');
         Route::post('/countries/{country}/update', [CountryController::class, 'update']);
+
+        Route::resource('/required_documents', RequiredDocumentController::class);
 
         // Supplements and Suppliers
         Route::group(['prefix' => '/supplements'], function () {

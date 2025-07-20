@@ -210,7 +210,7 @@ class AuthController extends Controller
                         'city' => $request->city ?? NULL,
                         'state' => $request->state ?? NULL,
                         'postal_code' => $request->postal_code ?? NULL,
-                        'vehicle_type' => $request->hicle_type ?? NULL,
+                        'vehicle_type' => $request->vehicle_type ?? NULL,
                         'vehicle_license_plate' => $request->vehicle_license_plate ?? NULL,
                         'paypal_email' => $request->paypal_email ?? NULL,
                     ]);
