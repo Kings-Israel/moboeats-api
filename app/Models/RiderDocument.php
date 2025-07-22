@@ -18,6 +18,17 @@ class RiderDocument extends Model
     protected $guarded = [];
 
     /**
+     * Get the document path
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getFileAttribute($value)
+    {
+        return config('app.url'). '/storage/rider/documents/' . $value;
+    }
+
+    /**
      * Get the rider that owns the RiderDocument
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

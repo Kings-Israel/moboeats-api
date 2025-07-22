@@ -881,7 +881,9 @@ class AdminController extends Controller
 
         $pending_payment = $earnings + $tips - $paid_amount;
 
-        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings_data' => ['total_earnings' => $earnings + $tips, 'order_earnings' => $earnings, 'tip_earnings' => $tips, 'paid_amount' => $paid_amount, 'unpaid_amount' => $pending_payment]]);
+        $documents = RiderDocument::where('rider_id', $user->rider?->id)->get();
+
+        return $this->success(['user' => $user, 'deliveries' => $deliveries, 'rider_profile' => $rider_profile, 'earnings_data' => ['total_earnings' => $earnings + $tips, 'order_earnings' => $earnings, 'tip_earnings' => $tips, 'paid_amount' => $paid_amount, 'unpaid_amount' => $pending_payment], 'documents' => $documents]);
     }
 
     public function updateRiderStatus(Request $request, Rider $rider)
