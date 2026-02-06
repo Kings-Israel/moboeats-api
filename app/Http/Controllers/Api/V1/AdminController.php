@@ -1149,7 +1149,7 @@ class AdminController extends Controller
 
                                 // Filter to couriers distances less than 6 MILES
                                 $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                    return (int) ($delivery->distance) <= 6;
+                                    return (int) ($delivery->distance) <= 100;
                                 })->pluck('rider_id')->values()->all();
 
                                 // Check if rider rejected the delivery request
