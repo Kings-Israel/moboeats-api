@@ -330,6 +330,9 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         if(auth()->check()) {
+            if (auth()->user()->hasRole('restaurant')) {
+                return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews', 'restaurantTables.seatingArea', 'orders', 'menus'));
+            }
             return new RestaurantResource($restaurant->load('operatingHours', 'documents', 'reviews', 'restaurantTables.seatingArea'));
         } else {
             return new RestaurantResource($restaurant->load('operatingHours', 'reviews', 'restaurantTables.seatingArea'));
