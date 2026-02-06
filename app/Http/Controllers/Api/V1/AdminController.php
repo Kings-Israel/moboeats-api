@@ -1149,10 +1149,11 @@ class AdminController extends Controller
                                                     ->distance($order->delivery_location_lat, $order->delivery_location_lng)
                                                     ->get();
 
-                                // Filter to couriers distances less than 6 MILES
-                                $nearby_deliveries = $deliveries->filter(function($delivery) {
-                                    return (int) ($delivery->distance) <= 100;
-                                })->pluck('rider_id')->values()->all();
+                                // // Filter to couriers distances less than 6 MILES
+                                // $nearby_deliveries = $deliveries->filter(function($delivery) {
+                                //     return (int) ($delivery->distance) <= 100;
+                                // })->pluck('rider_id')->values()->all();
+                                $nearby_deliveries = [];
 
                                 // Check if rider rejected the delivery request
                                 $rejected_orders = AssignedOrder::where('order_id', $order->id)->where('status', 'rejected')->pluck('user_id');
