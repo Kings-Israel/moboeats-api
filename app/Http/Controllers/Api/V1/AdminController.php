@@ -191,9 +191,9 @@ class AdminController extends Controller
 
             DB::commit();
 
-            // if ($user->email) {
-            //     SendCommunication::dispatchAfterResponse('mail', $user->email, 'NewAccount', ['user' => $user, 'password' => $password]);
-            // }
+            if ($user->email) {
+                SendCommunication::dispatchAfterResponse('mail', $user->email, 'NewAccount', ['user' => $user, 'password' => $password]);
+            }
 
             return $this->success($user, 'Rider added successfully');
         } catch (\Throwable $th) {
