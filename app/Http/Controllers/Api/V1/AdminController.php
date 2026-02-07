@@ -161,7 +161,8 @@ class AdminController extends Controller
             ],[
                 'name' => $request->name,
                 'phone_number' => $request->phone_number,
-                'password' => bcrypt($password)
+                'password' => bcrypt($password),
+                'status' => 2,
             ]);
 
             $user->addRole('rider');
