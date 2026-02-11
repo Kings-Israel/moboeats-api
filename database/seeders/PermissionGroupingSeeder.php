@@ -41,7 +41,8 @@ class PermissionGroupingSeeder extends Seeder
             ],
             'riders' => [
                 'view riders',
-                'edit riders'
+                'edit riders',
+                'assign riders to motorbikes'
             ],
             'orders' => [
                 'view orders',
@@ -97,6 +98,9 @@ class PermissionGroupingSeeder extends Seeder
                 'view countries',
                 'edit countries',
             ],
+            'motorbikes' => [
+                'add motorbikes'
+            ]
         ];
 
         try {

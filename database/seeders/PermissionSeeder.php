@@ -51,6 +51,10 @@ class PermissionSeeder extends Seeder
                 "display_name" => "View Riders",
             ],
             [
+                "name" => "assign riders to motorbikes",
+                "display_name" => "Assign Riders to Motorbikes",
+            ],
+            [
                 "name" => "edit riders",
                 "display_name" => "Edit Riders",
             ],
@@ -87,42 +91,6 @@ class PermissionSeeder extends Seeder
                 "display_name" => "Upload Payouts",
             ],
             [
-                "name" => "view diet plan subscriptions",
-                "display_name" => "View Diet Plan Subscriptions",
-            ],
-            [
-                "name" => "view diet plan packages",
-                "display_name" => "View Diet Plan Packages",
-            ],
-            [
-                "name" => "add/edit diet plan packages",
-                "display_name" => "Add/Edit Diet Plan Packages",
-            ],
-            [
-                "name" => "view supplements",
-                "display_name" => "View Supplements",
-            ],
-            [
-                "name" => "add/edit supplements",
-                "display_name" => "Add/Edit Supplements",
-            ],
-            [
-                "name" => "view suppliers",
-                "display_name" => "View Suppliers",
-            ],
-            [
-                "name" => "add/edit suppliers",
-                "display_name" => "Add/Edit Suppliers",
-            ],
-            [
-                "name" => "view supplements orders",
-                "display_name" => "View Supplements Orders",
-            ],
-            [
-                "name" => "edit supplements orders",
-                "display_name" => "Edit Supplements Orders",
-            ],
-            [
                 "name" => "view discounts",
                 "display_name" => "View Discounts",
             ],
@@ -147,30 +115,6 @@ class PermissionSeeder extends Seeder
                 "display_name" => "Add/Edit Frequently Asked Questions",
             ],
             [
-                "name" => "view messages",
-                "display_name" => "View Messages",
-            ],
-            [
-                'name' => 'create orphanages',
-                'display_name' => "Create Orphanages",
-            ],
-            [
-                "name" => 'view orphanages',
-                "display_name" => "View Orphanages",
-            ],
-            [
-                "name" => 'edit orphanages',
-                "display_name" => "Edit Orphanages",
-            ],
-            [
-                "name" => 'view orphanages orders',
-                "display_name" => "View Orphanages Orders",
-            ],
-            [
-                "name" => 'edit orphanages orders',
-                "display_name" => "Edit Orphanages Orders"
-            ],
-            [
                 "name" => 'view countries',
                 "display_name" => "View Countries",
             ],
@@ -181,6 +125,10 @@ class PermissionSeeder extends Seeder
             [
                 "name" => 'edit countries',
                 "display_name" => "Edit Countries",
+            ],
+            [
+                "name" => 'add motorbikes',
+                "display_name" => "Add Motorbikes",
             ],
         ];
 
