@@ -35,61 +35,58 @@ class DatabaseSeeder extends Seeder
 
         $user->addRole(Role::where('name', 'orderer')->first());
 
-        $restaurant = User::factory()->create([
+        $restaurantAdmin = User::factory()->create([
             'uuid' => (string) Str::uuid(),
-            'name' => 'Test Restaurant',
-            'email' => 'test@restaurant.com',
+            'name' => 'Java House',
+            'email' => 'admin@javahouse.com',
         ]);
 
-        $restaurant->addRole(Role::where('name', 'restaurant')->first());
+        $restaurantAdmin->addRole(Role::where('name', 'restaurant')->first());
 
-        Auth::login($restaurant);
-
-        $res = Restaurant::factory()
-        ->count(10) // Generate 10 restaurants
-        ->create()
-        ->each(function ($restaurant) {
-            // For each restaurant, generate a questionnaire
-            $restaurant->questionnaire()->save(Questionnaire::factory()->make());
-        });
+        Auth::login($restaurantAdmin);
 
         $menus = [
-            ['title' => 'Chicken wings', 'description' => 'chicken wings'],
-            ['title' => 'Chicken wings2', 'description' => 'chicken wings2'],
-            ['title' => 'Chicken wings4', 'description' => 'chicken wings4'],
-            ['title' => 'Chicken wings6', 'description' => 'Chicken wings6'],
-            ['title' => 'Chicken wings7', 'description' => 'Chicken wings7'],
-            ['title' => 'Chicken wings8', 'description' => 'Chicken wings8'],
-            ['title' => 'Chicken wings9', 'description' => 'Chicken wings9'],
-            ['title' => 'Canned Tuna', 'description' => 'Seafood is packed with protein, helping you feel full and satisfied'],
+            ['title' => 'Loaded Full Java Breakfast', 'description' => 'Enjoy a hearty breakfast with eggs, sausage, bacon, and toast.'],
+            ['title' => 'Java Pancakes', 'description' => 'Fluffy pancakes served with syrup and butter.'],
+            ['title' => 'Java Omelette', 'description' => 'A delicious omelette filled with your choice of vegetables and cheese.'],
         ];
 
         $menu_prices = [
-            ['standard', 105, 2, 'info@moboeats.com'],
-            ['standard', 350, 2, 'info@moboeats.com'],
-            ['standard', 500, 2, 'info@moboeats.com'],
+            ['standard', 105, 2, 'info@javahouse.com'],
+            ['standard', 350, 2, 'info@javahouse.com'],
+            ['standard', 500, 2, 'info@javahouse.com'],
         ];
 
-        collect($menus)->each(function($menu) use ($menu_prices) {
-            $new_menu = Menu::create([
-                'uuid' => Str::uuid(),
-                'title' => $menu['title'],
-                'description' => $menu['description'],
-                'restaurant_id' => Restaurant::first()->id,
+        Restaurant::factory()
+            ->create([
+                'name' => 'Java House',
                 'status' => 2,
-                'created_by' => 'info@moboeats.com',
-                'updated_by' => 'info@moboeats.com',
-            ]);
-            $menu_price_index = rand(0, 2);
-            MenuPrice::create([
-                'uuid' => Str::uuid(),
-                'menu_id' => $new_menu->id,
-                'description' => $menu_prices[$menu_price_index][0],
-                'price' => $menu_prices[$menu_price_index][1],
-                'status' => $menu_prices[$menu_price_index][2],
-                'created_by' => $menu_prices[$menu_price_index][3],
-            ]);
-        });
+            ])
+            ->each(function ($restaurant) use ($menus, $menu_prices) {
+                // For each restaurant, generate a questionnaire
+                $restaurant->questionnaire()->save(Questionnaire::factory()->make());
+
+                collect($menus)->each(function($menu) use ($menu_prices, $restaurant) {
+                    $new_menu = Menu::create([
+                        'uuid' => Str::uuid(),
+                        'title' => $menu['title'],
+                        'description' => $menu['description'],
+                        'restaurant_id' => $restaurant->id,
+                        'status' => 2,
+                        'created_by' => 'info@javahouse.com',
+                        'updated_by' => 'info@javahouse.com',
+                    ]);
+                    $menu_price_index = rand(0, 2);
+                    MenuPrice::create([
+                        'uuid' => Str::uuid(),
+                        'menu_id' => $new_menu->id,
+                        'description' => $menu_prices[$menu_price_index][0],
+                        'price' => $menu_prices[$menu_price_index][1],
+                        'status' => $menu_prices[$menu_price_index][2],
+                        'created_by' => $menu_prices[$menu_price_index][3],
+                    ]);
+                });
+            });
 
         Auth::logout();
 

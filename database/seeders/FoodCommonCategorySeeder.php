@@ -17,8 +17,8 @@ class FoodCommonCategorySeeder extends Seeder
         $common_categories = [
             [
                 'uuid' => (string) Str::uuid(),
-                'title' => 'Groceries',
-                'description' => 'groceries',
+                'title' => 'Coffee',
+                'description' => 'Coffee items',
                 'status' => 2,
                 'created_by' => config('app.company.COMPANY_EMAIL'),
                 'updated_by' => config('app.company.COMPANY_EMAIL'),
