@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Permission;
 use App\Models\PermissionGroup;
 use App\Models\PermissionGrouping;
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -18,18 +19,34 @@ class PermissionsUpdateSeeder extends Seeder
     {
         $permissions = [
             [
-                "name" => "assign rider to motorbikes",
+                "name" => "assign riders to motorbikes",
                 "display_name" => "Assign Riders to Motorbikes",
+            ],
+            [
+                "name" => 'view motorbikes',
+                "display_name" => "View Motorbikes",
             ],
             [
                 "name" => 'add motorbikes',
                 "display_name" => "Add Motorbikes",
+            ],
+            [
+                "name" => 'update motorbikes',
+                "display_name" => "Update Motorbikes",
             ],
         ];
 
         collect($permissions)->each(function ($permission) {
             Permission::firstOrCreate($permission);
         });
+
+        $permissions = Permission::all();
+
+        $new_role = Role::whereName('admin')->first();
+        $new_role->syncPermissions($permissions);
+
+        $new_role = Role::whereName('super')->first();
+        $new_role->syncPermissions($permissions);
 
         $groups = [
             [
@@ -44,7 +61,9 @@ class PermissionsUpdateSeeder extends Seeder
                 'assign riders to motorbikes'
             ],
             'motorbikes' => [
-                'add motorbikes'
+                'view motorbikes',
+                'add motorbikes',
+                'update motorbikes',
             ]
         ];
 

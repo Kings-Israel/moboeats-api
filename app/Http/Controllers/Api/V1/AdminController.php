@@ -1281,7 +1281,17 @@ class AdminController extends Controller
         $search = $request->query('search');
 
         $logs = Activity::with('causer', 'subject')
-                                ->paginate(10);
+                    ->latest()
+                    ->when($search && $search != '', function ($query) use ($search) {
+                        $query->whereHas('causer', function ($query) use ($search) {
+                            $query->where('name', 'LIKE', '%'.$search.'%');
+                        })
+                        ->orWhereHas('subject', function ($query) use ($search) {
+                            $query->where('name', 'LIKE', '%'.$search.'%');
+                        })
+                        ->orWhere('description', 'LIKE', '%'.$search.'%');
+                    })
+                    ->paginate(10);
 
         return $this->success($logs);
     }
@@ -1587,10 +1597,10 @@ class AdminController extends Controller
         $user_permissions = auth()->user()->allPermissions()->pluck('name');
 
         $permissions = PermissionGroup::where('type', 'admin')
-        ->with(['permissions' => function ($query) use ($user_permissions) {
-            $query->whereIn('name', $user_permissions);
-        }])
-        ->get();
+            ->with(['permissions' => function ($query) use ($user_permissions) {
+                $query->whereIn('name', $user_permissions);
+            }])
+            ->get();
 
         return $this->success(['roles' => $roles, 'permissions' => $permissions]);
     }

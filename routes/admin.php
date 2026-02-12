@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\DietController;
 use App\Http\Controllers\Api\V1\FoodCommonCategoryController;
 use App\Http\Controllers\Api\V1\MarketingController;
 use App\Http\Controllers\Api\V1\MenuController;
+use App\Http\Controllers\Api\V1\MotorbikeController;
 use App\Http\Controllers\Api\V1\PaymentController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\CountryController;
@@ -117,6 +118,14 @@ Route::group(['prefix' => 'v1/admin'], function() {
 
         Route::get('/admins', [AdminController::class, 'admins']);
         Route::post('/admins/update', [AdminController::class, 'assignRole']);
+
+        // Motorbikes
+        Route::get('/motorbikes', [MotorbikeController::class, 'index']);
+        Route::post('/motorbikes', [MotorbikeController::class, 'store']);
+        Route::get('/motorbikes/{id}/show', [MotorbikeController::class, 'show']);
+        Route::post('/motorbikes/{id}/update', [MotorbikeController::class, 'update']);
+        Route::post('/motorbikes/{id}/assign-to-rider', [MotorbikeController::class, 'assignToRider']);
+        Route::post('/motorbikes/{id}/assign-to-restaurant', [MotorbikeController::class, 'assignToRestaurant']);
 
         Route::group(['prefix' => 'orphanages', 'as' => 'orphanages.'], function () {
             Route::get('/', [OrphanageController::class, 'index'])->name('index');

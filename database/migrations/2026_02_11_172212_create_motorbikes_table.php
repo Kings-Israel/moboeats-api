@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('make');
             $table->string('model');
-            $table->string('license_plate_number');
+            $table->string('registration_number');
+            $table->string('insurer')->nullable();
+            $table->string('insurance_number')->nullable();
             $table->date('next_service_date')->nullable();
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
