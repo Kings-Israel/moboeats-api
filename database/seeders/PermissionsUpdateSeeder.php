@@ -43,10 +43,14 @@ class PermissionsUpdateSeeder extends Seeder
         $permissions = Permission::all();
 
         $new_role = Role::whereName('admin')->first();
-        $new_role->syncPermissions($permissions);
+        if ($new_role) {
+            $new_role->syncPermissions($permissions);
+        }
 
         $new_role = Role::whereName('super')->first();
-        $new_role->syncPermissions($permissions);
+        if ($new_role) {
+            $new_role->syncPermissions($permissions);
+        }
 
         $groups = [
             [
