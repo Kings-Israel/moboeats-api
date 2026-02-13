@@ -331,38 +331,8 @@ Route::get('/email/test/{id}', function($id) {
 
 // FCM Send Notification test
 Route::get('/fcm/send-test-notification', function() {
-    $friendToken = ['eIdrmoQaRNm3ElcoJst7qD:APA91bFWzNXiGYEH-0_2v_-8kSB7TyZCtJ-RSwzFHGrcHz1ArZ8EBBP9TcQiH6NAuv62D4AxxzHQHrK4X0iqzW4_EBoYLngczOgYIajYd-gHSFvmj_1JJSQ'];
-
-    $url = 'https://fcm.googleapis.com/fcm/send';
-    foreach ($friendToken as $tok) {
-        $notification = array('title' =>"" , 'text' => 'Test');
-        $fields = array(
-            'to' => $tok,
-            'data' => array(
-                "message" => 'Test',
-            ),
-            'notification' => $notification
-        );
-        info($fields);
-        $headers = array(
-            'Authorization: key=*mykey*',
-            'Content-type: Application/json'
-        );
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-        curl_exec($ch);
-        curl_close($ch);
-    }
-
-    $res = ['error' => null, 'result' => "friends invited"];
-
-    return $res;
+    $user = User::where('device_token', '!=', null)->first(); // Get the first user for testing
+    SendNotification::dispatchAfterResponse($user, 'Payment was successful. Order has started being prepared', ['notification' => 'Test notification']);
 });
 
 require __DIR__.'/admin.php';
