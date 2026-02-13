@@ -719,7 +719,7 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $categories = FoodCommonCategory::with('food_sub_categories')->where('title', '!=', 'groceries')->orderBy('created_at', 'DESC')->paginate(7);
+        $categories = FoodCommonCategory::with('food_sub_categories')->where('title', '!=', 'Coffee')->orderBy('created_at', 'DESC')->paginate(7);
 
         return $this->success($categories);
     }
@@ -747,7 +747,7 @@ class AdminController extends Controller
             'status' => ['required', 'integer'],
         ]);
 
-        $groceries = FoodCommonCategory::where('title', 'groceries')->first();
+        $groceries = FoodCommonCategory::where('title', 'Coffee')->first();
 
         $subcategory = FooSubCategory::create([
             'category_id' => $groceries->id,

@@ -95,7 +95,6 @@ class RestaurantController extends Controller
                     $restaurants = Restaurant::Approved()->where($filterItems);
                 }
 
-
                 return new RestaurantCollection($restaurants->with('questionnaire', 'reviews', 'restaurantTables.seatingArea')->paginate($per_page));
             }
 
