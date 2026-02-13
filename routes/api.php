@@ -32,6 +32,7 @@ use App\Http\Controllers\OrphanageController;
 use App\Http\Middleware\HasRestaurant;
 use App\Http\Resources\V1\UserResource;
 use App\Jobs\SendCommunication;
+use App\Jobs\SendNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Jobs\SendSMS;
