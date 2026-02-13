@@ -2,13 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Services\FCMService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Http;
 
 class SendNotification implements ShouldQueue
 {
@@ -21,7 +20,7 @@ class SendNotification implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct($user, string $notification, $data = NULL)
+    public function __construct($user, string $notification, $data = null)
     {
         $this->user = $user;
         $this->notification = $notification;
@@ -31,22 +30,23 @@ class SendNotification implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle()
+    public function handle(FCMService $fcmService)
     {
         if ($this->user->device_token) {
-            $response = Http::withHeaders([
-                    'Authorization' => 'key='.config('services.firebase.key'),
-                    'Content-Type' => 'application/json'
-                ])->post('https://fcm.googleapis.com/fcm/send', [
-                    'to' => $this->user->device_token,
-                    'notification' => [
-                        'title' => config('app.name'),
-                        'body' => $this->notification
-                    ],
-                    'data' => $this->data
-                ]);
-            info("Response: ".$response);
-            return $response;
+            try {
+                $response = $fcmService->sendNotification(
+                    $this->user->device_token,
+                    config('app.name'),
+                    $this->notification,
+                    $this->data ?? []
+                );
+
+                info('FCM Response: ' . json_encode($response));
+
+                return $response;
+            } catch (\Exception $e) {
+                info('FCM Error: ' . $e->getMessage());
+            }
         }
     }
 }

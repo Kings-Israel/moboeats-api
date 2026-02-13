@@ -91,6 +91,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
     Route::get('delete', [AuthController::class, 'delete']);
 
     Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::post('/notifications/send-push', [NotificationController::class, 'sendPushNotification']);
     Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
     Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
     Route::get('/seating-areas', [RestaurantController::class, 'seatingAreas']);
