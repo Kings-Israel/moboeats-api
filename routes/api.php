@@ -333,7 +333,7 @@ Route::get('/email/test/{id}', function($id) {
 // FCM Send Notification test
 Route::get('/fcm/send-test-notification', function() {
     $user = User::where('device_token', '!=', null)->first(); // Get the first user for testing
-    SendNotification::dispatchAfterResponse($user, 'Payment was successful. Order has started being prepared', ['notification' => 'Test notification']);
+    SendNotification::dispatchAfterResponse($user, 'Test', ['notification' => 'Test notification']);
 });
 
 require __DIR__.'/admin.php';
