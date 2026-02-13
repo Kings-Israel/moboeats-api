@@ -1110,4 +1110,64 @@ class PaymentController extends Controller
             }
         }
     }
+
+    public function simulatePayment($order_id)
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->error('Order Payment', 'User not found', 403);
+        }
+
+        $order = Order::with('restaurant', 'user')
+            ->where(function ($query) use ($order_id) {
+                $query->where('id', $order_id)->orWhere('uuid', $order_id);
+            })
+            ->first();
+
+        if (!$order) {
+            return $this->error('Order Payment', 'Order not found', 404);
+        }
+
+        $existing = Payment::where('orderable_type', Order::class)
+            ->where('orderable_id', $order->id)
+            ->first();
+
+        if ($existing) {
+            return $this->error('Order Payment', 'Order already paid', 422);
+        }
+
+        if ($order->user_id != $user->id) {
+            return $this->error('Order Payment', 'Cannot make payment for order.', 403);
+        }
+
+        $order->update(['status' => 2]);
+
+        Payment::create([
+            'transaction_id' => 'SIM-' . Str::uuid(),
+            'orderable_id' => $order->id,
+            'orderable_type' => Order::class,
+            'payment_method' => 'Simulated',
+            'amount' => $order->total_amount,
+            'status' => 2,
+            'created_by' => $order->user->name,
+        ]);
+
+        AssignOrder::assignOrder($order->id);
+
+        $order->restaurant->notify(new NotificationsNewOrder($order->load('user')));
+
+        event(new NewOrder($order->restaurant, $order->load('user')));
+
+        SendNotification::dispatchAfterResponse($order->user, 'Payment was successful. Order has started being prepared', ['order' => $order]);
+
+        activity()->causedBy($order->user)->performedOn($order)->log('paid for the order (simulated)');
+
+        return $this->success([
+            'order_id' => $order->id,
+            'status' => 'In Progress',
+            'amount' => $order->total_amount,
+            'payment_method' => 'Simulated',
+        ], 'Payment simulated successfully');
+    }
 }

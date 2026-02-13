@@ -324,7 +324,7 @@ class OrderController extends Controller
                         }
                     }
 
-                    $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                    $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                     $item_is_grocery = CategoryMenu::where('category_id', $category->id)->where('menu_id', $item->menu_id)->first();
 

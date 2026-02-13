@@ -186,6 +186,8 @@ Route::group(['prefix' => 'v1/orderer'], function() {
 
         Route::get('/order/{order_id}/mpesa/checkout', [PaymentController::class, 'mpesaCheckout']);
         Route::get('/order/{order_id}/paystack/checkout', [PaymentController::class, 'paystackCheckout']);
+
+        Route::post('/order/{order_id}/simulate-payment', [PaymentController::class, 'simulatePayment']);
     });
 });
 
