@@ -19,7 +19,7 @@ class FCMService
     {
         $message = CloudMessage::withTarget('token', $deviceToken)
             ->withNotification(Notification::create($title, $body))
-            ->withData($data);
+            ->withData($this->stringifyData($data));
 
         $response = $this->messaging->send($message);
 
@@ -30,7 +30,7 @@ class FCMService
     {
         $message = CloudMessage::new()
             ->withNotification(Notification::create($title, $body))
-            ->withData($data);
+            ->withData($this->stringifyData($data));
 
         $report = $this->messaging->sendMulticast($message, $deviceTokens);
 
@@ -42,5 +42,15 @@ class FCMService
                 $report->invalidTokens(),
             ),
         ];
+    }
+
+    private function stringifyData(array $data): array
+    {
+        return array_map(function ($value) {
+            if (is_array($value) || is_object($value)) {
+                return json_encode($value);
+            }
+            return (string) $value;
+        }, $data);
     }
 }
