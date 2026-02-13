@@ -701,13 +701,13 @@ class MenuController extends Controller
     }
 
     /**
-     * Get Groceries and groceries subcategories
+     * Get Coffee and Coffee subcategories
      */
     public function groceries(Request $request)
     {
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -717,7 +717,7 @@ class MenuController extends Controller
             }
 
             if (auth()->user()->hasRole('restaurant')) {
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -739,7 +739,7 @@ class MenuController extends Controller
                 $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
                 $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
 
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -748,7 +748,7 @@ class MenuController extends Controller
                 return MenuResource::collection($menu);
             }
         } else {
-            $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+            $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -759,13 +759,13 @@ class MenuController extends Controller
     }
 
     /**
-     * Get Groceries Categories Details
+     * Get Coffee Categories Details
      *
      * @urlParam ID The ID of the Subcategory
      */
     public function grocerySubcategories(FooSubCategory $foo_sub_category)
     {
-        $grocery = FoodCommonCategory::where('title', 'grocery')->orWhere('title', 'groceries')->orWhere('title', 'Groceries')->first();
+        $grocery = FoodCommonCategory::where('title', 'Coffee')->first();
 
         $foo_sub_category = FooSubCategory::whereHas('foodCategories', function ($query) use ($grocery) {
             $query->where('category_id', $grocery->id);
@@ -793,7 +793,7 @@ class MenuController extends Controller
                 //             $query->where('status', 2);
                 //         });
                 //     }])
-                //     ->where('title', 'groceries')
+                //     ->where('title', 'Coffee')
                 //     ->first();
 
                 // return new FoodCommonCategoryResource(
@@ -819,7 +819,7 @@ class MenuController extends Controller
             }
 
             if (auth()->user()->hasRole('restaurant')) {
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -889,7 +889,7 @@ class MenuController extends Controller
     {
         if (auth()->check()) {
             if (auth()->user()->hasRole('orderer')) {
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -906,7 +906,7 @@ class MenuController extends Controller
             }
 
             if (auth()->user()->hasRole('restaurant')) {
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -934,7 +934,7 @@ class MenuController extends Controller
                 $user_restaurant = UserRestaurant::where('user_id', auth()->id())->first();
                 $restaurant = Restaurant::where('id', $user_restaurant->restaurant_id)->first();
 
-                $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+                $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
                 $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -949,7 +949,7 @@ class MenuController extends Controller
                 return MenuResource::collection($menu);
             }
         } else {
-            $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+            $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
             $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
@@ -971,14 +971,14 @@ class MenuController extends Controller
 
         $unique = unique();
 
-        Excel::store(new GroceryExport($search), 'groceries'.$unique.'.xlsx', 'exports');
+        Excel::store(new GroceryExport($search), 'Coffee'.$unique.'.xlsx', 'exports');
 
-        return Storage::disk('exports')->download('groceries'.$unique.'.xlsx');
+        return Storage::disk('exports')->download('Coffee'.$unique.'.xlsx');
     }
 
     public function restaurantGroceries(Restaurant $restaurant)
     {
-        $category = FoodCommonCategory::with('menus')->where('title', 'groceries')->first();
+        $category = FoodCommonCategory::with('menus')->where('title', 'Coffee')->first();
 
         $category_menus = CategoryMenu::where('category_id', $category->id)->get()->pluck('menu_id');
 
