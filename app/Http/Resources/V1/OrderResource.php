@@ -36,6 +36,7 @@ class OrderResource extends JsonResource
                 'preparation_time' => $this->getTotalPreparationTime(),
                 'restaurant_name' => $this->restaurant->name,
                 'user_name' => $this->user->name,
+                'otp' => $this->deliveryOtp ? $this->deliveryOtp->code : null,
             ],
             'relationships' => [
                 'user' => new UserResource($this->whenLoaded('user')),

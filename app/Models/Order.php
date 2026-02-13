@@ -235,6 +235,11 @@ class Order extends Model
         return $this->belongsTo(Orphanage::class);
     }
 
+    public function deliveryOtp(): HasOne
+    {
+        return $this->hasOne(DeliveryOtp::class);
+    }
+
     public function getTotalPreparationTime(): int
     {
         $total_preparation_time = 0;
