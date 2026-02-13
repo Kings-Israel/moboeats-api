@@ -97,5 +97,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $rider->addRole(Role::where('name', 'rider')->first());
+
+        $rider->rider()->create([
+            'uuid' => (string) Str::uuid(),
+            'status' => 2,
+            'name' => 'Test Rider',
+            'phone_no' => '1234567890',
+            'email' => 'test@rider.com',
+        ]);
     }
 }

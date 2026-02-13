@@ -123,6 +123,10 @@ class PermissionSeeder extends Seeder
                 "display_name" => "Create Countries",
             ],
             [
+                "name" => 'view motorbikes',
+                "display_name" => "View Motorbikes",
+            ],
+            [
                 "name" => 'edit countries',
                 "display_name" => "Edit Countries",
             ],
