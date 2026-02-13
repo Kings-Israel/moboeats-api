@@ -442,7 +442,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable', 'payment', 'orphanage');
+        $order = $order->load('user', 'restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable', 'payment', 'orphanage');
         $order->preparation_time = $order->getTotalPreparationTime();
         $restaurant = $order->restaurant;
         $riders = [];
