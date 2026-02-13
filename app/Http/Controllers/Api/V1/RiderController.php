@@ -331,7 +331,7 @@ class RiderController extends Controller
                             ]);
 
         $location = json_decode($location);
-        
+
         auth()->user()->update([
             'location' => $location->results[0]->formatted_address,
             'latitude' => $request->latitude,
@@ -497,9 +497,9 @@ class RiderController extends Controller
             return $this->error('Unauthorized', 'This order is not assigned to you', 403);
         }
 
-        if ($order->getRawOriginal('status') != 4) {
-            return $this->error('Invalid status', 'Order must be in On Delivery status to generate OTP', 422);
-        }
+        // if ($order->getRawOriginal('status') != 4) {
+        //     return $this->error('Invalid status', 'Order must be in On Delivery status to generate OTP', 422);
+        // }
 
         // Delete any existing OTP for this order
         DeliveryOtp::where('order_id', $order->id)->delete();
