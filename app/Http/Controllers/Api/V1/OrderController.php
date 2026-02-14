@@ -720,68 +720,138 @@ class OrderController extends Controller
     }
 
     /**
-     * Store review for an order
-     * @bodyParam order_id integer The id of the order
-     * @bodyParam restaurant_rating integer The rating of the restaurant from 1 - 5
-     * @bodyParam rider_rating integer The rating of the rider from 1 - 5
-     * @bodyParam restaurant_review string A review of the restaurant
-     * @bodyParam rider_review string A review of the rider
+     * Rate a delivered order
+     * @urlParam orderId integer required The id of the order
+     * @bodyParam food_rating integer required The rating of the food/restaurant from 1 - 5
+     * @bodyParam rider_rating integer required The rating of the rider from 1 - 5
+     * @bodyParam comment string An optional comment for the review
      */
-    public function storeReview(Request $request)
+    public function rate(Request $request, $orderId)
     {
-        $validator = Validator::make($request->all(), [
-            'order_id' => ['required'],
-            'restaurant_rating' => ['required', 'integer', 'min:1', 'max:5'],
-            'restaurant_review' => ['nullable', 'sometimes', 'string'],
+        $validator = Validator::make(array_merge($request->all(), ['orderId' => $orderId]), [
+            'orderId'      => ['required', 'integer'],
+            'food_rating'  => ['required', 'integer', 'min:1', 'max:5'],
             'rider_rating' => ['required', 'integer', 'min:1', 'max:5'],
-            'rider_review' => ['nullable', 'sometimes', 'string'],
+            'comment'      => ['nullable', 'sometimes', 'string'],
         ]);
 
         if ($validator->fails()) {
             return $this->error('', $validator->messages(), 400);
         }
 
-        if($request->has('order_id') && !empty($request->order_id)) {
-            $order = Order::find($request->order_id);
+        $order = Order::find($orderId);
 
-            if (!$order) {
-                return $this->error('', 'Order not found', 404);
-            }
+        if (!$order) {
+            return $this->error('', 'Order not found', 404);
+        }
 
-            $restaurant = Restaurant::find($order->restaurant_id);
+        $restaurant = Restaurant::find($order->restaurant_id);
 
-            if ($restaurant) {
-                $restaurant->reviews()->create([
-                    'user_id' => auth()->id(),
-                    'order_id' => $request->has('order_id') && !empty($request->order_id) ? $request->order_id : NULL,
-                    'rating' => $request->restaurant_rating,
-                    'review' => $request->restaurant_review
+        if ($restaurant) {
+            $restaurant->reviews()->create([
+                'user_id'  => auth()->id(),
+                'order_id' => $orderId,
+                'rating'   => $request->food_rating,
+                'review'   => $request->comment,
+            ]);
+
+            $total_reviews_count = $restaurant->reviews()->count();
+            if ($total_reviews_count > 0) {
+                $total_reviews = $restaurant->reviews()->sum('rating');
+                $restaurant->update([
+                    'average_rating' => round($total_reviews / $total_reviews_count, 2)
                 ]);
-
-                // Update restaurant average rating
-                $total_reviews_count = $restaurant->reviews->count();
-                if ($total_reviews_count > 0) {
-                    $total_reviews = $restaurant->reviews->sum('rating');
-
-                    $restaurant->update([
-                        'average_rating' => round($total_reviews / $total_reviews_count, 2)
-                    ]);
-                }
             }
+        }
 
-            $user = User::find($order->rider_id);
+        $user = User::find($order->rider_id);
 
-            if ($user) {
-                $rider = Rider::where('user_id', $user->id)->first();
+        if ($user) {
+            $rider = Rider::where('user_id', $user->id)->first();
 
-                if ($rider) {
-                    $rider->reviews()->create([
-                        'user_id' => auth()->id(),
-                        'order_id' => $request->has('order_id') && !empty($request->order_id) ? $request->order_id : NULL,
-                        'rating' => $request->rider_rating,
-                        'review' => $request->rider_review
-                    ]);
-                }
+            if ($rider) {
+                $rider->reviews()->create([
+                    'user_id'  => auth()->id(),
+                    'order_id' => $orderId,
+                    'rating'   => $request->rider_rating,
+                    'review'   => $request->comment,
+                ]);
+            }
+        }
+
+        return $this->success('Review', 'Review successfully saved');
+    }
+
+    /**
+     * Store review for an order (legacy)
+     * @bodyParam orderId integer The id of the order
+     * @bodyParam food_rating integer The rating of the food/restaurant from 1 - 5
+     * @bodyParam rider_rating integer The rating of the rider from 1 - 5
+     * @bodyParam comment string An optional comment for the review
+     */
+    public function storeReview(Request $request)
+    {
+        // Support both legacy field names and new field names
+        $orderId = $request->input('orderId') ?? $request->input('order_id');
+        $foodRating = $request->input('food_rating') ?? $request->input('restaurant_rating');
+        $riderRating = $request->input('rider_rating');
+        $comment = $request->input('comment') ?? $request->input('restaurant_review');
+
+        $validator = Validator::make([
+            'orderId'     => $orderId,
+            'food_rating' => $foodRating,
+            'rider_rating' => $riderRating,
+            'comment'     => $comment,
+        ], [
+            'orderId'      => ['required', 'integer'],
+            'food_rating'  => ['required', 'integer', 'min:1', 'max:5'],
+            'rider_rating' => ['required', 'integer', 'min:1', 'max:5'],
+            'comment'      => ['nullable', 'sometimes', 'string'],
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('', $validator->messages(), 400);
+        }
+
+        $order = Order::find($orderId);
+
+        if (!$order) {
+            return $this->error('', 'Order not found', 404);
+        }
+
+        $restaurant = Restaurant::find($order->restaurant_id);
+
+        if ($restaurant) {
+            $restaurant->reviews()->create([
+                'user_id'  => auth()->id(),
+                'order_id' => $orderId,
+                'rating'   => $foodRating,
+                'review'   => $comment,
+            ]);
+
+            // Update restaurant average rating
+            $total_reviews_count = $restaurant->reviews()->count();
+            if ($total_reviews_count > 0) {
+                $total_reviews = $restaurant->reviews()->sum('rating');
+
+                $restaurant->update([
+                    'average_rating' => round($total_reviews / $total_reviews_count, 2)
+                ]);
+            }
+        }
+
+        $user = User::find($order->rider_id);
+
+        if ($user) {
+            $rider = Rider::where('user_id', $user->id)->first();
+
+            if ($rider) {
+                $rider->reviews()->create([
+                    'user_id'  => auth()->id(),
+                    'order_id' => $orderId,
+                    'rating'   => $riderRating,
+                    'review'   => $comment,
+                ]);
             }
         }
 

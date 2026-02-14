@@ -179,6 +179,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
 
         // Reviews
+        Route::post('/orders/{orderId}/rate', [OrderController::class, 'rate']);
         Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
         Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
         Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
