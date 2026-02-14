@@ -1376,11 +1376,11 @@ class AdminController extends Controller
             return $this->error('', 'Rate is required', 400);
         }
 
-        $setting = Setting::where('name', 'Base Groceries Service Charge Rate')->first();
+        $setting = Setting::where('name', 'Base Coffee Service Charge Rate')->first();
 
         if (!$setting) {
             $setting = Setting::create([
-                'name' => 'Base Groceries Service Charge Rate',
+                'name' => 'Base Coffee Service Charge Rate',
                 'variable' => $request->rate,
                 'type' => 'percentage'
             ]);
