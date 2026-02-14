@@ -46,6 +46,8 @@ use App\Models\PromoCode;
 use App\Models\Discount;
 use App\Models\Role;
 use App\Models\Setting;
+use App\Models\CategoryMenu;
+use App\Http\Resources\V1\MenuResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Query\JoinClause;
 
@@ -65,6 +67,54 @@ class RestaurantController extends Controller
         'caption' =>  "Restaurant",
         'storageName' =>  "companyLogos",
     ];
+
+    /**
+     * Get the nearest restaurant and its menu for the home screen.
+     * @queryParam lat number required User's latitude
+     * @queryParam lng number required User's longitude
+     */
+    public function home(Request $request)
+    {
+        $latitude  = $request->query('lat');
+        $longitude = $request->query('lng');
+
+        if (!$latitude || !$longitude) {
+            return $this->error('', 'Location coordinates are required', 422);
+        }
+
+        $restaurant = Restaurant::Approved()
+            ->hasMenu()
+            ->select(DB::raw("*,
+                (6371 * acos(cos(radians($latitude))
+                * cos(radians(latitude))
+                * cos(radians(longitude) - radians($longitude))
+                + sin(radians($latitude))
+                * sin(radians(latitude))))
+                AS distance"))
+            ->orderBy('distance')
+            ->first();
+
+        if (!$restaurant) {
+            return $this->error('', 'No restaurants found near your location', 404);
+        }
+
+        $coffeeCategory = FoodCommonCategory::where('title', 'Coffee')->first();
+        $excludedMenuIds = $coffeeCategory
+            ? CategoryMenu::where('category_id', $coffeeCategory->id)->pluck('menu_id')
+            : collect();
+
+        $menu = Menu::active()
+            ->hasActivePrices()
+            ->where('restaurant_id', $restaurant->id)
+            ->whereNotIn('id', $excludedMenuIds)
+            ->with('images', 'categories', 'subCategories', 'discount')
+            ->get();
+
+        return $this->success([
+            'restaurant' => new RestaurantResource($restaurant->load('reviews')),
+            'menu'       => MenuResource::collection($menu),
+        ]);
+    }
 
     public function index(Request $request)
     {
