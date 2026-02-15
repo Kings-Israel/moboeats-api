@@ -414,7 +414,7 @@
                         </g>
                     </svg>
                 </div> --}}
-            <h1 class="text-gray-200">Moboeats Privacy Policy</h1>
+            <h1 class="text-gray-200">{{ config('app.name') }} Privacy Policy</h1>
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm p-6">
                     <h3 class="">Last updated: {{ Carbon\Carbon::now()->subMonths(2)->format('M, d Y') }}</h3>
