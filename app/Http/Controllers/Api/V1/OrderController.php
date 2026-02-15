@@ -720,6 +720,24 @@ class OrderController extends Controller
     }
 
     /**
+     * Get delivered orders that the authenticated user has not yet rated.
+     * Called on login / app open to prompt the user for pending reviews.
+     */
+    public function unratedOrders()
+    {
+        $orders = Order::where('user_id', auth()->id())
+            ->where('status', 5) // delivered
+            ->whereDoesntHave('reviews', function ($query) {
+                $query->where('user_id', auth()->id());
+            })
+            ->with('orderItems.menu.images', 'restaurant')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return OrderResource::collection($orders);
+    }
+
+    /**
      * Rate a delivered order
      * @urlParam orderId integer required The id of the order
      * @bodyParam food_rating integer required The rating of the food/restaurant from 1 - 5

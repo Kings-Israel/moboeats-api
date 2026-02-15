@@ -288,11 +288,31 @@ class RiderController extends Controller
         }
 
         if ($request->status == 'delivered') {
-            return $this->error(
-                'OTP required',
-                'Use the delivery OTP verification endpoint to confirm delivery. Generate OTP first, then verify with the customer\'s code.',
-                422
+            if ($order->rider_id != auth()->id()) {
+                return $this->error('Unauthorized', 'This order is not assigned to you', 403);
+            }
+
+            $order->update([
+                'status' => 5,
+                'delivery_status' => 'Delivered',
+            ]);
+
+            $order->restaurant->notify(new OrderUpdate($order, 'delivered'));
+            event(new UpdateOrder($order->restaurant, $order, 'delivered'));
+
+            if ($order->user->email) {
+                SendCommunication::dispatchAfterResponse('mail', $order->user->email, 'OrderDetailsReceipt', ['order' => $order->id]);
+            }
+
+            SendNotification::dispatchAfterResponse(
+                $order->user,
+                'Your order has been delivered. Thank you!',
+                ['type' => 'order_delivered', 'order_id' => (string) $order->id]
             );
+
+            activity()->causedBy(auth()->user())->performedOn($order)->log('delivered the order');
+
+            return $this->success($order, 'Order delivered successfully');
         }
 
 
@@ -482,105 +502,4 @@ class RiderController extends Controller
         ]);
     }
 
-    public function generateDeliveryOtp($order_id)
-    {
-        $order = Order::with('user')
-            ->where(function ($query) use ($order_id) {
-                $query->where('uuid', $order_id)->orWhere('id', $order_id);
-            })->first();
-
-        if (!$order) {
-            return $this->error('Order not found', 'The selected order was not found', 404);
-        }
-
-        if ($order->rider_id != auth()->id()) {
-            return $this->error('Unauthorized', 'This order is not assigned to you', 403);
-        }
-
-        // if ($order->getRawOriginal('status') != 4) {
-        //     return $this->error('Invalid status', 'Order must be in On Delivery status to generate OTP', 422);
-        // }
-
-        // Delete any existing OTP for this order
-        DeliveryOtp::where('order_id', $order->id)->delete();
-
-        $code = NumberGenerator::generateVerificationCode(DeliveryOtp::class, 'code');
-
-        DeliveryOtp::create([
-            'order_id' => $order->id,
-            'code' => $code,
-            'expires_at' => now()->addMinutes(10),
-        ]);
-
-        // Send OTP to customer via push notification
-        SendNotification::dispatchAfterResponse(
-            $order->user,
-            'Your delivery OTP is: ' . $code . '. Share this with the rider to confirm delivery.',
-            ['type' => 'delivery_otp', 'order_id' => (string) $order->id]
-        );
-
-        return $this->success(['otp_generated' => true], 'Delivery OTP sent to customer');
-    }
-
-    public function verifyDeliveryOtp(Request $request, $order_id)
-    {
-        $validator = Validator::make($request->all(), [
-            'otp' => 'required|string',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->error('Validation failed', $validator->messages(), 422);
-        }
-
-        $order = Order::with('user', 'restaurant')
-            ->where(function ($query) use ($order_id) {
-                $query->where('uuid', $order_id)->orWhere('id', $order_id);
-            })->first();
-
-        if (!$order) {
-            return $this->error('Order not found', 'The selected order was not found', 404);
-        }
-
-        if ($order->rider_id != auth()->id()) {
-            return $this->error('Unauthorized', 'This order is not assigned to you', 403);
-        }
-
-        $deliveryOtp = DeliveryOtp::where('order_id', $order->id)
-            ->where('code', $request->otp)
-            ->first();
-
-        if (!$deliveryOtp) {
-            return $this->error('Invalid OTP', 'The OTP entered is incorrect', 422);
-        }
-
-        if ($deliveryOtp->isExpired()) {
-            $deliveryOtp->delete();
-            return $this->error('OTP Expired', 'The OTP has expired. Please generate a new one.', 422);
-        }
-
-        // Mark order as delivered
-        $order->update([
-            'status' => 5,
-            'delivery_status' => 'Delivered',
-        ]);
-
-        $deliveryOtp->delete();
-
-        $order->restaurant->notify(new OrderUpdate($order, 'delivered'));
-        event(new UpdateOrder($order->restaurant, $order, 'delivered'));
-
-        if ($order->user->email) {
-            SendCommunication::dispatchAfterResponse('mail', $order->user->email, 'OrderDetailsReceipt', ['order' => $order->id]);
-        }
-
-        SendNotification::dispatchAfterResponse(
-            $order->user,
-            'Your order has been delivered. Thank you!',
-            ['type' => 'order_delivered', 'order_id' => (string) $order->id]
-        );
-
-        activity()->causedBy(auth()->user())->performedOn($order)->log('delivered the order (OTP verified)');
-
-        return $this->success($order, 'Order delivered successfully');
-    }
 }

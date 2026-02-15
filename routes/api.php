@@ -159,6 +159,7 @@ Route::group(['prefix' => 'v1/orderer'], function() {
         Route::apiResource('cart', CartController::class)->except(['update']);
         Route::apiResource('cart-items', CartItemController::class);
 
+        Route::get('/orders/unrated', [OrderController::class, 'unratedOrders']);
         Route::apiResource('orders', OrderController::class)->except(['update']);
 
         // Supplements
@@ -205,8 +206,6 @@ Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function(
     Route::get('/tips', [RiderController::class, 'getTips']);
     Route::get('/earnings', [RiderController::class, 'earnings']);
 
-    Route::post('/orders/{order_id}/delivery-otp/generate', [RiderController::class, 'generateDeliveryOtp']);
-    Route::post('/orders/{order_id}/delivery-otp/verify', [RiderController::class, 'verifyDeliveryOtp']);
 });
 
 Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
