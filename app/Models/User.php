@@ -426,10 +426,11 @@ class User extends Authenticatable implements LaratrustUser
                     }
                 } catch (ConnectionException $e) {
                     $user_country = 'Kenya';
+                    $user_short_country = 'KE';
                 } catch (\Exception $e) {
                     $user_country = 'Kenya';
+                    $user_short_country = 'KE';
                 }
-                info($user_country);
 
                 Cache::put($this->uuid.'-country', $user_country);
 

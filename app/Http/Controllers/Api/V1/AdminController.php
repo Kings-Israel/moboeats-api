@@ -1111,7 +1111,7 @@ class AdminController extends Controller
 
     public function order(Order $order)
     {
-        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'user');
+        $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'user', 'reviews');
         if ($order->delivery && !$order->rider) {
             $restaurant = $order->restaurant;
             $riders = User::where('device_token', '!=', NULL)

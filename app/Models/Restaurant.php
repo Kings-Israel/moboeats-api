@@ -324,7 +324,7 @@ class Restaurant extends Model implements UrlRoutable
         if ($total_reviews_count > 0) {
             $total_reviews = $this->reviews->sum('rating');
 
-            return $total_reviews / $total_reviews_count;
+            return round($total_reviews / $total_reviews_count, 1);
         }
 
         return 0;
