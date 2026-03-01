@@ -172,9 +172,6 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone_no' => $request->phone_number,
-                'vehicle_license_plate' => $request->license_plate,
-                'vehicle_type' => $request->vehicle_type,
-                'profile_picture',
                 'address' => $request->address ?? NULL,
                 'city' => $request->city ?? NULL,
                 'state' => $request->state ?? NULL,
@@ -188,6 +185,16 @@ class AdminController extends Controller
                     'name' => $file_name,
                     'file' => pathinfo($file->store('documents', 'rider'), PATHINFO_BASENAME)
                 ]);
+
+                if ($file_name === 'Passport Photo') {
+                    $user->update([
+                        'image' => pathinfo($file->store('avatar', 'user'), PATHINFO_BASENAME)
+                    ]);
+
+                    $rider->update([
+                        'profile_picture' => pathinfo($file->store('avatar', 'rider'), PATHINFO_BASENAME)
+                    ]);
+                }
             }
 
             DB::commit();
