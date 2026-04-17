@@ -7,7 +7,6 @@ on:
 
 env:
   PHP_VERSION: '8.3'
-  NODE_VERSION: '24'
 
 jobs:
   test:
@@ -26,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -35,14 +34,8 @@ jobs:
           extensions: mbstring, dom, fileinfo, mysql, gd, bcmath
           coverage: xdebug
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: ${{ env.NODE_VERSION }}
-      #     cache: 'npm'
-
       - name: Cache Composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -51,12 +44,6 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
-      # - name: Install NPM dependencies
-      #   run: npm ci
-
-      # - name: Build frontend assets
-      #   run: npm run build
 
       - name: Prepare Laravel Application
         run: |
@@ -91,7 +78,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -99,20 +86,8 @@ jobs:
           php-version: ${{ env.PHP_VERSION }}
           extensions: mbstring, dom, fileinfo, mysql, gd, bcmath
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: ${{ env.NODE_VERSION }}
-      #     cache: 'npm'
-
       - name: Install Composer dependencies
         run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-
-      # - name: Install NPM dependencies
-      #   run: npm ci
-
-      # - name: Build frontend assets
-      #   run: npm run build
 
       - name: Create deployment archive
         run: |
@@ -179,10 +154,10 @@ jobs:
 
             # Run Laravel commands
             cd ${RELEASE_PATH}
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan migrate --force
+            sudo php artisan config:cache
+            sudo php artisan route:cache
+            sudo php artisan view:cache
+            sudo php artisan migrate --force
 
             # Switch to new release (atomic operation)
             sudo ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
