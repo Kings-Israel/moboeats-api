@@ -1,0 +1,202 @@
+name: Laravel CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - guardnow
+
+env:
+  PHP_VERSION: '8.3'
+  NODE_VERSION: '24'
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: laravel_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, dom, fileinfo, mysql, gd, bcmath
+          coverage: xdebug
+
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: ${{ env.NODE_VERSION }}
+      #     cache: 'npm'
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      # - name: Install NPM dependencies
+      #   run: npm ci
+
+      # - name: Build frontend assets
+      #   run: npm run build
+
+      - name: Prepare Laravel Application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Run tests
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: laravel_test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+        run: php artisan test --parallel
+
+      - name: Upload coverage reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
+
+  deploy-staging:
+    name: Deploy to Guardnow
+    needs: test
+    if: github.ref == 'refs/heads/guardnow' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: guardnow
+      url: https://guardnow.delivery-api.amaniaccess.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, dom, fileinfo, mysql, gd, bcmath
+
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: ${{ env.NODE_VERSION }}
+      #     cache: 'npm'
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+      # - name: Install NPM dependencies
+      #   run: npm ci
+
+      # - name: Build frontend assets
+      #   run: npm run build
+
+      - name: Create deployment archive
+        run: |
+          tar -czf deploy.tar.gz \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='tests' \
+            --exclude='.env' \
+            --exclude='storage/logs/*' \
+            --exclude='storage/framework/cache/*' \
+            --exclude='storage/framework/sessions/*' \
+            --exclude='storage/framework/views/*' \
+            .
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Staging Server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          # Upload archive
+          scp -i ~/.ssh/deploy_key deploy.tar.gz ${SERVER_USER}@${SERVER_IP}:/tmp/
+
+          # Execute deployment script
+          ssh -i ~/.ssh/deploy_key ${SERVER_USER}@${SERVER_IP} << 'ENDSSH'
+            set -e
+
+            # Define paths
+            DEPLOY_PATH="${{ secrets.DEPLOY_PATH }}"
+            RELEASE_PATH="${DEPLOY_PATH}/releases/$(date +%Y%m%d%H%M%S)"
+            CURRENT_PATH="${DEPLOY_PATH}/current"
+            SHARED_PATH="${DEPLOY_PATH}/shared"
+
+            # Create directory structure
+            sudo mkdir -p ${RELEASE_PATH}
+            sudo mkdir -p ${SHARED_PATH}/{storage,uploads}
+            sudo mkdir -p ${SHARED_PATH}/storage/{app,framework,logs}
+            sudo mkdir -p ${SHARED_PATH}/storage/framework/{cache,sessions,views}
+
+            # Extract release
+            sudo tar -xzf /tmp/deploy.tar.gz -C ${RELEASE_PATH}
+            sudo rm /tmp/deploy.tar.gz
+
+            # Link shared directories
+            sudo rm -rf ${RELEASE_PATH}/storage
+            sudo ln -s ${SHARED_PATH}/storage ${RELEASE_PATH}/storage
+
+            # Link .env file
+            sudo ln -s ${SHARED_PATH}/.env ${RELEASE_PATH}/.env
+
+            # Set permissions
+            sudo chown -R www-data:www-data ${RELEASE_PATH}
+            sudo chmod -R 755 ${RELEASE_PATH}
+            sudo chmod -R 775 ${RELEASE_PATH}/storage
+            sudo chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
+
+            # Run Laravel commands
+            cd ${RELEASE_PATH}
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan migrate --force
+
+            # Switch to new release (atomic operation)
+            sudo ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
+
+            # Reload PHP-FPM
+            sudo systemctl reload php8.3-fpm
+
+            # Keep only last 5 releases
+            cd ${DEPLOY_PATH}/releases
+            ls -t | tail -n +6 | xargs -r rm -rf
+
+            echo "Deployment completed successfully!"
+          ENDSSH
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
