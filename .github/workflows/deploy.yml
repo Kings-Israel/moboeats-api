@@ -130,40 +130,40 @@ jobs:
             SHARED_PATH="${DEPLOY_PATH}/shared"
 
             # Create directory structure
-            sudo mkdir -p ${RELEASE_PATH}
-            sudo mkdir -p ${SHARED_PATH}/{storage,uploads}
-            sudo mkdir -p ${SHARED_PATH}/storage/{app,framework,logs}
-            sudo mkdir -p ${SHARED_PATH}/storage/framework/{cache,sessions,views}
+            mkdir -p ${RELEASE_PATH}
+            mkdir -p ${SHARED_PATH}/{storage,uploads}
+            mkdir -p ${SHARED_PATH}/storage/{app,framework,logs}
+            mkdir -p ${SHARED_PATH}/storage/framework/{cache,sessions,views}
 
             # Extract release
-            sudo tar -xzf /tmp/deploy.tar.gz -C ${RELEASE_PATH}
-            sudo rm /tmp/deploy.tar.gz
+            tar -xzf /tmp/deploy.tar.gz -C ${RELEASE_PATH}
+            rm /tmp/deploy.tar.gz
 
             # Link shared directories
-            sudo rm -rf ${RELEASE_PATH}/storage
-            sudo ln -s ${SHARED_PATH}/storage ${RELEASE_PATH}/storage
+            rm -rf ${RELEASE_PATH}/storage
+            ln -s ${SHARED_PATH}/storage ${RELEASE_PATH}/storage
 
             # Link .env file
-            sudo ln -s ${SHARED_PATH}/.env ${RELEASE_PATH}/.env
+            ln -s ${SHARED_PATH}/.env ${RELEASE_PATH}/.env
 
             # Set permissions
-            sudo chown -R www-data:www-data ${RELEASE_PATH}
-            sudo chmod -R 755 ${RELEASE_PATH}
-            sudo chmod -R 775 ${RELEASE_PATH}/storage
-            sudo chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
+            # sudo chown -R www-data:www-data ${RELEASE_PATH}
+            chmod -R 755 ${RELEASE_PATH}
+            chmod -R 775 ${RELEASE_PATH}/storage
+            chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
 
             # Run Laravel commands
             cd ${RELEASE_PATH}
-            sudo php artisan config:cache
-            sudo php artisan route:cache
-            sudo php artisan view:cache
-            sudo php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan migrate --force
 
             # Switch to new release (atomic operation)
-            sudo ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
+            ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
 
             # Reload PHP-FPM
-            sudo systemctl reload php8.3-fpm
+            systemctl reload php8.3-fpm
 
             # Keep only last 5 releases
             cd ${DEPLOY_PATH}/releases
