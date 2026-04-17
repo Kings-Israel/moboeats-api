@@ -58,7 +58,7 @@ jobs:
           DB_DATABASE: laravel_test
           DB_USERNAME: root
           DB_PASSWORD: password
-        run: php artisan test --parallel
+        run: php artisan test
 
       - name: Upload coverage reports
         if: always()
