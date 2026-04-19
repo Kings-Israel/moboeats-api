@@ -155,10 +155,10 @@ jobs:
             echo "Linked shared .env file"
 
             # Set permissions
-            chown -R www-data ${RELEASE_PATH}
-            chmod -R 775 ${RELEASE_PATH}
-            chmod -R 775 ${RELEASE_PATH}/storage
-            chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
+            sudo chown -R www-data ${RELEASE_PATH}
+            sudo chmod -R 775 ${RELEASE_PATH}
+            sudo chmod -R 775 ${RELEASE_PATH}/storage
+            sudo chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
 
             echo "Set permissions for release"
 
