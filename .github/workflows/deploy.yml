@@ -162,9 +162,6 @@ jobs:
             # Switch to new release (atomic operation)
             ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
 
-            # Reload PHP-FPM
-            service php8.3-fpm restart
-
             # Keep only last 5 releases
             cd ${DEPLOY_PATH}/releases
             ls -t | tail -n +6 | xargs -r rm -rf
