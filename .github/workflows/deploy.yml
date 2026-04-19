@@ -157,11 +157,11 @@ jobs:
             # Set permissions
             # sudo chown -R www-data ${RELEASE_PATH}
             # echo "Set ownership to www-data for release"
-            sudo chmod -R 775 ${RELEASE_PATH}
+            chmod -R 775 ${RELEASE_PATH}
             echo "Set permissions for release directory"
-            sudo chmod -R 775 ${RELEASE_PATH}/storage
+            chmod -R 775 ${RELEASE_PATH}/storage
             echo "Set permissions for storage directory"
-            sudo chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
+            chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
             echo "Set permissions for bootstrap/cache directory"
 
             echo "Set permissions for release"
