@@ -147,7 +147,7 @@ jobs:
             ln -s ${SHARED_PATH}/.env ${RELEASE_PATH}/.env
 
             # Set permissions
-            sudo chown -R www-data ${RELEASE_PATH}
+            # sudo chown -R www-data ${RELEASE_PATH}
             sudo chmod -R 775 ${RELEASE_PATH}
             sudo chmod -R 775 ${RELEASE_PATH}/storage
             sudo chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
