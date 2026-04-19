@@ -163,8 +163,8 @@ jobs:
             ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
 
             # Keep only last 5 releases
-            cd ${DEPLOY_PATH}/releases
-            sudo ls -t | sudo tail -n +6 | sudo xargs -r rm -rf
+            # cd ${DEPLOY_PATH}/releases
+            # sudo ls -t | sudo tail -n +6 | sudo xargs -r rm -rf
 
             echo "Deployment completed successfully!"
           ENDSSH
