@@ -135,22 +135,32 @@ jobs:
             mkdir -p ${SHARED_PATH}/storage/{app,framework,logs}
             mkdir -p ${SHARED_PATH}/storage/framework/{cache,sessions,views}
 
+            echo "Created release directory: ${RELEASE_PATH}"
+
             # Extract release
             tar -xzf /tmp/deploy.tar.gz -C ${RELEASE_PATH}
             rm /tmp/deploy.tar.gz
+
+            echo "Extracted release to: ${RELEASE_PATH}"
 
             # Link shared directories
             rm -rf ${RELEASE_PATH}/storage
             ln -s ${SHARED_PATH}/storage ${RELEASE_PATH}/storage
 
+            echo "Linked shared storage directory"
+
             # Link .env file
             ln -s ${SHARED_PATH}/.env ${RELEASE_PATH}/.env
 
+            echo "Linked shared .env file"
+
             # Set permissions
-            sudo chown -R www-data ${RELEASE_PATH}
-            sudo chmod -R 775 ${RELEASE_PATH}
-            sudo chmod -R 775 ${RELEASE_PATH}/storage
-            sudo chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
+            chown -R www-data ${RELEASE_PATH}
+            chmod -R 775 ${RELEASE_PATH}
+            chmod -R 775 ${RELEASE_PATH}/storage
+            chmod -R 775 ${RELEASE_PATH}/bootstrap/cache
+
+            echo "Set permissions for release"
 
             # Run Laravel commands
             cd ${RELEASE_PATH}
@@ -159,12 +169,18 @@ jobs:
             php artisan view:clear
             php artisan migrate --force
 
+            echo "Ran Laravel commands"
+
             # Switch to new release (atomic operation)
             ln -sfn ${RELEASE_PATH} ${CURRENT_PATH}
+
+            echo "Updated current symlink to new release"
 
             # Keep only last 5 releases
             # cd ${DEPLOY_PATH}/releases
             # sudo ls -t | sudo tail -n +6 | sudo xargs -r rm -rf
+
+            echo "Cleaned up old releases"
 
             echo "Deployment completed successfully!"
           ENDSSH
