@@ -1,65 +1,165 @@
-name: 'Customer Order Management'
+name: Cart
 description: |-
 
-  Customer Order API resource
+  Customer shopping cart. Each orderer has at most one active cart.
 endpoints:
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/v1/orderer/orders
+    uri: api/v3/orderer/cart
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartResource
+        models:
+          - User
+          - Cart
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Customer shopping cart. Each orderer has at most one active cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'List carts'
+      description: |-
+        Users with role `orderer` get their own carts (paginated) with items, menus and menu images.
+        Other roles get all carts matching the filters. Returns 401 if the user does not hold their own `role_id` role.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by cart UUID.'
+        required: false
+        example: 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by cart status.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'userId[eq]':
+        custom: []
+        name: 'userId[eq]'
+        description: 'Filter by user ID.'
+        required: false
+        example: 5
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f
+      'status[eq]': 2
+      'userId[eq]': 5
+      page: 1
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
+        status: 200
+        content: |-
+          {
+            "data": [{"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "attributes": {"userId": 5, "status": "2"}, "relationships": {"user": {"id": 5, "uuid": "9b1d3c2e-1a2b-4c5d-8e9f-0a1b2c3d4e5f", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": "orderer", "referral_code": null, "is_guided": true}, "cartItems": [{"id": 3, "uuid": "c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6", "attributes": {"cartId": 1, "menuId": 10, "quantity": 2, "status": "2"}, "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": []}}, "cart": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "user_id": 5, "status": 2}}}]}}],
+            "links": {"first": "https://moboeats.com/api/v1/orderer/cart?page=1", "last": "https://moboeats.com/api/v1/orderer/cart?page=1", "prev": null, "next": null},
+            "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/cart", "per_page": 15, "to": 1, "total": 1}
+          }
+        headers: []
+        description: Orderer
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Unauthorized role'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The carts.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].relationships.cartItems':
+        custom: []
+        name: 'data[].relationships.cartItems'
+        description: 'Items in the cart.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
-    uri: api/v1/orderer/orders
+    uri: api/v3/orderer/cart
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartResource
+        models:
+          - User
+          - Cart
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Customer shopping cart. Each orderer has at most one active cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Create a cart'
+      description: |-
+        Creates a cart (status `2`) for the authenticated user. Only users with role `orderer` may call this.
+        Fails with 402 if the user already has a cart.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -67,96 +167,120 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      cartId:
-        name: cartId
-        description: ''
-        required: false
-        example: 19
-        type: integer
+      userId:
         custom: []
-      restaurantId:
-        name: restaurantId
-        description: ''
+        name: userId
+        description: 'The ID of the user owning the cart.'
         required: true
-        example: 7
+        example: 5
         type: integer
-        custom: []
-      delivery:
-        name: delivery
-        description: 'This field is required when <code>orphanage_id</code> is not present.'
-        required: false
-        example: true
-        type: boolean
-        custom: []
-      delivery_address:
-        name: delivery_address
-        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
-        required: false
-        example: null
-        type: string
-        custom: []
-      delivery_location_lat:
-        name: delivery_location_lat
-        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
-        required: false
-        example: null
-        type: string
-        custom: []
-      delivery_location_lng:
-        name: delivery_location_lng
-        description: 'This field is required when <code>delivery</code> is <code>true</code>.'
-        required: false
-        example: null
-        type: string
-        custom: []
-      booking_time:
-        name: booking_time
-        description: 'This field is required when <code>delivery</code> is <code>false</code>.  Must be a valid date in the format <code>Y-m-d H:i</code>. Must be a date after <code>2025-04-18 11:01:43</code>.'
-        required: false
-        example: '2119-11-01'
-        type: string
-        custom: []
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanBodyParameters:
-      cartId: 19
-      restaurantId: 7
-      delivery: true
-      booking_time: '2119-11-01'
+      userId: 5
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "attributes": {"userId": 5, "status": "2"}, "relationships": {"user": {"id": 5, "uuid": "9b1d3c2e-1a2b-4c5d-8e9f-0a1b2c3d4e5f", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": "orderer", "referral_code": null, "is_guided": true}, "cartItems": []}}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 402
+        content: '{"status": "Error has occured...", "message": "You have active cart", "data": "Cart"}'
+        headers: []
+        description: 'Cart already exists'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[HY000]: General error", "data": ""}'
+        headers: []
+        description: 'Server error'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The user id field is required.", "errors": {"userId": ["The user id field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.uuid:
+        custom: []
+        name: data.uuid
+        description: 'The cart UUID.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.attributes.status:
+        custom: []
+        name: data.attributes.status
+        description: 'Cart status.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/orders/{uuid}'
+    uri: 'api/v3/orderer/cart/{cart}'
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartResource
+        models:
+          - Cart
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Customer shopping cart. Each orderer has at most one active cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Get a cart'
+      description: 'Returns a single cart with its user and items.'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
+      cart:
         custom: []
+        name: cart
+        description: 'The UUID of the cart.'
+        required: true
+        example: 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
+      cart: 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -164,160 +288,74 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
+        status: 200
+        content: '{"data": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "attributes": {"userId": 5, "status": "2"}, "relationships": {"user": {"id": 5, "uuid": "9b1d3c2e-1a2b-4c5d-8e9f-0a1b2c3d4e5f", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": "orderer", "referral_code": null, "is_guided": true}, "cartItems": [{"id": 3, "uuid": "c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6", "attributes": {"cartId": 1, "menuId": 10, "quantity": 2, "status": "2"}, "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": []}}, "cart": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "user_id": 5, "status": 2}}}]}}}'
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\Cart] 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.relationships.cartItems:
+        custom: []
+        name: data.relationships.cartItems
+        description: 'Items in the cart.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/orders/{uuid}'
+    uri: 'api/v3/orderer/cart/{cart}'
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources: []
+        models:
+          - Cart
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Customer shopping cart. Each orderer has at most one active cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Delete a cart'
+      description: 'Deletes the given cart.'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
+      cart:
+        custom: []
+        name: cart
+        description: 'The UUID of the cart.'
         required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
+        example: 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f
         type: string
-        custom: []
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/orderer/order/reviews/store
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Store review for an order'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      order_id:
-        name: order_id
-        description: 'The id of the order'
-        required: false
-        example: 15
-        type: integer
-        custom: []
-      restaurant_rating:
-        name: restaurant_rating
-        description: 'The rating of the restaurant from 1 - 5'
-        required: false
-        example: 12
-        type: integer
-        custom: []
-      restaurant_review:
-        name: restaurant_review
-        description: 'A review of the restaurant'
-        required: false
-        example: ullam
-        type: string
-        custom: []
-      rider_rating:
-        name: rider_rating
-        description: 'The rating of the rider from 1 - 5'
-        required: false
-        example: 19
-        type: integer
-        custom: []
-      rider_review:
-        name: rider_review
-        description: 'A review of the rider'
-        required: false
-        example: qui
-        type: string
-        custom: []
-    cleanBodyParameters:
-      order_id: 15
-      restaurant_rating: 12
-      restaurant_review: ullam
-      rider_rating: 19
-      rider_review: qui
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/restaurant/orders/{uuid}'
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
-        custom: []
-    cleanUrlParameters:
-      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
+      cart: 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -325,128 +363,355 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
+        status: 204
+        content: '""'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[HY000]: General error", "data": ""}'
+        headers: []
+        description: 'Server error'
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\Cart] 0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f"}'
+        headers: []
+        description: 'Not found'
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
-      - POST
-    uri: 'api/v1/restaurant/orders/reservation/{order_uuid}/assign'
+      - GET
+    uri: api/v3/orderer/cart-items
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartItemResource
+        models:
+          - User
+          - Cart
+          - CartItem
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Items in the customer's cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'List cart items'
+      description: |-
+        Users with role `orderer` get the items in their own cart (10 per page). Other roles get all cart items
+        matching the filters. Returns 401 if the user does not hold their own `role_id` role.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      order_uuid:
-        name: order_uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
         custom: []
-    cleanUrlParameters:
-      order_uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-    queryParameters: []
-    cleanQueryParameters: []
+        name: 'uuid[eq]'
+        description: 'Filter by item UUID (non-orderer roles only).'
+        required: false
+        example: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (non-orderer roles only).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'cartId[eq]':
+        custom: []
+        name: 'cartId[eq]'
+        description: 'Filter by cart ID (non-orderer roles only).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'menuId[eq]':
+        custom: []
+        name: 'menuId[eq]'
+        description: 'Filter by menu ID (non-orderer roles only).'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'quantity[eq]':
+        custom: []
+        name: 'quantity[eq]'
+        description: 'Filter by quantity; also supports `quantity[gt]` and `quantity[lt]` (non-orderer roles only).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
+      'status[eq]': 2
+      'cartId[eq]': 1
+      'menuId[eq]': 10
+      'quantity[eq]': 2
+      page: 1
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [{"id": 3, "uuid": "c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6", "attributes": {"cartId": 1, "menuId": 10, "quantity": 2, "status": "2"}, "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": []}}, "cart": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "user_id": 5, "status": 2}}}],
+            "links": {"first": "https://moboeats.com/api/v1/orderer/cart-items?page=1", "last": "https://moboeats.com/api/v1/orderer/cart-items?page=1", "prev": null, "next": null},
+            "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/cart-items", "per_page": 10, "to": 1, "total": 1}
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "No cart items were found", "data": ""}'
+        headers: []
+        description: 'Orderer has no cart'
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Unauthorized role'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The cart items.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].attributes.quantity':
+        custom: []
+        name: 'data[].attributes.quantity'
+        description: 'Quantity of the menu item.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
-    uri: 'api/v1/restaurant/orders/reservation/{order_uuid}/status/update'
+    uri: api/v3/orderer/cart-items
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartItemResource
+        models:
+          - User
+          - Cart
+          - Menu
+          - CartItem
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Items in the customer's cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Add an item to the cart'
+      description: |-
+        Adds a menu item to the authenticated orderer's active cart, creating the cart if needed.
+        Only users with role `orderer` may call this. Fails if the menu item is unavailable or already in the cart.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      order_uuid:
-        name: order_uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
-        custom: []
-    cleanUrlParameters:
-      order_uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
+      menuId:
+        custom: []
+        name: menuId
+        description: 'The ID of the menu item.'
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      quantity:
+        custom: []
+        name: quantity
+        description: 'Quantity to add.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
       status:
+        custom: []
         name: status
-        description: 'Must be one of <code>completed</code>, <code>in progress</code>, <code>no show</code>, or <code>cancelled</code>.'
-        required: true
-        example: cancelled
-        type: string
-        custom: []
+        description: 'Item status.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
-      status: cancelled
+      menuId: 10
+      quantity: 2
+      status: 2
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data": {"id": 3, "uuid": "c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6", "attributes": {"cartId": 1, "menuId": 10, "quantity": 2, "status": "2"}, "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": []}}, "cart": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "user_id": 5, "status": 2}}}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "The selected item is not available", "data": "Menu Item"}'
+        headers: []
+        description: 'Menu item unavailable'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Item already exists in the cart", "data": "Cart"}'
+        headers: []
+        description: 'Already in cart'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The menu id field is required.", "errors": {"menuId": ["The menu id field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.attributes.cartId:
+        custom: []
+        name: data.attributes.cartId
+        description: 'ID of the cart the item was added to.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/v1/restaurant/pending-orders
+    uri: 'api/v3/orderer/cart-items/{cart_item}'
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartItemResource
+        models:
+          - CartItem
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Items in the customer's cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Get a cart item'
+      description: 'Returns a single cart item with its menu and cart.'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      cart_item:
+        custom: []
+        name: cart_item
+        description: 'The UUID of the cart item.'
+        required: true
+        example: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      cart_item: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -454,307 +719,203 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/restaurant/pending-dineins
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
+        status: 200
+        content: '{"data": {"id": 3, "uuid": "c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6", "attributes": {"cartId": 1, "menuId": 10, "quantity": 2, "status": "2"}, "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": []}}, "cart": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "user_id": 5, "status": 2}}}}'
+        headers: []
+        description: ''
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\CartItem] c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.relationships.menu:
+        custom: []
+        name: data.relationships.menu
+        description: 'The menu item.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
-    httpMethods:
-      - GET
-    uri: api/v1/restaurant/orders
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
     custom: []
-  -
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/v1/restaurant/orders/{uuid}'
+    uri: 'api/v3/orderer/cart-items/{cart_item}'
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources:
+          - CartItemResource
+        models:
+          - CartItem
+          - User
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Items in the customer's cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Update a cart item'
+      description: |-
+        Updates the quantity/status/menu of a cart item. Only users with role `orderer` may call this.
+        With `PUT`, `menuId` and `quantity` are required; with `PATCH` all fields are optional.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
+      cart_item:
         custom: []
+        name: cart_item
+        description: 'The UUID of the cart item.'
+        required: true
+        example: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
+      cart_item: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      status:
-        name: status
-        description: ''
-        required: true
-        example: ratione
-        type: string
+      menuId:
         custom: []
+        name: menuId
+        description: 'The ID of the menu item (required for PUT).'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      quantity:
+        custom: []
+        name: quantity
+        description: 'The new quantity (required for PUT).'
+        required: false
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Item status.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
-      status: ratione
+      menuId: 10
+      quantity: 3
+      status: 2
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": {"id": 3, "uuid": "c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6", "attributes": {"cartId": 1, "menuId": 10, "quantity": 2, "status": "2"}, "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": []}}, "cart": {"id": 1, "uuid": "0f9e8d7c-6b5a-4c3d-8e2f-1a0b9c8d7e6f", "user_id": 5, "status": 2}}}}'
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[HY000]: General error", "data": ""}'
+        headers: []
+        description: 'Server error'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The quantity field is required.", "errors": {"quantity": ["The quantity field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.attributes.quantity:
+        custom: []
+        name: data.attributes.quantity
+        description: 'The updated quantity.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - DELETE
-    uri: 'api/v1/restaurant/orders/{uuid}'
+    uri: 'api/v3/orderer/cart-items/{cart_item}'
     metadata:
-      groupName: 'Customer Order Management'
+      custom:
+        resources: []
+        models:
+          - CartItem
+          - User
+      groupName: Cart
       groupDescription: |-
 
-        Customer Order API resource
+        Items in the customer's cart.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Remove a cart item'
+      description: 'Deletes a cart item. Only users with role `orderer` may call this.'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
+      cart_item:
         custom: []
+        name: cart_item
+        description: 'The UUID of the cart item.'
+        required: true
+        example: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/v1/restaurant/orders/{order_uuid}/update'
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      order_uuid:
-        name: order_uuid
-        description: ''
-        required: true
-        example: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-        type: string
-        custom: []
-    cleanUrlParameters:
-      order_uuid: 2b718d9a-ef11-45f1-95db-a265bc554b7d
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      status:
-        name: status
-        description: ''
-        required: true
-        example: saepe
-        type: string
-        custom: []
-    cleanBodyParameters:
-      status: saepe
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/restaurant/orders/assign
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      order_id:
-        name: order_id
-        description: ''
-        required: true
-        example: commodi
-        type: string
-        custom: []
-      rider_id:
-        name: rider_id
-        description: ''
-        required: true
-        example: consequatur
-        type: string
-        custom: []
-    cleanBodyParameters:
-      order_id: commodi
-      rider_id: consequatur
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/restaurant/orders/export/data
-    metadata:
-      groupName: 'Customer Order Management'
-      groupDescription: |-
-
-        Customer Order API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+      cart_item: c7e1f9a2-3b4c-4d5e-9f60-718293a4b5c6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -762,17 +923,28 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
+        status: 204
+        content: '""'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[HY000]: General error", "data": ""}'
+        headers: []
+        description: 'Server error'
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []

@@ -1,0 +1,4279 @@
+name: 'Food Categories'
+description: |-
+
+  Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+  sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/categories/{food_common_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a food category'
+      description: |-
+        Returns a single food category with its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. On `GET /categories/{food_common_category}` the category is
+        looked up by uuid. Note: on the resource routes (`/orderer/orderer-food-categories/{id}`,
+        `/restaurant/food-categories/{id}`) the route placeholder does not match the bound argument, so an empty category is returned.
+        The path placeholder (`{food_common_category}` / `{id}`) is the category uuid, e.g. `0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_common_category:
+        custom: []
+        name: food_common_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_common_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FoodCommonCategory] 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.subCategories:
+        custom: []
+        name: data.subCategories
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List food categories'
+      description: |-
+        Returns a paginated list (15 per page) of food categories that have at least one active menu item with an
+        active price. Each category includes its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. Available publicly (`/categories`, `/orderer/orderer-food-categories`)
+        and to restaurant users (`/restaurant/food-categories`).
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by exact category uuid.'
+        required: false
+        example: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'title[eq]':
+        custom: []
+        name: 'title[eq]'
+        description: 'Filter by exact category title.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'description[eq]':
+        custom: []
+        name: 'description[eq]'
+        description: 'Filter by exact description.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'createdBy[eq]':
+        custom: []
+        name: 'createdBy[eq]'
+        description: 'Filter by creator email.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'updatedBy[eq]':
+        custom: []
+        name: 'updatedBy[eq]'
+        description: 'Filter by last updater email.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number (15 items per page).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      includeSubcategories:
+        custom: []
+        name: includeSubcategories
+        description: 'Accepted for backwards compatibility but ignored; sub categories are always included.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+      'title[eq]': Burgers
+      'status[eq]': 2
+      page: 1
+      includeSubcategories: true
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}],"links":{"first":"https://moboeats.com/api/v1/categories?page=1","last":"https://moboeats.com/api/v1/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://moboeats.com/api/v1/categories","per_page":15,"to":1,"total":1}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant (restaurant route only)'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The food categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].subCategories':
+        custom: []
+        name: 'data[].subCategories'
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].menus':
+        custom: []
+        name: 'data[].menus'
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      meta:
+        custom: []
+        name: meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a food category'
+      description: |-
+        Creates a new active food category (status is always set to `2`) and stores the optional image. The creator is
+        taken from the authenticated user, so the call fails with 403 when no user is authenticated (the public
+        `/categories` and `/orderer/orderer-food-categories` routes have no auth middleware). Returns the first page of
+        all categories (7 per page). Also used by admins via `POST /admin/categories/add`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title.'
+        required: true
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description.'
+        required: true
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Ignored; new categories are always created active (2).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      restaurant_id:
+        custom: []
+        name: restaurant_id
+        description: 'The id of the restaurant the category belongs to. Leave empty for a global category.'
+        required: false
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+      status: 2
+      restaurant_id: 3
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Attempt to read property \"email\" on null","data":""}'
+        headers: []
+        description: 'Error (e.g. unauthenticated or database error)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The categories on the current page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/categories/{category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a food category'
+      description: |-
+        Returns a single food category with its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. On `GET /categories/{food_common_category}` the category is
+        looked up by uuid. Note: on the resource routes (`/orderer/orderer-food-categories/{id}`,
+        `/restaurant/food-categories/{id}`) the route placeholder does not match the bound argument, so an empty category is returned.
+        The path placeholder (`{food_common_category}` / `{id}`) is the category uuid, e.g. `0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category:
+        custom: []
+        name: category
+        description: 'The category.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FoodCommonCategory] 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.subCategories:
+        custom: []
+        name: data.subCategories
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/categories/{category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a food category'
+      description: |-
+        Updates the title, description and (optionally) the image of a food category, then returns the first page of
+        all categories (7 per page). With `PUT` both `title` and `description` are required; with `PATCH`/`POST` they
+        are optional (omitted values are saved as null). Also used by admins via `POST /admin/categories/update/{id}`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category:
+        custom: []
+        name: category
+        description: 'The category.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The numeric id of the food category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      category: architecto
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title. Required for PUT requests.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description. Required for PUT requests.'
+        required: false
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Call to a member function update() on null","data":""}'
+        headers: []
+        description: 'Category not found or other error'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/categories/{category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a food category (not implemented)'
+      description: 'This endpoint is routed but not implemented: it performs no action and returns an empty 200 response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category:
+        custom: []
+        name: category
+        description: 'The category.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the food category.'
+        required: true
+        example: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      category: architecto
+      id: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'No action taken'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/sub-categories/{food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Get a food sub category'
+      description: |-
+        Returns a sub category (looked up by uuid) with its active menu items that have an active price. Note: on
+        `/orderer/orderer-food-sub-categories/{id}` the route placeholder does not match the bound argument, so an empty
+        sub category is returned. The path placeholder (`{food_sub_category}` / `{id}`) is the sub category uuid,
+        e.g. `7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_sub_category:
+        custom: []
+        name: food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_sub_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FooSubCategory] 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the sub category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/sub-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'List food sub categories'
+      description: |-
+        Returns a paginated list (15 per page) of sub categories that have at least one active menu item with an
+        active price. Available publicly (`/sub-categories`, `/orderer/orderer-food-sub-categories`) and to restaurant
+        users (`/restaurant/food-sub-categories`).
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by exact sub category uuid.'
+        required: false
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'title[eq]':
+        custom: []
+        name: 'title[eq]'
+        description: 'Filter by exact title.'
+        required: false
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'description[eq]':
+        custom: []
+        name: 'description[eq]'
+        description: 'Filter by exact description.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'createdBy[eq]':
+        custom: []
+        name: 'createdBy[eq]'
+        description: 'Filter by creator.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'updatedBy[eq]':
+        custom: []
+        name: 'updatedBy[eq]'
+        description: 'Filter by last updater.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      includeSubcategories:
+        custom: []
+        name: includeSubcategories
+        description: 'Tries to eager load a `food_sub_categories` relation; sub categories have no such relation, so this currently causes a server error.'
+        required: false
+        example: null
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number (15 items per page).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+      'title[eq]': 'Beef Burgers'
+      'status[eq]': 2
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"links":{"first":"https://moboeats.com/api/v1/sub-categories?page=1","last":"https://moboeats.com/api/v1/sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://moboeats.com/api/v1/sub-categories","per_page":15,"to":1,"total":1}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant (restaurant route only)'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The sub categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].image':
+        custom: []
+        name: 'data[].image'
+        description: 'Full URL of the sub category image (a default image when none is set).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      meta:
+        custom: []
+        name: meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/sub-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Create a food sub category'
+      description: 'Creates a sub category, stores the optional image and attaches it to the given food categories.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The sub category title.'
+        required: true
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The sub category description.'
+        required: true
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      createdBy:
+        custom: []
+        name: createdBy
+        description: "Who created the sub category (usually the user's email)."
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      categoryIds:
+        custom: []
+        name: categoryIds
+        description: 'Ids of the food categories this sub category belongs to.'
+        required: true
+        example:
+          - 1
+          - 2
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image (png or jpg, max 3000 KB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Beef Burgers'
+      description: 'Beef patty burgers'
+      status: 2
+      createdBy: owner@example.com
+      categoryIds:
+        - 1
+        - 2
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 500
+        content: '{"message":"Call to undefined method App\\Http\\Controllers\\Api\\V1\\FooSubCategoryController::error()"}'
+        headers: []
+        description: 'Server error (error helper is not available in this controller)'
+    responseFields:
+      data.id:
+        custom: []
+        name: data.id
+        description: 'Sub category id.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.uuid:
+        custom: []
+        name: data.uuid
+        description: 'Sub category uuid.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/sub-categories/{sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Get a food sub category'
+      description: |-
+        Returns a sub category (looked up by uuid) with its active menu items that have an active price. Note: on
+        `/orderer/orderer-food-sub-categories/{id}` the route placeholder does not match the bound argument, so an empty
+        sub category is returned. The path placeholder (`{food_sub_category}` / `{id}`) is the sub category uuid,
+        e.g. `7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      sub_category:
+        custom: []
+        name: sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      sub_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FooSubCategory] 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the sub category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/sub-categories/{sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Update a food sub category'
+      description: |-
+        Updates a sub category (looked up by uuid), optionally replaces its image and re-syncs the food categories it
+        belongs to. With `PUT`, `title`, `description` and `categoryIds` are required. If anything fails the change is
+        rolled back and an empty 200 response is returned. Note: only `/restaurant/food-sub-categories/{id}` binds the
+        sub category; on the other routes the placeholder does not match the bound argument.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      sub_category:
+        custom: []
+        name: sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the sub category.'
+        required: true
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      sub_category: architecto
+      id: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The sub category title. Required for PUT requests.'
+        required: false
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The sub category description. Required for PUT requests.'
+        required: false
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      updatedBy:
+        custom: []
+        name: updatedBy
+        description: "Who updated the sub category (usually the user's email)."
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      categoryIds:
+        custom: []
+        name: categoryIds
+        description: 'Ids of the food categories the sub category belongs to. Required for PUT requests and needed by the code in practice.'
+        required: false
+        example:
+          - 1
+          - 2
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image (png or jpg, max 3000 KB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Beef Burgers'
+      description: 'Beef patty burgers'
+      status: 2
+      updatedBy: owner@example.com
+      categoryIds:
+        - 1
+        - 2
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'Update failed (rolled back)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The updated by field is required.","errors":{"updatedBy":["The updated by field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The updated sub category.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/sub-categories/{sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Delete a food sub category (not implemented)'
+      description: 'This endpoint is routed but not implemented: it performs no action and returns an empty 200 response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      sub_category:
+        custom: []
+        name: sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the sub category.'
+        required: true
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      sub_category: architecto
+      id: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'No action taken'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/orderer/orderer-food-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List food categories'
+      description: |-
+        Returns a paginated list (15 per page) of food categories that have at least one active menu item with an
+        active price. Each category includes its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. Available publicly (`/categories`, `/orderer/orderer-food-categories`)
+        and to restaurant users (`/restaurant/food-categories`).
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by exact category uuid.'
+        required: false
+        example: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'title[eq]':
+        custom: []
+        name: 'title[eq]'
+        description: 'Filter by exact category title.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'description[eq]':
+        custom: []
+        name: 'description[eq]'
+        description: 'Filter by exact description.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'createdBy[eq]':
+        custom: []
+        name: 'createdBy[eq]'
+        description: 'Filter by creator email.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'updatedBy[eq]':
+        custom: []
+        name: 'updatedBy[eq]'
+        description: 'Filter by last updater email.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number (15 items per page).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      includeSubcategories:
+        custom: []
+        name: includeSubcategories
+        description: 'Accepted for backwards compatibility but ignored; sub categories are always included.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+      'title[eq]': Burgers
+      'status[eq]': 2
+      page: 1
+      includeSubcategories: true
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}],"links":{"first":"https://moboeats.com/api/v1/categories?page=1","last":"https://moboeats.com/api/v1/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://moboeats.com/api/v1/categories","per_page":15,"to":1,"total":1}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant (restaurant route only)'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The food categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].subCategories':
+        custom: []
+        name: 'data[].subCategories'
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].menus':
+        custom: []
+        name: 'data[].menus'
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      meta:
+        custom: []
+        name: meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/orderer/orderer-food-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a food category'
+      description: |-
+        Creates a new active food category (status is always set to `2`) and stores the optional image. The creator is
+        taken from the authenticated user, so the call fails with 403 when no user is authenticated (the public
+        `/categories` and `/orderer/orderer-food-categories` routes have no auth middleware). Returns the first page of
+        all categories (7 per page). Also used by admins via `POST /admin/categories/add`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title.'
+        required: true
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description.'
+        required: true
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Ignored; new categories are always created active (2).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      restaurant_id:
+        custom: []
+        name: restaurant_id
+        description: 'The id of the restaurant the category belongs to. Leave empty for a global category.'
+        required: false
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+      status: 2
+      restaurant_id: 3
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Attempt to read property \"email\" on null","data":""}'
+        headers: []
+        description: 'Error (e.g. unauthenticated or database error)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The categories on the current page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/orderer-food-categories/{orderer_food_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a food category'
+      description: |-
+        Returns a single food category with its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. On `GET /categories/{food_common_category}` the category is
+        looked up by uuid. Note: on the resource routes (`/orderer/orderer-food-categories/{id}`,
+        `/restaurant/food-categories/{id}`) the route placeholder does not match the bound argument, so an empty category is returned.
+        The path placeholder (`{food_common_category}` / `{id}`) is the category uuid, e.g. `0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderer_food_category:
+        custom: []
+        name: orderer_food_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      orderer_food_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FoodCommonCategory] 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.subCategories:
+        custom: []
+        name: data.subCategories
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/orderer/orderer-food-categories/{orderer_food_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a food category'
+      description: |-
+        Updates the title, description and (optionally) the image of a food category, then returns the first page of
+        all categories (7 per page). With `PUT` both `title` and `description` are required; with `PATCH`/`POST` they
+        are optional (omitted values are saved as null). Also used by admins via `POST /admin/categories/update/{id}`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderer_food_category:
+        custom: []
+        name: orderer_food_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The numeric id of the food category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      orderer_food_category: architecto
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title. Required for PUT requests.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description. Required for PUT requests.'
+        required: false
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Call to a member function update() on null","data":""}'
+        headers: []
+        description: 'Category not found or other error'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orderer-food-categories/{orderer_food_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a food category (not implemented)'
+      description: 'This endpoint is routed but not implemented: it performs no action and returns an empty 200 response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderer_food_category:
+        custom: []
+        name: orderer_food_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the food category.'
+        required: true
+        example: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      orderer_food_category: architecto
+      id: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'No action taken'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/orderer/orderer-food-sub-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'List food sub categories'
+      description: |-
+        Returns a paginated list (15 per page) of sub categories that have at least one active menu item with an
+        active price. Available publicly (`/sub-categories`, `/orderer/orderer-food-sub-categories`) and to restaurant
+        users (`/restaurant/food-sub-categories`).
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by exact sub category uuid.'
+        required: false
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'title[eq]':
+        custom: []
+        name: 'title[eq]'
+        description: 'Filter by exact title.'
+        required: false
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'description[eq]':
+        custom: []
+        name: 'description[eq]'
+        description: 'Filter by exact description.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'createdBy[eq]':
+        custom: []
+        name: 'createdBy[eq]'
+        description: 'Filter by creator.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'updatedBy[eq]':
+        custom: []
+        name: 'updatedBy[eq]'
+        description: 'Filter by last updater.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      includeSubcategories:
+        custom: []
+        name: includeSubcategories
+        description: 'Tries to eager load a `food_sub_categories` relation; sub categories have no such relation, so this currently causes a server error.'
+        required: false
+        example: null
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number (15 items per page).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+      'title[eq]': 'Beef Burgers'
+      'status[eq]': 2
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"links":{"first":"https://moboeats.com/api/v1/sub-categories?page=1","last":"https://moboeats.com/api/v1/sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://moboeats.com/api/v1/sub-categories","per_page":15,"to":1,"total":1}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant (restaurant route only)'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The sub categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].image':
+        custom: []
+        name: 'data[].image'
+        description: 'Full URL of the sub category image (a default image when none is set).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      meta:
+        custom: []
+        name: meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/orderer/orderer-food-sub-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Create a food sub category'
+      description: 'Creates a sub category, stores the optional image and attaches it to the given food categories.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The sub category title.'
+        required: true
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The sub category description.'
+        required: true
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      createdBy:
+        custom: []
+        name: createdBy
+        description: "Who created the sub category (usually the user's email)."
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      categoryIds:
+        custom: []
+        name: categoryIds
+        description: 'Ids of the food categories this sub category belongs to.'
+        required: true
+        example:
+          - 1
+          - 2
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image (png or jpg, max 3000 KB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Beef Burgers'
+      description: 'Beef patty burgers'
+      status: 2
+      createdBy: owner@example.com
+      categoryIds:
+        - 1
+        - 2
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 500
+        content: '{"message":"Call to undefined method App\\Http\\Controllers\\Api\\V1\\FooSubCategoryController::error()"}'
+        headers: []
+        description: 'Server error (error helper is not available in this controller)'
+    responseFields:
+      data.id:
+        custom: []
+        name: data.id
+        description: 'Sub category id.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.uuid:
+        custom: []
+        name: data.uuid
+        description: 'Sub category uuid.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/orderer/orderer-food-sub-categories/{orderer_food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Get a food sub category'
+      description: |-
+        Returns a sub category (looked up by uuid) with its active menu items that have an active price. Note: on
+        `/orderer/orderer-food-sub-categories/{id}` the route placeholder does not match the bound argument, so an empty
+        sub category is returned. The path placeholder (`{food_sub_category}` / `{id}`) is the sub category uuid,
+        e.g. `7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderer_food_sub_category:
+        custom: []
+        name: orderer_food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      orderer_food_sub_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FooSubCategory] 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the sub category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/orderer/orderer-food-sub-categories/{orderer_food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Update a food sub category'
+      description: |-
+        Updates a sub category (looked up by uuid), optionally replaces its image and re-syncs the food categories it
+        belongs to. With `PUT`, `title`, `description` and `categoryIds` are required. If anything fails the change is
+        rolled back and an empty 200 response is returned. Note: only `/restaurant/food-sub-categories/{id}` binds the
+        sub category; on the other routes the placeholder does not match the bound argument.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderer_food_sub_category:
+        custom: []
+        name: orderer_food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the sub category.'
+        required: true
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      orderer_food_sub_category: architecto
+      id: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The sub category title. Required for PUT requests.'
+        required: false
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The sub category description. Required for PUT requests.'
+        required: false
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      updatedBy:
+        custom: []
+        name: updatedBy
+        description: "Who updated the sub category (usually the user's email)."
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      categoryIds:
+        custom: []
+        name: categoryIds
+        description: 'Ids of the food categories the sub category belongs to. Required for PUT requests and needed by the code in practice.'
+        required: false
+        example:
+          - 1
+          - 2
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image (png or jpg, max 3000 KB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Beef Burgers'
+      description: 'Beef patty burgers'
+      status: 2
+      updatedBy: owner@example.com
+      categoryIds:
+        - 1
+        - 2
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'Update failed (rolled back)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The updated by field is required.","errors":{"updatedBy":["The updated by field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The updated sub category.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/orderer/orderer-food-sub-categories/{orderer_food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Delete a food sub category (not implemented)'
+      description: 'This endpoint is routed but not implemented: it performs no action and returns an empty 200 response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      orderer_food_sub_category:
+        custom: []
+        name: orderer_food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the sub category.'
+        required: true
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      orderer_food_sub_category: architecto
+      id: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'No action taken'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/food-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List food categories'
+      description: |-
+        Returns a paginated list (15 per page) of food categories that have at least one active menu item with an
+        active price. Each category includes its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. Available publicly (`/categories`, `/orderer/orderer-food-categories`)
+        and to restaurant users (`/restaurant/food-categories`).
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by exact category uuid.'
+        required: false
+        example: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'title[eq]':
+        custom: []
+        name: 'title[eq]'
+        description: 'Filter by exact category title.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'description[eq]':
+        custom: []
+        name: 'description[eq]'
+        description: 'Filter by exact description.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'createdBy[eq]':
+        custom: []
+        name: 'createdBy[eq]'
+        description: 'Filter by creator email.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'updatedBy[eq]':
+        custom: []
+        name: 'updatedBy[eq]'
+        description: 'Filter by last updater email.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number (15 items per page).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      includeSubcategories:
+        custom: []
+        name: includeSubcategories
+        description: 'Accepted for backwards compatibility but ignored; sub categories are always included.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+      'title[eq]': Burgers
+      'status[eq]': 2
+      page: 1
+      includeSubcategories: true
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}],"links":{"first":"https://moboeats.com/api/v1/categories?page=1","last":"https://moboeats.com/api/v1/categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://moboeats.com/api/v1/categories","per_page":15,"to":1,"total":1}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant (restaurant route only)'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The food categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].subCategories':
+        custom: []
+        name: 'data[].subCategories'
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].menus':
+        custom: []
+        name: 'data[].menus'
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      meta:
+        custom: []
+        name: meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/food-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a food category'
+      description: |-
+        Creates a new active food category (status is always set to `2`) and stores the optional image. The creator is
+        taken from the authenticated user, so the call fails with 403 when no user is authenticated (the public
+        `/categories` and `/orderer/orderer-food-categories` routes have no auth middleware). Returns the first page of
+        all categories (7 per page). Also used by admins via `POST /admin/categories/add`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title.'
+        required: true
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description.'
+        required: true
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Ignored; new categories are always created active (2).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      restaurant_id:
+        custom: []
+        name: restaurant_id
+        description: 'The id of the restaurant the category belongs to. Leave empty for a global category.'
+        required: false
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+      status: 2
+      restaurant_id: 3
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Attempt to read property \"email\" on null","data":""}'
+        headers: []
+        description: 'Error (e.g. unauthenticated or database error)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The categories on the current page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/food-categories/{food_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a food category'
+      description: |-
+        Returns a single food category with its sub categories and its menu items that belong to an approved,
+        operating restaurant and have an active price. On `GET /categories/{food_common_category}` the category is
+        looked up by uuid. Note: on the resource routes (`/orderer/orderer-food-categories/{id}`,
+        `/restaurant/food-categories/{id}`) the route placeholder does not match the bound argument, so an empty category is returned.
+        The path placeholder (`{food_common_category}` / `{id}`) is the category uuid, e.g. `0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_category:
+        custom: []
+        name: food_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"image":"https://moboeats.com/storage/category/images/burgers.png","subCategories":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FoodCommonCategory] 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.subCategories:
+        custom: []
+        name: data.subCategories
+        description: 'Sub categories of the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/food-categories/{food_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a food category'
+      description: |-
+        Updates the title, description and (optionally) the image of a food category, then returns the first page of
+        all categories (7 per page). With `PUT` both `title` and `description` are required; with `PATCH`/`POST` they
+        are optional (omitted values are saved as null). Also used by admins via `POST /admin/categories/update/{id}`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_category:
+        custom: []
+        name: food_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The numeric id of the food category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_category: architecto
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title. Required for PUT requests.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description. Required for PUT requests.'
+        required: false
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Call to a member function update() on null","data":""}'
+        headers: []
+        description: 'Category not found or other error'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/food-categories/{food_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a food category (not implemented)'
+      description: 'This endpoint is routed but not implemented: it performs no action and returns an empty 200 response.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_category:
+        custom: []
+        name: food_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the food category.'
+        required: true
+        example: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_category: architecto
+      id: 0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'No action taken'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/restaurant/food-sub-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'List food sub categories'
+      description: |-
+        Returns a paginated list (15 per page) of sub categories that have at least one active menu item with an
+        active price. Available publicly (`/sub-categories`, `/orderer/orderer-food-sub-categories`) and to restaurant
+        users (`/restaurant/food-sub-categories`).
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      'uuid[eq]':
+        custom: []
+        name: 'uuid[eq]'
+        description: 'Filter by exact sub category uuid.'
+        required: false
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'title[eq]':
+        custom: []
+        name: 'title[eq]'
+        description: 'Filter by exact title.'
+        required: false
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'description[eq]':
+        custom: []
+        name: 'description[eq]'
+        description: 'Filter by exact description.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'status[eq]':
+        custom: []
+        name: 'status[eq]'
+        description: 'Filter by status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'createdBy[eq]':
+        custom: []
+        name: 'createdBy[eq]'
+        description: 'Filter by creator.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'updatedBy[eq]':
+        custom: []
+        name: 'updatedBy[eq]'
+        description: 'Filter by last updater.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      includeSubcategories:
+        custom: []
+        name: includeSubcategories
+        description: 'Tries to eager load a `food_sub_categories` relation; sub categories have no such relation, so this currently causes a server error.'
+        required: false
+        example: null
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number (15 items per page).'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      'uuid[eq]': 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+      'title[eq]': 'Beef Burgers'
+      'status[eq]': 2
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}],"links":{"first":"https://moboeats.com/api/v1/sub-categories?page=1","last":"https://moboeats.com/api/v1/sub-categories?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/sub-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://moboeats.com/api/v1/sub-categories","per_page":15,"to":1,"total":1}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant (restaurant route only)'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The sub categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].image':
+        custom: []
+        name: 'data[].image'
+        description: 'Full URL of the sub category image (a default image when none is set).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      meta:
+        custom: []
+        name: meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/food-sub-categories
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Create a food sub category'
+      description: 'Creates a sub category, stores the optional image and attaches it to the given food categories.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The sub category title.'
+        required: true
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The sub category description.'
+        required: true
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      createdBy:
+        custom: []
+        name: createdBy
+        description: "Who created the sub category (usually the user's email)."
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      categoryIds:
+        custom: []
+        name: categoryIds
+        description: 'Ids of the food categories this sub category belongs to.'
+        required: true
+        example:
+          - 1
+          - 2
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image (png or jpg, max 3000 KB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Beef Burgers'
+      description: 'Beef patty burgers'
+      status: 2
+      createdBy: owner@example.com
+      categoryIds:
+        - 1
+        - 2
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 500
+        content: '{"message":"Call to undefined method App\\Http\\Controllers\\Api\\V1\\FooSubCategoryController::error()"}'
+        headers: []
+        description: 'Server error (error helper is not available in this controller)'
+    responseFields:
+      data.id:
+        custom: []
+        name: data.id
+        description: 'Sub category id.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.uuid:
+        custom: []
+        name: data.uuid
+        description: 'Sub category uuid.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/restaurant/food-sub-categories/{food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Get a food sub category'
+      description: |-
+        Returns a sub category (looked up by uuid) with its active menu items that have an active price. Note: on
+        `/orderer/orderer-food-sub-categories/{id}` the route placeholder does not match the bound argument, so an empty
+        sub category is returned. The path placeholder (`{food_sub_category}` / `{id}`) is the sub category uuid,
+        e.g. `7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_sub_category:
+        custom: []
+        name: food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_sub_category: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null,"menus":[{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","attributes":{"title":"Chicken Burger","description":"Grilled chicken burger with fries","createdBy":"owner@example.com","updatedBy":"owner@example.com","status":"2","preparation_time":"20","average_rating":4.5},"relationships":{"menuPrices":[{"id":6,"uuid":"c4d5e6f7-8a9b-4c0d-9e1f-2a3b4c5d6e7f","attributes":{"price":"12.50","description":"standard","status":"2"},"relationships":{"menu":{"id":4,"uuid":"9b1c2f4e-3a6d-4c8e-9f21-7d5e8a1b2c3d","title":"Chicken Burger"}}}],"restaurant":{"id":3,"uuid":"1e2d3c4b-5a69-4788-9a0b-c1d2e3f4a5b6","attributes":{"name":"Mama''s Kitchen","email":"info@mamaskitchen.com","phoneNo":"+447700900123","address":"12 High Street","city":"London","latitude":"51.5072","longitude":"-0.1276","logo":"https://moboeats.com/storage/restaurant/logos/mamas.png","status":"2","average_rating":4.2,"is_open":true},"relationships":{}},"orderItems":[],"orders_count":0,"total_orders_value":0}}]}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\FooSubCategory] 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.menus:
+        custom: []
+        name: data.menus
+        description: 'Active menu items in the sub category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/restaurant/food-sub-categories/{food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Update a food sub category'
+      description: |-
+        Updates a sub category (looked up by uuid), optionally replaces its image and re-syncs the food categories it
+        belongs to. With `PUT`, `title`, `description` and `categoryIds` are required. If anything fails the change is
+        rolled back and an empty 200 response is returned. Note: only `/restaurant/food-sub-categories/{id}` binds the
+        sub category; on the other routes the placeholder does not match the bound argument.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_sub_category:
+        custom: []
+        name: food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the sub category.'
+        required: true
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_sub_category: architecto
+      id: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The sub category title. Required for PUT requests.'
+        required: false
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The sub category description. Required for PUT requests.'
+        required: false
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      updatedBy:
+        custom: []
+        name: updatedBy
+        description: "Who updated the sub category (usually the user's email)."
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      categoryIds:
+        custom: []
+        name: categoryIds
+        description: 'Ids of the food categories the sub category belongs to. Required for PUT requests and needed by the code in practice.'
+        required: false
+        example:
+          - 1
+          - 2
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image (png or jpg, max 3000 KB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Beef Burgers'
+      description: 'Beef patty burgers'
+      status: 2
+      updatedBy: owner@example.com
+      categoryIds:
+        - 1
+        - 2
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":{"id":4,"uuid":"7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d","title":"Beef Burgers","image":"https://moboeats.com/storage/category/subcategory/beef.png","description":"Beef patty burgers","status":2,"createdBy":"admin@moboeats.com","updatedBy":null}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'Update failed (rolled back)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The updated by field is required.","errors":{"updatedBy":["The updated by field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The updated sub category.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/restaurant/food-sub-categories/{food_sub_category}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Delete a food sub category (not implemented)'
+      description: 'This endpoint is routed but not implemented: it performs no action and returns an empty 200 response.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      food_sub_category:
+        custom: []
+        name: food_sub_category
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The uuid of the sub category.'
+        required: true
+        example: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      food_sub_category: architecto
+      id: 7c6b5a49-3827-4165-9e0d-1c2b3a4f5e6d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '""'
+        headers: []
+        description: 'No action taken'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/restaurant/food-sub-categories/bulk
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: ''
+      subgroup: |-
+        Sub categories
+
+        Food sub categories (e.g. "Beef Burgers" under "Burgers"). A sub category can belong to several food categories.
+      subgroupDescription: ''
+      title: 'Bulk create food sub categories'
+      description: |-
+        Creates several sub categories at once. The request body is a JSON array; each item is created and attached
+        to its `categoryIds`. Only users with a restaurant may call this.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      '[]':
+        custom: []
+        name: '[]'
+        description: 'The sub categories to create.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      '[].title':
+        custom: []
+        name: '[].title'
+        description: 'The sub category title.'
+        required: true
+        example: 'Beef Burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      '[].description':
+        custom: []
+        name: '[].description'
+        description: 'The sub category description.'
+        required: true
+        example: 'Beef patty burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      '[].status':
+        custom: []
+        name: '[].status'
+        description: 'Status (1 = inactive, 2 = active).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      '[].createdBy':
+        custom: []
+        name: '[].createdBy'
+        description: 'Who created the sub category.'
+        required: true
+        example: owner@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      '[].categoryIds':
+        custom: []
+        name: '[].categoryIds'
+        description: 'Ids of the food categories the sub category belongs to.'
+        required: true
+        example:
+          - 1
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      -
+        title: 'Beef Burgers'
+        description: 'Beef patty burgers'
+        status: 2
+        createdBy: owner@example.com
+        categoryIds:
+          - 1
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '1'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The 0.title field is required.","errors":{"0.title":["The 0.title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 422
+        content: '{"data":"no_restaurant"}'
+        headers: []
+        description: 'Restaurant user without a restaurant'
+      -
+        custom: []
+        status: 500
+        content: '{"message":"Call to undefined method App\\Http\\Controllers\\Api\\V1\\FooSubCategoryController::error()"}'
+        headers: []
+        description: 'Server error (error helper is not available in this controller)'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/categories/add
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a food category'
+      description: |-
+        Creates a new active food category (status is always set to `2`) and stores the optional image. The creator is
+        taken from the authenticated user, so the call fails with 403 when no user is authenticated (the public
+        `/categories` and `/orderer/orderer-food-categories` routes have no auth middleware). Returns the first page of
+        all categories (7 per page). Also used by admins via `POST /admin/categories/add`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title.'
+        required: true
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description.'
+        required: true
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Ignored; new categories are always created active (2).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      restaurant_id:
+        custom: []
+        name: restaurant_id
+        description: 'The id of the restaurant the category belongs to. Leave empty for a global category.'
+        required: false
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+      status: 2
+      restaurant_id: 3
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Attempt to read property \"email\" on null","data":""}'
+        headers: []
+        description: 'Error (e.g. unauthenticated or database error)'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The categories on the current page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/categories/update/{id}'
+    metadata:
+      custom: []
+      groupName: 'Food Categories'
+      groupDescription: |-
+
+        Food (menu) categories such as "Burgers" or "Groceries". Categories group menu items and own a set of
+        sub categories. Global categories have no `restaurant_id`; restaurant specific ones belong to a restaurant.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a food category'
+      description: |-
+        Updates the title, description and (optionally) the image of a food category, then returns the first page of
+        all categories (7 per page). With `PUT` both `title` and `description` are required; with `PATCH`/`POST` they
+        are optional (omitted values are saved as null). Also used by admins via `POST /admin/categories/update/{id}`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The numeric id of the food category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The category title. Required for PUT requests.'
+        required: false
+        example: Burgers
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The category description. Required for PUT requests.'
+        required: false
+        example: 'Burgers and sandwiches'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'A new image for the category.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: Burgers
+      description: 'Burgers and sandwiches'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[{"id":1,"uuid":"0f8e2a3c-5b1d-4e7a-9c3f-2d6b8a1e4f70","title":"Burgers","description":"Burgers and sandwiches","status":2,"created_by":"admin@moboeats.com","updated_by":null,"image":"https://moboeats.com/storage/category/images/burgers.png","restaurant_id":null,"created_at":"2024-05-01T10:00:00.000000Z","updated_at":"2024-05-01T10:00:00.000000Z"}],"first_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","from":1,"last_page":1,"last_page_url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://moboeats.com/api/v1/restaurant/food-categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https://moboeats.com/api/v1/restaurant/food-categories","per_page":7,"prev_page_url":null,"to":1,"total":1}}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Call to a member function update() on null","data":""}'
+        headers: []
+        description: 'Category not found or other error'
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The title field is required.","errors":{"title":["The title field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Laravel paginator (7 per page) of all food categories.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

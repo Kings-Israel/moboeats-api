@@ -16,16 +16,68 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * @group Supplements Management
+ * @group Supplements
  *
- * Supplements API resource
+ * Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+ * endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
  */
 class SupplementController extends Controller
 {
     use HttpResponses;
 
     /**
-     * Display a listing of supplements.
+     * List supplements
+     *
+     * Returns a paginated list of supplements. Guests and regular users only see available supplements.
+     * Authenticated users with role `admin` or `supplements admin` see all supplements (with `orders_count`),
+     * can filter by `search`/`supplier`, and additionally receive the list of suppliers and categories.
+     *
+     * @queryParam per_page integer Number of items per page. Example: 15
+     * @queryParam page integer Page number. Example: 1
+     * @queryParam search string Admin only. Filter supplements whose name contains this text. Example: protein
+     * @queryParam supplier integer Admin only. Filter by supplier ID. Example: 1
+     *
+     * @response 200 scenario="Customer / guest" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "supplements": {
+     *       "data": [
+     *         {
+     *           "id": 1,
+     *           "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"},
+     *           "name": "Whey Protein",
+     *           "supplement_category": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"},
+     *           "currency": "KSH",
+     *           "price": 2500,
+     *           "measuring_unit": "kilograms",
+     *           "description": "Premium whey protein powder.",
+     *           "images": [{"id": 1, "supplement_id": 1, "image": "https://moboeats.com/storage/supplements/whey.jpg", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}]
+     *         }
+     *       ],
+     *       "links": {"first": "https://moboeats.com/api/v1/orderer/supplements?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements?page=1", "prev": null, "next": null},
+     *       "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements", "per_page": 15, "to": 1, "total": 1}
+     *     }
+     *   }
+     * }
+     * @response 200 scenario="Admin / supplements admin" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "supplements": {
+     *       "data": [
+     *         {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "supplement_category": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}, "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": true, "orders_count": 4, "images": []}
+     *       ],
+     *       "links": {"first": "https://moboeats.com/api/v1/admin/supplements?page=1", "last": "https://moboeats.com/api/v1/admin/supplements?page=1", "prev": null, "next": null},
+     *       "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/admin/supplements", "per_page": 15, "to": 1, "total": 1}
+     *     },
+     *     "suppliers": [{"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}],
+     *     "categories": [{"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}]
+     *   }
+     * }
+     * @responseField data.supplements object Paginated supplements (data, links, meta).
+     * @responseField data.suppliers object[] Admin only. All suppliers.
+     * @responseField data.categories object[] Admin only. All supplement categories.
      */
     public function index(Request $request)
     {
@@ -66,6 +118,33 @@ class SupplementController extends Controller
         }
     }
 
+    /**
+     * Create a supplement
+     *
+     * Admin endpoint. Registers a new supplement with its images and logs the activity.
+     *
+     * @bodyParam supplier_id integer required ID of an existing supplement supplier. Example: 1
+     * @bodyParam category_id integer required ID of the supplement category. Example: 1
+     * @bodyParam name string required Supplement name. Example: Whey Protein
+     * @bodyParam price number required Price per measuring unit. Example: 2500
+     * @bodyParam measuring_unit string required One of: `kilograms`, `pounds`, `litres`. Example: kilograms
+     * @bodyParam images file[] required At least one image (jpg or png).
+     * @bodyParam description string Supplement description. Example: Premium whey protein powder.
+     * @bodyParam prescription string Usage / prescription notes. Example: One scoop daily.
+     * @bodyParam category string Free-text category label. Example: Fitness
+     *
+     * @response 200 scenario="Created" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": null, "orders_count": null}
+     * }
+     * @response 400 scenario="Validation error" {
+     *   "status": "Error has occured...",
+     *   "message": "Invalid data",
+     *   "data": {"supplier_id": ["The supplier id field is required."]}
+     * }
+     * @responseField data object The created supplement.
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -133,6 +212,21 @@ class SupplementController extends Controller
         return $this->success('', 'Supplement deleted successfully');
     }
 
+    /**
+     * Toggle supplement availability
+     *
+     * Admin endpoint. Flips the supplement's `is_available` flag.
+     *
+     * @urlParam supplement integer required The numeric ID of the supplement. Example: 1
+     *
+     * @response 200 scenario="Updated" {
+     *   "status": "Request was succesful",
+     *   "message": "Supplement updated successfully",
+     *   "data": {"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": false, "orders_count": null}
+     * }
+     * @response 404 scenario="Not found" {"message": "No query results for model [App\\Models\\Supplement] 99"}
+     * @responseField data.is_available boolean The new availability state (shown to admins).
+     */
     public function updateSupplementStatus(Supplement $supplement)
     {
         $supplement->update([
@@ -143,7 +237,27 @@ class SupplementController extends Controller
     }
 
     /**
-     * List of all suppliers
+     * List supplement suppliers
+     *
+     * Returns a paginated list of supplement suppliers with their supplements. Public on the orderer routes;
+     * admins also see `status` and `orders_count`.
+     *
+     * @queryParam per_page integer Number of items per page. Example: 15
+     * @queryParam page integer Page number. Example: 1
+     *
+     * @response 200 {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "data": [
+     *       {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "supplements": [{"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder."}], "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+     *     ],
+     *     "links": {"first": "https://moboeats.com/api/v1/orderer/supplements/suppliers?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements/suppliers?page=1", "prev": null, "next": null},
+     *     "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements/suppliers", "per_page": 15, "to": 1, "total": 1}
+     *   }
+     * }
+     * @responseField data.data object[] The suppliers on this page.
+     * @responseField data.meta object Pagination metadata.
      */
     public function suppliers(Request $request)
     {
@@ -154,6 +268,27 @@ class SupplementController extends Controller
         return $this->success($suppliers);
     }
 
+    /**
+     * Create a supplement supplier
+     *
+     * Admin endpoint. Registers a new supplier with an image and logs the activity.
+     *
+     * @bodyParam name string required Supplier name. Example: HealthPlus Ltd
+     * @bodyParam image file required Supplier logo/image.
+     * @bodyParam location string Supplier location. Example: Nairobi
+     *
+     * @response 200 scenario="Created" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": null, "orders_count": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+     * }
+     * @response 400 scenario="Validation error" {
+     *   "status": "Error has occured...",
+     *   "message": "Invalid data",
+     *   "data": {"name": ["The name field is required."]}
+     * }
+     * @responseField data object The created supplier.
+     */
     public function storeSupplier(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -176,6 +311,21 @@ class SupplementController extends Controller
         return $this->success(new SupplementSupplierResource($supplier));
     }
 
+    /**
+     * Toggle supplier status
+     *
+     * Admin endpoint. Switches the supplier's `status` between `active` and `inactive`.
+     *
+     * @urlParam supplier integer required The numeric ID of the supplier. Example: 1
+     *
+     * @response 200 scenario="Updated" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "supplements": [], "status": "inactive", "orders_count": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+     * }
+     * @response 404 scenario="Not found" {"message": "No query results for model [App\\Models\\SupplementSupplier] 99"}
+     * @responseField data.status string The new status (`active` or `inactive`).
+     */
     public function updateSupplierStatus(SupplementSupplier $supplier)
     {
         $supplier->update([
@@ -186,7 +336,36 @@ class SupplementController extends Controller
     }
 
     /**
-     * Supplement Orders
+     * List supplement orders
+     *
+     * Returns paginated supplement orders. Users with role `admin` or `supplements admin` see all orders;
+     * other users see only their own orders.
+     *
+     * @queryParam per_page integer Number of items per page. Example: 15
+     * @queryParam page integer Page number. Example: 1
+     *
+     * @response 200 {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "data": [
+     *       {
+     *         "id": 1,
+     *         "user": {"id": 5, "uuid": "9b1d3c2e-1a2b-4c5d-8e9f-0a1b2c3d4e5f", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": null, "avatar": null, "relationships": {"orderer": null}, "type": "orderer", "referral_code": null, "is_guided": true},
+     *         "supplement": {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder."},
+     *         "quantity": 2,
+     *         "currency": "KSH",
+     *         "amount": 5000,
+     *         "status": "Awaiting Confirmation",
+     *         "created_at": "2024-11-01T10:00:00.000000Z"
+     *       }
+     *     ],
+     *     "links": {"first": "https://moboeats.com/api/v1/orderer/supplements/orders?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements/orders?page=1", "prev": null, "next": null},
+     *     "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements/orders", "per_page": 15, "to": 1, "total": 1}
+     *   }
+     * }
+     * @responseField data.data object[] The supplement orders on this page.
+     * @responseField data.meta object Pagination metadata.
      */
     public function orders(Request $request)
     {
@@ -200,9 +379,26 @@ class SupplementController extends Controller
     }
 
     /**
-     * Create a new supplement order
-     * @bodyParam supplement_id int The ID of the supplement
-     * @bodyParam quantity int The quantity of the order
+     * Create a supplement order
+     *
+     * Places a supplement order for the authenticated user. Payment is done separately via
+     * `GET v1/orderer/supplements/orders/{id}/pay`.
+     *
+     * @bodyParam supplement_id integer required The ID of the supplement. Example: 1
+     * @bodyParam quantity integer required The quantity ordered. Example: 2
+     *
+     * @response 200 scenario="Created" {
+     *   "status": "Request was succesful",
+     *   "message": "Order created successfully",
+     *   "data": {"id": 1, "quantity": 2, "currency": "KSH", "amount": 5000, "status": "Awaiting Confirmation", "created_at": "2024-11-01T10:00:00.000000Z"}
+     * }
+     * @response 400 scenario="Validation error" {
+     *   "status": "Error has occured...",
+     *   "message": "Invalid Data",
+     *   "data": {"supplement_id": ["The supplement id field is required."]}
+     * }
+     * @responseField data.id integer The order ID.
+     * @responseField data.amount number Total order amount.
      */
     public function storeOrder(Request $request)
     {
@@ -230,9 +426,29 @@ class SupplementController extends Controller
     }
 
     /**
-     * Update Order Status
-     * @urlParam id The ID of the order
-     * @bodyParam status string required The status of the order(confirmed)
+     * Update supplement order status
+     *
+     * Admin endpoint. Updates the order status and courier details. Setting `delivered` or `on delivery`
+     * sends a notification to the customer; `confirmed` is stored as `delivered`.
+     *
+     * @urlParam id integer required The numeric ID of the supplement order. Example: 1
+     * @bodyParam status string required New status. One of: `delivered`, `cancelled`, `on delivery`, `awaiting confirmation`, `confirmed`. Example: on delivery
+     * @bodyParam expected_delivery_date string Expected delivery date. Example: 2024-11-05
+     * @bodyParam courier_name string Courier contact name. Example: John Rider
+     * @bodyParam courier_email string Courier contact email. Example: courier@example.com
+     * @bodyParam courier_phone string Courier contact phone. Example: 254700000000
+     *
+     * @response 200 scenario="Updated" {
+     *   "status": "Request was succesful",
+     *   "message": "Order Status updated successfully",
+     *   "data": {"id": 1, "supplement": {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": true}, "quantity": 2, "currency": "KSH", "amount": 5000, "status": "On Delivery", "created_at": "2024-11-01T10:00:00.000000Z"}
+     * }
+     * @response 400 scenario="Invalid status" {
+     *   "status": "Error has occured...",
+     *   "message": "Invalid Order Status",
+     *   "data": {"status": ["The selected status is invalid."]}
+     * }
+     * @responseField data.status string The updated order status (title case).
      */
     public function updateOrderStatus(Request $request, $id)
     {
@@ -281,10 +497,36 @@ class SupplementController extends Controller
     }
 
     /**
-     * Display listing of supplement categories
+     * List supplement categories
      *
-     * @queryParam search string Text to search categories
-     * @queryParam perPage int Number of items per page
+     * Returns a paginated list of supplement categories, each with its supplements.
+     *
+     * @queryParam search string Filter categories whose name contains this text. Example: protein
+     * @queryParam perPage integer Number of items per page. Example: 15
+     * @queryParam page integer Page number. Example: 1
+     *
+     * @response 200 {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "current_page": 1,
+     *     "data": [
+     *       {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z", "supplements": [{"id": 1, "supplement_supplier_id": 1, "supplement_category_id": 1, "name": "Whey Protein", "description": "Premium whey protein powder.", "is_available": true, "price_per_quantity": 2500, "measuring_unit": "kilograms"}]}
+     *     ],
+     *     "first_page_url": "https://moboeats.com/api/v1/orderer/supplements/categories?page=1",
+     *     "from": 1,
+     *     "last_page": 1,
+     *     "last_page_url": "https://moboeats.com/api/v1/orderer/supplements/categories?page=1",
+     *     "links": [],
+     *     "next_page_url": null,
+     *     "path": "https://moboeats.com/api/v1/orderer/supplements/categories",
+     *     "per_page": 15,
+     *     "prev_page_url": null,
+     *     "to": 1,
+     *     "total": 1
+     *   }
+     * }
+     * @responseField data.data object[] Categories on this page with their supplements.
      */
     public function categories(Request $request)
     {
@@ -301,9 +543,19 @@ class SupplementController extends Controller
     }
 
     /**
-     * Show Details of a supplement category
+     * Get a supplement category
      *
-     * @urlParam ID int The ID of the category
+     * Returns a supplement category with its supplements.
+     *
+     * @urlParam supplement_category integer required The numeric ID of the category. Example: 1
+     *
+     * @response 200 {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z", "supplements": [{"id": 1, "supplement_supplier_id": 1, "supplement_category_id": 1, "name": "Whey Protein", "description": "Premium whey protein powder.", "is_available": true, "price_per_quantity": 2500, "measuring_unit": "kilograms"}]}
+     * }
+     * @response 404 scenario="Not found" {"message": "No query results for model [App\\Models\\SupplementCategory] 99"}
+     * @responseField data.supplements object[] Supplements in this category.
      */
     public function category(SupplementCategory $supplement_category)
     {

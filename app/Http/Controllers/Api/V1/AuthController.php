@@ -28,20 +28,88 @@ use App\Helpers\NumberGenerator;
 use App\Models\Scopes\UserCountryScope;
 
 /**
- * @group Authentication Management
+ * @group Authentication
  *
- * User API resource
+ * Endpoints for registering, logging in (email/password or phone OTP), logging out,
+ * resetting passwords and fetching the authenticated user.
  */
 class AuthController extends Controller
 {
     use HttpResponses;
 
     /**
-     * Login through email and password
+     * Login with email and password
      *
-     * @bodyParam email string required The email of the user
-     * @bodyParam password string required The password of the user
-     * @bodyParam userType string required The type of user
+     * Authenticates a user with email and password and issues a Sanctum API token for the given user type.
+     * Logging in as `orderer` automatically adds the orderer role to the user if missing. The user's
+     * `role_id` is set to the selected user type and the device token is updated when supplied.
+     * Riders whose profile is awaiting approval are rejected.
+     *
+     * @bodyParam email string required The email of the user. Example: jane@example.com
+     * @bodyParam password string required The password of the user. Example: secret123
+     * @bodyParam userType string required The type of user logging in. One of `orderer`, `restaurant`, `rider`, `restaurant employee`. Example: orderer
+     * @bodyParam device_token string The push notification (FCM) device token. Example: fcm-device-token-123
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *       "name": "Jane Doe",
+     *       "email": "jane@example.com",
+     *       "phone_number": "254712345678",
+     *       "role": "orderer",
+     *       "avatar": null,
+     *       "relationships": {
+     *         "orderer": {
+     *           "id": 1,
+     *           "uuid": "9b1f2c3d-0000-4a6b-8c7d-1e2f3a4b5c6d",
+     *           "attributes": {
+     *             "name": "Jane Doe",
+     *             "email": "jane@example.com",
+     *             "phoneNo": "254712345678",
+     *             "address": "",
+     *             "city": null,
+     *             "state": null,
+     *             "mapLocation": null,
+     *             "image": null,
+     *             "status": "2"
+     *           },
+     *           "relationships": {
+     *             "user": {
+     *               "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *               "name": "Jane Doe",
+     *               "email": "jane@example.com"
+     *             }
+     *           }
+     *         }
+     *       },
+     *       "type": null,
+     *       "referral_code": null,
+     *       "is_guided": false
+     *     },
+     *     "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789",
+     *     "role": "orderer",
+     *     "restaurants": null,
+     *     "restaurant": null,
+     *     "country": "",
+     *     "country_code": ""
+     *   }
+     * }
+     * @response 401 scenario="Invalid credentials" {"status": "Error has occured...", "message": "Unauthorized", "data": ""}
+     * @response 401 scenario="Account deactivated" {"status": "Error has occured...", "message": "Oops! Your account has been deleted or deactivated", "data": ""}
+     * @response 403 scenario="Rider awaiting approval" {"status": "Error has occured...", "message": "Rider profile awaiting approval. Contact Admin for Assistance.", "data": "Rider Profile"}
+     * @response 403 scenario="Validation or other error" {"status": "Error has occured...", "message": "The email field is required.", "data": ""}
+     *
+     * @responseField data.user object The authenticated user (UserResource).
+     * @responseField data.token string The Sanctum bearer token to use in the `Authorization` header.
+     * @responseField data.role string The user type the token was issued for.
+     * @responseField data.restaurants object[] The user's restaurants (only when `userType` is `restaurant`, otherwise null).
+     * @responseField data.restaurant object The employer restaurant (only when `userType` is `restaurant employee`, otherwise null).
+     * @responseField data.country string Country of the user's restaurant (restaurant owners/employees only).
+     * @responseField data.country_code string Country code of the user's restaurant (restaurant owners/employees only).
      */
     public function login(Request $request)
     {
@@ -123,13 +191,79 @@ class AuthController extends Controller
     }
 
     /**
-     * Registration
-     * @bodyParam email string required The email of the user
-     * @bodyParam password string required The password of the user
-     * @bodyParam userType string required The type of user
-     * @bodyParam phone string required The type of user
-     * @bodyParam latitude string optional The latitude of the user. Example -1.2847473
-     * @bodyParam longitude string optional The longitude of the user. Example 36.3878745
+     * Register a new user
+     *
+     * Creates a user account (or reuses an existing one with the same email and phone), assigns the role
+     * matching `userType`, creates the related orderer/rider profile, and returns a Sanctum token.
+     * If a valid `referral_code` is supplied, its usage counter is incremented.
+     *
+     * @bodyParam name string required The full name of the user. Must not exceed 255 characters. Example: Jane Doe
+     * @bodyParam email string required A unique email address. Example: jane@example.com
+     * @bodyParam password string required The password (Laravel default password rules). Example: secret123
+     * @bodyParam password_confirmation string required Must match `password`. Example: secret123
+     * @bodyParam userType string required The type of user. One of `orderer`, `restaurant`, `rider`. Example: orderer
+     * @bodyParam phone string required A unique phone number. Example: 254712345678
+     * @bodyParam image file An optional avatar image.
+     * @bodyParam otp string Optional OTP (currently unused). Example: 123456
+     * @bodyParam device_token string The push notification (FCM) device token. Example: fcm-device-token-123
+     * @bodyParam referral_code string A referral code used to sign up. Example: REF12345
+     * @bodyParam type string Restaurant account type (only used when `userType` is `restaurant`). Example: restaurant
+     * @bodyParam address string Rider address (only used when `userType` is `rider`). Example: 12 Moi Avenue
+     * @bodyParam city string Rider city (only used when `userType` is `rider`). Example: Nairobi
+     * @bodyParam state string Rider state/county (only used when `userType` is `rider`). Example: Nairobi
+     * @bodyParam postal_code string Rider postal code (only used when `userType` is `rider`). Example: 00100
+     * @bodyParam vehicle_license_plate string Rider vehicle license plate (only used when `userType` is `rider`). Example: KDA 123A
+     * @bodyParam paypal_email string Rider PayPal email (only used when `userType` is `rider`). Example: rider@example.com
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *       "name": "Jane Doe",
+     *       "email": "jane@example.com",
+     *       "phone_number": "254712345678",
+     *       "role": "orderer",
+     *       "avatar": null,
+     *       "relationships": {
+     *         "orderer": {
+     *           "id": 1,
+     *           "uuid": "9b1f2c3d-0000-4a6b-8c7d-1e2f3a4b5c6d",
+     *           "attributes": {
+     *             "name": "Jane Doe",
+     *             "email": "jane@example.com",
+     *             "phoneNo": "254712345678",
+     *             "address": "",
+     *             "city": null,
+     *             "state": null,
+     *             "mapLocation": null,
+     *             "image": null,
+     *             "status": "2"
+     *           },
+     *           "relationships": {
+     *             "user": {
+     *               "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *               "name": "Jane Doe",
+     *               "email": "jane@example.com"
+     *             }
+     *           }
+     *         }
+     *       },
+     *       "type": null,
+     *       "referral_code": null,
+     *       "is_guided": false
+     *     },
+     *     "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789"
+     *   }
+     * }
+     * @response 401 scenario="Unknown user type" {"status": "Error has occured...", "message": "Unknown user type: orderer", "data": ""}
+     * @response 403 scenario="Server error" {"status": "Error has occured...", "message": "SQLSTATE[23000]: Integrity constraint violation", "data": ""}
+     * @response 422 scenario="Validation error" {"message": "An account with the same email already exists", "errors": {"email": ["An account with the same email already exists"]}}
+     *
+     * @responseField data.user object The newly registered user (UserResource).
+     * @responseField data.token string The Sanctum bearer token.
      */
     public function register(StoreUserRequest $request)
     {
@@ -257,6 +391,13 @@ class AuthController extends Controller
 
     /**
      * Logout
+     *
+     * Revokes all API tokens of the authenticated user and clears their active role.
+     *
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"message": "Successfully logged out."}}
+     * @response 403 scenario="Error" {"status": "Error has occured...", "message": "Something went wrong", "data": ""}
+     *
+     * @responseField data.message string Confirmation message.
      */
     public function logout()
     {
@@ -276,10 +417,17 @@ class AuthController extends Controller
     }
 
     /**
-     * Forgot Password
+     * Request a password reset code
      *
-     * @bodyParam email The email of the user
-     * @bodyParam phone_number The phone number of the user
+     * Generates (or reuses) a 6-digit password reset code and sends it by email when `email` is given,
+     * otherwise by SMS to `phone_number`. One of `email` or `phone_number` is required.
+     *
+     * @bodyParam email string The email of the user. Required if `phone_number` is not provided. Example: jane@example.com
+     * @bodyParam phone_number string The phone number of the user. Required if `email` is not provided. Example: 254712345678
+     *
+     * @response 200 scenario="Code sent" {"status": "Request was succesful", "message": "Password reset code sent successfully", "data": ""}
+     * @response 403 scenario="Validation error" {"status": "Error has occured...", "message": {"email": ["The email field is required when phone number is not present."], "phone_number": ["The phone number field is required when email is not present."]}, "data": "Auth Error"}
+     * @response 404 scenario="User not found" {"status": "Error has occured...", "message": "User with emailjane@example.com was not found", "data": "Auth Error"}
      */
     public function forgotPassword(Request $request)
     {
@@ -331,9 +479,15 @@ class AuthController extends Controller
     /**
      * Reset password
      *
-     * @bodyParam code The Verification OTP code
-     * @bodyParam password The new password to be set
-     * @bodyParam password_confirmation The new password confirmation
+     * Resets the user's password using the code received from the forgot-password endpoint. The code is consumed on success.
+     *
+     * @bodyParam code string required The password reset code. Example: 482913
+     * @bodyParam password string required The new password. Example: newSecret123
+     * @bodyParam password_confirmation string required The new password confirmation; must match `password`. Example: newSecret123
+     *
+     * @response 200 scenario="Password reset" {"status": "Request was succesful", "message": "Password was reset successfully.", "data": ""}
+     * @response 403 scenario="Validation error" {"status": "Error has occured...", "message": {"code": ["The code field is required."]}, "data": "Reset Password Error"}
+     * @response 403 scenario="Invalid code" {"status": "Error has occured...", "message": "Invalid Credentials", "data": "Password Reset Error"}
      */
     public function resetPassword(Request $request)
     {
@@ -365,6 +519,43 @@ class AuthController extends Controller
 
     /**
      * Get the authenticated user
+     *
+     * Returns the raw authenticated user model (including appended rider/order statistics attributes).
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *       "name": "Jane Doe",
+     *       "email": "jane@example.com",
+     *       "phone_number": "254712345678",
+     *       "user_type": "orderer",
+     *       "role_id": "orderer",
+     *       "status": 2,
+     *       "latitude": null,
+     *       "longitude": null,
+     *       "device_token": "fcm-device-token-123",
+     *       "image": null,
+     *       "country": "Kenya",
+     *       "country_code": "KE",
+     *       "is_guided": false,
+     *       "email_verified_at": null,
+     *       "created_at": "2024-01-01T10:00:00.000000Z",
+     *       "updated_at": "2024-01-01T10:00:00.000000Z",
+     *       "total_rider_tips": 0,
+     *       "rider_last_delivery": null,
+     *       "total_rider_deliveries": 0,
+     *       "amount_spent": 0,
+     *       "latest_order": null,
+     *       "county": null
+     *     }
+     *   }
+     * }
+     *
+     * @responseField data.user object The authenticated user model.
      */
     public function authUser()
     {
@@ -374,12 +565,46 @@ class AuthController extends Controller
     }
 
     /**
-     * Login through OTP
+     * Request an OTP login code
      *
-     * @bodyParam phone_number string required The phone number of the user. Example 44374673827
-     * @bodyParam device_token string optional The device token
-     * @bodyParam latitude string optional The latitude of the user. Example -1.2847473
-     * @bodyParam longitude string optional The longitude of the user. Example 36.3878745
+     * Finds or creates a user with the given phone number, generates a one-time verification code and sends it by SMS.
+     * When latitude/longitude are provided the user's country is resolved via Google geocoding. Complete the login
+     * with the verify OTP endpoint.
+     *
+     * @bodyParam phone_number string required The phone number of the user. Example: 254712345678
+     * @bodyParam userType string The user type stored on newly created users. One of `orderer`, `restaurant`, `rider`. Example: orderer
+     * @bodyParam device_token string The push notification (FCM) device token. Example: fcm-device-token-123
+     * @bodyParam latitude string The latitude of the user. Example: -1.2847473
+     * @bodyParam longitude string The longitude of the user. Example: 36.3878745
+     *
+     * @response 200 scenario="Code sent" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *       "name": null,
+     *       "email": null,
+     *       "phone_number": "254712345678",
+     *       "role": null,
+     *       "avatar": null,
+     *       "relationships": {
+     *         "orderer": null
+     *       },
+     *       "type": null,
+     *       "referral_code": null,
+     *       "is_guided": false
+     *     },
+     *     "code": "482913"
+     *   }
+     * }
+     * @response 400 scenario="Missing phone number" {"status": "Error has occured...", "message": "Phone number is required", "data": "Authentication"}
+     * @response 401 scenario="Account deactivated" {"status": "Error has occured...", "message": "Oops! Your account has been deleted or deactivated", "data": ""}
+     * @response 403 scenario="Server error" {"status": "Error has occured...", "message": "Something went wrong", "data": ""}
+     *
+     * @responseField data.user object The user (UserResource).
+     * @responseField data.code string The generated OTP code (also sent by SMS).
      */
     public function otpLogin(Request $request)
     {
@@ -476,10 +701,74 @@ class AuthController extends Controller
     }
 
     /**
-     * Verify OTP
+     * Verify OTP and log in
      *
-     * @bodyParam code string required The phone number of the user
-     * @bodyParam userType string required The type of user logging in
+     * Verifies the OTP code sent by the OTP login endpoint and issues a Sanctum token for the given user type.
+     * Riders must have a rider profile; riders awaiting approval receive a 200 response whose `message` is `403`.
+     *
+     * @bodyParam code string required The OTP code received by SMS. Example: 482913
+     * @bodyParam userType string required The type of user logging in. One of `orderer`, `restaurant`, `rider`. Example: orderer
+     * @bodyParam device_token string The push notification (FCM) device token. Example: fcm-device-token-123
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *       "name": "Jane Doe",
+     *       "email": "jane@example.com",
+     *       "phone_number": "254712345678",
+     *       "role": "orderer",
+     *       "avatar": null,
+     *       "relationships": {
+     *         "orderer": {
+     *           "id": 1,
+     *           "uuid": "9b1f2c3d-0000-4a6b-8c7d-1e2f3a4b5c6d",
+     *           "attributes": {
+     *             "name": "Jane Doe",
+     *             "email": "jane@example.com",
+     *             "phoneNo": "254712345678",
+     *             "address": "",
+     *             "city": null,
+     *             "state": null,
+     *             "mapLocation": null,
+     *             "image": null,
+     *             "status": "2"
+     *           },
+     *           "relationships": {
+     *             "user": {
+     *               "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+     *               "name": "Jane Doe",
+     *               "email": "jane@example.com"
+     *             }
+     *           }
+     *         }
+     *       },
+     *       "type": null,
+     *       "referral_code": null,
+     *       "is_guided": false
+     *     },
+     *     "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789",
+     *     "role": "orderer",
+     *     "restaurants": null,
+     *     "restaurant": null,
+     *     "country": "",
+     *     "country_code": ""
+     *   }
+     * }
+     * @response 200 scenario="Rider awaiting approval" {"status": "Request was succesful", "message": 403, "data": ["Rider profile awaiting approval"]}
+     * @response 400 scenario="Validation error" {"status": "Error has occured...", "message": [{"code": ["The code field is required."]}], "data": "Authentication"}
+     * @response 400 scenario="Invalid code" {"status": "Error has occured...", "message": "Invalid Code", "data": "Authentication"}
+     * @response 400 scenario="Rider profile missing" {"status": "Error has occured...", "message": "Complete your rider profile.", "data": "Rider profile not complete"}
+     *
+     * @responseField data.user object The authenticated user (UserResource).
+     * @responseField data.token string The Sanctum bearer token.
+     * @responseField data.role string The user type the token was issued for.
+     * @responseField data.restaurants object[] The user's restaurants (only when `userType` is `restaurant`, otherwise null).
+     * @responseField data.country string Country of the user's restaurant (restaurant owners/employees only).
+     * @responseField data.country_code string Country code of the user's restaurant (restaurant owners/employees only).
      */
     public function verifyOtp(Request $request)
     {
@@ -551,7 +840,11 @@ class AuthController extends Controller
     }
 
     /**
-     * Delete account
+     * Account deletion page
+     *
+     * Returns the HTML account deletion request page (not JSON). The actual deletion is confirmed via the web form.
+     *
+     * @response 200 scenario="HTML page" <<html>> The account deletion HTML page.
      */
     public function delete()
     {

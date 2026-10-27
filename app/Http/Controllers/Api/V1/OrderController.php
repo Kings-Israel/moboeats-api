@@ -46,14 +46,44 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 /**
- * @group Customer Order Management
+ * @group Orders
  *
- * Customer Order API resource
+ * Customer and restaurant order endpoints: placing orders and dine-in reservations, listing and viewing orders,
+ * updating order/reservation status, assigning tables and riders, and exporting orders.
  */
 class OrderController extends Controller
 {
     use HttpResponses;
 
+    /**
+     * List orders
+     *
+     * Returns the authenticated user's orders, newest first, paginated 10 per page. Customers (`orderer`) see their own
+     * orders; users with role `restaurant` see orders of all their restaurants; `restaurant employee` users see orders
+     * of the restaurant they work for. The search/date/delivery filters apply only to restaurant owners and employees
+     * (booking date filters only to restaurant owners).
+     *
+     * @queryParam uuid[eq] string Filter by exact order uuid. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     * @queryParam status[eq] string Filter by exact order status. Example: 2
+     * @queryParam userId[eq] integer Filter by user id. Example: 12
+     * @queryParam restaurantId[eq] integer Filter by restaurant id. Example: 3
+     * @queryParam search string Restaurant users only. Search by order uuid, customer name or (owners only) restaurant name. Example: Jane
+     * @queryParam from_created_at string Restaurant users only. Orders created on or after this date. Example: 2024-01-01
+     * @queryParam to_created_at string Restaurant users only. Orders created on or before this date. Example: 2024-01-31
+     * @queryParam delivery string Restaurant users only. Filter by delivery flag (`1` delivery, `0` dine-in). Example: 1
+     * @queryParam from_booking_date string Restaurant owners only. Orders with booking time on or after this date. Example: 2024-01-01
+     * @queryParam to_booking_date string Restaurant owners only. Orders with booking time on or before this date. Example: 2024-01-31
+     * @queryParam page integer Page number. Example: 1
+     *
+     * @response 200 scenario="Success" {"data":[{"id":10,"uuid":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d","attributes":{"userId":12,"totalAmount":"25.50","delivery":true,"deliveryFee":"3.20","deliveryAddress":"221B Baker Street, London","deliveryStatus":null,"deliveryLat":51.5237,"deliveryLng":-0.1585,"createdAt":"Mon, Jan 15, 2024 10:00 AM","status":"1","paymentStatus":"Pending","service_charge":"1.20","booking_time":null,"discount":"0","preparation_time":25,"restaurant_name":"Mama's Kitchen","user_name":"Jane Doe"},"relationships":{"user":{"id":12,"uuid":"0f8fad5b-d9cb-469f-a165-70867728950e","name":"Jane Doe","email":"jane@example.com","phone_number":"+447700900123","role":"orderer"},"restaurant":{"id":3,"uuid":"6fa459ea-ee8a-3ca4-894e-db77e160355e","attributes":{"name":"Mama's Kitchen"}},"orderItems":[{"id":1,"uuid":"1b4e28ba-2fa1-11d2-883f-0016d3cca427","attributes":{"orderId":10,"menuId":4,"quantity":2,"subtotal":"20.00","status":"1"},"relationships":{"menu":{"id":4,"title":"Chicken Burger"}}}],"orphanage":null}}],"links":{"first":"https://api.moboeats.com/api/v1/orderer/orders?page=1","last":"https://api.moboeats.com/api/v1/orderer/orders?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https://api.moboeats.com/api/v1/orderer/orders?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https://api.moboeats.com/api/v1/orderer/orders","per_page":10,"to":1,"total":1}}
+     * @response 401 scenario="Unauthorized" {"status":"Error has occured...","message":"Unauthorized","data":""}
+     *
+     * @responseField data object[] The orders.
+     * @responseField data[].uuid string Order uuid.
+     * @responseField data[].attributes.totalAmount string Order total.
+     * @responseField data[].attributes.paymentStatus string `Paid` or `Pending`.
+     * @responseField meta object Pagination metadata.
+     */
     public function index(Request $request)
     {
         $filter =  new OrderFilter();
@@ -152,6 +182,17 @@ class OrderController extends Controller
         }
     }
 
+    /**
+     * Export orders to Excel
+     *
+     * Restaurant endpoint that generates and downloads an `.xlsx` export of orders, optionally filtered.
+     *
+     * @queryParam search string Search term passed to the export. Example: Jane
+     * @queryParam from_created_at string Orders created on or after this date. Example: 2024-01-01
+     * @queryParam to_created_at string Orders created on or before this date. Example: 2024-01-31
+     *
+     * @response 200 scenario="File download" <<binary>> The exported Excel file.
+     */
     public function export(Request $request)
     {
         $search = $request->query('search');
@@ -165,6 +206,41 @@ class OrderController extends Controller
         return Storage::disk('exports')->download('orders'.$unique.'.xlsx');
     }
 
+    /**
+     * Place an order
+     *
+     * Only users with role `orderer` may call this. If `cartId` matches one of the user's carts, the cart items are turned
+     * into order items, menu discounts and an optional promo code are applied, a service charge is added, and a delivery fee
+     * is computed for deliveries (from the delivery coordinates) or orphanage deliveries (via Google Distance Matrix); the
+     * cart is then deleted. If no cart matches, a dine-in reservation order is created instead (requires `seating_area_id`,
+     * `seat_number` and `booking_time`).
+     *
+     * @bodyParam cartId integer The id of the user's cart to check out. Omit for a dine-in reservation. Example: 5
+     * @bodyParam restaurantId integer required The id of the restaurant. Example: 3
+     * @bodyParam delivery boolean Whether the order is delivered. Required unless `orphanage_id` is given. Example: true
+     * @bodyParam delivery_address string Delivery address. Required if `delivery` is true. Example: 221B Baker Street, London
+     * @bodyParam delivery_location_lat number Delivery latitude. Required if `delivery` is true. Example: 51.5237
+     * @bodyParam delivery_location_lng number Delivery longitude. Required if `delivery` is true. Example: -0.1585
+     * @bodyParam booking_time string Dining/booking time in `Y-m-d H:i`, must be in the future. Required if `delivery` is false, and for reservations. Example: 2030-01-15 19:30
+     * @bodyParam promo_code string A promo code for the restaurant. Example: SAVE10
+     * @bodyParam orphanage_id integer The id of an orphanage to deliver the order to. Example: 2
+     * @bodyParam seating_area_id integer Seating area id. Required for dine-in reservations (no cart). Example: 1
+     * @bodyParam seat_number integer Number of seats. Required for dine-in reservations (no cart). Example: 4
+     *
+     * @response 201 scenario="Order created" {"data":{"id":10,"uuid":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d","attributes":{"userId":12,"totalAmount":"25.50","delivery":true,"deliveryFee":"3.20","deliveryAddress":"221B Baker Street, London","deliveryStatus":null,"deliveryLat":51.5237,"deliveryLng":-0.1585,"createdAt":"Mon, Jan 15, 2024 10:00 AM","status":"1","paymentStatus":"Pending","service_charge":"1.20","booking_time":null,"discount":"0","preparation_time":25,"restaurant_name":"Mama's Kitchen","user_name":"Jane Doe"},"relationships":{"user":{"id":12,"uuid":"0f8fad5b-d9cb-469f-a165-70867728950e","name":"Jane Doe","email":"jane@example.com","phone_number":"+447700900123","role":"orderer"},"restaurant":{"id":3,"uuid":"6fa459ea-ee8a-3ca4-894e-db77e160355e","attributes":{"name":"Mama's Kitchen"}},"orderItems":[{"id":1,"uuid":"1b4e28ba-2fa1-11d2-883f-0016d3cca427","attributes":{"orderId":10,"menuId":4,"quantity":2,"subtotal":"20.00","status":"1"},"relationships":{"menu":{"id":4,"title":"Chicken Burger"}}}],"orphanage":null}}}
+     * @response 400 scenario="Invalid promo code" {"status":"Error has occured...","message":"The Promo Code is not valid or has expired","data":"Promo Code"}
+     * @response 401 scenario="Not an orderer" {"status":"Error has occured...","message":"Unauthorized","data":""}
+     * @response 403 scenario="Reservation validation error" {"status":"Error has occured...","message":{"seat_number":["Select number of seats"]},"data":"An error occured while creating the reservation."}
+     * @response 403 scenario="No dine-in at restaurant" {"status":"Error has occured...","message":"This restaurant does not offer dine in services","data":""}
+     * @response 403 scenario="Unexpected error" {"status":"Error has occured...","message":"Server error message","data":""}
+     * @response 422 scenario="Validation error" {"message":"The restaurant id field is required.","errors":{"restaurantId":["The restaurant id field is required."]}}
+     * @response 422 scenario="Invalid orphanage location" {"message":"Please provide a valid location(longitude and latitude)"}
+     *
+     * @responseField data.uuid string The new order's uuid (used for payment).
+     * @responseField data.attributes.totalAmount string Order total including delivery fee and discounts.
+     * @responseField data.attributes.service_charge string Service charge.
+     * @responseField data.relationships.reservation object Reservation details (dine-in reservations only).
+     */
     public function store(StoreOrderRequest $request)
     {
         $user = User::where('id',Auth::user()->id)->first();
@@ -440,6 +516,24 @@ class OrderController extends Controller
       }
     }
 
+    /**
+     * Get an order
+     *
+     * Returns a single order. For users with role `restaurant` or `restaurant employee` the raw order (with restaurant,
+     * rider, items, reservation, tables, payment and orphanage) is returned together with the restaurant's tables and, for
+     * delivery orders, a list of available riders with their distance/time from the restaurant. Other users get the order
+     * as an order resource. Returns an empty body unless the request accepts JSON.
+     *
+     * @urlParam order string required The uuid of the order. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     *
+     * @response 200 scenario="Customer" {"status":"Request was succesful","message":"","data":{"order":{"id":10,"uuid":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d","attributes":{"userId":12,"totalAmount":"25.50","delivery":true,"deliveryFee":"3.20","deliveryAddress":"221B Baker Street, London","deliveryStatus":null,"deliveryLat":51.5237,"deliveryLng":-0.1585,"createdAt":"Mon, Jan 15, 2024 10:00 AM","status":"1","paymentStatus":"Pending","service_charge":"1.20","booking_time":null,"discount":"0","preparation_time":25,"restaurant_name":"Mama's Kitchen","user_name":"Jane Doe"},"relationships":{"user":{"id":12,"uuid":"0f8fad5b-d9cb-469f-a165-70867728950e","name":"Jane Doe","email":"jane@example.com","phone_number":"+447700900123","role":"orderer"},"restaurant":{"id":3,"uuid":"6fa459ea-ee8a-3ca4-894e-db77e160355e","attributes":{"name":"Mama's Kitchen"}},"orderItems":[{"id":1,"uuid":"1b4e28ba-2fa1-11d2-883f-0016d3cca427","attributes":{"orderId":10,"menuId":4,"quantity":2,"subtotal":"20.00","status":"1"},"relationships":{"menu":{"id":4,"title":"Chicken Burger"}}}],"orphanage":null}}}}
+     * @response 200 scenario="Restaurant user" {"status":"Request was succesful","message":"","data":{"order":{"id":10,"uuid":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d","user_id":12,"restaurant_id":3,"rider_id":null,"total_amount":"25.50","delivery":true,"delivery_fee":"3.20","delivery_address":"221B Baker Street, London","delivery_location_lat":51.5237,"delivery_location_lng":-0.1585,"delivery_status":null,"status":"2","service_charge":"1.20","discount":"0","booking_time":null,"promo_code_id":null,"orphanage_id":null,"created_by":"Jane Doe","updated_by":null,"created_at":"2024-01-15T10:00:00.000000Z","updated_at":"2024-01-15T10:05:00.000000Z","country":"United Kingdom","preparation_time":25,"restaurant":{"id":3,"name":"Mama's Kitchen","latitude":"51.5200","longitude":"-0.1500"},"rider":null,"order_items":[{"id":1,"order_id":10,"menu_id":4,"quantity":2,"subtotal":"20.00","menu":{"id":4,"title":"Chicken Burger","preparation_time":25}}],"reservation":null,"order_tables":[],"payment":null,"orphanage":null},"riders":[{"id":7,"name":"John Rider","latitude":"51.5100","longitude":"-0.1400","distance":"2.3 km","time_away":"8 mins"}],"restaurant_tables":[{"id":1,"restaurant_id":3,"name":"Table 1","number_of_people":4}]}}
+     * @response 404 scenario="Order not found" {"message":"No query results for model [App\\Models\\Order]."}
+     *
+     * @responseField data.order object The order.
+     * @responseField data.riders object[] Restaurant users only. Available riders for delivery orders.
+     * @responseField data.restaurant_tables object[] Restaurant users only. Tables of the user's restaurants.
+     */
     public function show(Order $order)
     {
         $order = $order->load('restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable', 'payment', 'orphanage');
@@ -546,6 +640,22 @@ class OrderController extends Controller
         }
     }
 
+    /**
+     * Update order status
+     *
+     * Restaurant endpoint that sets the order status. A push notification is sent to the customer when the status is
+     * `in_progress` or `denied`.
+     *
+     * @urlParam order string required The uuid of the order. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     *
+     * @bodyParam status string required The new order status. Example: in_progress
+     *
+     * @response 200 scenario="Updated" {"status":"Request was succesful","message":"Order status updated successfully","data":{"id":10,"uuid":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d","user_id":12,"restaurant_id":3,"rider_id":null,"total_amount":"25.50","delivery":true,"delivery_fee":"3.20","delivery_address":"221B Baker Street, London","delivery_location_lat":51.5237,"delivery_location_lng":-0.1585,"delivery_status":null,"status":"2","service_charge":"1.20","discount":"0","booking_time":null,"promo_code_id":null,"orphanage_id":null,"created_by":"Jane Doe","updated_by":null,"created_at":"2024-01-15T10:00:00.000000Z","updated_at":"2024-01-15T10:05:00.000000Z","country":"United Kingdom"}}
+     * @response 404 scenario="Order not found" {"message":"No query results for model [App\\Models\\Order]."}
+     * @response 422 scenario="Validation error" {"message":"The status field is required.","errors":{"status":["The status field is required."]}}
+     *
+     * @responseField data object The updated order.
+     */
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $order->update([
@@ -575,6 +685,20 @@ class OrderController extends Controller
         return $this->success($order, 'Order status updated successfully');
     }
 
+    /**
+     * Update reservation status
+     *
+     * Restaurant endpoint that updates a dine-in order's reservation status. `completed` also sets the order status to 5
+     * and sends a thank-you push notification to the customer.
+     *
+     * @urlParam order string required The uuid of the order. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     *
+     * @bodyParam status string required The reservation status. One of: `completed`, `in progress`, `no show`, `cancelled`. Example: completed
+     *
+     * @response 200 scenario="Updated" {"status":"Request was succesful","message":null,"data":"Reservation updated successfully"}
+     * @response 404 scenario="Order not found" {"message":"No query results for model [App\\Models\\Order]."}
+     * @response 422 scenario="Validation error" {"message":"The selected status is invalid.","errors":{"status":["The selected status is invalid."]}}
+     */
     public function updateReservedOrder(Request $request, Order $order)
     {
         $request->validate([
@@ -612,6 +736,20 @@ class OrderController extends Controller
         return $this->success('Reservation updated successfully');
     }
 
+    /**
+     * Assign tables to a reservation
+     *
+     * Restaurant endpoint that assigns one or more restaurant tables to a dine-in order, sets the order status to 2 and
+     * notifies the customer. Fails if the booking time has already passed.
+     *
+     * @urlParam order string required The uuid of the order. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     *
+     * @bodyParam restaurant_table_ids string required Comma-separated restaurant table ids. Example: 1,2
+     *
+     * @response 200 scenario="Assigned" {"status":"Request was succesful","message":null,"data":"Table(s) assigned to order"}
+     * @response 403 scenario="Booking time passed" {"status":"Error has occured...","message":"This reserved time for this order has already passed","data":""}
+     * @response 404 scenario="Order not found" {"message":"No query results for model [App\\Models\\Order]."}
+     */
     public function assignReservationToTables(Request $request, Order $order)
     {
         if (Carbon::parse($order->booking_time)->lessThan(now())) {
@@ -638,11 +776,34 @@ class OrderController extends Controller
         return $this->success('Table(s) assigned to order');
     }
 
+    /**
+     * Delete an order
+     *
+     * Not implemented: the endpoint performs no action and returns an empty response.
+     *
+     * @urlParam order string required The uuid of the order. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     *
+     * @response 200 scenario="No-op" ""
+     * @response 404 scenario="Order not found" {"message":"No query results for model [App\\Models\\Order]."}
+     */
     public function destroy(Order $order)
     {
         //
     }
 
+    /**
+     * Assign an order to a rider
+     *
+     * Restaurant endpoint that sends a delivery request to a rider: records an assigned order and pushes a notification
+     * with pickup/delivery coordinates, customer, order items and restaurant details to the rider.
+     *
+     * @bodyParam order_id string required The uuid of the order. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     * @bodyParam rider_id integer required The user id of the rider. Example: 7
+     *
+     * @response 200 scenario="Request sent" {"status":"Request was succesful","message":"Delivery request sent successfully","data":""}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found. Please use the uuid of the order.","data":""}
+     * @response 422 scenario="Validation error" {"message":"The rider id field is required.","errors":{"rider_id":["The rider id field is required."]}}
+     */
     public function assignOrder(Request $request)
     {
         $request->validate([
@@ -679,6 +840,14 @@ class OrderController extends Controller
         return $this->success('', 'Delivery request sent successfully', 200);
     }
 
+    /**
+     * Count pending delivery orders
+     *
+     * Returns the number of delivery orders with status 1 (pending) for the restaurant(s) of the authenticated
+     * `restaurant` or `restaurant employee` user. Other roles get 0. The response body is a bare integer.
+     *
+     * @response 200 scenario="Count" 3
+     */
     public function pendingOrders()
     {
         $orders = 0;
@@ -699,6 +868,14 @@ class OrderController extends Controller
         return $orders;
     }
 
+    /**
+     * Count pending dine-in orders
+     *
+     * Returns the number of dine-in (non-delivery) orders with status 1 (pending) for the restaurant(s) of the authenticated
+     * `restaurant` or `restaurant employee` user. Other roles get 0. The response body is a bare integer.
+     *
+     * @response 200 scenario="Count" 2
+     */
     public function pendingDineins()
     {
         $orders = 0;
@@ -721,11 +898,21 @@ class OrderController extends Controller
 
     /**
      * Store review for an order
-     * @bodyParam order_id integer The id of the order
-     * @bodyParam restaurant_rating integer The rating of the restaurant from 1 - 5
-     * @bodyParam rider_rating integer The rating of the rider from 1 - 5
-     * @bodyParam restaurant_review string A review of the restaurant
-     * @bodyParam rider_review string A review of the rider
+     *
+     * Lets the authenticated customer review the restaurant and the rider of an order. The restaurant's average rating
+     * is recalculated. The rider review is only saved when the order has a rider with a rider profile.
+     *
+     * @group Reviews
+     *
+     * @bodyParam order_id integer required The id of the order. Example: 10
+     * @bodyParam restaurant_rating integer required The rating of the restaurant from 1 - 5. Example: 5
+     * @bodyParam rider_rating integer required The rating of the rider from 1 - 5. Example: 4
+     * @bodyParam restaurant_review string A review of the restaurant. Example: Great food, quick service.
+     * @bodyParam rider_review string A review of the rider. Example: Friendly and on time.
+     *
+     * @response 200 scenario="Saved" {"status":"Request was succesful","message":"Review successfully saved","data":"Review"}
+     * @response 400 scenario="Validation error" {"status":"Error has occured...","message":{"restaurant_rating":["The restaurant rating field is required."]},"data":""}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found","data":""}
      */
     public function storeReview(Request $request)
     {

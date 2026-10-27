@@ -1,146 +1,56 @@
-name: 'Supplements Management'
+name: 'Maps & Location'
 description: |-
 
-  Supplements API resource
+  Thin proxies to the Google Maps APIs. Responses are passed through unchanged from Google.
 endpoints:
   -
-    httpMethods:
-      - GET
-    uri: api/v1/orderer/supplements
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display a listing of supplements.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"supplements":{"data":[{"id":1,"supplier":{"id":1,"name":"Gaviscon","location":"Cathedral Rd, North, Kenya","description":null,"image":"http:\/\/api.moboeats.test\/storage\/supplements\/suppliers\/H3N0XFQ25s1Js9UWnCPcmV7xS2vYrRtX1FaAmQuv.jpg"},"name":"Vitamins","supplement_category":null,"currency":"KSH","price":20,"measuring_unit":"kilograms","description":"Get healthy vitamins","images":[{"id":1,"supplement_id":1,"image":"http:\/\/api.moboeats.test\/storage\/supplements\/H7TSE701xId2ePqPGNcvnhdelmoDiNJ8ygb8eXEq.jpg","created_at":"2024-11-01T02:31:05.000000Z","updated_at":"2024-11-01T02:31:05.000000Z"}]}],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements","per_page":15,"to":1,"total":1}}}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '267'
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
     custom: []
-  -
     httpMethods:
       - GET
-    uri: api/v1/orderer/supplements/categories
+    uri: 'api/v3/geocode/{lat}/{long}'
     metadata:
-      groupName: 'Supplements Management'
+      custom:
+        resources: []
+        models: []
+      groupName: 'Maps & Location'
       groupDescription: |-
 
-        Supplements API resource
+        Thin proxies to the Google Maps APIs. Responses are passed through unchanged from Google.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display listing of supplement categories'
-      description: ''
+      title: 'Reverse geocode coordinates'
+      description: 'Proxies the Google Geocoding API and returns its raw JSON response.'
       authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters:
-      search:
-        name: search
-        description: 'Text to search categories'
-        required: false
-        example: velit
-        type: string
-        custom: []
-      perPage:
-        name: perPage
-        description: 'Number of items per page'
-        required: false
-        example: 14
-        type: integer
-        custom: []
-    cleanQueryParameters:
-      search: velit
-      perPage: 14
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"current_page":1,"data":[],"first_page_url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","from":null,"last_page":1,"last_page_url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/categories","per_page":14,"prev_page_url":null,"to":null,"total":0}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '266'
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/orderer/supplements/categories/{supplement_category_id}/details'
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Show Details of a supplement category'
-      description: ''
-      authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      supplement_category_id:
-        name: supplement_category_id
-        description: 'The ID of the supplement category.'
+      lat:
+        custom: []
+        name: lat
+        description: Latitude.
         required: true
-        example: 1
-        type: integer
+        example: -1.2921
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      long:
         custom: []
-      ID:
-        name: ID
-        description: 'The ID of the category'
-        required: false
-        example: 14
-        type: integer
-        custom: []
+        name: long
+        description: Longitude.
+        required: true
+        example: 36.8219
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      supplement_category_id: 1
-      ID: 14
+      lat: -1.2921
+      long: 36.8219
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -148,547 +58,296 @@ endpoints:
     fileParameters: []
     responses:
       -
+        custom: []
         status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"id":1,"name":"Vitamins & Minerals","created_at":"2024-11-01T01:55:20.000000Z","updated_at":"2024-11-01T01:55:20.000000Z","supplements":[]}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '265'
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/orderer/supplements/suppliers
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'List of all suppliers'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '{"status":"Request was succesful","message":null,"data":{"data":[{"id":1,"name":"Gaviscon","location":"Cathedral Rd, North, Kenya","description":null,"supplements":[{"id":1,"name":"Vitamins","currency":"KSH","price":20,"measuring_unit":"kilograms","description":"Get healthy vitamins"}],"image":"http:\/\/api.moboeats.test\/storage\/supplements\/suppliers\/H3N0XFQ25s1Js9UWnCPcmV7xS2vYrRtX1FaAmQuv.jpg"}],"links":{"first":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","last":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/suppliers?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/api.moboeats.test\/api\/v1\/orderer\/supplements\/suppliers","per_page":15,"to":1,"total":1}}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '300'
-          x-ratelimit-remaining: '264'
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/orderer/supplements/orders
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Supplement Orders'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/orderer/supplements/orders
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Create a new supplement order'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      supplement_id:
-        name: supplement_id
-        description: 'The ID of the supplement'
-        required: false
-        example: 7
-        type: integer
-        custom: []
-      quantity:
-        name: quantity
-        description: 'The quantity of the order'
-        required: false
-        example: 3
-        type: integer
-        custom: []
-    cleanBodyParameters:
-      supplement_id: 7
-      quantity: 3
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/admin/supplements
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display a listing of supplements.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/admin/supplements/store
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      supplier_id:
-        name: supplier_id
+        content: '{"results": [{"formatted_address": "Kenyatta Ave, Nairobi, Kenya", "geometry": {"location": {"lat": -1.2921, "lng": 36.8219}}, "place_id": "ChIJp0lN2HIRLxgRTJKXslQCz_c"}], "status": "OK"}'
+        headers: []
         description: ''
-        required: true
-        example: consequatur
-        type: string
+    responseFields:
+      results:
         custom: []
-      category_id:
-        name: category_id
-        description: ''
-        required: true
-        example: inventore
-        type: string
-        custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: qui
-        type: string
-        custom: []
-      price:
-        name: price
-        description: ''
-        required: true
-        example: quia
-        type: string
-        custom: []
-      measuring_unit:
-        name: measuring_unit
-        description: 'Must be one of <code>kilograms</code>, <code>pounds</code>, or <code>litres</code>.'
-        required: true
-        example: kilograms
-        type: string
-        custom: []
-      images:
-        name: images
-        description: ''
+        name: results
+        description: 'Geocoding results from Google.'
         required: false
         example: null
-        type: 'string[]'
-        custom: []
-    cleanBodyParameters:
-      supplier_id: consequatur
-      category_id: inventore
-      name: qui
-      price: quia
-      measuring_unit: kilograms
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/admin/supplements/suppliers
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'List of all suppliers'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/admin/supplements/suppliers/store
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: ''
-        required: true
-        example: vero
-        type: string
-        custom: []
-      image:
-        name: image
-        description: ''
-        required: true
-        example: dolores
-        type: string
-        custom: []
-    cleanBodyParameters:
-      name: vero
-      image: dolores
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/admin/supplements/{supplement_id}/status/update'
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      supplement_id:
-        name: supplement_id
-        description: 'The ID of the supplement.'
-        required: true
-        example: 1
-        type: integer
-        custom: []
-    cleanUrlParameters:
-      supplement_id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/admin/supplements/suppliers/{supplier_id}/status/update'
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      supplier_id:
-        name: supplier_id
-        description: 'The ID of the supplier.'
-        required: true
-        example: 1
-        type: integer
-        custom: []
-    cleanUrlParameters:
-      supplier_id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/admin/supplements/orders
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Supplement Orders'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/v1/admin/supplements/order/{id}/status/update'
-    metadata:
-      groupName: 'Supplements Management'
-      groupDescription: |-
-
-        Supplements API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update Order Status'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the order'
-        required: false
-        example: nostrum
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: nostrum
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
       status:
-        name: status
-        description: 'The status of the order(confirmed)'
-        required: true
-        example: ea
-        type: string
         custom: []
-    cleanBodyParameters:
-      status: ea
-    fileParameters: []
-    responses: []
-    responseFields: []
+        name: status
+        description: 'Google status code (e.g. `OK`, `ZERO_RESULTS`).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
     auth: []
     controller: null
     method: null
     route: null
+  -
     custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/directions/{origin_lat}/{origin_long}/{dest_lat}/{dest_long}'
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: 'Maps & Location'
+      groupDescription: |-
+
+        Thin proxies to the Google Maps APIs. Responses are passed through unchanged from Google.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get distance and travel time'
+      description: 'Proxies the Google Distance Matrix API between an origin and a destination and returns its raw JSON response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      origin_lat:
+        custom: []
+        name: origin_lat
+        description: 'Origin latitude.'
+        required: true
+        example: -1.2921
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      origin_long:
+        custom: []
+        name: origin_long
+        description: 'Origin longitude.'
+        required: true
+        example: 36.8219
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      dest_lat:
+        custom: []
+        name: dest_lat
+        description: 'Destination latitude.'
+        required: true
+        example: -1.3
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      dest_long:
+        custom: []
+        name: dest_long
+        description: 'Destination longitude.'
+        required: true
+        example: 36.8
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      origin_lat: -1.2921
+      origin_long: 36.8219
+      dest_lat: -1.3
+      dest_long: 36.8
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"destination_addresses": ["Ngong Rd, Nairobi, Kenya"], "origin_addresses": ["Kenyatta Ave, Nairobi, Kenya"], "rows": [{"elements": [{"distance": {"text": "3.4 km", "value": 3400}, "duration": {"text": "10 mins", "value": 600}, "status": "OK"}]}], "status": "OK"}'
+        headers: []
+        description: ''
+    responseFields:
+      rows:
+        custom: []
+        name: rows
+        description: 'Distance/duration elements from Google.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Google status code.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/autocomplete/{text}'
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: 'Maps & Location'
+      groupDescription: |-
+
+        Thin proxies to the Google Maps APIs. Responses are passed through unchanged from Google.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Autocomplete a place'
+      description: 'Proxies the Google Places Autocomplete API and returns its raw JSON response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      text:
+        custom: []
+        name: text
+        description: 'The partial text to autocomplete.'
+        required: true
+        example: Westlands
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      text: Westlands
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"predictions": [{"description": "Westlands, Nairobi, Kenya", "place_id": "ChIJK7mWv9YQLxgRUXhOcm8zNkE"}], "status": "OK"}'
+        headers: []
+        description: ''
+    responseFields:
+      predictions:
+        custom: []
+        name: predictions
+        description: 'Place predictions from Google.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Google status code.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/place/{place_id}'
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: 'Maps & Location'
+      groupDescription: |-
+
+        Thin proxies to the Google Maps APIs. Responses are passed through unchanged from Google.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get place details'
+      description: 'Proxies the Google Place Details API and returns its raw JSON response.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      place_id:
+        custom: []
+        name: place_id
+        description: 'The Google place ID.'
+        required: true
+        example: ChIJK7mWv9YQLxgRUXhOcm8zNkE
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      place_id: ChIJK7mWv9YQLxgRUXhOcm8zNkE
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"result": {"formatted_address": "Westlands, Nairobi, Kenya", "geometry": {"location": {"lat": -1.2676, "lng": 36.8108}}, "name": "Westlands", "place_id": "ChIJK7mWv9YQLxgRUXhOcm8zNkE"}, "status": "OK"}'
+        headers: []
+        description: ''
+    responseFields:
+      result:
+        custom: []
+        name: result
+        description: 'Place details from Google.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Google status code.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null

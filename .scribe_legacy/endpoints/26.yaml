@@ -1,0 +1,470 @@
+name: 'Admin - Marketing'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/admin/discounts
+    metadata:
+      custom: []
+      groupName: 'Admin - Marketing'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List discounted menu items'
+      description: 'Paginated list (6 per page) of menu items that have a discount, with discount and restaurant.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by menu title (partial match).'
+        required: false
+        example: rice
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: rice
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "discounts": {
+                "current_page": 1,
+                "data": [
+                  {
+                    "id": 7,
+                    "uuid": "3c4d5e6f-7081-92a3-b4c5-d6e7f8a9b0c1",
+                    "restaurant_id": 3,
+                    "title": "Jollof Rice",
+                    "description": "Spicy jollof rice with chicken",
+                    "status": 2,
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z",
+                    "discount": {
+                      "id": 1,
+                      "menu_id": 7,
+                      "percentage": 10,
+                      "start_date": "2024-06-01",
+                      "end_date": "2024-06-30"
+                    },
+                    "restaurant": {
+                      "id": 3,
+                      "uuid": "8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d",
+                      "user_id": 12,
+                      "name": "Mama's Kitchen",
+                      "email": "info@mamaskitchen.com",
+                      "phone_no": "+447700900456",
+                      "address": "1 High St, London",
+                      "status": 2,
+                      "service_charge_agreement": 10,
+                      "groceries_service_charge_agreement": 5,
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    }
+                  }
+                ],
+                "first_page_url": "https://api.moboeats.co.uk/api/v1/admin/discounts?page=1",
+                "from": 1,
+                "last_page": 1,
+                "last_page_url": "https://api.moboeats.co.uk/api/v1/admin/discounts?page=1",
+                "links": [
+                  {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                  },
+                  {
+                    "url": "https://api.moboeats.co.uk/api/v1/admin/discounts?page=1",
+                    "label": "1",
+                    "active": true
+                  },
+                  {
+                    "url": null,
+                    "label": "Next &raquo;",
+                    "active": false
+                  }
+                ],
+                "next_page_url": null,
+                "path": "https://api.moboeats.co.uk/api/v1/admin/discounts",
+                "per_page": 6,
+                "prev_page_url": null,
+                "to": 1,
+                "total": 1
+              }
+            }
+          }
+        headers: []
+        description: Success
+    responseFields:
+      data.discounts:
+        custom: []
+        name: data.discounts
+        description: 'Paginated menu items with `discount` and `restaurant`.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/marketing/store
+    metadata:
+      custom: []
+      groupName: 'Admin - Marketing'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create an advert poster'
+      description: 'Admin endpoint. Uploads a new advert poster.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      poster:
+        custom: []
+        name: poster
+        description: 'Poster image (png or jpg, max 10 MB).'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      title:
+        custom: []
+        name: title
+        description: 'Poster title.'
+        required: false
+        example: 'Weekend Deals'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Poster description.'
+        required: false
+        example: '20% off all burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      link:
+        custom: []
+        name: link
+        description: 'URL the poster links to.'
+        required: false
+        example: 'https://moboeats.com/deals'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Weekend Deals'
+      description: '20% off all burgers'
+      link: 'https://moboeats.com/deals'
+    fileParameters:
+      poster: null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message": "Ad Poster added successfully"}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 400
+        content: '{"poster": ["The poster field is required."]}'
+        headers: []
+        description: 'Validation error'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/marketing/{advert_poster}/update'
+    metadata:
+      custom: []
+      groupName: 'Admin - Marketing'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update an advert poster'
+      description: |-
+        Admin endpoint. Updates an advert poster's details and, optionally, its image. `title` is cleared when not sent;
+        `description` and `link` keep their previous value when empty.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      advert_poster:
+        custom: []
+        name: advert_poster
+        description: 'The numeric ID of the advert poster.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      advert_poster: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      poster:
+        custom: []
+        name: poster
+        description: 'New poster image (png or jpg, max 10 MB).'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      title:
+        custom: []
+        name: title
+        description: 'Poster title.'
+        required: false
+        example: 'Weekend Deals'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Poster description.'
+        required: false
+        example: '20% off all burgers'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      link:
+        custom: []
+        name: link
+        description: 'URL the poster links to.'
+        required: false
+        example: 'https://moboeats.com/deals'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Weekend Deals'
+      description: '20% off all burgers'
+      link: 'https://moboeats.com/deals'
+    fileParameters:
+      poster: null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message": "Ad Poster updated successfully"}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 400
+        content: '{"poster": ["The poster field must be a file of type: png, jpg."]}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\AdvertPoster] 99"}'
+        headers: []
+        description: 'Not found'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/admin/marketing/{advert_poster}/delete'
+    metadata:
+      custom: []
+      groupName: 'Admin - Marketing'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete an advert poster'
+      description: 'Admin endpoint. Deletes an advert poster and its image file.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      advert_poster:
+        custom: []
+        name: advert_poster
+        description: 'The numeric ID of the advert poster.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      advert_poster: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message": "Ad Poster deleted successfully"}'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\AdvertPoster] 99"}'
+        headers: []
+        description: 'Not found'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/qr-code
+    metadata:
+      custom: []
+      groupName: 'Admin - Marketing'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Generate a QR code'
+      description: 'Generate a QR code PNG for the given string (defaults to the partner signup URL) and download it.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      string:
+        custom: []
+        name: string
+        description: 'Text or URL to encode. Defaults to `https://partner.moboeats.co.uk/signup`.'
+        required: false
+        example: 'https://partner.moboeats.co.uk/signup'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      string: 'https://partner.moboeats.co.uk/signup'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '<<binary>> The QR code PNG image (QR.png).'
+        headers: []
+        description: 'File download'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

@@ -22,7 +22,9 @@ use App\Events\OrderDeliveryLocationUpdate;
 use App\Jobs\SendCommunication;
 
 /**
- * @group Rider Profile APIs
+ * @group Riders
+ *
+ * Rider profile management, order delivery workflow, location tracking, earnings and tips.
  *
  * @authenticated
  */
@@ -31,12 +33,64 @@ class RiderController extends Controller
     use HttpResponses;
 
     /**
-     * Get Orders and Assigned Orders
+     * List rider orders
      *
-     * @response 200
+     * Returns the orders delivered/being delivered by the authenticated rider and all order assignments
+     * (accepted, rejected or pending) made to the rider.
      *
-     * @responseParam orders List of orders
-     * @responseParam assigned_orders List of assigned orders
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": "",
+     *   "data": {
+     *     "orders": [
+     *       {
+     *         "id": 12,
+     *         "uuid": "3f6c1a2b-7d8e-4f90-a1b2-c3d4e5f6a7b8",
+     *         "user_id": 5,
+     *         "restaurant_id": 2,
+     *         "total_amount": 1500,
+     *         "delivery": true,
+     *         "delivery_address": "Moi Avenue, Nairobi",
+     *         "delivery_location_lat": -1.2847473,
+     *         "delivery_location_lng": 36.8219,
+     *         "delivery_fee": 200,
+     *         "delivery_status": "In Progress",
+     *         "status": 2,
+     *         "rider_id": 9,
+     *         "booking_time": null,
+     *         "service_charge": 50,
+     *         "discount": 0,
+     *         "created_at": "2024-03-01T12:00:00.000000Z",
+     *         "updated_at": "2024-03-01T12:10:00.000000Z",
+     *         "country": "Kenya",
+     *         "restaurant": {"id": 2, "uuid": "a1b2c3d4-0000-4f90-a1b2-c3d4e5f6a7b8", "name": "Mama's Kitchen", "address": "Kimathi Street, Nairobi", "latitude": "-1.2833", "longitude": "36.8167"},
+     *         "user": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678"}
+     *       }
+     *     ],
+     *     "assigned_orders": [
+     *       {
+     *         "id": 3,
+     *         "order_id": 12,
+     *         "user_id": 9,
+     *         "status": "accepted",
+     *         "created_at": "2024-03-01T12:05:00.000000Z",
+     *         "updated_at": "2024-03-01T12:10:00.000000Z",
+     *         "order": {
+     *           "id": 12,
+     *           "uuid": "3f6c1a2b-7d8e-4f90-a1b2-c3d4e5f6a7b8",
+     *           "total_amount": 1500,
+     *           "delivery_status": "In Progress",
+     *           "status": 2,
+     *           "user": {"id": 5, "name": "Jane Doe", "phone_number": "254712345678"},
+     *           "restaurant": {"id": 2, "name": "Mama's Kitchen"}
+     *         }
+     *       }
+     *     ]
+     *   }
+     * }
+     *
+     * @responseField data.orders object[] Orders where the authenticated user is the rider, with `restaurant` and `user` loaded.
+     * @responseField data.assigned_orders object[] Order assignments for the rider, with `order.user` and `order.restaurant` loaded.
      */
     public function orders()
     {
@@ -46,11 +100,39 @@ class RiderController extends Controller
     }
 
     /**
-     * Get Rider Profile
+     * Get rider profile
      *
-     * @response 200
+     * Returns the rider profile of the authenticated user.
      *
-     * @repsonseParam data Rider's Profile
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "id": 4,
+     *     "uuid": "c7d8e9f0-1a2b-4c3d-8e4f-5a6b7c8d9e0f",
+     *     "name": "John Rider",
+     *     "email": "rider@example.com",
+     *     "phone_no": "254700111222",
+     *     "address": "12 Moi Avenue",
+     *     "city": "Nairobi",
+     *     "state": "Nairobi",
+     *     "postal_code": "00100",
+     *     "profile_picture": "rider-avatar.jpg",
+     *     "vehicle_type": "motorbike",
+     *     "vehicle_license_plate": "KMDA 123A",
+     *     "status": "Approved",
+     *     "paypal_email": "rider@example.com",
+     *     "created_at": "2024-01-10T09:00:00.000000Z",
+     *     "updated_at": "2024-01-12T09:00:00.000000Z",
+     *     "relationships": []
+     *   }
+     * }
+     * @response 404 scenario="Profile not created" {"status": "Error has occured...", "message": "Rider Profile not created", "data": ""}
+     *
+     * @responseField data.uuid string The rider profile UUID.
+     * @responseField data.status string Approval status: `Pending`, `Approved` or `Denied`.
+     * @responseField data.reviews object Reviews of the rider (only present when the rider has reviews).
+     * @responseField data.rejection_reason string Reason for rejection (only present when status is `Denied`).
      */
     public function profile()
     {
@@ -62,19 +144,60 @@ class RiderController extends Controller
     }
 
     /**
-     * Create Rider Profile
+     * Create rider profile
      *
-     * @bodyParam vehicle_type string required The vehicle type of the rider
-     * @bodyParam vehicle_licesne_plate sring required The license plate of the rider's vehicle
-     * @bodyParam profile_picture file required The profile picture of the rider
-     * @bodyParam city string The city where the rider is located
-     * @bodyParam state string The state of where the rider is located
-     * @bodyParam postal_code string The postal code of the rider
+     * Creates a rider profile for the authenticated user using the user's name, email and phone number.
+     * If the user already has a rider profile, the existing profile is returned unchanged.
      *
-     * @response 200
+     * @bodyParam vehicle_type string required The vehicle type of the rider. Example: motorbike
+     * @bodyParam vehicle_license_plate string required The license plate of the rider's vehicle. Example: KMDA 123A
+     * @bodyParam profile_picture file required The profile picture of the rider (png, jpg, jpeg; max 10000 KB).
+     * @bodyParam paypal_email string required The rider's PayPal email for payouts. Example: rider@example.com
+     * @bodyParam address string The address of the rider. Example: 12 Moi Avenue
+     * @bodyParam city string The city where the rider is located. Example: Nairobi
+     * @bodyParam state string The state where the rider is located. Example: Nairobi
+     * @bodyParam postal_code string The postal code of the rider. Example: 00100
      *
-     * @responseParam data The Rider's created profile
-     * @responseParam message Profile created successfully
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": "Profile created successfully",
+     *   "data": {
+     *     "id": 4,
+     *     "uuid": "c7d8e9f0-1a2b-4c3d-8e4f-5a6b7c8d9e0f",
+     *     "name": "John Rider",
+     *     "email": "rider@example.com",
+     *     "phone_no": "254700111222",
+     *     "address": "12 Moi Avenue",
+     *     "city": "Nairobi",
+     *     "state": "Nairobi",
+     *     "postal_code": "00100",
+     *     "profile_picture": "rider-avatar.jpg",
+     *     "vehicle_type": "motorbike",
+     *     "vehicle_license_plate": "KMDA 123A",
+     *     "status": "Pending",
+     *     "paypal_email": "rider@example.com",
+     *     "created_at": "2024-01-10T09:00:00.000000Z",
+     *     "updated_at": "2024-01-10T09:00:00.000000Z",
+     *     "relationships": {
+     *       "user": {
+     *         "id": 9,
+     *         "uuid": "d1e2f3a4-5b6c-4d7e-8f90-a1b2c3d4e5f6",
+     *         "name": "John Rider",
+     *         "email": "rider@example.com",
+     *         "phone_number": "254700111222",
+     *         "role": "rider",
+     *         "avatar": null,
+     *         "relationships": {"orderer": null},
+     *         "type": null,
+     *         "referral_code": null,
+     *         "is_guided": false
+     *       }
+     *     }
+     *   }
+     * }
+     * @response 422 scenario="Validation error" {"status": "Error has occured...", "message": "Invalid data", "data": {"vehicle_type": ["The vehicle type field is required."], "profile_picture": ["The profile picture field is required."]}}
+     *
+     * @responseField data object The rider profile (RiderResource) with the related user.
      */
     public function create(Request $request)
     {
@@ -112,19 +235,50 @@ class RiderController extends Controller
     }
 
     /**
-     * Update Rider Prodile
+     * Update rider profile
      *
-     * @bodyParam vehicle_type string The vehicle type of the rider
-     * @bodyParam vehicle_licesne_plate sring The license plate of the rider's vehicle
-     * @bodyParam profile_picture file The profile picture of the rider
-     * @bodyParam city string The city where the rider is located
-     * @bodyParam state string The state of where the rider is located
-     * @bodyParam postal_code string The postal code of the rider
+     * Updates the authenticated user's rider profile. Fields that are not sent keep their current values.
+     * Updating the profile resets the rider status to pending approval (`status` = 1). When a `profile`
+     * image is uploaded it is stored as both the rider's profile picture and the user's avatar.
      *
-     * @response 200
+     * @bodyParam vehicle_type string required The vehicle type of the rider. Example: motorbike
+     * @bodyParam paypal_email string required The rider's PayPal email for payouts. Example: rider@example.com
+     * @bodyParam vehicle_licesne_plate string The license plate of the rider's vehicle (note: the parameter name is spelled `vehicle_licesne_plate`). Example: KMDA 123A
+     * @bodyParam email string The rider's email. Example: rider@example.com
+     * @bodyParam phone_no string The rider's phone number. Example: 254700111222
+     * @bodyParam address string The address of the rider. Example: 12 Moi Avenue
+     * @bodyParam city string The city where the rider is located. Example: Nairobi
+     * @bodyParam state string The state where the rider is located. Example: Nairobi
+     * @bodyParam postal_code string The postal code of the rider. Example: 00100
+     * @bodyParam profile file A new profile picture for the rider.
      *
-     * @responseParam data The Rider's updated profile
-     * @responseParam message Profile updated successfully
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": "Profile updated successfully",
+     *   "data": {
+     *     "id": 4,
+     *     "uuid": "c7d8e9f0-1a2b-4c3d-8e4f-5a6b7c8d9e0f",
+     *     "name": "John Rider",
+     *     "email": "rider@example.com",
+     *     "phone_no": "254700111222",
+     *     "address": "12 Moi Avenue",
+     *     "city": "Nairobi",
+     *     "state": "Nairobi",
+     *     "postal_code": "00100",
+     *     "profile_picture": "rider-avatar.jpg",
+     *     "vehicle_type": "motorbike",
+     *     "vehicle_license_plate": "KMDA 123A",
+     *     "status": "Pending",
+     *     "paypal_email": "rider@example.com",
+     *     "created_at": "2024-01-10T09:00:00.000000Z",
+     *     "updated_at": "2024-01-15T09:00:00.000000Z",
+     *     "relationships": []
+     *   }
+     * }
+     * @response 404 scenario="Profile not found" {"status": "Error has occured...", "message": "Profile not found", "data": ""}
+     * @response 422 scenario="Validation error" {"message": "The paypal email field is required.", "errors": {"paypal_email": ["The paypal email field is required."]}}
+     *
+     * @responseField data object The updated rider profile (RiderResource).
      */
     public function update(Request $request)
     {
@@ -166,6 +320,51 @@ class RiderController extends Controller
         return $this->success(new RiderResource($rider), 'Profile updated successfully');
     }
 
+    /**
+     * Update order delivery status
+     *
+     * Lets the authenticated rider accept, reject or progress an order delivery. `accept` assigns the order to the rider
+     * (status 2, "In Progress"), `awaiting_pick_up` sets status 3, `on_delivery`/`on delivery` sets status 4 and `delivered`
+     * sets status 5 and emails a receipt to the customer. Any other allowed value (`reject`) marks the assignment as rejected
+     * and re-assigns the order to another rider. The customer and restaurant are notified (FCM push, notifications, broadcast events).
+     *
+     * @bodyParam order_id string required The order ID or UUID. Example: 3f6c1a2b-7d8e-4f90-a1b2-c3d4e5f6a7b8
+     * @bodyParam status string required The new status. One of `accept`, `reject`, `awaiting_pick_up`, `on_delivery`, `on delivery`, `delivered`. Example: accept
+     *
+     * @response 200 scenario="Order updated" {
+     *   "status": "Request was succesful",
+     *   "message": "Order updated successfully",
+     *   "data": {
+     *     "id": 12,
+     *     "uuid": "3f6c1a2b-7d8e-4f90-a1b2-c3d4e5f6a7b8",
+     *     "user_id": 5,
+     *     "restaurant_id": 2,
+     *     "total_amount": 1500,
+     *     "delivery": true,
+     *     "delivery_address": "Moi Avenue, Nairobi",
+     *     "delivery_location_lat": -1.2847473,
+     *     "delivery_location_lng": 36.8219,
+     *     "delivery_fee": 200,
+     *     "delivery_status": "In Progress",
+     *     "status": 2,
+     *     "rider_id": 9,
+     *     "booking_time": null,
+     *     "service_charge": 50,
+     *     "discount": 0,
+     *     "created_at": "2024-03-01T12:00:00.000000Z",
+     *     "updated_at": "2024-03-01T12:10:00.000000Z",
+     *     "country": "Kenya",
+     *     "user": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678"},
+     *     "restaurant": {"id": 2, "uuid": "a1b2c3d4-0000-4f90-a1b2-c3d4e5f6a7b8", "name": "Mama's Kitchen", "address": "Kimathi Street, Nairobi"}
+     *   }
+     * }
+     * @response 200 scenario="Already assigned" {"status": "Request was succesful", "message": "The order was already assigned", "data": "Order assigned"}
+     * @response 200 scenario="Order rejected" {"status": "Request was succesful", "message": "Order updated successfully", "data": ""}
+     * @response 422 scenario="Validation error" {"status": "Error has occured...", "message": {"status": ["The selected status is invalid."]}, "data": "Please select an order"}
+     * @response 422 scenario="Order not found" {"status": "Error has occured...", "message": "The selected order was not found", "data": "Order not found"}
+     *
+     * @responseField data object The updated order with `user` and `restaurant` loaded (empty string when rejected).
+     */
     public function updateOrder(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -316,9 +515,16 @@ class RiderController extends Controller
     }
 
     /**
-     * Update the location of the rider when not delivering
-     * @bodyParam latitude string required The latitude
-     * @bodyParam longitude string required The longitude
+     * Update rider location
+     *
+     * Updates the authenticated rider's current location when not delivering. The coordinates are reverse geocoded
+     * via Google Maps and the formatted address is stored on the user.
+     *
+     * @bodyParam latitude string required The latitude. Example: -1.2847473
+     * @bodyParam longitude string required The longitude. Example: 36.8219
+     *
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": "Location updated successfully", "data": "Location update"}
+     * @response 422 scenario="Validation error" {"latitude": ["The latitude field is required."], "longitude": ["The longitude field is required."]}
      */
     public function updateLocation(Request $request)
     {
@@ -346,10 +552,19 @@ class RiderController extends Controller
     }
 
     /**
-     * Update the location of the rider dueing delivery
-     * @urlParam order_id string required The Id of order
-     * @bodyParam latitude string required The latitude of the rider
-     * @bodyParam longitude string required The longitude of the rider
+     * Update delivery location
+     *
+     * Updates the rider's live location during delivery of an order. The location is pushed to the customer via FCM
+     * (when they have a device token) and broadcast via the `OrderDeliveryLocationUpdate` event. Rate limited by the `location` throttle.
+     *
+     * @urlParam order_id string required The numeric ID or UUID of the order. Example: 12
+     *
+     * @bodyParam latitude string required The latitude of the rider. Example: -1.2847473
+     * @bodyParam longitude string required The longitude of the rider. Example: 36.8219
+     *
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": "Location updated successfully", "data": "Location update"}
+     * @response 422 scenario="Validation error" {"latitude": ["The latitude field is required."], "longitude": ["The longitude field is required."]}
+     * @response 429 scenario="Too many requests" {"message": "Too Many Attempts."}
      */
     public function updateDeliveryLocation(Request $request, $order_id)
     {
@@ -387,7 +602,30 @@ class RiderController extends Controller
     }
 
     /**
-     * Get Rider Earninggs
+     * Get rider earnings
+     *
+     * Returns a summary of the authenticated rider's earnings: delivery fees from delivered orders, paid tips,
+     * payouts already disbursed and the pending amount.
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "total_earnings": 5300,
+     *     "delivery_earnings": 4800,
+     *     "tip_earnings": 500,
+     *     "paid_amount": 3000,
+     *     "pending_payment_amount": 1800,
+     *     "earnings_in_past_week": 1200
+     *   }
+     * }
+     *
+     * @responseField data.total_earnings number Delivery earnings plus tips.
+     * @responseField data.delivery_earnings number Sum of delivery fees of orders delivered by the rider.
+     * @responseField data.tip_earnings number Sum of paid tips received by the rider.
+     * @responseField data.paid_amount number Total amount already paid out to the rider.
+     * @responseField data.pending_payment_amount number Delivery earnings not yet paid out.
+     * @responseField data.earnings_in_past_week number Delivery fees of delivered orders created this week.
      */
     public function earnings()
     {
@@ -422,10 +660,19 @@ class RiderController extends Controller
     {}
 
     /**
-     * Store review for a rider
-     * @bodyParam rider_id integer The id of the rider
-     * @bodyParam rating integer The rating from 1 - 5
-     * @bodyParam review string A review of the rider
+     * Review a rider
+     *
+     * Stores a rating and optional review from the authenticated user for a rider.
+     *
+     * @group Reviews
+     *
+     * @bodyParam rider_id integer required The user ID of the rider (users.id of a user with the `rider` role). Example: 9
+     * @bodyParam rating integer required The rating, from 1 to 5. Example: 5
+     * @bodyParam review string A written review of the rider. Example: Fast and friendly delivery.
+     *
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": "Review created successfully"}
+     * @response 400 scenario="Validation error" {"status": "Error has occured...", "message": {"rating": ["The rating field is required."]}, "data": ""}
+     * @response 404 scenario="Rider not found" {"status": "Error has occured...", "message": "No such rider", "data": ""}
      */
     public function storeReview(Request $request)
     {
@@ -461,11 +708,30 @@ class RiderController extends Controller
     }
 
     /**
-     * Get Tips paid to the rider
-     * @responseParam total_withdrawn Total Amount that has been withdrawn
-     * @responseParam total_paid Total Amount that has been paid but not withdrawn
-     * @responseParam withdrawn List of all paid and withdrawn tips
-     * @responseParam paid List of all paid but not withdrawn tips
+     * Get rider tips
+     *
+     * Returns the tips paid to the authenticated rider, split into withdrawn and paid (not yet withdrawn) tips.
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "total_withdrawn": 300,
+     *     "total_paid": 200,
+     *     "withdrawn": [
+     *       {"id": 1, "uuid": "e1f2a3b4-5c6d-4e7f-8a9b-0c1d2e3f4a5b", "rider_id": 4, "order_id": 10, "amount": 300, "status": "withdrawn", "transaction_id": "pi_3Nxyz123", "created_at": "2024-02-11T10:00:00.000000Z", "updated_at": "2024-02-20T10:00:00.000000Z"}
+     *     ],
+     *     "paid": [
+     *       {"id": 2, "uuid": "f2a3b4c5-6d7e-4f8a-9b0c-1d2e3f4a5b6c", "rider_id": 4, "order_id": 12, "amount": 200, "status": "paid", "transaction_id": "pi_3Nabc456", "created_at": "2024-03-01T12:30:00.000000Z", "updated_at": "2024-03-01T12:30:00.000000Z"}
+     *     ]
+     *   }
+     * }
+     * @response 400 scenario="No rider profile" {"status": "Error has occured...", "message": "Complete your rider profile to get tips", "data": ""}
+     *
+     * @responseField data.total_withdrawn number Total amount of tips that have been withdrawn.
+     * @responseField data.total_paid number Total amount of tips paid but not yet withdrawn.
+     * @responseField data.withdrawn object[] Tips that have been withdrawn.
+     * @responseField data.paid object[] Tips paid but not yet withdrawn.
      */
     public function getTips()
     {

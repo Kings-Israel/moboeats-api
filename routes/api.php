@@ -41,11 +41,27 @@ use App\Models\User;
 use App\Notifications\UpdatedRestaurantStatus;
 use Illuminate\Support\Facades\Mail;
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+Route::middleware(['auth:sanctum'])->get('/user',
+/**
+ * Get the authenticated user (raw)
+ *
+ * Returns the authenticated user model as-is (not wrapped in a resource).
+ *
+ * @group Authentication
+ *
+ * @response 200 scenario="Success" {"id":1,"name":"Jane Doe","email":"jane@example.com","phone_number":"+254712345678","role_id":"orderer","status":2,"is_guided":true,"email_verified_at":null,"created_at":"2024-01-01T10:00:00.000000Z","updated_at":"2024-01-01T10:00:00.000000Z"}
+ * @response 401 scenario="Unauthenticated" {"message":"Unauthenticated."}
+ */
+function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function() {
+/*
+ * Versioned API routes, registered twice from this single definition:
+ * - /api/v1 returns the legacy response format (kept unchanged for existing clients).
+ * - /api/v3 returns the standard OpenAPI-documented format, converted by the `api.standard` middleware.
+ */
+$registerApiRoutes = function (string $version) {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
 
@@ -75,248 +91,272 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('/directions/{origin_lat}/{origin_long}/{dest_lat}/{dest_long}', [HomeController::class, 'directions']);
     Route::get('/autocomplete/{text}', [HomeController::class, 'autocomplete']);
     Route::get('/place/{place_id}', [HomeController::class, 'place']);
-});
 
+    if ($version !== 'v1') {
+        // OTP login lives under /api/v2/login in the legacy API.
+        Route::post('login/otp', [AuthController::class, 'otpLogin']);
+        Route::post('login/otp/verify', [AuthController::class, 'verifyOtp']);
+    }
+
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'authUser']);
+
+        // Delete Account
+        Route::get('delete', [AuthController::class, 'delete']);
+
+        Route::get('/notifications', [NotificationController::class, 'index']);
+        Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
+        Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
+        Route::get('/seating-areas', [RestaurantController::class, 'seatingAreas']);
+
+        // Chat
+        Route::get('/conversations', [MessageController::class, 'index']);
+        Route::get('/conversations/{id}', [MessageController::class, 'show']);
+        Route::post('/message/send', [MessageController::class, 'store']);
+        Route::post('/conversation/{id}/reply', [MessageController::class, 'update']);
+        Route::get('/conversations/{id}/read', [MessageController::class, 'markConversationAsRead']);
+        Route::get('/message/{id}/read', [MessageController::class, 'markMessageAsRead']);
+        Route::get('/conversations/{id}/unread/count', [MessageController::class, 'getCoversationUnreadMessagesCount']);
+        Route::get('/messages/unread/count', [MessageController::class, 'getUnreadMessagesCount']);
+        Route::delete('/message/{id}/delete', [MessageController::class, 'deleteMessage']);
+        Route::delete('/conversation/{id}/delete', [MessageController::class, 'deleteConversation']);
+
+        Route::get('/user/guide/update',
+        /**
+         * Mark user onboarding guide as completed
+         *
+         * Sets `is_guided` to true for the authenticated user and returns the updated user.
+         *
+         * @group Customer Profile
+         *
+         * @response 200 scenario="Success" {"data":{"id":1,"uuid":"9b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e","name":"Jane Doe","email":"jane@example.com","phone_number":"+254712345678","role":"orderer","avatar":null,"relationships":{"orderer":{}},"type":null,"referral_code":"JANE123","is_guided":true}}
+         * @response 401 scenario="Unauthenticated" {"message":"Unauthenticated."}
+         */
+        function () {
+            request()->user()->update([
+                'is_guided' => true
+            ]);
+
+            return response()->json(['data' => new UserResource(request()->user())], 200);
+        });
+    });
+
+    Route::group(['prefix' => 'orderer'], function() {
+        Route::get('/groceries', [MenuController::class, 'groceries']);
+        Route::get('/groceries/categories', [MenuController::class, 'grocerySubcategories']);
+
+        Route::get('/orderer-restaurants/rated', [RestaurantController::class, 'rating']);
+        Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
+        Route::get('orderer-restaurants/{restaurant?}/menu', [MenuController::class, 'restaurantMenu']);
+        Route::get('orderer-grocery-shops/', [RestaurantController::class, 'groceryShops']);
+        Route::apiResource('orderer-restaurants', RestaurantController::class);
+        Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
+        Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
+
+        Route::apiResource('orderer-menu', MenuController::class);
+
+        Route::group(['prefix' => '/supplements'], function () {
+            Route::get('/', [SupplementController::class, 'index']);
+            Route::get('/categories', [SupplementController::class, 'categories']);
+            Route::get('/categories/{supplement_category}/details', [SupplementController::class, 'category']);
+            Route::get('/suppliers', [SupplementController::class, 'suppliers']);
+        });
+
+        // Diet and Diet planning
+        Route::group(['prefix' => '/diet'], function () {
+            Route::get('/packages', [DietController::class, 'packages']);
+            Route::get('/subscription', [DietController::class, 'subscription']);
+        });
+
+        // Tables
+        Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
+
+        Route::group(['middleware' => 'auth:sanctum'], function () {
+            Route::apiResource('orderers', OrdererController::class);
+
+            Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
+            Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
+            Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
+
+            Route::apiResource('cart', CartController::class)->except(['update']);
+            Route::apiResource('cart-items', CartItemController::class);
+
+            Route::apiResource('orders', OrderController::class)->except(['update']);
+
+            // Supplements
+            Route::group(['prefix' => '/supplements'], function () {
+                Route::get('/orders', [SupplementController::class, 'orders']);
+                Route::post('/orders', [SupplementController::class, 'storeOrder']);
+                Route::get('/orders/{id}/pay', [PaymentController::class, 'stripeSupplementCheckout']);
+            });
+
+            // Diet Plans
+            Route::group(['prefix' => '/diet'], function () {
+                Route::post('/data/store', [OrdererController::class, 'storeDietPlanUserData']);
+                Route::get('/plans', [AdminController::class, 'plans']);
+                Route::post('/subscribe/{diet_subscription_package}', [PaymentController::class, 'stripeDietPlanCheckout']);
+            });
+
+            // Route::apiResource('payment', PaymentController::class)->except(['update']);
+            Route::get('/stripe/checkout/{order_id}/{mode?}', [PaymentController::class, 'stripeCheckout']);
+            Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
+
+            // Reviews
+            Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
+            Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
+            Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
+            Route::post('/menu/reviews/store', [MenuController::class, 'storeReview']);
+
+            Route::geT('/order/{order_id}/mpesa/checkout', [PaymentController::class, 'mpesaCheckout']);
+        });
+    });
+
+    Route::group(['prefix' => 'rider', 'middleware' => 'auth:sanctum'], function() {
+        Route::apiResource('restaurants', RestaurantController::class);
+        Route::post('/profile/create', [RiderController::class, 'create']);
+        Route::post('/profile/update', [RiderController::class, 'update']);
+        Route::get('/profile', [RiderController::class, 'profile']);
+        Route::get('/orders', [RiderController::class, 'orders']);
+        Route::post('/orders/update', [RiderController::class, 'updateOrder']);
+        Route::post('/orders/{order_id}/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
+        Route::post('/location/update', [RiderController::class, 'updateLocation']);
+        Route::get('/tips', [RiderController::class, 'getTips']);
+        Route::get('/earnings', [RiderController::class, 'earnings']);
+    });
+
+    Route::get('/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
+
+    // Restaurant owners management and employees
+    Route::group(['prefix' => 'restaurant', 'middleware' => 'auth:sanctum'], function() {
+        Route::post('/restaurant', [RestaurantController::class, 'store']);
+        Route::middleware(['has_restaurant'])->group(function () {
+            Route::get('/{restaurant}/registration/fee-payment', [RestaurantController::class, 'registrationFeePayment']);
+            Route::post('/{restaurant}/registration/fee-payment/complete', [RestaurantController::class, 'completeRegistrationFeePayment']);
+            Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
+            Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
+            Route::get('/restaurants/{restaurant}/reviews', [RestaurantController::class, 'reviews']);
+            Route::apiResource('restaurants', RestaurantController::class);
+            Route::get('/restaurants/export/data', [RestaurantController::class, 'export']);
+            Route::post('/restaurants/{restaurant}/update', [RestaurantController::class, 'update']);
+            Route::apiResource('food-categories', FoodCommonCategoryController::class);
+            Route::apiResource('food-sub-categories', FooSubCategoryController::class);
+            Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
+            Route::apiResource('more-info', QuestionnaireController::class);
+
+            Route::apiResource('menu', MenuController::class);
+            Route::get('/menu/{menu}/reviews', [MenuController::class, 'reviews']);
+            Route::get('/groceries', [MenuController::class, 'groceries']);
+            Route::get('/groceries/export/data', [MenuController::class, 'exportGroceries']);
+            Route::get('{restaurant}/groceries', [MenuController::class, 'restaurantGroceries']);
+            Route::post('/{id}/menu/add', [MenuController::class, 'store']);
+            Route::post('/menu/{id}/update', [MenuController::class, 'update']);
+            Route::post('/menu/{id}/images/update', [MenuController::class, 'updateImages']);
+            Route::apiResource('menu-prices', MenuPriceController::class);
+            Route::post('/menu-prices/{id}/update', [MenuPriceController::class, 'update']);
+            Route::delete('/menu-prices/{id}/delete', [MenuPriceController::class, 'destroy']);
+            Route::get('/menus', [MenuController::class, 'commonMenus']);
+            Route::get('menus/export/data', [MenuController::class, 'export']);
+            Route::post('/menu/create', [MenuController::class, 'addMenu']);
+            Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
+            Route::get('/menus/{menu}/orders', [MenuController::class, 'menuOrders']);
+
+            Route::get('/menu/template/download', [MenuController::class, 'downloadTemplate']);
+            Route::post('menu/upload', [MenuController::class, 'upload']);
+
+            Route::get('/orders/{order}', [OrderController::class, 'show']);
+            Route::post('/orders/reservation/{order}/assign', [OrderController::class, 'assignReservationToTables']);
+            Route::post('/orders/reservation/{order}/status/update', [OrderController::class, 'updateReservedOrder']);
+            Route::get('/pending-orders', [OrderController::class, 'pendingOrders']);
+            Route::get('/pending-dineins', [OrderController::class, 'pendingDineins']);
+            Route::apiResource('orders', OrderController::class)->except(['store']);
+            Route::post('/orders/{order}/update', [OrderController::class, 'update']);
+            Route::post('/orders/assign', [OrderController::class, 'assignorder']);
+            Route::get('/orders/export/data', [OrderController::class, 'export']);
+
+            Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
+
+            Route::get('/payments', [RestaurantController::class, 'payments']);
+            Route::get('/payments/export/data', [RestaurantController::class, 'exportPayments']);
+            Route::get('/reservations', [RestaurantController::class, 'reservations']);
+            Route::get('/tables', [RestaurantController::class, 'tables']);
+
+            Route::get('/restaurant/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
+            Route::post('{restaurant}/tables/add', [RestaurantController::class, 'addTable']);
+            Route::post('{restaurant}/tables/{id}/update', [RestaurantController::class, 'updateTable']);
+
+            Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
+            Route::get('/restaurant/{restaurant}/sitting-areas', [RestaurantController::class, 'restaurantSeatingAreas']);
+            Route::get('/restaurant/{restaurant}/reservations', [RestaurantController::class, 'restaurantReservations']);
+            Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
+            Route::get('/restaurant/{restaurant}/menu', [RestaurantController::class, 'restaurantMenu']);
+
+            Route::get('{restaurant}/categories', [RestaurantController::class, 'categories']);
+            Route::post('{restaurant}/categories/add', [RestaurantController::class, 'addCategory']);
+            Route::post('{restaurant}/categories/{id}/update', [RestaurantController::class, 'updateCategory']);
+
+            // Employees
+            Route::group(['prefix' => 'employees',], function () {
+                Route::get('/', [RestaurantController::class, 'employees']);
+                Route::get('/{restaurant}', [RestaurantController::class, 'restaurantEmployees']);
+                Route::post('/{restaurant}/add', [RestaurantController::class, 'addEmployee']);
+                Route::post('/{user}/update', [RestaurantController::class, 'updateEmployee']);
+            });
+
+            // Operating Hours
+            Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
+            Route::post('/{uuid}/operating-hours', [RestaurantOperatingHoursController::class, 'store']);
+            Route::post('/{uuid}/operating-hours/update', [RestaurantOperatingHoursController::class, 'update']);
+
+            // Documents
+            Route::get('/{id}/documents', [RestaurantDocumentsController::class, 'index']);
+            Route::post('/{uuid}/documents/store', [RestaurantDocumentsController::class, 'store']);
+            Route::post('/{uuid}/documents/update', [RestaurantDocumentsController::class, 'update']);
+            Route::get('/documents/{id}/download', [RestaurantDocumentsController::class, 'download']);
+
+            // Promo codes
+            Route::get('/promo-codes', [PromoCodesController::class, 'index']);
+            Route::get('/promo-codes/export/data', [PromoCodesController::class, 'export']);
+            Route::post('/promo-codes/store', [PromoCodesController::class, 'store']);
+            Route::post('/promo-codes/{promo_code}/update', [PromoCodesController::class, 'update']);
+
+            // Discounts
+            Route::group(['prefix' => 'discounts'], function () {
+                Route::get('/', [DiscountController::class, 'index']);
+                Route::post('/store', [DiscountController::class, 'store']);
+                Route::post('/{discount}/update', [DiscountController::class, 'update']);
+                Route::get('/{discount}/delete', [DiscountController::class, 'destroy']);
+            });
+        });
+    });
+
+    Route::group(['prefix' => 'orphanages', 'as' => 'orphanages.'], function () {
+        Route::get('/', [OrphanageController::class, 'index'])->name('index');
+        Route::post('/store', [OrphanageController::class, 'store'])->name('store')->middleware('auth:sanctum');
+        Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show');
+        Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update')->middleware('auth:sanctum');
+    });
+
+    Route::post('/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
+    Route::post('/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
+
+    Route::post('/order/tip/payment/create-tip-paypal-order', [PaymentController::class, 'createTipPaypalOrder']);
+    Route::post('/order/tip/payment/capture-tip-paypal-order', [PaymentController::class, 'captureTipPaypalPayment']);
+
+    Route::post('/pochipay/callback', [PaymentController::class, 'pochipayCallback'])->name('pochipay.callback');
+
+    (require __DIR__.'/admin.php')($version);
+};
+
+Route::prefix('v1')->group(fn () => $registerApiRoutes('v1'));
+
+// Legacy OTP login (v1 response format). In v3 these are /api/v3/login/otp and /api/v3/login/otp/verify.
 Route::group(['prefix' => 'v2'], function() {
     Route::post('login', [AuthController::class, 'otpLogin']);
     Route::post('login/otp/verify', [AuthController::class, 'verifyOtp']);
 });
 
-Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function() {
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::get('user', [AuthController::class, 'authUser']);
-
-    // Delete Account
-    Route::get('delete', [AuthController::class, 'delete']);
-
-    Route::get('/notifications', [NotificationController::class, 'index']);
-    Route::get('/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead']);
-    Route::get('/notifications/all/read', [NotificationController::class, 'markAllAsRead']);
-    Route::get('/seating-areas', [RestaurantController::class, 'seatingAreas']);
-
-    // Chat
-    Route::get('/conversations', [MessageController::class, 'index']);
-    Route::get('/conversations/{id}', [MessageController::class, 'show']);
-    Route::post('/message/send', [MessageController::class, 'store']);
-    Route::post('/conversation/{id}/reply', [MessageController::class, 'update']);
-    Route::get('/conversations/{id}/read', [MessageController::class, 'markConversationAsRead']);
-    Route::get('/message/{id}/read', [MessageController::class, 'markMessageAsRead']);
-    Route::get('/conversations/{id}/unread/count', [MessageController::class, 'getCoversationUnreadMessagesCount']);
-    Route::get('/messages/unread/count', [MessageController::class, 'getUnreadMessagesCount']);
-    Route::delete('/message/{id}/delete', [MessageController::class, 'deleteMessage']);
-    Route::delete('/conversation/{id}/delete', [MessageController::class, 'deleteConversation']);
-
-    Route::get('/user/guide/update', function () {
-        request()->user()->update([
-            'is_guided' => true
-        ]);
-
-        return response()->json(['data' => new UserResource(request()->user())], 200);
-    });
-});
-
-Route::group(['prefix' => 'v1/orderer'], function() {
-    Route::get('/groceries', [MenuController::class, 'groceries']);
-    Route::get('/groceries/categories', [MenuController::class, 'grocerySubcategories']);
-
-    Route::get('/orderer-restaurants/rated', [RestaurantController::class, 'rating']);
-    Route::get('orderer-restaurants/{restaurant}', [RestaurantController::class, 'show']);
-    Route::get('orderer-restaurants/{restaurant?}/menu', [MenuController::class, 'restaurantMenu']);
-    Route::get('orderer-grocery-shops/', [RestaurantController::class, 'groceryShops']);
-    Route::apiResource('orderer-restaurants', RestaurantController::class);
-    Route::apiResource('orderer-food-categories', FoodCommonCategoryController::class);
-    Route::apiResource('orderer-food-sub-categories', FooSubCategoryController::class);
-
-    Route::apiResource('orderer-menu', MenuController::class);
-
-    Route::group(['prefix' => '/supplements'], function () {
-        Route::get('/', [SupplementController::class, 'index']);
-        Route::get('/categories', [SupplementController::class, 'categories']);
-        Route::get('/categories/{supplement_category}/details', [SupplementController::class, 'category']);
-        Route::get('/suppliers', [SupplementController::class, 'suppliers']);
-    });
-
-    // Diet and Diet planning
-    Route::group(['prefix' => '/diet'], function () {
-        Route::get('/packages', [DietController::class, 'packages']);
-        Route::get('/subscription', [DietController::class, 'subscription']);
-    });
-
-    // Tables
-    Route::get('/orderer-restaurants/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
-
-    Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::apiResource('orderers', OrdererController::class);
-
-        Route::get('/menu-bookmark/{menuId}/delete', [MenuBookmarkController::class, 'destroy']);
-        Route::apiResource('menu-bookmark', MenuBookmarkController::class)->except(['update']);
-        Route::apiResource('restaurant-bookmark', RestaurantBookmarkController::class)->except(['update']);
-
-        Route::apiResource('cart', CartController::class)->except(['update']);
-        Route::apiResource('cart-items', CartItemController::class);
-
-        Route::apiResource('orders', OrderController::class)->except(['update']);
-
-        // Supplements
-        Route::group(['prefix' => '/supplements'], function () {
-            Route::get('/orders', [SupplementController::class, 'orders']);
-            Route::post('/orders', [SupplementController::class, 'storeOrder']);
-            Route::get('/orders/{id}/pay', [PaymentController::class, 'stripeSupplementCheckout']);
-        });
-
-        // Diet Plans
-        Route::group(['prefix' => '/diet'], function () {
-            Route::post('/data/store', [OrdererController::class, 'storeDietPlanUserData']);
-            Route::get('/plans', [AdminController::class, 'plans']);
-            Route::post('/subscribe/{diet_subscription_package}', [PaymentController::class, 'stripeDietPlanCheckout']);
-        });
-
-        // Route::apiResource('payment', PaymentController::class)->except(['update']);
-        Route::get('/stripe/checkout/{order_id}/{mode?}', [PaymentController::class, 'stripeCheckout']);
-        Route::get('/stripe/checkout/{order_id}/{amount}', [PaymentController::class, 'stripeTipCheckout']);
-
-        // Reviews
-        Route::post('/order/reviews/store', [OrderController::class, 'storeReview']);
-        Route::post('/restaurant/reviews/store', [RestaurantController::class, 'storeReview']);
-        Route::post('/rider/reviews/store', [RiderController::class, 'storeReview']);
-        Route::post('/menu/reviews/store', [MenuController::class, 'storeReview']);
-
-        Route::geT('/order/{order_id}/mpesa/checkout', [PaymentController::class, 'mpesaCheckout']);
-    });
-});
-
-Route::group(['prefix' => 'v1/rider', 'middleware' => 'auth:sanctum'], function() {
-    Route::apiResource('restaurants', RestaurantController::class);
-    Route::post('/profile/create', [RiderController::class, 'create']);
-    Route::post('/profile/update', [RiderController::class, 'update']);
-    Route::get('/profile', [RiderController::class, 'profile']);
-    Route::get('/orders', [RiderController::class, 'orders']);
-    Route::post('/orders/update', [RiderController::class, 'updateOrder']);
-    Route::post('/orders/{order_id}/delivery/location/update', [RiderController::class, 'updateDeliveryLocation'])->middleware(['throttle:location']);
-    Route::post('/location/update', [RiderController::class, 'updateLocation']);
-    Route::get('/tips', [RiderController::class, 'getTips']);
-    Route::get('/earnings', [RiderController::class, 'earnings']);
-});
-
-Route::get('/v1/orderer/payment/{user_id}/{order_id}', [PaymentController::class, 'store']);
-
-/**Restaurant owners management and employees */
-Route::group(['prefix' => 'v1/restaurant', 'middleware' => 'auth:sanctum'], function() {
-    Route::post('/restaurant', [RestaurantController::class, 'store']);
-    Route::middleware(['has_restaurant'])->group(function () {
-        Route::get('/{restaurant}/registration/fee-payment', [RestaurantController::class, 'registrationFeePayment']);
-        Route::post('/{restaurant}/registration/fee-payment/complete', [RestaurantController::class, 'completeRegistrationFeePayment']);
-        Route::get('/dashboard', [RestaurantController::class, 'dashboard']);
-        Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
-        Route::get('/restaurants/{restaurant}/reviews', [RestaurantController::class, 'reviews']);
-        Route::apiResource('restaurants', RestaurantController::class);
-        Route::get('/restaurants/export/data', [RestaurantController::class, 'export']);
-        Route::post('/restaurants/{restaurant}/update', [RestaurantController::class, 'update']);
-        Route::apiResource('food-categories', FoodCommonCategoryController::class);
-        Route::apiResource('food-sub-categories', FooSubCategoryController::class);
-        Route::post('food-sub-categories/bulk', [FooSubCategoryController::class, 'bulkStore']);
-        Route::apiResource('more-info', QuestionnaireController::class);
-
-        Route::apiResource('menu', MenuController::class);
-        Route::get('/menu/{menu}/reviews', [MenuController::class, 'reviews']);
-        Route::get('/groceries', [MenuController::class, 'groceries']);
-        Route::get('/groceries/export/data', [MenuController::class, 'exportGroceries']);
-        Route::get('{restaurant}/groceries', [MenuController::class, 'restaurantGroceries']);
-        Route::post('/{id}/menu/add', [MenuController::class, 'store']);
-        Route::post('/menu/{id}/update', [MenuController::class, 'update']);
-        Route::post('/menu/{id}/images/update', [MenuController::class, 'updateImages']);
-        Route::apiResource('menu-prices', MenuPriceController::class);
-        Route::post('/menu-prices/{id}/update', [MenuPriceController::class, 'update']);
-        Route::delete('/menu-prices/{id}/delete', [MenuPriceController::class, 'destroy']);
-        Route::get('/menus', [MenuController::class, 'commonMenus']);
-        Route::get('menus/export/data', [MenuController::class, 'export']);
-        Route::post('/menu/create', [MenuController::class, 'addMenu']);
-        Route::post('/menus/{menu}/update', [MenuController::class, 'updateMenu']);
-        Route::get('/menus/{menu}/orders', [MenuController::class, 'menuOrders']);
-
-        Route::get('/menu/template/download', [MenuController::class, 'downloadTemplate']);
-        Route::post('menu/upload', [MenuController::class, 'upload']);
-
-        Route::get('/orders/{order}', [OrderController::class, 'show']);
-        Route::post('/orders/reservation/{order}/assign', [OrderController::class, 'assignReservationToTables']);
-        Route::post('/orders/reservation/{order}/status/update', [OrderController::class, 'updateReservedOrder']);
-        Route::get('/pending-orders', [OrderController::class, 'pendingOrders']);
-        Route::get('/pending-dineins', [OrderController::class, 'pendingDineins']);
-        Route::apiResource('orders', OrderController::class)->except(['store']);
-        Route::post('/orders/{order}/update', [OrderController::class, 'update']);
-        Route::post('/orders/assign', [OrderController::class, 'assignorder']);
-        Route::get('/orders/export/data', [OrderController::class, 'export']);
-
-        Route::get('/riders/{id}', [RestaurantController::class, 'riders']);
-
-        Route::get('/payments', [RestaurantController::class, 'payments']);
-        Route::get('/payments/export/data', [RestaurantController::class, 'exportPayments']);
-        Route::get('/reservations', [RestaurantController::class, 'reservations']);
-        Route::get('/tables', [RestaurantController::class, 'tables']);
-
-        Route::get('/restaurant/{restaurant}/tables', [RestaurantController::class, 'restaurantTables']);
-        Route::post('{restaurant}/tables/add', [RestaurantController::class, 'addTable']);
-        Route::post('{restaurant}/tables/{id}/update', [RestaurantController::class, 'updateTable']);
-
-        Route::get('/restaurant/{restaurant}/payments', [RestaurantController::class, 'restaurantPayments']);
-        Route::get('/restaurant/{restaurant}/sitting-areas', [RestaurantController::class, 'restaurantSeatingAreas']);
-        Route::get('/restaurant/{restaurant}/reservations', [RestaurantController::class, 'restaurantReservations']);
-        Route::get('/restaurant/{restaurant}/orders', [RestaurantController::class, 'restaurantOrders']);
-        Route::get('/restaurant/{restaurant}/menu', [RestaurantController::class, 'restaurantMenu']);
-
-        Route::get('{restaurant}/categories', [RestaurantController::class, 'categories']);
-        Route::post('{restaurant}/categories/add', [RestaurantController::class, 'addCategory']);
-        Route::post('{restaurant}/categories/{id}/update', [RestaurantController::class, 'updateCategory']);
-
-        // Employees
-        Route::group(['prefix' => 'employees',], function () {
-            Route::get('/', [RestaurantController::class, 'employees']);
-            Route::get('/{restaurant}', [RestaurantController::class, 'restaurantEmployees']);
-            Route::post('/{restaurant}/add', [RestaurantController::class, 'addEmployee']);
-            Route::post('/{user}/update', [RestaurantController::class, 'updateEmployee']);
-        });
-
-        // Operating Hours
-        Route::get('/{id}/operating-hours', [RestaurantOperatingHoursController::class, 'index']);
-        Route::post('/{uuid}/operating-hours', [RestaurantOperatingHoursController::class, 'store']);
-        Route::post('/{uuid}/operating-hours/update', [RestaurantOperatingHoursController::class, 'update']);
-
-        // Documents
-        Route::get('/{id}/documents', [RestaurantDocumentsController::class, 'index']);
-        Route::post('/{uuid}/documents/store', [RestaurantDocumentsController::class, 'store']);
-        Route::post('/{uuid}/documents/update', [RestaurantDocumentsController::class, 'update']);
-        Route::get('/documents/{id}/download', [RestaurantDocumentsController::class, 'download']);
-
-        // Promo codes
-        Route::get('/promo-codes', [PromoCodesController::class, 'index']);
-        Route::get('/promo-codes/export/data', [PromoCodesController::class, 'export']);
-        Route::post('/promo-codes/store', [PromoCodesController::class, 'store']);
-        Route::post('/promo-codes/{promo_code}/update', [PromoCodesController::class, 'update']);
-
-        // Discounts
-        Route::group(['prefix' => 'discounts'], function () {
-            Route::get('/', [DiscountController::class, 'index']);
-            Route::post('/store', [DiscountController::class, 'store']);
-            Route::post('/{discount}/update', [DiscountController::class, 'update']);
-            Route::get('/{discount}/delete', [DiscountController::class, 'destroy']);
-        });
-    });
-});
-
-Route::group(['prefix' => 'v1/orphanages', 'as' => 'orphanages.'], function () {
-    Route::get('/', [OrphanageController::class, 'index'])->name('index');
-    Route::post('/store', [OrphanageController::class, 'store'])->name('store')->middleware('auth:sanctum');
-    Route::get('/{orphanage}/show', [OrphanageController::class, 'show'])->name('show');
-    Route::put('/{orphanage}/update', [OrphanageController::class, 'update'])->name('update')->middleware('auth:sanctum');
-});
-
-Route::post('/v1/order/payment/create-paypal-order', [PaymentController::class, 'createPaypalOrder']);
-Route::post('/v1/order/payment/capture-paypal-order', [PaymentController::class, 'capturePaypalPayment']);
-
-Route::post('/v1/order/tip/payment/create-tip-paypal-order', [PaymentController::class, 'createTipPaypalOrder']);
-Route::post('/v1/order/tip/payment/capture-tip-paypal-order', [PaymentController::class, 'captureTipPaypalPayment']);
-
-Route::post('/v1/pochipay/callback', [PaymentController::class, 'pochipayCallback'])->name('pochipay.callback');
+Route::prefix('v3')->name('v3.')->middleware('api.standard')->group(fn () => $registerApiRoutes('v3'));
 
 Route::get('/email/test/{id}', function($id) {
     // SendSMS::dispatchAfterResponse($request->phone_number, 'Test');
@@ -332,4 +372,3 @@ Route::get('/mail/test', function () {
     Mail::to('k.milimo@moboeats.co.uk')->send(new ResetPassword('123456'));
 });
 
-require __DIR__.'/admin.php';

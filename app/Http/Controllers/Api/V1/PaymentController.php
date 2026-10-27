@@ -32,15 +32,31 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Illuminate\Support\Str;
 
 /**
- * @group Payment Post Controller
+ * @group Payments
  *
- * Payment API resource
+ * Payment endpoints: Stripe, M-Pesa (PochiPay) and PayPal checkouts for orders, rider tips,
+ * supplement orders and diet plan subscriptions, plus the provider webhooks/callbacks that confirm payments.
  */
 class PaymentController extends Controller
 {
     use HttpResponses;
     use UploadFileTrait;
 
+    /**
+     * Render PayPal checkout page for an order
+     *
+     * Returns an HTML page (the `paypal.checkout` view) that loads the PayPal JS SDK so the customer can pay
+     * for a pending order. The page then calls the create/capture PayPal order endpoints. Errors are returned as JSON.
+     *
+     * @urlParam user_id integer required The numeric id of the user paying for the order. Example: 12
+     * @urlParam order_id string required The order's numeric id or uuid. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     *
+     * @response 200 scenario="Checkout page" <<html>> The PayPal checkout HTML page.
+     * @response 403 scenario="User not found" {"status":"Error has occured...","message":"User not found","data":"Order Payment"}
+     * @response 403 scenario="Order belongs to another user" {"status":"Error has occured...","message":"Cannot make payment for order.","data":"Order Payment"}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found","data":"Order Payment"}
+     * @response 422 scenario="Order not pending" {"status":"Error has occured...","message":"Order already paid","data":"Order Payment"}
+     */
     public function store($user_id, $order_id)
     {
         $user = User::where('id', $user_id)->first();
@@ -76,6 +92,24 @@ class PaymentController extends Controller
         ]);
     }
 
+    /**
+     * Get payment details
+     *
+     * Admin endpoint returning a payment together with the order it pays for (with user, restaurant, rider,
+     * order items and menus, reservation and assigned tables) and the order's total preparation time.
+     * Returns an empty body unless the request accepts JSON.
+     *
+     * @group Admin - Orders & Payments
+     *
+     * @urlParam payment string required The uuid of the payment. Example: 3f2504e0-4f89-11d3-9a0c-0305e82c3301
+     *
+     * @response 200 scenario="Success" {"status":"Request was succesful","message":"","data":{"order":{"id":10,"uuid":"9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d","user_id":12,"restaurant_id":3,"rider_id":7,"total_amount":"25.50","delivery":true,"delivery_fee":"3.20","delivery_address":"221B Baker Street, London","delivery_location_lat":51.5237,"delivery_location_lng":-0.1585,"delivery_status":"Delivered","status":"5","service_charge":"1.20","discount":"0","booking_time":null,"preparation_time":25,"country":"United Kingdom","user":{"id":12,"name":"Jane Doe"},"restaurant":{"id":3,"name":"Mama's Kitchen"},"rider":{"id":7,"name":"John Rider"},"order_items":[{"id":1,"order_id":10,"menu_id":4,"quantity":2,"subtotal":"20.00","menu":{"id":4,"title":"Chicken Burger"}}],"reservation":null,"order_tables":[]},"payment":{"id":5,"uuid":"3f2504e0-4f89-11d3-9a0c-0305e82c3301","transaction_id":"ch_3OabcXYZ","orderable_id":10,"orderable_type":"App\\Models\\Order","payment_method":"Stripe","amount":"25.50","status":2,"created_by":"Jane Doe","created_at":"2024-01-15T10:00:00.000000Z","updated_at":"2024-01-15T10:00:00.000000Z"}}}
+     * @response 404 scenario="Payment not found" {"message":"No query results for model [App\\Models\\Payment]."}
+     *
+     * @responseField data.order object The paid order with loaded relations.
+     * @responseField data.order.preparation_time integer Total preparation time (minutes) of all menus in the order.
+     * @responseField data.payment object The payment record.
+     */
     public function show(Payment $payment)
     {
         $order = $payment->orderable->load('user', 'restaurant', 'rider', 'orderItems.menu', 'reservation', 'orderTables.restaurantTable');
@@ -89,6 +123,18 @@ class PaymentController extends Controller
                 ], '', 200) : '';
     }
 
+    /**
+     * Create PayPal order for an order payment
+     *
+     * Called by the PayPal checkout page. Creates a PayPal order with intent `CAPTURE` for the given amount
+     * in the configured PayPal currency and returns the PayPal order id.
+     *
+     * @bodyParam total_price number The amount to charge. Example: 25.5
+     *
+     * @response 200 scenario="PayPal order created" {"order_id":"5O190127TN364715T"}
+     *
+     * @responseField order_id string The PayPal order id to approve and capture.
+     */
     public function createPaypalOrder(Request $request)
     {
         $provider = new PayPalClient;
@@ -116,6 +162,19 @@ class PaymentController extends Controller
         ], 200);
     }
 
+    /**
+     * Capture PayPal order payment
+     *
+     * Called by the PayPal checkout page after the customer approves the payment. Marks the order as paid
+     * (status 2), records a `Paypal` payment, assigns the order to a rider, notifies the restaurant and logs the activity.
+     *
+     * @bodyParam checkout_id string required The uuid of the order being paid for. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     * @bodyParam transaction_id string required The PayPal transaction/capture id. Example: 3C679366HH908993F
+     *
+     * @response 200 scenario="Payment captured" {"message":"Successful Payment"}
+     *
+     * @responseField message string Result message.
+     */
     public function capturePaypalPayment(Request $request)
     {
         $order = Order::where('uuid', $request->checkout_id)->first();
@@ -177,6 +236,18 @@ class PaymentController extends Controller
 
     }
 
+    /**
+     * Create PayPal order for a rider tip
+     *
+     * Called by the PayPal tip checkout page. Creates a PayPal order with intent `CAPTURE` for the tip amount
+     * in the configured PayPal currency and returns the PayPal order id.
+     *
+     * @bodyParam total_price number The tip amount to charge. Example: 5
+     *
+     * @response 200 scenario="PayPal order created" {"order_id":"5O190127TN364715T"}
+     *
+     * @responseField order_id string The PayPal order id to approve and capture.
+     */
     public function createTipPaypalOrder(Request $request)
     {
         $provider = new PayPalClient;
@@ -204,6 +275,20 @@ class PaymentController extends Controller
         ], 200);
     }
 
+    /**
+     * Capture PayPal rider tip payment
+     *
+     * Called by the PayPal tip checkout page after approval. Sets the order status to 2, records a paid
+     * `RiderTip` for the order's rider and logs the activity.
+     *
+     * @bodyParam checkout_id string required The uuid of the order whose rider is being tipped. Example: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d
+     * @bodyParam transaction_id string required The PayPal transaction/capture id. Example: 3C679366HH908993F
+     * @bodyParam amount number required The tip amount paid. Example: 5
+     *
+     * @response 200 scenario="Tip captured" {"message":"Successful Payment"}
+     *
+     * @responseField message string Result message.
+     */
     public function captureTipPaypalPayment(Request $request)
     {
         $order = Order::where('uuid', $request->checkout_id)->first();
@@ -231,8 +316,29 @@ class PaymentController extends Controller
     }
 
     /**
-     * Stripe Order checkout
-     * @urlParam order_id int The id of the order
+     * Checkout an order (Stripe or M-Pesa)
+     *
+     * Starts payment for the authenticated customer's order. For restaurants outside Kenya a Stripe customer,
+     * ephemeral key and PaymentIntent are created (amount rounded up to `.30`/next whole unit) and a pending
+     * `StripePayment` is stored; the client completes payment with the Stripe SDK and the Stripe webhook confirms it.
+     * For restaurants in Kenya an M-Pesa STK push is sent via PochiPay to the customer's phone and the PochiPay
+     * callback confirms it. The `mode` placeholder is accepted but currently ignored.
+     *
+     * @urlParam order_id string required The order's numeric id or uuid. Example: 10
+     * @urlParam mode string Payment mode (currently unused; defaults to `pochipay`). Example: pochipay
+     *
+     * @response 200 scenario="Stripe payment sheet (non-Kenya)" {"paymentIntent":"pi_3OabcXYZ_secret_abc123","ephemeralKey":"ek_test_YWNjdF8xTz","customer":"cus_PQ12abcXYZ","publishableKey":"pk_test_51Oabc"}
+     * @response 200 scenario="M-Pesa request sent (Kenya)" {"status":"Request was succesful","message":"Payment Request sent successful","data":""}
+     * @response 400 scenario="PochiPay request failed" {"status":"Error has occured...","message":"Invalid phone number","data":""}
+     * @response 403 scenario="User not found" {"status":"Error has occured...","message":"User not found","data":"Order Payment"}
+     * @response 403 scenario="Order belongs to another user" {"status":"Error has occured...","message":"Cannot make payment for order.","data":"Order Payment"}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found","data":"Order Payment"}
+     * @response 422 scenario="Order already paid" {"status":"Error has occured...","message":"Order already paid","data":"Order Payment"}
+     *
+     * @responseField paymentIntent string Stripe PaymentIntent client secret (Stripe flow).
+     * @responseField ephemeralKey string Stripe ephemeral key secret for the customer (Stripe flow).
+     * @responseField customer string Stripe customer id (Stripe flow).
+     * @responseField publishableKey string Stripe publishable key (Stripe flow).
      */
     public function stripeCheckout($order_id, $mode = 'pochipay')
     {
@@ -359,9 +465,23 @@ class PaymentController extends Controller
     }
 
     /**
-     * Stripe Tip checkout
-     * @urlParam order_id int The id of the order
-     * @urlParam amount int The amount to tip
+     * Stripe checkout for a rider tip
+     *
+     * Creates an unpaid `RiderTip` for the order's rider, a Stripe customer, ephemeral key and a GBP PaymentIntent
+     * (automatic payment methods enabled), and stores a pending `StripePayment`. The Stripe webhook marks the tip as paid.
+     * Note: this route shares its URI pattern with the order checkout route (`/stripe/checkout/{order_id}/{mode?}`),
+     * which is registered first and therefore matches these requests.
+     *
+     * @urlParam order_id string required The order's numeric id or uuid. Example: 10
+     * @urlParam amount integer required The tip amount in the smallest currency unit (pence). Example: 500
+     *
+     * @response 200 scenario="Stripe payment sheet" {"paymentIntent":"pi_3OabcXYZ_secret_abc123","ephemeralKey":"ek_test_YWNjdF8xTz","customer":"cus_PQ12abcXYZ","publishableKey":"pk_test_51Oabc"}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found","data":"Order Tip Payment"}
+     *
+     * @responseField paymentIntent string Stripe PaymentIntent client secret.
+     * @responseField ephemeralKey string Stripe ephemeral key secret for the customer.
+     * @responseField customer string Stripe customer id.
+     * @responseField publishableKey string Stripe publishable key.
      */
     public function stripeTipCheckout($order_id, $amount)
     {
@@ -424,8 +544,25 @@ class PaymentController extends Controller
     }
 
     /**
-     * Stripe Supplement payment checkout request
-     * @urlParam order_id int The id of the order
+     * Stripe checkout for a supplement order
+     *
+     * Creates a Stripe customer, ephemeral key and a KES PaymentIntent for the authenticated user's pending
+     * supplement order, and stores a pending `StripePayment`. The Stripe webhook marks the order as paid.
+     *
+     * @group Supplements
+     *
+     * @urlParam id integer required The numeric id of the supplement order. Example: 4
+     *
+     * @response 200 scenario="Stripe payment sheet" {"paymentIntent":"pi_3OabcXYZ_secret_abc123","ephemeralKey":"ek_test_YWNjdF8xTz","customer":"cus_PQ12abcXYZ","publishableKey":"pk_test_51Oabc"}
+     * @response 403 scenario="User not found" {"status":"Error has occured...","message":"User not found","data":"Order Payment"}
+     * @response 403 scenario="Order belongs to another user" {"status":"Error has occured...","message":"Cannot make payment for order.","data":"Order Payment"}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found","data":"Order Payment"}
+     * @response 422 scenario="Order not pending" {"status":"Error has occured...","message":"Order already paid","data":"Order Payment"}
+     *
+     * @responseField paymentIntent string Stripe PaymentIntent client secret.
+     * @responseField ephemeralKey string Stripe ephemeral key secret for the customer.
+     * @responseField customer string Stripe customer id.
+     * @responseField publishableKey string Stripe publishable key.
      */
     public function stripeSupplementCheckout($order_id)
     {
@@ -491,8 +628,34 @@ class PaymentController extends Controller
     }
 
     /**
-     * Stripe Diet Subscription payment checkout request
-     * @urlParam diet_subscription_package int The id of the diet subscription package
+     * Stripe checkout for a diet plan subscription
+     *
+     * Subscribes the authenticated user to a diet subscription package. Reuses the user's current pending
+     * subscription or creates a new pending one (end date derived from the package duration), then creates a
+     * Stripe customer, ephemeral key and PaymentIntent in the package currency and stores a pending `StripePayment`.
+     * The Stripe webhook marks the subscription as paid. Body measurements are only required when the user's
+     * profile has neither height nor weight.
+     *
+     * @group Diet Plans
+     *
+     * @urlParam diet_subscription_package integer required The numeric id of the diet subscription package. Example: 2
+     *
+     * @bodyParam height number User height. Required when the user's profile has no height and no weight. Example: 175
+     * @bodyParam height_units string Height units; required with `height` in the same case. Example: cm
+     * @bodyParam weight number User weight. Required when the user's profile has no height and no weight. Example: 70
+     * @bodyParam weight_units string Weight units; required with `weight` in the same case. Example: kg
+     * @bodyParam body_mass_index number User BMI. Required when the user's profile has no height and no weight. Example: 22.9
+     *
+     * @response 200 scenario="Stripe payment sheet" {"paymentIntent":"pi_3OabcXYZ_secret_abc123","ephemeralKey":"ek_test_YWNjdF8xTz","customer":"cus_PQ12abcXYZ","publishableKey":"pk_test_51Oabc"}
+     * @response 400 scenario="Validation error" {"status":"Error has occured...","message":"Diet plan data","data":{"height":["The height field is required."]}}
+     * @response 400 scenario="Already subscribed" {"status":"Error has occured...","message":"Diet Plans Checkout","data":"You already have a subscription"}
+     * @response 400 scenario="Invalid package duration" {"status":"Error has occured...","message":"Invalid subscription package","data":""}
+     * @response 404 scenario="Package not found" {"message":"No query results for model [App\\Models\\DietSubscriptionPackage] 99"}
+     *
+     * @responseField paymentIntent string Stripe PaymentIntent client secret.
+     * @responseField ephemeralKey string Stripe ephemeral key secret for the customer.
+     * @responseField customer string Stripe customer id.
+     * @responseField publishableKey string Stripe publishable key.
      */
     public function stripeDietPlanCheckout(Request $request, DietSubscriptionPackage $diet_subscription_package)
     {
@@ -622,6 +785,30 @@ class PaymentController extends Controller
         }
     }
 
+    /**
+     * Stripe webhook
+     *
+     * Receives Stripe event notifications. Only events whose `data.object.object` is `charge` are handled; the
+     * charge's `payment_intent` is matched to a stored `StripePayment`. On `charge.succeeded` the payment is marked
+     * successful and, depending on what was paid for, the order is marked paid (status 2), assigned to a rider and
+     * the restaurant notified; or the rider tip is marked paid; or the supplement order is marked paid; or the diet
+     * subscription is marked paid. A `Payment` record is created (except for diet subscriptions) and the user is notified.
+     * On `charge.payment_failed` the user is notified. Unmatched or unhandled events return an empty 200 response.
+     * Called by Stripe, not by API clients.
+     *
+     * @bodyParam id string The Stripe event id. Example: evt_3OabcXYZ
+     * @bodyParam type string required The Stripe event type. Handled values: `charge.succeeded`, `charge.payment_failed`. Example: charge.succeeded
+     * @bodyParam data object required The event data wrapper.
+     * @bodyParam data.object object required The Stripe object the event refers to.
+     * @bodyParam data.object.object string required The Stripe object type; only `charge` is processed. Example: charge
+     * @bodyParam data.object.id string required The charge id, stored as the payment transaction id. Example: ch_3OabcXYZ
+     * @bodyParam data.object.payment_intent string required The PaymentIntent id the charge belongs to. Example: pi_3OabcXYZ
+     *
+     * @response 200 scenario="Payment processed" {"message":"Successful Payment"}
+     * @response 200 scenario="Event ignored" ""
+     *
+     * @responseField message string Result message.
+     */
     public function stripeWebhookCallback(Request $request)
     {
         // Get the payment details
@@ -771,8 +958,22 @@ class PaymentController extends Controller
     }
 
     /**
-     * Mpesa Checkout payment for order
-     * @urlParam order_id int The id of the order
+     * M-Pesa checkout for an order
+     *
+     * Sends an M-Pesa STK push via PochiPay to the authenticated customer's phone number for the rounded order total.
+     * Only available for orders from restaurants in Kenya. Payment is confirmed through the PochiPay callback.
+     *
+     * @urlParam order_id string required The order's numeric id or uuid. Example: 10
+     *
+     * @response 200 scenario="M-Pesa request sent" {"status":"Request was succesful","message":"Payment Request sent successful","data":""}
+     * @response 400 scenario="Restaurant outside Kenya" {"status":"Error has occured...","message":"Cannot use mpesa for payments outside Kenya","data":"Order Payment"}
+     * @response 400 scenario="PochiPay request failed" {"status":"Error has occured...","message":"Invalid phone number","data":""}
+     * @response 403 scenario="User not found" {"status":"Error has occured...","message":"User not found","data":"Order Payment"}
+     * @response 403 scenario="Order belongs to another user" {"status":"Error has occured...","message":"Cannot make payment for order.","data":"Order Payment"}
+     * @response 404 scenario="Order not found" {"status":"Error has occured...","message":"Order not found","data":"Order Payment"}
+     * @response 422 scenario="Order already paid" {"status":"Error has occured...","message":"Order already paid","data":"Order Payment"}
+     *
+     * @responseField message string Result message.
      */
     public function mpesaCheckout($order_id)
     {
@@ -840,6 +1041,22 @@ class PaymentController extends Controller
         }
     }
 
+    /**
+     * PochiPay (M-Pesa) callback
+     *
+     * Receives the result of an M-Pesa collection initiated through PochiPay. The order is matched by the uuid prefix
+     * in `billRefNumber`. On success the order is marked paid (status 2), assigned to a rider, the restaurant and
+     * customer are notified and a `Mobile Money` payment is recorded. Called by PochiPay, not by API clients.
+     *
+     * @bodyParam billRefNumber string The bill reference sent when initiating the collection (first segment of the order uuid). Example: 9b1deb4d
+     * @bodyParam thirdPartyReference string The M-Pesa transaction reference; must not already exist as a payment transaction id. Example: SAB1CD2EFG
+     * @bodyParam isSuccessful boolean Whether the collection succeeded. Example: true
+     * @bodyParam failReason string Reason for failure, when unsuccessful. Example: Request cancelled by user
+     *
+     * @response 200 scenario="Payment recorded" {"status":"Request was succesful","message":"Successful Payment","data":""}
+     * @response 400 scenario="Payment failed or order not found" {"status":"Error has occured...","message":"Payment was not successful","data":"Request cancelled by user"}
+     * @response 422 scenario="Duplicate transaction" {"message":{"thirdPartyReference":["The third party reference has already been taken."]}}
+     */
     public function pochipayCallback(Request $request)
     {
         $validator = Validator::make($request->all(), [

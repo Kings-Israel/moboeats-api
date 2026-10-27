@@ -1,28 +1,333 @@
-name: 'Customer Restaurants Bookmark Management'
+name: Supplements
 description: |-
 
-  RestaurantBookmark API resource
+  Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+  endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
 endpoints:
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/v1/orderer/restaurant-bookmark
+    uri: api/v3/orderer/supplements
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      custom:
+        resources:
+          - SupplementResource
+          - SupplementSupplierResource
+        models:
+          - Supplement
+          - SupplementSupplier
+          - SupplementCategory
+      groupName: Supplements
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: ''
+      title: 'List supplements'
+      description: |-
+        Returns a paginated list of supplements. Guests and regular users only see available supplements.
+        Authenticated users with role `admin` or `supplements admin` see all supplements (with `orders_count`),
+        can filter by `search`/`supplier`, and additionally receive the list of suppliers and categories.
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Admin only. Filter supplements whose name contains this text.'
+        required: false
+        example: protein
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      supplier:
+        custom: []
+        name: supplier
+        description: 'Admin only. Filter by supplier ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 15
+      page: 1
+      search: protein
+      supplier: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "supplements": {
+                "data": [
+                  {
+                    "id": 1,
+                    "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"},
+                    "name": "Whey Protein",
+                    "supplement_category": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"},
+                    "currency": "KSH",
+                    "price": 2500,
+                    "measuring_unit": "kilograms",
+                    "description": "Premium whey protein powder.",
+                    "images": [{"id": 1, "supplement_id": 1, "image": "https://moboeats.com/storage/supplements/whey.jpg", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}]
+                  }
+                ],
+                "links": {"first": "https://moboeats.com/api/v1/orderer/supplements?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements?page=1", "prev": null, "next": null},
+                "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements", "per_page": 15, "to": 1, "total": 1}
+              }
+            }
+          }
+        headers: []
+        description: 'Customer / guest'
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "supplements": {
+                "data": [
+                  {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "supplement_category": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}, "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": true, "orders_count": 4, "images": []}
+                ],
+                "links": {"first": "https://moboeats.com/api/v1/admin/supplements?page=1", "last": "https://moboeats.com/api/v1/admin/supplements?page=1", "prev": null, "next": null},
+                "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/admin/supplements", "per_page": 15, "to": 1, "total": 1}
+              },
+              "suppliers": [{"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}],
+              "categories": [{"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}]
+            }
+          }
+        headers: []
+        description: 'Admin / supplements admin'
+    responseFields:
+      data.supplements:
+        custom: []
+        name: data.supplements
+        description: 'Paginated supplements (data, links, meta).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.suppliers:
+        custom: []
+        name: data.suppliers
+        description: 'Admin only. All suppliers.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.categories:
+        custom: []
+        name: data.categories
+        description: 'Admin only. All supplement categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/orderer/supplements/categories
+    metadata:
+      custom:
+        resources: []
+        models:
+          - SupplementCategory
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List supplement categories'
+      description: 'Returns a paginated list of supplement categories, each with its supplements.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter categories whose name contains this text.'
+        required: false
+        example: protein
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      perPage:
+        custom: []
+        name: perPage
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: protein
+      perPage: 15
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "current_page": 1,
+              "data": [
+                {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z", "supplements": [{"id": 1, "supplement_supplier_id": 1, "supplement_category_id": 1, "name": "Whey Protein", "description": "Premium whey protein powder.", "is_available": true, "price_per_quantity": 2500, "measuring_unit": "kilograms"}]}
+              ],
+              "first_page_url": "https://moboeats.com/api/v1/orderer/supplements/categories?page=1",
+              "from": 1,
+              "last_page": 1,
+              "last_page_url": "https://moboeats.com/api/v1/orderer/supplements/categories?page=1",
+              "links": [],
+              "next_page_url": null,
+              "path": "https://moboeats.com/api/v1/orderer/supplements/categories",
+              "per_page": 15,
+              "prev_page_url": null,
+              "to": 1,
+              "total": 1
+            }
+          }
+        headers: []
+        description: ''
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'Categories on this page with their supplements.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/orderer/supplements/categories/{supplement_category}/details'
+    metadata:
+      custom:
+        resources: []
+        models:
+          - SupplementCategory
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a supplement category'
+      description: 'Returns a supplement category with its supplements.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      supplement_category:
+        custom: []
+        name: supplement_category
+        description: 'The numeric ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      supplement_category: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -30,36 +335,283 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z", "supplements": [{"id": 1, "supplement_supplier_id": 1, "supplement_category_id": 1, "name": "Whey Protein", "description": "Premium whey protein powder.", "is_available": true, "price_per_quantity": 2500, "measuring_unit": "kilograms"}]}
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\SupplementCategory] 99"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.supplements:
+        custom: []
+        name: data.supplements
+        description: 'Supplements in this category.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
-      - POST
-    uri: api/v1/orderer/restaurant-bookmark
+      - GET
+    uri: api/v3/orderer/supplements/suppliers
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      custom:
+        resources:
+          - SupplementSupplierResource
+        models:
+          - SupplementSupplier
+      groupName: Supplements
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
-      description: ''
+      title: 'List supplement suppliers'
+      description: |-
+        Returns a paginated list of supplement suppliers with their supplements. Public on the orderer routes;
+        admins also see `status` and `orders_count`.
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 15
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "data": [
+                {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "supplements": [{"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder."}], "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+              ],
+              "links": {"first": "https://moboeats.com/api/v1/orderer/supplements/suppliers?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements/suppliers?page=1", "prev": null, "next": null},
+              "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements/suppliers", "per_page": 15, "to": 1, "total": 1}
+            }
+          }
+        headers: []
+        description: ''
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The suppliers on this page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.meta:
+        custom: []
+        name: data.meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/orderer/supplements/orders
+    metadata:
+      custom:
+        resources:
+          - SupplementOrderResource
+        models:
+          - SupplementOrder
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List supplement orders'
+      description: |-
+        Returns paginated supplement orders. Users with role `admin` or `supplements admin` see all orders;
+        other users see only their own orders.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 15
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "data": [
+                {
+                  "id": 1,
+                  "user": {"id": 5, "uuid": "9b1d3c2e-1a2b-4c5d-8e9f-0a1b2c3d4e5f", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": null, "avatar": null, "relationships": {"orderer": null}, "type": "orderer", "referral_code": null, "is_guided": true},
+                  "supplement": {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder."},
+                  "quantity": 2,
+                  "currency": "KSH",
+                  "amount": 5000,
+                  "status": "Awaiting Confirmation",
+                  "created_at": "2024-11-01T10:00:00.000000Z"
+                }
+              ],
+              "links": {"first": "https://moboeats.com/api/v1/orderer/supplements/orders?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements/orders?page=1", "prev": null, "next": null},
+              "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements/orders", "per_page": 15, "to": 1, "total": 1}
+            }
+          }
+        headers: []
+        description: ''
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The supplement orders on this page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.meta:
+        custom: []
+        name: data.meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v3/orderer/supplements/orders
+    metadata:
+      custom:
+        resources:
+          - SupplementOrderResource
+        models:
+          - SupplementOrder
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a supplement order'
+      description: |-
+        Places a supplement order for the authenticated user. Payment is done separately via
+        `GET v1/orderer/supplements/orders/{id}/pay`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -67,51 +619,124 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      restaurantId:
-        name: restaurantId
-        description: ''
-        required: true
-        example: 5
-        type: integer
+      supplement_id:
         custom: []
+        name: supplement_id
+        description: 'The ID of the supplement.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      quantity:
+        custom: []
+        name: quantity
+        description: 'The quantity ordered.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanBodyParameters:
-      restaurantId: 5
+      supplement_id: 1
+      quantity: 2
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": "Order created successfully",
+            "data": {"id": 1, "quantity": 2, "currency": "KSH", "amount": 5000, "status": "Awaiting Confirmation", "created_at": "2024-11-01T10:00:00.000000Z"}
+          }
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 400
+        content: |-
+          {
+            "status": "Error has occured...",
+            "message": "Invalid Data",
+            "data": {"supplement_id": ["The supplement id field is required."]}
+          }
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.id:
+        custom: []
+        name: data.id
+        description: 'The order ID.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.amount:
+        custom: []
+        name: data.amount
+        description: 'Total order amount.'
+        required: false
+        example: null
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/restaurant-bookmark/{id}'
+    uri: 'api/v3/orderer/supplements/orders/{id}/pay'
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
-      groupDescription: |-
-
-        RestaurantBookmark API resource
+      custom:
+        resources: []
+        models:
+          - SupplementOrder
+          - StripePayment
+      groupName: Supplements
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Stripe checkout for a supplement order'
+      description: |-
+        Creates a Stripe customer, ephemeral key and a KES PaymentIntent for the authenticated user's pending
+        supplement order, and stores a pending `StripePayment`. The Stripe webhook marks the order as paid.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
-        name: id
-        description: 'The ID of the restaurant bookmark.'
-        required: true
-        example: est
-        type: string
         custom: []
+        name: id
+        description: 'The numeric id of the supplement order.'
+        required: true
+        example: 4
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      id: est
+      id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -119,57 +744,1095 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
+        status: 200
+        content: '{"paymentIntent":"pi_3OabcXYZ_secret_abc123","ephemeralKey":"ek_test_YWNjdF8xTz","customer":"cus_PQ12abcXYZ","publishableKey":"pk_test_51Oabc"}'
+        headers: []
+        description: 'Stripe payment sheet'
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"User not found","data":"Order Payment"}'
+        headers: []
+        description: 'User not found'
+      -
+        custom: []
+        status: 403
+        content: '{"status":"Error has occured...","message":"Cannot make payment for order.","data":"Order Payment"}'
+        headers: []
+        description: 'Order belongs to another user'
+      -
+        custom: []
+        status: 404
+        content: '{"status":"Error has occured...","message":"Order not found","data":"Order Payment"}'
+        headers: []
+        description: 'Order not found'
+      -
+        custom: []
+        status: 422
+        content: '{"status":"Error has occured...","message":"Order already paid","data":"Order Payment"}'
+        headers: []
+        description: 'Order not pending'
+    responseFields:
+      paymentIntent:
+        custom: []
+        name: paymentIntent
+        description: 'Stripe PaymentIntent client secret.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      ephemeralKey:
+        custom: []
+        name: ephemeralKey
+        description: 'Stripe ephemeral key secret for the customer.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      customer:
+        custom: []
+        name: customer
+        description: 'Stripe customer id.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      publishableKey:
+        custom: []
+        name: publishableKey
+        description: 'Stripe publishable key.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
-      - DELETE
-    uri: 'api/v1/orderer/restaurant-bookmark/{id}'
+      - GET
+    uri: api/v3/admin/supplements
     metadata:
-      groupName: 'Customer Restaurants Bookmark Management'
+      custom:
+        resources:
+          - SupplementResource
+          - SupplementSupplierResource
+        models:
+          - Supplement
+          - SupplementSupplier
+          - SupplementCategory
+      groupName: Supplements
       groupDescription: |-
 
-        RestaurantBookmark API resource
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'List supplements'
+      description: |-
+        Returns a paginated list of supplements. Guests and regular users only see available supplements.
+        Authenticated users with role `admin` or `supplements admin` see all supplements (with `orders_count`),
+        can filter by `search`/`supplier`, and additionally receive the list of suppliers and categories.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Admin only. Filter supplements whose name contains this text.'
+        required: false
+        example: protein
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      supplier:
+        custom: []
+        name: supplier
+        description: 'Admin only. Filter by supplier ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 15
+      page: 1
+      search: protein
+      supplier: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "supplements": {
+                "data": [
+                  {
+                    "id": 1,
+                    "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"},
+                    "name": "Whey Protein",
+                    "supplement_category": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"},
+                    "currency": "KSH",
+                    "price": 2500,
+                    "measuring_unit": "kilograms",
+                    "description": "Premium whey protein powder.",
+                    "images": [{"id": 1, "supplement_id": 1, "image": "https://moboeats.com/storage/supplements/whey.jpg", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}]
+                  }
+                ],
+                "links": {"first": "https://moboeats.com/api/v1/orderer/supplements?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements?page=1", "prev": null, "next": null},
+                "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements", "per_page": 15, "to": 1, "total": 1}
+              }
+            }
+          }
+        headers: []
+        description: 'Customer / guest'
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "supplements": {
+                "data": [
+                  {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "supplement_category": {"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}, "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": true, "orders_count": 4, "images": []}
+                ],
+                "links": {"first": "https://moboeats.com/api/v1/admin/supplements?page=1", "last": "https://moboeats.com/api/v1/admin/supplements?page=1", "prev": null, "next": null},
+                "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/admin/supplements", "per_page": 15, "to": 1, "total": 1}
+              },
+              "suppliers": [{"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}],
+              "categories": [{"id": 1, "name": "Proteins", "created_at": "2024-11-01T10:00:00.000000Z", "updated_at": "2024-11-01T10:00:00.000000Z"}]
+            }
+          }
+        headers: []
+        description: 'Admin / supplements admin'
+    responseFields:
+      data.supplements:
+        custom: []
+        name: data.supplements
+        description: 'Paginated supplements (data, links, meta).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.suppliers:
+        custom: []
+        name: data.suppliers
+        description: 'Admin only. All suppliers.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.categories:
+        custom: []
+        name: data.categories
+        description: 'Admin only. All supplement categories.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v3/admin/supplements/store
+    metadata:
+      custom:
+        resources:
+          - SupplementResource
+        models:
+          - Supplement
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a supplement'
+      description: 'Admin endpoint. Registers a new supplement with its images and logs the activity.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      supplier_id:
+        custom: []
+        name: supplier_id
+        description: 'ID of an existing supplement supplier.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      category_id:
+        custom: []
+        name: category_id
+        description: 'ID of the supplement category.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      name:
+        custom: []
+        name: name
+        description: 'Supplement name.'
+        required: true
+        example: 'Whey Protein'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      price:
+        custom: []
+        name: price
+        description: 'Price per measuring unit.'
+        required: true
+        example: 2500.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      measuring_unit:
+        custom: []
+        name: measuring_unit
+        description: 'One of: `kilograms`, `pounds`, `litres`.'
+        required: true
+        example: kilograms
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      images:
+        custom: []
+        name: images
+        description: 'At least one image (jpg or png).'
+        required: true
+        example:
+          - null
+        type: 'file[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'Supplement description.'
+        required: false
+        example: 'Premium whey protein powder.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      prescription:
+        custom: []
+        name: prescription
+        description: 'Usage / prescription notes.'
+        required: false
+        example: 'One scoop daily.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      category:
+        custom: []
+        name: category
+        description: 'Free-text category label.'
+        required: false
+        example: Fitness
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      supplier_id: 1
+      category_id: 1
+      name: 'Whey Protein'
+      price: 2500.0
+      measuring_unit: kilograms
+      description: 'Premium whey protein powder.'
+      prescription: 'One scoop daily.'
+      category: Fitness
+    fileParameters:
+      images:
+        - null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": null, "orders_count": null}
+          }
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 400
+        content: |-
+          {
+            "status": "Error has occured...",
+            "message": "Invalid data",
+            "data": {"supplier_id": ["The supplier id field is required."]}
+          }
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The created supplement.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/admin/supplements/suppliers
+    metadata:
+      custom:
+        resources:
+          - SupplementSupplierResource
+        models:
+          - SupplementSupplier
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List supplement suppliers'
+      description: |-
+        Returns a paginated list of supplement suppliers with their supplements. Public on the orderer routes;
+        admins also see `status` and `orders_count`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 15
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "data": [
+                {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "supplements": [{"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder."}], "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+              ],
+              "links": {"first": "https://moboeats.com/api/v1/orderer/supplements/suppliers?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements/suppliers?page=1", "prev": null, "next": null},
+              "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements/suppliers", "per_page": 15, "to": 1, "total": 1}
+            }
+          }
+        headers: []
+        description: ''
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The suppliers on this page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.meta:
+        custom: []
+        name: data.meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v3/admin/supplements/suppliers/store
+    metadata:
+      custom:
+        resources:
+          - SupplementSupplierResource
+        models:
+          - SupplementSupplier
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a supplement supplier'
+      description: 'Admin endpoint. Registers a new supplier with an image and logs the activity.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'Supplier name.'
+        required: true
+        example: 'HealthPlus Ltd'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'Supplier logo/image.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      location:
+        custom: []
+        name: location
+        description: 'Supplier location.'
+        required: false
+        example: Nairobi
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: 'HealthPlus Ltd'
+      location: Nairobi
+    fileParameters:
+      image: null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": null, "orders_count": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+          }
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 400
+        content: |-
+          {
+            "status": "Error has occured...",
+            "message": "Invalid data",
+            "data": {"name": ["The name field is required."]}
+          }
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The created supplier.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/admin/supplements/{supplement}/status/update'
+    metadata:
+      custom:
+        resources:
+          - SupplementResource
+        models:
+          - Supplement
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Toggle supplement availability'
+      description: "Admin endpoint. Flips the supplement's `is_available` flag."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the restaurant bookmark.'
-        required: true
-        example: sit
-        type: string
+      supplement:
         custom: []
+        name: supplement
+        description: 'The numeric ID of the supplement.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      id: sit
+      supplement: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": "Supplement updated successfully",
+            "data": {"id": 1, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": false, "orders_count": null}
+          }
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\Supplement] 99"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.is_available:
+        custom: []
+        name: data.is_available
+        description: 'The new availability state (shown to admins).'
+        required: false
+        example: null
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
+  -
     custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/admin/supplements/suppliers/{supplier}/status/update'
+    metadata:
+      custom:
+        resources:
+          - SupplementSupplierResource
+        models:
+          - SupplementSupplier
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Toggle supplier status'
+      description: "Admin endpoint. Switches the supplier's `status` between `active` and `inactive`."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      supplier:
+        custom: []
+        name: supplier
+        description: 'The numeric ID of the supplier.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      supplier: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "supplements": [], "status": "inactive", "orders_count": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}
+          }
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\SupplementSupplier] 99"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.status:
+        custom: []
+        name: data.status
+        description: 'The new status (`active` or `inactive`).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/admin/supplements/orders
+    metadata:
+      custom:
+        resources:
+          - SupplementOrderResource
+        models:
+          - SupplementOrder
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List supplement orders'
+      description: |-
+        Returns paginated supplement orders. Users with role `admin` or `supplements admin` see all orders;
+        other users see only their own orders.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 15
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "data": [
+                {
+                  "id": 1,
+                  "user": {"id": 5, "uuid": "9b1d3c2e-1a2b-4c5d-8e9f-0a1b2c3d4e5f", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": null, "avatar": null, "relationships": {"orderer": null}, "type": "orderer", "referral_code": null, "is_guided": true},
+                  "supplement": {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder."},
+                  "quantity": 2,
+                  "currency": "KSH",
+                  "amount": 5000,
+                  "status": "Awaiting Confirmation",
+                  "created_at": "2024-11-01T10:00:00.000000Z"
+                }
+              ],
+              "links": {"first": "https://moboeats.com/api/v1/orderer/supplements/orders?page=1", "last": "https://moboeats.com/api/v1/orderer/supplements/orders?page=1", "prev": null, "next": null},
+              "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/supplements/orders", "per_page": 15, "to": 1, "total": 1}
+            }
+          }
+        headers: []
+        description: ''
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The supplement orders on this page.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.meta:
+        custom: []
+        name: data.meta
+        description: 'Pagination metadata.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v3/admin/supplements/order/{id}/status/update'
+    metadata:
+      custom:
+        resources:
+          - SupplementOrderResource
+        models:
+          - SupplementOrder
+      groupName: Supplements
+      groupDescription: |-
+
+        Supplements, supplement categories, suppliers and supplement orders. Customer-facing
+        endpoints live under `v1/orderer/supplements`, admin endpoints under `v1/admin/supplements`.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update supplement order status'
+      description: |-
+        Admin endpoint. Updates the order status and courier details. Setting `delivered` or `on delivery`
+        sends a notification to the customer; `confirmed` is stored as `delivered`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The numeric ID of the supplement order.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        custom: []
+        name: status
+        description: 'New status. One of: `delivered`, `cancelled`, `on delivery`, `awaiting confirmation`, `confirmed`.'
+        required: true
+        example: 'on delivery'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      expected_delivery_date:
+        custom: []
+        name: expected_delivery_date
+        description: 'Expected delivery date.'
+        required: false
+        example: '2024-11-05'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      courier_name:
+        custom: []
+        name: courier_name
+        description: 'Courier contact name.'
+        required: false
+        example: 'John Rider'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      courier_email:
+        custom: []
+        name: courier_email
+        description: 'Courier contact email.'
+        required: false
+        example: courier@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      courier_phone:
+        custom: []
+        name: courier_phone
+        description: 'Courier contact phone.'
+        required: false
+        example: '254700000000'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      status: 'on delivery'
+      expected_delivery_date: '2024-11-05'
+      courier_name: 'John Rider'
+      courier_email: courier@example.com
+      courier_phone: '254700000000'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": "Order Status updated successfully",
+            "data": {"id": 1, "supplement": {"id": 1, "supplier": {"id": 1, "name": "HealthPlus Ltd", "location": "Nairobi", "description": null, "status": "active", "image": "https://moboeats.com/storage/supplements/suppliers/supplier.jpg"}, "name": "Whey Protein", "currency": "KSH", "price": 2500, "measuring_unit": "kilograms", "description": "Premium whey protein powder.", "is_available": true}, "quantity": 2, "currency": "KSH", "amount": 5000, "status": "On Delivery", "created_at": "2024-11-01T10:00:00.000000Z"}
+          }
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 400
+        content: |-
+          {
+            "status": "Error has occured...",
+            "message": "Invalid Order Status",
+            "data": {"status": ["The selected status is invalid."]}
+          }
+        headers: []
+        description: 'Invalid status'
+    responseFields:
+      data.status:
+        custom: []
+        name: data.status
+        description: 'The updated order status (title case).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

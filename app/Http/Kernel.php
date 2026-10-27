@@ -2,7 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ConvertToStandardApiResponse;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Routing\Router;
 
 class Kernel extends HttpKernel
 {
@@ -64,5 +67,14 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         'has_restaurant' => \App\Http\Middleware\HasRestaurant::class,
+        'api.standard' => \App\Http\Middleware\ConvertToStandardApiResponse::class,
     ];
+
+    public function __construct(Application $app, Router $router)
+    {
+        parent::__construct($app, $router);
+
+        // Must run before authentication so v3 auth failures are rendered as JSON.
+        $this->prependToMiddlewarePriority(ConvertToStandardApiResponse::class);
+    }
 }

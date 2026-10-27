@@ -1,24 +1,33 @@
-name: 'Orderer/Customer Management'
+name: Messaging
 description: |-
 
-  Orderer/Customer API resource
+  In-app chat between users (customers, riders, restaurants and the admin).
 endpoints:
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/v1/orderer/orderers
+    uri: api/v3/conversations
     metadata:
-      groupName: 'Orderer/Customer Management'
+      custom:
+        resources:
+          - ConversationResource
+        models:
+          - User
+      groupName: Messaging
       groupDescription: |-
 
-        Orderer/Customer API resource
+        In-app chat between users (customers, riders, restaurants and the admin).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'List conversations'
+      description: |-
+        Returns all chat conversations of the authenticated user. A direct conversation with the admin (user ID 1) is
+        created automatically if it does not exist yet.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -30,36 +39,200 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "conversations": [
+                {
+                  "id": 7,
+                  "private": true,
+                  "direct_message": true,
+                  "data": [],
+                  "created_at": "2024-03-01T11:59:00.000000Z",
+                  "updated_at": "2024-03-01T12:00:00.000000Z",
+                  "unread_count": 2,
+                  "last_message": {"id": 42, "message_id": 42, "messageable_id": 5, "messageable_type": "App\\Models\\User", "conversation_id": 7, "participation_id": 13, "is_seen": 1, "is_sender": 1, "flagged": 0, "created_at": "2024-03-01T12:00:00.000000Z", "updated_at": "2024-03-01T12:00:00.000000Z", "body": "Hello, where is my order?", "type": "text", "data": [], "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}, "from_now": "2 minutes ago"},
+                  "participants": [
+                    {"id": 13, "conversation_id": 7, "messageable_id": 5, "messageable_type": "App\\Models\\User", "settings": {"mute_mentions": false, "mute_conversation": false}, "created_at": "2024-03-01T11:59:00.000000Z", "updated_at": "2024-03-01T11:59:00.000000Z", "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}, "is_admin": false},
+                    {"id": 14, "conversation_id": 7, "messageable_id": 1, "messageable_type": "App\\Models\\User", "settings": {"mute_mentions": false, "mute_conversation": false}, "created_at": "2024-03-01T11:59:00.000000Z", "updated_at": "2024-03-01T11:59:00.000000Z", "messageable": {"id": 1, "uuid": "1a2b3c4d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Admin", "email": "admin@moboeats.com", "phone_number": "254700000000", "role": "admin", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}, "is_admin": true}
+                  ],
+                  "user_id": 5
+                }
+              ],
+              "user_id": 5
+            }
+          }
+        headers: []
+        description: Success
+    responseFields:
+      data.conversations:
+        custom: []
+        name: data.conversations
+        description: "The user's conversations, each with unread count, last message and participants."
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.user_id:
+        custom: []
+        name: data.user_id
+        description: "The authenticated user's ID."
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/conversations/{id}'
+    metadata:
+      custom:
+        resources:
+          - MessageResource
+        models: []
+      groupName: Messaging
+      groupDescription: |-
+
+        In-app chat between users (customers, riders, restaurants and the admin).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get conversation messages'
+      description: 'Returns the messages in a conversation and marks all of them as read for the authenticated user.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the conversation.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 7
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "data": [
+                {
+                  "read_at": null,
+                  "created_at": "2024-03-01T12:00:00.000000Z",
+                  "updated_at": "2024-03-01T12:00:00.000000Z",
+                  "deleted_at": null,
+                  "messageable_id": 5,
+                  "notification_id": 88,
+                  "is_seen": 1,
+                  "is_sender": 1,
+                  "id": 42,
+                  "body": "Hello, where is my order?",
+                  "conversation_id": 7,
+                  "participation_id": 13,
+                  "type": "text",
+                  "data": [],
+                  "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+                  "participation": {
+                    "id": 13,
+                    "conversation_id": 7,
+                    "messageabble_id": 5,
+                    "settings": {"mute_mentions": false, "mute_conversation": false},
+                    "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+                    "created_at": "2024-03-01T11:59:00.000000Z",
+                    "updated_at": "2024-03-01T11:59:00.000000Z"
+                  }
+                }
+              ]
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Conversation not found", "data": ""}'
+        headers: []
+        description: 'Conversation not found'
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The messages in the conversation (MessageResource).'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
     httpMethods:
       - POST
-    uri: api/v1/orderer/orderers
+    uri: api/v3/message/send
     metadata:
-      groupName: 'Orderer/Customer Management'
+      custom:
+        resources:
+          - ConversationResource
+          - MessageResource
+        models:
+          - User
+      groupName: Messaging
       groupDescription: |-
 
-        Orderer/Customer API resource
+        In-app chat between users (customers, riders, restaurants and the admin).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Send a message'
+      description: |-
+        Sends a message to another user, creating a direct conversation between the two users if one does not exist.
+        Participants are notified in the background.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -67,101 +240,297 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
-        description: ''
+      receiver_id:
+        custom: []
+        name: receiver_id
+        description: 'The user ID of the receiver.'
         required: true
-        example: repellat
-        type: string
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      message:
         custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address.'
+        name: message
+        description: 'The message body.'
         required: true
-        example: ashlee68@example.org
+        example: 'Hello, where is my order?'
         type: string
-        custom: []
-      phoneNo:
-        name: phoneNo
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      city:
-        name: city
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      state:
-        name: state
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      mapLocation:
-        name: mapLocation
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      image:
-        name: image
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanBodyParameters:
-      name: repellat
-      email: ashlee68@example.org
+      receiver_id: 1
+      message: 'Hello, where is my order?'
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "message": "Message sent",
+              "data": {
+                "read_at": null,
+                "created_at": "2024-03-01T12:00:00.000000Z",
+                "updated_at": "2024-03-01T12:00:00.000000Z",
+                "deleted_at": null,
+                "messageable_id": 5,
+                "notification_id": 88,
+                "is_seen": 1,
+                "is_sender": 1,
+                "id": 42,
+                "body": "Hello, where is my order?",
+                "conversation_id": 7,
+                "participation_id": 13,
+                "type": "text",
+                "data": [],
+                "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+                "participation": {
+                  "id": 13,
+                  "conversation_id": 7,
+                  "messageabble_id": 5,
+                  "settings": {"mute_mentions": false, "mute_conversation": false},
+                  "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+                  "created_at": "2024-03-01T11:59:00.000000Z",
+                  "updated_at": "2024-03-01T11:59:00.000000Z"
+                }
+              }
+            }
+          }
+        headers: []
+        description: 'Message sent'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Cannot send message to yourself", "data": ""}'
+        headers: []
+        description: 'Messaging yourself'
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Receiver was not found", "data": ""}'
+        headers: []
+        description: 'Receiver not found'
+      -
+        custom: []
+        status: 422
+        content: '{"receiver_id": ["The receiver id field is required."], "message": ["The message field is required."]}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The sent message (MessageResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
-      - GET
-    uri: 'api/v1/orderer/orderers/{id}'
+      - POST
+    uri: 'api/v3/conversation/{id}/reply'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      custom:
+        resources:
+          - ConversationResource
+          - MessageResource
+        models: []
+      groupName: Messaging
       groupDescription: |-
 
-        Orderer/Customer API resource
+        In-app chat between users (customers, riders, restaurants and the admin).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get User Details.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Reply to a conversation'
+      description: |-
+        Sends a message to an existing conversation and marks the conversation as read for the authenticated user.
+        Participants are notified in the background.
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
-        name: id
-        description: 'The ID of the orderer.'
-        required: true
-        example: et
-        type: string
         custom: []
+        name: id
+        description: 'The ID of the conversation.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      id: et
+      id: 7
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      message:
+        custom: []
+        name: message
+        description: 'The message body.'
+        required: true
+        example: 'Thanks, received!'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      message: 'Thanks, received!'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "message": "Message sent",
+              "data": {
+                "read_at": null,
+                "created_at": "2024-03-01T12:00:00.000000Z",
+                "updated_at": "2024-03-01T12:00:00.000000Z",
+                "deleted_at": null,
+                "messageable_id": 5,
+                "notification_id": 88,
+                "is_seen": 1,
+                "is_sender": 1,
+                "id": 42,
+                "body": "Hello, where is my order?",
+                "conversation_id": 7,
+                "participation_id": 13,
+                "type": "text",
+                "data": [],
+                "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+                "participation": {
+                  "id": 13,
+                  "conversation_id": 7,
+                  "messageabble_id": 5,
+                  "settings": {"mute_mentions": false, "mute_conversation": false},
+                  "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+                  "created_at": "2024-03-01T11:59:00.000000Z",
+                  "updated_at": "2024-03-01T11:59:00.000000Z"
+                }
+              }
+            }
+          }
+        headers: []
+        description: 'Message sent'
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Conversation not found", "data": ""}'
+        headers: []
+        description: 'Conversation not found'
+      -
+        custom: []
+        status: 422
+        content: '{"message": ["The message field is required."]}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The sent message (MessageResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/conversations/{id}/read'
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: Messaging
+      groupDescription: |-
+
+        In-app chat between users (customers, riders, restaurants and the admin).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark a conversation as read'
+      description: 'Marks all the messages in a conversation as read for the authenticated user.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the conversation.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -169,226 +538,401 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"message": "Conversation marked as read", "data": {"id": 7, "private": true, "direct_message": true, "data": [], "created_at": "2024-03-01T11:59:00.000000Z", "updated_at": "2024-03-01T12:00:00.000000Z"}}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Conversation not found", "data": ""}'
+        headers: []
+        description: 'Conversation not found'
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The conversation.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/orderers/{id}'
+      - GET
+    uri: 'api/v3/message/{id}/read'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      custom:
+        resources: []
+        models: []
+      groupName: Messaging
       groupDescription: |-
 
-        Orderer/Customer API resource
+        In-app chat between users (customers, riders, restaurants and the admin).
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Mark a message as read'
+      description: 'Marks a specific message as read for the authenticated user.'
       authenticated: true
-      custom: []
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
-        description: 'The ID of the orderer.'
+        description: 'The ID of the message.'
         required: true
-        example: natus
-        type: string
-        custom: []
-      uuid:
-        name: uuid
-        description: 'The uuid of the user'
-        required: false
-        example: 6194eaf6-4957-3845-a0ce-5c19eed4d43c
-        type: string
-        custom: []
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      id: natus
-      uuid: 6194eaf6-4957-3845-a0ce-5c19eed4d43c
+      id: 42
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'The name of the user'
-        required: true
-        example: est
-        type: string
-        custom: []
-      email:
-        name: email
-        description: 'The email of the user'
-        required: false
-        example: verdie17@example.com
-        type: string
-        custom: []
-      phone_number:
-        name: phone_number
-        description: 'The phone number of the user'
-        required: true
-        example: quam
-        type: string
-        custom: []
-      location:
-        name: location
-        description: 'The location of the user'
-        required: false
-        example: dolores
-        type: string
-        custom: []
-      latitude:
-        name: latitude
-        description: 'The latitudinal location of the user'
-        required: false
-        example: consequatur
-        type: string
-        custom: []
-      longitude:
-        name: longitude
-        description: 'The longitudinal location of the user'
-        required: false
-        example: sit
-        type: string
-        custom: []
-    cleanBodyParameters:
-      name: est
-      email: verdie17@example.com
-      phone_number: quam
-      location: dolores
-      latitude: consequatur
-      longitude: sit
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"message": "Message marked as read", "data": {"id": 42, "body": "Hello, where is my order?", "conversation_id": 7, "participation_id": 13, "type": "text", "data": [], "created_at": "2024-03-01T12:00:00.000000Z", "updated_at": "2024-03-01T12:00:00.000000Z", "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}}}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Message not found", "data": ""}'
+        headers: []
+        description: 'Message not found'
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The message that was marked as read.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/conversations/{id}/unread/count'
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: Messaging
+      groupDescription: |-
+
+        In-app chat between users (customers, riders, restaurants and the admin).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Count unread messages in a conversation'
+      description: 'Returns the number of unread messages in a conversation for the authenticated user.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the conversation.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 7
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"data": 3}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Conversation not found", "data": ""}'
+        headers: []
+        description: 'Conversation not found'
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The unread messages count.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/messages/unread/count
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: Messaging
+      groupDescription: |-
+
+        In-app chat between users (customers, riders, restaurants and the admin).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Count all unread messages'
+      description: 'Returns the total number of unread messages across all conversations of the authenticated user.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"data": 5}}'
+        headers: []
+        description: Success
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'The unread messages count.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/orderers/{uuid}'
+    uri: 'api/v3/message/{id}/delete'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      custom:
+        resources: []
+        models: []
+      groupName: Messaging
       groupDescription: |-
 
-        Orderer/Customer API resource
+        In-app chat between users (customers, riders, restaurants and the admin).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Delete a message'
+      description: 'Deletes (trashes) a specific message for the authenticated user only; other participants still see it.'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      uuid:
-        name: uuid
-        description: ''
-        required: true
-        example: ad60594a-5b3e-3f6f-86bb-08f39369fea7
-        type: string
+      id:
         custom: []
+        name: id
+        description: 'The ID of the message.'
+        required: true
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      uuid: ad60594a-5b3e-3f6f-86bb-08f39369fea7
+      id: 42
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"message": "Message deleted successfully", "data": null}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "Message not found", "data": ""}'
+        headers: []
+        description: 'Message not found'
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
-      - POST
-    uri: api/v1/orderer/diet/data/store
+      - DELETE
+    uri: 'api/v3/conversation/{id}/delete'
     metadata:
-      groupName: 'Orderer/Customer Management'
+      custom:
+        resources: []
+        models: []
+      groupName: Messaging
       groupDescription: |-
 
-        Orderer/Customer API resource
+        In-app chat between users (customers, riders, restaurants and the admin).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store user data for diet planning'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Delete a conversation'
+      description: 'Permanently deletes a conversation together with all its messages and participants (for all participants).'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the conversation.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 7
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      height:
-        name: height
-        description: 'The height of the user'
-        required: true
-        example: 8
-        type: integer
-        custom: []
-      height_units:
-        name: height_units
-        description: 'The measurement units for height. E.g inches, feet'
-        required: true
-        example: 12
-        type: integer
-        custom: []
-      weight:
-        name: weight
-        description: 'The weight of the user'
-        required: true
-        example: 13
-        type: integer
-        custom: []
-      weight_units:
-        name: weight_units
-        description: 'The measurement units for weight. E.g kilograms, pounds'
-        required: true
-        example: 10
-        type: integer
-        custom: []
-      body_mass_index:
-        name: body_mass_index
-        description: 'The mass index of the user'
-        required: true
-        example: 6
-        type: integer
-        custom: []
-    cleanBodyParameters:
-      height: 8
-      height_units: 12
-      weight: 13
-      weight_units: 10
-      body_mass_index: 6
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"message": "Conversation deleted successfully"}}'
+        headers: []
+        description: Success
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []

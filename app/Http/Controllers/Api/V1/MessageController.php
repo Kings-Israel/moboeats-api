@@ -17,15 +17,48 @@ use Illuminate\Support\Facades\Validator;
 use Musonza\Chat\Models\Conversation;
 use Chat;
 
+/**
+ * @group Messaging
+ *
+ * In-app chat between users (customers, riders, restaurants and the admin).
+ */
 class MessageController extends Controller
 {
     use HttpResponses;
 
     /**
-     * Get all user's conversations
+     * List conversations
      *
-     * @response 200
-     * @responseParam data List of user's conversations
+     * Returns all chat conversations of the authenticated user. A direct conversation with the admin (user ID 1) is
+     * created automatically if it does not exist yet.
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "conversations": [
+     *       {
+     *         "id": 7,
+     *         "private": true,
+     *         "direct_message": true,
+     *         "data": [],
+     *         "created_at": "2024-03-01T11:59:00.000000Z",
+     *         "updated_at": "2024-03-01T12:00:00.000000Z",
+     *         "unread_count": 2,
+     *         "last_message": {"id": 42, "message_id": 42, "messageable_id": 5, "messageable_type": "App\\Models\\User", "conversation_id": 7, "participation_id": 13, "is_seen": 1, "is_sender": 1, "flagged": 0, "created_at": "2024-03-01T12:00:00.000000Z", "updated_at": "2024-03-01T12:00:00.000000Z", "body": "Hello, where is my order?", "type": "text", "data": [], "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}, "from_now": "2 minutes ago"},
+     *         "participants": [
+     *           {"id": 13, "conversation_id": 7, "messageable_id": 5, "messageable_type": "App\\Models\\User", "settings": {"mute_mentions": false, "mute_conversation": false}, "created_at": "2024-03-01T11:59:00.000000Z", "updated_at": "2024-03-01T11:59:00.000000Z", "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}, "is_admin": false},
+     *           {"id": 14, "conversation_id": 7, "messageable_id": 1, "messageable_type": "App\\Models\\User", "settings": {"mute_mentions": false, "mute_conversation": false}, "created_at": "2024-03-01T11:59:00.000000Z", "updated_at": "2024-03-01T11:59:00.000000Z", "messageable": {"id": 1, "uuid": "1a2b3c4d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Admin", "email": "admin@moboeats.com", "phone_number": "254700000000", "role": "admin", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}, "is_admin": true}
+     *         ],
+     *         "user_id": 5
+     *       }
+     *     ],
+     *     "user_id": 5
+     *   }
+     * }
+     *
+     * @responseField data.conversations object[] The user's conversations, each with unread count, last message and participants.
+     * @responseField data.user_id integer The authenticated user's ID.
      */
     public function index()
     {
@@ -54,13 +87,51 @@ class MessageController extends Controller
     /**
      * Send a message
      *
-     * @bodyParam message string required The message to send
-     * @bodyParam receiver_id integer required The receiver's id
+     * Sends a message to another user, creating a direct conversation between the two users if one does not exist.
+     * Participants are notified in the background.
      *
-     * @response 201
+     * @bodyParam receiver_id integer required The user ID of the receiver. Example: 1
+     * @bodyParam message string required The message body. Example: Hello, where is my order?
      *
-     * @responseParam message The message was sent
-     * @responseParam data The sent message
+     * @response 200 scenario="Message sent" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "message": "Message sent",
+     *     "data": {
+     *       "read_at": null,
+     *       "created_at": "2024-03-01T12:00:00.000000Z",
+     *       "updated_at": "2024-03-01T12:00:00.000000Z",
+     *       "deleted_at": null,
+     *       "messageable_id": 5,
+     *       "notification_id": 88,
+     *       "is_seen": 1,
+     *       "is_sender": 1,
+     *       "id": 42,
+     *       "body": "Hello, where is my order?",
+     *       "conversation_id": 7,
+     *       "participation_id": 13,
+     *       "type": "text",
+     *       "data": [],
+     *       "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+     *       "participation": {
+     *         "id": 13,
+     *         "conversation_id": 7,
+     *         "messageabble_id": 5,
+     *         "settings": {"mute_mentions": false, "mute_conversation": false},
+     *         "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+     *         "created_at": "2024-03-01T11:59:00.000000Z",
+     *         "updated_at": "2024-03-01T11:59:00.000000Z"
+     *       }
+     *     }
+     *   }
+     * }
+     * @response 403 scenario="Messaging yourself" {"status": "Error has occured...", "message": "Cannot send message to yourself", "data": ""}
+     * @response 404 scenario="Receiver not found" {"status": "Error has occured...", "message": "Receiver was not found", "data": ""}
+     * @response 422 scenario="Validation error" {"receiver_id": ["The receiver id field is required."], "message": ["The message field is required."]}
+     *
+     * @responseField data.message string Confirmation message.
+     * @responseField data.data object The sent message (MessageResource).
      */
     public function store(Request $request)
     {
@@ -105,12 +176,49 @@ class MessageController extends Controller
     }
 
     /**
-     * Display the messages in a conversation.
+     * Get conversation messages
      *
-     * @urlParam id The Id of the conversation
+     * Returns the messages in a conversation and marks all of them as read for the authenticated user.
      *
-     * @response 200
-     * @responseField data The messages that are in the conversation
+     * @urlParam id integer required The ID of the conversation. Example: 7
+     *
+     * @response 200 scenario="Success" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "data": [
+     *       {
+     *         "read_at": null,
+     *         "created_at": "2024-03-01T12:00:00.000000Z",
+     *         "updated_at": "2024-03-01T12:00:00.000000Z",
+     *         "deleted_at": null,
+     *         "messageable_id": 5,
+     *         "notification_id": 88,
+     *         "is_seen": 1,
+     *         "is_sender": 1,
+     *         "id": 42,
+     *         "body": "Hello, where is my order?",
+     *         "conversation_id": 7,
+     *         "participation_id": 13,
+     *         "type": "text",
+     *         "data": [],
+     *         "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+     *         "participation": {
+     *           "id": 13,
+     *           "conversation_id": 7,
+     *           "messageabble_id": 5,
+     *           "settings": {"mute_mentions": false, "mute_conversation": false},
+     *           "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+     *           "created_at": "2024-03-01T11:59:00.000000Z",
+     *           "updated_at": "2024-03-01T11:59:00.000000Z"
+     *         }
+     *       }
+     *     ]
+     *   }
+     * }
+     * @response 404 scenario="Conversation not found" {"status": "Error has occured...", "message": "Conversation not found", "data": ""}
+     *
+     * @responseField data.data object[] The messages in the conversation (MessageResource).
      */
     public function show($id)
     {
@@ -129,14 +237,53 @@ class MessageController extends Controller
     }
 
     /**
-     * Reply to a message.
+     * Reply to a conversation
      *
-     * @urlParam id The ID of the conversation
+     * Sends a message to an existing conversation and marks the conversation as read for the authenticated user.
+     * Participants are notified in the background.
      *
-     * @response 200
-     * @responseField message Whether the message was sent or not
-     * @responseField data The message that was sent
+     * @urlParam id integer required The ID of the conversation. Example: 7
      *
+     * @bodyParam message string required The message body. Example: Thanks, received!
+     *
+     * @response 200 scenario="Message sent" {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "message": "Message sent",
+     *     "data": {
+     *       "read_at": null,
+     *       "created_at": "2024-03-01T12:00:00.000000Z",
+     *       "updated_at": "2024-03-01T12:00:00.000000Z",
+     *       "deleted_at": null,
+     *       "messageable_id": 5,
+     *       "notification_id": 88,
+     *       "is_seen": 1,
+     *       "is_sender": 1,
+     *       "id": 42,
+     *       "body": "Hello, where is my order?",
+     *       "conversation_id": 7,
+     *       "participation_id": 13,
+     *       "type": "text",
+     *       "data": [],
+     *       "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+     *       "participation": {
+     *         "id": 13,
+     *         "conversation_id": 7,
+     *         "messageabble_id": 5,
+     *         "settings": {"mute_mentions": false, "mute_conversation": false},
+     *         "messageable": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true},
+     *         "created_at": "2024-03-01T11:59:00.000000Z",
+     *         "updated_at": "2024-03-01T11:59:00.000000Z"
+     *       }
+     *     }
+     *   }
+     * }
+     * @response 404 scenario="Conversation not found" {"status": "Error has occured...", "message": "Conversation not found", "data": ""}
+     * @response 422 scenario="Validation error" {"message": ["The message field is required."]}
+     *
+     * @responseField data.message string Confirmation message.
+     * @responseField data.data object The sent message (MessageResource).
      */
     public function update(Request $request, $id)
     {
@@ -168,17 +315,17 @@ class MessageController extends Controller
     }
 
     /**
-     *
      * Mark a conversation as read
      *
-     * This marks all the messages in a conversation as read
+     * Marks all the messages in a conversation as read for the authenticated user.
      *
-     * @urlParam id The id of the conversation
+     * @urlParam id integer required The ID of the conversation. Example: 7
      *
-     * @response 200
-     * @responseField message Whether the action was successfull
-     * @responseField data The conversation
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"message": "Conversation marked as read", "data": {"id": 7, "private": true, "direct_message": true, "data": [], "created_at": "2024-03-01T11:59:00.000000Z", "updated_at": "2024-03-01T12:00:00.000000Z"}}}
+     * @response 404 scenario="Conversation not found" {"status": "Error has occured...", "message": "Conversation not found", "data": ""}
      *
+     * @responseField data.message string Confirmation message.
+     * @responseField data.data object The conversation.
      */
     public function markConversationAsRead($id)
     {
@@ -194,17 +341,17 @@ class MessageController extends Controller
     }
 
     /**
-     *
      * Mark a message as read
      *
-     * Marks a specific message as read
+     * Marks a specific message as read for the authenticated user.
      *
-     * @urlParam id The id of the conversation
+     * @urlParam id integer required The ID of the message. Example: 42
      *
-     * @response 200
-     * @responseField message Whether the action was successful
-     * @responseField data The message that was marked as read
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"message": "Message marked as read", "data": {"id": 42, "body": "Hello, where is my order?", "conversation_id": 7, "participation_id": 13, "type": "text", "data": [], "created_at": "2024-03-01T12:00:00.000000Z", "updated_at": "2024-03-01T12:00:00.000000Z", "sender": {"id": 5, "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d", "name": "Jane Doe", "email": "jane@example.com", "phone_number": "254712345678", "role": "orderer", "avatar": null, "relationships": {"orderer": null}, "type": null, "referral_code": null, "is_guided": true}}}}
+     * @response 404 scenario="Message not found" {"status": "Error has occured...", "message": "Message not found", "data": ""}
      *
+     * @responseField data.message string Confirmation message.
+     * @responseField data.data object The message that was marked as read.
      */
     public function markMessageAsRead($id)
     {
@@ -220,18 +367,16 @@ class MessageController extends Controller
     }
 
     /**
+     * Delete a message
      *
-     * Delete a specific message
+     * Deletes (trashes) a specific message for the authenticated user only; other participants still see it.
      *
-     * Deletes a specific message in a conversation
+     * @urlParam id integer required The ID of the message. Example: 42
      *
-     * @urlParam id The id of the conversation
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"message": "Message deleted successfully", "data": null}}
+     * @response 404 scenario="Message not found" {"status": "Error has occured...", "message": "Message not found", "data": ""}
      *
-     * @response 200
-     *
-     * @responseField message The status of the action
-     * @responseField data The message that has been deleted
-     *
+     * @responseField data.message string Confirmation message.
      */
     public function deleteMessage($id)
     {
@@ -247,13 +392,16 @@ class MessageController extends Controller
     }
 
     /**
+     * Count unread messages in a conversation
      *
-     * Get the unread messages in a conversation count
+     * Returns the number of unread messages in a conversation for the authenticated user.
      *
-     * @response 200
+     * @urlParam id integer required The ID of the conversation. Example: 7
      *
-     * @responseField data The unread messages count
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"data": 3}}
+     * @response 404 scenario="Conversation not found" {"status": "Error has occured...", "message": "Conversation not found", "data": ""}
      *
+     * @responseField data.data integer The unread messages count.
      */
     public function getCoversationUnreadMessagesCount($id)
     {
@@ -269,13 +417,13 @@ class MessageController extends Controller
     }
 
     /**
+     * Count all unread messages
      *
-     * Get the count of the user's unread messages
+     * Returns the total number of unread messages across all conversations of the authenticated user.
      *
-     * @response 200
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"data": 5}}
      *
-     * @responseField data Unread messages count
-     *
+     * @responseField data.data integer The unread messages count.
      */
     public function getUnreadMessagesCount()
     {
@@ -287,11 +435,13 @@ class MessageController extends Controller
     /**
      * Delete a conversation
      *
-     * @urlParam id The ID of the conversation
+     * Permanently deletes a conversation together with all its messages and participants (for all participants).
      *
-     * @response 200
+     * @urlParam id integer required The ID of the conversation. Example: 7
      *
-     * @responseParam message Conversation deleted successfully
+     * @response 200 scenario="Success" {"status": "Request was succesful", "message": null, "data": {"message": "Conversation deleted successfully"}}
+     *
+     * @responseField data.message string Confirmation message.
      */
     public function deleteConversation($id)
     {

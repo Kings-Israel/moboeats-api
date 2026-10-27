@@ -1,0 +1,1522 @@
+name: Authentication
+description: |-
+
+  Endpoints for registering, logging in (email/password or phone OTP), logging out,
+  resetting passwords and fetching the authenticated user.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the authenticated user (raw)'
+      description: 'Returns the authenticated user model as-is (not wrapped in a resource).'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"id":1,"name":"Jane Doe","email":"jane@example.com","phone_number":"+254712345678","role_id":"orderer","status":2,"is_guided":true,"email_verified_at":null,"created_at":"2024-01-01T10:00:00.000000Z","updated_at":"2024-01-01T10:00:00.000000Z"}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers: []
+        description: Unauthenticated
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/login
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Login with email and password'
+      description: |-
+        Authenticates a user with email and password and issues a Sanctum API token for the given user type.
+        Logging in as `orderer` automatically adds the orderer role to the user if missing. The user's
+        `role_id` is set to the selected user type and the device token is updated when supplied.
+        Riders whose profile is awaiting approval are rejected.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: 'The email of the user.'
+        required: true
+        example: jane@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'The password of the user.'
+        required: true
+        example: secret123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      userType:
+        custom: []
+        name: userType
+        description: 'The type of user logging in. One of `orderer`, `restaurant`, `rider`, `restaurant employee`.'
+        required: true
+        example: orderer
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      device_token:
+        custom: []
+        name: device_token
+        description: 'The push notification (FCM) device token.'
+        required: false
+        example: fcm-device-token-123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: jane@example.com
+      password: secret123
+      userType: orderer
+      device_token: fcm-device-token-123
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "user": {
+                "id": 1,
+                "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "phone_number": "254712345678",
+                "role": "orderer",
+                "avatar": null,
+                "relationships": {
+                  "orderer": {
+                    "id": 1,
+                    "uuid": "9b1f2c3d-0000-4a6b-8c7d-1e2f3a4b5c6d",
+                    "attributes": {
+                      "name": "Jane Doe",
+                      "email": "jane@example.com",
+                      "phoneNo": "254712345678",
+                      "address": "",
+                      "city": null,
+                      "state": null,
+                      "mapLocation": null,
+                      "image": null,
+                      "status": "2"
+                    },
+                    "relationships": {
+                      "user": {
+                        "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                        "name": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    }
+                  }
+                },
+                "type": null,
+                "referral_code": null,
+                "is_guided": false
+              },
+              "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789",
+              "role": "orderer",
+              "restaurants": null,
+              "restaurant": null,
+              "country": "",
+              "country_code": ""
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Invalid credentials'
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Oops! Your account has been deleted or deactivated", "data": ""}'
+        headers: []
+        description: 'Account deactivated'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Rider profile awaiting approval. Contact Admin for Assistance.", "data": "Rider Profile"}'
+        headers: []
+        description: 'Rider awaiting approval'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "The email field is required.", "data": ""}'
+        headers: []
+        description: 'Validation or other error'
+    responseFields:
+      data.user:
+        custom: []
+        name: data.user
+        description: 'The authenticated user (UserResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.token:
+        custom: []
+        name: data.token
+        description: 'The Sanctum bearer token to use in the `Authorization` header.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.role:
+        custom: []
+        name: data.role
+        description: 'The user type the token was issued for.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.restaurants:
+        custom: []
+        name: data.restaurants
+        description: "The user's restaurants (only when `userType` is `restaurant`, otherwise null)."
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.restaurant:
+        custom: []
+        name: data.restaurant
+        description: 'The employer restaurant (only when `userType` is `restaurant employee`, otherwise null).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.country:
+        custom: []
+        name: data.country
+        description: "Country of the user's restaurant (restaurant owners/employees only)."
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.country_code:
+        custom: []
+        name: data.country_code
+        description: "Country code of the user's restaurant (restaurant owners/employees only)."
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/register
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Register a new user'
+      description: |-
+        Creates a user account (or reuses an existing one with the same email and phone), assigns the role
+        matching `userType`, creates the related orderer/rider profile, and returns a Sanctum token.
+        If a valid `referral_code` is supplied, its usage counter is incremented.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        custom: []
+        name: name
+        description: 'The full name of the user. Must not exceed 255 characters.'
+        required: true
+        example: 'Jane Doe'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: 'A unique email address.'
+        required: true
+        example: jane@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'The password (Laravel default password rules).'
+        required: true
+        example: secret123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      userType:
+        custom: []
+        name: userType
+        description: 'The type of user. One of `orderer`, `restaurant`, `rider`.'
+        required: true
+        example: orderer
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      otp:
+        custom: []
+        name: otp
+        description: 'Optional OTP (currently unused).'
+        required: false
+        example: '123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      image:
+        custom: []
+        name: image
+        description: 'An optional avatar image.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'A unique phone number.'
+        required: true
+        example: '254712345678'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password_confirmation:
+        custom: []
+        name: password_confirmation
+        description: 'Must match `password`.'
+        required: true
+        example: secret123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      device_token:
+        custom: []
+        name: device_token
+        description: 'The push notification (FCM) device token.'
+        required: false
+        example: fcm-device-token-123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      referral_code:
+        custom: []
+        name: referral_code
+        description: 'A referral code used to sign up.'
+        required: false
+        example: REF12345
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: 'Restaurant account type (only used when `userType` is `restaurant`).'
+        required: false
+        example: restaurant
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      address:
+        custom: []
+        name: address
+        description: 'Rider address (only used when `userType` is `rider`).'
+        required: false
+        example: '12 Moi Avenue'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      city:
+        custom: []
+        name: city
+        description: 'Rider city (only used when `userType` is `rider`).'
+        required: false
+        example: Nairobi
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      state:
+        custom: []
+        name: state
+        description: 'Rider state/county (only used when `userType` is `rider`).'
+        required: false
+        example: Nairobi
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      postal_code:
+        custom: []
+        name: postal_code
+        description: 'Rider postal code (only used when `userType` is `rider`).'
+        required: false
+        example: '00100'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      vehicle_license_plate:
+        custom: []
+        name: vehicle_license_plate
+        description: 'Rider vehicle license plate (only used when `userType` is `rider`).'
+        required: false
+        example: 'KDA 123A'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      paypal_email:
+        custom: []
+        name: paypal_email
+        description: 'Rider PayPal email (only used when `userType` is `rider`).'
+        required: false
+        example: rider@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      name: 'Jane Doe'
+      email: jane@example.com
+      password: secret123
+      userType: orderer
+      otp: '123456'
+      phone: '254712345678'
+      password_confirmation: secret123
+      device_token: fcm-device-token-123
+      referral_code: REF12345
+      type: restaurant
+      address: '12 Moi Avenue'
+      city: Nairobi
+      state: Nairobi
+      postal_code: '00100'
+      vehicle_license_plate: 'KDA 123A'
+      paypal_email: rider@example.com
+    fileParameters:
+      image: null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "user": {
+                "id": 1,
+                "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "phone_number": "254712345678",
+                "role": "orderer",
+                "avatar": null,
+                "relationships": {
+                  "orderer": {
+                    "id": 1,
+                    "uuid": "9b1f2c3d-0000-4a6b-8c7d-1e2f3a4b5c6d",
+                    "attributes": {
+                      "name": "Jane Doe",
+                      "email": "jane@example.com",
+                      "phoneNo": "254712345678",
+                      "address": "",
+                      "city": null,
+                      "state": null,
+                      "mapLocation": null,
+                      "image": null,
+                      "status": "2"
+                    },
+                    "relationships": {
+                      "user": {
+                        "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                        "name": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    }
+                  }
+                },
+                "type": null,
+                "referral_code": null,
+                "is_guided": false
+              },
+              "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789"
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unknown user type: orderer", "data": ""}'
+        headers: []
+        description: 'Unknown user type'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[23000]: Integrity constraint violation", "data": ""}'
+        headers: []
+        description: 'Server error'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "An account with the same email already exists", "errors": {"email": ["An account with the same email already exists"]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.user:
+        custom: []
+        name: data.user
+        description: 'The newly registered user (UserResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.token:
+        custom: []
+        name: data.token
+        description: 'The Sanctum bearer token.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/forgot-password
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Request a password reset code'
+      description: |-
+        Generates (or reuses) a 6-digit password reset code and sends it by email when `email` is given,
+        otherwise by SMS to `phone_number`. One of `email` or `phone_number` is required.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: 'The email of the user. Required if `phone_number` is not provided.'
+        required: false
+        example: jane@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      phone_number:
+        custom: []
+        name: phone_number
+        description: 'The phone number of the user. Required if `email` is not provided.'
+        required: false
+        example: '254712345678'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: jane@example.com
+      phone_number: '254712345678'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Password reset code sent successfully", "data": ""}'
+        headers: []
+        description: 'Code sent'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": {"email": ["The email field is required when phone number is not present."], "phone_number": ["The phone number field is required when email is not present."]}, "data": "Auth Error"}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 404
+        content: '{"status": "Error has occured...", "message": "User with emailjane@example.com was not found", "data": "Auth Error"}'
+        headers: []
+        description: 'User not found'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/reset-password
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reset password'
+      description: "Resets the user's password using the code received from the forgot-password endpoint. The code is consumed on success."
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        custom: []
+        name: code
+        description: 'The password reset code.'
+        required: true
+        example: '482913'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'The new password.'
+        required: true
+        example: newSecret123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password_confirmation:
+        custom: []
+        name: password_confirmation
+        description: 'The new password confirmation; must match `password`.'
+        required: true
+        example: newSecret123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      code: '482913'
+      password: newSecret123
+      password_confirmation: newSecret123
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Password was reset successfully.", "data": ""}'
+        headers: []
+        description: 'Password reset'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": {"code": ["The code field is required."]}, "data": "Reset Password Error"}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Invalid Credentials", "data": "Password Reset Error"}'
+        headers: []
+        description: 'Invalid code'
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/logout
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: Logout
+      description: 'Revokes all API tokens of the authenticated user and clears their active role.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": null, "data": {"message": "Successfully logged out."}}'
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Something went wrong", "data": ""}'
+        headers: []
+        description: Error
+    responseFields:
+      data.message:
+        custom: []
+        name: data.message
+        description: 'Confirmation message.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/user
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the authenticated user'
+      description: 'Returns the raw authenticated user model (including appended rider/order statistics attributes).'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "user": {
+                "id": 1,
+                "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "phone_number": "254712345678",
+                "user_type": "orderer",
+                "role_id": "orderer",
+                "status": 2,
+                "latitude": null,
+                "longitude": null,
+                "device_token": "fcm-device-token-123",
+                "image": null,
+                "country": "Kenya",
+                "country_code": "KE",
+                "is_guided": false,
+                "email_verified_at": null,
+                "created_at": "2024-01-01T10:00:00.000000Z",
+                "updated_at": "2024-01-01T10:00:00.000000Z",
+                "total_rider_tips": 0,
+                "rider_last_delivery": null,
+                "total_rider_deliveries": 0,
+                "amount_spent": 0,
+                "latest_order": null,
+                "county": null
+              }
+            }
+          }
+        headers: []
+        description: Success
+    responseFields:
+      data.user:
+        custom: []
+        name: data.user
+        description: 'The authenticated user model.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/delete
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Account deletion page'
+      description: 'Returns the HTML account deletion request page (not JSON). The actual deletion is confirmed via the web form.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '<<html>> The account deletion HTML page.'
+        headers: []
+        description: 'HTML page'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/admin/login
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Admin login'
+      description: |-
+        Authenticate an admin (or other back-office user) with email and password and receive a Sanctum API token,
+        the user's role and the full list of permissions the user holds. Note: validation failures are caught and
+        returned with status 403 rather than 422.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: "The user's email address."
+        required: true
+        example: admin@moboeats.co.uk
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: "The user's password."
+        required: true
+        example: secret123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: admin@moboeats.co.uk
+      password: secret123
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "user": {
+                "id": 1,
+                "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                "name": "Admin",
+                "email": "admin@moboeats.co.uk",
+                "phone_number": "+447700900000",
+                "role": null,
+                "avatar": "https://api.moboeats.co.uk/assets/user/default.png",
+                "relationships": {
+                  "orderer": null
+                },
+                "type": null,
+                "referral_code": null,
+                "is_guided": 0
+              },
+              "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789",
+              "role": "admin",
+              "permissions": [
+                "view dashboard",
+                "manage users"
+              ]
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+            "status": "Error has occured...",
+            "message": "The email field is required.",
+            "data": ""
+          }
+        headers: []
+        description: 'Validation error or unexpected failure'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+            "status": "Error has occured...",
+            "message": "Invalid Credentials",
+            "data": {
+              "email": "Invalid Credentials"
+            }
+          }
+        headers: []
+        description: 'Invalid credentials'
+    responseFields:
+      data.user:
+        custom: []
+        name: data.user
+        description: 'The authenticated user (UserResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.token:
+        custom: []
+        name: data.token
+        description: 'Sanctum bearer token to use in the Authorization header.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.role:
+        custom: []
+        name: data.role
+        description: "Name of the user's first role."
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.permissions:
+        custom: []
+        name: data.permissions
+        description: 'Names of all permissions the user holds.'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v2/login
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Request an OTP login code'
+      description: |-
+        Finds or creates a user with the given phone number, generates a one-time verification code and sends it by SMS.
+        When latitude/longitude are provided the user's country is resolved via Google geocoding. Complete the login
+        with the verify OTP endpoint.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      phone_number:
+        custom: []
+        name: phone_number
+        description: 'The phone number of the user.'
+        required: true
+        example: '254712345678'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      userType:
+        custom: []
+        name: userType
+        description: 'The user type stored on newly created users. One of `orderer`, `restaurant`, `rider`.'
+        required: false
+        example: orderer
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      device_token:
+        custom: []
+        name: device_token
+        description: 'The push notification (FCM) device token.'
+        required: false
+        example: fcm-device-token-123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      latitude:
+        custom: []
+        name: latitude
+        description: 'The latitude of the user.'
+        required: false
+        example: '-1.2847473'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      longitude:
+        custom: []
+        name: longitude
+        description: 'The longitude of the user.'
+        required: false
+        example: '36.3878745'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      phone_number: '254712345678'
+      userType: orderer
+      device_token: fcm-device-token-123
+      latitude: '-1.2847473'
+      longitude: '36.3878745'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "user": {
+                "id": 1,
+                "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                "name": null,
+                "email": null,
+                "phone_number": "254712345678",
+                "role": null,
+                "avatar": null,
+                "relationships": {
+                  "orderer": null
+                },
+                "type": null,
+                "referral_code": null,
+                "is_guided": false
+              },
+              "code": "482913"
+            }
+          }
+        headers: []
+        description: 'Code sent'
+      -
+        custom: []
+        status: 400
+        content: '{"status": "Error has occured...", "message": "Phone number is required", "data": "Authentication"}'
+        headers: []
+        description: 'Missing phone number'
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Oops! Your account has been deleted or deactivated", "data": ""}'
+        headers: []
+        description: 'Account deactivated'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Something went wrong", "data": ""}'
+        headers: []
+        description: 'Server error'
+    responseFields:
+      data.user:
+        custom: []
+        name: data.user
+        description: 'The user (UserResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.code:
+        custom: []
+        name: data.code
+        description: 'The generated OTP code (also sent by SMS).'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v2/login/otp/verify
+    metadata:
+      custom: []
+      groupName: Authentication
+      groupDescription: |-
+
+        Endpoints for registering, logging in (email/password or phone OTP), logging out,
+        resetting passwords and fetching the authenticated user.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Verify OTP and log in'
+      description: |-
+        Verifies the OTP code sent by the OTP login endpoint and issues a Sanctum token for the given user type.
+        Riders must have a rider profile; riders awaiting approval receive a 200 response whose `message` is `403`.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        custom: []
+        name: code
+        description: 'The OTP code received by SMS.'
+        required: true
+        example: '482913'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      userType:
+        custom: []
+        name: userType
+        description: 'The type of user logging in. One of `orderer`, `restaurant`, `rider`.'
+        required: true
+        example: orderer
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      device_token:
+        custom: []
+        name: device_token
+        description: 'The push notification (FCM) device token.'
+        required: false
+        example: fcm-device-token-123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      code: '482913'
+      userType: orderer
+      device_token: fcm-device-token-123
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "user": {
+                "id": 1,
+                "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "phone_number": "254712345678",
+                "role": "orderer",
+                "avatar": null,
+                "relationships": {
+                  "orderer": {
+                    "id": 1,
+                    "uuid": "9b1f2c3d-0000-4a6b-8c7d-1e2f3a4b5c6d",
+                    "attributes": {
+                      "name": "Jane Doe",
+                      "email": "jane@example.com",
+                      "phoneNo": "254712345678",
+                      "address": "",
+                      "city": null,
+                      "state": null,
+                      "mapLocation": null,
+                      "image": null,
+                      "status": "2"
+                    },
+                    "relationships": {
+                      "user": {
+                        "uuid": "9b1f2c3d-4e5f-4a6b-8c7d-1e2f3a4b5c6d",
+                        "name": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    }
+                  }
+                },
+                "type": null,
+                "referral_code": null,
+                "is_guided": false
+              },
+              "token": "1|aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789",
+              "role": "orderer",
+              "restaurants": null,
+              "restaurant": null,
+              "country": "",
+              "country_code": ""
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": 403, "data": ["Rider profile awaiting approval"]}'
+        headers: []
+        description: 'Rider awaiting approval'
+      -
+        custom: []
+        status: 400
+        content: '{"status": "Error has occured...", "message": [{"code": ["The code field is required."]}], "data": "Authentication"}'
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 400
+        content: '{"status": "Error has occured...", "message": "Invalid Code", "data": "Authentication"}'
+        headers: []
+        description: 'Invalid code'
+      -
+        custom: []
+        status: 400
+        content: '{"status": "Error has occured...", "message": "Complete your rider profile.", "data": "Rider profile not complete"}'
+        headers: []
+        description: 'Rider profile missing'
+    responseFields:
+      data.user:
+        custom: []
+        name: data.user
+        description: 'The authenticated user (UserResource).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.token:
+        custom: []
+        name: data.token
+        description: 'The Sanctum bearer token.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.role:
+        custom: []
+        name: data.role
+        description: 'The user type the token was issued for.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.restaurants:
+        custom: []
+        name: data.restaurants
+        description: "The user's restaurants (only when `userType` is `restaurant`, otherwise null)."
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.country:
+        custom: []
+        name: data.country
+        description: "Country of the user's restaurant (restaurant owners/employees only)."
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.country_code:
+        custom: []
+        name: data.country_code
+        description: "Country code of the user's restaurant (restaurant owners/employees only)."
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth: []
+    controller: null
+    method: null
+    route: null

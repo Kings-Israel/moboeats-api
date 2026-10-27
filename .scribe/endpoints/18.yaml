@@ -1,0 +1,891 @@
+name: 'Promo Codes & Discounts'
+description: |-
+
+  Restaurant promo codes managed by restaurant owners/employees (`v1/restaurant/promo-codes`).
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/restaurant/promo-codes
+    metadata:
+      custom:
+        resources: []
+        models:
+          - PromoCode
+          - Restaurant
+          - UserRestaurant
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Restaurant promo codes managed by restaurant owners/employees (`v1/restaurant/promo-codes`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List promo codes'
+      description: |-
+        Returns promo codes (10 per page) with their order counts. Users with role `restaurant` see codes for their own
+        restaurants (filterable) plus the list of their restaurants; users with role `restaurant employee` see their
+        restaurant's codes; other users see all codes.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by promo code or restaurant name (restaurant owners only).'
+        required: false
+        example: WELCOME
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      from_created_at:
+        custom: []
+        name: from_created_at
+        description: 'Only codes created/starting/ending on or after this date (restaurant owners only).'
+        required: false
+        example: '2024-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      to_created_at:
+        custom: []
+        name: to_created_at
+        description: 'Only codes created/starting/ending on or before this date (restaurant owners only).'
+        required: false
+        example: '2024-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: WELCOME
+      from_created_at: '2024-01-01'
+      to_created_at: '2024-12-31'
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "promo_codes": {
+                "current_page": 1,
+                "data": [{"id": 1, "restaurant_id": 1, "code": "WELCOME10", "type": "percentage", "value": 10, "status": "active", "start_date": "2024-01-01", "end_date": "2024-12-31", "created_at": "2024-01-01T10:00:00.000000Z", "updated_at": "2024-01-01T10:00:00.000000Z", "orders_count": 3, "restaurant": {"id": 1, "uuid": "5e6f7a8b-9c0d-4e1f-a2b3-c4d5e6f7a8b9", "name": "Mama Oliech", "status": "Approved"}}],
+                "first_page_url": "https://moboeats.com/api/v1/restaurant/promo-codes?page=1",
+                "from": 1,
+                "last_page": 1,
+                "last_page_url": "https://moboeats.com/api/v1/restaurant/promo-codes?page=1",
+                "links": [],
+                "next_page_url": null,
+                "path": "https://moboeats.com/api/v1/restaurant/promo-codes",
+                "per_page": 10,
+                "prev_page_url": null,
+                "to": 1,
+                "total": 1
+              },
+              "restaurants": [{"id": 1, "uuid": "5e6f7a8b-9c0d-4e1f-a2b3-c4d5e6f7a8b9", "name": "Mama Oliech", "status": "Approved"}]
+            }
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 422
+        content: '{"data": "no_restaurant"}'
+        headers: []
+        description: 'Restaurant owner has no restaurant'
+    responseFields:
+      data.promo_codes:
+        custom: []
+        name: data.promo_codes
+        description: 'Paginated promo codes (Laravel paginator).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.restaurants:
+        custom: []
+        name: data.restaurants
+        description: "Restaurant owners only: the owner's restaurants (sorted by name)."
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/restaurant/promo-codes/export/data
+    metadata:
+      custom:
+        resources: []
+        models: []
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Restaurant promo codes managed by restaurant owners/employees (`v1/restaurant/promo-codes`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Export promo codes'
+      description: 'Exports promo codes to an Excel file and downloads it.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by promo code or restaurant name.'
+        required: false
+        example: WELCOME
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      from_created_at:
+        custom: []
+        name: from_created_at
+        description: 'Only codes created/starting/ending on or after this date.'
+        required: false
+        example: '2024-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      to_created_at:
+        custom: []
+        name: to_created_at
+        description: 'Only codes created/starting/ending on or before this date.'
+        required: false
+        example: '2024-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: WELCOME
+      from_created_at: '2024-01-01'
+      to_created_at: '2024-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '<<binary>> The exported Excel (.xlsx) file.'
+        headers: []
+        description: 'File download'
+      -
+        custom: []
+        status: 422
+        content: '{"data": "no_restaurant"}'
+        headers: []
+        description: 'Restaurant owner has no restaurant'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v3/restaurant/promo-codes/store
+    metadata:
+      custom:
+        resources: []
+        models:
+          - PromoCode
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Restaurant promo codes managed by restaurant owners/employees (`v1/restaurant/promo-codes`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create promo codes'
+      description: 'Creates the same promo code for each of the given restaurants.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      restaurant_ids:
+        custom: []
+        name: restaurant_ids
+        description: 'JSON-encoded array of restaurant IDs.'
+        required: true
+        example: '[1,2]'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      code:
+        custom: []
+        name: code
+        description: 'The promo code.'
+        required: true
+        example: WELCOME10
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Start date.'
+        required: true
+        example: '2024-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'End date.'
+        required: true
+        example: '2024-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: 'Discount type. One of: `amount`, `percentage`.'
+        required: true
+        example: percentage
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      value:
+        custom: []
+        name: value
+        description: 'Discount value.'
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'One of: `active`, `inactive`.'
+        required: true
+        example: active
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      restaurant_ids: '[1,2]'
+      code: WELCOME10
+      start_date: '2024-01-01'
+      end_date: '2024-12-31'
+      type: percentage
+      value: 10
+      status: active
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Promo Code added successfully", "data": ""}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The code field is required.", "errors": {"code": ["The code field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v3/restaurant/promo-codes/{promo_code}/update'
+    metadata:
+      custom:
+        resources: []
+        models:
+          - PromoCode
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Restaurant promo codes managed by restaurant owners/employees (`v1/restaurant/promo-codes`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a promo code'
+      description: 'Updates a promo code.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      promo_code:
+        custom: []
+        name: promo_code
+        description: 'The numeric ID of the promo code.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      promo_code: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        custom: []
+        name: code
+        description: 'The promo code.'
+        required: true
+        example: WELCOME10
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Start date.'
+        required: true
+        example: '2024-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'End date.'
+        required: true
+        example: '2024-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: 'Discount type. One of: `amount`, `percentage`.'
+        required: true
+        example: amount
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      value:
+        custom: []
+        name: value
+        description: 'Discount value.'
+        required: true
+        example: 100
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'One of: `active`, `inactive`.'
+        required: true
+        example: inactive
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      code: WELCOME10
+      start_date: '2024-01-01'
+      end_date: '2024-12-31'
+      type: amount
+      value: 100
+      status: inactive
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Promo code updated successfully", "data": ""}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\PromoCode] 99"}'
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The selected status is invalid.", "errors": {"status": ["The selected status is invalid."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/restaurant/discounts
+    metadata:
+      custom:
+        resources:
+          - MenuResource
+        models:
+          - Menu
+          - UserRestaurant
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Menu item discounts managed by restaurant owners/employees (`v1/restaurant/discounts`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List discounted menu items'
+      description: |-
+        Returns menu items that have a discount, 6 per page. Users with role `restaurant` see discounted menus of their
+        own restaurants and also receive all their menus (with restaurant) in `menus`; users with role `restaurant employee`
+        see their restaurant's discounted menus; other authenticated users see active, priced menus with images.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter discounted menus by title (restaurant owners and employees only).'
+        required: false
+        example: burger
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: burger
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "discounts": {
+                "current_page": 1,
+                "data": [{"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "title": "Chicken Burger", "description": "Grilled chicken burger", "restaurant_id": 1, "status": 2, "preparation_time": "20", "created_by": "3", "updated_by": "3", "created_at": "2024-01-10T10:00:00.000000Z", "updated_at": "2024-01-10T10:00:00.000000Z", "discount": {"id": 2, "menu_id": 10, "type": "percentage", "value": 10, "created_at": "2024-01-10T10:00:00.000000Z", "updated_at": "2024-01-10T10:00:00.000000Z"}}],
+                "first_page_url": "https://moboeats.com/api/v1/restaurant/discounts?page=1",
+                "from": 1,
+                "last_page": 1,
+                "last_page_url": "https://moboeats.com/api/v1/restaurant/discounts?page=1",
+                "links": [],
+                "next_page_url": null,
+                "path": "https://moboeats.com/api/v1/restaurant/discounts",
+                "per_page": 6,
+                "prev_page_url": null,
+                "to": 1,
+                "total": 1
+              },
+              "menus": [{"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "title": "Chicken Burger", "restaurant_id": 1, "status": 2, "restaurant": {"id": 1, "uuid": "5e6f7a8b-9c0d-4e1f-a2b3-c4d5e6f7a8b9", "name": "Mama Oliech", "status": "Approved"}}]
+            }
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 422
+        content: '{"data": "no_restaurant"}'
+        headers: []
+        description: 'Restaurant owner has no restaurant'
+    responseFields:
+      data.discounts:
+        custom: []
+        name: data.discounts
+        description: 'Paginated menus (Laravel paginator) with their `discount`.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.menus:
+        custom: []
+        name: data.menus
+        description: "Restaurant owners only: all menus of the owner's restaurants."
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v3/restaurant/discounts/store
+    metadata:
+      custom:
+        resources: []
+        models:
+          - Menu
+          - Discount
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Menu item discounts managed by restaurant owners/employees (`v1/restaurant/discounts`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create discounts'
+      description: 'Creates (or replaces) a discount on each of the given menu items. Any existing discount on a menu is deleted first.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      menu_ids:
+        custom: []
+        name: menu_ids
+        description: 'JSON-encoded array of menu IDs.'
+        required: true
+        example: '[10,11]'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: 'Discount type. One of: `amount`, `percentage`.'
+        required: true
+        example: percentage
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      value:
+        custom: []
+        name: value
+        description: 'Discount value (amount or percentage).'
+        required: true
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      menu_ids: '[10,11]'
+      type: percentage
+      value: 10
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Discount added successfully", "data": ""}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The selected type is invalid.", "errors": {"type": ["The selected type is invalid."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v3/restaurant/discounts/{discount}/update'
+    metadata:
+      custom:
+        resources: []
+        models:
+          - Discount
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Menu item discounts managed by restaurant owners/employees (`v1/restaurant/discounts`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a discount'
+      description: 'Updates the type and value of a discount.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      discount:
+        custom: []
+        name: discount
+        description: 'The numeric ID of the discount.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      discount: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      type:
+        custom: []
+        name: type
+        description: 'Discount type. One of: `amount`, `percentage`.'
+        required: true
+        example: amount
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      value:
+        custom: []
+        name: value
+        description: 'Discount value.'
+        required: true
+        example: 50
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      type: amount
+      value: 50
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Discount updated successfully", "data": ""}'
+        headers: []
+        description: Updated
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\Discount] 99"}'
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The value field is required.", "errors": {"value": ["The value field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/restaurant/discounts/{discount}/delete'
+    metadata:
+      custom:
+        resources: []
+        models:
+          - Discount
+      groupName: 'Promo Codes & Discounts'
+      groupDescription: |-
+
+        Menu item discounts managed by restaurant owners/employees (`v1/restaurant/discounts`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a discount'
+      description: 'Deletes a discount. Note this is a `GET` route.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      discount:
+        custom: []
+        name: discount
+        description: 'The numeric ID of the discount.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      discount: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"status": "Request was succesful", "message": "Discount deleted successfully", "data": ""}'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\Discount] 99"}'
+        headers: []
+        description: 'Not found'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

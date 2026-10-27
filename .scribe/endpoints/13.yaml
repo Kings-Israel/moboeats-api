@@ -1,28 +1,62 @@
-name: 'Customer Cart Items Management'
+name: Bookmarks
 description: |-
 
-  Cart Items API resource
+  Customer bookmarks (favourites) for menu items.
 endpoints:
   -
+    custom: []
     httpMethods:
       - GET
-    uri: api/v1/orderer/cart-items
+    uri: 'api/v3/orderer/menu-bookmark/{menuId}/delete'
     metadata:
-      groupName: 'Customer Cart Items Management'
+      custom:
+        resources: []
+        models:
+          - User
+          - MenuBookmark
+      groupName: Bookmarks
       groupDescription: |-
 
-        Cart Items API resource
+        Customer bookmarks (favourites) for menu items.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Remove a menu bookmark'
+      description: |-
+        Deletes one of the authenticated customer's menu bookmarks. Only users with role `orderer` may call this.
+        Reachable both as `DELETE v1/orderer/menu-bookmark/{menu_bookmark}` and `GET v1/orderer/menu-bookmark/{menuId}/delete`;
+        in both cases the placeholder is the bookmark's numeric ID (not the menu ID).
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      menuId:
+        custom: []
+        name: menuId
+        description: 'The numeric ID of the bookmark (GET `.../{menuId}/delete` route).'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      menu_bookmark:
+        custom: []
+        name: menu_bookmark
+        description: 'The numeric ID of the bookmark (DELETE route).'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      menuId: 7
+      menu_bookmark: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -30,36 +64,162 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
+        status: 204
+        content: '""'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "You are not authorized to make this request", "data": ""}'
+        headers: []
+        description: 'Not owner'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Attempt to read property \"user_id\" on null", "data": ""}'
+        headers: []
+        description: 'Bookmark not found / server error'
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/orderer/menu-bookmark
+    metadata:
+      custom:
+        resources:
+          - MenuBookMarkResource
+        models:
+          - User
+          - MenuBookmark
+      groupName: Bookmarks
+      groupDescription: |-
+
+        Customer bookmarks (favourites) for menu items.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List menu bookmarks'
+      description: |-
+        Returns the authenticated customer's bookmarked menu items (paginated). Only users with role `orderer` may call this.
+        Bookmarks whose menu is not active (status 2) have a `null` menu.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [{"id": 7, "uuid": "d4c3b2a1-0f9e-4d8c-b7a6-5f4e3d2c1b0a", "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "createdBy": "3", "updatedBy": "3", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": [], "orders_count": 0, "total_orders_value": 0}}}}],
+            "links": {"first": "https://moboeats.com/api/v1/orderer/menu-bookmark?page=1", "last": "https://moboeats.com/api/v1/orderer/menu-bookmark?page=1", "prev": null, "next": null},
+            "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/menu-bookmark", "per_page": 15, "to": 1, "total": 1}
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized. This is a customer feature only.", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Role mismatch'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The bookmarks.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].relationships.menu':
+        custom: []
+        name: 'data[].relationships.menu'
+        description: 'The bookmarked menu item.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
     httpMethods:
       - POST
-    uri: api/v1/orderer/cart-items
+    uri: api/v3/orderer/menu-bookmark
     metadata:
-      groupName: 'Customer Cart Items Management'
+      custom:
+        resources:
+          - MenuBookMarkResource
+        models:
+          - User
+          - MenuBookmark
+      groupName: Bookmarks
       groupDescription: |-
 
-        Cart Items API resource
+        Customer bookmarks (favourites) for menu items.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Bookmark a menu item'
+      description: "Adds a menu item to the authenticated customer's bookmarks. Only users with role `orderer` may call this."
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -68,66 +228,108 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       menuId:
+        custom: []
         name: menuId
-        description: ''
+        description: 'The ID of the menu item to bookmark.'
         required: true
-        example: 14
+        example: 10
         type: integer
-        custom: []
-      quantity:
-        name: quantity
-        description: ''
-        required: true
-        example: 15
-        type: integer
-        custom: []
-      status:
-        name: status
-        description: ''
-        required: false
-        example: 2
-        type: integer
-        custom: []
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanBodyParameters:
-      menuId: 14
-      quantity: 15
-      status: 2
+      menuId: 10
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data": {"id": 7, "uuid": "d4c3b2a1-0f9e-4d8c-b7a6-5f4e3d2c1b0a", "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "createdBy": "3", "updatedBy": "3", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": [], "orders_count": 0, "total_orders_value": 0}}}}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 402
+        content: '{"status": "Error has occured...", "message": "Item already exists in the bookmark", "data": "Bookmark"}'
+        headers: []
+        description: 'Already bookmarked'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[HY000]: General error", "data": ""}'
+        headers: []
+        description: 'Server error'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The menu id field is required.", "errors": {"menuId": ["The menu id field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.uuid:
+        custom: []
+        name: data.uuid
+        description: 'The bookmark UUID.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
-    uri: 'api/v1/orderer/cart-items/{id}'
+    uri: 'api/v3/orderer/menu-bookmark/{menu_bookmark}'
     metadata:
-      groupName: 'Customer Cart Items Management'
+      custom:
+        resources:
+          - MenuBookMarkResource
+        models:
+          - MenuBookmark
+      groupName: Bookmarks
       groupDescription: |-
 
-        Cart Items API resource
+        Customer bookmarks (favourites) for menu items.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Get a menu bookmark'
+      description: 'Returns a single menu bookmark with its menu item.'
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the cart item.'
-        required: true
-        example: sapiente
-        type: string
+      menu_bookmark:
         custom: []
+        name: menu_bookmark
+        description: 'The UUID of the bookmark.'
+        required: true
+        example: d4c3b2a1-0f9e-4d8c-b7a6-5f4e3d2c1b0a
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      id: sapiente
+      menu_bookmark: d4c3b2a1-0f9e-4d8c-b7a6-5f4e3d2c1b0a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -135,122 +337,474 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/v1/orderer/cart-items/{id}'
-    metadata:
-      groupName: 'Customer Cart Items Management'
-      groupDescription: |-
-
-        Cart Items API resource
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the cart item.'
-        required: true
-        example: repudiandae
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: repudiandae
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      menuId:
-        name: menuId
+        status: 200
+        content: '{"data": {"id": 7, "uuid": "d4c3b2a1-0f9e-4d8c-b7a6-5f4e3d2c1b0a", "relationships": {"menu": {"id": 10, "uuid": "a1b2c3d4-e5f6-4789-90ab-cdef01234567", "attributes": {"title": "Chicken Burger", "description": "Grilled chicken burger", "createdBy": "3", "updatedBy": "3", "status": "2", "preparation_time": "20", "average_rating": 4.5}, "relationships": {"images": [], "menuPrices": [], "orders_count": 0, "total_orders_value": 0}}}}}'
+        headers: []
         description: ''
-        required: true
-        example: 16
-        type: integer
+      -
         custom: []
-      quantity:
-        name: quantity
-        description: ''
-        required: true
-        example: 13
-        type: integer
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\MenuBookmark] d4c3b2a1-0f9e-4d8c-b7a6-5f4e3d2c1b0a"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.relationships.menu:
         custom: []
-      status:
-        name: status
-        description: ''
+        name: data.relationships.menu
+        description: 'The bookmarked menu item.'
         required: false
-        example: 12
-        type: integer
-        custom: []
-    cleanBodyParameters:
-      menuId: 16
-      quantity: 13
-      status: 12
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - DELETE
-    uri: 'api/v1/orderer/cart-items/{id}'
+    uri: 'api/v3/orderer/menu-bookmark/{menu_bookmark}'
     metadata:
-      groupName: 'Customer Cart Items Management'
+      custom:
+        resources: []
+        models:
+          - User
+          - MenuBookmark
+      groupName: Bookmarks
       groupDescription: |-
 
-        Cart Items API resource
+        Customer bookmarks (favourites) for menu items.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
-      description: ''
-      authenticated: false
-      custom: []
+      title: 'Remove a menu bookmark'
+      description: |-
+        Deletes one of the authenticated customer's menu bookmarks. Only users with role `orderer` may call this.
+        Reachable both as `DELETE v1/orderer/menu-bookmark/{menu_bookmark}` and `GET v1/orderer/menu-bookmark/{menuId}/delete`;
+        in both cases the placeholder is the bookmark's numeric ID (not the menu ID).
+      authenticated: true
+      deprecated: false
     headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the cart item.'
-        required: true
-        example: iusto
-        type: string
+      menu_bookmark:
         custom: []
+        name: menu_bookmark
+        description: 'The numeric ID of the bookmark (DELETE route).'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      menuId:
+        custom: []
+        name: menuId
+        description: 'The numeric ID of the bookmark (GET `.../{menuId}/delete` route).'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      id: iusto
+      menu_bookmark: 7
+      menuId: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        custom: []
+        status: 204
+        content: '""'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "You are not authorized to make this request", "data": ""}'
+        headers: []
+        description: 'Not owner'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "Attempt to read property \"user_id\" on null", "data": ""}'
+        headers: []
+        description: 'Bookmark not found / server error'
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
+  -
     custom: []
+    httpMethods:
+      - GET
+    uri: api/v3/orderer/restaurant-bookmark
+    metadata:
+      custom:
+        resources:
+          - RestaurantBookMarkResource
+        models:
+          - User
+          - RestaurantBookmark
+      groupName: Bookmarks
+      groupDescription: |-
+
+        Customer bookmarks (favourites) for restaurants.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurant bookmarks'
+      description: |-
+        Returns the authenticated customer's bookmarked restaurants (paginated). Only users with role `orderer` may call this.
+        Bookmarks whose restaurant is not active (status 2) have a `null` restaurant.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [{"id": 4, "uuid": "e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b", "relationships": {"restaurant": {"id": 1, "uuid": "5e6f7a8b-9c0d-4e1f-a2b3-c4d5e6f7a8b9", "attributes": {"name": "Mama Oliech", "nameShort": "MO", "email": "info@mamaoliech.co.ke", "about": "Authentic Kenyan cuisine", "phoneNo": "254712345678", "address": "Marcus Garvey Rd", "city": "Nairobi", "latitude": "-1.2921", "longitude": "36.8219", "logo": "https://moboeats.com/storage/logos/logo.png", "status": "2", "average_rating": 4.2, "is_open": true, "country": "Kenya", "country_code": "KE"}, "relationships": {"menus": [], "orders_count": 10, "menus_count": 5}}}}],
+            "links": {"first": "https://moboeats.com/api/v1/orderer/restaurant-bookmark?page=1", "last": "https://moboeats.com/api/v1/orderer/restaurant-bookmark?page=1", "prev": null, "next": null},
+            "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orderer/restaurant-bookmark", "per_page": 15, "to": 1, "total": 1}
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized. This is a customer feature only.", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Role mismatch'
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'The bookmarks.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'data[].relationships.restaurant':
+        custom: []
+        name: 'data[].relationships.restaurant'
+        description: 'The bookmarked restaurant.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v3/orderer/restaurant-bookmark
+    metadata:
+      custom:
+        resources:
+          - RestaurantBookMarkResource
+        models:
+          - User
+          - RestaurantBookmark
+      groupName: Bookmarks
+      groupDescription: |-
+
+        Customer bookmarks (favourites) for restaurants.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Bookmark a restaurant'
+      description: "Adds a restaurant to the authenticated customer's bookmarks. Only users with role `orderer` may call this."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      restaurantId:
+        custom: []
+        name: restaurantId
+        description: 'The ID of the restaurant to bookmark.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      restaurantId: 1
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: '{"data": {"id": 4, "uuid": "e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b", "relationships": {"restaurant": {"id": 1, "uuid": "5e6f7a8b-9c0d-4e1f-a2b3-c4d5e6f7a8b9", "attributes": {"name": "Mama Oliech", "nameShort": "MO", "email": "info@mamaoliech.co.ke", "about": "Authentic Kenyan cuisine", "phoneNo": "254712345678", "address": "Marcus Garvey Rd", "city": "Nairobi", "latitude": "-1.2921", "longitude": "36.8219", "logo": "https://moboeats.com/storage/logos/logo.png", "status": "2", "average_rating": 4.2, "is_open": true, "country": "Kenya", "country_code": "KE"}, "relationships": {"menus": [], "orders_count": 10, "menus_count": 5}}}}}'
+        headers: []
+        description: Created
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 402
+        content: '{"status": "Error has occured...", "message": "Item already exists in the bookmark", "data": "Bookmark"}'
+        headers: []
+        description: 'Already bookmarked'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "SQLSTATE[HY000]: General error", "data": ""}'
+        headers: []
+        description: 'Server error'
+      -
+        custom: []
+        status: 422
+        content: '{"message": "The restaurant id field is required.", "errors": {"restaurantId": ["The restaurant id field is required."]}}'
+        headers: []
+        description: 'Validation error'
+    responseFields:
+      data.uuid:
+        custom: []
+        name: data.uuid
+        description: 'The bookmark UUID.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v3/orderer/restaurant-bookmark/{restaurant_bookmark}'
+    metadata:
+      custom:
+        resources:
+          - RestaurantBookMarkResource
+        models:
+          - RestaurantBookmark
+      groupName: Bookmarks
+      groupDescription: |-
+
+        Customer bookmarks (favourites) for restaurants.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a restaurant bookmark'
+      description: 'Returns a single restaurant bookmark with its restaurant.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_bookmark:
+        custom: []
+        name: restaurant_bookmark
+        description: 'The UUID of the bookmark.'
+        required: true
+        example: e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant_bookmark: e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data": {"id": 4, "uuid": "e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b", "relationships": {"restaurant": {"id": 1, "uuid": "5e6f7a8b-9c0d-4e1f-a2b3-c4d5e6f7a8b9", "attributes": {"name": "Mama Oliech", "nameShort": "MO", "email": "info@mamaoliech.co.ke", "about": "Authentic Kenyan cuisine", "phoneNo": "254712345678", "address": "Marcus Garvey Rd", "city": "Nairobi", "latitude": "-1.2921", "longitude": "36.8219", "logo": "https://moboeats.com/storage/logos/logo.png", "status": "2", "average_rating": 4.2, "is_open": true, "country": "Kenya", "country_code": "KE"}, "relationships": {"menus": [], "orders_count": 10, "menus_count": 5}}}}}'
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\RestaurantBookmark] e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b"}'
+        headers: []
+        description: 'Not found'
+    responseFields:
+      data.relationships.restaurant:
+        custom: []
+        name: data.relationships.restaurant
+        description: 'The bookmarked restaurant.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v3/orderer/restaurant-bookmark/{restaurant_bookmark}'
+    metadata:
+      custom:
+        resources: []
+        models:
+          - RestaurantBookmark
+          - User
+      groupName: Bookmarks
+      groupDescription: |-
+
+        Customer bookmarks (favourites) for restaurants.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove a restaurant bookmark'
+      description: "Deletes one of the authenticated customer's restaurant bookmarks. Only users with role `orderer` may call this."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant_bookmark:
+        custom: []
+        name: restaurant_bookmark
+        description: 'The UUID of the bookmark.'
+        required: true
+        example: e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant_bookmark: e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 204
+        content: '""'
+        headers: []
+        description: Deleted
+      -
+        custom: []
+        status: 401
+        content: '{"status": "Error has occured...", "message": "Unauthorized", "data": ""}'
+        headers: []
+        description: 'Not an orderer'
+      -
+        custom: []
+        status: 403
+        content: '{"status": "Error has occured...", "message": "You are not authorized to make this request", "data": ""}'
+        headers: []
+        description: 'Not owner'
+      -
+        custom: []
+        status: 404
+        content: '{"message": "No query results for model [App\\Models\\RestaurantBookmark] e5f6a7b8-c9d0-4e1f-8a2b-3c4d5e6f7a8b"}'
+        headers: []
+        description: 'Not found'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

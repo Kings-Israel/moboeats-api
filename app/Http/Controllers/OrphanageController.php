@@ -8,12 +8,36 @@ use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Orphanages
+ *
+ * Orphanages that customers can donate orders to. Public endpoints under `v1/orphanages`; admin endpoints under
+ * `v1/admin/orphanages` (also duplicated under `v1/admin/v1/orphanages`).
+ */
 class OrphanageController extends Controller
 {
     use HttpResponses;
 
     /**
-     * Listing of the orphanages.
+     * List orphanages
+     *
+     * Returns orphanages (paginated). Guests and users with role `orderer`, `restaurant` or `restaurant employee` see only
+     * approved orphanages; other authenticated users (e.g. admins) see all.
+     *
+     * @queryParam per_page integer Number of items per page. Example: 15
+     * @queryParam page integer Page number. Example: 1
+     *
+     * @response 200 {
+     *   "status": "Request was succesful",
+     *   "message": null,
+     *   "data": {
+     *     "data": [{"id": 1, "name": "Hope Children Home", "email": "info@hopehome.org", "contact_user_name": "Mary Wanjiku", "contact_user_email": "mary@hopehome.org", "contact_user_phone_number": "254711000111", "logo": "https://moboeats.com/storage/orphanages/logo/hope.png", "status": "Approved", "created_by": null, "location": "Kibera, Nairobi", "latitude": -1.3133, "longitude": 36.7876}],
+     *     "links": {"first": "https://moboeats.com/api/v1/orphanages?page=1", "last": "https://moboeats.com/api/v1/orphanages?page=1", "prev": null, "next": null},
+     *     "meta": {"current_page": 1, "from": 1, "last_page": 1, "links": [], "path": "https://moboeats.com/api/v1/orphanages", "per_page": 15, "to": 1, "total": 1}
+     *   }
+     * }
+     * @responseField data.data object[] The orphanages.
+     * @responseField data.meta object Pagination metadata.
      */
     public function index(Request $request)
     {
@@ -34,6 +58,29 @@ class OrphanageController extends Controller
         return $this->success($data);
     }
 
+    /**
+     * Register an orphanage
+     *
+     * Registers an orphanage. Requires authentication on `v1/orphanages/store` and the admin routes. The orphanage is
+     * `approved` immediately when the user has the `create orphanages` permission, otherwise `pending`. Requests that do
+     * not expect JSON receive an HTML confirmation page instead.
+     *
+     * @bodyParam name string required Orphanage name. Example: Hope Children Home
+     * @bodyParam email string Orphanage email. Required if `phone_number` is not given. Example: info@hopehome.org
+     * @bodyParam phone_number string Orphanage phone. Required if `email` is not given. Example: 254711000000
+     * @bodyParam contact_name string required Contact person's name. Example: Mary Wanjiku
+     * @bodyParam contact_email string Contact person's email. Required if `contact_phone_number` is not given. Example: mary@hopehome.org
+     * @bodyParam contact_phone_number string Contact person's phone. Required if `contact_email` is not given. Example: 254711000111
+     * @bodyParam location string required Location description. Example: Kibera, Nairobi
+     * @bodyParam location_lat string required Latitude. Example: -1.3133
+     * @bodyParam location_long string required Longitude. Example: 36.7876
+     * @bodyParam logo file required Logo image (jpg or png, max 5 MB).
+     *
+     * @response 200 scenario="Created" {"status": "Request was succesful", "message": null, "data": {"id": 1, "name": "Hope Children Home", "email": "info@hopehome.org", "phone_number": "254711000000", "contact_name": "Mary Wanjiku", "contact_email": "mary@hopehome.org", "contact_phone_number": "254711000111", "location": "Kibera, Nairobi", "location_lat": "-1.3133", "location_long": "36.7876", "logo": "hope.png", "status": "approved", "rejection_reason": null, "created_by": 1, "created_at": "2024-12-01T10:00:00.000000Z", "updated_at": "2024-12-01T10:00:00.000000Z"}}
+     * @response 200 scenario="Non-JSON request (HTML page)" <html><body>Orphanage added</body></html>
+     * @response 422 scenario="Validation error" {"status": "Error has occured...", "message": "Invalid Data", "data": {"name": ["The name field is required."]}}
+     * @responseField data object The created orphanage (raw model).
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -76,7 +123,15 @@ class OrphanageController extends Controller
     }
 
     /**
-     * Show an Orphanage.
+     * Get an orphanage
+     *
+     * Returns an orphanage with its donated orders and their users.
+     *
+     * @urlParam orphanage integer required The numeric ID of the orphanage. Example: 1
+     *
+     * @response 200 {"status": "Request was succesful", "message": null, "data": {"id": 1, "name": "Hope Children Home", "email": "info@hopehome.org", "contact_user_name": "Mary Wanjiku", "contact_user_email": "mary@hopehome.org", "contact_user_phone_number": "254711000111", "logo": "https://moboeats.com/storage/orphanages/logo/hope.png", "status": "Approved", "created_by": null, "location": "Kibera, Nairobi", "latitude": -1.3133, "longitude": 36.7876, "orders": []}}
+     * @response 404 scenario="Not found" {"message": "No query results for model [App\\Models\\Orphanage] 99"}
+     * @responseField data.orders object[] Orders donated to this orphanage.
      */
     public function show(Orphanage $orphanage)
     {
@@ -85,6 +140,30 @@ class OrphanageController extends Controller
         return $this->success(new OrphanageResource($orphanage));
     }
 
+    /**
+     * Update an orphanage
+     *
+     * Updates an orphanage. Requires the `edit orphanages` permission. Status becomes `approved` when the user has
+     * role `admin`, otherwise it is reset to `pending`.
+     *
+     * @urlParam orphanage integer required The numeric ID of the orphanage. Example: 1
+     * @bodyParam name string required Orphanage name. Example: Hope Children Home
+     * @bodyParam email string Orphanage email. Required if `phone_number` is not given. Example: info@hopehome.org
+     * @bodyParam phone_number string Orphanage phone. Required if `email` is not given. Example: 254711000000
+     * @bodyParam contact_name string Contact person's name. Example: Mary Wanjiku
+     * @bodyParam contact_email string Contact person's email. Required if `contact_phone_number` is not given. Example: mary@hopehome.org
+     * @bodyParam contact_phone_number string Contact person's phone. Required if `contact_email` is not given. Example: 254711000111
+     * @bodyParam location string required Location description. Example: Kibera, Nairobi
+     * @bodyParam location_lat string required Latitude. Example: -1.3133
+     * @bodyParam location_long string required Longitude. Example: 36.7876
+     * @bodyParam logo file Logo image (jpg or png, max 5 MB).
+     *
+     * @response 200 scenario="Updated" {"status": "Request was succesful", "message": "Orphanage updated successfully", "data": {"id": 1, "name": "Hope Children Home", "email": "info@hopehome.org", "phone_number": "254711000000", "contact_name": "Mary Wanjiku", "contact_email": "mary@hopehome.org", "contact_phone_number": "254711000111", "location": "Kibera, Nairobi", "location_lat": "-1.3133", "location_long": "36.7876", "logo": "hope.png", "status": "approved", "rejection_reason": null, "created_by": 1, "created_at": "2024-12-01T10:00:00.000000Z", "updated_at": "2024-12-01T10:00:00.000000Z"}}
+     * @response 401 scenario="Missing permission" {"status": "Error has occured...", "message": "You are not authorized to perform this action", "data": ""}
+     * @response 404 scenario="Not found" {"message": "No query results for model [App\\Models\\Orphanage] 99"}
+     * @response 422 scenario="Validation error" {"status": "Error has occured...", "message": "Invalid Data", "data": {"name": ["The name field is required."]}}
+     * @responseField data object The updated orphanage (raw model).
+     */
     public function update(Request $request, Orphanage $orphanage)
     {
         if (!auth()->user()->hasPermission('edit orphanages')) {
@@ -137,6 +216,20 @@ class OrphanageController extends Controller
         return $this->success('', 'Orphanage Deleted Successfully');
     }
 
+    /**
+     * Update orphanage status
+     *
+     * Admin endpoint. Approves or rejects an orphanage. Requires the `edit orphanages` permission.
+     *
+     * @urlParam orphanage integer required The numeric ID of the orphanage. Example: 1
+     * @bodyParam status string New status. One of: `pending`, `approved`, `rejected`. Example: rejected
+     * @bodyParam rejection_reason string Reason for rejection. Example: Incomplete registration details.
+     *
+     * @response 200 scenario="Updated" {"status": "Request was succesful", "message": "Updated Orhpanage successfully", "data": {"id": 1, "name": "Hope Children Home", "email": "info@hopehome.org", "phone_number": "254711000000", "contact_name": "Mary Wanjiku", "contact_email": "mary@hopehome.org", "contact_phone_number": "254711000111", "location": "Kibera, Nairobi", "location_lat": "-1.3133", "location_long": "36.7876", "logo": "hope.png", "status": "rejected", "rejection_reason": "Incomplete registration details.", "created_by": 1, "created_at": "2024-12-01T10:00:00.000000Z", "updated_at": "2024-12-01T10:00:00.000000Z"}}
+     * @response 401 scenario="Missing permission" {"status": "Error has occured...", "message": "You cannot perform this action", "data": ""}
+     * @response 404 scenario="Not found" {"message": "No query results for model [App\\Models\\Orphanage] 99"}
+     * @responseField data.status string The new status.
+     */
     public function updateStatus(Orphanage $orphanage, Request $request)
     {
         if (!auth()->user()->hasPermission('edit orphanages')) {

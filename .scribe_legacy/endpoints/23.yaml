@@ -1,0 +1,1573 @@
+name: 'Admin - Restaurants'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/admin/restaurants
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurants'
+      description: 'Paginated list (10 per page) of restaurants with owner, orders and menus, newest first.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by restaurant name or owner name (partial match).'
+        required: false
+        example: mama
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Filter by status (1 = pending, 2 = approved, 3 = denied).'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      type:
+        custom: []
+        name: type
+        description: "Filter by the owner's user type."
+        required: false
+        example: company
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: mama
+      status: 2
+      type: company
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "current_page": 1,
+              "data": [
+                {
+                  "id": 3,
+                  "uuid": "8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d",
+                  "user_id": 12,
+                  "name": "Mama's Kitchen",
+                  "email": "info@mamaskitchen.com",
+                  "phone_no": "+447700900456",
+                  "address": "1 High St, London",
+                  "status": 2,
+                  "service_charge_agreement": 10,
+                  "groceries_service_charge_agreement": 5,
+                  "created_at": "2024-06-01T10:00:00.000000Z",
+                  "updated_at": "2024-06-01T10:00:00.000000Z",
+                  "user": {
+                    "id": 12,
+                    "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                    "name": "Jane Doe",
+                    "email": "jane@example.com",
+                    "phone_number": "+447700900123",
+                    "type": null,
+                    "status": 2,
+                    "country": "United Kingdom",
+                    "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z"
+                  },
+                  "orders": [
+                    {
+                      "id": 101,
+                      "uuid": "1f2e3d4c-5b6a-7980-a1b2-c3d4e5f6a7b8",
+                      "user_id": 12,
+                      "restaurant_id": 3,
+                      "rider_id": null,
+                      "total_amount": 25.5,
+                      "delivery_fee": 3.5,
+                      "service_charge": 1.2,
+                      "delivery": 1,
+                      "delivery_status": "Delivered",
+                      "status": 2,
+                      "country": "United Kingdom",
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    }
+                  ],
+                  "menus": [
+                    {
+                      "id": 7,
+                      "uuid": "3c4d5e6f-7081-92a3-b4c5-d6e7f8a9b0c1",
+                      "restaurant_id": 3,
+                      "title": "Jollof Rice",
+                      "description": "Spicy jollof rice with chicken",
+                      "status": 2,
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    }
+                  ]
+                }
+              ],
+              "first_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurants?page=1",
+              "from": 1,
+              "last_page": 1,
+              "last_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurants?page=1",
+              "links": [
+                {
+                  "url": null,
+                  "label": "&laquo; Previous",
+                  "active": false
+                },
+                {
+                  "url": "https://api.moboeats.co.uk/api/v1/admin/restaurants?page=1",
+                  "label": "1",
+                  "active": true
+                },
+                {
+                  "url": null,
+                  "label": "Next &raquo;",
+                  "active": false
+                }
+              ],
+              "next_page_url": null,
+              "path": "https://api.moboeats.co.uk/api/v1/admin/restaurants",
+              "per_page": 10,
+              "prev_page_url": null,
+              "to": 1,
+              "total": 1
+            }
+          }
+        headers: []
+        description: Success
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'Restaurants with `user`, `orders` and `menus`.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurants/{id}'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get restaurant details'
+      description: |-
+        Return a restaurant with owner, staff, orders (with payment and customer), menus, operating hours, documents and
+        reviews, its average rating and an earnings summary. Also available as `GET /api/v1/admin/restaurant/{restaurant}`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "restaurant": {
+                "id": 3,
+                "uuid": "8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d",
+                "user_id": 12,
+                "name": "Mama's Kitchen",
+                "email": "info@mamaskitchen.com",
+                "phone_no": "+447700900456",
+                "address": "1 High St, London",
+                "status": 2,
+                "service_charge_agreement": 10,
+                "groceries_service_charge_agreement": 5,
+                "created_at": "2024-06-01T10:00:00.000000Z",
+                "updated_at": "2024-06-01T10:00:00.000000Z",
+                "orders_count": 1,
+                "menus_count": 1,
+                "user": {
+                  "id": 12,
+                  "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                  "name": "Jane Doe",
+                  "email": "jane@example.com",
+                  "phone_number": "+447700900123",
+                  "type": null,
+                  "status": 2,
+                  "country": "United Kingdom",
+                  "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                  "created_at": "2024-06-01T10:00:00.000000Z",
+                  "updated_at": "2024-06-01T10:00:00.000000Z"
+                },
+                "users": [],
+                "orders": [
+                  {
+                    "id": 101,
+                    "uuid": "1f2e3d4c-5b6a-7980-a1b2-c3d4e5f6a7b8",
+                    "user_id": 12,
+                    "restaurant_id": 3,
+                    "rider_id": null,
+                    "total_amount": 25.5,
+                    "delivery_fee": 3.5,
+                    "service_charge": 1.2,
+                    "delivery": 1,
+                    "delivery_status": "Delivered",
+                    "status": 2,
+                    "country": "United Kingdom",
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z",
+                    "payment": {
+                      "id": 44,
+                      "uuid": "2b3c4d5e-6f70-8192-a3b4-c5d6e7f8a9b0",
+                      "transaction_id": "pi_3PZx1234567890",
+                      "orderable_type": "App\\Models\\Order",
+                      "orderable_id": 101,
+                      "payment_method": "stripe",
+                      "amount": 25.5,
+                      "status": 2,
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    },
+                    "user": {
+                      "id": 12,
+                      "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                      "name": "Jane Doe",
+                      "email": "jane@example.com",
+                      "phone_number": "+447700900123",
+                      "type": null,
+                      "status": 2,
+                      "country": "United Kingdom",
+                      "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    }
+                  }
+                ],
+                "menus": [
+                  {
+                    "id": 7,
+                    "uuid": "3c4d5e6f-7081-92a3-b4c5-d6e7f8a9b0c1",
+                    "restaurant_id": 3,
+                    "title": "Jollof Rice",
+                    "description": "Spicy jollof rice with chicken",
+                    "status": 2,
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z"
+                  }
+                ],
+                "operating_hours": [],
+                "documents": [],
+                "reviews": []
+              },
+              "average_rating": 4.5,
+              "restaurant_payment_data": {
+                "total_earnings": 980.5,
+                "paid_amount": 380,
+                "unpaid_amount": 600.5,
+                "service_charges": 62.5
+              }
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 500
+        content: |-
+          {
+            "message": "Server Error"
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields:
+      data.restaurant:
+        custom: []
+        name: data.restaurant
+        description: 'The restaurant with its relations.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.average_rating:
+        custom: []
+        name: data.average_rating
+        description: 'Average review rating.'
+        required: false
+        example: null
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.restaurant_payment_data:
+        custom: []
+        name: data.restaurant_payment_data
+        description: '`total_earnings`, `paid_amount`, `unpaid_amount`, `service_charges`.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurants/{id}/reviews'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurant reviews'
+      description: 'Return all reviews of a restaurant (not paginated).'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "reviewable": {
+                  "id": 1,
+                  "user_id": 12,
+                  "reviewable_type": "App\\Models\\Restaurant",
+                  "reviewable_id": 3,
+                  "rating": 5,
+                  "review": "Great food!",
+                  "created_at": "2024-06-01T10:00:00.000000Z",
+                  "updated_at": "2024-06-01T10:00:00.000000Z",
+                  "reviewable": {
+                    "id": 3,
+                    "uuid": "8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d",
+                    "user_id": 12,
+                    "name": "Mama's Kitchen",
+                    "email": "info@mamaskitchen.com",
+                    "phone_no": "+447700900456",
+                    "address": "1 High St, London",
+                    "status": 2,
+                    "service_charge_agreement": 10,
+                    "groceries_service_charge_agreement": 5,
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z"
+                  }
+                },
+                "rating": 5,
+                "review": "Great food!"
+              }
+            ]
+          }
+        headers: []
+        description: Success
+    responseFields:
+      data:
+        custom: []
+        name: data
+        description: 'Reviews (ReviewResource) with `reviewable`, `rating`, `review`.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/restaurants/{restaurant}/status/update'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Approve or deny a restaurant'
+      description: |-
+        Set a restaurant's status to approved (2) or denied (3). A reason is required when denying. The restaurant is
+        notified of the status change.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      status:
+        custom: []
+        name: status
+        description: 'New status. One of `2` (approved), `3` (denied).'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      reason:
+        custom: []
+        name: reason
+        description: 'Reason for denial. Required when `status` is 3.'
+        required: false
+        example: 'Missing food hygiene certificate'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      status: 2
+      reason: 'Missing food hygiene certificate'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": "Restaurants updated successfully"
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+            "message": "No query results for model [App\\Models\\Restaurant]."
+          }
+        headers: []
+        description: 'Restaurant not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+            "message": "The status field is required.",
+            "errors": {
+              "status": [
+                "The status field is required."
+              ]
+            }
+          }
+        headers: []
+        description: 'Validation error'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurant/{restaurant}'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get restaurant details'
+      description: |-
+        Return a restaurant with owner, staff, orders (with payment and customer), menus, operating hours, documents and
+        reviews, its average rating and an earnings summary. Also available as `GET /api/v1/admin/restaurant/{restaurant}`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'The restaurant.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: architecto
+      id: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "restaurant": {
+                "id": 3,
+                "uuid": "8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d",
+                "user_id": 12,
+                "name": "Mama's Kitchen",
+                "email": "info@mamaskitchen.com",
+                "phone_no": "+447700900456",
+                "address": "1 High St, London",
+                "status": 2,
+                "service_charge_agreement": 10,
+                "groceries_service_charge_agreement": 5,
+                "created_at": "2024-06-01T10:00:00.000000Z",
+                "updated_at": "2024-06-01T10:00:00.000000Z",
+                "orders_count": 1,
+                "menus_count": 1,
+                "user": {
+                  "id": 12,
+                  "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                  "name": "Jane Doe",
+                  "email": "jane@example.com",
+                  "phone_number": "+447700900123",
+                  "type": null,
+                  "status": 2,
+                  "country": "United Kingdom",
+                  "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                  "created_at": "2024-06-01T10:00:00.000000Z",
+                  "updated_at": "2024-06-01T10:00:00.000000Z"
+                },
+                "users": [],
+                "orders": [
+                  {
+                    "id": 101,
+                    "uuid": "1f2e3d4c-5b6a-7980-a1b2-c3d4e5f6a7b8",
+                    "user_id": 12,
+                    "restaurant_id": 3,
+                    "rider_id": null,
+                    "total_amount": 25.5,
+                    "delivery_fee": 3.5,
+                    "service_charge": 1.2,
+                    "delivery": 1,
+                    "delivery_status": "Delivered",
+                    "status": 2,
+                    "country": "United Kingdom",
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z",
+                    "payment": {
+                      "id": 44,
+                      "uuid": "2b3c4d5e-6f70-8192-a3b4-c5d6e7f8a9b0",
+                      "transaction_id": "pi_3PZx1234567890",
+                      "orderable_type": "App\\Models\\Order",
+                      "orderable_id": 101,
+                      "payment_method": "stripe",
+                      "amount": 25.5,
+                      "status": 2,
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    },
+                    "user": {
+                      "id": 12,
+                      "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                      "name": "Jane Doe",
+                      "email": "jane@example.com",
+                      "phone_number": "+447700900123",
+                      "type": null,
+                      "status": 2,
+                      "country": "United Kingdom",
+                      "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    }
+                  }
+                ],
+                "menus": [
+                  {
+                    "id": 7,
+                    "uuid": "3c4d5e6f-7081-92a3-b4c5-d6e7f8a9b0c1",
+                    "restaurant_id": 3,
+                    "title": "Jollof Rice",
+                    "description": "Spicy jollof rice with chicken",
+                    "status": 2,
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z"
+                  }
+                ],
+                "operating_hours": [],
+                "documents": [],
+                "reviews": []
+              },
+              "average_rating": 4.5,
+              "restaurant_payment_data": {
+                "total_earnings": 980.5,
+                "paid_amount": 380,
+                "unpaid_amount": 600.5,
+                "service_charges": 62.5
+              }
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 500
+        content: |-
+          {
+            "message": "Server Error"
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields:
+      data.restaurant:
+        custom: []
+        name: data.restaurant
+        description: 'The restaurant with its relations.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.average_rating:
+        custom: []
+        name: data.average_rating
+        description: 'Average review rating.'
+        required: false
+        example: null
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.restaurant_payment_data:
+        custom: []
+        name: data.restaurant_payment_data
+        description: '`total_earnings`, `paid_amount`, `unpaid_amount`, `service_charges`.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurant/{restaurant}/payments'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurant payments'
+      description: 'Paginated list (5 per page) of completed payments (with a transaction ID) for orders of the restaurant, newest first.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by order UUID or customer name (partial match).'
+        required: false
+        example: jane
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: jane
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "current_page": 1,
+              "data": [
+                {
+                  "id": 44,
+                  "uuid": "2b3c4d5e-6f70-8192-a3b4-c5d6e7f8a9b0",
+                  "transaction_id": "pi_3PZx1234567890",
+                  "orderable_type": "App\\Models\\Order",
+                  "orderable_id": 101,
+                  "payment_method": "stripe",
+                  "amount": 25.5,
+                  "status": 2,
+                  "created_at": "2024-06-01T10:00:00.000000Z",
+                  "updated_at": "2024-06-01T10:00:00.000000Z",
+                  "orderable": {
+                    "id": 101,
+                    "uuid": "1f2e3d4c-5b6a-7980-a1b2-c3d4e5f6a7b8",
+                    "user_id": 12,
+                    "restaurant_id": 3,
+                    "rider_id": null,
+                    "total_amount": 25.5,
+                    "delivery_fee": 3.5,
+                    "service_charge": 1.2,
+                    "delivery": 1,
+                    "delivery_status": "Delivered",
+                    "status": 2,
+                    "country": "United Kingdom",
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z",
+                    "restaurant": {
+                      "id": 3,
+                      "uuid": "8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d",
+                      "user_id": 12,
+                      "name": "Mama's Kitchen",
+                      "email": "info@mamaskitchen.com",
+                      "phone_no": "+447700900456",
+                      "address": "1 High St, London",
+                      "status": 2,
+                      "service_charge_agreement": 10,
+                      "groceries_service_charge_agreement": 5,
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    },
+                    "user": {
+                      "id": 12,
+                      "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                      "name": "Jane Doe",
+                      "email": "jane@example.com",
+                      "phone_number": "+447700900123",
+                      "type": null,
+                      "status": 2,
+                      "country": "United Kingdom",
+                      "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                      "created_at": "2024-06-01T10:00:00.000000Z",
+                      "updated_at": "2024-06-01T10:00:00.000000Z"
+                    }
+                  }
+                }
+              ],
+              "first_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/payments?page=1",
+              "from": 1,
+              "last_page": 1,
+              "last_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/payments?page=1",
+              "links": [
+                {
+                  "url": null,
+                  "label": "&laquo; Previous",
+                  "active": false
+                },
+                {
+                  "url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/payments?page=1",
+                  "label": "1",
+                  "active": true
+                },
+                {
+                  "url": null,
+                  "label": "Next &raquo;",
+                  "active": false
+                }
+              ],
+              "next_page_url": null,
+              "path": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/payments",
+              "per_page": 5,
+              "prev_page_url": null,
+              "to": 1,
+              "total": 1
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+            "message": "No query results for model [App\\Models\\Restaurant]."
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'Payments with `orderable` (order with `restaurant` and `user`).'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurant/{restaurant}/menu'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurant menu'
+      description: |-
+        Paginated list (9 per page) of the restaurant's menu items with images, prices, categories, sub categories,
+        discount and order counts, plus the categories available to the restaurant (global and restaurant-specific).
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by menu title or description (partial match).'
+        required: false
+        example: rice
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: rice
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "menu": {
+                "current_page": 1,
+                "data": [
+                  {
+                    "id": 7,
+                    "uuid": "3c4d5e6f-7081-92a3-b4c5-d6e7f8a9b0c1",
+                    "restaurant_id": 3,
+                    "title": "Jollof Rice",
+                    "description": "Spicy jollof rice with chicken",
+                    "status": 2,
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z",
+                    "order_items_count": 12,
+                    "images": [],
+                    "menu_prices": [],
+                    "sub_categories": [],
+                    "categories": [],
+                    "discount": null
+                  }
+                ],
+                "first_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/menu?page=1",
+                "from": 1,
+                "last_page": 1,
+                "last_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/menu?page=1",
+                "links": [
+                  {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                  },
+                  {
+                    "url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/menu?page=1",
+                    "label": "1",
+                    "active": true
+                  },
+                  {
+                    "url": null,
+                    "label": "Next &raquo;",
+                    "active": false
+                  }
+                ],
+                "next_page_url": null,
+                "path": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/menu",
+                "per_page": 9,
+                "prev_page_url": null,
+                "to": 1,
+                "total": 1
+              },
+              "categories": {
+                "data": [
+                  {
+                    "id": 2,
+                    "uuid": "5e6f7081-92a3-b4c5-d6e7-f8a9b0c1d2e3",
+                    "title": "Main Dishes",
+                    "description": null,
+                    "image": "https://api.moboeats.co.uk/storage/category/main.png",
+                    "status": 2
+                  }
+                ]
+              }
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+            "message": "No query results for model [App\\Models\\Restaurant]."
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields:
+      data.menu:
+        custom: []
+        name: data.menu
+        description: 'Paginated menu items.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      data.categories:
+        custom: []
+        name: data.categories
+        description: 'Food categories (FoodCommonCategoryCollection).'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurant/{restaurant}/categories'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurant-specific categories'
+      description: 'Paginated list (8 per page) of food categories created by the restaurant, with sub categories.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters:
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "categories": {
+                "current_page": 1,
+                "data": [
+                  {
+                    "id": 2,
+                    "uuid": "5e6f7081-92a3-b4c5-d6e7-f8a9b0c1d2e3",
+                    "title": "Main Dishes",
+                    "description": null,
+                    "image": "https://api.moboeats.co.uk/storage/category/main.png",
+                    "status": 2,
+                    "restaurant_id": 3,
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z",
+                    "food_sub_categories": [
+                      {
+                        "id": 9,
+                        "uuid": "4d5e6f70-8192-a3b4-c5d6-e7f8a9b0c1d2",
+                        "title": "Fresh Produce",
+                        "description": "Fruits and vegetables",
+                        "status": 2,
+                        "image": "abc123.png",
+                        "created_by": "admin@moboeats.co.uk",
+                        "created_at": "2024-06-01T10:00:00.000000Z",
+                        "updated_at": "2024-06-01T10:00:00.000000Z"
+                      }
+                    ]
+                  }
+                ],
+                "first_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/categories?page=1",
+                "from": 1,
+                "last_page": 1,
+                "last_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/categories?page=1",
+                "links": [
+                  {
+                    "url": null,
+                    "label": "&laquo; Previous",
+                    "active": false
+                  },
+                  {
+                    "url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/categories?page=1",
+                    "label": "1",
+                    "active": true
+                  },
+                  {
+                    "url": null,
+                    "label": "Next &raquo;",
+                    "active": false
+                  }
+                ],
+                "next_page_url": null,
+                "path": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/categories",
+                "per_page": 8,
+                "prev_page_url": null,
+                "to": 1,
+                "total": 1
+              }
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 500
+        content: |-
+          {
+            "message": "Server Error"
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields:
+      data.categories:
+        custom: []
+        name: data.categories
+        description: 'Paginated categories with `food_sub_categories`.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/admin/restaurant/{restaurant}/orders'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List restaurant orders'
+      description: "Paginated list (5 per page) of the restaurant's orders with customer, newest first."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Filter by order UUID (partial match).'
+        required: false
+        example: 1f2e3d4c
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: 1f2e3d4c
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": {
+              "current_page": 1,
+              "data": [
+                {
+                  "id": 101,
+                  "uuid": "1f2e3d4c-5b6a-7980-a1b2-c3d4e5f6a7b8",
+                  "user_id": 12,
+                  "restaurant_id": 3,
+                  "rider_id": null,
+                  "total_amount": 25.5,
+                  "delivery_fee": 3.5,
+                  "service_charge": 1.2,
+                  "delivery": 1,
+                  "delivery_status": "Delivered",
+                  "status": 2,
+                  "country": "United Kingdom",
+                  "created_at": "2024-06-01T10:00:00.000000Z",
+                  "updated_at": "2024-06-01T10:00:00.000000Z",
+                  "user": {
+                    "id": 12,
+                    "uuid": "9c1f6a2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+                    "name": "Jane Doe",
+                    "email": "jane@example.com",
+                    "phone_number": "+447700900123",
+                    "type": null,
+                    "status": 2,
+                    "country": "United Kingdom",
+                    "image": "https://api.moboeats.co.uk/assets/user/default.png",
+                    "created_at": "2024-06-01T10:00:00.000000Z",
+                    "updated_at": "2024-06-01T10:00:00.000000Z"
+                  }
+                }
+              ],
+              "first_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/orders?page=1",
+              "from": 1,
+              "last_page": 1,
+              "last_page_url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/orders?page=1",
+              "links": [
+                {
+                  "url": null,
+                  "label": "&laquo; Previous",
+                  "active": false
+                },
+                {
+                  "url": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/orders?page=1",
+                  "label": "1",
+                  "active": true
+                },
+                {
+                  "url": null,
+                  "label": "Next &raquo;",
+                  "active": false
+                }
+              ],
+              "next_page_url": null,
+              "path": "https://api.moboeats.co.uk/api/v1/admin/restaurant/8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d/orders",
+              "per_page": 5,
+              "prev_page_url": null,
+              "to": 1,
+              "total": 1
+            }
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+            "message": "No query results for model [App\\Models\\Restaurant]."
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields:
+      data.data:
+        custom: []
+        name: data.data
+        description: 'Orders with `user`.'
+        required: false
+        example: null
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/restaurant/{restaurant}/update/service-charge-agreement'
+    metadata:
+      custom: []
+      groupName: 'Admin - Restaurants'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Update a restaurant's service charge agreement"
+      description: |-
+        Set the restaurant's service charge percentage. When `groceries` is present in the request the groceries
+        service charge agreement is updated instead.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_ACCESS_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      restaurant:
+        custom: []
+        name: restaurant
+        description: 'UUID of the restaurant.'
+        required: true
+        example: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      restaurant: 8a7b6c5d-4e3f-2a1b-0c9d-8e7f6a5b4c3d
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      service_charge_agreement:
+        custom: []
+        name: service_charge_agreement
+        description: 'The agreed service charge rate.'
+        required: false
+        example: 10.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      groceries:
+        custom: []
+        name: groceries
+        description: 'If present (any value), the groceries service charge agreement is updated.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      service_charge_agreement: 10.0
+      groceries: true
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": "Request was succesful",
+            "message": null,
+            "data": "Restaurant updated successfully"
+          }
+        headers: []
+        description: Success
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+            "message": "No query results for model [App\\Models\\Restaurant]."
+          }
+        headers: []
+        description: 'Restaurant not found'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
